@@ -80,6 +80,7 @@ class Flag(BaseModel):
     field_id: str
     check: Literal["arithmetic", "words_figures", "crossdoc", "reread", "occlusion"]
     detail: str
+    suggested: str | None = None  # the value the check implies, as it would be printed
 
 
 class FieldVerdict(BaseModel):

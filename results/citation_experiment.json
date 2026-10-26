@@ -33,5 +33,6 @@
       "field_accuracy": 0.9602888086642599,
       "error_rate": 0.038322487346348515
     }
-  }
+  },
+  "superseded_by": "results/citation_validation.json"
 }
