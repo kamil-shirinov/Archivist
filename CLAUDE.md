@@ -10,6 +10,7 @@ Turns scanned financial archives into a verified database: every value cited to 
 - archivist.pipeline must never import archivist.synth (keeps ground truth out of predictions).
 - The UI never calls a model; it only renders exported run bundles.
 - Tests never touch the network. One task per session; never edit files the task doesn't name.
+- Finish every task by committing ("Pn: …") and pushing, only after its Check passes and pre-commit is clean. Never use --no-verify, never force-push, never rewrite history.
 
 ## Layout (planned)
 src/archivist/schema.py — data contracts
@@ -25,6 +26,6 @@ uv run pytest -q
 
 ## Status
 - [x] P1 scaffold
-- [ ] P2 schema
+- [x] P2 schema
 - [ ] P3 world generator
 - [ ] P4 renderer

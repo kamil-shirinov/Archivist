@@ -5,6 +5,7 @@ Archivist turns scanned financial archives into a verified database — every va
 Everything in this repository was written during the hackathon, except the third-party components listed below.
 Build log:
 - 26 Oct: repo scaffold, hygiene and docs
+- 26 Oct: data contracts (schema)
 
 ## Meta models
 Planned: Muse Spark via the Meta Model API (extraction, re-reading) and SAM 3.1 (regions). Final roles and measured results will be stated here.

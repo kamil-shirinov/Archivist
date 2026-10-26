@@ -13,3 +13,4 @@ D11 Python 3.12 with a uv lockfile — reproducible runs.
 D12 The UI is a static app over a run bundle exported by the pipeline; the browser never calls a model — it can't break live, exposes no key, spends nothing, and can be built against a fixture.
 D13 No public live mode — an upload box invites documents outside our one family; live runs are shown in the video and documented for local use.
 D14 Only synthetic or public-domain pages are ever sent to a model — free-credit traffic may be used by Meta for product improvement.
+D15 Rubric weights (kickoff): Impact 30, Meta tooling 25, Demo 25, Technical depth 20 — optimise in that order; rigour exists to make the impact claims credible.
