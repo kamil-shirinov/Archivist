@@ -30,3 +30,4 @@ uv run pytest -q
 - [x] P3 world generator
 - [x] P4 renderer
 - [x] P4b realism fixes
+- [x] P5 scan degradation and artefacts
