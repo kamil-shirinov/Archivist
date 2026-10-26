@@ -1,8 +1,12 @@
-"""Verification: a verdict for every extracted value, with its evidence (D25, D26).
+"""Verification: a verdict for every extracted value, with its evidence (D25, D26, D29).
 
     python -m archivist.pipeline.verify --run baseline-dev-v1 --out archivist-dev-v2 --workers 4
 
-The policy, pre-registered before it is scored on the test set:
+--config picks the file that maps roles to models (default config/models.toml), --policy whose
+outcome a verdict's own status, confidence and proposal are (default POLICY). Every verdict
+records the outcome of both policies, v2 and v3, so both are scored from one run (as_policy).
+
+Policy v2, pre-registered before it is scored on the test set:
 
 - Every value is read twice (D26): once in context, by the extractor reading the whole page, and
   once in isolation, by a blind re-read of its cell alone (reread.py). Money fields are re-read
@@ -24,9 +28,17 @@ The policy, pre-registered before it is scored on the test set:
   only if everything agrees, with lower confidence.
 - A field the extractor abstained on (null) is abstained, and is not re-read.
 
-Confidence, for the risk–coverage curve: 0.99 accepted; 0.9 the same but occluded; 0.5 for
-review with a proposed correction; 0.3 for review without one (an unresolved disagreement); 0.0
-when the extractor abstained.
+Policy v3 is v2 with a second look before an alarm. When the first re-read disagrees with the
+extractor or finds the field illegible, the re-reader reads it once more from a differently padded
+crop of the same box (reread.SECOND_PAD_Y, SECOND_PAD_X). The extracted value is accepted only if
+a look agrees with it and no check on the extracted values involving it fails. If both looks agree
+with each other but not with the extractor, their value is proposed and the field goes to review;
+in every other case it goes to review with nothing proposed. A second look that fails (a timeout,
+say) is no look: the field keeps its v2 outcome. Every other field is decided as in v2.
+
+Confidence, for the risk–coverage curve, under either policy: 0.99 accepted; 0.9 the same but
+occluded; 0.5 for review with a proposed correction; 0.3 for review without one (an unresolved
+disagreement); 0.0 when the extractor abstained.
 
 Unresolvable cross-document flags are notes: kept as evidence, never a reason for review. A check
 that fails only on the re-read values is evidence too: when the two reads agree on a field, the
@@ -38,11 +50,13 @@ dates as a calendar date, account and memo numbers as digits, the amount in word
 Re-reads use the corrected citation boxes: a run extracted with S0 or S1 is corrected here as
 S0+ink would (citations.py, D23), and each corrected box is widened to the extractor's own
 horizontal extent, kept on the citation as raw_bbox, before cropping (reread.region). Both the
-corrected box and the region sent to the re-reader are part of the evidence. Every model call
+corrected box and the regions sent to the re-reader are part of the evidence. Every model call
 goes through the roles, so a rerun replays the cache and spends nothing.
 
 Writes results/runs/<out>/verdicts.jsonl, one VerdictRecord (a FieldVerdict with its page, doc
-type and evidence) per extracted field, and run.json with the config, counts and cost.
+type, evidence and both policies' outcomes) per extracted field, and run.json with the config,
+counts and cost: cost_usd is what this run spent, cost_full_usd what its calls cost when they were
+first made, cache hits included, i.e. what the configuration costs on pages it has never seen.
 """
 
 from __future__ import annotations
@@ -51,13 +65,14 @@ import argparse
 import io
 import json
 import re
+import threading
 from collections import Counter, defaultdict
 from collections.abc import Mapping, Sequence
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from datetime import UTC, datetime
 from pathlib import Path
-from typing import Literal
+from typing import Any, Literal
 
 from PIL import Image
 from pydantic import BaseModel
@@ -66,6 +81,7 @@ from archivist.doctypes import REGISTRY, is_unresolvable
 from archivist.doctypes.ledger import balanced, calendar_date, money
 from archivist.models import BudgetExceeded, Region, describe_config, load_roles
 from archivist.models.budget import BudgetGuard
+from archivist.models.registry import CONFIG_PATH
 from archivist.pipeline import citations, occlusion, reread
 from archivist.pipeline.checks import run_checks
 from archivist.pipeline.extract import IMAGE_SUFFIXES, RUNS_DIR, PageExtraction, load_predictions
@@ -90,6 +106,11 @@ CONFIDENCE = {
 VERDICTS_FILE = "verdicts.jsonl"
 
 ReReadStatus = Literal["agrees", "disagrees", "illegible", "failed", "no_citation", "not_reread"]
+Policy = Literal["v2", "v3"]
+POLICIES: tuple[Policy, ...] = ("v2", "v3")
+POLICY: Policy = "v3"  # whose outcome a verdict's own status, confidence and proposal are
+SECOND_LOOK: frozenset[str] = frozenset({"disagrees", "illegible"})  # what a second look is for
+Proposer = Literal["reread_chain", "check", "second_look"]
 
 
 class Occluder(BaseModel):
@@ -107,14 +128,26 @@ class Evidence(BaseModel):
     reread_status: ReReadStatus
     reread_flags: list[Flag] = []  # the checks run on the re-read values: the second chain
     reread_balances: bool = False  # an equation holds for the re-read value (ledger.balanced)
-    proposed: str | None = None  # the proposed correction
-    proposed_by: Literal["reread_chain", "check"] | None = None
+    proposed: str | None = None  # the proposed correction, under the verdict's own policy
+    proposed_by: Proposer | None = None
+    second_look: str | None = None  # v3's second look; None when illegible or not taken
+    second_look_status: ReReadStatus = "not_reread"  # compared with the extracted value
+    second_crop: BBox | None = None  # the region of the page the second look saw
+
+
+class PolicyOutcome(BaseModel):
+    status: Literal["accepted", "review", "abstained"]
+    confidence: float
+    proposed: str | None = None
+    proposed_by: Proposer | None = None
 
 
 class VerdictRecord(FieldVerdict):
     page_id: str
     doc_type: str
     evidence: Evidence
+    policy: str = "v2"  # whose outcome status, confidence and evidence.proposed are
+    policies: dict[str, PolicyOutcome] = {}  # every policy's outcome; empty before v3 existed
 
 
 @dataclass(frozen=True)
@@ -190,6 +223,26 @@ def _proposal(
     return None, None, detail
 
 
+def _outcome(
+    review: bool, proposed: str | None, proposed_by: Proposer | None, occluded: bool
+) -> PolicyOutcome:
+    if not review:
+        confidence = ACCEPTED_OCCLUDED if occluded else ACCEPTED
+        return PolicyOutcome(status="accepted", confidence=confidence)
+    confidence = PROPOSED if proposed is not None else UNRESOLVED
+    return PolicyOutcome(
+        status="review", confidence=confidence, proposed=proposed, proposed_by=proposed_by
+    )
+
+
+def _second_detail(status: ReReadStatus, second: ReRead) -> str:
+    if status == "failed":
+        return f"the second look failed: {second.error}"
+    if status == "illegible":
+        return "a second look, from a wider crop, found it illegible"
+    return f"a second look, from a wider crop, reads {second.value!r}"
+
+
 def decide(
     page_id: str,
     doc_type: str,
@@ -199,10 +252,13 @@ def decide(
     reading: ReRead | None,
     reread_flags: Sequence[Flag] = (),
     balances: bool = False,
+    second: ReRead | None = None,
+    policy: Policy = POLICY,
 ) -> VerdictRecord:
-    """The policy for one field: its flags from the checks on the extracted values, what covers
-    it, its re-read, the flags from the checks on the re-read values, and whether an equation
-    holds for its re-read value.
+    """Both policies for one field: its flags from the checks on the extracted values, what covers
+    it, its re-read, the flags from the checks on the re-read values, whether an equation holds
+    for its re-read value, and its second look (None if not taken). The verdict's own status,
+    confidence and proposal are `policy`'s.
     """
     route = "arithmetic" if field_kind(value.field_id) in MONEY_FIELDS else "reread"
     fid = value.field_id
@@ -211,6 +267,7 @@ def decide(
         for o in occluders
     ]
     if value.abstained or value.value is None:
+        abstained = PolicyOutcome(status="abstained", confidence=ABSTAINED)
         return VerdictRecord(
             field_id=value.field_id,
             value=None,
@@ -225,6 +282,8 @@ def decide(
                 occluded_by=list(occluders),
                 reread_status="not_reread",
             ),
+            policy=policy,
+            policies=dict.fromkeys(POLICIES, abstained),
         )
 
     failed = [f for f in flags if not is_unresolvable(f)]
@@ -242,15 +301,29 @@ def decide(
         notes.append(Flag(field_id=fid, check="reread", detail=REREAD_DETAIL[status]))
 
     review = bool(failed) or status in ("disagrees", "illegible", "failed", "no_citation")
-    if review:
-        confidence = PROPOSED if proposed is not None else UNRESOLVED
-    else:
-        confidence = ACCEPTED_OCCLUDED if occluders else ACCEPTED
+    v2 = _outcome(review, proposed, proposed_by, bool(occluders))
+
+    v3, looked, second_status = v2, None, "not_reread"
+    if second is not None and status in SECOND_LOOK:
+        second_status = _reread_status(value, second)
+        looked = second.value if second.error is None else None
+        notes.append(
+            Flag(field_id=fid, check="reread", detail=_second_detail(second_status, second))
+        )
+        if second_status == "agrees":
+            v3 = _outcome(bool(failed), None, None, bool(occluders))
+        elif status == second_status == "disagrees" and same_reading(fid, read, looked):
+            # v2's proposal, when it made one, is this same reading with its own provenance.
+            v3 = _outcome(True, proposed or read, proposed_by or "second_look", bool(occluders))
+        elif second_status != "failed":  # a look that failed is no look: v2 stands
+            v3 = _outcome(True, None, None, bool(occluders))
+    policies = {"v2": v2, "v3": v3}
+    chosen = policies[policy]
     return VerdictRecord(
         field_id=value.field_id,
         value=value.value,  # never changed: a correction is only ever proposed
-        confidence=confidence,
-        status="review" if review else "accepted",
+        confidence=chosen.confidence,
+        status=chosen.status,
         flags=[*flags, *notes],
         page_id=page_id,
         doc_type=doc_type,
@@ -263,9 +336,34 @@ def decide(
             reread_status=status,
             reread_flags=list(reread_flags),
             reread_balances=balances,
-            proposed=proposed,
-            proposed_by=proposed_by,
+            proposed=chosen.proposed,
+            proposed_by=chosen.proposed_by,
+            second_look=looked,
+            second_look_status=second_status,
+            second_crop=second.crop if second_status != "not_reread" else None,
         ),
+        policy=policy,
+        policies=policies,
+    )
+
+
+def as_policy(verdict: VerdictRecord, policy: str) -> VerdictRecord:
+    """The verdict as `policy` decided it: its status, confidence and proposal."""
+    if verdict.policy == policy:
+        return verdict
+    if policy not in verdict.policies:
+        raise ValueError(f"{verdict.field_id}: no outcome for policy {policy!r}; rerun verify")
+    outcome = verdict.policies[policy]
+    evidence = verdict.evidence.model_copy(
+        update={"proposed": outcome.proposed, "proposed_by": outcome.proposed_by}
+    )
+    return verdict.model_copy(
+        update={
+            "status": outcome.status,
+            "confidence": outcome.confidence,
+            "evidence": evidence,
+            "policy": policy,
+        }
     )
 
 
@@ -299,6 +397,34 @@ def _occluders(value: ExtractedValue, regions: Sequence[Region]) -> list[Occlude
     ]
 
 
+class Metered:
+    """A role that adds up what its answers cost, cache hits included: a hit carries the usage of
+    the call that first produced it, so the sum is what the configuration costs, not this run.
+    """
+
+    def __init__(self, inner: Any) -> None:
+        self.inner = inner
+        self.cost_usd = 0.0
+        self._lock = threading.Lock()
+
+    def __getattr__(self, name: str) -> Any:
+        return getattr(self.inner, name)
+
+    def _add(self, response: Any) -> Any:
+        with self._lock:
+            self.cost_usd += response.usage.cost_usd
+        return response
+
+    def complete(self, request: Any) -> Any:
+        return self._add(self.inner.complete(request))
+
+    def segment(self, request: Any) -> Any:
+        return self._add(self.inner.segment(request))
+
+
+Job = tuple[bytes, BBox, str, float, float]  # image, box, prompt, horizontal and vertical padding
+
+
 def verify(
     pages: Sequence[PageExtraction],
     images: Mapping[str, Path],
@@ -306,9 +432,12 @@ def verify(
     *,
     correct_citations: bool,
     workers: int = 1,
+    policy: Policy = POLICY,
 ) -> tuple[list[VerdictRecord], dict]:
-    """Every value of every page through the policy; returns the verdicts and the call counts."""
-    segmenter, llm = roles[occlusion.ROLE], roles[reread.ROLE]
+    """Every value of every page through both policies; returns the verdicts and the call counts.
+    Second looks are asked only for the fields whose first re-read calls for one.
+    """
+    segmenter, llm = Metered(roles[occlusion.ROLE]), Metered(roles[reread.ROLE])
 
     def prepare(page: PageExtraction) -> _Page:
         image = images[page.page_id].read_bytes()
@@ -318,12 +447,12 @@ def verify(
         regions = occlusion.detect(image, segmenter) if values else []
         return _Page(page, image, values, regions)
 
-    def read_one(job: tuple[bytes, BBox, str]) -> tuple[ReRead, bool]:
-        image, box, prompt = job
+    def read_one(job: Job) -> tuple[ReRead, bool]:
+        image, box, prompt, pad_x, pad_y = job
         picture = Image.open(io.BytesIO(image))
-        seen = reread.crop_box(box, *picture.size)
+        seen = reread.crop_box(box, *picture.size, pad_x=pad_x, pad_y=pad_y)
         try:
-            text, cached = reread.reread(picture, box, prompt, llm)
+            text, cached = reread.reread(picture, box, prompt, llm, pad_x=pad_x, pad_y=pad_y)
         except BudgetExceeded:
             raise
         except Exception as error:  # one field failing must not stop the others
@@ -332,16 +461,31 @@ def verify(
 
     with ThreadPoolExecutor(max_workers=workers) as pool:
         prepared = list(pool.map(prepare, sorted(pages, key=lambda p: p.page_id)))
-        jobs, keys = [], []
+        jobs: list[Job] = []
+        keys: list[ExtractedValue] = []
         for page in prepared:
             plugin = REGISTRY.get(page.extraction.doc_type)
             for value in page.values:
                 if value.citation is not None and needs_reread(value):
                     box = reread.region(value.citation)
-                    jobs.append((page.image, box, plugin.reread_prompt(value.field_id)))
-                    keys.append(value.field_id)
+                    prompt = plugin.reread_prompt(value.field_id)
+                    jobs.append((page.image, box, prompt, reread.PAD_X, reread.PAD_Y))
+                    keys.append(value)
         results = list(pool.map(read_one, jobs))
-    readings = {key: reading for key, (reading, _) in zip(keys, results, strict=True)}
+        readings = {v.field_id: reading for v, (reading, _) in zip(keys, results, strict=True)}
+
+        wanted = [
+            (job, value)
+            for job, value in zip(jobs, keys, strict=True)
+            if _reread_status(value, readings[value.field_id]) in SECOND_LOOK
+        ]
+        second_jobs = [
+            (image, box, prompt, reread.SECOND_PAD_X, reread.SECOND_PAD_Y)
+            for (image, box, prompt, _, _), _ in wanted
+        ]
+        second_keys = [value.field_id for _, value in wanted]
+        second_results = list(pool.map(read_one, second_jobs))
+    seconds = {k: look for k, (look, _) in zip(second_keys, second_results, strict=True)}
 
     reread_pages = reread_values(pages, readings)
     by_field: dict[str, list[Flag]] = defaultdict(list)
@@ -362,6 +506,8 @@ def verify(
             readings.get(value.field_id),
             reread_by_field[value.field_id],
             value.field_id in holds,
+            seconds.get(value.field_id),
+            policy,
         )
         for page in prepared
         for value in page.values
@@ -372,6 +518,10 @@ def verify(
         "rereads": len(jobs),
         "rereads_from_cache": sum(cached for _, cached in results),
         "rereads_failed": sum(r.error is not None for r, _ in results),
+        "second_looks": len(second_jobs),
+        "second_looks_from_cache": sum(cached for _, cached in second_results),
+        "second_looks_failed": sum(r.error is not None for r, _ in second_results),
+        "cost_full_usd": segmenter.cost_usd + llm.cost_usd,
     }
     return verdicts, calls
 
@@ -392,6 +542,17 @@ def _counts(verdicts: Sequence[VerdictRecord]) -> dict:
         "proposed_corrections": sum(v.evidence.proposed is not None for v in verdicts),
         "proposed_by": dict(sorted(Counter(filter(None, proposers)).items())),
         "reread_chain_flags": sum(len(v.evidence.reread_flags) for v in verdicts),
+        "by_second_look": dict(
+            sorted(Counter(v.evidence.second_look_status for v in verdicts).items())
+        ),
+        "by_policy": {
+            policy: {
+                "by_status": dict(sorted(Counter(o.status for o in outcomes).items())),
+                "proposed_corrections": sum(o.proposed is not None for o in outcomes),
+            }
+            for policy in POLICIES
+            if (outcomes := [v.policies[policy] for v in verdicts if policy in v.policies])
+        },
     }
 
 
@@ -412,6 +573,7 @@ def run(
     guard: BudgetGuard,
     config: Mapping[str, object],
     workers: int = 1,
+    policy: Policy = POLICY,
 ) -> dict:
     """Verify the source run's predictions into out_dir; returns what goes in run.json."""
     predictions = source_dir / "predictions.jsonl"
@@ -428,8 +590,14 @@ def run(
 
     started, spent_before = _now(), guard.spent()
     verdicts, calls = verify(
-        pages, images, roles, correct_citations=not strategy.endswith("+ink"), workers=workers
+        pages,
+        images,
+        roles,
+        correct_citations=not strategy.endswith("+ink"),
+        workers=workers,
+        policy=policy,
     )
+    cost_full = calls.pop("cost_full_usd")
     out_dir.mkdir(parents=True, exist_ok=True)
     text = "".join(v.model_dump_json() + "\n" for v in verdicts)
     (out_dir / VERDICTS_FILE).write_text(text, encoding="utf-8")
@@ -440,16 +608,24 @@ def run(
         "config": dict(config),
         "citations": strategy if strategy.endswith("+ink") else f"{strategy}+ink (corrected here)",
         "policy": {
-            "version": "D26: every field read twice, checks on both chains",
+            "version": policy,
+            "recorded": list(POLICIES),
+            "v2": "D26: every field read twice, checks on both chains",
+            "v3": "D29: v2, with a second look before an alarm",
             "money_fields": sorted(MONEY_FIELDS),
             "confidence": CONFIDENCE,
             "occlusion_prompts": list(occlusion.PROMPTS),
             "occlusion_cover": occlusion.COVER,
             "reread_padding": {"vertical": reread.PAD_Y, "horizontal": reread.PAD_X},
+            "second_look_padding": {
+                "vertical": reread.SECOND_PAD_Y,
+                "horizontal": reread.SECOND_PAD_X,
+            },
         },
         "counts": {"pages": len(pages), **_counts(verdicts)},
         "calls": calls,
         "cost_usd": guard.spent() - spent_before,
+        "cost_full_usd": cost_full,
         "started_at": started,
         "finished_at": _now(),
     }
@@ -462,26 +638,33 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--run", required=True, help="the extraction run to verify")
     parser.add_argument("--out", required=True, help="the run id to write the verdicts to")
     parser.add_argument("--workers", type=int, default=4)
+    parser.add_argument("--config", type=Path, default=CONFIG_PATH)
+    parser.add_argument("--policy", choices=POLICIES, default=POLICY)
     args = parser.parse_args(argv)
 
-    roles = load_roles()
+    roles = load_roles(args.config)
     guard = roles[reread.ROLE].inner.guard  # Cache -> Budget -> the guard shared by every role
     record = run(
         RUNS_DIR / args.run,
         RUNS_DIR / args.out,
         roles,
         guard=guard,
-        config=describe_config(),
+        config=describe_config(args.config),
         workers=args.workers,
+        policy=args.policy,
     )
     counts, calls = record["counts"], record["calls"]
     print(
         f"{counts['fields']} fields on {counts['pages']} pages: {counts['by_status']}; "
         f"{counts['occluded']} occluded, {counts['proposed_corrections']} corrections proposed"
     )
+    for policy, tally in counts["by_policy"].items():
+        print(f"  {policy}: {tally['by_status']}, {tally['proposed_corrections']} proposed")
     print(
         f"{calls['rereads']} re-reads ({calls['rereads_from_cache']} from cache, "
-        f"{calls['rereads_failed']} failed); ${record['cost_usd']:.4f} spent"
+        f"{calls['rereads_failed']} failed), {calls['second_looks']} second looks "
+        f"({calls['second_looks_from_cache']} from cache, {calls['second_looks_failed']} failed); "
+        f"${record['cost_usd']:.4f} spent, ${record['cost_full_usd']:.4f} at full price"
     )
 
 

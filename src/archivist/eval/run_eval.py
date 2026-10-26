@@ -28,6 +28,10 @@ fields it accepted.
 
     python -m archivist.eval.run_eval --run archivist-dev-v1 --split dev
 
+A verdict run records the outcome of every policy (verify.py); --policy v2 or v3 scores it under
+that one (verify.as_policy) into metrics_<policy>.json, and without it the verdicts' own policy is
+scored into metrics.json.
+
 --compare-checks DEV_RUN VAL_RUN writes results/checks_val.json: the checks report of two runs
 side by side, flags tallied by the rule that raised them, and the wrong fields no flag caught.
 
@@ -41,6 +45,7 @@ import argparse
 import json
 from collections import Counter, defaultdict
 from collections.abc import Callable, Sequence
+from dataclasses import dataclass
 from pathlib import Path
 
 import numpy as np
@@ -57,7 +62,13 @@ from archivist.eval.metrics import (
 )
 from archivist.pipeline.checks import FLAGS_FILE, load_flags
 from archivist.pipeline.extract import RUNS_DIR, PageExtraction, load_predictions
-from archivist.pipeline.verify import VERDICTS_FILE, Evidence, load_verdicts
+from archivist.pipeline.verify import (
+    POLICIES,
+    VERDICTS_FILE,
+    Evidence,
+    as_policy,
+    load_verdicts,
+)
 from archivist.schema import Flag, PageGT, SourceError
 
 DATA_ROOT = Path("data")
@@ -477,11 +488,29 @@ def _verdict_stats(
     return stats
 
 
-def evaluate_verdicts(run_dir: Path, gt_dir: Path) -> dict:
+@dataclass
+class ScoredVerdicts:
+    """A verdict run's fields and the run it verified, scored against ground truth."""
+
+    run: dict  # its run.json
+    baseline_run: str
+    ours: list[FieldOutcome]
+    theirs: list[FieldOutcome]  # the extraction run's, which accepts all it didn't abstain on
+    evidence: dict[str, Evidence]
+    errors: list[SourceError]
+    missing_pages: list[str]
+
+
+def score_verdicts(run_dir: Path, gt_dir: Path, policy: str | None = None) -> ScoredVerdicts:
+    """Every ground-truth field's outcome under the run's verdicts, as `policy` decided them
+    (verify.as_policy), or as the verdicts say when policy is None.
+    """
     pages = load_gt(gt_dir)
     run = json.loads((run_dir / "run.json").read_text())
     baseline_dir = run_dir.parent / run["source_run"]
     verdicts = load_verdicts(run_dir / VERDICTS_FILE)
+    if policy is not None:
+        verdicts = [as_policy(v, policy) for v in verdicts]
     baseline = {p.page_id: p.values for p in load_predictions(baseline_dir / "predictions.jsonl")}
     by_page: dict[str, list] = defaultdict(list)
     for v in verdicts:
@@ -489,11 +518,21 @@ def evaluate_verdicts(run_dir: Path, gt_dir: Path) -> dict:
     unknown = sorted(set(by_page) - {page.page_id for page in pages})
     if unknown:
         raise ValueError(f"verdicts for pages not in {gt_dir}: {unknown[:5]}")
-    evidence = {v.field_id: v.evidence for v in verdicts}
-    route = {v.field_id: v.evidence.route for v in verdicts}
-    ours = [o for page in pages for o in score_page(page, by_page.get(page.page_id, []))]
-    theirs = [o for page in pages for o in score_page(page, baseline.get(page.page_id, []))]
-    errors = _source_errors(pages)
+    return ScoredVerdicts(
+        run=run,
+        baseline_run=baseline_dir.name,
+        ours=[o for page in pages for o in score_page(page, by_page.get(page.page_id, []))],
+        theirs=[o for page in pages for o in score_page(page, baseline.get(page.page_id, []))],
+        evidence={v.field_id: v.evidence for v in verdicts},
+        errors=_source_errors(pages),
+        missing_pages=sorted(p.page_id for p in pages if p.page_id not in by_page),
+    )
+
+
+def evaluate_verdicts(run_dir: Path, gt_dir: Path, policy: str | None = None) -> dict:
+    scored = score_verdicts(run_dir, gt_dir, policy)
+    ours, theirs, evidence, errors = scored.ours, scored.theirs, scored.evidence, scored.errors
+    route = {fid: e.route for fid, e in evidence.items()}
 
     def side_by_side(keep: Callable[[FieldOutcome], bool]) -> dict:
         mine = [o for o in ours if keep(o)]
@@ -514,10 +553,11 @@ def evaluate_verdicts(run_dir: Path, gt_dir: Path) -> dict:
     result = {
         "run_id": run_dir.name,
         "gt": str(gt_dir),
-        "baseline_run": baseline_dir.name,
-        "config": run.get("config"),
-        "policy": run.get("policy"),
-        "missing_pages": sorted(p.page_id for p in pages if p.page_id not in by_page),
+        "baseline_run": scored.baseline_run,
+        "config": scored.run.get("config"),
+        "policy": scored.run.get("policy"),
+        "policy_scored": policy,
+        "missing_pages": scored.missing_pages,
         "overall": side_by_side(lambda o: True),
     }
     for group, key in groups.items():
@@ -660,6 +700,7 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--split")
     parser.add_argument("--compare-checks", nargs=2, metavar=("DEV_RUN", "VAL_RUN"))
     parser.add_argument("--compare-verdicts", nargs="+", metavar="VERDICT_RUN")
+    parser.add_argument("--policy", choices=POLICIES, help="score a verdict run under this policy")
     args = parser.parse_args(argv)
 
     if args.compare_verdicts:
@@ -687,8 +728,9 @@ def main(argv: list[str] | None = None) -> None:
     run_dir = RUNS_DIR / args.run
     gt_dir = DATA_ROOT / args.split / "gt"
     if (run_dir / VERDICTS_FILE).exists():
-        metrics = evaluate_verdicts(run_dir, gt_dir)
-        (run_dir / "metrics.json").write_text(json.dumps(metrics, indent=2) + "\n")
+        metrics = evaluate_verdicts(run_dir, gt_dir, args.policy)
+        name = "metrics.json" if args.policy is None else f"metrics_{args.policy}.json"
+        (run_dir / name).write_text(json.dumps(metrics, indent=2) + "\n")
         print(verdicts_table(metrics))
         print(
             "caught = wrong and sent to review; missed = accepted and wrong; alarms = correct "

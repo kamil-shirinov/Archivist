@@ -327,6 +327,108 @@ def test_readings_agree_after_normalisation(field, a, b, same):
     assert verify.same_reading(memo_field_id("m1", field), a, b) is same
 
 
+# --- The second look (v3) --------------------------------------------------------------------
+
+
+def _outcomes(verdict) -> dict[str, tuple]:
+    return {
+        p: (o.status, o.confidence, o.proposed, o.proposed_by) for p, o in verdict.policies.items()
+    }
+
+
+def test_the_second_look_crop_is_padded_by_the_whole_height_and_two_fifths_of_the_width():
+    box = BBox(x0=100, y0=100, x1=200, y1=140)
+    wider = reread.crop_box(box, 1000, 1000, pad_x=reread.SECOND_PAD_X, pad_y=reread.SECOND_PAD_Y)
+    assert wider == BBox(x0=60, y0=60, x1=240, y1=180)
+    image = Image.new("RGB", (WIDTH, HEIGHT), "white")
+    assert reread.crop(image, box) != reread.crop(
+        image, box, pad_x=reread.SECOND_PAD_X, pad_y=reread.SECOND_PAD_Y
+    )
+
+
+def test_a_second_look_that_agrees_with_the_extractor_accepts_under_v3_only():
+    value = _value(PAYEE, "Eastmoor Electricity Board")
+    first, second = ReRead("Eastmoon Electricity Board"), ReRead("Eastmoor Electricity Board")
+    verdict = decide("m1", "payment_memo", value, [], [], first, second=second)
+    assert _outcomes(verdict) == {
+        "v2": ("review", 0.3, None, None),
+        "v3": ("accepted", 0.99, None, None),
+    }
+    assert verdict.evidence.second_look_status == "agrees"
+    assert verdict.evidence.second_look == "Eastmoor Electricity Board"
+    assert any("second look" in f.detail for f in verdict.flags)
+    # An illegible first look is given a second one too, and occlusion still lowers confidence.
+    second = ReRead("EASTMOOR ELECTRICITY BOARD")
+    illegible = decide("m1", "payment_memo", value, [], [STAMP], ReRead(None), second=second)
+    assert _outcomes(illegible)["v3"] == ("accepted", 0.9, None, None)
+
+
+def test_a_second_look_that_agrees_is_not_enough_when_a_check_fails():
+    value = _value(AMOUNT, "65.43")
+    flag = _flag(AMOUNT, suggested="65.48")
+    verdict = decide(
+        "m1", "payment_memo", value, [flag], [], ReRead("65.48"), second=ReRead("65.43")
+    )
+    assert _outcomes(verdict) == {
+        "v2": ("review", 0.5, "65.48", "check"),
+        "v3": ("review", 0.3, None, None),  # the looks split, so nothing is proposed
+    }
+
+
+def test_two_looks_that_agree_with_each_other_and_not_the_extractor_are_proposed():
+    value = _value(PAYEE, "Eastmoon Electricity Board")
+    first, second = ReRead("Eastmoor Electricity Board"), ReRead("EASTMOOR electricity board")
+    verdict = decide("m1", "payment_memo", value, [], [], first, second=second)
+    assert _outcomes(verdict) == {
+        "v2": ("review", 0.3, None, None),
+        "v3": ("review", 0.5, "Eastmoor Electricity Board", "second_look"),
+    }
+    assert verdict.value == "Eastmoon Electricity Board"  # never changed
+
+
+def test_looks_that_differ_from_each_other_go_to_review_with_nothing_proposed():
+    value = _value(AMOUNT, "65.43")
+    for second in (ReRead("65.45"), ReRead(None)):
+        verdict = decide(
+            "m1", "payment_memo", value, [_flag(AMOUNT)], [], ReRead("65.48"), [], True, second
+        )
+        assert _outcomes(verdict)["v2"] == ("review", 0.5, "65.48", "reread_chain")
+        assert _outcomes(verdict)["v3"] == ("review", 0.3, None, None)
+    both_illegible = decide("m1", "payment_memo", value, [], [], ReRead(None), second=ReRead(None))
+    assert _outcomes(both_illegible)["v3"] == ("review", 0.3, None, None)
+    assert both_illegible.evidence.second_look_status == "illegible"
+
+
+def test_a_failed_second_look_is_no_look_and_an_agreeing_first_look_needs_none():
+    value = _value(AMOUNT, "65.43")
+    flags, timeout = [_flag(AMOUNT, suggested="65.48")], ReRead(None, error="TimeoutError: slow")
+    failed = decide("m1", "payment_memo", value, flags, [], ReRead("65.48"), second=timeout)
+    assert _outcomes(failed)["v3"] == _outcomes(failed)["v2"] == ("review", 0.5, "65.48", "check")
+    assert failed.evidence.second_look_status == "failed"
+    agrees = decide("m1", "payment_memo", value, [], [], ReRead("65.43"), second=ReRead("1.00"))
+    assert _outcomes(agrees)["v3"] == ("accepted", 0.99, None, None)
+    assert agrees.evidence.second_look_status == "not_reread"
+
+
+def test_a_verdict_carries_its_policys_outcome_and_can_be_read_as_the_other():
+    value = _value(PAYEE, "Eastmoor Electricity Board")
+    args = ("m1", "payment_memo", value, [], [], ReRead("Eastmoon Electricity Board"))
+    second = ReRead("Eastmoor Electricity Board")
+    as_v2 = decide(*args, second=second, policy="v2")
+    as_v3 = decide(*args, second=second, policy="v3")
+    assert (as_v2.policy, as_v2.status, as_v3.policy, as_v3.status) == (
+        "v2", "review", "v3", "accepted"
+    )
+    assert verify.as_policy(as_v2, "v3") == as_v3
+    assert verify.as_policy(as_v3, "v2") == as_v2
+    old = as_v2.model_copy(update={"policies": {}})  # a verdict written before v3 existed
+    assert verify.as_policy(old, "v2") is old
+    with pytest.raises(ValueError):
+        verify.as_policy(old, "v3")
+    abstained = decide("m1", "payment_memo", _value(PAYEE, None), [], [], None)
+    assert {o.status for o in abstained.policies.values()} == {"abstained"}
+
+
 # --- The whole run, with mocks ---------------------------------------------------------------
 
 
@@ -379,7 +481,7 @@ def test_verify_rereads_what_the_policy_asks_and_never_shows_the_extracted_value
         {"segmenter": segmenter, "rereader": llm},
         correct_citations=False,
     )
-    by_name = {v.field_id.rsplit(":", 1)[-1]: v for v in verdicts}
+    by_name = {v.field_id.rsplit(":", 1)[-1]: verify.as_policy(v, "v2") for v in verdicts}
     # The words say 65.48, so the figures are flagged with that suggestion; the re-read agrees.
     assert by_name["amount"].evidence.proposed == "65.48"
     assert (by_name["amount"].status, by_name["amount"].confidence) == ("review", 0.5)
@@ -388,8 +490,18 @@ def test_verify_rereads_what_the_policy_asks_and_never_shows_the_extracted_value
     assert (by_name["amount_words"].status, by_name["amount_words"].confidence) == ("review", 0.3)
     assert (by_name["date"].status, by_name["date"].confidence) == ("accepted", 0.9)
     assert by_name["memo_no"].status == "accepted"
+    # v3 took a second look at the two disagreements; both looks read the payee the same way.
+    v3 = {v.field_id.rsplit(":", 1)[-1]: verify.as_policy(v, "v3") for v in verdicts}
+    assert (v3["counterparty"].status, v3["counterparty"].confidence) == ("review", 0.5)
+    assert v3["counterparty"].evidence.proposed == "Eastmoor Electricity Board"
+    assert v3["counterparty"].evidence.proposed_by == "second_look"
+    # The amount's looks agree too; v2 had proposed the same reading, so its provenance stays.
+    assert v3["amount"].evidence.proposed == "65.48"
+    assert v3["amount"].evidence.proposed_by == by_name["amount"].evidence.proposed_by
     assert [v.value for v in verdicts] == [extracted[n] for n in MEMO_VALUES]
-    assert calls["rereads"] == len(MEMO_VALUES) == len(llm.calls)  # 6 others + flagged amount
+    assert calls["rereads"] == len(MEMO_VALUES)  # 6 others + flagged amount
+    assert calls["second_looks"] == 2
+    assert len(llm.calls) == calls["rereads"] + calls["second_looks"]
     for request in llm.calls:
         for text in extracted.values():
             assert text not in request.prompt
@@ -525,10 +637,15 @@ def test_a_lone_misread_by_the_rereader_breaks_its_own_chain_and_proposes_nothin
 
     verdicts = _verify_card(printed, printed | {balance: "1,470.94"}, tmp_path)
 
-    verdict = verdicts[balance]
+    verdict = verify.as_policy(verdicts[balance], "v2")
     assert (verdict.status, verdict.confidence, verdict.evidence.proposed) == ("review", 0.3, None)
     assert verdict.evidence.reread_flags and not verdict.evidence.reread_balances
-    assert [f for f, v in verdicts.items() if v.status != "accepted"] == [balance]
+    for policy in verify.POLICIES:
+        statuses = {f: verify.as_policy(v, policy).status for f, v in verdicts.items()}
+        assert [f for f, status in statuses.items() if status != "accepted"] == [balance]
+    # This re-reader misreads the cell the same way from any crop, so under v3 its two looks agree
+    # and their reading is proposed: still only a proposal, for a field that goes to review.
+    assert _outcomes(verdicts[balance])["v3"] == ("review", 0.5, "1,470.94", "second_look")
 
 
 def _gt_page() -> PageGT:
@@ -570,7 +687,15 @@ def test_a_verdict_run_is_written_and_scored_against_the_baseline(tmp_path):
     assert record["citations"] == "S0+ink"
     assert record["cost_usd"] == 0.0
 
-    metrics = run_eval.evaluate_verdicts(runs / "checked", gt)
+    assert record["policy"]["version"] == verify.POLICY
+    assert record["counts"]["by_policy"]["v2"]["proposed_corrections"] == 1
+    assert record["counts"]["by_policy"]["v3"]["proposed_corrections"] == 2
+    assert record["calls"]["second_looks"] == 2 and record["cost_full_usd"] == 0.0
+
+    v3 = run_eval.evaluate_verdicts(runs / "checked", gt, "v3")["overall"]["archivist"]
+    assert (v3["n_proposed"], v3["proposal_fixes"]) == (2, 2)  # the payee too, from two looks
+    metrics = run_eval.evaluate_verdicts(runs / "checked", gt, "v2")
+    assert metrics["policy_scored"] == "v2"
     ours, base = metrics["overall"]["archivist"], metrics["overall"]["baseline"]
     assert (ours["n_wrong"], ours["errors_caught"], ours["errors_missed"]) == (2, 2, 0)
     assert (ours["false_alarms"], ours["error_rate_accepted"]) == (1, 0.0)  # the words

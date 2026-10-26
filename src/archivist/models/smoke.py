@@ -1,14 +1,17 @@
-"""One real call through the extractor role: python -m archivist.models.smoke
+"""One real call through the extractor role: python -m archivist.models.smoke [--backend baseten]
 
-Takes the first severity-0 ledger card of the dev set and asks for three values, each with a box
-on Muse Spark's 0–1000 grid, then prints the answer, the boxes in pixels, the usage, the cost and
-the ledger's total spend. The page's severity is re-derived from the manifest's seed, as the
-builder assigned it, so ground truth (data/dev/gt/) is never read. The call goes through
-load_roles(), so a second run is a cache hit and spends nothing.
+--backend picks the extractor's backend: meta (Muse Spark 1.3, config/arms/a.toml) or
+baseten (Muse Spark Open, config/arms/b.toml); without it the extractor is the one
+config/models.toml names. Takes the first severity-0 ledger card of the dev set and asks for
+three values, each with a box on Muse Spark's 0–1000 grid, then prints the answer, the boxes in
+pixels, the usage, the cost and the ledger's total spend. The page's severity is re-derived from
+the manifest's seed, as the builder assigned it, so ground truth (data/dev/gt/) is never read.
+The call goes through load_roles(), so a second run is a cache hit and spends nothing.
 """
 
 from __future__ import annotations
 
+import argparse
 import hashlib
 import io
 import json
@@ -17,6 +20,7 @@ from pathlib import Path
 from PIL import Image
 
 from archivist.models import LLMRequest, load_roles
+from archivist.models.registry import CONFIG_PATH
 from archivist.synth import build
 from archivist.synth.world import generate_world
 
@@ -26,6 +30,9 @@ DEV_BUILD = [
     "--split", "dev", "--seed", "1001", "--accounts", "4", "--cards-per-account", "3",
     "--memo-rate", "0.35", "--error-rate", "0.2", "--overwrite",
 ]  # fmt: skip
+
+# backend -> a config whose extractor runs on it
+BACKEND_CONFIGS = {"meta": Path("config/arms/a.toml"), "baseten": Path("config/arms/b.toml")}
 
 FIELDS = {
     "account_no": "the account number",
@@ -96,11 +103,16 @@ def to_pixels(box: list[int], width: int, height: int) -> tuple[int, ...]:
     )
 
 
-def main() -> None:
+def main(argv: list[str] | None = None) -> None:
+    parser = argparse.ArgumentParser(description=__doc__.split("\n", 1)[0])
+    parser.add_argument("--backend", choices=sorted(BACKEND_CONFIGS))
+    args = parser.parse_args(argv)
+    config = BACKEND_CONFIGS[args.backend] if args.backend else CONFIG_PATH
+
     page = first_clean_ledger()
     image = page.read_bytes()
     width, height = Image.open(io.BytesIO(image)).size
-    extractor = load_roles()["extractor"]
+    extractor = load_roles(config)["extractor"]
 
     response = extractor.complete(
         LLMRequest(

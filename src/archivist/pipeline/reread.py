@@ -15,6 +15,11 @@ rows the way a reading of the whole page can (D26). The re-reader is the rereade
 {"value": string or null}: the value as printed, "" for a blank cell, null when it can't be read.
 An answer that
 doesn't parse is asked for once more, with a note; if that fails too, ReReadFailed is raised.
+
+A second look (policy v3, verify.py) asks the same question of a differently padded crop of the
+same box: SECOND_PAD_Y of its height above and below, SECOND_PAD_X of its width either side. A
+different picture is a different request, so it is a call of its own and never the first look's
+cached answer.
 """
 
 from __future__ import annotations
@@ -31,6 +36,8 @@ from archivist.schema import BBox, Citation
 ROLE = "rereader"
 PAD_Y = 0.5  # × the box height, above and below
 PAD_X = 0.2  # × the box width, left and right
+SECOND_PAD_Y = 1.0  # the second look's crop
+SECOND_PAD_X = 0.4
 REREAD_TOKENS = 2_048
 SCHEMA = {
     "type": "object",
@@ -60,9 +67,11 @@ def region(citation: Citation) -> BBox:
     return widen(citation.bbox, citation.raw_bbox)
 
 
-def crop_box(box: BBox, width: int, height: int) -> BBox:
-    """The box padded by PAD_X and PAD_Y on each side, rounded outwards, clamped to the page."""
-    pad_x, pad_y = PAD_X * (box.x1 - box.x0), PAD_Y * (box.y1 - box.y0)
+def crop_box(
+    box: BBox, width: int, height: int, *, pad_x: float = PAD_X, pad_y: float = PAD_Y
+) -> BBox:
+    """The box padded by pad_x and pad_y on each side, rounded outwards, clamped to the page."""
+    pad_x, pad_y = pad_x * (box.x1 - box.x0), pad_y * (box.y1 - box.y0)
     return BBox(
         x0=max(0, math.floor(box.x0 - pad_x)),
         y0=max(0, math.floor(box.y0 - pad_y)),
@@ -71,9 +80,9 @@ def crop_box(box: BBox, width: int, height: int) -> BBox:
     )
 
 
-def crop(image: Image.Image, box: BBox) -> bytes:
+def crop(image: Image.Image, box: BBox, *, pad_x: float = PAD_X, pad_y: float = PAD_Y) -> bytes:
     """The padded crop around box, as PNG bytes."""
-    area = crop_box(box, *image.size)
+    area = crop_box(box, *image.size, pad_x=pad_x, pad_y=pad_y)
     buffer = io.BytesIO()
     image.crop((area.x0, area.y0, area.x1, area.y1)).save(buffer, format="PNG")
     return buffer.getvalue()
@@ -89,9 +98,17 @@ def _parse(text: str) -> str | None:
     return value
 
 
-def reread(image: Image.Image, box: BBox, prompt: str, llm: VisionLLM) -> tuple[str | None, bool]:
+def reread(
+    image: Image.Image,
+    box: BBox,
+    prompt: str,
+    llm: VisionLLM,
+    *,
+    pad_x: float = PAD_X,
+    pad_y: float = PAD_Y,
+) -> tuple[str | None, bool]:
     """The value in the crop around box, or None if illegible; and whether it came from cache."""
-    picture = crop(image, box)
+    picture = crop(image, box, pad_x=pad_x, pad_y=pad_y)
     errors = []
     for attempt in (prompt, prompt + RETRY_NOTE):
         request = LLMRequest(
