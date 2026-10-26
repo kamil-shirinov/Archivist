@@ -29,3 +29,4 @@ uv run pytest -q
 - [x] P2 schema
 - [x] P3 world generator
 - [x] P4 renderer
+- [x] P4b realism fixes

@@ -1,11 +1,12 @@
 import datetime as dt
+import re
 from collections import defaultdict
 from decimal import Decimal
 
 import pytest
 
 from archivist.schema import ledger_line_id, memo_field_id
-from archivist.synth.world import BANKS, World, amount_to_words_gb, generate_world
+from archivist.synth.world import BANKS, BRANCHES, World, amount_to_words_gb, generate_world
 
 SEED = 7
 
@@ -32,6 +33,15 @@ def test_default_sizes():
     assert all(len(card.lines) == 18 for card in world.cards)
     assert {card.bank for card in world.cards} <= set(BANKS)
     assert all(len(c.account_no) == 8 and c.account_no.isdigit() for c in world.cards)
+
+
+def test_branches_come_from_the_market_town_list(world):
+    assert len(BRANCHES) == len(set(BRANCHES)) == 20
+    assert {card.branch for card in world.cards} <= set(BRANCHES)
+    by_account = defaultdict(set)
+    for card in world.cards:
+        by_account[card.account_no].add(card.branch)
+    assert all(len(branches) == 1 for branches in by_account.values())
 
 
 def test_every_error_kind_planted():
@@ -97,6 +107,44 @@ def test_memo_figures_match_ledger_except_mismatch_kinds(world):
             assert kind == "memo_ledger_mismatch"
             assert memo.amount != line.debit
             assert memo.amount_words == amount_to_words_gb(memo.amount)
+
+
+def _memo_lines(world: World) -> list[tuple]:
+    lines = {f"{c.doc_id}:{line.line_no:02d}": (c, line) for c in world.cards for line in c.lines}
+    return [(memo, *lines[memo.ledger_ref]) for memo in world.memos]
+
+
+def test_memos_back_only_third_party_debits(world):
+    assert world.memos
+    for memo, _, line in _memo_lines(world):
+        assert line.debit is not None
+        assert line.description.startswith(("CHQ", "STANDING ORDER", "DIRECT DEBIT"))
+
+
+def test_counterparty_matches_the_payment(world):
+    fixed = {
+        "STANDING ORDER RATES": "District Council Rates Office",
+        "STANDING ORDER INSURANCE": "Wrenfield Assurance Society",
+        "DIRECT DEBIT ELECTRICITY": "Eastmoor Electricity Board",
+    }
+    seen = set()
+    for memo, _, line in _memo_lines(world):
+        assert memo.counterparty.strip()
+        assert memo.counterparty not in BANKS
+        if line.description in fixed:
+            assert memo.counterparty == fixed[line.description]
+            seen.add(line.description)
+        else:
+            assert memo.counterparty not in fixed.values()
+    assert seen == set(fixed)
+
+
+def test_printed_ref_matches_the_referenced_card(world):
+    for memo, card, line in _memo_lines(world):
+        found = re.fullmatch(r"Sheet (\d+) / Line (\d{2})", memo.printed_ref)
+        assert found, memo.printed_ref
+        assert (int(found[1]), int(found[2])) == (card.sheet_no, line.line_no)
+        assert memo.ledger_ref == f"{card.doc_id}:{line.line_no:02d}"
 
 
 @pytest.mark.parametrize(

@@ -26,6 +26,18 @@ BANKS = (
     "Quillon Provident Bank",
     "Marrowby Savings Bank",
 )
+BRANCHES = (
+    "Harrogate", "Kendal", "Ludlow", "Truro", "Hexham", "Stamford", "Ripon", "Whitby",
+    "Frome", "Malton", "Oakham", "Ely", "Bideford", "Penrith", "Beverley", "Devizes",
+    "Morpeth", "Buxton", "Thirsk", "Wells",
+)  # fmt: skip
+# A memo backs a payment to someone else: not cash, not the bank's own charges.
+THIRD_PARTY_PREFIXES = ("CHQ", "STANDING ORDER", "DIRECT DEBIT")
+FIXED_PAYEES = {
+    "STANDING ORDER RATES": "District Council Rates Office",
+    "STANDING ORDER INSURANCE": "Wrenfield Assurance Society",
+    "DIRECT DEBIT ELECTRICITY": "Eastmoor Electricity Board",
+}
 
 PENNY = Decimal("0.01")
 MAX_WORDS_AMOUNT = Decimal("999999.99")
@@ -73,7 +85,8 @@ class Memo(BaseModel):
     counterparty: str
     amount: Decimal  # figures as printed
     amount_words: str  # words as printed
-    ledger_ref: str  # f"{card_doc_id}:{line_no:02d}"
+    ledger_ref: str  # f"{card_doc_id}:{line_no:02d}", the internal link to the ledger line
+    printed_ref: str  # f"Sheet {sheet_no} / Line {line_no:02d}", what the clerk writes
 
 
 class World(BaseModel):
@@ -216,7 +229,7 @@ def _account(
     source_error_rate: float,
 ) -> tuple[list[LedgerCard], list[SourceError]]:
     bank = rng.choice(BANKS)
-    branch = fake.city()
+    branch = rng.choice(BRANCHES)
     holder = fake.name()
     first_sheet = rng.randint(1, 60)
     balance = _pence(rng.randint(5_000, 300_000))
@@ -285,16 +298,14 @@ def _account(
 # --- memos ------------------------------------------------------------------------------
 
 
-def _counterparty(rng: random.Random, fake: Faker, card: LedgerCard, description: str) -> str:
-    if description == "CASH":
-        return "Self"
-    if description == "BANK CHARGES":
-        return card.bank
-    if description == "STANDING ORDER RATES":
-        return f"{fake.city()} Borough Council"
-    if description == "DIRECT DEBIT ELECTRICITY":
-        return f"{fake.city()} Electricity Board"
-    return fake.name() if rng.random() < 0.5 else fake.company()
+def _counterparty(rng: random.Random, fake: Faker, description: str) -> str:
+    if description.startswith("CHQ"):
+        return fake.name() if rng.random() < 0.5 else fake.company()
+    if description in FIXED_PAYEES:
+        return FIXED_PAYEES[description]
+    if description.startswith(THIRD_PARTY_PREFIXES):
+        return fake.company()
+    raise ValueError(f"no third-party payee for {description!r}")
 
 
 def _memos(
@@ -309,7 +320,11 @@ def _memos(
     memo_no = rng.randint(1_000, 80_000)
     for card in cards:
         for line in card.lines:
-            if line.debit is None or rng.random() >= memo_rate:
+            if (
+                line.debit is None
+                or not line.description.startswith(THIRD_PARTY_PREFIXES)
+                or rng.random() >= memo_rate
+            ):
                 continue
             doc_id = f"memo-{len(memos) + 1:04d}"
             amount, words = line.debit, amount_to_words_gb(line.debit)
@@ -336,10 +351,11 @@ def _memos(
                     memo_no=f"{memo_no:06d}",
                     date=line.date - dt.timedelta(days=rng.randint(0, MAX_MEMO_LAG_DAYS)),
                     account_no=card.account_no,
-                    counterparty=_counterparty(rng, fake, card, line.description),
+                    counterparty=_counterparty(rng, fake, line.description),
                     amount=amount,
                     amount_words=words,
                     ledger_ref=f"{card.doc_id}:{line.line_no:02d}",
+                    printed_ref=f"Sheet {card.sheet_no} / Line {line.line_no:02d}",
                 )
             )
             memo_no += 1

@@ -343,7 +343,7 @@ def render_memo(
         "counterparty": memo.counterparty,
         "amount": _money(memo.amount),
         "amount_words": memo.amount_words,
-        "ledger_ref": memo.ledger_ref,
+        "ledger_ref": memo.printed_ref,
     }
     for name, (_, _, _, cell, _) in MEMO_FIELDS.items():
         writer.entry(

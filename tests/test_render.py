@@ -57,7 +57,7 @@ def _memo_expected(memo: Memo) -> dict[str, str]:
         "counterparty": memo.counterparty,
         "amount": f"{memo.amount:,.2f}",
         "amount_words": memo.amount_words,
-        "ledger_ref": memo.ledger_ref,
+        "ledger_ref": memo.printed_ref,
     }
     return {memo_field_id(memo.doc_id, name): value for name, value in values.items()}
 
