@@ -1,0 +1,61 @@
+{"field_id":"L:card-02-2:18:credit","check":"arithmetic","detail":"line 18: 689.11 − 0.00 + 1,272.38 = 1,961.49, but the balance reads 1,991.49. Only this line fails, so its amount or balance is misread, or the clerk's arithmetic was wrong; the balances imply a credit of 1,302.38","suggested":"1,302.38"}
+{"field_id":"L:card-02-2:18:balance","check":"arithmetic","detail":"line 18: 689.11 − 0.00 + 1,272.38 = 1,961.49, but the balance reads 1,991.49. Only this line fails, so its amount or balance is misread, or the clerk's arithmetic was wrong; the balances imply a credit of 1,302.38","suggested":null}
+{"field_id":"L:card-03-2:hdr:carried_forward","check":"arithmetic","detail":"the carried forward is blank; the last balance is 3,897.79","suggested":"3,897.79"}
+{"field_id":"L:card-03-3:18:debit","check":"arithmetic","detail":"line 18: 5,410.27 − 25.00 + 0.00 = 5,385.27, but the balance reads 5,385.37. Only this line fails, so its amount or balance is misread, or the clerk's arithmetic was wrong; the balances imply a debit of 24.90","suggested":"24.90"}
+{"field_id":"L:card-03-3:18:balance","check":"arithmetic","detail":"line 18: 5,410.27 − 25.00 + 0.00 = 5,385.27, but the balance reads 5,385.37. Only this line fails, so its amount or balance is misread, or the clerk's arithmetic was wrong; the balances imply a debit of 24.90","suggested":null}
+{"field_id":"L:card-04-2:07:debit","check":"arithmetic","detail":"line 07: 5,082.59 − 130.00 + 0.00 = 4,952.59, but the balance reads 4,952.50. Only this line fails, so its amount or balance is misread, or the clerk's arithmetic was wrong; the balances imply a debit of 130.09","suggested":"130.09"}
+{"field_id":"L:card-04-2:07:balance","check":"arithmetic","detail":"line 07: 5,082.59 − 130.00 + 0.00 = 4,952.59, but the balance reads 4,952.50. Only this line fails, so its amount or balance is misread, or the clerk's arithmetic was wrong; the balances imply a debit of 130.09","suggested":null}
+{"field_id":"L:card-03-2:hdr:account_no","check":"crossdoc","detail":"sheet 32 of MR DENNIS ATKINSON reads account '34142727', but it fills the gap in account 34192727's sheets, held by the same holder","suggested":"34192727"}
+{"field_id":"L:card-03-2:01:date","check":"crossdoc","detail":"sheet 32 starts with the date 02/01/76, before sheet 31 ends with 27/12/85; the date never goes backwards along an account","suggested":null}
+{"field_id":"L:card-03-2:02:date","check":"crossdoc","detail":"sheet 32 starts with the date 02/01/76, before sheet 31 ends with 27/12/85; the date never goes backwards along an account","suggested":null}
+{"field_id":"L:card-03-2:03:date","check":"crossdoc","detail":"sheet 32 starts with the date 02/01/76, before sheet 31 ends with 27/12/85; the date never goes backwards along an account","suggested":null}
+{"field_id":"L:card-03-2:04:date","check":"crossdoc","detail":"sheet 32 starts with the date 02/01/76, before sheet 31 ends with 27/12/85; the date never goes backwards along an account","suggested":null}
+{"field_id":"L:card-03-2:05:date","check":"crossdoc","detail":"sheet 32 starts with the date 02/01/76, before sheet 31 ends with 27/12/85; the date never goes backwards along an account","suggested":null}
+{"field_id":"L:card-03-2:06:date","check":"crossdoc","detail":"sheet 32 starts with the date 02/01/76, before sheet 31 ends with 27/12/85; the date never goes backwards along an account","suggested":null}
+{"field_id":"L:card-03-2:07:date","check":"crossdoc","detail":"sheet 32 starts with the date 02/01/76, before sheet 31 ends with 27/12/85; the date never goes backwards along an account","suggested":null}
+{"field_id":"L:card-03-2:08:date","check":"crossdoc","detail":"sheet 32 starts with the date 02/01/76, before sheet 31 ends with 27/12/85; the date never goes backwards along an account","suggested":null}
+{"field_id":"L:card-03-2:09:date","check":"crossdoc","detail":"sheet 32 starts with the date 02/01/76, before sheet 31 ends with 27/12/85; the date never goes backwards along an account","suggested":null}
+{"field_id":"L:card-03-2:10:date","check":"crossdoc","detail":"sheet 32 starts with the date 02/01/76, before sheet 31 ends with 27/12/85; the date never goes backwards along an account","suggested":null}
+{"field_id":"L:card-03-2:11:date","check":"crossdoc","detail":"sheet 32 starts with the date 02/01/76, before sheet 31 ends with 27/12/85; the date never goes backwards along an account","suggested":null}
+{"field_id":"L:card-03-2:12:date","check":"crossdoc","detail":"sheet 32 starts with the date 02/01/76, before sheet 31 ends with 27/12/85; the date never goes backwards along an account","suggested":null}
+{"field_id":"L:card-03-2:13:date","check":"crossdoc","detail":"sheet 32 starts with the date 02/01/76, before sheet 31 ends with 27/12/85; the date never goes backwards along an account","suggested":null}
+{"field_id":"L:card-03-2:14:date","check":"crossdoc","detail":"sheet 32 starts with the date 02/01/76, before sheet 31 ends with 27/12/85; the date never goes backwards along an account","suggested":null}
+{"field_id":"L:card-03-2:15:date","check":"crossdoc","detail":"sheet 32 starts with the date 02/01/76, before sheet 31 ends with 27/12/85; the date never goes backwards along an account","suggested":null}
+{"field_id":"L:card-03-2:16:date","check":"crossdoc","detail":"sheet 32 starts with the date 02/01/76, before sheet 31 ends with 27/12/85; the date never goes backwards along an account","suggested":null}
+{"field_id":"L:card-03-2:17:date","check":"crossdoc","detail":"sheet 32 starts with the date 02/01/76, before sheet 31 ends with 27/12/85; the date never goes backwards along an account","suggested":null}
+{"field_id":"L:card-03-2:18:date","check":"crossdoc","detail":"sheet 32 starts with the date 02/01/76, before sheet 31 ends with 27/12/85; the date never goes backwards along an account","suggested":null}
+{"field_id":"L:card-03-2:04:description","check":"crossdoc","detail":"sheet 32 starts with the cheque number CHQ 799341, before sheet 31 ends with CHQ 889340; the cheque number never goes backwards along an account","suggested":null}
+{"field_id":"L:card-03-2:08:description","check":"crossdoc","detail":"sheet 32 starts with the cheque number CHQ 799341, before sheet 31 ends with CHQ 889340; the cheque number never goes backwards along an account","suggested":null}
+{"field_id":"L:card-03-2:11:description","check":"crossdoc","detail":"sheet 32 starts with the cheque number CHQ 799341, before sheet 31 ends with CHQ 889340; the cheque number never goes backwards along an account","suggested":null}
+{"field_id":"L:card-03-2:15:description","check":"crossdoc","detail":"sheet 32 starts with the cheque number CHQ 799341, before sheet 31 ends with CHQ 889340; the cheque number never goes backwards along an account","suggested":null}
+{"field_id":"L:card-03-2:18:description","check":"crossdoc","detail":"sheet 32 starts with the cheque number CHQ 799341, before sheet 31 ends with CHQ 889340; the cheque number never goes backwards along an account","suggested":null}
+{"field_id":"M:memo-0008:ledger_ref","check":"crossdoc","detail":"unresolvable: no card for sheet 37 of account 17267679 in this batch","suggested":null}
+{"field_id":"M:memo-0011:amount","check":"words_figures","detail":"'346,30' can't be read as an amount in pounds and pence; the words say 346.30","suggested":"346.30"}
+{"field_id":"M:memo-0015:amount","check":"crossdoc","detail":"the memo pays 58.16, but sheet 30 of account 69675442, line 06 debits 18.16","suggested":null}
+{"field_id":"L:card-02-2:06:debit","check":"crossdoc","detail":"the memo pays 58.16, but sheet 30 of account 69675442, line 06 debits 18.16","suggested":null}
+{"field_id":"M:memo-0020:account_no","check":"arithmetic","detail":"'34/92727' can't be read as an account number","suggested":null}
+{"field_id":"M:memo-0020:amount","check":"words_figures","detail":"the amount in figures is blank; the words say 18.22","suggested":"18.22"}
+{"field_id":"M:memo-0020:account_no","check":"crossdoc","detail":"the memo's account reads '34/92727', but sheet 31 line 10 of account 34192727 debits the memo's amount","suggested":"34192727"}
+{"field_id":"M:memo-0022:amount","check":"crossdoc","detail":"the memo pays 66.48, but sheet 32 of account 34192727, line 02 debits 65.48","suggested":null}
+{"field_id":"L:card-03-2:02:debit","check":"crossdoc","detail":"the memo pays 66.48, but sheet 32 of account 34192727, line 02 debits 65.48","suggested":null}
+{"field_id":"M:memo-0022:date","check":"crossdoc","detail":"the memo is dated 02/01/86, after the payment was posted on sheet 32 of account 34192727, line 02 (03/01/76)","suggested":null}
+{"field_id":"L:card-03-2:02:date","check":"crossdoc","detail":"the memo is dated 02/01/86, after the payment was posted on sheet 32 of account 34192727, line 02 (03/01/76)","suggested":null}
+{"field_id":"M:memo-0023:account_no","check":"arithmetic","detail":"'34/42727' can't be read as an account number","suggested":null}
+{"field_id":"M:memo-0023:account_no","check":"crossdoc","detail":"the memo's account reads '34/42727', but sheet 32 line 04 of account 34192727 debits the memo's amount","suggested":"34192727"}
+{"field_id":"M:memo-0023:date","check":"crossdoc","detail":"the memo is dated 12/01/86, after the payment was posted on sheet 32 of account 34192727, line 04 (11/01/76)","suggested":null}
+{"field_id":"L:card-03-2:04:date","check":"crossdoc","detail":"the memo is dated 12/01/86, after the payment was posted on sheet 32 of account 34192727, line 04 (11/01/76)","suggested":null}
+{"field_id":"M:memo-0024:amount","check":"words_figures","detail":"the figures say 54.73, but the words say 57.43","suggested":"57.43"}
+{"field_id":"M:memo-0024:amount_words","check":"words_figures","detail":"the figures say 54.73, but the words say 57.43","suggested":null}
+{"field_id":"M:memo-0024:amount","check":"crossdoc","detail":"the memo pays 54.73, but sheet 32 of account 34192727, line 10 debits 57.43, as its words do","suggested":null}
+{"field_id":"M:memo-0024:date","check":"crossdoc","detail":"the memo is dated 29/01/86, after the payment was posted on sheet 32 of account 34192727, line 10 (30/01/76)","suggested":null}
+{"field_id":"L:card-03-2:10:date","check":"crossdoc","detail":"the memo is dated 29/01/86, after the payment was posted on sheet 32 of account 34192727, line 10 (30/01/76)","suggested":null}
+{"field_id":"M:memo-0025:amount","check":"words_figures","detail":"the figures say 414.13, but the words say 441.13","suggested":"441.13"}
+{"field_id":"M:memo-0025:amount_words","check":"words_figures","detail":"the figures say 414.13, but the words say 441.13","suggested":null}
+{"field_id":"M:memo-0025:account_no","check":"crossdoc","detail":"the memo's account reads '24392727', but sheet 33 line 05 of account 34192727 debits the memo's amount","suggested":"34192727"}
+{"field_id":"M:memo-0025:amount","check":"crossdoc","detail":"the memo pays 414.13, but sheet 33 of account 34192727, line 05 debits 441.13, as its words do","suggested":null}
+{"field_id":"M:memo-0026:account_no","check":"crossdoc","detail":"the memo's account reads '34142727', but sheet 33 line 11 of account 34192727 debits the memo's amount","suggested":"34192727"}
+{"field_id":"M:memo-0026:date","check":"crossdoc","detail":"the memo is dated 21/03/76, more than 30 days before it was posted on sheet 33 of account 34192727, line 11 (24/03/86)","suggested":null}
+{"field_id":"L:card-03-3:11:date","check":"crossdoc","detail":"the memo is dated 21/03/76, more than 30 days before it was posted on sheet 33 of account 34192727, line 11 (24/03/86)","suggested":null}
+{"field_id":"M:memo-0028:amount","check":"crossdoc","detail":"the memo pays 354.18, but sheet 6 of account 16195204, line 07 debits 354.98","suggested":null}
+{"field_id":"L:card-04-1:07:debit","check":"crossdoc","detail":"the memo pays 354.18, but sheet 6 of account 16195204, line 07 debits 354.98","suggested":null}
+{"field_id":"M:memo-0029:amount","check":"words_figures","detail":"the amount in figures is blank; the words say 212.14","suggested":"212.14"}
