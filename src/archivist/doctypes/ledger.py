@@ -46,6 +46,18 @@ RULES = (
     "top-left corner of the image and (1000, 1000) the bottom-right: a tight box around the "
     "value, or around the empty cell when it is blank."
 )
+# The grounding variant (strategy S1) follows Muse Spark's grounding guidance: it opens with a
+# role and asks for the box around the ink, not the cell. Everything else is word for word S0.
+GROUNDING_ROLE = "You are an object grounding expert. "
+GROUNDED_RULES = RULES.replace(
+    "a tight box around the value, or around the empty cell when it is blank.",
+    "a tight box around the ink of the value itself, not around its cell; around the empty "
+    "cell only when it is blank.",
+)
+
+
+def _prompt(body: str, grounding: bool) -> str:
+    return GROUNDING_ROLE + body + GROUNDED_RULES if grounding else body + RULES
 
 CELL_SCHEMA = {
     "type": "object",
@@ -134,9 +146,9 @@ class LedgerCard:
             *(ledger_header_id(page_id, name) for name in HEADER_BOTTOM),
         ]
 
-    def extraction_prompt(self) -> str:
+    def extraction_prompt(self, grounding: bool = False) -> str:
         line_keys = f'"{LINES[0]:02d}" to "{LINES[-1]:02d}"'
-        return (
+        body = (
             "This is a scanned bank ledger card. Read every field on it.\n\n"
             '"header" holds:\n'
             "- account_no: the account number at the top\n"
@@ -152,8 +164,9 @@ class LedgerCard:
             "- debit: the amount in the Debit column\n"
             "- credit: the amount in the Credit column\n"
             "- balance: the amount in the Balance column\n"
-            'Give every line, even an empty one, with "" for each blank cell.\n\n' + RULES
+            'Give every line, even an empty one, with "" for each blank cell.\n\n'
         )
+        return _prompt(body, grounding)
 
     def extraction_schema(self) -> dict:
         lines = {f"{line:02d}": _cells(COLUMNS) for line in LINES}
@@ -183,8 +196,8 @@ class PaymentMemo:
     def field_ids(self, page_id: str) -> list[str]:
         return [memo_field_id(page_id, name) for name in MEMO_FIELDS]
 
-    def extraction_prompt(self) -> str:
-        return (
+    def extraction_prompt(self, grounding: bool = False) -> str:
+        body = (
             "This is a scanned payment memorandum. Read every field on it.\n\n"
             '"fields" holds:\n'
             "- memo_no: the memo number\n"
@@ -193,8 +206,9 @@ class PaymentMemo:
             "- counterparty: the payee on the \"Pay to\" line\n"
             "- amount: the amount in figures, without the currency sign or any tick mark\n"
             "- amount_words: the amount in words\n"
-            '- ledger_ref: the ledger reference, e.g. "Sheet 12 / Line 04" as printed\n\n' + RULES
+            '- ledger_ref: the ledger reference, e.g. "Sheet 12 / Line 04" as printed\n\n'
         )
+        return _prompt(body, grounding)
 
     def extraction_schema(self) -> dict:
         return _object({"fields": _cells(MEMO_FIELDS)})

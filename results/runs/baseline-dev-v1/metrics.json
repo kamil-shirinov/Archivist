@@ -19,86 +19,86 @@
   "overall": {
     "n_fields": 1385,
     "counts": {
-      "correct": 1332,
-      "misread": 46,
+      "correct": 1338,
+      "misread": 40,
       "hallucinated": 0,
       "omitted": 3,
       "abstained": 4
     },
-    "field_accuracy": 0.9617328519855596,
+    "field_accuracy": 0.9660649819494584,
     "n_accepted": 1381,
-    "error_rate_accepted": 0.03548153511947864,
-    "citation_accuracy": 0.45045045045045046,
+    "error_rate_accepted": 0.031136857349746562,
+    "citation_accuracy": 0.4514200298953662,
     "review_rate": 0.0,
     "errors_caught": 0,
-    "errors_missed": 49,
+    "errors_missed": 43,
     "false_alarms": 0,
     "n_pages": 47,
     "classification_accuracy": 1.0,
     "field_accuracy_ci95": [
-      0.9128763302993527,
-      0.9899768696993061
+      0.9188152580526189,
+      0.9927818766766393
     ],
     "error_rate_ci95": [
-      0.008371866076340677,
-      0.08154580271515753
+      0.005766975743080139,
+      0.07692652329749103
     ]
   },
   "by_severity": {
     "0": {
       "n_fields": 348,
       "counts": {
-        "correct": 343,
-        "misread": 5,
+        "correct": 345,
+        "misread": 3,
         "hallucinated": 0,
         "omitted": 0,
         "abstained": 0
       },
-      "field_accuracy": 0.985632183908046,
+      "field_accuracy": 0.9913793103448276,
       "n_accepted": 348,
-      "error_rate_accepted": 0.014367816091954023,
-      "citation_accuracy": 0.5043731778425656,
+      "error_rate_accepted": 0.008620689655172414,
+      "citation_accuracy": 0.5043478260869565,
       "review_rate": 0.0,
       "errors_caught": 0,
-      "errors_missed": 5,
+      "errors_missed": 3,
       "false_alarms": 0,
       "n_pages": 12,
       "classification_accuracy": 1.0,
       "field_accuracy_ci95": [
-        0.9345192307692308,
+        0.9641009852216749,
         1.0
       ],
       "error_rate_ci95": [
         0.0,
-        0.0654807692307687
+        0.03589901477832411
       ]
     },
     "1": {
       "n_fields": 524,
       "counts": {
-        "correct": 523,
-        "misread": 1,
+        "correct": 524,
+        "misread": 0,
         "hallucinated": 0,
         "omitted": 0,
         "abstained": 0
       },
-      "field_accuracy": 0.9980916030534351,
+      "field_accuracy": 1.0,
       "n_accepted": 524,
-      "error_rate_accepted": 0.0019083969465648854,
-      "citation_accuracy": 0.3173996175908222,
+      "error_rate_accepted": 0.0,
+      "citation_accuracy": 0.31679389312977096,
       "review_rate": 0.0,
       "errors_caught": 0,
-      "errors_missed": 1,
+      "errors_missed": 0,
       "false_alarms": 0,
       "n_pages": 12,
       "classification_accuracy": 1.0,
       "field_accuracy_ci95": [
-        0.9913793103448276,
+        1.0,
         1.0
       ],
       "error_rate_ci95": [
         0.0,
-        0.008620689655172414
+        0.0
       ]
     },
     "2": {
@@ -132,29 +132,29 @@
     "3": {
       "n_fields": 253,
       "counts": {
-        "correct": 207,
-        "misread": 39,
+        "correct": 210,
+        "misread": 36,
         "hallucinated": 0,
         "omitted": 3,
         "abstained": 4
       },
-      "field_accuracy": 0.8181818181818182,
+      "field_accuracy": 0.8300395256916996,
       "n_accepted": 249,
-      "error_rate_accepted": 0.1686746987951807,
-      "citation_accuracy": 0.357487922705314,
+      "error_rate_accepted": 0.1566265060240964,
+      "citation_accuracy": 0.36666666666666664,
       "review_rate": 0.0,
       "errors_caught": 0,
-      "errors_missed": 42,
+      "errors_missed": 39,
       "false_alarms": 0,
       "n_pages": 11,
       "classification_accuracy": 1.0,
       "field_accuracy_ci95": [
-        0.6422727272727273,
-        0.9525691699604744
+        0.6883116883116883,
+        0.9589825321943132
       ],
       "error_rate_ci95": [
-        0.03968253968253968,
-        0.3333333333333333
+        0.032125301204819275,
+        0.2919606625258797
       ]
     }
   },
@@ -190,29 +190,29 @@
     "memo": {
       "n_fields": 245,
       "counts": {
-        "correct": 219,
-        "misread": 21,
+        "correct": 225,
+        "misread": 15,
         "hallucinated": 0,
         "omitted": 2,
         "abstained": 3
       },
-      "field_accuracy": 0.8938775510204081,
+      "field_accuracy": 0.9183673469387755,
       "n_accepted": 242,
-      "error_rate_accepted": 0.09504132231404959,
-      "citation_accuracy": 0.5342465753424658,
+      "error_rate_accepted": 0.07024793388429752,
+      "citation_accuracy": 0.5377777777777778,
       "review_rate": 0.0,
       "errors_caught": 0,
-      "errors_missed": 23,
+      "errors_missed": 17,
       "false_alarms": 0,
       "n_pages": 35,
       "classification_accuracy": 1.0,
       "field_accuracy_ci95": [
-        0.8285714285714286,
-        0.9510204081632653
+        0.8612244897959184,
+        0.9673469387755103
       ],
       "error_rate_ci95": [
-        0.037496109958506225,
-        0.1598525096134385
+        0.02468882817243473,
+        0.12187629150020649
       ]
     }
   }

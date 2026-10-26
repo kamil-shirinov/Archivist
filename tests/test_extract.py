@@ -11,13 +11,23 @@ from pathlib import Path
 import pytest
 from PIL import Image
 
-from archivist.doctypes.ledger import COLUMNS, HEADER_BOTTOM, HEADER_TOP, LINES, MEMO_FIELDS
+from archivist.doctypes.ledger import (
+    COLUMNS,
+    HEADER_BOTTOM,
+    HEADER_TOP,
+    LINES,
+    MEMO_FIELDS,
+    PaymentMemo,
+)
 from archivist.eval import run_eval
 from archivist.models.base import LLMRequest
 from archivist.models.budget import Budget, BudgetExceeded, BudgetGuard, Price
 from archivist.models.cache import Cache
 from archivist.models.mock import MockLLM
+from archivist.pipeline import citations
 from archivist.pipeline.extract import (
+    CITATION_STRATEGIES,
+    CITATIONS,
     EXTRACT_TOKENS,
     RETRY_NOTE,
     ExtractionFailed,
@@ -190,6 +200,58 @@ def test_a_classification_outside_the_registry_fails(tmp_path):
         extract_page(path, roles)
 
 
+# --- citation strategies -----------------------------------------------------------------------
+
+
+def test_s0_asks_for_cells_and_s1_for_ink_with_the_same_classification(tmp_path):
+    pages = Pages(tmp_path / "images")
+    path = pages.add("m1", "payment_memo")
+    llm = MockLLM(responder(pages))
+    roles, _ = roles_for(llm, tmp_path)
+
+    s0 = extract_page(path, roles, "S0")
+    s1 = extract_page(path, roles, "S1")
+
+    assert s0 == s1  # the canned answer is the same; only the request differs
+    classify_0, extract_0, extract_1 = llm.calls  # S1's classification replays from the cache
+    assert extract_0.prompt == PaymentMemo().extraction_prompt()
+    assert extract_1.prompt == PaymentMemo().extraction_prompt(grounding=True)
+    assert "doc_type" in classify_0.json_schema["properties"]
+
+
+def test_s1_ink_corrects_s1s_boxes_from_the_image(tmp_path, monkeypatch):
+    pages = Pages(tmp_path / "images")
+    path = pages.add("m1", "payment_memo")
+    llm = MockLLM(responder(pages))
+    roles, _ = roles_for(llm, tmp_path)
+    seen = []
+
+    def fake_correct(image: bytes, values: list[ExtractedValue]) -> citations.Correction:
+        seen.append(image)
+        moved = [v.model_copy(update={"value": "moved"}) for v in values]
+        return citations.Correction(moved, 1.0, 0.0, len(values), len(values))
+
+    monkeypatch.setattr(citations, "correct", fake_correct)
+    page = extract_page(path, roles, "S1+ink")
+
+    assert seen == [path.read_bytes()]
+    assert {v.value for v in page.values} == {"moved"}
+    assert llm.calls[-1].prompt == PaymentMemo().extraction_prompt(grounding=True)
+
+
+def test_an_unknown_citation_strategy_is_refused(tmp_path):
+    pages = Pages(tmp_path / "images")
+    path = pages.add("m1", "payment_memo")
+    roles, _ = roles_for(MockLLM(responder(pages)), tmp_path)
+    with pytest.raises(ValueError, match="citation strategy"):
+        extract_page(path, roles, "S2")
+
+
+def test_the_default_strategy_is_one_of_the_three():
+    assert CITATION_STRATEGIES == ("S0", "S1", "S1+ink")
+    assert CITATIONS in CITATION_STRATEGIES
+
+
 # --- run ---------------------------------------------------------------------------------------
 
 
@@ -211,6 +273,7 @@ def test_run_writes_predictions_and_a_run_record(tmp_path):
     assert counts == {"card-1": 95, "memo-1": 7, "other": 0}
     assert record == json.loads((tmp_path / "runs" / "r1" / "run.json").read_text())
     assert record["config"] == CONFIG
+    assert record["citations"] == CITATIONS
     assert record["counts"] == {
         "pages": 3,
         "extracted": 3,

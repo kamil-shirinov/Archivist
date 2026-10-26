@@ -17,8 +17,8 @@ Turns scanned financial archives into a verified database: every value cited to 
 src/archivist/schema.py — data contracts
 src/archivist/synth/ — world.py, render.py, degrade.py, build.py
 src/archivist/models/ — base.py, mock.py, cache.py, budget.py, meta_api.py, registry.py
-src/archivist/pipeline/ — segment, extract, verify/, confidence, db
-src/archivist/eval/ — metrics.py, run_eval.py
+src/archivist/pipeline/ — segment, extract, citations, verify/, confidence, db
+src/archivist/eval/ — metrics.py, run_eval.py, analyse.py, citation_experiment.py
 ui/ — static review app (Vite + React + TypeScript), reads data/bundles/<run_id>/bundle.json; types generated from schema.py
 data/dev, data/test — test is frozen and hashed; never used for tuning
 
@@ -40,3 +40,4 @@ uv run pytest -q
 - [x] P9 scoring rules, written before any model output is scored
 - [x] P10 document-type plug-ins and the single-pass baseline
 - [x] P10b baseline error analysis
+- [x] P10c citations and scorer fix

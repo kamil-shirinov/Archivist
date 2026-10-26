@@ -20,3 +20,4 @@ D18 Every paid model call is logged in results/spend_ledger.jsonl, which is comm
 D19 Muse Spark runs as muse-spark-1.3-contributor: the same 1.3 model in Contributor mode, at Contributor prices. Allowed because only synthetic or public-domain pages are ever sent (D14); real deployments would use Standard mode or open weights.
 D20 Scoring rules are written and tested before any model output is scored — the definitions can't drift toward flattering results.
 D21 Document types are plug-ins (fields, prompt, schema, parser; checks come next). One is built: ledger cards with their payment memos. Each page is classified first; anything unrecognised is reported as unsupported, never forced into a template.
+D22 Amount in words is compared on its letters only — spelling variants of the same words aren't errors. Fixed on dev after the baseline exposed it, before the test set exists.

@@ -5,10 +5,13 @@ import pytest
 from archivist.doctypes import REGISTRY, UNSUPPORTED, register
 from archivist.doctypes.ledger import (
     COLUMNS,
+    GROUNDED_RULES,
+    GROUNDING_ROLE,
     HEADER_BOTTOM,
     HEADER_TOP,
     LINES,
     MEMO_FIELDS,
+    RULES,
     LedgerCard,
     PaymentMemo,
     grid_to_bbox,
@@ -115,6 +118,18 @@ def test_prompt_names_every_field_and_states_the_rules(doc_type, names):
     assert 'A blank cell is ""' in prompt
     assert "its value is null" in prompt
     assert "[x_min, y_min, x_max, y_max] on a 0-1000 grid" in prompt
+
+
+@pytest.mark.parametrize("doc_type", [LedgerCard(), PaymentMemo()], ids=lambda d: d.name)
+def test_the_grounding_prompt_differs_only_in_its_role_and_box_rule(doc_type):
+    plain, grounded = doc_type.extraction_prompt(), doc_type.extraction_prompt(grounding=True)
+    assert "grounding" not in plain
+    assert grounded.startswith("You are an object grounding expert. ")
+    assert "a tight box around the ink of the value itself, not around its cell" in grounded
+    body = plain.removesuffix(RULES)
+    assert body != plain
+    assert grounded == GROUNDING_ROLE + body + GROUNDED_RULES
+    assert GROUNDED_RULES.split("- Every value gets a box")[0] == RULES.split("- Every value")[0]
 
 
 def test_ledger_prompt_keys_lines_by_the_printed_number():

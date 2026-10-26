@@ -36,6 +36,7 @@ MONEY_FIELDS = frozenset(
 )
 DATE_FIELDS = frozenset({"date"})
 DIGIT_FIELDS = frozenset({"account_no", "memo_no"})
+WORDS_FIELDS = frozenset({"amount_words"})  # compared on letters only (D22)
 
 _DATE = re.compile(r"(\d{1,2})[/.\-](\d{1,2})[/.\-](\d{2}|\d{4})")
 
@@ -93,6 +94,8 @@ def normalise(field_id: str, text: str) -> str:
         return _date(text) or _text(text)
     if kind in DIGIT_FIELDS:
         return re.sub(r"\D", "", text) or _text(text)
+    if kind in WORDS_FIELDS:
+        return re.sub(r"[^A-Z]", "", text.upper()) or _text(text)
     return _text(text)
 
 

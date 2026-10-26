@@ -2,6 +2,11 @@
 
     python -m archivist.pipeline.extract --split dev --run-id baseline-dev-v1 --workers 4
 
+--citations picks how the boxes are made: S0 takes them from the extraction call as asked in P10;
+S1 asks for them the way Muse Spark's grounding guidance says, around the ink rather than the
+cell; S1+ink takes S1's boxes and corrects them page by page from the image alone
+(pipeline/citations.py). The default is the winner of eval/citation_experiment.py.
+
 Every image in data/<split>/images/ goes through the extractor role, already Cache(Budget(...)).
 A page's id is its file stem and is never interpreted. A page classified as unsupported yields no
 values. An answer that is truncated or doesn't parse is asked for once more, with a note; if that
@@ -32,11 +37,14 @@ from pydantic import BaseModel
 from archivist.doctypes import REGISTRY, UNSUPPORTED
 from archivist.models import BudgetExceeded, LLMRequest, VisionLLM, describe_config, load_roles
 from archivist.models.budget import BudgetGuard
+from archivist.pipeline import citations
 from archivist.schema import ExtractedValue
 
 DATA_ROOT = Path("data")
 RUNS_DIR = Path("results/runs")
 ROLE = "extractor"
+CITATION_STRATEGIES = ("S0", "S1", "S1+ink")  # simplest first
+CITATIONS = "S0"  # the default, set from results/citation_experiment.json
 CLASSIFY_TOKENS = 2_048
 EXTRACT_TOKENS = 16_000  # a full card is 95 values with boxes, plus reasoning
 IMAGE_SUFFIXES = frozenset({".jpg", ".jpeg", ".png"})
@@ -111,8 +119,12 @@ def classify(image: bytes, llm: VisionLLM) -> str:
     return _ask(llm, "classification", prompt, image, schema, CLASSIFY_TOKENS, parse)
 
 
-def extract_page(image_path: Path, roles: Mapping[str, object]) -> PageExtraction:
+def extract_page(
+    image_path: Path, roles: Mapping[str, object], citation_strategy: str = CITATIONS
+) -> PageExtraction:
     """Classify the page, then read every field of its type; raises ExtractionFailed."""
+    if citation_strategy not in CITATION_STRATEGIES:
+        raise ValueError(f"citation strategy must be one of {CITATION_STRATEGIES}")
     llm = roles[ROLE]
     image = image_path.read_bytes()
     width, height = Image.open(io.BytesIO(image)).size
@@ -124,12 +136,14 @@ def extract_page(image_path: Path, roles: Mapping[str, object]) -> PageExtractio
     values = _ask(
         llm,
         f"{doc_type} extraction",
-        plugin.extraction_prompt(),
+        plugin.extraction_prompt(grounding=citation_strategy != "S0"),
         image,
         plugin.extraction_schema(),
         EXTRACT_TOKENS,
         lambda data: plugin.parse(page_id, data, width, height),
     )
+    if citation_strategy == "S1+ink":
+        values = citations.correct(image, values).values
     return PageExtraction(page_id=page_id, doc_type=doc_type, values=values)
 
 
@@ -155,6 +169,7 @@ def run(
     guard: BudgetGuard,
     config: Mapping[str, object],
     workers: int = 1,
+    citation_strategy: str = CITATIONS,
 ) -> dict:
     """Extract every page not yet in run_dir/predictions.jsonl; returns what goes in run.json."""
     pages = sorted(p for p in images.iterdir() if p.suffix.lower() in IMAGE_SUFFIXES)
@@ -173,7 +188,9 @@ def run(
         ThreadPoolExecutor(max_workers=workers) as pool,
         predictions_path.open("a", encoding="utf-8") as out,
     ):
-        futures = {pool.submit(extract_page, page, roles): page for page in todo}
+        futures = {
+            pool.submit(extract_page, page, roles, citation_strategy): page for page in todo
+        }
         try:
             for future in as_completed(futures):
                 page_id = futures[future].stem
@@ -207,6 +224,7 @@ def run(
                 "run_id": run_dir.name,
                 "images": str(images),
                 "config": dict(config),
+                "citations": citation_strategy,
                 "counts": {
                     "pages": len(pages),
                     "extracted": len(done),
@@ -228,6 +246,7 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--split", required=True)
     parser.add_argument("--run-id", required=True)
     parser.add_argument("--workers", type=int, default=4)
+    parser.add_argument("--citations", choices=CITATION_STRATEGIES, default=CITATIONS)
     args = parser.parse_args(argv)
 
     images = DATA_ROOT / args.split / "images"
@@ -242,6 +261,7 @@ def main(argv: list[str] | None = None) -> None:
         guard=guard,
         config=describe_config(),
         workers=args.workers,
+        citation_strategy=args.citations,
     )
     counts = record["counts"]
     print(

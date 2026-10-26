@@ -96,6 +96,23 @@ def test_account_digits_only_and_text_upper_collapsed():
     assert normalise(DESCRIPTION, "  chq   098975 ") == "CHQ 098975"
 
 
+def test_amount_in_words_compares_letters_only():
+    words = "M:memo-0001:amount_words"
+    printed = "Sixty-three pounds and forty-six pence"
+    for variant in (
+        "Sixty-three pounds and fortysix pence",
+        "sixty three pounds and forty six pence",
+        "SIXTY-THREE POUNDS AND FORTY-SIX PENCE.",
+    ):
+        assert normalise(words, variant) == normalise(words, printed)
+    assert normalise(words, "Sixty-eight pounds and forty-six pence") != normalise(words, printed)
+    page = _page([(words, printed)])
+    assert _outcomes(page, [_value(words, "Sixty three pounds and fortysix pence")]) == {
+        words: "correct"
+    }
+    assert normalise(DESCRIPTION, "STANDING-ORDER") != normalise(DESCRIPTION, "STANDING ORDER")
+
+
 def test_blank_normalises_to_empty_and_garbage_falls_back_to_text():
     assert normalise(DEBIT, "") == normalise(DEBIT, "   ") == ""
     assert normalise(DEBIT, "illegible") == "ILLEGIBLE"
