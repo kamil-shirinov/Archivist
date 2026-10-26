@@ -1,0 +1,41 @@
+{
+  "run_id": "baseline-val-s0",
+  "images": "data/val/images",
+  "config": {
+    "extractor": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "rereader": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "segmenter": {
+      "backend": "meta",
+      "model_id": "sam-3.1"
+    }
+  },
+  "citations": "S0",
+  "counts": {
+    "pages": 20,
+    "extracted": 20,
+    "failed": 0,
+    "by_doc_type": {
+      "ledger_card": 6,
+      "payment_memo": 14
+    }
+  },
+  "failed_pages": {},
+  "cost_usd": 0.016981400000000008,
+  "started_at": "2026-10-26T19:02:41+00:00",
+  "finished_at": "2026-10-26T19:04:05+00:00",
+  "sessions": [
+    {
+      "started_at": "2026-10-26T19:02:41+00:00",
+      "finished_at": "2026-10-26T19:04:05+00:00",
+      "pages_extracted": 20,
+      "cost_usd": 0.016981400000000008,
+      "aborted": null
+    }
+  ]
+}

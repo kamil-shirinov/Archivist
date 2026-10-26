@@ -41,3 +41,4 @@ uv run pytest -q
 - [x] P10 document-type plug-ins and the single-pass baseline
 - [x] P10b baseline error analysis
 - [x] P10c citations and scorer fix
+- [x] P10d validated citation correction

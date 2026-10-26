@@ -1,0 +1,38 @@
+{
+  "split": "val",
+  "rule": "Adopt S0+ink as the default if it raises citation accuracy by at least 20 points and its wrong-field rate is no higher than S0's; otherwise keep S0.",
+  "correction_sha256": "2bef8f2168e52ef3bcb552b97ade5680798efeb42a8a591b7ccb80e53daf8a80",
+  "adopted": "S0+ink",
+  "variants": {
+    "S0": {
+      "run_id": "baseline-val-s0",
+      "citation_accuracy": {
+        "all": 0.633693972179289,
+        "ledger": 0.6600361663652803,
+        "memo": 0.4787234042553192
+      },
+      "field_accuracy": 0.968562874251497,
+      "error_rate": 0.028528528528528527,
+      "wrong_field_rate": {
+        "all": 0.09880239520958084,
+        "ledger": 0.11578947368421053,
+        "memo": 0.0
+      }
+    },
+    "S0+ink": {
+      "run_id": "baseline-val-s0-ink",
+      "citation_accuracy": {
+        "all": 0.9258114374034003,
+        "ledger": 0.9204339963833634,
+        "memo": 0.9574468085106383
+      },
+      "field_accuracy": 0.968562874251497,
+      "error_rate": 0.028528528528528527,
+      "wrong_field_rate": {
+        "all": 0.040419161676646706,
+        "ledger": 0.04736842105263158,
+        "memo": 0.0
+      }
+    }
+  }
+}
