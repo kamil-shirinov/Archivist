@@ -1,0 +1,589 @@
+{
+  "spike": "sam_artefacts",
+  "split": "dev",
+  "config": {
+    "extractor": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "rereader": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "segmenter": {
+      "backend": "meta",
+      "model_id": "sam-3.1"
+    }
+  },
+  "selection_seed": 8,
+  "iou_threshold": 0.5,
+  "prompts": {
+    "stamp": "stamp",
+    "signature": "signature",
+    "stain": "stain",
+    "handwritten_amendment": "pencil mark"
+  },
+  "per_kind": {
+    "stamp": {
+      "ground_truth": 4,
+      "predicted": 5,
+      "matched": 4,
+      "recall": 1.0,
+      "precision": 0.8,
+      "mean_iou": 0.9350626888822511
+    },
+    "signature": {
+      "ground_truth": 6,
+      "predicted": 6,
+      "matched": 6,
+      "recall": 1.0,
+      "precision": 1.0,
+      "mean_iou": 0.9221187058265703
+    },
+    "stain": {
+      "ground_truth": 7,
+      "predicted": 6,
+      "matched": 6,
+      "recall": 0.8571428571428571,
+      "precision": 1.0,
+      "mean_iou": 0.8840730457016606
+    },
+    "handwritten_amendment": {
+      "ground_truth": 5,
+      "predicted": 4,
+      "matched": 0,
+      "recall": 0.0,
+      "precision": 0.0,
+      "mean_iou": null
+    }
+  },
+  "occluders": {
+    "kinds": [
+      "stamp",
+      "stain"
+    ],
+    "ground_truth": 11,
+    "predicted": 11,
+    "matched": 10,
+    "recall": 0.9090909090909091,
+    "precision": 0.9090909090909091,
+    "mean_iou": 0.9044689029738968
+  },
+  "decision_rule": "GO for SAM as the occlusion detector if stamp and stain combined reach recall >= 0.7 and precision >= 0.7 at IoU >= 0.5; otherwise NO-GO.",
+  "decision": "GO",
+  "calls": 48,
+  "cache_hits": 0,
+  "total_cost_usd": 0.12000000000000006,
+  "pages": [
+    {
+      "page_id": "card-04-2",
+      "doc_type": "ledger",
+      "severity": 0,
+      "ground_truth": [],
+      "predicted": []
+    },
+    {
+      "page_id": "card-03-1",
+      "doc_type": "ledger",
+      "severity": 0,
+      "ground_truth": [],
+      "predicted": []
+    },
+    {
+      "page_id": "memo-0031",
+      "doc_type": "memo",
+      "severity": 0,
+      "ground_truth": [
+        {
+          "kind": "signature",
+          "bbox": [
+            328,
+            1009,
+            562,
+            1074
+          ]
+        }
+      ],
+      "predicted": [
+        {
+          "kind": "signature",
+          "bbox": [
+            329,
+            1010,
+            561,
+            1073
+          ],
+          "score": 0.859649121761322
+        }
+      ]
+    },
+    {
+      "page_id": "card-03-3",
+      "doc_type": "ledger",
+      "severity": 1,
+      "ground_truth": [],
+      "predicted": []
+    },
+    {
+      "page_id": "memo-0017",
+      "doc_type": "memo",
+      "severity": 1,
+      "ground_truth": [
+        {
+          "kind": "signature",
+          "bbox": [
+            504,
+            1007,
+            722,
+            1081
+          ]
+        }
+      ],
+      "predicted": [
+        {
+          "kind": "signature",
+          "bbox": [
+            505,
+            1008,
+            721,
+            1079
+          ],
+          "score": 0.8012422323226929
+        }
+      ]
+    },
+    {
+      "page_id": "memo-0001",
+      "doc_type": "memo",
+      "severity": 1,
+      "ground_truth": [
+        {
+          "kind": "signature",
+          "bbox": [
+            304,
+            999,
+            614,
+            1079
+          ]
+        },
+        {
+          "kind": "handwritten_amendment",
+          "bbox": [
+            623,
+            554,
+            650,
+            576
+          ]
+        }
+      ],
+      "predicted": [
+        {
+          "kind": "signature",
+          "bbox": [
+            306,
+            1001,
+            613,
+            1078
+          ],
+          "score": 0.8518518805503845
+        }
+      ]
+    },
+    {
+      "page_id": "card-01-2",
+      "doc_type": "ledger",
+      "severity": 2,
+      "ground_truth": [
+        {
+          "kind": "stain",
+          "bbox": [
+            118,
+            73,
+            273,
+            223
+          ]
+        }
+      ],
+      "predicted": [
+        {
+          "kind": "stain",
+          "bbox": [
+            123,
+            77,
+            270,
+            219
+          ],
+          "score": 0.7419355511665344
+        }
+      ]
+    },
+    {
+      "page_id": "card-02-1",
+      "doc_type": "ledger",
+      "severity": 2,
+      "ground_truth": [
+        {
+          "kind": "stamp",
+          "bbox": [
+            138,
+            99,
+            303,
+            264
+          ]
+        }
+      ],
+      "predicted": [
+        {
+          "kind": "stamp",
+          "bbox": [
+            139,
+            100,
+            303,
+            261
+          ],
+          "score": 0.8439024686813354
+        }
+      ]
+    },
+    {
+      "page_id": "memo-0021",
+      "doc_type": "memo",
+      "severity": 2,
+      "ground_truth": [
+        {
+          "kind": "signature",
+          "bbox": [
+            491,
+            1009,
+            712,
+            1086
+          ]
+        },
+        {
+          "kind": "handwritten_amendment",
+          "bbox": [
+            757,
+            558,
+            786,
+            583
+          ]
+        },
+        {
+          "kind": "stain",
+          "bbox": [
+            209,
+            1079,
+            421,
+            1277
+          ]
+        }
+      ],
+      "predicted": [
+        {
+          "kind": "signature",
+          "bbox": [
+            492,
+            1010,
+            712,
+            1084
+          ],
+          "score": 0.8947368264198303
+        },
+        {
+          "kind": "stain",
+          "bbox": [
+            211,
+            1081,
+            418,
+            1274
+          ],
+          "score": 0.7770034670829773
+        }
+      ]
+    },
+    {
+      "page_id": "card-03-2",
+      "doc_type": "ledger",
+      "severity": 3,
+      "ground_truth": [
+        {
+          "kind": "stain",
+          "bbox": [
+            1004,
+            132,
+            1238,
+            360
+          ]
+        },
+        {
+          "kind": "stain",
+          "bbox": [
+            1177,
+            569,
+            1316,
+            697
+          ]
+        },
+        {
+          "kind": "stain",
+          "bbox": [
+            86,
+            89,
+            297,
+            305
+          ]
+        },
+        {
+          "kind": "stain",
+          "bbox": [
+            679,
+            227,
+            821,
+            371
+          ]
+        }
+      ],
+      "predicted": [
+        {
+          "kind": "stain",
+          "bbox": [
+            1181,
+            572,
+            1311,
+            694
+          ],
+          "score": 0.8672199249267578
+        },
+        {
+          "kind": "stain",
+          "bbox": [
+            94,
+            96,
+            292,
+            298
+          ],
+          "score": 0.8476190567016602
+        },
+        {
+          "kind": "stain",
+          "bbox": [
+            1010,
+            139,
+            1232,
+            341
+          ],
+          "score": 0.8518518805503845
+        },
+        {
+          "kind": "stain",
+          "bbox": [
+            683,
+            237,
+            817,
+            366
+          ],
+          "score": 0.859649121761322
+        },
+        {
+          "kind": "handwritten_amendment",
+          "bbox": [
+            1181,
+            572,
+            1311,
+            694
+          ],
+          "score": 0.675126850605011
+        },
+        {
+          "kind": "handwritten_amendment",
+          "bbox": [
+            94,
+            96,
+            292,
+            299
+          ],
+          "score": 0.6683937907218933
+        },
+        {
+          "kind": "handwritten_amendment",
+          "bbox": [
+            683,
+            237,
+            817,
+            366
+          ],
+          "score": 0.675126850605011
+        },
+        {
+          "kind": "handwritten_amendment",
+          "bbox": [
+            1010,
+            139,
+            1232,
+            342
+          ],
+          "score": 0.6683937907218933
+        }
+      ]
+    },
+    {
+      "page_id": "memo-0026",
+      "doc_type": "memo",
+      "severity": 3,
+      "ground_truth": [
+        {
+          "kind": "signature",
+          "bbox": [
+            469,
+            1005,
+            742,
+            1085
+          ]
+        },
+        {
+          "kind": "stamp",
+          "bbox": [
+            653,
+            484,
+            805,
+            636
+          ]
+        },
+        {
+          "kind": "stamp",
+          "bbox": [
+            753,
+            417,
+            906,
+            569
+          ]
+        },
+        {
+          "kind": "handwritten_amendment",
+          "bbox": [
+            639,
+            554,
+            666,
+            576
+          ]
+        },
+        {
+          "kind": "handwritten_amendment",
+          "bbox": [
+            765,
+            544,
+            799,
+            575
+          ]
+        }
+      ],
+      "predicted": [
+        {
+          "kind": "stamp",
+          "bbox": [
+            758,
+            420,
+            903,
+            566
+          ],
+          "score": 0.8787879347801208
+        },
+        {
+          "kind": "stamp",
+          "bbox": [
+            656,
+            486,
+            803,
+            632
+          ],
+          "score": 0.8709677457809448
+        },
+        {
+          "kind": "signature",
+          "bbox": [
+            472,
+            1014,
+            741,
+            1082
+          ],
+          "score": 0.859649121761322
+        }
+      ]
+    },
+    {
+      "page_id": "memo-0013",
+      "doc_type": "memo",
+      "severity": 3,
+      "ground_truth": [
+        {
+          "kind": "signature",
+          "bbox": [
+            471,
+            1003,
+            728,
+            1083
+          ]
+        },
+        {
+          "kind": "stain",
+          "bbox": [
+            645,
+            483,
+            779,
+            619
+          ]
+        },
+        {
+          "kind": "handwritten_amendment",
+          "bbox": [
+            755,
+            541,
+            783,
+            564
+          ]
+        },
+        {
+          "kind": "stamp",
+          "bbox": [
+            242,
+            261,
+            432,
+            391
+          ]
+        }
+      ],
+      "predicted": [
+        {
+          "kind": "stamp",
+          "bbox": [
+            650,
+            486,
+            779,
+            615
+          ],
+          "score": 0.5241636037826538
+        },
+        {
+          "kind": "stamp",
+          "bbox": [
+            244,
+            263,
+            428,
+            388
+          ],
+          "score": 0.9139785170555115
+        },
+        {
+          "kind": "signature",
+          "bbox": [
+            474,
+            1010,
+            727,
+            1081
+          ],
+          "score": 0.8787879347801208
+        }
+      ]
+    }
+  ]
+}
