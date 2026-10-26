@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import json
 import math
+import threading
 from collections.abc import Callable
 from dataclasses import dataclass
 from datetime import UTC, datetime
@@ -46,9 +47,15 @@ class Price:
 
 
 class BudgetGuard:
+    """Thread-safe: a call reserves its projected cost before it starts and releases it when it
+    is recorded or fails, so calls in flight on parallel workers count against the cap too.
+    """
+
     def __init__(self, cap_usd: float, ledger_path: Path = LEDGER_PATH) -> None:
         self.cap_usd = cap_usd
         self.ledger_path = ledger_path
+        self._lock = threading.Lock()
+        self._reserved = 0.0
 
     def spent(self) -> float:
         """Total cost in the ledger. An unreadable line raises: undercounting spend is worse."""
@@ -59,13 +66,36 @@ class BudgetGuard:
             return 0.0
 
     def check(self, projected: float) -> None:
+        with self._lock:
+            self._check(projected)
+
+    def reserve(self, projected: float) -> None:
+        """check(), then hold `projected` against the cap until record() or release()."""
+        with self._lock:
+            self._check(projected)
+            self._reserved += projected
+
+    def release(self, projected: float) -> None:
+        with self._lock:
+            self._reserved -= projected
+
+    def _check(self, projected: float) -> None:
         spent = self.spent()
-        if spent + projected > self.cap_usd:
+        if spent + self._reserved + projected > self.cap_usd:
             raise BudgetExceeded(
-                f"cap ${self.cap_usd:.2f}: ${spent:.4f} spent + ${projected:.4f} projected"
+                f"cap ${self.cap_usd:.2f}: ${spent:.4f} spent + ${self._reserved:.4f} in flight "
+                f"+ ${projected:.4f} projected"
             )
 
-    def record(self, role: str, backend: str, model_id: str, usage: Usage) -> None:
+    def record(
+        self, role: str, backend: str, model_id: str, usage: Usage, *, reserved: float = 0.0
+    ) -> None:
+        """Append the call to the ledger and release what it reserved, in one step."""
+        with self._lock:
+            self._record(role, backend, model_id, usage)
+            self._reserved -= reserved
+
+    def _record(self, role: str, backend: str, model_id: str, usage: Usage) -> None:
         entry = {
             "timestamp": datetime.now(UTC).isoformat(timespec="milliseconds"),
             "role": role,
@@ -119,7 +149,14 @@ class Budget:
     def _guarded[Req: (LLMRequest, SegmentRequest), Resp: (LLMResponse, SegmentResponse)](
         self, request: Req, call: Callable[[Req], Resp]
     ) -> Resp:
-        self.guard.check(project_cost(request, self.price))
-        response = call(request)
-        self.guard.record(request.role, response.backend, response.model_id, response.usage)
+        projected = project_cost(request, self.price)
+        self.guard.reserve(projected)
+        try:
+            response = call(request)
+        except BaseException:
+            self.guard.release(projected)
+            raise
+        self.guard.record(
+            request.role, response.backend, response.model_id, response.usage, reserved=projected
+        )
         return response

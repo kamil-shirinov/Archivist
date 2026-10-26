@@ -38,3 +38,4 @@ uv run pytest -q
 - [x] P8 Muse Spark backend and the first real call
 - [x] P8b SAM 3.1 backend and the artefact spike
 - [x] P9 scoring rules, written before any model output is scored
+- [x] P10 document-type plug-ins and the single-pass baseline
