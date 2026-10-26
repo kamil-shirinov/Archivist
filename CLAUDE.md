@@ -27,5 +27,5 @@ uv run pytest -q
 ## Status
 - [x] P1 scaffold
 - [x] P2 schema
-- [ ] P3 world generator
+- [x] P3 world generator
 - [ ] P4 renderer

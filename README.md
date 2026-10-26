@@ -6,6 +6,7 @@ Everything in this repository was written during the hackathon, except the third
 Build log:
 - 26 Oct: repo scaffold, hygiene and docs
 - 26 Oct: data contracts (schema)
+- 26 Oct: ground-truth world generator
 
 ## Meta models
 Planned: Muse Spark via the Meta Model API (extraction, re-reading) and SAM 3.1 (regions). Final roles and measured results will be stated here.
