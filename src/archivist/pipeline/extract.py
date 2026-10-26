@@ -2,6 +2,7 @@
 
     python -m archivist.pipeline.extract --split dev --run-id baseline-dev-v1 --workers 4
 
+--config picks the file that maps roles to models (default config/models.toml).
 --citations picks how the boxes are made: S0 takes them from the extraction call as asked in P10;
 S1 asks for them the way Muse Spark's grounding guidance says, around the ink rather than the
 cell; S0+ink and S1+ink take S0's or S1's boxes and correct them page by page from the image
@@ -37,6 +38,7 @@ from pydantic import BaseModel
 from archivist.doctypes import REGISTRY, UNSUPPORTED
 from archivist.models import BudgetExceeded, LLMRequest, VisionLLM, describe_config, load_roles
 from archivist.models.budget import BudgetGuard
+from archivist.models.registry import CONFIG_PATH
 from archivist.pipeline import citations
 from archivist.schema import ExtractedValue
 
@@ -247,19 +249,20 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--run-id", required=True)
     parser.add_argument("--workers", type=int, default=4)
     parser.add_argument("--citations", choices=CITATION_STRATEGIES, default=CITATIONS)
+    parser.add_argument("--config", type=Path, default=CONFIG_PATH)
     args = parser.parse_args(argv)
 
     images = DATA_ROOT / args.split / "images"
     if not images.is_dir():
         raise SystemExit(f"{images} is missing: rebuild the split with archivist.synth.build (D17)")
-    roles = load_roles()
+    roles = load_roles(args.config)
     guard = roles[ROLE].inner.guard  # Cache -> Budget -> the guard shared by every role
     record = run(
         images,
         RUNS_DIR / args.run_id,
         roles,
         guard=guard,
-        config=describe_config(),
+        config=describe_config(args.config),
         workers=args.workers,
         citation_strategy=args.citations,
     )

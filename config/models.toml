@@ -33,6 +33,18 @@ output_per_mtok = 4.25
 input_per_mtok = 0.10
 output_per_mtok = 0.20
 
+# Muse Spark Open on Baseten (D27), the model slug exactly as configured. Baseten's docs give no
+# price (docs.baseten.co/inference/model-apis/pricing-and-limits points to baseten.co/pricing); the
+# Model APIs table there, read 2026-10-26, prints $1.25 input, $0.15 cache input and $4.25 output
+# per 1M tokens for "Muse Spark Open", the same as Muse Spark 1.3 Standard above. That page is a
+# marketing page and the listed slug is meta-models/muse-spark-open, without the -1026 suffix, so
+# the figures are the best available, not a contract. Cached input is billed as ordinary input
+# here (spend overstated, never understated); reasoning tokens are in completion_tokens, billed as
+# output.
+[prices."meta-models/muse-spark-open-1026"]
+input_per_mtok = 1.25
+output_per_mtok = 4.25
+
 # SAM 3.1 from the same page: image segmentation is billed per image, not per token, at $2.50 per
 # 1,000 images, streaming or not. One image is billed per request, i.e. per prompt.
 [prices."sam-3.1"]

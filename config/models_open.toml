@@ -1,0 +1,62 @@
+# models.toml with the extractor and the rereader on Muse Spark Open (Baseten): python -m
+# archivist.pipeline.extract --config config/models_open.toml. The segmenter is unchanged.
+# reasoning_effort stays "low" as in models.toml, so the two runs differ in the model, not the
+# effort; Muse Spark Open always reasons and its own default would be "xhigh".
+
+# Muse Spark 1.3 in Contributor mode (D19). "max" effort is not offered in Contributor mode.
+[roles.extractor]
+kind = "llm"
+backend = "baseten"
+model_id = "meta-models/muse-spark-open-1026"
+settings = { reasoning_effort = "low" }
+
+[roles.rereader]
+kind = "llm"
+backend = "baseten"
+model_id = "meta-models/muse-spark-open-1026"
+settings = { reasoning_effort = "low" }
+
+[roles.segmenter]
+kind = "segmenter"
+backend = "meta"
+model_id = "sam-3.1"
+
+# USD per million tokens, keyed by model_id, and optionally per_image_usd: USD per image sent to a
+# segmenter. The spend cap projects each call from these.
+# Muse Spark from https://dev.meta.ai/docs/pricing-rate-limits (read 2026-10-26). Cached input
+# ($0.15 Standard, $0.002 Contributor) is billed as ordinary input here: spend is overstated,
+# never understated. Reasoning tokens are billed as output.
+[prices."muse-spark-1.3"]
+input_per_mtok = 1.25
+output_per_mtok = 4.25
+
+[prices."muse-spark-1.3-contributor"]
+input_per_mtok = 0.10
+output_per_mtok = 0.20
+
+# Muse Spark Open on Baseten (D27), the model slug exactly as configured. Baseten's docs give no
+# price (docs.baseten.co/inference/model-apis/pricing-and-limits points to baseten.co/pricing); the
+# Model APIs table there, read 2026-10-26, prints $1.25 input, $0.15 cache input and $4.25 output
+# per 1M tokens for "Muse Spark Open", the same as Muse Spark 1.3 Standard above. That page is a
+# marketing page and the listed slug is meta-models/muse-spark-open, without the -1026 suffix, so
+# the figures are the best available, not a contract. Cached input is billed as ordinary input
+# here (spend overstated, never understated); reasoning tokens are in completion_tokens, billed as
+# output.
+[prices."meta-models/muse-spark-open-1026"]
+input_per_mtok = 1.25
+output_per_mtok = 4.25
+
+# SAM 3.1 from the same page: image segmentation is billed per image, not per token, at $2.50 per
+# 1,000 images, streaming or not. One image is billed per request, i.e. per prompt.
+[prices."sam-3.1"]
+input_per_mtok = 0.0
+output_per_mtok = 0.0
+per_image_usd = 0.0025
+
+[prices.mock-llm]
+input_per_mtok = 0.0
+output_per_mtok = 0.0
+
+[prices.mock-segmenter]
+input_per_mtok = 0.0
+output_per_mtok = 0.0

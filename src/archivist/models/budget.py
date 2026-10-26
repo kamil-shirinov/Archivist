@@ -1,17 +1,20 @@
-"""Spend cap. The ledger is the single source of truth: spent() is the sum of its lines.
+"""Spend caps. The ledger is the single source of truth: spent() is the sum of its lines.
 
-BudgetGuard owns the ledger and the cap; Budget wraps a backend and consults the guard before
-each call, so the cap holds for every role that shares a guard. The ledger is committed
-(D18): cost per page is part of the evidence, and the cap survives restarts because it is
-read from the same file.
+BudgetGuard owns the ledger and the caps; Budget wraps a backend and consults the guard before
+each call, so the caps hold for every role that shares a guard. Each backend has its own cap,
+checked against that backend's lines in the ledger: Meta's from env BUDGET_CAP_USD (default 120)
+and Baseten's from env BASETEN_CAP_USD (default 80), so spending on one never uses up the other.
+The ledger is committed (D18): cost per page is part of the evidence, and the caps survive
+restarts because they are read from the same file.
 """
 
 from __future__ import annotations
 
 import json
 import math
+import os
 import threading
-from collections.abc import Callable
+from collections.abc import Callable, Mapping
 from dataclasses import dataclass
 from datetime import UTC, datetime
 from pathlib import Path
@@ -27,6 +30,8 @@ from archivist.models.base import (
 )
 
 LEDGER_PATH = Path("results/spend_ledger.jsonl")
+# Backend name -> (env variable holding its cap in USD, the cap when the variable is unset).
+BACKEND_CAPS = {"meta": ("BUDGET_CAP_USD", 120.0), "baseten": ("BASETEN_CAP_USD", 80.0)}
 IMAGE_TOKENS = 2_000  # projected input tokens per image, on the high side
 # A SegmentRequest has no output limit; project the LLM default. SAM 3.1 is billed per image, not
 # per token, so its token prices are zero and this only matters to a token-priced segmenter.
@@ -46,45 +51,73 @@ class Price:
     per_image_usd: float = 0.0
 
 
+def caps_from_env() -> dict[str, float]:
+    """Every backend's cap in USD, from its environment variable or its default."""
+    return {
+        backend: float(os.environ.get(variable, default))
+        for backend, (variable, default) in BACKEND_CAPS.items()
+    }
+
+
 class BudgetGuard:
     """Thread-safe: a call reserves its projected cost before it starts and releases it when it
     is recorded or fails, so calls in flight on parallel workers count against the cap too.
+
+    `caps` gives each named backend its own cap, checked against that backend's ledger lines and
+    reservations alone; `cap_usd` caps every other backend the same way. Without a backend, check()
+    and spent() look at the whole ledger against cap_usd.
     """
 
-    def __init__(self, cap_usd: float, ledger_path: Path = LEDGER_PATH) -> None:
+    def __init__(
+        self,
+        cap_usd: float,
+        ledger_path: Path = LEDGER_PATH,
+        *,
+        caps: Mapping[str, float] | None = None,
+    ) -> None:
         self.cap_usd = cap_usd
+        self.caps = dict(caps or {})
         self.ledger_path = ledger_path
         self._lock = threading.Lock()
-        self._reserved = 0.0
+        self._reserved: dict[str | None, float] = {}
 
-    def spent(self) -> float:
-        """Total cost in the ledger. An unreadable line raises: undercounting spend is worse."""
+    def cap_for(self, backend: str | None = None) -> float:
+        return self.caps.get(backend, self.cap_usd) if backend is not None else self.cap_usd
+
+    def spent(self, backend: str | None = None) -> float:
+        """Total cost in the ledger, or that of one backend's lines. An unreadable line raises:
+        undercounting spend is worse.
+        """
         try:
             with self.ledger_path.open(encoding="utf-8") as ledger:
-                return math.fsum(json.loads(line)["cost_usd"] for line in ledger if line.strip())
+                entries = (json.loads(line) for line in ledger if line.strip())
+                return math.fsum(
+                    e["cost_usd"] for e in entries if backend is None or e["backend"] == backend
+                )
         except FileNotFoundError:
             return 0.0
 
-    def check(self, projected: float) -> None:
+    def check(self, projected: float, backend: str | None = None) -> None:
         with self._lock:
-            self._check(projected)
+            self._check(projected, backend)
 
-    def reserve(self, projected: float) -> None:
+    def reserve(self, projected: float, backend: str | None = None) -> None:
         """check(), then hold `projected` against the cap until record() or release()."""
         with self._lock:
-            self._check(projected)
-            self._reserved += projected
+            self._check(projected, backend)
+            self._reserved[backend] = self._reserved.get(backend, 0.0) + projected
 
-    def release(self, projected: float) -> None:
+    def release(self, projected: float, backend: str | None = None) -> None:
         with self._lock:
-            self._reserved -= projected
+            self._reserved[backend] = self._reserved.get(backend, 0.0) - projected
 
-    def _check(self, projected: float) -> None:
-        spent = self.spent()
-        if spent + self._reserved + projected > self.cap_usd:
+    def _check(self, projected: float, backend: str | None) -> None:
+        cap, spent = self.cap_for(backend), self.spent(backend)
+        reserved = self._reserved.get(backend, 0.0)
+        if spent + reserved + projected > cap:
             raise BudgetExceeded(
-                f"cap ${self.cap_usd:.2f}: ${spent:.4f} spent + ${self._reserved:.4f} in flight "
-                f"+ ${projected:.4f} projected"
+                f"{backend or 'all backends'} cap ${cap:.2f}: ${spent:.4f} spent "
+                f"+ ${reserved:.4f} in flight + ${projected:.4f} projected"
             )
 
     def record(
@@ -93,7 +126,7 @@ class BudgetGuard:
         """Append the call to the ledger and release what it reserved, in one step."""
         with self._lock:
             self._record(role, backend, model_id, usage)
-            self._reserved -= reserved
+            self._reserved[backend] = self._reserved.get(backend, 0.0) - reserved
 
     def _record(self, role: str, backend: str, model_id: str, usage: Usage) -> None:
         entry = {
@@ -150,13 +183,13 @@ class Budget:
         self, request: Req, call: Callable[[Req], Resp]
     ) -> Resp:
         projected = project_cost(request, self.price)
-        self.guard.reserve(projected)
+        self.guard.reserve(projected, self.name)
         try:
             response = call(request)
         except BaseException:
-            self.guard.release(projected)
+            self.guard.release(projected, self.name)
             raise
         self.guard.record(
-            request.role, response.backend, response.model_id, response.usage, reserved=projected
+            request.role, self.name, response.model_id, response.usage, reserved=projected
         )
         return response

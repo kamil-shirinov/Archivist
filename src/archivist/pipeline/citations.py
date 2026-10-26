@@ -29,6 +29,8 @@ matching; every box still moves with the fit. The ledger card's header fields ab
 so they are left out of the matching too: they move with the fit but are never snapped. A page
 with too few matches is left as it was. A corrected citation keeps the extractor's own box as
 raw_bbox, whose horizontal extent spans the whole cell when a snapped box holds one word of it.
+A box the fit would move off the page, even in part, is a fit gone wrong and not a correction: that
+citation keeps the extractor's own box (a guard against a bug, not a tuned rule).
 """
 
 from __future__ import annotations
@@ -298,6 +300,10 @@ def _box(value: ExtractedValue) -> Box:
     return (bbox.x0, bbox.y0, bbox.x1, bbox.y1)
 
 
+def _on_page(box: Box, width: int, height: int) -> bool:
+    return box[0] >= 0 and box[1] >= 0 and box[2] <= width and box[3] <= height
+
+
 def _bbox(box: Box, width: int, height: int) -> BBox:
     """box in whole pixels, on the page: one the fit moves off an edge keeps a pixel's sliver."""
     x0 = min(max(0, int(np.floor(box[0]))), width - 1)
@@ -353,8 +359,12 @@ def correct(image: bytes, values: list[ExtractedValue]) -> Correction:
             shift = beta + gamma * _centre_x(boxes[i])
             box = (x0, alpha * y0 + shift, x1, alpha * y1 + shift)
         raw = values[i].citation
-        citation = Citation(
-            page_id=raw.page_id, bbox=_bbox(box, width, height), raw_bbox=raw.raw_bbox or raw.bbox
-        )
+        extractor_box = raw.raw_bbox or raw.bbox
+        if _on_page(box, width, height):
+            citation = Citation(
+                page_id=raw.page_id, bbox=_bbox(box, width, height), raw_bbox=extractor_box
+            )
+        else:
+            citation = Citation(page_id=raw.page_id, bbox=extractor_box, raw_bbox=extractor_box)
         out[i] = values[i].model_copy(update={"citation": citation})
     return Correction(out, alpha, beta, gamma, len(inked), len(matches))
