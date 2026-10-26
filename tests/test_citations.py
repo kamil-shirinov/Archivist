@@ -6,7 +6,7 @@ import numpy as np
 import pytest
 from PIL import Image, ImageDraw
 
-from archivist.pipeline.citations import correct, fit_plane, outside_table, word_boxes
+from archivist.pipeline.citations import _bbox, correct, fit_plane, outside_table, word_boxes
 from archivist.schema import BBox, Citation, ExtractedValue
 
 PAGE = "page-1"
@@ -144,6 +144,14 @@ def test_every_corrected_citation_keeps_the_extractors_box_through_a_second_corr
     assert [v.citation.raw_bbox for v in once.values] == raw
     assert [v.citation.raw_bbox for v in twice.values] == raw
     assert any(v.citation.bbox != v.citation.raw_bbox for v in once.values)
+
+
+def test_a_box_the_fit_moves_off_the_page_stays_on_it():
+    # Found on dev: a carried forward below the table, moved past the bottom edge by the fit.
+    assert _bbox((1487.0, 1186.6, 1632.0, 1188.2), 1700, 1100) == BBox(
+        x0=1487, y0=1099, x1=1632, y1=1100
+    )
+    assert _bbox((-30.0, -9.0, -2.0, -1.0), 100, 100) == BBox(x0=0, y0=0, x1=1, y1=1)
 
 
 def test_a_page_without_enough_ink_to_match_is_left_as_it_was():

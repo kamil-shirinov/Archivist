@@ -1,0 +1,163 @@
+{
+  "baseline-dev-v1": {
+    "kind": "baseline",
+    "gt": "data/dev/gt",
+    "n_fields": 1385,
+    "n_wrong": 43,
+    "error_rate_accepted": 0.031136857349746562,
+    "error_rate_accepted_ci95": [
+      0.005766975743080139,
+      0.07692652329749103
+    ],
+    "errors_caught": 0,
+    "errors_missed": 43,
+    "false_alarms": 0,
+    "false_alarm_rate": 0.0,
+    "review_rate": 0.0,
+    "n_proposed": 0,
+    "proposed_equals_printed": 0,
+    "proposal_accuracy": null,
+    "proposed_by_reread_chain": 0,
+    "reread_chain_proposals_right": 0,
+    "independence": null
+  },
+  "archivist-dev-v1": {
+    "kind": "archivist",
+    "gt": "data/dev/gt",
+    "verifies": "baseline-dev-v1",
+    "n_fields": 1385,
+    "n_wrong": 43,
+    "error_rate_accepted": 0.001583531274742676,
+    "error_rate_accepted_ci95": [
+      0.0,
+      0.004748501500403653
+    ],
+    "errors_caught": 41,
+    "errors_missed": 2,
+    "false_alarms": 64,
+    "false_alarm_rate": 0.04830188679245283,
+    "review_rate": 0.0851985559566787,
+    "n_proposed": 2,
+    "proposed_equals_printed": 2,
+    "proposal_accuracy": 1.0,
+    "proposed_by_reread_chain": 0,
+    "reread_chain_proposals_right": 0,
+    "independence": 0.27906976744186046,
+    "missed": [
+      {
+        "field_id": "M:memo-0008:ledger_ref",
+        "printed": "Sheet 38 / Line 04",
+        "predicted": "Sheet 37 / Line 04",
+        "outcome": "misread",
+        "reread": "Sheet 37 / Line 04"
+      },
+      {
+        "field_id": "M:memo-0020:counterparty",
+        "printed": "Wrenfield Assurance Society",
+        "predicted": "Mayfield Assurance Society",
+        "outcome": "misread",
+        "reread": "Mayfield Assurance Society"
+      }
+    ]
+  },
+  "archivist-dev-v2": {
+    "kind": "archivist",
+    "gt": "data/dev/gt",
+    "verifies": "baseline-dev-v1",
+    "n_fields": 1385,
+    "n_wrong": 43,
+    "error_rate_accepted": 0.0016863406408094434,
+    "error_rate_accepted_ci95": [
+      0.0,
+      0.005115417404419961
+    ],
+    "errors_caught": 41,
+    "errors_missed": 2,
+    "false_alarms": 141,
+    "false_alarm_rate": 0.10641509433962264,
+    "review_rate": 0.1407942238267148,
+    "n_proposed": 2,
+    "proposed_equals_printed": 2,
+    "proposal_accuracy": 1.0,
+    "proposed_by_reread_chain": 1,
+    "reread_chain_proposals_right": 1,
+    "independence": 0.3023255813953488,
+    "missed": [
+      {
+        "field_id": "M:memo-0008:ledger_ref",
+        "printed": "Sheet 38 / Line 04",
+        "predicted": "Sheet 37 / Line 04",
+        "outcome": "misread",
+        "reread": "Sheet 37 / Line 04"
+      },
+      {
+        "field_id": "M:memo-0020:counterparty",
+        "printed": "Wrenfield Assurance Society",
+        "predicted": "Mayfield Assurance Society",
+        "outcome": "misread",
+        "reread": "Mayfield Assurance Society"
+      }
+    ]
+  },
+  "baseline-val-s0": {
+    "kind": "baseline",
+    "gt": "data/val/gt",
+    "n_fields": 668,
+    "n_wrong": 19,
+    "error_rate_accepted": 0.028528528528528527,
+    "error_rate_accepted_ci95": [
+      0.002372479240806643,
+      0.07669461681311711
+    ],
+    "errors_caught": 0,
+    "errors_missed": 19,
+    "false_alarms": 0,
+    "false_alarm_rate": 0.0,
+    "review_rate": 0.0,
+    "n_proposed": 0,
+    "proposed_equals_printed": 0,
+    "proposal_accuracy": null,
+    "proposed_by_reread_chain": 0,
+    "reread_chain_proposals_right": 0,
+    "independence": null
+  },
+  "archivist-val-v1": {
+    "kind": "archivist",
+    "gt": "data/val/gt",
+    "verifies": "baseline-val-s0",
+    "n_fields": 668,
+    "n_wrong": 19,
+    "error_rate_accepted": 0.0036429872495446266,
+    "error_rate_accepted_ci95": [
+      0.0,
+      0.012196992368696683
+    ],
+    "errors_caught": 17,
+    "errors_missed": 2,
+    "false_alarms": 91,
+    "false_alarm_rate": 0.14285714285714285,
+    "review_rate": 0.1751497005988024,
+    "n_proposed": 1,
+    "proposed_equals_printed": 1,
+    "proposal_accuracy": 1.0,
+    "proposed_by_reread_chain": 1,
+    "reread_chain_proposals_right": 1,
+    "independence": 0.15789473684210525,
+    "missed": [
+      {
+        "field_id": "L:card-02-2:17:balance",
+        "printed": "2,406.08",
+        "predicted": "2,406.02",
+        "outcome": "misread",
+        "reread": "2,406.02"
+      },
+      {
+        "field_id": "L:card-02-2:18:balance",
+        "printed": "2,311.08",
+        "predicted": "2,311.02",
+        "outcome": "misread",
+        "reread": "2,311.02"
+      }
+    ]
+  }
+}

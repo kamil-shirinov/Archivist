@@ -1,0 +1,1161 @@
+{
+  "run_id": "archivist-val-v1",
+  "gt": "data/val/gt",
+  "baseline_run": "baseline-val-s0",
+  "config": {
+    "extractor": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "rereader": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "segmenter": {
+      "backend": "meta",
+      "model_id": "sam-3.1"
+    }
+  },
+  "policy": {
+    "version": "D26: every field read twice, checks on both chains",
+    "money_fields": [
+      "amount",
+      "balance",
+      "brought_forward",
+      "carried_forward",
+      "credit",
+      "debit"
+    ],
+    "confidence": {
+      "accepted": 0.99,
+      "accepted_occluded": 0.9,
+      "review_proposed": 0.5,
+      "review_unresolved": 0.3,
+      "abstained": 0.0
+    },
+    "occlusion_prompts": [
+      "stamp",
+      "stain"
+    ],
+    "occlusion_cover": 0.1,
+    "reread_padding": {
+      "vertical": 0.5,
+      "horizontal": 0.2
+    }
+  },
+  "missing_pages": [],
+  "overall": {
+    "archivist": {
+      "n_fields": 668,
+      "n_wrong": 19,
+      "n_correct": 637,
+      "n_accepted": 549,
+      "n_review": 117,
+      "n_abstained": 2,
+      "coverage": 0.8218562874251497,
+      "review_rate": 0.1751497005988024,
+      "errors_caught": 17,
+      "catch_rate": 0.8947368421052632,
+      "errors_missed": 2,
+      "error_rate_accepted": 0.0036429872495446266,
+      "false_alarms": 91,
+      "false_alarm_rate": 0.14285714285714285,
+      "n_proposed": 1,
+      "proposed_equals_printed": 1,
+      "proposal_accuracy": 1.0,
+      "proposed_on_wrong": 1,
+      "proposal_fixes": 1,
+      "proposed_by_reread_chain": 1,
+      "reread_chain_proposals_right": 1,
+      "n_source_errors": 6,
+      "source_errors_found": 5,
+      "source_error_recall": 0.8333333333333334,
+      "reread_fields": 664,
+      "reread_on_wrong": 19,
+      "reread_agreed_with_wrong": 3,
+      "independence": 0.15789473684210525,
+      "reread_on_correct": 645,
+      "reread_agreed_with_correct": 558,
+      "reread_confirmation_rate": 0.8651162790697674,
+      "error_rate_accepted_ci95": [
+        0.0,
+        0.012196992368696683
+      ],
+      "catch_rate_ci95": [
+        0.8709677419354839,
+        1.0
+      ],
+      "false_alarm_rate_ci95": [
+        0.04728066797367316,
+        0.244438877157108
+      ],
+      "review_rate_ci95": [
+        0.07176607904692908,
+        0.28793103448275864
+      ],
+      "risk_coverage": [
+        [
+          0.8084,
+          0.0037
+        ],
+        [
+          0.8219,
+          0.0036
+        ],
+        [
+          0.8234,
+          0.0055
+        ],
+        [
+          0.997,
+          0.0285
+        ],
+        [
+          1.0,
+          0.0314
+        ]
+      ]
+    },
+    "baseline": {
+      "n_fields": 668,
+      "n_wrong": 19,
+      "n_correct": 637,
+      "n_accepted": 666,
+      "n_review": 0,
+      "n_abstained": 2,
+      "coverage": 0.9970059880239521,
+      "review_rate": 0.0,
+      "errors_caught": 0,
+      "catch_rate": 0.0,
+      "errors_missed": 19,
+      "error_rate_accepted": 0.028528528528528527,
+      "false_alarms": 0,
+      "false_alarm_rate": 0.0,
+      "n_proposed": 0,
+      "proposed_equals_printed": 0,
+      "proposal_accuracy": null,
+      "proposed_on_wrong": 0,
+      "proposal_fixes": 0,
+      "proposed_by_reread_chain": 0,
+      "reread_chain_proposals_right": 0,
+      "n_source_errors": 6,
+      "source_errors_found": 0,
+      "source_error_recall": 0.0,
+      "reread_fields": 0,
+      "reread_on_wrong": 0,
+      "reread_agreed_with_wrong": 0,
+      "independence": null,
+      "reread_on_correct": 0,
+      "reread_agreed_with_correct": 0,
+      "reread_confirmation_rate": null,
+      "error_rate_accepted_ci95": [
+        0.002372479240806643,
+        0.07669461681311711
+      ],
+      "catch_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "false_alarm_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "review_rate_ci95": [
+        0.0,
+        0.0
+      ],
+      "risk_coverage": [
+        [
+          0.997,
+          0.0285
+        ]
+      ]
+    }
+  },
+  "by_severity": {
+    "0": {
+      "archivist": {
+        "n_fields": 123,
+        "n_wrong": 0,
+        "n_correct": 121,
+        "n_accepted": 119,
+        "n_review": 4,
+        "n_abstained": 0,
+        "coverage": 0.967479674796748,
+        "review_rate": 0.032520325203252036,
+        "errors_caught": 0,
+        "catch_rate": null,
+        "errors_missed": 0,
+        "error_rate_accepted": 0.0,
+        "false_alarms": 2,
+        "false_alarm_rate": 0.01652892561983471,
+        "n_proposed": 0,
+        "proposed_equals_printed": 0,
+        "proposal_accuracy": null,
+        "proposed_on_wrong": 0,
+        "proposal_fixes": 0,
+        "proposed_by_reread_chain": 0,
+        "reread_chain_proposals_right": 0,
+        "n_source_errors": 1,
+        "source_errors_found": 1,
+        "source_error_recall": 1.0,
+        "reread_fields": 123,
+        "reread_on_wrong": 0,
+        "reread_agreed_with_wrong": 0,
+        "independence": null,
+        "reread_on_correct": 123,
+        "reread_agreed_with_correct": 121,
+        "reread_confirmation_rate": 0.983739837398374,
+        "error_rate_accepted_ci95": [
+          0.0,
+          0.0
+        ],
+        "catch_rate_ci95": null,
+        "false_alarm_rate_ci95": [
+          0.0,
+          0.08571428571428572
+        ],
+        "review_rate_ci95": [
+          0.008130081300813009,
+          0.17142857142857143
+        ],
+        "risk_coverage": [
+          [
+            0.9675,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ]
+        ]
+      },
+      "baseline": {
+        "n_fields": 123,
+        "n_wrong": 0,
+        "n_correct": 121,
+        "n_accepted": 123,
+        "n_review": 0,
+        "n_abstained": 0,
+        "coverage": 1.0,
+        "review_rate": 0.0,
+        "errors_caught": 0,
+        "catch_rate": null,
+        "errors_missed": 0,
+        "error_rate_accepted": 0.0,
+        "false_alarms": 0,
+        "false_alarm_rate": 0.0,
+        "n_proposed": 0,
+        "proposed_equals_printed": 0,
+        "proposal_accuracy": null,
+        "proposed_on_wrong": 0,
+        "proposal_fixes": 0,
+        "proposed_by_reread_chain": 0,
+        "reread_chain_proposals_right": 0,
+        "n_source_errors": 1,
+        "source_errors_found": 0,
+        "source_error_recall": 0.0,
+        "reread_fields": 0,
+        "reread_on_wrong": 0,
+        "reread_agreed_with_wrong": 0,
+        "independence": null,
+        "reread_on_correct": 0,
+        "reread_agreed_with_correct": 0,
+        "reread_confirmation_rate": null,
+        "error_rate_accepted_ci95": [
+          0.0,
+          0.0
+        ],
+        "catch_rate_ci95": null,
+        "false_alarm_rate_ci95": [
+          0.0,
+          0.0
+        ],
+        "review_rate_ci95": [
+          0.0,
+          0.0
+        ],
+        "risk_coverage": [
+          [
+            1.0,
+            0.0
+          ]
+        ]
+      }
+    },
+    "1": {
+      "archivist": {
+        "n_fields": 211,
+        "n_wrong": 2,
+        "n_correct": 208,
+        "n_accepted": 188,
+        "n_review": 23,
+        "n_abstained": 0,
+        "coverage": 0.8909952606635071,
+        "review_rate": 0.10900473933649289,
+        "errors_caught": 2,
+        "catch_rate": 1.0,
+        "errors_missed": 0,
+        "error_rate_accepted": 0.0,
+        "false_alarms": 20,
+        "false_alarm_rate": 0.09615384615384616,
+        "n_proposed": 1,
+        "proposed_equals_printed": 1,
+        "proposal_accuracy": 1.0,
+        "proposed_on_wrong": 1,
+        "proposal_fixes": 1,
+        "proposed_by_reread_chain": 1,
+        "reread_chain_proposals_right": 1,
+        "n_source_errors": 1,
+        "source_errors_found": 1,
+        "source_error_recall": 1.0,
+        "reread_fields": 211,
+        "reread_on_wrong": 2,
+        "reread_agreed_with_wrong": 0,
+        "independence": 0.0,
+        "reread_on_correct": 209,
+        "reread_agreed_with_correct": 191,
+        "reread_confirmation_rate": 0.9138755980861244,
+        "error_rate_accepted_ci95": [
+          0.0,
+          0.0
+        ],
+        "catch_rate_ci95": [
+          1.0,
+          1.0
+        ],
+        "false_alarm_rate_ci95": [
+          0.025210084033613446,
+          0.1619047619047619
+        ],
+        "review_rate_ci95": [
+          0.05016722408026756,
+          0.16587677725118483
+        ],
+        "risk_coverage": [
+          [
+            0.891,
+            0.0
+          ],
+          [
+            0.8957,
+            0.0053
+          ],
+          [
+            1.0,
+            0.0095
+          ]
+        ]
+      },
+      "baseline": {
+        "n_fields": 211,
+        "n_wrong": 2,
+        "n_correct": 208,
+        "n_accepted": 211,
+        "n_review": 0,
+        "n_abstained": 0,
+        "coverage": 1.0,
+        "review_rate": 0.0,
+        "errors_caught": 0,
+        "catch_rate": 0.0,
+        "errors_missed": 2,
+        "error_rate_accepted": 0.009478672985781991,
+        "false_alarms": 0,
+        "false_alarm_rate": 0.0,
+        "n_proposed": 0,
+        "proposed_equals_printed": 0,
+        "proposal_accuracy": null,
+        "proposed_on_wrong": 0,
+        "proposal_fixes": 0,
+        "proposed_by_reread_chain": 0,
+        "reread_chain_proposals_right": 0,
+        "n_source_errors": 1,
+        "source_errors_found": 0,
+        "source_error_recall": 0.0,
+        "reread_fields": 0,
+        "reread_on_wrong": 0,
+        "reread_agreed_with_wrong": 0,
+        "independence": null,
+        "reread_on_correct": 0,
+        "reread_agreed_with_correct": 0,
+        "reread_confirmation_rate": null,
+        "error_rate_accepted_ci95": [
+          0.0,
+          0.05714285714285714
+        ],
+        "catch_rate_ci95": [
+          0.0,
+          0.0
+        ],
+        "false_alarm_rate_ci95": [
+          0.0,
+          0.0
+        ],
+        "review_rate_ci95": [
+          0.0,
+          0.0
+        ],
+        "risk_coverage": [
+          [
+            1.0,
+            0.0095
+          ]
+        ]
+      }
+    },
+    "2": {
+      "archivist": {
+        "n_fields": 211,
+        "n_wrong": 0,
+        "n_correct": 206,
+        "n_accepted": 162,
+        "n_review": 49,
+        "n_abstained": 0,
+        "coverage": 0.7677725118483413,
+        "review_rate": 0.23222748815165878,
+        "errors_caught": 0,
+        "catch_rate": null,
+        "errors_missed": 0,
+        "error_rate_accepted": 0.0,
+        "false_alarms": 44,
+        "false_alarm_rate": 0.21359223300970873,
+        "n_proposed": 0,
+        "proposed_equals_printed": 0,
+        "proposal_accuracy": null,
+        "proposed_on_wrong": 0,
+        "proposal_fixes": 0,
+        "proposed_by_reread_chain": 0,
+        "reread_chain_proposals_right": 0,
+        "n_source_errors": 3,
+        "source_errors_found": 3,
+        "source_error_recall": 1.0,
+        "reread_fields": 210,
+        "reread_on_wrong": 0,
+        "reread_agreed_with_wrong": 0,
+        "independence": null,
+        "reread_on_correct": 210,
+        "reread_agreed_with_correct": 167,
+        "reread_confirmation_rate": 0.7952380952380952,
+        "error_rate_accepted_ci95": [
+          0.0,
+          0.0
+        ],
+        "catch_rate_ci95": null,
+        "false_alarm_rate_ci95": [
+          0.037037037037037035,
+          0.3801369863013699
+        ],
+        "review_rate_ci95": [
+          0.07023411371237458,
+          0.391304347826087
+        ],
+        "risk_coverage": [
+          [
+            0.7488,
+            0.0
+          ],
+          [
+            0.7678,
+            0.0
+          ],
+          [
+            1.0,
+            0.0
+          ]
+        ]
+      },
+      "baseline": {
+        "n_fields": 211,
+        "n_wrong": 0,
+        "n_correct": 206,
+        "n_accepted": 211,
+        "n_review": 0,
+        "n_abstained": 0,
+        "coverage": 1.0,
+        "review_rate": 0.0,
+        "errors_caught": 0,
+        "catch_rate": null,
+        "errors_missed": 0,
+        "error_rate_accepted": 0.0,
+        "false_alarms": 0,
+        "false_alarm_rate": 0.0,
+        "n_proposed": 0,
+        "proposed_equals_printed": 0,
+        "proposal_accuracy": null,
+        "proposed_on_wrong": 0,
+        "proposal_fixes": 0,
+        "proposed_by_reread_chain": 0,
+        "reread_chain_proposals_right": 0,
+        "n_source_errors": 3,
+        "source_errors_found": 0,
+        "source_error_recall": 0.0,
+        "reread_fields": 0,
+        "reread_on_wrong": 0,
+        "reread_agreed_with_wrong": 0,
+        "independence": null,
+        "reread_on_correct": 0,
+        "reread_agreed_with_correct": 0,
+        "reread_confirmation_rate": null,
+        "error_rate_accepted_ci95": [
+          0.0,
+          0.0
+        ],
+        "catch_rate_ci95": null,
+        "false_alarm_rate_ci95": [
+          0.0,
+          0.0
+        ],
+        "review_rate_ci95": [
+          0.0,
+          0.0
+        ],
+        "risk_coverage": [
+          [
+            1.0,
+            0.0
+          ]
+        ]
+      }
+    },
+    "3": {
+      "archivist": {
+        "n_fields": 123,
+        "n_wrong": 17,
+        "n_correct": 102,
+        "n_accepted": 80,
+        "n_review": 41,
+        "n_abstained": 2,
+        "coverage": 0.6504065040650406,
+        "review_rate": 0.3333333333333333,
+        "errors_caught": 15,
+        "catch_rate": 0.8823529411764706,
+        "errors_missed": 2,
+        "error_rate_accepted": 0.025,
+        "false_alarms": 25,
+        "false_alarm_rate": 0.24509803921568626,
+        "n_proposed": 0,
+        "proposed_equals_printed": 0,
+        "proposal_accuracy": null,
+        "proposed_on_wrong": 0,
+        "proposal_fixes": 0,
+        "proposed_by_reread_chain": 0,
+        "reread_chain_proposals_right": 0,
+        "n_source_errors": 2,
+        "source_errors_found": 1,
+        "source_error_recall": 0.5,
+        "reread_fields": 120,
+        "reread_on_wrong": 17,
+        "reread_agreed_with_wrong": 3,
+        "independence": 0.17647058823529413,
+        "reread_on_correct": 103,
+        "reread_agreed_with_correct": 79,
+        "reread_confirmation_rate": 0.7669902912621359,
+        "error_rate_accepted_ci95": [
+          0.0,
+          0.031746031746031744
+        ],
+        "catch_rate_ci95": [
+          0.8666666666666667,
+          1.0
+        ],
+        "false_alarm_rate_ci95": [
+          0.034482758620689655,
+          0.3207119741100306
+        ],
+        "review_rate_ci95": [
+          0.14285714285714285,
+          0.4
+        ],
+        "risk_coverage": [
+          [
+            0.6098,
+            0.0267
+          ],
+          [
+            0.6504,
+            0.025
+          ],
+          [
+            0.9837,
+            0.1405
+          ],
+          [
+            1.0,
+            0.1545
+          ]
+        ]
+      },
+      "baseline": {
+        "n_fields": 123,
+        "n_wrong": 17,
+        "n_correct": 102,
+        "n_accepted": 121,
+        "n_review": 0,
+        "n_abstained": 2,
+        "coverage": 0.983739837398374,
+        "review_rate": 0.0,
+        "errors_caught": 0,
+        "catch_rate": 0.0,
+        "errors_missed": 17,
+        "error_rate_accepted": 0.14049586776859505,
+        "false_alarms": 0,
+        "false_alarm_rate": 0.0,
+        "n_proposed": 0,
+        "proposed_equals_printed": 0,
+        "proposal_accuracy": null,
+        "proposed_on_wrong": 0,
+        "proposal_fixes": 0,
+        "proposed_by_reread_chain": 0,
+        "reread_chain_proposals_right": 0,
+        "n_source_errors": 2,
+        "source_errors_found": 0,
+        "source_error_recall": 0.0,
+        "reread_fields": 0,
+        "reread_on_wrong": 0,
+        "reread_agreed_with_wrong": 0,
+        "independence": null,
+        "reread_on_correct": 0,
+        "reread_agreed_with_correct": 0,
+        "reread_confirmation_rate": null,
+        "error_rate_accepted_ci95": [
+          0.030303030303030304,
+          0.15789473684210525
+        ],
+        "catch_rate_ci95": [
+          0.0,
+          0.0
+        ],
+        "false_alarm_rate_ci95": [
+          0.0,
+          0.0
+        ],
+        "review_rate_ci95": [
+          0.0,
+          0.0
+        ],
+        "risk_coverage": [
+          [
+            0.9837,
+            0.1405
+          ]
+        ]
+      }
+    }
+  },
+  "by_doc_type": {
+    "ledger": {
+      "archivist": {
+        "n_fields": 570,
+        "n_wrong": 16,
+        "n_correct": 551,
+        "n_accepted": 469,
+        "n_review": 100,
+        "n_abstained": 1,
+        "coverage": 0.8228070175438597,
+        "review_rate": 0.17543859649122806,
+        "errors_caught": 14,
+        "catch_rate": 0.875,
+        "errors_missed": 2,
+        "error_rate_accepted": 0.0042643923240938165,
+        "false_alarms": 84,
+        "false_alarm_rate": 0.15245009074410162,
+        "n_proposed": 1,
+        "proposed_equals_printed": 1,
+        "proposal_accuracy": 1.0,
+        "proposed_on_wrong": 1,
+        "proposal_fixes": 1,
+        "proposed_by_reread_chain": 1,
+        "reread_chain_proposals_right": 1,
+        "n_source_errors": 2,
+        "source_errors_found": 2,
+        "source_error_recall": 1.0,
+        "reread_fields": 567,
+        "reread_on_wrong": 16,
+        "reread_agreed_with_wrong": 2,
+        "independence": 0.125,
+        "reread_on_correct": 551,
+        "reread_agreed_with_correct": 471,
+        "reread_confirmation_rate": 0.8548094373865699,
+        "error_rate_accepted_ci95": [
+          0.0,
+          0.014285714285714285
+        ],
+        "catch_rate_ci95": [
+          0.8666666666666667,
+          1.0
+        ],
+        "false_alarm_rate_ci95": [
+          0.054385964912280704,
+          0.27041742286751363
+        ],
+        "review_rate_ci95": [
+          0.06140350877192982,
+          0.2912280701754386
+        ],
+        "risk_coverage": [
+          [
+            0.807,
+            0.0043
+          ],
+          [
+            0.8228,
+            0.0043
+          ],
+          [
+            0.8246,
+            0.0064
+          ],
+          [
+            0.9982,
+            0.0281
+          ],
+          [
+            1.0,
+            0.0298
+          ]
+        ]
+      },
+      "baseline": {
+        "n_fields": 570,
+        "n_wrong": 16,
+        "n_correct": 551,
+        "n_accepted": 569,
+        "n_review": 0,
+        "n_abstained": 1,
+        "coverage": 0.9982456140350877,
+        "review_rate": 0.0,
+        "errors_caught": 0,
+        "catch_rate": 0.0,
+        "errors_missed": 16,
+        "error_rate_accepted": 0.028119507908611598,
+        "false_alarms": 0,
+        "false_alarm_rate": 0.0,
+        "n_proposed": 0,
+        "proposed_equals_printed": 0,
+        "proposal_accuracy": null,
+        "proposed_on_wrong": 0,
+        "proposal_fixes": 0,
+        "proposed_by_reread_chain": 0,
+        "reread_chain_proposals_right": 0,
+        "n_source_errors": 2,
+        "source_errors_found": 0,
+        "source_error_recall": 0.0,
+        "reread_fields": 0,
+        "reread_on_wrong": 0,
+        "reread_agreed_with_wrong": 0,
+        "independence": null,
+        "reread_on_correct": 0,
+        "reread_agreed_with_correct": 0,
+        "reread_confirmation_rate": null,
+        "error_rate_accepted_ci95": [
+          0.0,
+          0.08112874779541446
+        ],
+        "catch_rate_ci95": [
+          0.0,
+          0.0
+        ],
+        "false_alarm_rate_ci95": [
+          0.0,
+          0.0
+        ],
+        "review_rate_ci95": [
+          0.0,
+          0.0
+        ],
+        "risk_coverage": [
+          [
+            0.9982,
+            0.0281
+          ]
+        ]
+      }
+    },
+    "memo": {
+      "archivist": {
+        "n_fields": 98,
+        "n_wrong": 3,
+        "n_correct": 86,
+        "n_accepted": 80,
+        "n_review": 17,
+        "n_abstained": 1,
+        "coverage": 0.8163265306122449,
+        "review_rate": 0.17346938775510204,
+        "errors_caught": 3,
+        "catch_rate": 1.0,
+        "errors_missed": 0,
+        "error_rate_accepted": 0.0,
+        "false_alarms": 7,
+        "false_alarm_rate": 0.08139534883720931,
+        "n_proposed": 0,
+        "proposed_equals_printed": 0,
+        "proposal_accuracy": null,
+        "proposed_on_wrong": 0,
+        "proposal_fixes": 0,
+        "proposed_by_reread_chain": 0,
+        "reread_chain_proposals_right": 0,
+        "n_source_errors": 5,
+        "source_errors_found": 4,
+        "source_error_recall": 0.8,
+        "reread_fields": 97,
+        "reread_on_wrong": 3,
+        "reread_agreed_with_wrong": 1,
+        "independence": 0.3333333333333333,
+        "reread_on_correct": 94,
+        "reread_agreed_with_correct": 87,
+        "reread_confirmation_rate": 0.925531914893617,
+        "error_rate_accepted_ci95": [
+          0.0,
+          0.0
+        ],
+        "catch_rate_ci95": [
+          1.0,
+          1.0
+        ],
+        "false_alarm_rate_ci95": [
+          0.022988505747126436,
+          0.16091954022988506
+        ],
+        "review_rate_ci95": [
+          0.10204081632653061,
+          0.25510204081632654
+        ],
+        "risk_coverage": [
+          [
+            0.8163,
+            0.0
+          ],
+          [
+            0.9898,
+            0.0309
+          ],
+          [
+            1.0,
+            0.0408
+          ]
+        ]
+      },
+      "baseline": {
+        "n_fields": 98,
+        "n_wrong": 3,
+        "n_correct": 86,
+        "n_accepted": 97,
+        "n_review": 0,
+        "n_abstained": 1,
+        "coverage": 0.9897959183673469,
+        "review_rate": 0.0,
+        "errors_caught": 0,
+        "catch_rate": 0.0,
+        "errors_missed": 3,
+        "error_rate_accepted": 0.030927835051546393,
+        "false_alarms": 0,
+        "false_alarm_rate": 0.0,
+        "n_proposed": 0,
+        "proposed_equals_printed": 0,
+        "proposal_accuracy": null,
+        "proposed_on_wrong": 0,
+        "proposal_fixes": 0,
+        "proposed_by_reread_chain": 0,
+        "reread_chain_proposals_right": 0,
+        "n_source_errors": 5,
+        "source_errors_found": 0,
+        "source_error_recall": 0.0,
+        "reread_fields": 0,
+        "reread_on_wrong": 0,
+        "reread_agreed_with_wrong": 0,
+        "independence": null,
+        "reread_on_correct": 0,
+        "reread_agreed_with_correct": 0,
+        "reread_confirmation_rate": null,
+        "error_rate_accepted_ci95": [
+          0.0,
+          0.061855670103092786
+        ],
+        "catch_rate_ci95": [
+          0.0,
+          0.0
+        ],
+        "false_alarm_rate_ci95": [
+          0.0,
+          0.0
+        ],
+        "review_rate_ci95": [
+          0.0,
+          0.0
+        ],
+        "risk_coverage": [
+          [
+            0.9898,
+            0.0309
+          ]
+        ]
+      }
+    }
+  },
+  "by_route": {
+    "arithmetic": {
+      "archivist": {
+        "n_fields": 350,
+        "n_wrong": 17,
+        "n_correct": 325,
+        "n_accepted": 298,
+        "n_review": 50,
+        "n_abstained": 2,
+        "coverage": 0.8514285714285714,
+        "review_rate": 0.14285714285714285,
+        "errors_caught": 15,
+        "catch_rate": 0.8823529411764706,
+        "errors_missed": 2,
+        "error_rate_accepted": 0.006711409395973154,
+        "false_alarms": 29,
+        "false_alarm_rate": 0.08923076923076922,
+        "n_proposed": 1,
+        "proposed_equals_printed": 1,
+        "proposal_accuracy": 1.0,
+        "proposed_on_wrong": 1,
+        "proposal_fixes": 1,
+        "proposed_by_reread_chain": 1,
+        "reread_chain_proposals_right": 1,
+        "n_source_errors": 6,
+        "source_errors_found": 5,
+        "source_error_recall": 0.8333333333333334,
+        "reread_fields": 347,
+        "reread_on_wrong": 17,
+        "reread_agreed_with_wrong": 3,
+        "independence": 0.17647058823529413,
+        "reread_on_correct": 330,
+        "reread_agreed_with_correct": 303,
+        "reread_confirmation_rate": 0.9181818181818182,
+        "error_rate_accepted_ci95": [
+          0.0,
+          0.024
+        ],
+        "catch_rate_ci95": [
+          0.8666666666666667,
+          1.0
+        ],
+        "false_alarm_rate_ci95": [
+          0.04060546932308324,
+          0.16981603773584902
+        ],
+        "review_rate_ci95": [
+          0.06419753086419754,
+          0.28334558823529404
+        ],
+        "risk_coverage": [
+          [
+            0.8343,
+            0.0068
+          ],
+          [
+            0.8514,
+            0.0067
+          ],
+          [
+            0.8543,
+            0.01
+          ],
+          [
+            0.9943,
+            0.0489
+          ],
+          [
+            1.0,
+            0.0543
+          ]
+        ]
+      },
+      "baseline": {
+        "n_fields": 350,
+        "n_wrong": 17,
+        "n_correct": 325,
+        "n_accepted": 348,
+        "n_review": 0,
+        "n_abstained": 2,
+        "coverage": 0.9942857142857143,
+        "review_rate": 0.0,
+        "errors_caught": 0,
+        "catch_rate": 0.0,
+        "errors_missed": 17,
+        "error_rate_accepted": 0.04885057471264368,
+        "false_alarms": 0,
+        "false_alarm_rate": 0.0,
+        "n_proposed": 0,
+        "proposed_equals_printed": 0,
+        "proposal_accuracy": null,
+        "proposed_on_wrong": 0,
+        "proposal_fixes": 0,
+        "proposed_by_reread_chain": 0,
+        "reread_chain_proposals_right": 0,
+        "n_source_errors": 6,
+        "source_errors_found": 0,
+        "source_error_recall": 0.0,
+        "reread_fields": 0,
+        "reread_on_wrong": 0,
+        "reread_agreed_with_wrong": 0,
+        "independence": null,
+        "reread_on_correct": 0,
+        "reread_agreed_with_correct": 0,
+        "reread_confirmation_rate": null,
+        "error_rate_accepted_ci95": [
+          0.0,
+          0.1392478657639093
+        ],
+        "catch_rate_ci95": [
+          0.0,
+          0.0
+        ],
+        "false_alarm_rate_ci95": [
+          0.0,
+          0.0
+        ],
+        "review_rate_ci95": [
+          0.0,
+          0.0
+        ],
+        "risk_coverage": [
+          [
+            0.9943,
+            0.0489
+          ]
+        ]
+      }
+    },
+    "reread": {
+      "archivist": {
+        "n_fields": 318,
+        "n_wrong": 2,
+        "n_correct": 312,
+        "n_accepted": 251,
+        "n_review": 67,
+        "n_abstained": 0,
+        "coverage": 0.789308176100629,
+        "review_rate": 0.21069182389937108,
+        "errors_caught": 2,
+        "catch_rate": 1.0,
+        "errors_missed": 0,
+        "error_rate_accepted": 0.0,
+        "false_alarms": 62,
+        "false_alarm_rate": 0.1987179487179487,
+        "n_proposed": 0,
+        "proposed_equals_printed": 0,
+        "proposal_accuracy": null,
+        "proposed_on_wrong": 0,
+        "proposal_fixes": 0,
+        "proposed_by_reread_chain": 0,
+        "reread_chain_proposals_right": 0,
+        "n_source_errors": 4,
+        "source_errors_found": 3,
+        "source_error_recall": 0.75,
+        "reread_fields": 317,
+        "reread_on_wrong": 2,
+        "reread_agreed_with_wrong": 0,
+        "independence": 0.0,
+        "reread_on_correct": 315,
+        "reread_agreed_with_correct": 255,
+        "reread_confirmation_rate": 0.8095238095238095,
+        "error_rate_accepted_ci95": [
+          0.0,
+          0.0
+        ],
+        "catch_rate_ci95": [
+          1.0,
+          1.0
+        ],
+        "false_alarm_rate_ci95": [
+          0.04224981467753892,
+          0.3948457447549038
+        ],
+        "review_rate_ci95": [
+          0.059748427672955975,
+          0.40476190476190477
+        ],
+        "risk_coverage": [
+          [
+            0.7799,
+            0.0
+          ],
+          [
+            0.7893,
+            0.0
+          ],
+          [
+            1.0,
+            0.0063
+          ]
+        ]
+      },
+      "baseline": {
+        "n_fields": 318,
+        "n_wrong": 2,
+        "n_correct": 312,
+        "n_accepted": 318,
+        "n_review": 0,
+        "n_abstained": 0,
+        "coverage": 1.0,
+        "review_rate": 0.0,
+        "errors_caught": 0,
+        "catch_rate": 0.0,
+        "errors_missed": 2,
+        "error_rate_accepted": 0.006289308176100629,
+        "false_alarms": 0,
+        "false_alarm_rate": 0.0,
+        "n_proposed": 0,
+        "proposed_equals_printed": 0,
+        "proposal_accuracy": null,
+        "proposed_on_wrong": 0,
+        "proposal_fixes": 0,
+        "proposed_by_reread_chain": 0,
+        "reread_chain_proposals_right": 0,
+        "n_source_errors": 4,
+        "source_errors_found": 0,
+        "source_error_recall": 0.0,
+        "reread_fields": 0,
+        "reread_on_wrong": 0,
+        "reread_agreed_with_wrong": 0,
+        "independence": null,
+        "reread_on_correct": 0,
+        "reread_agreed_with_correct": 0,
+        "reread_confirmation_rate": null,
+        "error_rate_accepted_ci95": [
+          0.0,
+          0.019613678804855244
+        ],
+        "catch_rate_ci95": [
+          0.0,
+          0.0
+        ],
+        "false_alarm_rate_ci95": [
+          0.0,
+          0.0
+        ],
+        "review_rate_ci95": [
+          0.0,
+          0.0
+        ],
+        "risk_coverage": [
+          [
+            1.0,
+            0.0063
+          ]
+        ]
+      }
+    }
+  },
+  "missed": [
+    {
+      "field_id": "L:card-02-2:17:balance",
+      "printed": "2,406.08",
+      "predicted": "2,406.02",
+      "outcome": "misread",
+      "reread": "2,406.02"
+    },
+    {
+      "field_id": "L:card-02-2:18:balance",
+      "printed": "2,311.08",
+      "predicted": "2,311.02",
+      "outcome": "misread",
+      "reread": "2,311.02"
+    }
+  ]
+}

@@ -299,7 +299,9 @@ def _box(value: ExtractedValue) -> Box:
 
 
 def _bbox(box: Box, width: int, height: int) -> BBox:
-    x0, y0 = max(0, int(np.floor(box[0]))), max(0, int(np.floor(box[1])))
+    """box in whole pixels, on the page: one the fit moves off an edge keeps a pixel's sliver."""
+    x0 = min(max(0, int(np.floor(box[0]))), width - 1)
+    y0 = min(max(0, int(np.floor(box[1]))), height - 1)
     x1, y1 = min(width, int(np.ceil(box[2]))), min(height, int(np.ceil(box[3])))
     return BBox(x0=x0, y0=y0, x1=max(x1, x0 + 1), y1=max(y1, y0 + 1))
 
