@@ -1,0 +1,226 @@
+{
+  "run_id": "baseline-dev-open-unrepaired",
+  "gt": "data/dev/gt",
+  "config": {
+    "extractor": {
+      "backend": "baseten",
+      "model_id": "meta-models/muse-spark-open-1026"
+    },
+    "rereader": {
+      "backend": "baseten",
+      "model_id": "meta-models/muse-spark-open-1026"
+    },
+    "segmenter": {
+      "backend": "meta",
+      "model_id": "sam-3.1"
+    }
+  },
+  "missing_pages": [
+    "card-01-1",
+    "card-01-3",
+    "card-02-2",
+    "card-03-3",
+    "card-04-1",
+    "card-04-3"
+  ],
+  "overall": {
+    "n_fields": 1385,
+    "counts": {
+      "correct": 764,
+      "misread": 47,
+      "hallucinated": 0,
+      "omitted": 571,
+      "abstained": 3
+    },
+    "field_accuracy": 0.551624548736462,
+    "n_accepted": 812,
+    "error_rate_accepted": 0.059113300492610835,
+    "citation_accuracy": 0.9384816753926701,
+    "review_rate": 0.0,
+    "errors_caught": 0,
+    "errors_missed": 48,
+    "false_alarms": 0,
+    "n_pages": 47,
+    "classification_accuracy": 0.8723404255319149,
+    "field_accuracy_ci95": [
+      0.33401888857666123,
+      0.7981803143093466
+    ],
+    "error_rate_ci95": [
+      0.012411546867411364,
+      0.13691984073322813
+    ]
+  },
+  "by_severity": {
+    "0": {
+      "n_fields": 348,
+      "counts": {
+        "correct": 345,
+        "misread": 3,
+        "hallucinated": 0,
+        "omitted": 0,
+        "abstained": 0
+      },
+      "field_accuracy": 0.9913793103448276,
+      "n_accepted": 348,
+      "error_rate_accepted": 0.008620689655172414,
+      "citation_accuracy": 0.9855072463768116,
+      "review_rate": 0.0,
+      "errors_caught": 0,
+      "errors_missed": 3,
+      "false_alarms": 0,
+      "n_pages": 12,
+      "classification_accuracy": 1.0,
+      "field_accuracy_ci95": [
+        0.9709302325581395,
+        1.0
+      ],
+      "error_rate_ci95": [
+        0.0,
+        0.029069767441860465
+      ]
+    },
+    "1": {
+      "n_fields": 524,
+      "counts": {
+        "correct": 48,
+        "misread": 1,
+        "hallucinated": 0,
+        "omitted": 475,
+        "abstained": 0
+      },
+      "field_accuracy": 0.0916030534351145,
+      "n_accepted": 49,
+      "error_rate_accepted": 0.02040816326530612,
+      "citation_accuracy": 0.9583333333333334,
+      "review_rate": 0.0,
+      "errors_caught": 0,
+      "errors_missed": 1,
+      "false_alarms": 0,
+      "n_pages": 12,
+      "classification_accuracy": 0.5833333333333334,
+      "field_accuracy_ci95": [
+        0.03426395939086294,
+        0.2653846153846154
+      ],
+      "error_rate_ci95": [
+        0.0,
+        0.07142857142857142
+      ]
+    },
+    "2": {
+      "n_fields": 260,
+      "counts": {
+        "correct": 259,
+        "misread": 1,
+        "hallucinated": 0,
+        "omitted": 0,
+        "abstained": 0
+      },
+      "field_accuracy": 0.9961538461538462,
+      "n_accepted": 260,
+      "error_rate_accepted": 0.0038461538461538464,
+      "citation_accuracy": 0.918918918918919,
+      "review_rate": 0.0,
+      "errors_caught": 0,
+      "errors_missed": 1,
+      "false_alarms": 0,
+      "n_pages": 12,
+      "classification_accuracy": 1.0,
+      "field_accuracy_ci95": [
+        0.9761904761904762,
+        1.0
+      ],
+      "error_rate_ci95": [
+        0.0,
+        0.023809523809523808
+      ]
+    },
+    "3": {
+      "n_fields": 253,
+      "counts": {
+        "correct": 112,
+        "misread": 42,
+        "hallucinated": 0,
+        "omitted": 96,
+        "abstained": 3
+      },
+      "field_accuracy": 0.4426877470355731,
+      "n_accepted": 155,
+      "error_rate_accepted": 0.27741935483870966,
+      "citation_accuracy": 0.8303571428571429,
+      "review_rate": 0.0,
+      "errors_caught": 0,
+      "errors_missed": 43,
+      "false_alarms": 0,
+      "n_pages": 11,
+      "classification_accuracy": 0.9090909090909091,
+      "field_accuracy_ci95": [
+        0.12609970674486803,
+        0.7922077922077922
+      ],
+      "error_rate_ci95": [
+        0.12495719178082192,
+        0.3333333333333333
+      ]
+    }
+  },
+  "by_doc_type": {
+    "ledger": {
+      "n_fields": 1140,
+      "counts": {
+        "correct": 539,
+        "misread": 31,
+        "hallucinated": 0,
+        "omitted": 570,
+        "abstained": 0
+      },
+      "field_accuracy": 0.4728070175438597,
+      "n_accepted": 570,
+      "error_rate_accepted": 0.054385964912280704,
+      "citation_accuracy": 0.9591836734693877,
+      "review_rate": 0.0,
+      "errors_caught": 0,
+      "errors_missed": 31,
+      "false_alarms": 0,
+      "n_pages": 12,
+      "classification_accuracy": 0.5,
+      "field_accuracy_ci95": [
+        0.22280701754385965,
+        0.7491228070175439
+      ],
+      "error_rate_ci95": [
+        0.0,
+        0.15789473684210525
+      ]
+    },
+    "memo": {
+      "n_fields": 245,
+      "counts": {
+        "correct": 225,
+        "misread": 16,
+        "hallucinated": 0,
+        "omitted": 1,
+        "abstained": 3
+      },
+      "field_accuracy": 0.9183673469387755,
+      "n_accepted": 242,
+      "error_rate_accepted": 0.07024793388429752,
+      "citation_accuracy": 0.8888888888888888,
+      "review_rate": 0.0,
+      "errors_caught": 0,
+      "errors_missed": 17,
+      "false_alarms": 0,
+      "n_pages": 35,
+      "classification_accuracy": 1.0,
+      "field_accuracy_ci95": [
+        0.8653061224489796,
+        0.963265306122449
+      ],
+      "error_rate_ci95": [
+        0.02880658436213992,
+        0.12034448478561542
+      ]
+    }
+  }
+}

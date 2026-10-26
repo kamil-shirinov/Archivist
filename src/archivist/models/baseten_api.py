@@ -9,8 +9,12 @@ It differs from Muse Spark on the Meta Model API (meta_api.py) in three ways tha
   low, medium, high or xhigh (the model's default); "none" and "minimal" would silently run at low,
   so they are refused rather than remapped.
 * It has no structured outputs or JSON mode ("All except Muse Spark Open support them"). A
-  request's json_schema is put in the prompt instead, and the answer is read as JSON; the only
-  repair is removing a Markdown fence that wraps the whole of it.
+  request's json_schema is put in the prompt instead, and the answer is read as JSON. Two repairs
+  are made, both to the answer's form and never to what it says: a Markdown fence around the whole
+  of it is taken off, and brackets the model left open at the end are closed. On a long answer it
+  ends one } short, with finish_reason "stop" (10 of the 67 dev and val pages in the first P13
+  run; asking for the brackets in the prompt cured 2 of 6). The second repair is made only for an
+  answer that finished and then parses, and each one is logged as a warning.
 * Baseten includes reasoning tokens in completion_tokens, which is what output_tokens holds. They
   are billed as output, and completion_tokens_details.reasoning_tokens is only a breakdown.
 
@@ -22,6 +26,7 @@ the timeout and the retries (429 and 5xx, with backoff and Retry-After) are meta
 from __future__ import annotations
 
 import json
+import logging
 import os
 import re
 import time
@@ -35,6 +40,7 @@ from archivist.models.base import LLMRequest, LLMResponse, Usage
 from archivist.models.budget import Price
 from archivist.models.meta_api import DOTENV_PATH, TIMEOUT_S, MissingAPIKey, _with_retries, data_url
 
+LOG = logging.getLogger(__name__)
 BASE_URL = "https://inference.baseten.co/v1"
 KEY_ENV = "BASETEN_API_KEY"
 MUSE_SPARK_OPEN = "meta-models/muse-spark-open-1026"
@@ -43,6 +49,7 @@ SCHEMA_NOTE = (
     "\n\nAnswer with one JSON object and nothing else, without a Markdown fence. It must "
     "validate against this JSON Schema:\n"
 )
+STRUCTURED_OUTPUT = "prompt+closing"  # in the cache key: how the schema is asked for and read
 _FENCE = re.compile(r"\A\s*```(?:json)?[ \t]*\n(.*?)\n?```\s*\Z", re.DOTALL | re.IGNORECASE)
 
 
@@ -81,6 +88,44 @@ def json_answer(content: str) -> str:
     return fenced.group(1) if fenced else content
 
 
+def close_brackets(text: str) -> str:
+    """text with the brackets it left open closed, if that is all it lacked and it then parses.
+
+    A text that is already JSON, ends inside a string, or still does not parse once closed (a
+    dangling comma or key, say) is returned as it came.
+    """
+    try:
+        json.loads(text)
+        return text
+    except ValueError:
+        pass
+    open_brackets: list[str] = []
+    in_string = escaped = False
+    for char in text:
+        if in_string:
+            if escaped:
+                escaped = False
+            elif char == "\\":
+                escaped = True
+            elif char == '"':
+                in_string = False
+        elif char == '"':
+            in_string = True
+        elif char in "{[":
+            open_brackets.append("}" if char == "{" else "]")
+        elif char in "}]" and open_brackets:
+            open_brackets.pop()
+    if in_string or not open_brackets:
+        return text
+    closed = text + "".join(reversed(open_brackets))
+    try:
+        json.loads(closed)
+    except ValueError:
+        return text
+    LOG.warning("%d bracket(s) left open were closed, after: %s", len(open_brackets), text[-40:])
+    return closed
+
+
 class BasetenLLM:
     name = "baseten"
 
@@ -98,7 +143,10 @@ class BasetenLLM:
         self.model_id = model_id
         self.price = price
         # Part of the cache key: how the schema is asked for changes the answers as much as effort.
-        self.settings = {"reasoning_effort": reasoning_effort, "structured_output": "prompt"}
+        self.settings = {
+            "reasoning_effort": reasoning_effort,
+            "structured_output": STRUCTURED_OUTPUT,
+        }
         self._client = client
         self._sleep = sleep
 
@@ -125,9 +173,14 @@ class BasetenLLM:
             input_tokens * self.price.input_per_mtok + output_tokens * self.price.output_per_mtok
         ) / 1e6
         # message.reasoning_content is the model's reasoning: not the answer, so not read.
-        answer = completion.choices[0].message.content or ""
+        choice = completion.choices[0]
+        text = choice.message.content or ""
+        if request.json_schema is not None:
+            text = json_answer(text)
+            if choice.finish_reason == "stop":  # not one cut off by max_tokens
+                text = close_brackets(text)
         return LLMResponse(
-            text=json_answer(answer) if request.json_schema is not None else answer,
+            text=text,
             usage=Usage(input_tokens, output_tokens, cost),
             backend=self.name,
             model_id=self.model_id,

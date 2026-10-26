@@ -1,0 +1,48 @@
+{
+  "run_id": "baseline-dev-open",
+  "images": "data/dev/images",
+  "config": {
+    "extractor": {
+      "backend": "baseten",
+      "model_id": "meta-models/muse-spark-open-1026"
+    },
+    "rereader": {
+      "backend": "baseten",
+      "model_id": "meta-models/muse-spark-open-1026"
+    },
+    "segmenter": {
+      "backend": "meta",
+      "model_id": "sam-3.1"
+    }
+  },
+  "citations": "S0+ink",
+  "counts": {
+    "pages": 47,
+    "extracted": 41,
+    "failed": 6,
+    "by_doc_type": {
+      "ledger_card": 6,
+      "payment_memo": 35
+    }
+  },
+  "failed_pages": {
+    "card-01-1": "ExtractionFailed: ledger_card extraction: JSONDecodeError: Expecting ',' delimiter: line 1 column 5177 (char 5176) | retry: JSONDecodeError: Expecting ',' delimiter: line 1 column 5177 (char 5176)",
+    "card-01-3": "ExtractionFailed: ledger_card extraction: JSONDecodeError: Expecting ',' delimiter: line 1 column 5216 (char 5215) | retry: JSONDecodeError: Expecting ',' delimiter: line 1 column 5217 (char 5216)",
+    "card-02-2": "ExtractionFailed: ledger_card extraction: JSONDecodeError: Expecting ',' delimiter: line 1 column 5179 (char 5178) | retry: JSONDecodeError: Expecting ',' delimiter: line 1 column 5180 (char 5179)",
+    "card-03-3": "ExtractionFailed: ledger_card extraction: JSONDecodeError: Expecting ',' delimiter: line 1 column 5179 (char 5178) | retry: JSONDecodeError: Expecting ',' delimiter: line 1 column 5180 (char 5179)",
+    "card-04-1": "ExtractionFailed: ledger_card extraction: JSONDecodeError: Expecting ',' delimiter: line 1 column 5221 (char 5220) | retry: JSONDecodeError: Expecting ',' delimiter: line 1 column 5221 (char 5220)",
+    "card-04-3": "ExtractionFailed: ledger_card extraction: JSONDecodeError: Expecting ',' delimiter: line 1 column 5146 (char 5145) | retry: JSONDecodeError: Expecting ',' delimiter: line 1 column 5146 (char 5145)"
+  },
+  "cost_usd": 0.7862702500000001,
+  "started_at": "2026-10-26T23:09:45+00:00",
+  "finished_at": "2026-10-26T23:11:24+00:00",
+  "sessions": [
+    {
+      "started_at": "2026-10-26T23:09:45+00:00",
+      "finished_at": "2026-10-26T23:11:24+00:00",
+      "pages_extracted": 41,
+      "cost_usd": 0.7862702500000001,
+      "aborted": null
+    }
+  ]
+}

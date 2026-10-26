@@ -1,0 +1,867 @@
+{
+  "what": "Single-pass extraction (classify, then read every field) by two models, same prompts, same pages, scored by archivist.eval.run_eval. 95% intervals are page-bootstrap.",
+  "caveats": [
+    "muse-spark-open is the run with the closing-bracket repair (baseten_api.close_brackets). Muse Spark Open, asked for JSON through the prompt, ended 75% of its ledger-card answers one } short (finish_reason stop); muse-spark-open-unrepaired is the first run, without the repair, where those pages failed to parse and are scored as omitted. The repair touches the form of an answer, never a value; 'closing_repairs' counts the answers it was applied to.",
+    "reasoning_effort is low for both. Muse Spark Open always reasons and has no structured outputs: its schema is given in the prompt, Muse Spark 1.3's through response_format.",
+    "The runs differ in the citation step (run.json 'citations'); field accuracy and error rate do not depend on the boxes.",
+    "dev is development data (D26); val is development data too. Nothing here was scored on the frozen test set."
+  ],
+  "dev": {
+    "arms": {
+      "muse-spark-1.3-contributor": {
+        "run_id": "baseline-dev-v1",
+        "extractor": {
+          "backend": "meta",
+          "model_id": "muse-spark-1.3-contributor"
+        },
+        "citations": "S0",
+        "pages_failed": 0,
+        "failed_pages": [],
+        "cost_usd": 0.03877889999999999,
+        "overall": {
+          "pages": 47,
+          "fields": 1385,
+          "accepted": 1381,
+          "counts": {
+            "correct": 1338,
+            "misread": 40,
+            "hallucinated": 0,
+            "omitted": 3,
+            "abstained": 4
+          },
+          "field_accuracy": 0.9660649819494584,
+          "field_accuracy_ci95": [
+            0.9188152580526189,
+            0.9927818766766393
+          ],
+          "error_rate_accepted": 0.031136857349746562,
+          "error_rate_ci95": [
+            0.005766975743080139,
+            0.07692652329749103
+          ],
+          "classification_accuracy": 1.0
+        },
+        "by_severity": {
+          "0": {
+            "pages": 12,
+            "fields": 348,
+            "accepted": 348,
+            "counts": {
+              "correct": 345,
+              "misread": 3,
+              "hallucinated": 0,
+              "omitted": 0,
+              "abstained": 0
+            },
+            "field_accuracy": 0.9913793103448276,
+            "field_accuracy_ci95": [
+              0.9641009852216749,
+              1.0
+            ],
+            "error_rate_accepted": 0.008620689655172414,
+            "error_rate_ci95": [
+              0.0,
+              0.03589901477832411
+            ],
+            "classification_accuracy": 1.0
+          },
+          "1": {
+            "pages": 12,
+            "fields": 524,
+            "accepted": 524,
+            "counts": {
+              "correct": 524,
+              "misread": 0,
+              "hallucinated": 0,
+              "omitted": 0,
+              "abstained": 0
+            },
+            "field_accuracy": 1.0,
+            "field_accuracy_ci95": [
+              1.0,
+              1.0
+            ],
+            "error_rate_accepted": 0.0,
+            "error_rate_ci95": [
+              0.0,
+              0.0
+            ],
+            "classification_accuracy": 1.0
+          },
+          "2": {
+            "pages": 12,
+            "fields": 260,
+            "accepted": 260,
+            "counts": {
+              "correct": 259,
+              "misread": 1,
+              "hallucinated": 0,
+              "omitted": 0,
+              "abstained": 0
+            },
+            "field_accuracy": 0.9961538461538462,
+            "field_accuracy_ci95": [
+              0.9761904761904762,
+              1.0
+            ],
+            "error_rate_accepted": 0.0038461538461538464,
+            "error_rate_ci95": [
+              0.0,
+              0.023809523809523808
+            ],
+            "classification_accuracy": 1.0
+          },
+          "3": {
+            "pages": 11,
+            "fields": 253,
+            "accepted": 249,
+            "counts": {
+              "correct": 210,
+              "misread": 36,
+              "hallucinated": 0,
+              "omitted": 3,
+              "abstained": 4
+            },
+            "field_accuracy": 0.8300395256916996,
+            "field_accuracy_ci95": [
+              0.6883116883116883,
+              0.9589825321943132
+            ],
+            "error_rate_accepted": 0.1566265060240964,
+            "error_rate_ci95": [
+              0.032125301204819275,
+              0.2919606625258797
+            ],
+            "classification_accuracy": 1.0
+          }
+        }
+      },
+      "muse-spark-open": {
+        "run_id": "baseline-dev-open",
+        "extractor": {
+          "backend": "baseten",
+          "model_id": "meta-models/muse-spark-open-1026"
+        },
+        "citations": "S0+ink",
+        "pages_failed": 0,
+        "failed_pages": [],
+        "cost_usd": 0.5980357499999998,
+        "overall": {
+          "pages": 47,
+          "fields": 1385,
+          "accepted": 1382,
+          "counts": {
+            "correct": 1327,
+            "misread": 54,
+            "hallucinated": 0,
+            "omitted": 1,
+            "abstained": 3
+          },
+          "field_accuracy": 0.9581227436823104,
+          "field_accuracy_ci95": [
+            0.9001411039815189,
+            0.9896907216494846
+          ],
+          "error_rate_accepted": 0.03979739507959479,
+          "error_rate_ci95": [
+            0.008720455925257602,
+            0.09737720058808004
+          ],
+          "classification_accuracy": 1.0
+        },
+        "by_severity": {
+          "0": {
+            "pages": 12,
+            "fields": 348,
+            "accepted": 348,
+            "counts": {
+              "correct": 344,
+              "misread": 4,
+              "hallucinated": 0,
+              "omitted": 0,
+              "abstained": 0
+            },
+            "field_accuracy": 0.9885057471264368,
+            "field_accuracy_ci95": [
+              0.9575872093023257,
+              1.0
+            ],
+            "error_rate_accepted": 0.011494252873563218,
+            "error_rate_ci95": [
+              0.0,
+              0.04241279069767385
+            ],
+            "classification_accuracy": 1.0
+          },
+          "1": {
+            "pages": 12,
+            "fields": 524,
+            "accepted": 524,
+            "counts": {
+              "correct": 521,
+              "misread": 3,
+              "hallucinated": 0,
+              "omitted": 0,
+              "abstained": 0
+            },
+            "field_accuracy": 0.9942748091603053,
+            "field_accuracy_ci95": [
+              0.9862233734050406,
+              1.0
+            ],
+            "error_rate_accepted": 0.0057251908396946565,
+            "error_rate_ci95": [
+              0.0,
+              0.01377662659495932
+            ],
+            "classification_accuracy": 1.0
+          },
+          "2": {
+            "pages": 12,
+            "fields": 260,
+            "accepted": 260,
+            "counts": {
+              "correct": 259,
+              "misread": 1,
+              "hallucinated": 0,
+              "omitted": 0,
+              "abstained": 0
+            },
+            "field_accuracy": 0.9961538461538462,
+            "field_accuracy_ci95": [
+              0.9761904761904762,
+              1.0
+            ],
+            "error_rate_accepted": 0.0038461538461538464,
+            "error_rate_ci95": [
+              0.0,
+              0.023809523809523808
+            ],
+            "classification_accuracy": 1.0
+          },
+          "3": {
+            "pages": 11,
+            "fields": 253,
+            "accepted": 250,
+            "counts": {
+              "correct": 203,
+              "misread": 46,
+              "hallucinated": 0,
+              "omitted": 1,
+              "abstained": 3
+            },
+            "field_accuracy": 0.8023715415019763,
+            "field_accuracy_ci95": [
+              0.6484848484848484,
+              0.9589825321943132
+            ],
+            "error_rate_accepted": 0.188,
+            "error_rate_ci95": [
+              0.029671395712253964,
+              0.3431952662721893
+            ],
+            "classification_accuracy": 1.0
+          }
+        },
+        "closing_repairs": 8
+      },
+      "muse-spark-open-unrepaired": {
+        "run_id": "baseline-dev-open-unrepaired",
+        "extractor": {
+          "backend": "baseten",
+          "model_id": "meta-models/muse-spark-open-1026"
+        },
+        "citations": "S0+ink",
+        "pages_failed": 6,
+        "failed_pages": [
+          "card-01-1",
+          "card-01-3",
+          "card-02-2",
+          "card-03-3",
+          "card-04-1",
+          "card-04-3"
+        ],
+        "cost_usd": 0.7862702500000001,
+        "overall": {
+          "pages": 47,
+          "fields": 1385,
+          "accepted": 812,
+          "counts": {
+            "correct": 764,
+            "misread": 47,
+            "hallucinated": 0,
+            "omitted": 571,
+            "abstained": 3
+          },
+          "field_accuracy": 0.551624548736462,
+          "field_accuracy_ci95": [
+            0.33401888857666123,
+            0.7981803143093466
+          ],
+          "error_rate_accepted": 0.059113300492610835,
+          "error_rate_ci95": [
+            0.012411546867411364,
+            0.13691984073322813
+          ],
+          "classification_accuracy": 0.8723404255319149
+        },
+        "by_severity": {
+          "0": {
+            "pages": 12,
+            "fields": 348,
+            "accepted": 348,
+            "counts": {
+              "correct": 345,
+              "misread": 3,
+              "hallucinated": 0,
+              "omitted": 0,
+              "abstained": 0
+            },
+            "field_accuracy": 0.9913793103448276,
+            "field_accuracy_ci95": [
+              0.9709302325581395,
+              1.0
+            ],
+            "error_rate_accepted": 0.008620689655172414,
+            "error_rate_ci95": [
+              0.0,
+              0.029069767441860465
+            ],
+            "classification_accuracy": 1.0
+          },
+          "1": {
+            "pages": 12,
+            "fields": 524,
+            "accepted": 49,
+            "counts": {
+              "correct": 48,
+              "misread": 1,
+              "hallucinated": 0,
+              "omitted": 475,
+              "abstained": 0
+            },
+            "field_accuracy": 0.0916030534351145,
+            "field_accuracy_ci95": [
+              0.03426395939086294,
+              0.2653846153846154
+            ],
+            "error_rate_accepted": 0.02040816326530612,
+            "error_rate_ci95": [
+              0.0,
+              0.07142857142857142
+            ],
+            "classification_accuracy": 0.5833333333333334
+          },
+          "2": {
+            "pages": 12,
+            "fields": 260,
+            "accepted": 260,
+            "counts": {
+              "correct": 259,
+              "misread": 1,
+              "hallucinated": 0,
+              "omitted": 0,
+              "abstained": 0
+            },
+            "field_accuracy": 0.9961538461538462,
+            "field_accuracy_ci95": [
+              0.9761904761904762,
+              1.0
+            ],
+            "error_rate_accepted": 0.0038461538461538464,
+            "error_rate_ci95": [
+              0.0,
+              0.023809523809523808
+            ],
+            "classification_accuracy": 1.0
+          },
+          "3": {
+            "pages": 11,
+            "fields": 253,
+            "accepted": 155,
+            "counts": {
+              "correct": 112,
+              "misread": 42,
+              "hallucinated": 0,
+              "omitted": 96,
+              "abstained": 3
+            },
+            "field_accuracy": 0.4426877470355731,
+            "field_accuracy_ci95": [
+              0.12609970674486803,
+              0.7922077922077922
+            ],
+            "error_rate_accepted": 0.27741935483870966,
+            "error_rate_ci95": [
+              0.12495719178082192,
+              0.3333333333333333
+            ],
+            "classification_accuracy": 0.9090909090909091
+          }
+        }
+      }
+    },
+    "open_minus_1_3": {
+      "overall": {
+        "field_accuracy": -0.007942238267148016,
+        "field_accuracy_intervals_overlap": true,
+        "error_rate_accepted": 0.008660537729848226,
+        "error_rate_intervals_overlap": true
+      },
+      "by_severity": {
+        "0": {
+          "field_accuracy": -0.002873563218390829,
+          "field_accuracy_intervals_overlap": true,
+          "error_rate_accepted": 0.0028735632183908046,
+          "error_rate_intervals_overlap": true
+        },
+        "1": {
+          "field_accuracy": -0.005725190839694694,
+          "field_accuracy_intervals_overlap": true,
+          "error_rate_accepted": 0.0057251908396946565,
+          "error_rate_intervals_overlap": true
+        },
+        "2": {
+          "field_accuracy": 0.0,
+          "field_accuracy_intervals_overlap": true,
+          "error_rate_accepted": 0.0,
+          "error_rate_intervals_overlap": true
+        },
+        "3": {
+          "field_accuracy": -0.02766798418972327,
+          "field_accuracy_intervals_overlap": true,
+          "error_rate_accepted": 0.03137349397590361,
+          "error_rate_intervals_overlap": true
+        }
+      }
+    }
+  },
+  "val": {
+    "arms": {
+      "muse-spark-1.3-contributor": {
+        "run_id": "baseline-val-s0",
+        "extractor": {
+          "backend": "meta",
+          "model_id": "muse-spark-1.3-contributor"
+        },
+        "citations": "S0",
+        "pages_failed": 0,
+        "failed_pages": [],
+        "cost_usd": 0.016981400000000008,
+        "overall": {
+          "pages": 20,
+          "fields": 668,
+          "accepted": 666,
+          "counts": {
+            "correct": 647,
+            "misread": 18,
+            "hallucinated": 0,
+            "omitted": 1,
+            "abstained": 2
+          },
+          "field_accuracy": 0.968562874251497,
+          "field_accuracy_ci95": [
+            0.9176495941765758,
+            0.9963912818450904
+          ],
+          "error_rate_accepted": 0.028528528528528527,
+          "error_rate_ci95": [
+            0.002372479240806643,
+            0.07669461681311711
+          ],
+          "classification_accuracy": 1.0
+        },
+        "by_severity": {
+          "0": {
+            "pages": 5,
+            "fields": 123,
+            "accepted": 123,
+            "counts": {
+              "correct": 123,
+              "misread": 0,
+              "hallucinated": 0,
+              "omitted": 0,
+              "abstained": 0
+            },
+            "field_accuracy": 1.0,
+            "field_accuracy_ci95": [
+              1.0,
+              1.0
+            ],
+            "error_rate_accepted": 0.0,
+            "error_rate_ci95": [
+              0.0,
+              0.0
+            ],
+            "classification_accuracy": 1.0
+          },
+          "1": {
+            "pages": 5,
+            "fields": 211,
+            "accepted": 211,
+            "counts": {
+              "correct": 209,
+              "misread": 2,
+              "hallucinated": 0,
+              "omitted": 0,
+              "abstained": 0
+            },
+            "field_accuracy": 0.990521327014218,
+            "field_accuracy_ci95": [
+              0.9428571428571428,
+              1.0
+            ],
+            "error_rate_accepted": 0.009478672985781991,
+            "error_rate_ci95": [
+              0.0,
+              0.05714285714285714
+            ],
+            "classification_accuracy": 1.0
+          },
+          "2": {
+            "pages": 5,
+            "fields": 211,
+            "accepted": 211,
+            "counts": {
+              "correct": 211,
+              "misread": 0,
+              "hallucinated": 0,
+              "omitted": 0,
+              "abstained": 0
+            },
+            "field_accuracy": 1.0,
+            "field_accuracy_ci95": [
+              1.0,
+              1.0
+            ],
+            "error_rate_accepted": 0.0,
+            "error_rate_ci95": [
+              0.0,
+              0.0
+            ],
+            "classification_accuracy": 1.0
+          },
+          "3": {
+            "pages": 5,
+            "fields": 123,
+            "accepted": 121,
+            "counts": {
+              "correct": 104,
+              "misread": 16,
+              "hallucinated": 0,
+              "omitted": 1,
+              "abstained": 2
+            },
+            "field_accuracy": 0.8455284552845529,
+            "field_accuracy_ci95": [
+              0.8327759197324415,
+              0.9428571428571428
+            ],
+            "error_rate_accepted": 0.14049586776859505,
+            "error_rate_ci95": [
+              0.030303030303030304,
+              0.15789473684210525
+            ],
+            "classification_accuracy": 1.0
+          }
+        }
+      },
+      "muse-spark-open": {
+        "run_id": "baseline-val-open",
+        "extractor": {
+          "backend": "baseten",
+          "model_id": "meta-models/muse-spark-open-1026"
+        },
+        "citations": "S0+ink",
+        "pages_failed": 0,
+        "failed_pages": [],
+        "cost_usd": 0.26604625000000004,
+        "overall": {
+          "pages": 20,
+          "fields": 668,
+          "accepted": 665,
+          "counts": {
+            "correct": 662,
+            "misread": 3,
+            "hallucinated": 0,
+            "omitted": 0,
+            "abstained": 3
+          },
+          "field_accuracy": 0.9910179640718563,
+          "field_accuracy_ci95": [
+            0.9780701754385965,
+            0.9985029940119761
+          ],
+          "error_rate_accepted": 0.004511278195488722,
+          "error_rate_ci95": [
+            0.0,
+            0.0123472107343075
+          ],
+          "classification_accuracy": 1.0
+        },
+        "by_severity": {
+          "0": {
+            "pages": 5,
+            "fields": 123,
+            "accepted": 123,
+            "counts": {
+              "correct": 123,
+              "misread": 0,
+              "hallucinated": 0,
+              "omitted": 0,
+              "abstained": 0
+            },
+            "field_accuracy": 1.0,
+            "field_accuracy_ci95": [
+              1.0,
+              1.0
+            ],
+            "error_rate_accepted": 0.0,
+            "error_rate_ci95": [
+              0.0,
+              0.0
+            ],
+            "classification_accuracy": 1.0
+          },
+          "1": {
+            "pages": 5,
+            "fields": 211,
+            "accepted": 211,
+            "counts": {
+              "correct": 211,
+              "misread": 0,
+              "hallucinated": 0,
+              "omitted": 0,
+              "abstained": 0
+            },
+            "field_accuracy": 1.0,
+            "field_accuracy_ci95": [
+              1.0,
+              1.0
+            ],
+            "error_rate_accepted": 0.0,
+            "error_rate_ci95": [
+              0.0,
+              0.0
+            ],
+            "classification_accuracy": 1.0
+          },
+          "2": {
+            "pages": 5,
+            "fields": 211,
+            "accepted": 211,
+            "counts": {
+              "correct": 211,
+              "misread": 0,
+              "hallucinated": 0,
+              "omitted": 0,
+              "abstained": 0
+            },
+            "field_accuracy": 1.0,
+            "field_accuracy_ci95": [
+              1.0,
+              1.0
+            ],
+            "error_rate_accepted": 0.0,
+            "error_rate_ci95": [
+              0.0,
+              0.0
+            ],
+            "classification_accuracy": 1.0
+          },
+          "3": {
+            "pages": 5,
+            "fields": 123,
+            "accepted": 120,
+            "counts": {
+              "correct": 117,
+              "misread": 3,
+              "hallucinated": 0,
+              "omitted": 0,
+              "abstained": 3
+            },
+            "field_accuracy": 0.9512195121951219,
+            "field_accuracy_ci95": [
+              0.8571428571428571,
+              0.967479674796748
+            ],
+            "error_rate_accepted": 0.025,
+            "error_rate_ci95": [
+              0.0,
+              0.08823529411764706
+            ],
+            "classification_accuracy": 1.0
+          }
+        },
+        "closing_repairs": 6
+      },
+      "muse-spark-open-unrepaired": {
+        "run_id": "baseline-val-open-unrepaired",
+        "extractor": {
+          "backend": "baseten",
+          "model_id": "meta-models/muse-spark-open-1026"
+        },
+        "citations": "S0+ink",
+        "pages_failed": 4,
+        "failed_pages": [
+          "card-01-1",
+          "card-01-2",
+          "card-01-3",
+          "card-02-1"
+        ],
+        "cost_usd": 0.37157675,
+        "overall": {
+          "pages": 20,
+          "fields": 668,
+          "accepted": 285,
+          "counts": {
+            "correct": 283,
+            "misread": 2,
+            "hallucinated": 0,
+            "omitted": 380,
+            "abstained": 3
+          },
+          "field_accuracy": 0.4236526946107784,
+          "field_accuracy_ci95": [
+            0.1407185628742515,
+            0.7947154471544715
+          ],
+          "error_rate_accepted": 0.007017543859649123,
+          "error_rate_ci95": [
+            0.0,
+            0.020942408376963352
+          ],
+          "classification_accuracy": 0.8
+        },
+        "by_severity": {
+          "0": {
+            "pages": 5,
+            "fields": 123,
+            "accepted": 28,
+            "counts": {
+              "correct": 28,
+              "misread": 0,
+              "hallucinated": 0,
+              "omitted": 95,
+              "abstained": 0
+            },
+            "field_accuracy": 0.22764227642276422,
+            "field_accuracy_ci95": [
+              0.046822742474916385,
+              1.0
+            ],
+            "error_rate_accepted": 0.0,
+            "error_rate_ci95": [
+              0.0,
+              0.0
+            ],
+            "classification_accuracy": 0.8
+          },
+          "1": {
+            "pages": 5,
+            "fields": 211,
+            "accepted": 21,
+            "counts": {
+              "correct": 21,
+              "misread": 0,
+              "hallucinated": 0,
+              "omitted": 190,
+              "abstained": 0
+            },
+            "field_accuracy": 0.0995260663507109,
+            "field_accuracy_ci95": [
+              0.01808785529715762,
+              1.0
+            ],
+            "error_rate_accepted": 0.0,
+            "error_rate_ci95": [
+              0.0,
+              0.0
+            ],
+            "classification_accuracy": 0.6
+          },
+          "2": {
+            "pages": 5,
+            "fields": 211,
+            "accepted": 116,
+            "counts": {
+              "correct": 116,
+              "misread": 0,
+              "hallucinated": 0,
+              "omitted": 95,
+              "abstained": 0
+            },
+            "field_accuracy": 0.5497630331753555,
+            "field_accuracy_ci95": [
+              0.046822742474916385,
+              1.0
+            ],
+            "error_rate_accepted": 0.0,
+            "error_rate_ci95": [
+              0.0,
+              0.0
+            ],
+            "classification_accuracy": 0.8
+          },
+          "3": {
+            "pages": 5,
+            "fields": 123,
+            "accepted": 120,
+            "counts": {
+              "correct": 118,
+              "misread": 2,
+              "hallucinated": 0,
+              "omitted": 0,
+              "abstained": 3
+            },
+            "field_accuracy": 0.959349593495935,
+            "field_accuracy_ci95": [
+              0.8571428571428571,
+              0.9765886287625418
+            ],
+            "error_rate_accepted": 0.016666666666666666,
+            "error_rate_ci95": [
+              0.0,
+              0.08823529411764706
+            ],
+            "classification_accuracy": 1.0
+          }
+        }
+      }
+    },
+    "open_minus_1_3": {
+      "overall": {
+        "field_accuracy": 0.022455089820359264,
+        "field_accuracy_intervals_overlap": true,
+        "error_rate_accepted": -0.024017250333039804,
+        "error_rate_intervals_overlap": true
+      },
+      "by_severity": {
+        "0": {
+          "field_accuracy": 0.0,
+          "field_accuracy_intervals_overlap": true,
+          "error_rate_accepted": 0.0,
+          "error_rate_intervals_overlap": true
+        },
+        "1": {
+          "field_accuracy": 0.009478672985781977,
+          "field_accuracy_intervals_overlap": true,
+          "error_rate_accepted": -0.009478672985781991,
+          "error_rate_intervals_overlap": true
+        },
+        "2": {
+          "field_accuracy": 0.0,
+          "field_accuracy_intervals_overlap": true,
+          "error_rate_accepted": 0.0,
+          "error_rate_intervals_overlap": true
+        },
+        "3": {
+          "field_accuracy": 0.10569105691056901,
+          "field_accuracy_intervals_overlap": true,
+          "error_rate_accepted": -0.11549586776859505,
+          "error_rate_intervals_overlap": true
+        }
+      }
+    }
+  }
+}

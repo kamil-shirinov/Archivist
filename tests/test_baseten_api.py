@@ -20,6 +20,7 @@ from archivist.models.baseten_api import (
     MUSE_SPARK_OPEN,
     BasetenLLM,
     MissingAPIKey,
+    close_brackets,
     json_answer,
 )
 from archivist.models.budget import Budget, BudgetExceeded, BudgetGuard, Price, caps_from_env
@@ -181,6 +182,30 @@ def test_a_fence_around_the_whole_json_answer_is_taken_off_and_nothing_else_is()
     llm, _ = baseten(completion('```json\n{"amount": "1.00"}\n```'), completion("```x```"))
     assert llm.complete(REQUEST).text == '{"amount": "1.00"}'
     assert llm.complete(LLMRequest(role="rereader", prompt="hi")).text == "```x```"  # no schema
+
+
+def test_brackets_the_model_left_open_are_closed_when_that_is_all_it_lacked(caplog):
+    cut = '{"header":{"a":{"value":"x [y]","box":[1,2]}},"lines":{"1":{"b":{"value":"5"}}}'
+    assert close_brackets(cut) == cut + "}"
+    assert close_brackets('{"a":[{"b":"q\\"}"}') == '{"a":[{"b":"q\\"}"}]}'  # an escaped quote
+    assert "1 bracket(s)" in caplog.text
+    for unchanged in (
+        '{"a":1}',  # already JSON
+        '{"a":"cut off in a str',  # ends inside a string
+        '{"a":[1,',  # still not JSON once closed
+        '{"a":}',  # not a matter of brackets
+        "not json",
+    ):
+        assert close_brackets(unchanged) == unchanged
+
+
+def test_an_answer_that_stopped_short_of_its_last_brace_is_completed_but_one_cut_off_is_not():
+    cut = '{"lines":{"1":{"b":{"value":"5"}}}'
+    llm, _ = baseten(completion(cut), completion(cut, finish="length"), completion(cut))
+
+    assert json.loads(llm.complete(REQUEST).text) == {"lines": {"1": {"b": {"value": "5"}}}}
+    assert llm.complete(REQUEST).text == cut  # max_tokens ran out: left to fail
+    assert llm.complete(LLMRequest(role="rereader", prompt="hi")).text == cut  # no schema asked
 
 
 def test_usage_counts_reasoning_once_and_costs_it_as_output():

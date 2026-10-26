@@ -45,3 +45,4 @@ uv run pytest -q
 - [x] P11 the documents' own checksums
 - [x] P12 verification: blind re-reads, occlusion and verdicts
 - [x] P12b read every value twice
+- [x] P13 Muse Spark Open on Baseten

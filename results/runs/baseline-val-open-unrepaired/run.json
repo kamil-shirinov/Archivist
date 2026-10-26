@@ -1,0 +1,46 @@
+{
+  "run_id": "baseline-val-open",
+  "images": "data/val/images",
+  "config": {
+    "extractor": {
+      "backend": "baseten",
+      "model_id": "meta-models/muse-spark-open-1026"
+    },
+    "rereader": {
+      "backend": "baseten",
+      "model_id": "meta-models/muse-spark-open-1026"
+    },
+    "segmenter": {
+      "backend": "meta",
+      "model_id": "sam-3.1"
+    }
+  },
+  "citations": "S0+ink",
+  "counts": {
+    "pages": 20,
+    "extracted": 16,
+    "failed": 4,
+    "by_doc_type": {
+      "ledger_card": 2,
+      "payment_memo": 14
+    }
+  },
+  "failed_pages": {
+    "card-01-1": "ExtractionFailed: ledger_card extraction: JSONDecodeError: Expecting ',' delimiter: line 1 column 5159 (char 5158) | retry: JSONDecodeError: Expecting ',' delimiter: line 1 column 5159 (char 5158)",
+    "card-01-2": "ExtractionFailed: ledger_card extraction: JSONDecodeError: Expecting ',' delimiter: line 1 column 5220 (char 5219) | retry: JSONDecodeError: Expecting ',' delimiter: line 1 column 5220 (char 5219)",
+    "card-01-3": "ExtractionFailed: ledger_card extraction: JSONDecodeError: Expecting ',' delimiter: line 1 column 5159 (char 5158) | retry: JSONDecodeError: Expecting ',' delimiter: line 1 column 5177 (char 5176)",
+    "card-02-1": "ExtractionFailed: ledger_card extraction: JSONDecodeError: Expecting ',' delimiter: line 1 column 5141 (char 5140) | retry: JSONDecodeError: Expecting ',' delimiter: line 1 column 5141 (char 5140)"
+  },
+  "cost_usd": 0.37157675,
+  "started_at": "2026-10-26T23:11:25+00:00",
+  "finished_at": "2026-10-26T23:12:10+00:00",
+  "sessions": [
+    {
+      "started_at": "2026-10-26T23:11:25+00:00",
+      "finished_at": "2026-10-26T23:12:10+00:00",
+      "pages_extracted": 16,
+      "cost_usd": 0.37157675,
+      "aborted": null
+    }
+  ]
+}
