@@ -1,0 +1,30 @@
+# Archivist
+Turns scanned financial archives into a verified database: every value cited to its page and region, cross-checked, and flagged when unsure.
+
+## Hard rules
+- New work only, built during the Meta Global AI Developer Hackathon (26 Oct – 4 Nov 2026). Never copy code from other projects.
+- Public repo. Never read, print or commit .env or any key. No real bank or customer data, ever.
+- Only synthetic or public-domain pages are ever sent to a model.
+- Assets only with clear rights: OFL/Apache fonts with their licence files, procedural textures, invented names.
+- Every model call goes through archivist.models (registry → cache → budget → backend). No HTTP calls anywhere else.
+- archivist.pipeline must never import archivist.synth (keeps ground truth out of predictions).
+- The UI never calls a model; it only renders exported run bundles.
+- Tests never touch the network. One task per session; never edit files the task doesn't name.
+
+## Layout (planned)
+src/archivist/schema.py — data contracts
+src/archivist/synth/ — world.py, render.py, degrade.py, build.py
+src/archivist/models/ — base.py, mock.py, cache.py, budget.py, meta_api.py, registry.py
+src/archivist/pipeline/ — segment, extract, verify/, confidence, db
+src/archivist/eval/ — metrics.py, run_eval.py
+ui/ — static review app (Vite + React + TypeScript), reads data/bundles/<run_id>/bundle.json; types generated from schema.py
+data/dev, data/test — test is frozen and hashed; never used for tuning
+
+## Run
+uv run pytest -q
+
+## Status
+- [x] P1 scaffold
+- [ ] P2 schema
+- [ ] P3 world generator
+- [ ] P4 renderer
