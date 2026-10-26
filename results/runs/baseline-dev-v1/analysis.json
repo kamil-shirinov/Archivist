@@ -1,0 +1,924 @@
+{
+  "run_id": "baseline-dev-v1",
+  "gt": "data/dev/gt",
+  "config": {
+    "extractor": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "rereader": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "segmenter": {
+      "backend": "meta",
+      "model_id": "sam-3.1"
+    }
+  },
+  "missing_pages": [],
+  "n_pages": 47,
+  "thresholds": {
+    "iou": 0.3,
+    "pattern_proportional_r2": 0.5,
+    "pattern_constant_r2": 0.1,
+    "min_points_per_page_fit": 5
+  },
+  "categories": {
+    "overall": {
+      "n_fields": 1385,
+      "format": 8,
+      "digit": 29,
+      "text": 9,
+      "blank": 7,
+      "wrong": 53
+    },
+    "by_doc_type": {
+      "ledger": {
+        "n_fields": 1140,
+        "format": 0,
+        "digit": 19,
+        "text": 6,
+        "blank": 2,
+        "wrong": 27
+      },
+      "memo": {
+        "n_fields": 245,
+        "format": 8,
+        "digit": 10,
+        "text": 3,
+        "blank": 5,
+        "wrong": 26
+      }
+    },
+    "by_severity": {
+      "0": {
+        "n_fields": 348,
+        "format": 3,
+        "digit": 1,
+        "text": 1,
+        "blank": 0,
+        "wrong": 5
+      },
+      "1": {
+        "n_fields": 524,
+        "format": 1,
+        "digit": 0,
+        "text": 0,
+        "blank": 0,
+        "wrong": 1
+      },
+      "2": {
+        "n_fields": 260,
+        "format": 1,
+        "digit": 0,
+        "text": 0,
+        "blank": 0,
+        "wrong": 1
+      },
+      "3": {
+        "n_fields": 253,
+        "format": 3,
+        "digit": 28,
+        "text": 8,
+        "blank": 7,
+        "wrong": 46
+      }
+    },
+    "text_errors_differing_in_digits_only": 6
+  },
+  "rows": [
+    {
+      "page_id": "card-03-2",
+      "severity": 3,
+      "doc_type": "ledger",
+      "field": "L:card-03-2:hdr:account_no",
+      "outcome": "misread",
+      "printed": "34192727",
+      "predicted": "34142727",
+      "occluded": true,
+      "category": "digit"
+    },
+    {
+      "page_id": "card-03-2",
+      "severity": 3,
+      "doc_type": "ledger",
+      "field": "L:card-03-2:01:date",
+      "outcome": "misread",
+      "printed": "02/01/86",
+      "predicted": "02/01/76",
+      "occluded": true,
+      "category": "digit"
+    },
+    {
+      "page_id": "card-03-2",
+      "severity": 3,
+      "doc_type": "ledger",
+      "field": "L:card-03-2:01:description",
+      "outcome": "misread",
+      "printed": "STANDING ORDER RATES",
+      "predicted": "STANDING ORDER COUNCIL",
+      "occluded": false,
+      "category": "text"
+    },
+    {
+      "page_id": "card-03-2",
+      "severity": 3,
+      "doc_type": "ledger",
+      "field": "L:card-03-2:02:date",
+      "outcome": "misread",
+      "printed": "03/01/86",
+      "predicted": "03/01/76",
+      "occluded": false,
+      "category": "digit"
+    },
+    {
+      "page_id": "card-03-2",
+      "severity": 3,
+      "doc_type": "ledger",
+      "field": "L:card-03-2:02:description",
+      "outcome": "abstained",
+      "printed": "DIRECT DEBIT ELECTRICITY",
+      "predicted": null,
+      "occluded": false,
+      "category": "blank"
+    },
+    {
+      "page_id": "card-03-2",
+      "severity": 3,
+      "doc_type": "ledger",
+      "field": "L:card-03-2:03:date",
+      "outcome": "misread",
+      "printed": "09/01/86",
+      "predicted": "04/01/76",
+      "occluded": false,
+      "category": "digit"
+    },
+    {
+      "page_id": "card-03-2",
+      "severity": 3,
+      "doc_type": "ledger",
+      "field": "L:card-03-2:04:date",
+      "outcome": "misread",
+      "printed": "14/01/86",
+      "predicted": "11/01/76",
+      "occluded": false,
+      "category": "digit"
+    },
+    {
+      "page_id": "card-03-2",
+      "severity": 3,
+      "doc_type": "ledger",
+      "field": "L:card-03-2:04:description",
+      "outcome": "misread",
+      "printed": "CHQ 889341",
+      "predicted": "CHQ 799341",
+      "occluded": false,
+      "category": "text"
+    },
+    {
+      "page_id": "card-03-2",
+      "severity": 3,
+      "doc_type": "ledger",
+      "field": "L:card-03-2:05:date",
+      "outcome": "misread",
+      "printed": "14/01/86",
+      "predicted": "14/01/76",
+      "occluded": false,
+      "category": "digit"
+    },
+    {
+      "page_id": "card-03-2",
+      "severity": 3,
+      "doc_type": "ledger",
+      "field": "L:card-03-2:06:date",
+      "outcome": "misread",
+      "printed": "18/01/86",
+      "predicted": "17/01/76",
+      "occluded": false,
+      "category": "digit"
+    },
+    {
+      "page_id": "card-03-2",
+      "severity": 3,
+      "doc_type": "ledger",
+      "field": "L:card-03-2:07:date",
+      "outcome": "misread",
+      "printed": "22/01/86",
+      "predicted": "22/01/76",
+      "occluded": false,
+      "category": "digit"
+    },
+    {
+      "page_id": "card-03-2",
+      "severity": 3,
+      "doc_type": "ledger",
+      "field": "L:card-03-2:08:date",
+      "outcome": "misread",
+      "printed": "24/01/86",
+      "predicted": "24/01/76",
+      "occluded": false,
+      "category": "digit"
+    },
+    {
+      "page_id": "card-03-2",
+      "severity": 3,
+      "doc_type": "ledger",
+      "field": "L:card-03-2:08:description",
+      "outcome": "misread",
+      "printed": "CHQ 889342",
+      "predicted": "CHQ 799342",
+      "occluded": false,
+      "category": "text"
+    },
+    {
+      "page_id": "card-03-2",
+      "severity": 3,
+      "doc_type": "ledger",
+      "field": "L:card-03-2:09:date",
+      "outcome": "misread",
+      "printed": "27/01/86",
+      "predicted": "27/01/76",
+      "occluded": false,
+      "category": "digit"
+    },
+    {
+      "page_id": "card-03-2",
+      "severity": 3,
+      "doc_type": "ledger",
+      "field": "L:card-03-2:10:date",
+      "outcome": "misread",
+      "printed": "30/01/86",
+      "predicted": "30/01/76",
+      "occluded": false,
+      "category": "digit"
+    },
+    {
+      "page_id": "card-03-2",
+      "severity": 3,
+      "doc_type": "ledger",
+      "field": "L:card-03-2:11:date",
+      "outcome": "misread",
+      "printed": "02/02/86",
+      "predicted": "02/02/76",
+      "occluded": false,
+      "category": "digit"
+    },
+    {
+      "page_id": "card-03-2",
+      "severity": 3,
+      "doc_type": "ledger",
+      "field": "L:card-03-2:11:description",
+      "outcome": "misread",
+      "printed": "CHQ 889343",
+      "predicted": "CHQ 799343",
+      "occluded": false,
+      "category": "text"
+    },
+    {
+      "page_id": "card-03-2",
+      "severity": 3,
+      "doc_type": "ledger",
+      "field": "L:card-03-2:12:date",
+      "outcome": "misread",
+      "printed": "07/02/86",
+      "predicted": "07/02/76",
+      "occluded": false,
+      "category": "digit"
+    },
+    {
+      "page_id": "card-03-2",
+      "severity": 3,
+      "doc_type": "ledger",
+      "field": "L:card-03-2:13:date",
+      "outcome": "misread",
+      "printed": "08/02/86",
+      "predicted": "08/02/76",
+      "occluded": false,
+      "category": "digit"
+    },
+    {
+      "page_id": "card-03-2",
+      "severity": 3,
+      "doc_type": "ledger",
+      "field": "L:card-03-2:14:date",
+      "outcome": "misread",
+      "printed": "13/02/86",
+      "predicted": "13/02/76",
+      "occluded": false,
+      "category": "digit"
+    },
+    {
+      "page_id": "card-03-2",
+      "severity": 3,
+      "doc_type": "ledger",
+      "field": "L:card-03-2:15:date",
+      "outcome": "misread",
+      "printed": "13/02/86",
+      "predicted": "13/02/76",
+      "occluded": false,
+      "category": "digit"
+    },
+    {
+      "page_id": "card-03-2",
+      "severity": 3,
+      "doc_type": "ledger",
+      "field": "L:card-03-2:15:description",
+      "outcome": "misread",
+      "printed": "CHQ 889344",
+      "predicted": "CHQ 799344",
+      "occluded": false,
+      "category": "text"
+    },
+    {
+      "page_id": "card-03-2",
+      "severity": 3,
+      "doc_type": "ledger",
+      "field": "L:card-03-2:16:date",
+      "outcome": "misread",
+      "printed": "16/02/86",
+      "predicted": "16/02/76",
+      "occluded": false,
+      "category": "digit"
+    },
+    {
+      "page_id": "card-03-2",
+      "severity": 3,
+      "doc_type": "ledger",
+      "field": "L:card-03-2:17:date",
+      "outcome": "misread",
+      "printed": "18/02/86",
+      "predicted": "18/02/76",
+      "occluded": false,
+      "category": "digit"
+    },
+    {
+      "page_id": "card-03-2",
+      "severity": 3,
+      "doc_type": "ledger",
+      "field": "L:card-03-2:18:date",
+      "outcome": "misread",
+      "printed": "21/02/86",
+      "predicted": "21/02/76",
+      "occluded": false,
+      "category": "digit"
+    },
+    {
+      "page_id": "card-03-2",
+      "severity": 3,
+      "doc_type": "ledger",
+      "field": "L:card-03-2:18:description",
+      "outcome": "misread",
+      "printed": "CHQ 889345",
+      "predicted": "CHQ 799345",
+      "occluded": false,
+      "category": "text"
+    },
+    {
+      "page_id": "card-03-2",
+      "severity": 3,
+      "doc_type": "ledger",
+      "field": "L:card-03-2:hdr:carried_forward",
+      "outcome": "omitted",
+      "printed": "3,897.79",
+      "predicted": "",
+      "occluded": false,
+      "category": "blank"
+    },
+    {
+      "page_id": "memo-0003",
+      "severity": 0,
+      "doc_type": "memo",
+      "field": "M:memo-0003:amount_words",
+      "outcome": "misread",
+      "printed": "Sixty-three pounds and forty-six pence",
+      "predicted": "Sixty-three pounds and fortysix pence",
+      "occluded": false,
+      "category": "format"
+    },
+    {
+      "page_id": "memo-0008",
+      "severity": 3,
+      "doc_type": "memo",
+      "field": "M:memo-0008:memo_no",
+      "outcome": "misread",
+      "printed": "008334",
+      "predicted": "007334",
+      "occluded": false,
+      "category": "digit"
+    },
+    {
+      "page_id": "memo-0008",
+      "severity": 3,
+      "doc_type": "memo",
+      "field": "M:memo-0008:account_no",
+      "outcome": "misread",
+      "printed": "17868679",
+      "predicted": "17267679",
+      "occluded": false,
+      "category": "digit"
+    },
+    {
+      "page_id": "memo-0008",
+      "severity": 3,
+      "doc_type": "memo",
+      "field": "M:memo-0008:amount_words",
+      "outcome": "misread",
+      "printed": "Sixty-eight pounds and forty-six pence",
+      "predicted": "Sixty eight pounds and forty six pence",
+      "occluded": false,
+      "category": "format"
+    },
+    {
+      "page_id": "memo-0008",
+      "severity": 3,
+      "doc_type": "memo",
+      "field": "M:memo-0008:ledger_ref",
+      "outcome": "misread",
+      "printed": "Sheet 38 / Line 04",
+      "predicted": "Sheet 37 / Line 04",
+      "occluded": false,
+      "category": "text"
+    },
+    {
+      "page_id": "memo-0011",
+      "severity": 0,
+      "doc_type": "memo",
+      "field": "M:memo-0011:memo_no",
+      "outcome": "misread",
+      "printed": "008337",
+      "predicted": "009337",
+      "occluded": false,
+      "category": "digit"
+    },
+    {
+      "page_id": "memo-0011",
+      "severity": 0,
+      "doc_type": "memo",
+      "field": "M:memo-0011:counterparty",
+      "outcome": "misread",
+      "printed": "Mrs Sharon Wong",
+      "predicted": "Meadsharon Mong",
+      "occluded": false,
+      "category": "text"
+    },
+    {
+      "page_id": "memo-0011",
+      "severity": 0,
+      "doc_type": "memo",
+      "field": "M:memo-0011:amount",
+      "outcome": "misread",
+      "printed": "346.30",
+      "predicted": "346,30",
+      "occluded": false,
+      "category": "format"
+    },
+    {
+      "page_id": "memo-0011",
+      "severity": 0,
+      "doc_type": "memo",
+      "field": "M:memo-0011:amount_words",
+      "outcome": "misread",
+      "printed": "Three hundred and forty-six pounds and thirty pence",
+      "predicted": "Three hundred and fortysix pounds and thirty pence",
+      "occluded": false,
+      "category": "format"
+    },
+    {
+      "page_id": "memo-0013",
+      "severity": 3,
+      "doc_type": "memo",
+      "field": "M:memo-0013:account_no",
+      "outcome": "abstained",
+      "printed": "69675442",
+      "predicted": null,
+      "occluded": true,
+      "category": "blank"
+    },
+    {
+      "page_id": "memo-0016",
+      "severity": 3,
+      "doc_type": "memo",
+      "field": "M:memo-0016:amount",
+      "outcome": "abstained",
+      "printed": "74.30",
+      "predicted": null,
+      "occluded": true,
+      "category": "blank"
+    },
+    {
+      "page_id": "memo-0016",
+      "severity": 3,
+      "doc_type": "memo",
+      "field": "M:memo-0016:amount_words",
+      "outcome": "misread",
+      "printed": "Seventy-four pounds and thirty pence",
+      "predicted": "Seventy four pounds and thirty pence.",
+      "occluded": true,
+      "category": "format"
+    },
+    {
+      "page_id": "memo-0017",
+      "severity": 1,
+      "doc_type": "memo",
+      "field": "M:memo-0017:amount_words",
+      "outcome": "misread",
+      "printed": "One hundred and sixty-five pounds and sixty-two pence",
+      "predicted": "One hundred and sixty five pounds and sixty two pence",
+      "occluded": false,
+      "category": "format"
+    },
+    {
+      "page_id": "memo-0020",
+      "severity": 3,
+      "doc_type": "memo",
+      "field": "M:memo-0020:memo_no",
+      "outcome": "misread",
+      "printed": "008346",
+      "predicted": "008546",
+      "occluded": false,
+      "category": "digit"
+    },
+    {
+      "page_id": "memo-0020",
+      "severity": 3,
+      "doc_type": "memo",
+      "field": "M:memo-0020:account_no",
+      "outcome": "misread",
+      "printed": "34192727",
+      "predicted": "34/92727",
+      "occluded": false,
+      "category": "digit"
+    },
+    {
+      "page_id": "memo-0020",
+      "severity": 3,
+      "doc_type": "memo",
+      "field": "M:memo-0020:counterparty",
+      "outcome": "misread",
+      "printed": "Wrenfield Assurance Society",
+      "predicted": "Mayfield Assurance Society",
+      "occluded": false,
+      "category": "text"
+    },
+    {
+      "page_id": "memo-0020",
+      "severity": 3,
+      "doc_type": "memo",
+      "field": "M:memo-0020:amount",
+      "outcome": "omitted",
+      "printed": "18.22",
+      "predicted": "",
+      "occluded": true,
+      "category": "blank"
+    },
+    {
+      "page_id": "memo-0023",
+      "severity": 3,
+      "doc_type": "memo",
+      "field": "M:memo-0023:account_no",
+      "outcome": "misread",
+      "printed": "34192727",
+      "predicted": "34/42727",
+      "occluded": false,
+      "category": "digit"
+    },
+    {
+      "page_id": "memo-0025",
+      "severity": 3,
+      "doc_type": "memo",
+      "field": "M:memo-0025:account_no",
+      "outcome": "misread",
+      "printed": "34192727",
+      "predicted": "24392727",
+      "occluded": true,
+      "category": "digit"
+    },
+    {
+      "page_id": "memo-0026",
+      "severity": 3,
+      "doc_type": "memo",
+      "field": "M:memo-0026:memo_no",
+      "outcome": "misread",
+      "printed": "008352",
+      "predicted": "007352",
+      "occluded": false,
+      "category": "digit"
+    },
+    {
+      "page_id": "memo-0026",
+      "severity": 3,
+      "doc_type": "memo",
+      "field": "M:memo-0026:date",
+      "outcome": "misread",
+      "printed": "21/03/86",
+      "predicted": "21/03/76",
+      "occluded": false,
+      "category": "digit"
+    },
+    {
+      "page_id": "memo-0026",
+      "severity": 3,
+      "doc_type": "memo",
+      "field": "M:memo-0026:account_no",
+      "outcome": "misread",
+      "printed": "34192727",
+      "predicted": "34142727",
+      "occluded": false,
+      "category": "digit"
+    },
+    {
+      "page_id": "memo-0026",
+      "severity": 3,
+      "doc_type": "memo",
+      "field": "M:memo-0026:amount",
+      "outcome": "abstained",
+      "printed": "30.96",
+      "predicted": null,
+      "occluded": true,
+      "category": "blank"
+    },
+    {
+      "page_id": "memo-0026",
+      "severity": 3,
+      "doc_type": "memo",
+      "field": "M:memo-0026:amount_words",
+      "outcome": "misread",
+      "printed": "Thirty pounds and ninety-six pence",
+      "predicted": "Thirty pounds and ninety six pence",
+      "occluded": false,
+      "category": "format"
+    },
+    {
+      "page_id": "memo-0029",
+      "severity": 3,
+      "doc_type": "memo",
+      "field": "M:memo-0029:amount",
+      "outcome": "omitted",
+      "printed": "212.14",
+      "predicted": "",
+      "occluded": true,
+      "category": "blank"
+    },
+    {
+      "page_id": "memo-0035",
+      "severity": 2,
+      "doc_type": "memo",
+      "field": "M:memo-0035:ledger_ref",
+      "outcome": "misread",
+      "printed": "Sheet 8 / Line 14",
+      "predicted": "Sheet 8 / Line 14.",
+      "occluded": false,
+      "category": "format"
+    }
+  ],
+  "citation_residuals": {
+    "ledger": {
+      "n": 1113,
+      "n_used": 1113,
+      "n_blank_cells": 216,
+      "dx_px": {
+        "mean": -3.7677,
+        "median": 0.0,
+        "std": 16.2331,
+        "mean_abs": 10.8774
+      },
+      "dy_px": {
+        "mean": -23.8679,
+        "median": -17.0,
+        "std": 25.6757,
+        "mean_abs": 25.4358
+      },
+      "dx_frac_of_width": {
+        "mean": -0.0022,
+        "median": 0.0,
+        "std": 0.0095,
+        "mean_abs": 0.0064
+      },
+      "dy_frac_of_height": {
+        "mean": -0.0217,
+        "median": -0.0155,
+        "std": 0.0233,
+        "mean_abs": 0.0231
+      },
+      "fit_dy": {
+        "a": -0.0595,
+        "b": 12.4902,
+        "r2": 0.3156
+      },
+      "fit_dx": {
+        "a": -0.0165,
+        "b": 11.7708,
+        "r2": 0.2885
+      },
+      "fit_dy_per_page": {
+        "n_pages": 12,
+        "points_per_page": [
+          68,
+          95
+        ],
+        "slope_median": -0.06,
+        "slope_p10_p90": [
+          -0.0976,
+          -0.0054
+        ],
+        "r2_median": 0.8394,
+        "share_r2_at_least_half": 0.75
+      },
+      "pattern": "proportional_per_page"
+    },
+    "memo": {
+      "n": 219,
+      "n_used": 219,
+      "n_blank_cells": 0,
+      "dx_px": {
+        "mean": -11.2466,
+        "median": -14.0,
+        "std": 17.1884,
+        "mean_abs": 15.9726
+      },
+      "dy_px": {
+        "mean": 6.016,
+        "median": 7.5,
+        "std": 19.0291,
+        "mean_abs": 16.1438
+      },
+      "dx_frac_of_width": {
+        "mean": -0.0102,
+        "median": -0.0127,
+        "std": 0.0156,
+        "mean_abs": 0.0145
+      },
+      "dy_frac_of_height": {
+        "mean": 0.0043,
+        "median": 0.0054,
+        "std": 0.0136,
+        "mean_abs": 0.0115
+      },
+      "fit_dy": {
+        "a": -0.0071,
+        "b": 9.5317,
+        "r2": 0.0058
+      },
+      "fit_dx": {
+        "a": -0.032,
+        "b": 4.0468,
+        "r2": 0.094
+      },
+      "fit_dy_per_page": {
+        "n_pages": 31,
+        "points_per_page": [
+          5,
+          7
+        ],
+        "slope_median": -0.0165,
+        "slope_p10_p90": [
+          -0.0462,
+          0.0387
+        ],
+        "r2_median": 0.5265,
+        "share_r2_at_least_half": 0.5161
+      },
+      "pattern": "scatter"
+    }
+  },
+  "citation_accuracy": {
+    "ledger": {
+      "n": 1113,
+      "pred_centre_in_true_box": {
+        "ok": 483,
+        "rate": 0.434
+      },
+      "true_centre_in_pred_box": {
+        "ok": 449,
+        "rate": 0.4034
+      },
+      "iou_at_least_0_3": {
+        "ok": 450,
+        "rate": 0.4043
+      }
+    },
+    "memo": {
+      "n": 219,
+      "pred_centre_in_true_box": {
+        "ok": 117,
+        "rate": 0.5342
+      },
+      "true_centre_in_pred_box": {
+        "ok": 131,
+        "rate": 0.5982
+      },
+      "iou_at_least_0_3": {
+        "ok": 117,
+        "rate": 0.5342
+      }
+    },
+    "all": {
+      "n": 1332,
+      "pred_centre_in_true_box": {
+        "ok": 600,
+        "rate": 0.4505
+      },
+      "true_centre_in_pred_box": {
+        "ok": 580,
+        "rate": 0.4354
+      },
+      "iou_at_least_0_3": {
+        "ok": 567,
+        "rate": 0.4257
+      }
+    }
+  },
+  "worst_pages": [
+    {
+      "page_id": "card-03-2",
+      "doc_type": "ledger",
+      "severity": 3,
+      "wrong": 27,
+      "n_fields": 95,
+      "categories": {
+        "format": 0,
+        "digit": 19,
+        "text": 6,
+        "blank": 2
+      },
+      "wrong_and_occluded": 2,
+      "artefacts": {
+        "stain": 4
+      }
+    },
+    {
+      "page_id": "memo-0026",
+      "doc_type": "memo",
+      "severity": 3,
+      "wrong": 5,
+      "n_fields": 7,
+      "categories": {
+        "format": 1,
+        "digit": 3,
+        "text": 0,
+        "blank": 1
+      },
+      "wrong_and_occluded": 1,
+      "artefacts": {
+        "handwritten_amendment": 2,
+        "signature": 1,
+        "stamp": 2
+      }
+    },
+    {
+      "page_id": "memo-0008",
+      "doc_type": "memo",
+      "severity": 3,
+      "wrong": 4,
+      "n_fields": 7,
+      "categories": {
+        "format": 1,
+        "digit": 2,
+        "text": 1,
+        "blank": 0
+      },
+      "wrong_and_occluded": 0,
+      "artefacts": {
+        "handwritten_amendment": 2,
+        "signature": 1,
+        "stain": 1
+      }
+    },
+    {
+      "page_id": "memo-0020",
+      "doc_type": "memo",
+      "severity": 3,
+      "wrong": 4,
+      "n_fields": 7,
+      "categories": {
+        "format": 0,
+        "digit": 2,
+        "text": 1,
+        "blank": 1
+      },
+      "wrong_and_occluded": 1,
+      "artefacts": {
+        "handwritten_amendment": 1,
+        "signature": 1,
+        "stamp": 2
+      }
+    },
+    {
+      "page_id": "memo-0011",
+      "doc_type": "memo",
+      "severity": 0,
+      "wrong": 4,
+      "n_fields": 7,
+      "categories": {
+        "format": 2,
+        "digit": 1,
+        "text": 1,
+        "blank": 0
+      },
+      "wrong_and_occluded": 0,
+      "artefacts": {
+        "signature": 1
+      }
+    }
+  ]
+}
