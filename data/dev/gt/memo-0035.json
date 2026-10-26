@@ -1,0 +1,122 @@
+{
+  "page_id": "memo-0035",
+  "doc_type": "memo",
+  "image_path": "images/memo-0035.png",
+  "width": 1100,
+  "height": 1400,
+  "severity": 2,
+  "fields": [
+    {
+      "field_id": "M:memo-0035:memo_no",
+      "printed": "008361",
+      "bbox": {
+        "x0": 270,
+        "y0": 256,
+        "x1": 377,
+        "y1": 278
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0035:date",
+      "printed": "23/02/81",
+      "bbox": {
+        "x0": 671,
+        "y0": 259,
+        "x1": 812,
+        "y1": 290
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0035:account_no",
+      "printed": "16195204",
+      "bbox": {
+        "x0": 300,
+        "y0": 347,
+        "x1": 441,
+        "y1": 370
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0035:counterparty",
+      "printed": "Dr Duncan Dickinson",
+      "bbox": {
+        "x0": 220,
+        "y0": 434,
+        "x1": 548,
+        "y1": 462
+      },
+      "occluded_by": [
+        "A:memo-0035:03"
+      ]
+    },
+    {
+      "field_id": "M:memo-0035:amount",
+      "printed": "221.33",
+      "bbox": {
+        "x0": 649,
+        "y0": 560,
+        "x1": 756,
+        "y1": 582
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0035:amount_words",
+      "printed": "Two hundred and twenty-one pounds and thirty-three pence",
+      "bbox": {
+        "x0": 117,
+        "y0": 699,
+        "x1": 962,
+        "y1": 737
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0035:ledger_ref",
+      "printed": "Sheet 8 / Line 14",
+      "bbox": {
+        "x0": 278,
+        "y0": 803,
+        "x1": 572,
+        "y1": 836
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0035:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 337,
+        "y0": 997,
+        "x1": 541,
+        "y1": 1081
+      }
+    },
+    {
+      "artefact_id": "A:memo-0035:02",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 25,
+        "y0": 1165,
+        "x1": 163,
+        "y1": 1281
+      }
+    },
+    {
+      "artefact_id": "A:memo-0035:03",
+      "kind": "stain",
+      "bbox": {
+        "x0": 225,
+        "y0": 407,
+        "x1": 444,
+        "y1": 628
+      }
+    }
+  ],
+  "source_errors": []
+}

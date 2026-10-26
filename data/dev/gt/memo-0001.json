@@ -1,0 +1,110 @@
+{
+  "page_id": "memo-0001",
+  "doc_type": "memo",
+  "image_path": "images/memo-0001.png",
+  "width": 1100,
+  "height": 1400,
+  "severity": 1,
+  "fields": [
+    {
+      "field_id": "M:memo-0001:memo_no",
+      "printed": "008327",
+      "bbox": {
+        "x0": 257,
+        "y0": 259,
+        "x1": 361,
+        "y1": 286
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0001:date",
+      "printed": "30/08/92",
+      "bbox": {
+        "x0": 667,
+        "y0": 254,
+        "x1": 803,
+        "y1": 284
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0001:account_no",
+      "printed": "17868679",
+      "bbox": {
+        "x0": 291,
+        "y0": 344,
+        "x1": 426,
+        "y1": 372
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0001:counterparty",
+      "printed": "Ryan, Shaw and Holland",
+      "bbox": {
+        "x0": 216,
+        "y0": 440,
+        "x1": 557,
+        "y1": 475
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0001:amount",
+      "printed": "271.49",
+      "bbox": {
+        "x0": 658,
+        "y0": 550,
+        "x1": 754,
+        "y1": 578
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0001:amount_words",
+      "printed": "Two hundred and seventy-one pounds and forty-nine pence",
+      "bbox": {
+        "x0": 117,
+        "y0": 702,
+        "x1": 968,
+        "y1": 739
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0001:ledger_ref",
+      "printed": "Sheet 36 / Line 05",
+      "bbox": {
+        "x0": 276,
+        "y0": 804,
+        "x1": 536,
+        "y1": 834
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0001:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 304,
+        "y0": 999,
+        "x1": 614,
+        "y1": 1079
+      }
+    },
+    {
+      "artefact_id": "A:memo-0001:02",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 623,
+        "y0": 554,
+        "x1": 650,
+        "y1": 576
+      }
+    }
+  ],
+  "source_errors": []
+}

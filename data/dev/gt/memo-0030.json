@@ -1,0 +1,110 @@
+{
+  "page_id": "memo-0030",
+  "doc_type": "memo",
+  "image_path": "images/memo-0030.png",
+  "width": 1100,
+  "height": 1400,
+  "severity": 1,
+  "fields": [
+    {
+      "field_id": "M:memo-0030:memo_no",
+      "printed": "008356",
+      "bbox": {
+        "x0": 257,
+        "y0": 257,
+        "x1": 360,
+        "y1": 284
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0030:date",
+      "printed": "28/11/80",
+      "bbox": {
+        "x0": 665,
+        "y0": 253,
+        "x1": 801,
+        "y1": 283
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0030:account_no",
+      "printed": "16195204",
+      "bbox": {
+        "x0": 296,
+        "y0": 349,
+        "x1": 431,
+        "y1": 377
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0030:counterparty",
+      "printed": "Perry, Smith and Turner",
+      "bbox": {
+        "x0": 212,
+        "y0": 436,
+        "x1": 562,
+        "y1": 470
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0030:amount",
+      "printed": "312.58",
+      "bbox": {
+        "x0": 661,
+        "y0": 550,
+        "x1": 756,
+        "y1": 578
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0030:amount_words",
+      "printed": "Three hundred and twelve pounds and fifty-eight pence",
+      "bbox": {
+        "x0": 117,
+        "y0": 701,
+        "x1": 921,
+        "y1": 738
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0030:ledger_ref",
+      "printed": "Sheet 7 / Line 04",
+      "bbox": {
+        "x0": 279,
+        "y0": 806,
+        "x1": 525,
+        "y1": 836
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0030:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 392,
+        "y0": 995,
+        "x1": 666,
+        "y1": 1080
+      }
+    },
+    {
+      "artefact_id": "A:memo-0030:02",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 66,
+        "y0": 718,
+        "x1": 254,
+        "y1": 830
+      }
+    }
+  ],
+  "source_errors": []
+}

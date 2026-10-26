@@ -1,0 +1,112 @@
+{
+  "page_id": "memo-0027",
+  "doc_type": "memo",
+  "image_path": "images/memo-0027.png",
+  "width": 1100,
+  "height": 1400,
+  "severity": 2,
+  "fields": [
+    {
+      "field_id": "M:memo-0027:memo_no",
+      "printed": "008353",
+      "bbox": {
+        "x0": 264,
+        "y0": 255,
+        "x1": 360,
+        "y1": 280
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0027:date",
+      "printed": "27/03/86",
+      "bbox": {
+        "x0": 666,
+        "y0": 257,
+        "x1": 783,
+        "y1": 292
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0027:account_no",
+      "printed": "34192727",
+      "bbox": {
+        "x0": 301,
+        "y0": 343,
+        "x1": 424,
+        "y1": 369
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0027:counterparty",
+      "printed": "Mark Briggs",
+      "bbox": {
+        "x0": 219,
+        "y0": 434,
+        "x1": 356,
+        "y1": 472
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0027:amount",
+      "printed": "330.83",
+      "bbox": {
+        "x0": 667,
+        "y0": 552,
+        "x1": 755,
+        "y1": 580
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0027:amount_words",
+      "printed": "Three hundred and thirty pounds and eighty-three pence",
+      "bbox": {
+        "x0": 117,
+        "y0": 691,
+        "x1": 807,
+        "y1": 741
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0027:ledger_ref",
+      "printed": "Sheet 33 / Line 15",
+      "bbox": {
+        "x0": 273,
+        "y0": 804,
+        "x1": 547,
+        "y1": 844
+      },
+      "occluded_by": [
+        "A:memo-0027:02"
+      ]
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0027:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 407,
+        "y0": 1010,
+        "x1": 637,
+        "y1": 1080
+      }
+    },
+    {
+      "artefact_id": "A:memo-0027:02",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 313,
+        "y0": 762,
+        "x1": 439,
+        "y1": 862
+      }
+    }
+  ],
+  "source_errors": []
+}

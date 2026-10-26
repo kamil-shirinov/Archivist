@@ -1,0 +1,110 @@
+{
+  "page_id": "memo-0009",
+  "doc_type": "memo",
+  "image_path": "images/memo-0009.png",
+  "width": 1100,
+  "height": 1400,
+  "severity": 2,
+  "fields": [
+    {
+      "field_id": "M:memo-0009:memo_no",
+      "printed": "008335",
+      "bbox": {
+        "x0": 253,
+        "y0": 259,
+        "x1": 340,
+        "y1": 292
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0009:date",
+      "printed": "26/01/93",
+      "bbox": {
+        "x0": 659,
+        "y0": 253,
+        "x1": 767,
+        "y1": 288
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0009:account_no",
+      "printed": "17868679",
+      "bbox": {
+        "x0": 289,
+        "y0": 347,
+        "x1": 395,
+        "y1": 381
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0009:counterparty",
+      "printed": "Ricky James",
+      "bbox": {
+        "x0": 212,
+        "y0": 438,
+        "x1": 381,
+        "y1": 477
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0009:amount",
+      "printed": "281.93",
+      "bbox": {
+        "x0": 672,
+        "y0": 545,
+        "x1": 749,
+        "y1": 577
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0009:amount_words",
+      "printed": "Two hundred and eighty-one pounds and ninety-three pence",
+      "bbox": {
+        "x0": 119,
+        "y0": 691,
+        "x1": 951,
+        "y1": 742
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0009:ledger_ref",
+      "printed": "Sheet 38 / Line 16",
+      "bbox": {
+        "x0": 280,
+        "y0": 808,
+        "x1": 524,
+        "y1": 844
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0009:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 474,
+        "y0": 1008,
+        "x1": 685,
+        "y1": 1079
+      }
+    },
+    {
+      "artefact_id": "A:memo-0009:02",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 763,
+        "y0": 551,
+        "x1": 807,
+        "y1": 573
+      }
+    }
+  ],
+  "source_errors": []
+}

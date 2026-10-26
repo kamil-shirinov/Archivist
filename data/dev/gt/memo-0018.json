@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0018",
+  "doc_type": "memo",
+  "image_path": "images/memo-0018.png",
+  "width": 1100,
+  "height": 1400,
+  "severity": 0,
+  "fields": [
+    {
+      "field_id": "M:memo-0018:memo_no",
+      "printed": "008344",
+      "bbox": {
+        "x0": 259,
+        "y0": 259,
+        "x1": 364,
+        "y1": 285
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0018:date",
+      "printed": "04/12/85",
+      "bbox": {
+        "x0": 665,
+        "y0": 253,
+        "x1": 799,
+        "y1": 281
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0018:account_no",
+      "printed": "69675442",
+      "bbox": {
+        "x0": 299,
+        "y0": 346,
+        "x1": 432,
+        "y1": 372
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0018:counterparty",
+      "printed": "Dr Katie Lee",
+      "bbox": {
+        "x0": 220,
+        "y0": 438,
+        "x1": 397,
+        "y1": 465
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0018:amount",
+      "printed": "68.58",
+      "bbox": {
+        "x0": 671,
+        "y0": 555,
+        "x1": 750,
+        "y1": 581
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0018:amount_words",
+      "printed": "Sixty-eight pounds and fifty-eight pence",
+      "bbox": {
+        "x0": 118,
+        "y0": 707,
+        "x1": 731,
+        "y1": 738
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0018:ledger_ref",
+      "printed": "Sheet 31 / Line 08",
+      "bbox": {
+        "x0": 279,
+        "y0": 805,
+        "x1": 540,
+        "y1": 833
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0018:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 320,
+        "y0": 1004,
+        "x1": 532,
+        "y1": 1083
+      }
+    }
+  ],
+  "source_errors": []
+}

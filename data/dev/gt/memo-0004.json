@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0004",
+  "doc_type": "memo",
+  "image_path": "images/memo-0004.png",
+  "width": 1100,
+  "height": 1400,
+  "severity": 0,
+  "fields": [
+    {
+      "field_id": "M:memo-0004:memo_no",
+      "printed": "008330",
+      "bbox": {
+        "x0": 259,
+        "y0": 256,
+        "x1": 363,
+        "y1": 282
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0004:date",
+      "printed": "07/10/92",
+      "bbox": {
+        "x0": 670,
+        "y0": 258,
+        "x1": 804,
+        "y1": 286
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0004:account_no",
+      "printed": "17868679",
+      "bbox": {
+        "x0": 297,
+        "y0": 348,
+        "x1": 431,
+        "y1": 374
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0004:counterparty",
+      "printed": "Bennett, Brown and Shaw",
+      "bbox": {
+        "x0": 219,
+        "y0": 438,
+        "x1": 572,
+        "y1": 468
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0004:amount",
+      "printed": "19.01",
+      "bbox": {
+        "x0": 670,
+        "y0": 556,
+        "x1": 750,
+        "y1": 582
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0004:amount_words",
+      "printed": "Nineteen pounds and one penny",
+      "bbox": {
+        "x0": 116,
+        "y0": 701,
+        "x1": 565,
+        "y1": 732
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0004:ledger_ref",
+      "printed": "Sheet 36 / Line 16",
+      "bbox": {
+        "x0": 276,
+        "y0": 808,
+        "x1": 535,
+        "y1": 836
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0004:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 347,
+        "y0": 1004,
+        "x1": 671,
+        "y1": 1074
+      }
+    }
+  ],
+  "source_errors": []
+}

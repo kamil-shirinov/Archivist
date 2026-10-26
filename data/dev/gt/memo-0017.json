@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0017",
+  "doc_type": "memo",
+  "image_path": "images/memo-0017.png",
+  "width": 1100,
+  "height": 1400,
+  "severity": 1,
+  "fields": [
+    {
+      "field_id": "M:memo-0017:memo_no",
+      "printed": "008343",
+      "bbox": {
+        "x0": 261,
+        "y0": 257,
+        "x1": 357,
+        "y1": 282
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0017:date",
+      "printed": "01/12/85",
+      "bbox": {
+        "x0": 666,
+        "y0": 255,
+        "x1": 777,
+        "y1": 289
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0017:account_no",
+      "printed": "69675442",
+      "bbox": {
+        "x0": 294,
+        "y0": 345,
+        "x1": 422,
+        "y1": 370
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0017:counterparty",
+      "printed": "Allen Inc",
+      "bbox": {
+        "x0": 216,
+        "y0": 433,
+        "x1": 388,
+        "y1": 469
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0017:amount",
+      "printed": "165.62",
+      "bbox": {
+        "x0": 663,
+        "y0": 552,
+        "x1": 750,
+        "y1": 579
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0017:amount_words",
+      "printed": "One hundred and sixty-five pounds and sixty-two pence",
+      "bbox": {
+        "x0": 113,
+        "y0": 694,
+        "x1": 769,
+        "y1": 742
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0017:ledger_ref",
+      "printed": "Sheet 31 / Line 07",
+      "bbox": {
+        "x0": 279,
+        "y0": 806,
+        "x1": 549,
+        "y1": 845
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0017:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 504,
+        "y0": 1007,
+        "x1": 722,
+        "y1": 1081
+      }
+    }
+  ],
+  "source_errors": []
+}

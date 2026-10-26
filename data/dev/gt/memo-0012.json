@@ -1,0 +1,132 @@
+{
+  "page_id": "memo-0012",
+  "doc_type": "memo",
+  "image_path": "images/memo-0012.png",
+  "width": 1100,
+  "height": 1400,
+  "severity": 3,
+  "fields": [
+    {
+      "field_id": "M:memo-0012:memo_no",
+      "printed": "008338",
+      "bbox": {
+        "x0": 262,
+        "y0": 260,
+        "x1": 369,
+        "y1": 281
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0012:date",
+      "printed": "14/08/85",
+      "bbox": {
+        "x0": 668,
+        "y0": 256,
+        "x1": 809,
+        "y1": 285
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0012:account_no",
+      "printed": "69675442",
+      "bbox": {
+        "x0": 298,
+        "y0": 350,
+        "x1": 439,
+        "y1": 371
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0012:counterparty",
+      "printed": "Kelly, Williams and Burke",
+      "bbox": {
+        "x0": 219,
+        "y0": 436,
+        "x1": 649,
+        "y1": 466
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0012:amount",
+      "printed": "75.67",
+      "bbox": {
+        "x0": 666,
+        "y0": 556,
+        "x1": 756,
+        "y1": 577
+      },
+      "occluded_by": [
+        "A:memo-0012:02"
+      ]
+    },
+    {
+      "field_id": "M:memo-0012:amount_words",
+      "printed": "Seventy-five pounds and sixty-seven pence",
+      "bbox": {
+        "x0": 118,
+        "y0": 703,
+        "x1": 820,
+        "y1": 733
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0012:ledger_ref",
+      "printed": "Sheet 29 / Line 06",
+      "bbox": {
+        "x0": 275,
+        "y0": 809,
+        "x1": 586,
+        "y1": 839
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0012:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 486,
+        "y0": 998,
+        "x1": 683,
+        "y1": 1076
+      }
+    },
+    {
+      "artefact_id": "A:memo-0012:02",
+      "kind": "stain",
+      "bbox": {
+        "x0": 628,
+        "y0": 499,
+        "x1": 753,
+        "y1": 625
+      }
+    },
+    {
+      "artefact_id": "A:memo-0012:03",
+      "kind": "stain",
+      "bbox": {
+        "x0": 237,
+        "y0": 1149,
+        "x1": 406,
+        "y1": 1317
+      }
+    },
+    {
+      "artefact_id": "A:memo-0012:04",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 770,
+        "y0": 558,
+        "x1": 804,
+        "y1": 582
+      }
+    }
+  ],
+  "source_errors": []
+}

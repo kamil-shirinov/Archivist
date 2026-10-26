@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0011",
+  "doc_type": "memo",
+  "image_path": "images/memo-0011.png",
+  "width": 1100,
+  "height": 1400,
+  "severity": 0,
+  "fields": [
+    {
+      "field_id": "M:memo-0011:memo_no",
+      "printed": "008337",
+      "bbox": {
+        "x0": 259,
+        "y0": 255,
+        "x1": 351,
+        "y1": 279
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0011:date",
+      "printed": "27/07/85",
+      "bbox": {
+        "x0": 664,
+        "y0": 254,
+        "x1": 780,
+        "y1": 287
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0011:account_no",
+      "printed": "69675442",
+      "bbox": {
+        "x0": 294,
+        "y0": 342,
+        "x1": 421,
+        "y1": 366
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0011:counterparty",
+      "printed": "Mrs Sharon Wong",
+      "bbox": {
+        "x0": 215,
+        "y0": 438,
+        "x1": 390,
+        "y1": 475
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0011:amount",
+      "printed": "346.30",
+      "bbox": {
+        "x0": 665,
+        "y0": 552,
+        "x1": 756,
+        "y1": 578
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0011:amount_words",
+      "printed": "Three hundred and forty-six pounds and thirty pence",
+      "bbox": {
+        "x0": 117,
+        "y0": 697,
+        "x1": 763,
+        "y1": 743
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0011:ledger_ref",
+      "printed": "Sheet 29 / Line 01",
+      "bbox": {
+        "x0": 274,
+        "y0": 805,
+        "x1": 545,
+        "y1": 843
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0011:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 412,
+        "y0": 999,
+        "x1": 715,
+        "y1": 1074
+      }
+    }
+  ],
+  "source_errors": []
+}

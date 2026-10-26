@@ -1,0 +1,132 @@
+{
+  "page_id": "memo-0020",
+  "doc_type": "memo",
+  "image_path": "images/memo-0020.png",
+  "width": 1100,
+  "height": 1400,
+  "severity": 3,
+  "fields": [
+    {
+      "field_id": "M:memo-0020:memo_no",
+      "printed": "008346",
+      "bbox": {
+        "x0": 264,
+        "y0": 252,
+        "x1": 360,
+        "y1": 277
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0020:date",
+      "printed": "25/11/85",
+      "bbox": {
+        "x0": 669,
+        "y0": 254,
+        "x1": 784,
+        "y1": 288
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0020:account_no",
+      "printed": "34192727",
+      "bbox": {
+        "x0": 293,
+        "y0": 348,
+        "x1": 415,
+        "y1": 373
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0020:counterparty",
+      "printed": "Wrenfield Assurance Society",
+      "bbox": {
+        "x0": 216,
+        "y0": 434,
+        "x1": 492,
+        "y1": 472
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0020:amount",
+      "printed": "18.22",
+      "bbox": {
+        "x0": 685,
+        "y0": 551,
+        "x1": 755,
+        "y1": 578
+      },
+      "occluded_by": [
+        "A:memo-0020:02"
+      ]
+    },
+    {
+      "field_id": "M:memo-0020:amount_words",
+      "printed": "Eighteen pounds and twenty-two pence",
+      "bbox": {
+        "x0": 113,
+        "y0": 693,
+        "x1": 583,
+        "y1": 740
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0020:ledger_ref",
+      "printed": "Sheet 31 / Line 10",
+      "bbox": {
+        "x0": 275,
+        "y0": 805,
+        "x1": 541,
+        "y1": 844
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0020:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 337,
+        "y0": 1000,
+        "x1": 527,
+        "y1": 1080
+      }
+    },
+    {
+      "artefact_id": "A:memo-0020:02",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 639,
+        "y0": 516,
+        "x1": 818,
+        "y1": 623
+      }
+    },
+    {
+      "artefact_id": "A:memo-0020:03",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 768,
+        "y0": 556,
+        "x1": 803,
+        "y1": 578
+      }
+    },
+    {
+      "artefact_id": "A:memo-0020:04",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 875,
+        "y0": 566,
+        "x1": 1040,
+        "y1": 673
+      }
+    }
+  ],
+  "source_errors": []
+}

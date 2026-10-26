@@ -1,0 +1,120 @@
+{
+  "page_id": "memo-0021",
+  "doc_type": "memo",
+  "image_path": "images/memo-0021.png",
+  "width": 1100,
+  "height": 1400,
+  "severity": 2,
+  "fields": [
+    {
+      "field_id": "M:memo-0021:memo_no",
+      "printed": "008347",
+      "bbox": {
+        "x0": 264,
+        "y0": 262,
+        "x1": 372,
+        "y1": 284
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0021:date",
+      "printed": "10/12/85",
+      "bbox": {
+        "x0": 670,
+        "y0": 260,
+        "x1": 812,
+        "y1": 290
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0021:account_no",
+      "printed": "34192727",
+      "bbox": {
+        "x0": 296,
+        "y0": 349,
+        "x1": 437,
+        "y1": 371
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0021:counterparty",
+      "printed": "Wrenfield Assurance Society",
+      "bbox": {
+        "x0": 216,
+        "y0": 437,
+        "x1": 681,
+        "y1": 468
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0021:amount",
+      "printed": "50.29",
+      "bbox": {
+        "x0": 661,
+        "y0": 559,
+        "x1": 751,
+        "y1": 580
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0021:amount_words",
+      "printed": "Fifty pounds and twenty-nine pence",
+      "bbox": {
+        "x0": 114,
+        "y0": 704,
+        "x1": 697,
+        "y1": 736
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0021:ledger_ref",
+      "printed": "Sheet 31 / Line 13",
+      "bbox": {
+        "x0": 279,
+        "y0": 807,
+        "x1": 590,
+        "y1": 838
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0021:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 491,
+        "y0": 1009,
+        "x1": 712,
+        "y1": 1086
+      }
+    },
+    {
+      "artefact_id": "A:memo-0021:02",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 757,
+        "y0": 558,
+        "x1": 786,
+        "y1": 583
+      }
+    },
+    {
+      "artefact_id": "A:memo-0021:03",
+      "kind": "stain",
+      "bbox": {
+        "x0": 209,
+        "y0": 1079,
+        "x1": 421,
+        "y1": 1277
+      }
+    }
+  ],
+  "source_errors": []
+}

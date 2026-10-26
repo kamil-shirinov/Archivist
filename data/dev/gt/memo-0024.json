@@ -1,0 +1,121 @@
+{
+  "page_id": "memo-0024",
+  "doc_type": "memo",
+  "image_path": "images/memo-0024.png",
+  "width": 1100,
+  "height": 1400,
+  "severity": 1,
+  "fields": [
+    {
+      "field_id": "M:memo-0024:memo_no",
+      "printed": "008350",
+      "bbox": {
+        "x0": 265,
+        "y0": 254,
+        "x1": 352,
+        "y1": 287
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0024:date",
+      "printed": "29/01/86",
+      "bbox": {
+        "x0": 672,
+        "y0": 254,
+        "x1": 780,
+        "y1": 288
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0024:account_no",
+      "printed": "34192727",
+      "bbox": {
+        "x0": 296,
+        "y0": 341,
+        "x1": 414,
+        "y1": 373
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0024:counterparty",
+      "printed": "Wrenfield Assurance Society",
+      "bbox": {
+        "x0": 218,
+        "y0": 431,
+        "x1": 614,
+        "y1": 472
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0024:amount",
+      "printed": "54.73",
+      "bbox": {
+        "x0": 681,
+        "y0": 552,
+        "x1": 754,
+        "y1": 584
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0024:amount_words",
+      "printed": "Fifty-seven pounds and forty-three pence",
+      "bbox": {
+        "x0": 118,
+        "y0": 693,
+        "x1": 709,
+        "y1": 735
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0024:ledger_ref",
+      "printed": "Sheet 32 / Line 10",
+      "bbox": {
+        "x0": 277,
+        "y0": 802,
+        "x1": 525,
+        "y1": 835
+      },
+      "occluded_by": [
+        "A:memo-0024:02"
+      ]
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0024:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 404,
+        "y0": 1002,
+        "x1": 739,
+        "y1": 1083
+      }
+    },
+    {
+      "artefact_id": "A:memo-0024:02",
+      "kind": "stain",
+      "bbox": {
+        "x0": 432,
+        "y0": 770,
+        "x1": 568,
+        "y1": 912
+      }
+    }
+  ],
+  "source_errors": [
+    {
+      "kind": "words_figures_mismatch",
+      "field_ids": [
+        "M:memo-0024:amount",
+        "M:memo-0024:amount_words"
+      ],
+      "note": "figures 54.73 transpose the 57.43 stated in words"
+    }
+  ]
+}

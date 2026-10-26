@@ -1,0 +1,136 @@
+{
+  "page_id": "memo-0013",
+  "doc_type": "memo",
+  "image_path": "images/memo-0013.png",
+  "width": 1100,
+  "height": 1400,
+  "severity": 3,
+  "fields": [
+    {
+      "field_id": "M:memo-0013:memo_no",
+      "printed": "008339",
+      "bbox": {
+        "x0": 248,
+        "y0": 260,
+        "x1": 333,
+        "y1": 293
+      },
+      "occluded_by": [
+        "A:memo-0013:04"
+      ]
+    },
+    {
+      "field_id": "M:memo-0013:date",
+      "printed": "14/09/85",
+      "bbox": {
+        "x0": 654,
+        "y0": 247,
+        "x1": 769,
+        "y1": 282
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0013:account_no",
+      "printed": "69675442",
+      "bbox": {
+        "x0": 286,
+        "y0": 345,
+        "x1": 413,
+        "y1": 382
+      },
+      "occluded_by": [
+        "A:memo-0013:04"
+      ]
+    },
+    {
+      "field_id": "M:memo-0013:counterparty",
+      "printed": "Thorpe-Murray",
+      "bbox": {
+        "x0": 210,
+        "y0": 435,
+        "x1": 425,
+        "y1": 478
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0013:amount",
+      "printed": "60.68",
+      "bbox": {
+        "x0": 686,
+        "y0": 540,
+        "x1": 751,
+        "y1": 574
+      },
+      "occluded_by": [
+        "A:memo-0013:02"
+      ]
+    },
+    {
+      "field_id": "M:memo-0013:amount_words",
+      "printed": "Sixty pounds and sixty-eight pence",
+      "bbox": {
+        "x0": 120,
+        "y0": 699,
+        "x1": 611,
+        "y1": 752
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0013:ledger_ref",
+      "printed": "Sheet 29 / Line 13",
+      "bbox": {
+        "x0": 282,
+        "y0": 805,
+        "x1": 530,
+        "y1": 844
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0013:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 471,
+        "y0": 1003,
+        "x1": 728,
+        "y1": 1083
+      }
+    },
+    {
+      "artefact_id": "A:memo-0013:02",
+      "kind": "stain",
+      "bbox": {
+        "x0": 645,
+        "y0": 483,
+        "x1": 779,
+        "y1": 619
+      }
+    },
+    {
+      "artefact_id": "A:memo-0013:03",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 755,
+        "y0": 541,
+        "x1": 783,
+        "y1": 564
+      }
+    },
+    {
+      "artefact_id": "A:memo-0013:04",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 242,
+        "y0": 261,
+        "x1": 432,
+        "y1": 391
+      }
+    }
+  ],
+  "source_errors": []
+}

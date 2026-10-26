@@ -1,0 +1,129 @@
+{
+  "page_id": "memo-0015",
+  "doc_type": "memo",
+  "image_path": "images/memo-0015.png",
+  "width": 1100,
+  "height": 1400,
+  "severity": 2,
+  "fields": [
+    {
+      "field_id": "M:memo-0015:memo_no",
+      "printed": "008341",
+      "bbox": {
+        "x0": 269,
+        "y0": 251,
+        "x1": 354,
+        "y1": 283
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0015:date",
+      "printed": "11/10/85",
+      "bbox": {
+        "x0": 675,
+        "y0": 256,
+        "x1": 773,
+        "y1": 289
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0015:account_no",
+      "printed": "69675442",
+      "bbox": {
+        "x0": 299,
+        "y0": 340,
+        "x1": 425,
+        "y1": 375
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0015:counterparty",
+      "printed": "Wrenfield Assurance Society",
+      "bbox": {
+        "x0": 221,
+        "y0": 427,
+        "x1": 617,
+        "y1": 471
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0015:amount",
+      "printed": "58.16",
+      "bbox": {
+        "x0": 694,
+        "y0": 550,
+        "x1": 755,
+        "y1": 584
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0015:amount_words",
+      "printed": "Fifty-eight pounds and sixteen pence",
+      "bbox": {
+        "x0": 116,
+        "y0": 695,
+        "x1": 635,
+        "y1": 741
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0015:ledger_ref",
+      "printed": "Sheet 30 / Line 06",
+      "bbox": {
+        "x0": 276,
+        "y0": 801,
+        "x1": 526,
+        "y1": 837
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0015:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 375,
+        "y0": 1003,
+        "x1": 611,
+        "y1": 1081
+      }
+    },
+    {
+      "artefact_id": "A:memo-0015:02",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 586,
+        "y0": 725,
+        "x1": 767,
+        "y1": 852
+      }
+    },
+    {
+      "artefact_id": "A:memo-0015:03",
+      "kind": "stain",
+      "bbox": {
+        "x0": 238,
+        "y0": 1121,
+        "x1": 428,
+        "y1": 1296
+      }
+    }
+  ],
+  "source_errors": [
+    {
+      "kind": "memo_ledger_mismatch",
+      "field_ids": [
+        "M:memo-0015:amount",
+        "L:card-02-2:06:debit"
+      ],
+      "note": "memo states 58.16; ledger line shows 18.16"
+    }
+  ]
+}

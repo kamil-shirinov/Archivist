@@ -1,0 +1,110 @@
+{
+  "page_id": "memo-0033",
+  "doc_type": "memo",
+  "image_path": "images/memo-0033.png",
+  "width": 1100,
+  "height": 1400,
+  "severity": 2,
+  "fields": [
+    {
+      "field_id": "M:memo-0033:memo_no",
+      "printed": "008359",
+      "bbox": {
+        "x0": 262,
+        "y0": 256,
+        "x1": 349,
+        "y1": 288
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0033:date",
+      "printed": "29/01/81",
+      "bbox": {
+        "x0": 661,
+        "y0": 252,
+        "x1": 765,
+        "y1": 283
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0033:account_no",
+      "printed": "16195204",
+      "bbox": {
+        "x0": 292,
+        "y0": 342,
+        "x1": 404,
+        "y1": 376
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0033:counterparty",
+      "printed": "Mrs Janet Talbot",
+      "bbox": {
+        "x0": 214,
+        "y0": 433,
+        "x1": 454,
+        "y1": 466
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0033:amount",
+      "printed": "70.49",
+      "bbox": {
+        "x0": 682,
+        "y0": 551,
+        "x1": 756,
+        "y1": 582
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0033:amount_words",
+      "printed": "Seventy pounds and forty-nine pence",
+      "bbox": {
+        "x0": 114,
+        "y0": 694,
+        "x1": 634,
+        "y1": 736
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0033:ledger_ref",
+      "printed": "Sheet 8 / Line 04",
+      "bbox": {
+        "x0": 274,
+        "y0": 802,
+        "x1": 518,
+        "y1": 835
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0033:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 311,
+        "y0": 1002,
+        "x1": 625,
+        "y1": 1082
+      }
+    },
+    {
+      "artefact_id": "A:memo-0033:02",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 634,
+        "y0": 555,
+        "x1": 673,
+        "y1": 577
+      }
+    }
+  ],
+  "source_errors": []
+}

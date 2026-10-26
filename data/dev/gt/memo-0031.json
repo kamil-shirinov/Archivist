@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0031",
+  "doc_type": "memo",
+  "image_path": "images/memo-0031.png",
+  "width": 1100,
+  "height": 1400,
+  "severity": 0,
+  "fields": [
+    {
+      "field_id": "M:memo-0031:memo_no",
+      "printed": "008357",
+      "bbox": {
+        "x0": 265,
+        "y0": 252,
+        "x1": 351,
+        "y1": 283
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0031:date",
+      "printed": "25/12/80",
+      "bbox": {
+        "x0": 665,
+        "y0": 253,
+        "x1": 777,
+        "y1": 284
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0031:account_no",
+      "printed": "16195204",
+      "bbox": {
+        "x0": 297,
+        "y0": 348,
+        "x1": 407,
+        "y1": 380
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0031:counterparty",
+      "printed": "Wilson Inc",
+      "bbox": {
+        "x0": 218,
+        "y0": 434,
+        "x1": 364,
+        "y1": 464
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0031:amount",
+      "printed": "406.81",
+      "bbox": {
+        "x0": 678,
+        "y0": 549,
+        "x1": 756,
+        "y1": 581
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0031:amount_words",
+      "printed": "Four hundred and six pounds and eighty-one pence",
+      "bbox": {
+        "x0": 115,
+        "y0": 696,
+        "x1": 808,
+        "y1": 734
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0031:ledger_ref",
+      "printed": "Sheet 7 / Line 11",
+      "bbox": {
+        "x0": 277,
+        "y0": 803,
+        "x1": 504,
+        "y1": 834
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0031:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 328,
+        "y0": 1009,
+        "x1": 562,
+        "y1": 1074
+      }
+    }
+  ],
+  "source_errors": []
+}

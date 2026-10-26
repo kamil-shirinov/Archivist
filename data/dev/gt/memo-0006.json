@@ -1,0 +1,110 @@
+{
+  "page_id": "memo-0006",
+  "doc_type": "memo",
+  "image_path": "images/memo-0006.png",
+  "width": 1100,
+  "height": 1400,
+  "severity": 2,
+  "fields": [
+    {
+      "field_id": "M:memo-0006:memo_no",
+      "printed": "008332",
+      "bbox": {
+        "x0": 260,
+        "y0": 254,
+        "x1": 346,
+        "y1": 285
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0006:date",
+      "printed": "29/10/92",
+      "bbox": {
+        "x0": 664,
+        "y0": 250,
+        "x1": 777,
+        "y1": 281
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0006:account_no",
+      "printed": "17868679",
+      "bbox": {
+        "x0": 295,
+        "y0": 347,
+        "x1": 401,
+        "y1": 381
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0006:counterparty",
+      "printed": "Cooke, Holmes and Spencer",
+      "bbox": {
+        "x0": 217,
+        "y0": 436,
+        "x1": 585,
+        "y1": 475
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0006:amount",
+      "printed": "81.02",
+      "bbox": {
+        "x0": 687,
+        "y0": 547,
+        "x1": 751,
+        "y1": 577
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0006:amount_words",
+      "printed": "Eighty-one pounds and two pence",
+      "bbox": {
+        "x0": 116,
+        "y0": 695,
+        "x1": 583,
+        "y1": 737
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0006:ledger_ref",
+      "printed": "Sheet 37 / Line 02",
+      "bbox": {
+        "x0": 280,
+        "y0": 804,
+        "x1": 534,
+        "y1": 837
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0006:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 381,
+        "y0": 1007,
+        "x1": 668,
+        "y1": 1073
+      }
+    },
+    {
+      "artefact_id": "A:memo-0006:02",
+      "kind": "stain",
+      "bbox": {
+        "x0": 305,
+        "y0": 896,
+        "x1": 504,
+        "y1": 1078
+      }
+    }
+  ],
+  "source_errors": []
+}

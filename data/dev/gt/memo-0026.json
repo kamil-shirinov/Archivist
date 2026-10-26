@@ -1,0 +1,142 @@
+{
+  "page_id": "memo-0026",
+  "doc_type": "memo",
+  "image_path": "images/memo-0026.png",
+  "width": 1100,
+  "height": 1400,
+  "severity": 3,
+  "fields": [
+    {
+      "field_id": "M:memo-0026:memo_no",
+      "printed": "008352",
+      "bbox": {
+        "x0": 245,
+        "y0": 264,
+        "x1": 344,
+        "y1": 292
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0026:date",
+      "printed": "21/03/86",
+      "bbox": {
+        "x0": 652,
+        "y0": 247,
+        "x1": 768,
+        "y1": 285
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0026:account_no",
+      "printed": "34192727",
+      "bbox": {
+        "x0": 285,
+        "y0": 352,
+        "x1": 408,
+        "y1": 381
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0026:counterparty",
+      "printed": "Eastmoor Electricity Board",
+      "bbox": {
+        "x0": 211,
+        "y0": 436,
+        "x1": 495,
+        "y1": 484
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0026:amount",
+      "printed": "30.96",
+      "bbox": {
+        "x0": 677,
+        "y0": 546,
+        "x1": 751,
+        "y1": 575
+      },
+      "occluded_by": [
+        "A:memo-0026:02"
+      ]
+    },
+    {
+      "field_id": "M:memo-0026:amount_words",
+      "printed": "Thirty pounds and ninety-six pence",
+      "bbox": {
+        "x0": 118,
+        "y0": 699,
+        "x1": 563,
+        "y1": 761
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0026:ledger_ref",
+      "printed": "Sheet 33 / Line 11",
+      "bbox": {
+        "x0": 278,
+        "y0": 808,
+        "x1": 546,
+        "y1": 856
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0026:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 469,
+        "y0": 1005,
+        "x1": 742,
+        "y1": 1085
+      }
+    },
+    {
+      "artefact_id": "A:memo-0026:02",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 653,
+        "y0": 484,
+        "x1": 805,
+        "y1": 636
+      }
+    },
+    {
+      "artefact_id": "A:memo-0026:03",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 753,
+        "y0": 417,
+        "x1": 906,
+        "y1": 569
+      }
+    },
+    {
+      "artefact_id": "A:memo-0026:04",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 639,
+        "y0": 554,
+        "x1": 666,
+        "y1": 576
+      }
+    },
+    {
+      "artefact_id": "A:memo-0026:05",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 765,
+        "y0": 544,
+        "x1": 799,
+        "y1": 575
+      }
+    }
+  ],
+  "source_errors": []
+}

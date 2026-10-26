@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0002",
+  "doc_type": "memo",
+  "image_path": "images/memo-0002.png",
+  "width": 1100,
+  "height": 1400,
+  "severity": 0,
+  "fields": [
+    {
+      "field_id": "M:memo-0002:memo_no",
+      "printed": "008328",
+      "bbox": {
+        "x0": 264,
+        "y0": 257,
+        "x1": 360,
+        "y1": 281
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0002:date",
+      "printed": "08/09/92",
+      "bbox": {
+        "x0": 669,
+        "y0": 255,
+        "x1": 782,
+        "y1": 288
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0002:account_no",
+      "printed": "17868679",
+      "bbox": {
+        "x0": 299,
+        "y0": 344,
+        "x1": 407,
+        "y1": 368
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0002:counterparty",
+      "printed": "Morris, Hughes and Campbell",
+      "bbox": {
+        "x0": 215,
+        "y0": 436,
+        "x1": 519,
+        "y1": 473
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0002:amount",
+      "printed": "369.69",
+      "bbox": {
+        "x0": 669,
+        "y0": 552,
+        "x1": 755,
+        "y1": 578
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0002:amount_words",
+      "printed": "Three hundred and sixty-nine pounds and sixty-nine pence",
+      "bbox": {
+        "x0": 114,
+        "y0": 694,
+        "x1": 835,
+        "y1": 740
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0002:ledger_ref",
+      "printed": "Sheet 36 / Line 07",
+      "bbox": {
+        "x0": 277,
+        "y0": 804,
+        "x1": 551,
+        "y1": 842
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0002:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 474,
+        "y0": 1004,
+        "x1": 709,
+        "y1": 1075
+      }
+    }
+  ],
+  "source_errors": []
+}

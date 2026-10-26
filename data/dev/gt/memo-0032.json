@@ -1,0 +1,112 @@
+{
+  "page_id": "memo-0032",
+  "doc_type": "memo",
+  "image_path": "images/memo-0032.png",
+  "width": 1100,
+  "height": 1400,
+  "severity": 1,
+  "fields": [
+    {
+      "field_id": "M:memo-0032:memo_no",
+      "printed": "008358",
+      "bbox": {
+        "x0": 263,
+        "y0": 261,
+        "x1": 370,
+        "y1": 282
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0032:date",
+      "printed": "30/12/80",
+      "bbox": {
+        "x0": 668,
+        "y0": 254,
+        "x1": 809,
+        "y1": 283
+      },
+      "occluded_by": [
+        "A:memo-0032:02"
+      ]
+    },
+    {
+      "field_id": "M:memo-0032:account_no",
+      "printed": "16195204",
+      "bbox": {
+        "x0": 297,
+        "y0": 351,
+        "x1": 438,
+        "y1": 372
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0032:counterparty",
+      "printed": "Lawson-Randall",
+      "bbox": {
+        "x0": 219,
+        "y0": 440,
+        "x1": 462,
+        "y1": 463
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0032:amount",
+      "printed": "94.88",
+      "bbox": {
+        "x0": 664,
+        "y0": 556,
+        "x1": 754,
+        "y1": 577
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0032:amount_words",
+      "printed": "Ninety-four pounds and eighty-eight pence",
+      "bbox": {
+        "x0": 114,
+        "y0": 705,
+        "x1": 816,
+        "y1": 736
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0032:ledger_ref",
+      "printed": "Sheet 7 / Line 13",
+      "bbox": {
+        "x0": 277,
+        "y0": 805,
+        "x1": 571,
+        "y1": 835
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0032:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 390,
+        "y0": 1005,
+        "x1": 696,
+        "y1": 1076
+      }
+    },
+    {
+      "artefact_id": "A:memo-0032:02",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 678,
+        "y0": 245,
+        "x1": 827,
+        "y1": 393
+      }
+    }
+  ],
+  "source_errors": []
+}

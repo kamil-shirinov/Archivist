@@ -1,0 +1,153 @@
+{
+  "page_id": "memo-0025",
+  "doc_type": "memo",
+  "image_path": "images/memo-0025.png",
+  "width": 1100,
+  "height": 1400,
+  "severity": 3,
+  "fields": [
+    {
+      "field_id": "M:memo-0025:memo_no",
+      "printed": "008351",
+      "bbox": {
+        "x0": 260,
+        "y0": 259,
+        "x1": 367,
+        "y1": 281
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0025:date",
+      "printed": "04/03/86",
+      "bbox": {
+        "x0": 667,
+        "y0": 257,
+        "x1": 808,
+        "y1": 287
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0025:account_no",
+      "printed": "34192727",
+      "bbox": {
+        "x0": 298,
+        "y0": 354,
+        "x1": 439,
+        "y1": 376
+      },
+      "occluded_by": [
+        "A:memo-0025:05"
+      ]
+    },
+    {
+      "field_id": "M:memo-0025:counterparty",
+      "printed": "Jayne Wright",
+      "bbox": {
+        "x0": 214,
+        "y0": 440,
+        "x1": 423,
+        "y1": 470
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0025:amount",
+      "printed": "414.13",
+      "bbox": {
+        "x0": 649,
+        "y0": 557,
+        "x1": 756,
+        "y1": 579
+      },
+      "occluded_by": [
+        "A:memo-0025:02"
+      ]
+    },
+    {
+      "field_id": "M:memo-0025:amount_words",
+      "printed": "Four hundred and forty-one pounds and thirteen pence",
+      "bbox": {
+        "x0": 119,
+        "y0": 700,
+        "x1": 956,
+        "y1": 734
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0025:ledger_ref",
+      "printed": "Sheet 33 / Line 05",
+      "bbox": {
+        "x0": 279,
+        "y0": 809,
+        "x1": 590,
+        "y1": 840
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0025:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 345,
+        "y0": 1005,
+        "x1": 677,
+        "y1": 1082
+      }
+    },
+    {
+      "artefact_id": "A:memo-0025:02",
+      "kind": "stain",
+      "bbox": {
+        "x0": 638,
+        "y0": 507,
+        "x1": 757,
+        "y1": 619
+      }
+    },
+    {
+      "artefact_id": "A:memo-0025:03",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 495,
+        "y0": 454,
+        "x1": 644,
+        "y1": 603
+      }
+    },
+    {
+      "artefact_id": "A:memo-0025:04",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 471,
+        "y0": 1189,
+        "x1": 620,
+        "y1": 1338
+      }
+    },
+    {
+      "artefact_id": "A:memo-0025:05",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 203,
+        "y0": 333,
+        "x1": 385,
+        "y1": 433
+      }
+    }
+  ],
+  "source_errors": [
+    {
+      "kind": "words_figures_mismatch",
+      "field_ids": [
+        "M:memo-0025:amount",
+        "M:memo-0025:amount_words"
+      ],
+      "note": "figures 414.13 transpose the 441.13 stated in words"
+    }
+  ]
+}

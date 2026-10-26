@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0019",
+  "doc_type": "memo",
+  "image_path": "images/memo-0019.png",
+  "width": 1100,
+  "height": 1400,
+  "severity": 0,
+  "fields": [
+    {
+      "field_id": "M:memo-0019:memo_no",
+      "printed": "008345",
+      "bbox": {
+        "x0": 265,
+        "y0": 260,
+        "x1": 371,
+        "y1": 280
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0019:date",
+      "printed": "16/12/85",
+      "bbox": {
+        "x0": 667,
+        "y0": 258,
+        "x1": 807,
+        "y1": 286
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0019:account_no",
+      "printed": "69675442",
+      "bbox": {
+        "x0": 295,
+        "y0": 349,
+        "x1": 435,
+        "y1": 369
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0019:counterparty",
+      "printed": "Holmes PLC",
+      "bbox": {
+        "x0": 220,
+        "y0": 438,
+        "x1": 394,
+        "y1": 460
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0019:amount",
+      "printed": "96.59",
+      "bbox": {
+        "x0": 663,
+        "y0": 557,
+        "x1": 752,
+        "y1": 577
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0019:amount_words",
+      "printed": "Ninety-six pounds and fifty-nine pence",
+      "bbox": {
+        "x0": 117,
+        "y0": 703,
+        "x1": 767,
+        "y1": 731
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0019:ledger_ref",
+      "printed": "Sheet 31 / Line 14",
+      "bbox": {
+        "x0": 275,
+        "y0": 805,
+        "x1": 585,
+        "y1": 833
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0019:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 355,
+        "y0": 1005,
+        "x1": 554,
+        "y1": 1082
+      }
+    }
+  ],
+  "source_errors": []
+}

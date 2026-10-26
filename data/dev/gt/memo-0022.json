@@ -1,0 +1,109 @@
+{
+  "page_id": "memo-0022",
+  "doc_type": "memo",
+  "image_path": "images/memo-0022.png",
+  "width": 1100,
+  "height": 1400,
+  "severity": 0,
+  "fields": [
+    {
+      "field_id": "M:memo-0022:memo_no",
+      "printed": "008348",
+      "bbox": {
+        "x0": 261,
+        "y0": 253,
+        "x1": 350,
+        "y1": 283
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0022:date",
+      "printed": "02/01/86",
+      "bbox": {
+        "x0": 666,
+        "y0": 255,
+        "x1": 773,
+        "y1": 287
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0022:account_no",
+      "printed": "34192727",
+      "bbox": {
+        "x0": 297,
+        "y0": 345,
+        "x1": 414,
+        "y1": 375
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0022:counterparty",
+      "printed": "Eastmoor Electricity Board",
+      "bbox": {
+        "x0": 219,
+        "y0": 437,
+        "x1": 599,
+        "y1": 475
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0022:amount",
+      "printed": "66.48",
+      "bbox": {
+        "x0": 682,
+        "y0": 549,
+        "x1": 750,
+        "y1": 581
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0022:amount_words",
+      "printed": "Sixty-six pounds and forty-eight pence",
+      "bbox": {
+        "x0": 114,
+        "y0": 697,
+        "x1": 663,
+        "y1": 735
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0022:ledger_ref",
+      "printed": "Sheet 32 / Line 02",
+      "bbox": {
+        "x0": 277,
+        "y0": 808,
+        "x1": 532,
+        "y1": 839
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0022:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 372,
+        "y0": 1012,
+        "x1": 665,
+        "y1": 1080
+      }
+    }
+  ],
+  "source_errors": [
+    {
+      "kind": "memo_ledger_mismatch",
+      "field_ids": [
+        "M:memo-0022:amount",
+        "L:card-03-2:02:debit"
+      ],
+      "note": "memo states 66.48; ledger line shows 65.48"
+    }
+  ]
+}

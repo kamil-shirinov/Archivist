@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0007",
+  "doc_type": "memo",
+  "image_path": "images/memo-0007.png",
+  "width": 1100,
+  "height": 1400,
+  "severity": 0,
+  "fields": [
+    {
+      "field_id": "M:memo-0007:memo_no",
+      "printed": "008333",
+      "bbox": {
+        "x0": 263,
+        "y0": 258,
+        "x1": 366,
+        "y1": 284
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0007:date",
+      "printed": "01/12/92",
+      "bbox": {
+        "x0": 670,
+        "y0": 258,
+        "x1": 803,
+        "y1": 286
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0007:account_no",
+      "printed": "17868679",
+      "bbox": {
+        "x0": 296,
+        "y0": 350,
+        "x1": 430,
+        "y1": 376
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0007:counterparty",
+      "printed": "Williams-Johnston",
+      "bbox": {
+        "x0": 216,
+        "y0": 441,
+        "x1": 497,
+        "y1": 467
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0007:amount",
+      "printed": "382.39",
+      "bbox": {
+        "x0": 655,
+        "y0": 553,
+        "x1": 750,
+        "y1": 579
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0007:amount_words",
+      "printed": "Three hundred and eighty-two pounds and thirty-nine pence",
+      "bbox": {
+        "x0": 115,
+        "y0": 707,
+        "x1": 969,
+        "y1": 738
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0007:ledger_ref",
+      "printed": "Sheet 37 / Line 13",
+      "bbox": {
+        "x0": 278,
+        "y0": 804,
+        "x1": 537,
+        "y1": 832
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0007:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 324,
+        "y0": 1004,
+        "x1": 576,
+        "y1": 1080
+      }
+    }
+  ],
+  "source_errors": []
+}
