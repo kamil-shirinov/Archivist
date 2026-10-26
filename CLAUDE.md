@@ -8,6 +8,7 @@ Turns scanned financial archives into a verified database: every value cited to 
 - Assets only with clear rights: OFL/Apache fonts with their licence files, procedural textures, invented names.
 - Every model call goes through archivist.models (registry → cache → budget → backend). No HTTP calls anywhere else.
 - archivist.pipeline must never import archivist.synth (keeps ground truth out of predictions).
+- The pipeline reads only data/<split>/images/; only archivist.eval may read data/<split>/gt/.
 - The UI never calls a model; it only renders exported run bundles.
 - Tests never touch the network. One task per session; never edit files the task doesn't name.
 - Finish every task by committing ("Pn: …") and pushing, only after its Check passes and pre-commit is clean. Never use --no-verify, never force-push, never rewrite history.
@@ -31,3 +32,4 @@ uv run pytest -q
 - [x] P4 renderer
 - [x] P4b realism fixes
 - [x] P5 scan degradation and artefacts
+- [x] P6 dataset builder and dev set

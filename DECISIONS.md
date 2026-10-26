@@ -14,3 +14,4 @@ D12 The UI is a static app over a run bundle exported by the pipeline; the brows
 D13 No public live mode — an upload box invites documents outside our one family; live runs are shown in the video and documented for local use.
 D14 Only synthetic or public-domain pages are ever sent to a model — free-credit traffic may be used by Meta for product improvement.
 D15 Rubric weights (kickoff): Impact 30, Meta tooling 25, Demo 25, Technical depth 20 — optimise in that order; rigour exists to make the impact claims credible.
+D16 Datasets keep images and ground truth in separate folders, with a hashed manifest — the pipeline can't see answers by accident, and any change to the data is detectable.
