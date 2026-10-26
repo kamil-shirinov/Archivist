@@ -16,3 +16,4 @@ D14 Only synthetic or public-domain pages are ever sent to a model — free-cred
 D15 Rubric weights (kickoff): Impact 30, Meta tooling 25, Demo 25, Technical depth 20 — optimise in that order; rigour exists to make the impact claims credible.
 D16 Datasets keep images and ground truth in separate folders, with a hashed manifest — the pipeline can't see answers by accident, and any change to the data is detectable.
 D17 Scans are stored as JPEG at their level's quality — that is what a real scan file is, at about a quarter of the size. Dev images are rebuilt from the seed rather than committed; only the frozen test set is committed in full.
+D18 Every paid model call is logged in results/spend_ledger.jsonl, which is committed — cost per page is part of the evidence, and the cap is enforced from the same file.

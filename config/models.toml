@@ -1,0 +1,26 @@
+# Which backend serves each role: swapping a model is an edit to this file and nothing else.
+# kind "llm" roles are VisionLLMs, kind "segmenter" roles are Segmenters.
+
+[roles.extractor]
+kind = "llm"
+backend = "mock"
+model_id = "mock-llm"
+
+[roles.rereader]
+kind = "llm"
+backend = "mock"
+model_id = "mock-llm"
+
+[roles.segmenter]
+kind = "segmenter"
+backend = "mock"
+model_id = "mock-segmenter"
+
+# USD per million tokens, keyed by model_id. The spend cap projects each call from these.
+[prices.mock-llm]
+input_per_mtok = 0.0
+output_per_mtok = 0.0
+
+[prices.mock-segmenter]
+input_per_mtok = 0.0
+output_per_mtok = 0.0

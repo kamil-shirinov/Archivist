@@ -34,3 +34,4 @@ uv run pytest -q
 - [x] P5 scan degradation and artefacts
 - [x] P6 dataset builder and dev set
 - [x] P6b JPEG scans; dev images out of git
+- [x] P7 model layer: one interface, cache and spend cap
