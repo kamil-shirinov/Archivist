@@ -1,0 +1,19 @@
+{"field_id":"L:card-01-3:02:credit","check":"arithmetic","detail":"'by 197.31' can't be read as an amount in pounds and pence","suggested":null}
+{"field_id":"L:card-01-3:10:debit","check":"arithmetic","detail":"line 10: 2,918.69 − 187.72 + 0.00 = 2,730.97, but the balance reads 2,730.90. Only this line fails, so its amount or balance is misread, or the clerk's arithmetic was wrong; the balances imply a debit of 187.79","suggested":"187.79"}
+{"field_id":"L:card-01-3:10:balance","check":"arithmetic","detail":"line 10: 2,918.69 − 187.72 + 0.00 = 2,730.97, but the balance reads 2,730.90. Only this line fails, so its amount or balance is misread, or the clerk's arithmetic was wrong; the balances imply a debit of 187.79","suggested":null}
+{"field_id":"L:card-02-2:hdr:carried_forward","check":"crossdoc","detail":"sheet 6 carries forward 2,311.02, but sheet 7 brings forward 2,311.08","suggested":null}
+{"field_id":"L:card-02-3:hdr:brought_forward","check":"crossdoc","detail":"sheet 6 carries forward 2,311.02, but sheet 7 brings forward 2,311.08","suggested":null}
+{"field_id":"M:memo-0004:amount","check":"words_figures","detail":"the amount in figures is blank; the words say 26.32","suggested":"26.32"}
+{"field_id":"M:memo-0005:amount","check":"words_figures","detail":"the figures say 50.06, but the words say 50.60","suggested":"50.60"}
+{"field_id":"M:memo-0005:amount_words","check":"words_figures","detail":"the figures say 50.06, but the words say 50.60","suggested":null}
+{"field_id":"M:memo-0005:amount","check":"crossdoc","detail":"the memo pays 50.06, but sheet 51 of account 10055503, line 15 debits 50.60, as its words do","suggested":null}
+{"field_id":"M:memo-0007:date","check":"crossdoc","detail":"the memo is dated 18/03/40, more than 30 days before it was posted on sheet 5 of account 57663909, line 01 (10/03/90)","suggested":null}
+{"field_id":"L:card-02-1:01:date","check":"crossdoc","detail":"the memo is dated 18/03/40, more than 30 days before it was posted on sheet 5 of account 57663909, line 01 (10/03/90)","suggested":null}
+{"field_id":"M:memo-0009:amount","check":"words_figures","detail":"the figures say 75.77, but the words say 77.57","suggested":"77.57"}
+{"field_id":"M:memo-0009:amount_words","check":"words_figures","detail":"the figures say 75.77, but the words say 77.57","suggested":null}
+{"field_id":"M:memo-0009:amount","check":"crossdoc","detail":"the memo pays 75.77, but sheet 5 of account 57663909, line 12 debits 77.57, as its words do","suggested":null}
+{"field_id":"M:memo-0012:amount","check":"words_figures","detail":"the figures say 330.16, but the words say 303.16","suggested":"303.16"}
+{"field_id":"M:memo-0012:amount_words","check":"words_figures","detail":"the figures say 330.16, but the words say 303.16","suggested":null}
+{"field_id":"M:memo-0012:amount","check":"crossdoc","detail":"the memo pays 330.16, but sheet 7 of account 57663909, line 01 debits 303.16, as its words do","suggested":null}
+{"field_id":"M:memo-0014:amount","check":"crossdoc","detail":"the memo pays 55.88, but sheet 7 of account 57663909, line 11 debits 55.84","suggested":null}
+{"field_id":"L:card-02-3:11:debit","check":"crossdoc","detail":"the memo pays 55.88, but sheet 7 of account 57663909, line 11 debits 55.84","suggested":null}
