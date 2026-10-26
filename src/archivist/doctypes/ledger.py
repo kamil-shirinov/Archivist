@@ -71,6 +71,46 @@ GROUNDED_RULES = RULES.replace(
 def _prompt(body: str, grounding: bool) -> str:
     return GROUNDING_ROLE + body + GROUNDED_RULES if grounding else body + RULES
 
+
+# Blind re-reads (D4): the prompt names the document and the field, never the value read before.
+# No digits appear in these prompts, so none can hint at a value.
+LEDGER_REREAD = {
+    "account_no": "the account number at the top of a bank ledger card",
+    "holder": "the account holder's name at the top of a bank ledger card",
+    "sheet_no": "the sheet number at the top right of a bank ledger card",
+    "brought_forward": 'the balance on the "Brought forward" row of a bank ledger card',
+    "carried_forward": 'the balance on the "Carried forward" row of a bank ledger card',
+    "date": "the Date column of a ledger card line",
+    "description": "the Particulars column of a ledger card line",
+    "debit": "the Debit column of a ledger card line",
+    "credit": "the Credit column of a ledger card line",
+    "balance": "the Balance column of a ledger card line",
+}
+MEMO_REREAD = {
+    "memo_no": "the memo number of a payment memorandum",
+    "date": "the date of a payment memorandum",
+    "account_no": "the account number on a payment memorandum",
+    "counterparty": 'the payee on the "Pay to" line of a payment memorandum',
+    "amount": "the amount in figures on a payment memorandum, without the currency sign or "
+    "any tick mark",
+    "amount_words": "the amount in words on a payment memorandum",
+    "ledger_ref": "the ledger reference (a sheet and a line) on a payment memorandum",
+}
+REREAD_RULES = (
+    "The image is a crop of a scanned page, centred on that value; parts of neighbouring cells "
+    "or lines may show at its edges. Read only the value in the middle.\n"
+    "- Copy it exactly as printed or written, character for character, including commas, "
+    "leading zeros and punctuation. Never correct arithmetic, spelling or formatting.\n"
+    '- If the cell is blank, the value is "" (an empty string).\n'
+    "- If a value is there but can't be read (covered, smudged, torn), the value is null. Never "
+    "guess."
+)
+
+
+def _reread_prompt(what: str) -> str:
+    return f"Read {what}.\n\n{REREAD_RULES}"
+
+
 CELL_SCHEMA = {
     "type": "object",
     "properties": {
@@ -180,6 +220,10 @@ class LedgerCard:
         )
         return _prompt(body, grounding)
 
+    def reread_prompt(self, field_id: str) -> str:
+        """The blind re-read of one field from a crop of it; never mentions any value."""
+        return _reread_prompt(LEDGER_REREAD[field_id.rsplit(":", 1)[-1]])
+
     def extraction_schema(self) -> dict:
         lines = {f"{line:02d}": _cells(COLUMNS) for line in LINES}
         return _object({"header": _cells(HEADER_TOP + HEADER_BOTTOM), "lines": _object(lines)})
@@ -230,6 +274,10 @@ class PaymentMemo:
             '- ledger_ref: the ledger reference, e.g. "Sheet 12 / Line 04" as printed\n\n'
         )
         return _prompt(body, grounding)
+
+    def reread_prompt(self, field_id: str) -> str:
+        """The blind re-read of one field from a crop of it; never mentions any value."""
+        return _reread_prompt(MEMO_REREAD[field_id.rsplit(":", 1)[-1]])
 
     def extraction_schema(self) -> dict:
         return _object({"fields": _cells(MEMO_FIELDS)})

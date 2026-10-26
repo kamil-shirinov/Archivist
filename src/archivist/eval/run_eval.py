@@ -14,6 +14,20 @@ flag implicates (check recall); how many correct fields are flagged (false alarm
 the fields of a source error, where a flag is a find); source-error detection; and how often a
 suggested value equals the printed one. Unresolvable flags are notes, not error claims, so they
 are counted on their own and never as a catch or a false alarm.
+
+A verdict run (archivist.pipeline.verify, with verdicts.jsonl) is scored side by side with the
+extraction run it verified, which accepts every value it didn't abstain on: errors caught (wrong
+and sent to review), errors missed (accepted and not correct), false alarms (correct and sent to
+review, not counting a source error's fields), review rate, error rate among accepted fields,
+risk–coverage points, how often a proposed correction equals the printed value, and source-error
+detection (any of its fields sent to review). For re-read fields it also reports how often the
+re-reader agreed with a wrong extraction: the independence number, lower is better. Overall, per
+severity, per doc type and per verification route, with page-bootstrap 95% intervals.
+
+    python -m archivist.eval.run_eval --run archivist-dev-v1 --split dev
+
+--compare-checks DEV_RUN VAL_RUN writes results/checks_val.json: the checks report of two runs
+side by side, flags tallied by the rule that raised them, and the wrong fields no flag caught.
 """
 
 from __future__ import annotations
@@ -24,20 +38,25 @@ from collections import Counter, defaultdict
 from collections.abc import Callable, Sequence
 from pathlib import Path
 
+import numpy as np
+
 from archivist.doctypes import is_unresolvable
 from archivist.eval.metrics import (
     WRONG,
     FieldOutcome,
     bootstrap_ci,
     normalise,
+    risk_coverage,
     score_page,
     summarise,
 )
 from archivist.pipeline.checks import FLAGS_FILE, load_flags
 from archivist.pipeline.extract import RUNS_DIR, PageExtraction, load_predictions
-from archivist.schema import Flag, PageGT
+from archivist.pipeline.verify import VERDICTS_FILE, Evidence, load_verdicts
+from archivist.schema import Flag, PageGT, SourceError
 
 DATA_ROOT = Path("data")
+CHECKS_VAL_PATH = Path("results/checks_val.json")
 # Document-type plug-in name -> the doc_type ground truth gives the same page.
 GT_DOC_TYPE = {"ledger_card": "ledger", "payment_memo": "memo"}
 INTERVALS = {"field_accuracy": "field_accuracy_ci95", "error_rate_accepted": "error_rate_ci95"}
@@ -222,6 +241,313 @@ def checks_table(report: dict) -> str:
     return "\n".join(lines)
 
 
+# Which rule raised a flag, from the wording of its detail: (rule, check, phrases), first match.
+CHECK_RULES = (
+    ("unreadable", "arithmetic", ("can't be read as", "blank, but must hold")),
+    ("running_balance", "arithmetic", ("but the balance reads",)),
+    ("carried_forward", "arithmetic", ("carried forward",)),
+    ("one_side", "arithmetic", ("a line is one or the other",)),
+    ("date_order", "arithmetic", ("the date goes backwards",)),
+    ("cheque_order", "arithmetic", ("the cheque number goes backwards",)),
+    ("words_figures", "words_figures", ("",)),
+    ("sheet_order", "crossdoc", ("never goes backwards along an account",)),
+    ("carry_across_sheets", "crossdoc", ("brings forward",)),
+    ("card_account_by_holder", "crossdoc", ("fills the gap",)),
+    ("memo_account_by_posting", "crossdoc", ("the memo's account reads",)),
+    ("memo_amount", "crossdoc", ("the memo pays",)),
+    ("memo_date", "crossdoc", ("the memo is dated",)),
+)
+
+
+def check_rule(flag: Flag) -> str:
+    if is_unresolvable(flag):
+        return "unresolvable"
+    for rule, check, phrases in CHECK_RULES:
+        if flag.check == check and any(p in flag.detail for p in phrases):
+            return rule
+    return "other"
+
+
+def _source_errors(pages: Sequence[PageGT]) -> list[SourceError]:
+    """A source error shared by a memo and its card is listed on both pages: count it once."""
+    unique = {(e.kind, tuple(e.field_ids)): e for page in pages for e in page.source_errors}
+    return list(unique.values())
+
+
+def _rules(
+    outcomes: Sequence[FieldOutcome], flags: Sequence[Flag], source_fields: set[str]
+) -> dict:
+    """Flags per rule: on wrong fields, on a source error's fields, and false alarms."""
+    by_id = {o.field_id: o for o in outcomes}
+    tally: dict[str, Counter] = defaultdict(Counter)
+    for flag in flags:
+        rule, o = check_rule(flag), by_id.get(flag.field_id)
+        tally[rule]["flags"] += 1
+        if o is None:
+            continue
+        if o.outcome in WRONG:
+            tally[rule]["on_wrong"] += 1
+        elif o.field_id in source_fields:
+            tally[rule]["on_source_error"] += 1
+        elif o.outcome == "correct":
+            tally[rule]["false_alarms"] += 1
+    keys = ("flags", "on_wrong", "on_source_error", "false_alarms")
+    return {rule: {k: tally[rule][k] for k in keys} for rule in sorted(tally)}
+
+
+def checks_generalisation(run_dirs: dict[str, Path]) -> dict:
+    """The checks report of each run, by rule, with the wrong fields no flag caught."""
+    out = {}
+    for name, run_dir in run_dirs.items():
+        split = Path(json.loads((run_dir / "run.json").read_text())["images"]).parent.name
+        pages = load_gt(DATA_ROOT / split / "gt")
+        predictions = load_predictions(run_dir / "predictions.jsonl")
+        flags = load_flags(run_dir / FLAGS_FILE)
+        report = checks_report(pages, predictions, flags)
+        by_page = {p.page_id: p.values for p in predictions}
+        outcomes = [o for page in pages for o in score_page(page, by_page.get(page.page_id, []))]
+        source_fields = {f for e in _source_errors(pages) for f in e.field_ids}
+        flagged = {f.field_id for f in flags if not is_unresolvable(f)}
+        out[name] = {
+            "run": run_dir.name,
+            "split": split,
+            "overall": report["overall"],
+            "by_doc_type": report["by_doc_type"],
+            "by_severity": report["by_severity"],
+            "source_errors_by_kind": report["source_errors_by_kind"],
+            "by_rule": _rules(outcomes, flags, source_fields),
+            "missed": [
+                {
+                    "field_id": o.field_id,
+                    "severity": o.severity,
+                    "occluded": o.occluded,
+                    "printed": o.printed,
+                    "predicted": o.predicted,
+                    "outcome": o.outcome,
+                }
+                for o in outcomes
+                if o.outcome in WRONG and o.field_id not in flagged
+            ],
+        }
+    return out
+
+
+# --- Verdict runs ---------------------------------------------------------------------------
+
+READ_BACK = frozenset({"agrees", "disagrees", "illegible"})  # a re-read that returned an answer
+CI_KEYS = ("error_rate_accepted", "catch_rate", "false_alarm_rate", "review_rate")
+
+
+def _rates(outcomes: Sequence[FieldOutcome], source_fields: set[str]) -> dict:
+    """The rates that get intervals, in one pass; see _verdict_stats."""
+    n = wrong = caught = correct = alarms = accepted = missed = review = 0
+    for o in outcomes:
+        n += 1
+        if o.status == "accepted":
+            accepted += 1
+            missed += o.outcome != "correct"
+        review += o.status == "review"
+        if o.outcome in WRONG:
+            wrong += 1
+            caught += o.status == "review"
+        elif o.outcome == "correct" and o.field_id not in source_fields:
+            correct += 1
+            alarms += o.status == "review"
+    return {
+        "error_rate_accepted": _ratio(missed, accepted),
+        "catch_rate": _ratio(caught, wrong),
+        "false_alarm_rate": _ratio(alarms, correct),
+        "review_rate": _ratio(review, n),
+    }
+
+
+def _bootstrap(
+    outcomes: Sequence[FieldOutcome], source_fields: set[str], n: int = 2000, seed: int = 0
+) -> dict[str, tuple[float, float] | None]:
+    """bootstrap_ci for every CI key at once: the same page resamples, one pass each."""
+    by_page: dict[str, list[FieldOutcome]] = defaultdict(list)
+    for o in outcomes:
+        by_page[o.page_id].append(o)
+    pages = [by_page[p] for p in sorted(by_page)]
+    values: dict[str, list[float]] = {k: [] for k in CI_KEYS}
+    if pages:
+        rng = np.random.default_rng(seed)
+        for _ in range(n):
+            picks = rng.integers(0, len(pages), size=len(pages))
+            rates = _rates([o for i in picks for o in pages[i]], source_fields)
+            for k in CI_KEYS:
+                if rates[k] is not None:
+                    values[k].append(rates[k])
+    return {
+        k: (float(np.percentile(v, 2.5)), float(np.percentile(v, 97.5))) if v else None
+        for k, v in values.items()
+    }
+
+
+def _same(field_id: str, a: str, b: str) -> bool:
+    return normalise(field_id, a) == normalise(field_id, b)
+
+
+def _verdict_stats(
+    outcomes: Sequence[FieldOutcome],
+    evidence: dict[str, Evidence],
+    errors: Sequence[SourceError],
+    confidence: bool,
+) -> dict:
+    """See the module docstring. Evidence is empty for the baseline, which proposes nothing."""
+    source_fields = {f for e in errors for f in e.field_ids}
+    rates = _rates(outcomes, source_fields)
+    counts = Counter(o.status for o in outcomes)
+    wrong = [o for o in outcomes if o.outcome in WRONG]
+    caught = sum(o.status == "review" for o in wrong)
+    accepted = [o for o in outcomes if o.status == "accepted"]
+    missed = sum(o.outcome != "correct" for o in accepted)
+    correct = [o for o in outcomes if o.outcome == "correct" and o.field_id not in source_fields]
+    alarms = sum(o.status == "review" for o in correct)
+
+    proposed = [
+        (o, evidence[o.field_id].proposed)
+        for o in outcomes
+        if o.field_id in evidence and evidence[o.field_id].proposed is not None
+    ]
+    right = sum(_same(o.field_id, p, o.printed) for o, p in proposed)
+    on_wrong = [(o, p) for o, p in proposed if o.outcome in WRONG]
+    fixes = sum(_same(o.field_id, p, o.printed) for o, p in on_wrong)
+
+    reread = [
+        (o, evidence[o.field_id].reread_status)
+        for o in outcomes
+        if o.field_id in evidence and evidence[o.field_id].reread_status in READ_BACK
+    ]
+    reread_wrong = [s for o, s in reread if o.outcome in WRONG]
+    reread_right = [s for o, s in reread if o.outcome == "correct"]
+    agreed_wrong = reread_wrong.count("agrees")
+    agreed_right = reread_right.count("agrees")
+
+    status = {o.field_id: o.status for o in outcomes}
+    here = [e for e in errors if any(f in status for f in e.field_ids)]
+    found = sum(any(status.get(f) == "review" for f in e.field_ids) for e in here)
+
+    stats = {
+        "n_fields": len(outcomes),
+        "n_wrong": len(wrong),
+        "n_correct": len(correct),
+        "n_accepted": len(accepted),
+        "n_review": counts["review"],
+        "n_abstained": counts["abstained"],
+        "coverage": _ratio(len(accepted), len(outcomes)),
+        "review_rate": rates["review_rate"],
+        "errors_caught": caught,
+        "catch_rate": rates["catch_rate"],
+        "errors_missed": missed,
+        "error_rate_accepted": rates["error_rate_accepted"],
+        "false_alarms": alarms,
+        "false_alarm_rate": rates["false_alarm_rate"],
+        "n_proposed": len(proposed),
+        "proposed_equals_printed": right,
+        "proposal_accuracy": _ratio(right, len(proposed)),
+        "proposed_on_wrong": len(on_wrong),
+        "proposal_fixes": fixes,
+        "n_source_errors": len(here),
+        "source_errors_found": found,
+        "source_error_recall": _ratio(found, len(here)),
+        "reread_fields": len(reread),
+        "reread_on_wrong": len(reread_wrong),
+        "reread_agreed_with_wrong": agreed_wrong,
+        "independence": _ratio(agreed_wrong, len(reread_wrong)),
+        "reread_on_correct": len(reread_right),
+        "reread_agreed_with_correct": agreed_right,
+        "reread_confirmation_rate": _ratio(agreed_right, len(reread_right)),
+    }
+    for key, ci in _bootstrap(outcomes, source_fields).items():
+        stats[f"{key}_ci95"] = ci
+    points = risk_coverage(outcomes) if confidence else []
+    if not confidence and stats["coverage"] is not None:  # accepts everything: a single point
+        points = [(stats["coverage"], stats["error_rate_accepted"])]
+    stats["risk_coverage"] = [[round(c, 4), None if r is None else round(r, 4)] for c, r in points]
+    return stats
+
+
+def evaluate_verdicts(run_dir: Path, gt_dir: Path) -> dict:
+    pages = load_gt(gt_dir)
+    run = json.loads((run_dir / "run.json").read_text())
+    baseline_dir = run_dir.parent / run["source_run"]
+    verdicts = load_verdicts(run_dir / VERDICTS_FILE)
+    baseline = {p.page_id: p.values for p in load_predictions(baseline_dir / "predictions.jsonl")}
+    by_page: dict[str, list] = defaultdict(list)
+    for v in verdicts:
+        by_page[v.page_id].append(v)
+    unknown = sorted(set(by_page) - {page.page_id for page in pages})
+    if unknown:
+        raise ValueError(f"verdicts for pages not in {gt_dir}: {unknown[:5]}")
+    evidence = {v.field_id: v.evidence for v in verdicts}
+    route = {v.field_id: v.evidence.route for v in verdicts}
+    ours = [o for page in pages for o in score_page(page, by_page.get(page.page_id, []))]
+    theirs = [o for page in pages for o in score_page(page, baseline.get(page.page_id, []))]
+    errors = _source_errors(pages)
+
+    def side_by_side(keep: Callable[[FieldOutcome], bool]) -> dict:
+        mine = [o for o in ours if keep(o)]
+        ids = {o.field_id for o in mine}
+        group_errors = [e for e in errors if any(f in ids for f in e.field_ids)]
+        return {
+            "archivist": _verdict_stats(mine, evidence, group_errors, confidence=True),
+            "baseline": _verdict_stats(
+                [o for o in theirs if keep(o)], {}, group_errors, confidence=False
+            ),
+        }
+
+    groups = {
+        "by_severity": lambda o: o.severity,
+        "by_doc_type": lambda o: o.doc_type,
+        "by_route": lambda o: route.get(o.field_id, "no verdict"),
+    }
+    result = {
+        "run_id": run_dir.name,
+        "gt": str(gt_dir),
+        "baseline_run": baseline_dir.name,
+        "config": run.get("config"),
+        "policy": run.get("policy"),
+        "missing_pages": sorted(p.page_id for p in pages if p.page_id not in by_page),
+        "overall": side_by_side(lambda o: True),
+    }
+    for group, key in groups.items():
+        values = sorted({key(o) for o in ours}, key=str)
+        result[group] = {
+            str(v): side_by_side(lambda o, key=key, v=v: key(o) == v) for v in values
+        }
+    return result
+
+
+def verdicts_table(metrics: dict) -> str:
+    rows = [("overall", metrics["overall"])]
+    rows += [(f"severity {k}", v) for k, v in metrics["by_severity"].items()]
+    rows += [(k, v) for k, v in metrics["by_doc_type"].items()]
+    rows += [(f"route {k}", v) for k, v in metrics["by_route"].items()]
+    header = (
+        f"{'':<17} {'fields':>6} {'wrong':>5} {'caught':>6} {'missed':>6} {'alarms':>6} "
+        f"{'review':>6}  {'error rate accepted [95% CI]':<29} {'baseline':>8}  "
+        f"{'proposals':>9} {'indep':>5}"
+    )
+    lines = [header, "-" * len(header)]
+    for name, both in rows:
+        a, b = both["archivist"], both["baseline"]
+        lines.append(
+            f"{name:<17} {a['n_fields']:>6} {a['n_wrong']:>5} {a['errors_caught']:>6} "
+            f"{a['errors_missed']:>6} {a['false_alarms']:>6} {_number(a['review_rate']):>6}  "
+            f"{_interval(a['error_rate_accepted'], a['error_rate_accepted_ci95']):<29} "
+            f"{_number(b['error_rate_accepted']):>8}  "
+            f"{a['proposed_equals_printed']:>4}/{a['n_proposed']:<4} "
+            f"{_number(a['independence']):>5}"
+        )
+    o = metrics["overall"]["archivist"]
+    lines.append(
+        f"source errors found {o['source_errors_found']}/{o['n_source_errors']}; risk–coverage "
+        + ", ".join(f"({c:.3f}, {r:.4f})" for c, r in o["risk_coverage"])
+    )
+    return "\n".join(lines)
+
+
 def _number(value: float | None) -> str:
     return "—" if value is None else f"{value:.3f}"
 
@@ -253,12 +579,35 @@ def table(metrics: dict) -> str:
 
 def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description=__doc__.split("\n", 1)[0])
-    parser.add_argument("--run", required=True)
-    parser.add_argument("--split", required=True)
+    parser.add_argument("--run")
+    parser.add_argument("--split")
+    parser.add_argument("--compare-checks", nargs=2, metavar=("DEV_RUN", "VAL_RUN"))
     args = parser.parse_args(argv)
+
+    if args.compare_checks:
+        dev, val = args.compare_checks
+        report = checks_generalisation({"dev": RUNS_DIR / dev, "val": RUNS_DIR / val})
+        CHECKS_VAL_PATH.write_text(json.dumps(report, indent=2) + "\n")
+        for name, r in report.items():
+            print(f"{name} ({r['run']})")
+            print(checks_table(r))
+            print()
+        return
+    if not (args.run and args.split):
+        parser.error("--run and --split are required unless --compare-checks is given")
 
     run_dir = RUNS_DIR / args.run
     gt_dir = DATA_ROOT / args.split / "gt"
+    if (run_dir / VERDICTS_FILE).exists():
+        metrics = evaluate_verdicts(run_dir, gt_dir)
+        (run_dir / "metrics.json").write_text(json.dumps(metrics, indent=2) + "\n")
+        print(verdicts_table(metrics))
+        print(
+            "caught = wrong and sent to review; missed = accepted and wrong; alarms = correct "
+            "and sent to review;\nbaseline = the error rate of the run it verified; proposals = "
+            "right/proposed; indep = re-read agreed with a wrong extraction"
+        )
+        return
     metrics = evaluate(run_dir, gt_dir)
     (run_dir / "metrics.json").write_text(json.dumps(metrics, indent=2) + "\n")
     print(table(metrics))

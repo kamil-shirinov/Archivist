@@ -1,0 +1,421 @@
+"""Blind re-reads, occlusion and the verification policy, offline with MockLLM and MockSegmenter."""
+
+import io
+import json
+from pathlib import Path
+
+import pytest
+from PIL import Image
+
+from archivist.doctypes import REGISTRY, UNRESOLVABLE
+from archivist.doctypes.ledger import LEDGER_REREAD, MEMO_REREAD, LedgerCard, PaymentMemo
+from archivist.eval import run_eval
+from archivist.models.base import Region
+from archivist.models.budget import BudgetGuard
+from archivist.models.mock import MockLLM, MockSegmenter
+from archivist.pipeline import occlusion, reread, verify
+from archivist.pipeline.extract import PageExtraction
+from archivist.pipeline.verify import Occluder, ReRead, decide
+from archivist.schema import BBox, Citation, ExtractedValue, FieldGT, Flag, PageGT, memo_field_id
+
+WIDTH, HEIGHT = 400, 300
+MEMO_VALUES = {
+    "memo_no": "008348",
+    "date": "02/01/86",
+    "account_no": "57663909",
+    "counterparty": "Eastmoor Electricity Board",
+    "amount": "65.48",
+    "amount_words": "Sixty-five pounds and forty-eight pence",
+    "ledger_ref": "Sheet 32 / Line 02",
+}
+
+
+def _box(k: int) -> BBox:
+    return BBox(x0=20, y0=20 + 35 * k, x1=220, y1=45 + 35 * k)
+
+
+def _value(field_id: str, text: str | None, box: BBox | None = None) -> ExtractedValue:
+    box = box or _box(0)
+    return ExtractedValue(
+        field_id=field_id,
+        value=text,
+        citation=Citation(page_id="m1", bbox=box),
+        abstained=text is None,
+    )
+
+
+def _flag(field_id: str, suggested: str | None = None, detail: str = "line 01 fails") -> Flag:
+    return Flag(field_id=field_id, check="arithmetic", detail=detail, suggested=suggested)
+
+
+def _decide(value, flags=(), occluders=(), reading=None):
+    return decide("m1", "payment_memo", value, list(flags), list(occluders), reading)
+
+
+AMOUNT = memo_field_id("m1", "amount")
+PAYEE = memo_field_id("m1", "counterparty")
+ACCOUNT = memo_field_id("m1", "account_no")
+STAMP = Occluder(label="stamp", bbox=_box(0), cover=0.4)
+
+
+# --- The re-read prompt ----------------------------------------------------------------------
+
+
+def test_every_field_has_a_reread_prompt_that_names_its_document_and_field():
+    for plugin, table in ((LedgerCard(), LEDGER_REREAD), (PaymentMemo(), MEMO_REREAD)):
+        for field_id in plugin.field_ids("p1"):
+            prompt = plugin.reread_prompt(field_id)
+            assert table[field_id.rsplit(":", 1)[-1]] in prompt
+            assert "ledger card" in prompt or "payment memorandum" in prompt
+    assert "the Balance column of a ledger card line" in LedgerCard().reread_prompt(
+        "L:p1:03:balance"
+    )
+
+
+def test_reread_prompts_hold_no_digits_so_no_value_can_leak():
+    for plugin in REGISTRY.values():
+        for field_id in plugin.field_ids("p1"):
+            assert not any(c.isdigit() for c in plugin.reread_prompt(field_id)), field_id
+
+
+# --- Crops -----------------------------------------------------------------------------------
+
+
+def test_the_crop_is_padded_by_half_the_height_and_a_fifth_of_the_width():
+    box = BBox(x0=100, y0=100, x1=200, y1=140)
+    assert reread.crop_box(box, 1000, 1000) == BBox(x0=80, y0=80, x1=220, y1=160)
+
+
+def test_the_crop_is_clamped_to_the_page_and_rounded_outwards():
+    assert reread.crop_box(BBox(x0=5, y0=3, x1=95, y1=33), 100, 40) == BBox(
+        x0=0, y0=0, x1=100, y1=40
+    )
+    assert reread.crop_box(BBox(x0=11, y0=11, x1=22, y1=14), 100, 100) == BBox(
+        x0=8, y0=9, x1=25, y1=16
+    )
+
+
+def test_a_box_snapped_to_one_word_is_widened_to_the_extractors_extent_on_its_own_rows():
+    word = BBox(x0=475, y0=250, x1=559, y1=267)
+    cell = BBox(x0=306, y0=246, x1=731, y1=270)
+    assert reread.widen(word, cell) == BBox(x0=306, y0=250, x1=731, y1=267)
+    assert reread.widen(word, None) == word
+
+
+def test_the_crop_is_a_png_of_the_padded_box():
+    image = Image.new("RGB", (WIDTH, HEIGHT), "white")
+    picture = Image.open(io.BytesIO(reread.crop(image, BBox(x0=100, y0=100, x1=200, y1=140))))
+    assert picture.format == "PNG"
+    assert picture.size == (140, 80)
+
+
+def test_a_reread_asks_the_rereader_role_and_retries_a_bad_answer_once():
+    answers = iter(["not json", '{"value": "65.48"}'])
+    llm = MockLLM(lambda request: next(answers))
+    image = Image.new("RGB", (WIDTH, HEIGHT), "white")
+    text, cached = reread.reread(image, _box(1), "Read the amount.", llm)
+    assert (text, cached) == ("65.48", False)
+    assert [c.role for c in llm.calls] == ["rereader", "rereader"]
+    assert llm.calls[1].prompt.endswith(reread.RETRY_NOTE)
+    assert llm.calls[0].json_schema == reread.SCHEMA
+
+
+def test_a_reread_that_never_parses_raises():
+    llm = MockLLM(lambda request: '{"value": 3}')
+    with pytest.raises(reread.ReReadFailed):
+        reread.reread(Image.new("RGB", (50, 50)), BBox(x0=1, y0=1, x1=9, y1=9), "Read it.", llm)
+
+
+# --- Occlusion -------------------------------------------------------------------------------
+
+
+def test_the_segmenter_is_asked_once_for_stamps_and_once_for_stains():
+    segmenter = MockSegmenter(
+        lambda request: [Region(label=request.prompts[0], bbox=_box(2), score=0.9)]
+    )
+    regions = occlusion.detect(b"page", segmenter)
+    assert [c.prompts for c in segmenter.calls] == [("stamp",), ("stain",)]
+    assert [c.role for c in segmenter.calls] == ["segmenter", "segmenter"]
+    assert [r.label for r in regions] == ["stamp", "stain"]
+
+
+def test_a_field_is_occluded_when_one_box_covers_a_tenth_of_it():
+    value = _value(AMOUNT, "65.48", BBox(x0=0, y0=0, x1=100, y1=10))
+    tenth = Region(label="stamp", bbox=BBox(x0=90, y0=0, x1=300, y1=50), score=0.9)
+    less = Region(label="stain", bbox=BBox(x0=91, y0=0, x1=300, y1=50), score=0.9)
+    assert occlusion.covered(value.citation.bbox, tenth.bbox) == pytest.approx(0.1)
+    assert [r.label for r, _ in occlusion.occluders(value, [tenth, less])] == ["stamp"]
+    assert occlusion.occluders(value.model_copy(update={"citation": None}), [tenth]) == []
+
+
+# --- The policy table ------------------------------------------------------------------------
+
+
+def test_an_unflagged_money_field_is_accepted_on_the_arithmetic_without_a_reread():
+    verdict = _decide(_value(AMOUNT, "65.48"))
+    assert (verdict.status, verdict.confidence) == ("accepted", 0.99)
+    assert verdict.evidence.route == "arithmetic"
+    assert verdict.evidence.reread_status == "not_reread"
+    assert not verify.needs_reread(_value(AMOUNT, "65.48"), [], occluded=False)
+
+
+def test_a_flagged_money_field_is_reread_and_its_matching_suggestion_proposed():
+    value = _value(AMOUNT, "65.43")
+    flag = _flag(AMOUNT, suggested="65.48")
+    assert verify.needs_reread(value, [flag], occluded=False)
+    verdict = _decide(value, [flag], reading=ReRead("65.48"))
+    assert (verdict.status, verdict.confidence) == ("review", 0.5)
+    assert verdict.value == "65.43"  # never changed
+    assert verdict.evidence.proposed == "65.48"
+    assert verdict.evidence.reread == "65.48"
+    reread_flags = [f for f in verdict.flags if f.check == "reread"]
+    assert [f.suggested for f in reread_flags] == ["65.48"]
+    assert flag in verdict.flags
+
+
+def test_no_correction_is_proposed_when_the_reread_and_the_suggestion_differ():
+    value = _value(AMOUNT, "65.43")
+    flag = _flag(AMOUNT, suggested="65.48")
+    for reading in ("65.45", "65.43"):
+        verdict = _decide(value, [flag], reading=ReRead(reading))
+        assert (verdict.status, verdict.confidence) == ("review", 0.3)
+        assert verdict.evidence.proposed is None
+        assert all(f.suggested is None for f in verdict.flags if f.check == "reread")
+
+
+def test_a_check_without_a_suggestion_never_yields_a_proposal():
+    verdict = _decide(_value(AMOUNT, "65.43"), [_flag(AMOUNT)], reading=ReRead("65.48"))
+    assert (verdict.status, verdict.confidence, verdict.evidence.proposed) == ("review", 0.3, None)
+
+
+def test_a_non_money_field_is_accepted_when_the_blind_reread_agrees():
+    value = _value(PAYEE, "Eastmoor Electricity Board")
+    verdict = _decide(value, reading=ReRead("EASTMOOR  electricity board"))
+    assert (verdict.status, verdict.confidence) == ("accepted", 0.99)
+    assert verdict.evidence.route == "reread"
+    assert verdict.evidence.reread_status == "agrees"
+
+
+def test_a_disagreement_goes_to_review():
+    value = _value(PAYEE, "Eastmoon Electricity Board")
+    verdict = _decide(value, reading=ReRead("Eastmoor Electricity Board"))
+    assert (verdict.status, verdict.confidence) == ("review", 0.3)
+    assert verdict.value == "Eastmoon Electricity Board"
+    assert verdict.evidence.reread_status == "disagrees"
+    assert any(f.check == "reread" and "Eastmoor" in f.detail for f in verdict.flags)
+
+
+def test_an_illegible_reread_or_a_failed_one_goes_to_review():
+    value = _value(PAYEE, "Eastmoor Electricity Board")
+    illegible = _decide(value, reading=ReRead(None))
+    failed = _decide(value, reading=ReRead(None, error="TimeoutError"))
+    assert (illegible.status, illegible.evidence.reread_status) == ("review", "illegible")
+    assert (failed.status, failed.evidence.reread_status) == ("review", "failed")
+    assert illegible.confidence == failed.confidence == 0.3
+
+
+def test_a_field_that_needs_a_reread_but_has_no_box_goes_to_review():
+    value = _value(PAYEE, "Eastmoor Electricity Board").model_copy(update={"citation": None})
+    verdict = _decide(value)
+    assert (verdict.status, verdict.evidence.reread_status) == ("review", "no_citation")
+
+
+def test_a_flagged_field_goes_to_review_even_when_the_reread_agrees_with_it():
+    value = _value(ACCOUNT, "57663909")
+    flag = _flag(ACCOUNT, suggested="57663900", detail="it fills the gap")
+    verdict = _decide(value, [flag], reading=ReRead("57663909"))
+    assert (verdict.status, verdict.confidence, verdict.evidence.proposed) == ("review", 0.3, None)
+
+
+def test_a_non_money_suggestion_the_reread_confirms_is_proposed():
+    value = _value(ACCOUNT, "57668909")
+    flag = _flag(ACCOUNT, suggested="5766 3909", detail="it fills the gap")
+    verdict = _decide(value, [flag], reading=ReRead("57663909"))
+    assert (verdict.status, verdict.confidence) == ("review", 0.5)
+    assert verdict.evidence.proposed == "5766 3909"
+
+
+def test_an_unresolvable_note_alone_is_no_reason_for_review():
+    value = _value(memo_field_id("m1", "ledger_ref"), "Sheet 32 / Line 02")
+    note = Flag(field_id=value.field_id, check="crossdoc", detail=UNRESOLVABLE + "no card")
+    verdict = _decide(value, [note], reading=ReRead("Sheet 32 / Line 02"))
+    assert (verdict.status, verdict.confidence) == ("accepted", 0.99)
+    assert note in verdict.flags
+
+
+def test_occluded_fields_are_reread_and_accepted_only_on_agreement_with_less_confidence():
+    money = _value(AMOUNT, "65.48")
+    assert verify.needs_reread(money, [], occluded=True)
+    agrees = _decide(money, occluders=[STAMP], reading=ReRead("65.48"))
+    disagrees = _decide(money, occluders=[STAMP], reading=ReRead("66.48"))
+    assert (agrees.status, agrees.confidence) == ("accepted", 0.9)
+    assert (disagrees.status, disagrees.confidence) == ("review", 0.3)
+    payee = _decide(
+        _value(PAYEE, "Eastmoor"), occluders=[STAMP], reading=ReRead("Eastmoor")
+    )
+    assert (payee.status, payee.confidence) == ("accepted", 0.9)
+    assert any(f.check == "occlusion" for f in agrees.flags)
+
+
+def test_an_abstained_field_is_abstained_with_no_confidence_and_no_reread():
+    value = _value(PAYEE, None)
+    assert not verify.needs_reread(value, [], occluded=True)
+    verdict = _decide(value, occluders=[STAMP])
+    assert (verdict.status, verdict.confidence, verdict.value) == ("abstained", 0.0, None)
+
+
+@pytest.mark.parametrize(
+    ("field", "a", "b", "same"),
+    [
+        ("amount", "1,234.50", "1234.50", True),
+        ("amount", "1,234.50", "1,234.56", False),
+        ("date", "02/01/86", "2/1/1986", True),
+        ("account_no", "5766-3909", "57663909", True),
+        ("amount_words", "Sixty-five pounds", "sixty five pounds", True),
+        ("amount_words", "Sixty-five pounds", "Sixty-five pounds only", False),
+        ("counterparty", "Eastmoor  Board", "EASTMOOR BOARD", True),
+        ("counterparty", "", "  ", True),
+        ("counterparty", "", "Eastmoor", False),
+    ],
+)
+def test_readings_agree_after_normalisation(field, a, b, same):
+    assert verify.same_reading(memo_field_id("m1", field), a, b) is same
+
+
+# --- The whole run, with mocks ---------------------------------------------------------------
+
+
+def _memo_page(values: dict[str, str | None]) -> PageExtraction:
+    fields = list(MEMO_VALUES)
+    return PageExtraction(
+        page_id="m1",
+        doc_type="payment_memo",
+        values=[
+            _value(memo_field_id("m1", name), values[name], _box(k))
+            for k, name in enumerate(fields)
+        ],
+    )
+
+
+def _image(folder: Path) -> Path:
+    folder.mkdir(parents=True, exist_ok=True)
+    path = folder / "m1.jpg"
+    Image.new("RGB", (WIDTH, HEIGHT), "white").save(path, format="JPEG")
+    return path
+
+
+def _rereader(answers: dict[str, str | None]) -> MockLLM:
+    """Answers by the field its prompt names, so it never sees what was extracted."""
+
+    def respond(request) -> str:
+        name = next(n for n, what in MEMO_REREAD.items() if what in request.prompt)
+        return json.dumps({"value": answers[name]})
+
+    return MockLLM(respond)
+
+
+def _stamp_on(k: int) -> MockSegmenter:
+    def respond(request):
+        stamp = Region(label="stamp", bbox=_box(k), score=0.9)
+        return [stamp] if request.prompts == ("stamp",) else []
+
+    return MockSegmenter(respond)
+
+
+def test_verify_rereads_what_the_policy_asks_and_never_shows_the_extracted_values(tmp_path):
+    extracted = MEMO_VALUES | {"counterparty": "Eastmoon Electricity Board", "amount": "65.43"}
+    answers = MEMO_VALUES | {"amount": "65.48"}
+    llm = _rereader(answers)
+    segmenter = _stamp_on(1)  # covers the date
+    page = _memo_page(extracted)
+    verdicts, calls = verify.verify(
+        [page],
+        {"m1": _image(tmp_path)},
+        {"segmenter": segmenter, "rereader": llm},
+        correct_citations=False,
+    )
+    by_name = {v.field_id.rsplit(":", 1)[-1]: v for v in verdicts}
+    # The words say 65.48, so the figures are flagged with that suggestion; the re-read agrees.
+    assert by_name["amount"].evidence.proposed == "65.48"
+    assert (by_name["amount"].status, by_name["amount"].confidence) == ("review", 0.5)
+    assert (by_name["counterparty"].status, by_name["counterparty"].confidence) == ("review", 0.3)
+    # The words are flagged with the figures; the re-read agrees with them, but a check failed.
+    assert (by_name["amount_words"].status, by_name["amount_words"].confidence) == ("review", 0.3)
+    assert (by_name["date"].status, by_name["date"].confidence) == ("accepted", 0.9)
+    assert by_name["memo_no"].status == "accepted"
+    assert [v.value for v in verdicts] == [extracted[n] for n in MEMO_VALUES]
+    assert calls["rereads"] == len(MEMO_VALUES) == len(llm.calls)  # 6 others + flagged amount
+    for request in llm.calls:
+        for text in extracted.values():
+            assert text not in request.prompt
+    assert len(segmenter.calls) == 2
+
+
+def test_a_reread_that_fails_sends_its_field_to_review_without_stopping_the_run(tmp_path):
+    def respond(request) -> str:
+        if MEMO_REREAD["counterparty"] in request.prompt:
+            raise TimeoutError("slow")
+        return json.dumps({"value": "x"})
+
+    verdicts, calls = verify.verify(
+        [_memo_page(MEMO_VALUES)],
+        {"m1": _image(tmp_path)},
+        {"segmenter": MockSegmenter(), "rereader": MockLLM(respond)},
+        correct_citations=False,
+    )
+    payee = next(v for v in verdicts if v.field_id == PAYEE)
+    assert (payee.status, payee.evidence.reread_status) == ("review", "failed")
+    assert calls["rereads_failed"] == 1
+
+
+def _gt_page() -> PageGT:
+    return PageGT(
+        page_id="m1",
+        doc_type="memo",
+        image_path="images/m1.jpg",
+        width=WIDTH,
+        height=HEIGHT,
+        severity=3,
+        fields=[
+            FieldGT(field_id=memo_field_id("m1", name), printed=text, bbox=_box(k))
+            for k, (name, text) in enumerate(MEMO_VALUES.items())
+        ],
+        artefacts=[],
+        source_errors=[],
+    )
+
+
+def test_a_verdict_run_is_written_and_scored_against_the_baseline(tmp_path):
+    runs, gt = tmp_path / "runs", tmp_path / "gt"
+    source = runs / "base"
+    source.mkdir(parents=True)
+    extracted = MEMO_VALUES | {"counterparty": "Eastmoon Electricity Board", "amount": "65.43"}
+    (source / "predictions.jsonl").write_text(_memo_page(extracted).model_dump_json() + "\n")
+    images = _image(tmp_path / "images").parent
+    (source / "run.json").write_text(json.dumps({"images": str(images), "citations": "S0+ink"}))
+    gt.mkdir()
+    (gt / "m1.json").write_text(_gt_page().model_dump_json())
+
+    record = verify.run(
+        source,
+        runs / "checked",
+        {"segmenter": MockSegmenter(), "rereader": _rereader(MEMO_VALUES | {"amount": "65.48"})},
+        guard=BudgetGuard(1.0, tmp_path / "ledger.jsonl"),
+        config={"rereader": {"backend": "mock"}},
+    )
+    assert record["counts"]["by_status"] == {"accepted": 4, "review": 3}
+    assert record["citations"] == "S0+ink"
+    assert record["cost_usd"] == 0.0
+
+    metrics = run_eval.evaluate_verdicts(runs / "checked", gt)
+    ours, base = metrics["overall"]["archivist"], metrics["overall"]["baseline"]
+    assert (ours["n_wrong"], ours["errors_caught"], ours["errors_missed"]) == (2, 2, 0)
+    assert (ours["false_alarms"], ours["error_rate_accepted"]) == (1, 0.0)  # the words
+    assert (ours["n_proposed"], ours["proposal_fixes"]) == (1, 1)
+    # The payee and the flagged amount were re-read; neither re-read agreed with the misread.
+    assert (ours["reread_on_wrong"], ours["independence"]) == (2, 0.0)
+    assert ours["risk_coverage"][0] == [round(4 / 7, 4), 0.0]
+    assert (base["errors_caught"], base["errors_missed"]) == (0, 2)
+    assert base["error_rate_accepted"] == pytest.approx(2 / 7)
+    assert set(metrics["by_route"]) == {"arithmetic", "reread"}
+    assert metrics["baseline_run"] == "base"
