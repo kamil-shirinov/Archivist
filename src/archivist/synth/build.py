@@ -2,8 +2,8 @@
 
 Images and answers are kept apart, so a pipeline can be pointed at images/ alone:
 
-    data/<split>/images/<page_id>.png
-    data/<split>/gt/<page_id>.json   PageGT of the degraded page
+    data/<split>/images/<page_id>.jpg   the scan, as the scanner would have saved it
+    data/<split>/gt/<page_id>.json      PageGT of the degraded page
     data/<split>/gt/world.json       the clean World every page came from
     data/<split>/manifest.json       parameters, provenance, counts and a sha256 per file
 
@@ -131,9 +131,9 @@ def build_split(
 
         for severity, (image, clean) in zip(severities, _clean_pages(world, seed), strict=True):
             rng = random.Random(f"{seed}:{clean.page_id}:sev{severity}")
-            scan, degraded = degrade.degrade_page(image, clean, severity, rng)
-            page = degraded.model_copy(update={"image_path": f"images/{clean.page_id}.png"})
-            scan.save(images_dir / f"{page.page_id}.png")
+            scan, degraded = degrade.scan_page(image, clean, severity, rng)
+            page = degraded.model_copy(update={"image_path": f"images/{clean.page_id}.jpg"})
+            (images_dir / f"{page.page_id}.jpg").write_bytes(scan)
             (gt_dir / f"{page.page_id}.json").write_text(page.model_dump_json(indent=2) + "\n")
             by_doc_type[page.doc_type] += 1
             by_severity[severity] += 1

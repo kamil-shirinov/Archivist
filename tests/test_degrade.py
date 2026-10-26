@@ -159,6 +159,41 @@ def test_same_rng_same_png(clean):
         assert first[1] == second[1]
 
 
+def _quantization(quality: int) -> dict:
+    buffer = io.BytesIO()
+    Image.new("RGB", (16, 16)).save(buffer, format="JPEG", quality=quality)
+    with Image.open(io.BytesIO(buffer.getvalue())) as image:
+        return image.quantization
+
+
+@pytest.mark.parametrize("severity", SEVERITIES)
+def test_scan_page_returns_a_jpeg_at_the_levels_quality(clean, severity):
+    for image, gt in clean:
+        jpeg, scan_gt = degrade.scan_page(image, gt, severity, random.Random(SEED))
+        with Image.open(io.BytesIO(jpeg)) as scan:
+            assert scan.format == "JPEG"
+            assert scan.size == (gt.width, gt.height)
+            assert scan.quantization == _quantization(degrade.LEVELS[severity].jpeg_quality)
+        assert scan_gt.severity == severity
+
+
+def test_same_rng_same_jpeg_bytes(clean):
+    for image, gt in clean:
+        first = degrade.scan_page(image, gt, 3, random.Random(SEED))
+        second = degrade.scan_page(image, gt, 3, random.Random(SEED))
+        assert first[0] == second[0]
+        assert first[1] == second[1]
+
+
+def test_degrade_page_is_scan_page_decoded(clean):
+    for image, gt in clean:
+        jpeg, scan_gt = degrade.scan_page(image, gt, 3, random.Random(SEED))
+        decoded, degraded_gt = degrade.degrade_page(image, gt, 3, random.Random(SEED))
+        assert degraded_gt == scan_gt
+        with Image.open(io.BytesIO(jpeg)) as scan:
+            assert _png(scan.convert("RGB")) == _png(decoded)
+
+
 def test_cli_writes_every_severity(tmp_path):
     degrade.main(["--seed", str(SEED), "--out", str(tmp_path)])
     for severity in SEVERITIES:

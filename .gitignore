@@ -6,5 +6,6 @@ __pycache__/
 *.pyc
 cache/
 results/scratch/
+data/dev/images/
 .DS_Store
 .vscode/

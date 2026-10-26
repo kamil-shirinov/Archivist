@@ -1,5 +1,6 @@
 import hashlib
 import json
+import random
 import subprocess
 from collections import Counter
 
@@ -38,14 +39,25 @@ def test_every_page_has_an_image_and_a_ground_truth(built):
     assert set(pages) == {path.stem for path in (built / "images").iterdir()} == expected
     for page_id, gt in pages.items():
         assert gt.page_id == page_id
-        assert gt.image_path == f"images/{page_id}.png"
+        assert gt.image_path == f"images/{page_id}.jpg"
         with Image.open(built / gt.image_path) as image:
+            assert image.format == "JPEG"
             assert image.size == (gt.width, gt.height)
+
+
+def test_every_image_is_the_scan_at_its_levels_quality(built):
+    """Bytes on disk are what degrade.scan_page produced: no re-encode between the two."""
+    world = generate_world(SEED, **PARAMS)
+    severities = build._severities(SEED, len(world.cards) + len(world.memos))
+    for severity, (image, clean) in zip(severities, build._clean_pages(world, SEED), strict=True):
+        rng = random.Random(f"{SEED}:{clean.page_id}:sev{severity}")
+        jpeg, _ = degrade.scan_page(image, clean, severity, rng)
+        assert (built / "images" / f"{clean.page_id}.jpg").read_bytes() == jpeg
 
 
 def test_folders_hold_only_their_own_kind_of_file(built):
     images = [path.name for path in (built / "images").iterdir()]
-    assert images and all(name.endswith(".png") for name in images)
+    assert images and all(name.endswith(".jpg") for name in images)
     assert all(path.suffix == ".json" for path in (built / "gt").iterdir())
     assert sorted(path.name for path in built.iterdir()) == ["gt", "images", "manifest.json"]
 
@@ -99,9 +111,13 @@ def test_severity_cycle_is_shuffled_but_fixed_by_the_seed():
     assert cycle != build._severities(SEED + 1, 40)
 
 
-def test_same_seed_gives_identical_manifests(built, tmp_path):
+def test_same_seed_gives_identical_bytes_and_manifests(built, tmp_path):
     again = build.build_split("dev", SEED, **PARAMS, out_root=tmp_path)
     assert (again / "manifest.json").read_bytes() == (built / "manifest.json").read_bytes()
+    images = sorted((built / "images").iterdir())
+    assert images
+    for path in images:
+        assert (again / "images" / path.name).read_bytes() == path.read_bytes()
 
 
 def test_existing_split_is_not_overwritten_without_overwrite(tmp_path):
@@ -113,10 +129,10 @@ def test_existing_split_is_not_overwritten_without_overwrite(tmp_path):
     assert (split / "manifest.json").read_bytes() == before
     assert [path.name for path in tmp_path.iterdir()] == ["dev"]  # no scratch folder left over
 
-    (split / "images" / "stale.png").write_bytes(b"")
+    (split / "images" / "stale.jpg").write_bytes(b"")
     assert build.build_split("dev", SEED + 1, **TINY, out_root=tmp_path, overwrite=True) == split
     assert json.loads((split / "manifest.json").read_text())["seed"] == SEED + 1
-    assert not (split / "images" / "stale.png").exists()
+    assert not (split / "images" / "stale.jpg").exists()
     assert [path.name for path in tmp_path.iterdir()] == ["dev"]
 
 

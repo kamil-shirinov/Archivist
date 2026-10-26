@@ -488,21 +488,20 @@ def _scan(image: Image.Image, level: Level, nrng: np.random.Generator) -> Image.
     return image
 
 
-def _jpeg(image: Image.Image, quality: int) -> Image.Image:
+def _jpeg(image: Image.Image, quality: int) -> bytes:
     buffer = io.BytesIO()
     image.save(buffer, format="JPEG", quality=quality)
-    buffer.seek(0)
-    with Image.open(buffer) as decoded:
-        return decoded.convert("RGB")
+    return buffer.getvalue()
 
 
 # --- pages ------------------------------------------------------------------------------
 
 
-def degrade_page(
+def scan_page(
     image: Image.Image, page: PageGT, severity: int, rng: random.Random
-) -> tuple[Image.Image, PageGT]:
-    """A scanned-looking copy of a clean page and its ground truth with boxes moved to match."""
+) -> tuple[bytes, PageGT]:
+    """The JPEG file of a scanned-looking copy of a clean page, and its ground truth with boxes
+    moved to match. The bytes are the scan itself: write them out as they are."""
     if image.size != (page.width, page.height):
         raise ValueError(f"{page.page_id}: image is {image.size}, ground truth says otherwise")
     level = LEVELS[severity]
@@ -518,7 +517,8 @@ def degrade_page(
 
     angle = rng.uniform(-level.max_rotation, level.max_rotation) if level.max_rotation else 0.0
     scan = rotate(paper, angle) if angle else paper
-    scan = _jpeg(_scan(scan, level, nrng), level.jpeg_quality)
+    scan = _scan(scan, level, nrng)
+    jpeg = _jpeg(scan, level.jpeg_quality)
 
     artefacts = [
         a.model_copy(update={"bbox": map_bbox(a.bbox, angle, scan.size)}) for a in artefacts
@@ -531,7 +531,16 @@ def degrade_page(
     gt = page.model_copy(
         update={"severity": severity, "fields": fields, "artefacts": artefacts}
     )
-    return scan, gt
+    return jpeg, gt
+
+
+def degrade_page(
+    image: Image.Image, page: PageGT, severity: int, rng: random.Random
+) -> tuple[Image.Image, PageGT]:
+    """scan_page with its JPEG decoded: the pixels anyone opening that file would see."""
+    jpeg, gt = scan_page(image, page, severity, rng)
+    with Image.open(io.BytesIO(jpeg)) as decoded:
+        return decoded.convert("RGB"), gt
 
 
 def overlay(image: Image.Image, gt: PageGT) -> Image.Image:
