@@ -3,10 +3,7 @@ Archivist turns scanned financial archives into a verified database — every va
 
 ## Built during the Meta Global AI Developer Hackathon (26 Oct – 4 Nov 2026)
 Everything in this repository was written during the hackathon, except the third-party components listed below.
-Build log:
-- 26 Oct: repo scaffold, hygiene and docs
-- 26 Oct: data contracts (schema)
-- 26 Oct: ground-truth world generator
+The commit history shows when each part was built; a feature summary is added before submission.
 
 ## Meta models
 Planned: Muse Spark via the Meta Model API (extraction, re-reading) and SAM 3.1 (regions). Final roles and measured results will be stated here.

@@ -28,4 +28,4 @@ uv run pytest -q
 - [x] P1 scaffold
 - [x] P2 schema
 - [x] P3 world generator
-- [ ] P4 renderer
+- [x] P4 renderer
