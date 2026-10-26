@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0006",
+  "doc_type": "memo",
+  "image_path": "images/memo-0006.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 0,
+  "fields": [
+    {
+      "field_id": "M:memo-0006:memo_no",
+      "printed": "053068",
+      "bbox": {
+        "x0": 263,
+        "y0": 260,
+        "x1": 369,
+        "y1": 280
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0006:date",
+      "printed": "22/01/95",
+      "bbox": {
+        "x0": 670,
+        "y0": 259,
+        "x1": 810,
+        "y1": 287
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0006:account_no",
+      "printed": "10055503",
+      "bbox": {
+        "x0": 298,
+        "y0": 354,
+        "x1": 438,
+        "y1": 374
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0006:counterparty",
+      "printed": "Payne-Brown",
+      "bbox": {
+        "x0": 214,
+        "y0": 444,
+        "x1": 405,
+        "y1": 469
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0006:amount",
+      "printed": "40.07",
+      "bbox": {
+        "x0": 661,
+        "y0": 554,
+        "x1": 750,
+        "y1": 574
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0006:amount_words",
+      "printed": "Forty pounds and seven pence",
+      "bbox": {
+        "x0": 118,
+        "y0": 706,
+        "x1": 598,
+        "y1": 733
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0006:ledger_ref",
+      "printed": "Sheet 52 / Line 05",
+      "bbox": {
+        "x0": 274,
+        "y0": 808,
+        "x1": 584,
+        "y1": 836
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0006:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 385,
+        "y0": 1001,
+        "x1": 645,
+        "y1": 1077
+      }
+    }
+  ],
+  "source_errors": []
+}

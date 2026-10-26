@@ -1,0 +1,110 @@
+{
+  "page_id": "memo-0001",
+  "doc_type": "memo",
+  "image_path": "images/memo-0001.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 1,
+  "fields": [
+    {
+      "field_id": "M:memo-0001:memo_no",
+      "printed": "053063",
+      "bbox": {
+        "x0": 259,
+        "y0": 256,
+        "x1": 343,
+        "y1": 290
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0001:date",
+      "printed": "08/10/94",
+      "bbox": {
+        "x0": 662,
+        "y0": 252,
+        "x1": 775,
+        "y1": 283
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0001:account_no",
+      "printed": "10055503",
+      "bbox": {
+        "x0": 291,
+        "y0": 345,
+        "x1": 403,
+        "y1": 378
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0001:counterparty",
+      "printed": "Abbie Mitchell-Clark",
+      "bbox": {
+        "x0": 212,
+        "y0": 432,
+        "x1": 489,
+        "y1": 466
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0001:amount",
+      "printed": "242.88",
+      "bbox": {
+        "x0": 663,
+        "y0": 551,
+        "x1": 754,
+        "y1": 582
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0001:amount_words",
+      "printed": "Two hundred and forty-two pounds and eighty-eight pence",
+      "bbox": {
+        "x0": 115,
+        "y0": 696,
+        "x1": 938,
+        "y1": 742
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0001:ledger_ref",
+      "printed": "Sheet 50 / Line 02",
+      "bbox": {
+        "x0": 280,
+        "y0": 806,
+        "x1": 538,
+        "y1": 840
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0001:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 464,
+        "y0": 1011,
+        "x1": 732,
+        "y1": 1085
+      }
+    },
+    {
+      "artefact_id": "A:memo-0001:02",
+      "kind": "stain",
+      "bbox": {
+        "x0": 419,
+        "y0": 1049,
+        "x1": 524,
+        "y1": 1157
+      }
+    }
+  ],
+  "source_errors": []
+}

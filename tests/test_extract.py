@@ -219,7 +219,10 @@ def test_s0_asks_for_cells_and_s1_for_ink_with_the_same_classification(tmp_path)
     assert "doc_type" in classify_0.json_schema["properties"]
 
 
-def test_s1_ink_corrects_s1s_boxes_from_the_image(tmp_path, monkeypatch):
+@pytest.mark.parametrize("strategy, grounding", [("S0+ink", False), ("S1+ink", True)])
+def test_ink_corrects_the_boxes_of_its_base_strategy_from_the_image(
+    tmp_path, monkeypatch, strategy, grounding
+):
     pages = Pages(tmp_path / "images")
     path = pages.add("m1", "payment_memo")
     llm = MockLLM(responder(pages))
@@ -229,14 +232,14 @@ def test_s1_ink_corrects_s1s_boxes_from_the_image(tmp_path, monkeypatch):
     def fake_correct(image: bytes, values: list[ExtractedValue]) -> citations.Correction:
         seen.append(image)
         moved = [v.model_copy(update={"value": "moved"}) for v in values]
-        return citations.Correction(moved, 1.0, 0.0, len(values), len(values))
+        return citations.Correction(moved, 1.0, 0.0, 0.0, len(values), len(values))
 
     monkeypatch.setattr(citations, "correct", fake_correct)
-    page = extract_page(path, roles, "S1+ink")
+    page = extract_page(path, roles, strategy)
 
     assert seen == [path.read_bytes()]
     assert {v.value for v in page.values} == {"moved"}
-    assert llm.calls[-1].prompt == PaymentMemo().extraction_prompt(grounding=True)
+    assert llm.calls[-1].prompt == PaymentMemo().extraction_prompt(grounding=grounding)
 
 
 def test_an_unknown_citation_strategy_is_refused(tmp_path):
@@ -247,8 +250,8 @@ def test_an_unknown_citation_strategy_is_refused(tmp_path):
         extract_page(path, roles, "S2")
 
 
-def test_the_default_strategy_is_one_of_the_three():
-    assert CITATION_STRATEGIES == ("S0", "S1", "S1+ink")
+def test_the_default_strategy_is_one_of_the_four():
+    assert CITATION_STRATEGIES == ("S0", "S0+ink", "S1", "S1+ink")
     assert CITATIONS in CITATION_STRATEGIES
 
 

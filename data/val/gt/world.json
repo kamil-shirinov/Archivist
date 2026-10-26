@@ -1,0 +1,1146 @@
+{
+  "seed": 2002,
+  "cards": [
+    {
+      "doc_id": "card-01-1",
+      "bank": "Marrowby Savings Bank",
+      "branch": "Oakham",
+      "account_no": "10055503",
+      "holder": "David Knight-Hobbs",
+      "sheet_no": 50,
+      "brought_forward": "644.29",
+      "lines": [
+        {
+          "line_no": 1,
+          "date": "1994-10-08",
+          "description": "CHQ 264274",
+          "debit": "340.90",
+          "credit": null,
+          "balance": "303.39"
+        },
+        {
+          "line_no": 2,
+          "date": "1994-10-10",
+          "description": "CHQ 264275",
+          "debit": "242.88",
+          "credit": null,
+          "balance": "60.51"
+        },
+        {
+          "line_no": 3,
+          "date": "1994-10-12",
+          "description": "SALARY",
+          "debit": null,
+          "credit": "708.45",
+          "balance": "768.96"
+        },
+        {
+          "line_no": 4,
+          "date": "1994-10-16",
+          "description": "CHQ 264276",
+          "debit": "342.61",
+          "credit": null,
+          "balance": "426.35"
+        },
+        {
+          "line_no": 5,
+          "date": "1994-10-20",
+          "description": "CHQ 264277",
+          "debit": "32.28",
+          "credit": null,
+          "balance": "394.07"
+        },
+        {
+          "line_no": 6,
+          "date": "1994-10-23",
+          "description": "CHQ 264278",
+          "debit": "234.73",
+          "credit": null,
+          "balance": "159.34"
+        },
+        {
+          "line_no": 7,
+          "date": "1994-10-28",
+          "description": "DIRECT DEBIT ELECTRICITY",
+          "debit": "49.31",
+          "credit": null,
+          "balance": "110.03"
+        },
+        {
+          "line_no": 8,
+          "date": "1994-11-01",
+          "description": "INTEREST",
+          "debit": null,
+          "credit": "24.30",
+          "balance": "134.33"
+        },
+        {
+          "line_no": 9,
+          "date": "1994-11-03",
+          "description": "DIRECT DEBIT ELECTRICITY",
+          "debit": "41.27",
+          "credit": null,
+          "balance": "93.06"
+        },
+        {
+          "line_no": 10,
+          "date": "1994-11-06",
+          "description": "CASH",
+          "debit": null,
+          "credit": "145.00",
+          "balance": "238.06"
+        },
+        {
+          "line_no": 11,
+          "date": "1994-11-12",
+          "description": "CASH",
+          "debit": "70.00",
+          "credit": null,
+          "balance": "168.06"
+        },
+        {
+          "line_no": 12,
+          "date": "1994-11-13",
+          "description": "CASH",
+          "debit": "100.00",
+          "credit": null,
+          "balance": "68.06"
+        },
+        {
+          "line_no": 13,
+          "date": "1994-11-14",
+          "description": "CREDIT TRANSFER",
+          "debit": null,
+          "credit": "437.03",
+          "balance": "505.09"
+        },
+        {
+          "line_no": 14,
+          "date": "1994-11-16",
+          "description": "CHQ 264279",
+          "debit": "31.66",
+          "credit": null,
+          "balance": "473.43"
+        },
+        {
+          "line_no": 15,
+          "date": "1994-11-16",
+          "description": "CREDIT TRANSFER",
+          "debit": null,
+          "credit": "224.98",
+          "balance": "698.41"
+        },
+        {
+          "line_no": 16,
+          "date": "1994-11-18",
+          "description": "CASH",
+          "debit": "10.00",
+          "credit": null,
+          "balance": "688.41"
+        },
+        {
+          "line_no": 17,
+          "date": "1994-11-22",
+          "description": "CASH",
+          "debit": "35.00",
+          "credit": null,
+          "balance": "653.41"
+        },
+        {
+          "line_no": 18,
+          "date": "1994-11-22",
+          "description": "DIRECT DEBIT ELECTRICITY",
+          "debit": "28.74",
+          "credit": null,
+          "balance": "624.67"
+        }
+      ],
+      "carried_forward": "624.67"
+    },
+    {
+      "doc_id": "card-01-2",
+      "bank": "Marrowby Savings Bank",
+      "branch": "Oakham",
+      "account_no": "10055503",
+      "holder": "David Knight-Hobbs",
+      "sheet_no": 51,
+      "brought_forward": "624.67",
+      "lines": [
+        {
+          "line_no": 1,
+          "date": "1994-11-25",
+          "description": "BANK CHARGES",
+          "debit": "9.25",
+          "credit": null,
+          "balance": "615.42"
+        },
+        {
+          "line_no": 2,
+          "date": "1994-11-28",
+          "description": "DIRECT DEBIT ELECTRICITY",
+          "debit": "34.93",
+          "credit": null,
+          "balance": "580.49"
+        },
+        {
+          "line_no": 3,
+          "date": "1994-12-02",
+          "description": "CASH",
+          "debit": "125.00",
+          "credit": null,
+          "balance": "455.49"
+        },
+        {
+          "line_no": 4,
+          "date": "1994-12-02",
+          "description": "STANDING ORDER INSURANCE",
+          "debit": "26.32",
+          "credit": null,
+          "balance": "429.17"
+        },
+        {
+          "line_no": 5,
+          "date": "1994-12-07",
+          "description": "SALARY",
+          "debit": null,
+          "credit": "608.71",
+          "balance": "1037.88"
+        },
+        {
+          "line_no": 6,
+          "date": "1994-12-08",
+          "description": "DIRECT DEBIT ELECTRICITY",
+          "debit": "66.56",
+          "credit": null,
+          "balance": "971.32"
+        },
+        {
+          "line_no": 7,
+          "date": "1994-12-12",
+          "description": "CREDIT TRANSFER",
+          "debit": null,
+          "credit": "261.37",
+          "balance": "1232.69"
+        },
+        {
+          "line_no": 8,
+          "date": "1994-12-14",
+          "description": "SALARY",
+          "debit": null,
+          "credit": "683.43",
+          "balance": "1916.12"
+        },
+        {
+          "line_no": 9,
+          "date": "1994-12-17",
+          "description": "CASH",
+          "debit": null,
+          "credit": "85.00",
+          "balance": "2001.12"
+        },
+        {
+          "line_no": 10,
+          "date": "1994-12-21",
+          "description": "CASH",
+          "debit": "125.00",
+          "credit": null,
+          "balance": "1876.12"
+        },
+        {
+          "line_no": 11,
+          "date": "1994-12-27",
+          "description": "STANDING ORDER INSURANCE",
+          "debit": "23.78",
+          "credit": null,
+          "balance": "1852.34"
+        },
+        {
+          "line_no": 12,
+          "date": "1994-12-28",
+          "description": "CASH",
+          "debit": null,
+          "credit": "245.00",
+          "balance": "2097.34"
+        },
+        {
+          "line_no": 13,
+          "date": "1994-12-28",
+          "description": "CHQ 264280",
+          "debit": "329.02",
+          "credit": null,
+          "balance": "1768.32"
+        },
+        {
+          "line_no": 14,
+          "date": "1995-01-03",
+          "description": "CHQ 264281",
+          "debit": "242.83",
+          "credit": null,
+          "balance": "1525.49"
+        },
+        {
+          "line_no": 15,
+          "date": "1995-01-08",
+          "description": "CHQ 264282",
+          "debit": "50.60",
+          "credit": null,
+          "balance": "1474.89"
+        },
+        {
+          "line_no": 16,
+          "date": "1995-01-08",
+          "description": "STANDING ORDER INSURANCE",
+          "debit": "25.05",
+          "credit": null,
+          "balance": "1449.84"
+        },
+        {
+          "line_no": 17,
+          "date": "1995-01-14",
+          "description": "CASH",
+          "debit": "145.00",
+          "credit": null,
+          "balance": "1304.84"
+        },
+        {
+          "line_no": 18,
+          "date": "1995-01-18",
+          "description": "CREDIT TRANSFER",
+          "debit": null,
+          "credit": "28.78",
+          "balance": "1333.62"
+        }
+      ],
+      "carried_forward": "1333.62"
+    },
+    {
+      "doc_id": "card-01-3",
+      "bank": "Marrowby Savings Bank",
+      "branch": "Oakham",
+      "account_no": "10055503",
+      "holder": "David Knight-Hobbs",
+      "sheet_no": 52,
+      "brought_forward": "1333.62",
+      "lines": [
+        {
+          "line_no": 1,
+          "date": "1995-01-20",
+          "description": "SALARY",
+          "debit": null,
+          "credit": "805.73",
+          "balance": "2139.35"
+        },
+        {
+          "line_no": 2,
+          "date": "1995-01-22",
+          "description": "CREDIT TRANSFER",
+          "debit": null,
+          "credit": "197.31",
+          "balance": "2336.66"
+        },
+        {
+          "line_no": 3,
+          "date": "1995-01-22",
+          "description": "CASH",
+          "debit": "135.00",
+          "credit": null,
+          "balance": "2201.66"
+        },
+        {
+          "line_no": 4,
+          "date": "1995-01-22",
+          "description": "BANK CHARGES",
+          "debit": "1.50",
+          "credit": null,
+          "balance": "2200.16"
+        },
+        {
+          "line_no": 5,
+          "date": "1995-01-25",
+          "description": "CHQ 264283",
+          "debit": "40.07",
+          "credit": null,
+          "balance": "2160.09"
+        },
+        {
+          "line_no": 6,
+          "date": "1995-01-26",
+          "description": "DIVIDEND",
+          "debit": null,
+          "credit": "144.64",
+          "balance": "2304.73"
+        },
+        {
+          "line_no": 7,
+          "date": "1995-01-28",
+          "description": "SALARY",
+          "debit": null,
+          "credit": "593.96",
+          "balance": "2898.69"
+        },
+        {
+          "line_no": 8,
+          "date": "1995-01-30",
+          "description": "CASH",
+          "debit": null,
+          "credit": "125.00",
+          "balance": "3023.69"
+        },
+        {
+          "line_no": 9,
+          "date": "1995-02-05",
+          "description": "CASH",
+          "debit": "105.00",
+          "credit": null,
+          "balance": "2918.69"
+        },
+        {
+          "line_no": 10,
+          "date": "1995-02-05",
+          "description": "CHQ 264284",
+          "debit": "187.72",
+          "credit": null,
+          "balance": "2730.90"
+        },
+        {
+          "line_no": 11,
+          "date": "1995-02-10",
+          "description": "CHQ 264285",
+          "debit": "401.70",
+          "credit": null,
+          "balance": "2329.20"
+        },
+        {
+          "line_no": 12,
+          "date": "1995-02-10",
+          "description": "CREDIT TRANSFER",
+          "debit": null,
+          "credit": "94.28",
+          "balance": "2423.48"
+        },
+        {
+          "line_no": 13,
+          "date": "1995-02-13",
+          "description": "CHQ 264286",
+          "debit": "348.23",
+          "credit": null,
+          "balance": "2075.25"
+        },
+        {
+          "line_no": 14,
+          "date": "1995-02-19",
+          "description": "SALARY",
+          "debit": null,
+          "credit": "290.12",
+          "balance": "2365.37"
+        },
+        {
+          "line_no": 15,
+          "date": "1995-02-20",
+          "description": "CHQ 264287",
+          "debit": "94.95",
+          "credit": null,
+          "balance": "2270.42"
+        },
+        {
+          "line_no": 16,
+          "date": "1995-02-23",
+          "description": "CASH",
+          "debit": "25.00",
+          "credit": null,
+          "balance": "2245.42"
+        },
+        {
+          "line_no": 17,
+          "date": "1995-02-24",
+          "description": "SALARY",
+          "debit": null,
+          "credit": "545.74",
+          "balance": "2791.16"
+        },
+        {
+          "line_no": 18,
+          "date": "1995-03-01",
+          "description": "DIVIDEND",
+          "debit": null,
+          "credit": "91.88",
+          "balance": "2883.04"
+        }
+      ],
+      "carried_forward": "2883.04"
+    },
+    {
+      "doc_id": "card-02-1",
+      "bank": "Thistledown County Bank",
+      "branch": "Thirsk",
+      "account_no": "57663909",
+      "holder": "Kevin Shaw",
+      "sheet_no": 5,
+      "brought_forward": "1596.85",
+      "lines": [
+        {
+          "line_no": 1,
+          "date": "1990-03-10",
+          "description": "CHQ 062069",
+          "debit": "297.28",
+          "credit": null,
+          "balance": "1299.57"
+        },
+        {
+          "line_no": 2,
+          "date": "1990-03-13",
+          "description": "CASH",
+          "debit": "110.00",
+          "credit": null,
+          "balance": "1189.57"
+        },
+        {
+          "line_no": 3,
+          "date": "1990-03-17",
+          "description": "CHQ 062070",
+          "debit": "212.40",
+          "credit": null,
+          "balance": "977.17"
+        },
+        {
+          "line_no": 4,
+          "date": "1990-03-22",
+          "description": "CHQ 062071",
+          "debit": "260.59",
+          "credit": null,
+          "balance": "716.58"
+        },
+        {
+          "line_no": 5,
+          "date": "1990-03-22",
+          "description": "CASH",
+          "debit": null,
+          "credit": "40.00",
+          "balance": "756.58"
+        },
+        {
+          "line_no": 6,
+          "date": "1990-03-27",
+          "description": "CHQ 062072",
+          "debit": "34.38",
+          "credit": null,
+          "balance": "722.20"
+        },
+        {
+          "line_no": 7,
+          "date": "1990-03-28",
+          "description": "CASH",
+          "debit": "150.00",
+          "credit": null,
+          "balance": "572.20"
+        },
+        {
+          "line_no": 8,
+          "date": "1990-03-30",
+          "description": "CHQ 062073",
+          "debit": "125.98",
+          "credit": null,
+          "balance": "446.22"
+        },
+        {
+          "line_no": 9,
+          "date": "1990-04-04",
+          "description": "CASH",
+          "debit": "95.00",
+          "credit": null,
+          "balance": "351.22"
+        },
+        {
+          "line_no": 10,
+          "date": "1990-04-04",
+          "description": "SALARY",
+          "debit": null,
+          "credit": "1434.06",
+          "balance": "1785.28"
+        },
+        {
+          "line_no": 11,
+          "date": "1990-04-10",
+          "description": "CHQ 062074",
+          "debit": "146.94",
+          "credit": null,
+          "balance": "1638.34"
+        },
+        {
+          "line_no": 12,
+          "date": "1990-04-16",
+          "description": "CHQ 062075",
+          "debit": "77.57",
+          "credit": null,
+          "balance": "1560.77"
+        },
+        {
+          "line_no": 13,
+          "date": "1990-04-21",
+          "description": "SALARY",
+          "debit": null,
+          "credit": "504.27",
+          "balance": "2065.04"
+        },
+        {
+          "line_no": 14,
+          "date": "1990-04-27",
+          "description": "DIVIDEND",
+          "debit": null,
+          "credit": "139.71",
+          "balance": "2204.75"
+        },
+        {
+          "line_no": 15,
+          "date": "1990-04-29",
+          "description": "CHQ 062076",
+          "debit": "169.71",
+          "credit": null,
+          "balance": "2035.04"
+        },
+        {
+          "line_no": 16,
+          "date": "1990-04-30",
+          "description": "CASH",
+          "debit": "100.00",
+          "credit": null,
+          "balance": "1935.04"
+        },
+        {
+          "line_no": 17,
+          "date": "1990-05-05",
+          "description": "SALARY",
+          "debit": null,
+          "credit": "1410.53",
+          "balance": "3345.57"
+        },
+        {
+          "line_no": 18,
+          "date": "1990-05-06",
+          "description": "DIRECT DEBIT ELECTRICITY",
+          "debit": "54.44",
+          "credit": null,
+          "balance": "3291.13"
+        }
+      ],
+      "carried_forward": "3291.13"
+    },
+    {
+      "doc_id": "card-02-2",
+      "bank": "Thistledown County Bank",
+      "branch": "Thirsk",
+      "account_no": "57663909",
+      "holder": "Kevin Shaw",
+      "sheet_no": 6,
+      "brought_forward": "3291.13",
+      "lines": [
+        {
+          "line_no": 1,
+          "date": "1990-05-12",
+          "description": "CHQ 062077",
+          "debit": "52.33",
+          "credit": null,
+          "balance": "3238.80"
+        },
+        {
+          "line_no": 2,
+          "date": "1990-05-12",
+          "description": "CHQ 062078",
+          "debit": "173.47",
+          "credit": null,
+          "balance": "3065.33"
+        },
+        {
+          "line_no": 3,
+          "date": "1990-05-15",
+          "description": "CASH",
+          "debit": "150.00",
+          "credit": null,
+          "balance": "2915.33"
+        },
+        {
+          "line_no": 4,
+          "date": "1990-05-16",
+          "description": "CHQ 062079",
+          "debit": "322.79",
+          "credit": null,
+          "balance": "2592.54"
+        },
+        {
+          "line_no": 5,
+          "date": "1990-05-17",
+          "description": "INTEREST",
+          "debit": null,
+          "credit": "28.94",
+          "balance": "2621.48"
+        },
+        {
+          "line_no": 6,
+          "date": "1990-05-23",
+          "description": "CREDIT TRANSFER",
+          "debit": null,
+          "credit": "476.20",
+          "balance": "3097.68"
+        },
+        {
+          "line_no": 7,
+          "date": "1990-05-28",
+          "description": "STANDING ORDER INSURANCE",
+          "debit": "39.06",
+          "credit": null,
+          "balance": "3058.62"
+        },
+        {
+          "line_no": 8,
+          "date": "1990-06-03",
+          "description": "CREDIT TRANSFER",
+          "debit": null,
+          "credit": "414.23",
+          "balance": "3472.85"
+        },
+        {
+          "line_no": 9,
+          "date": "1990-06-07",
+          "description": "DIVIDEND",
+          "debit": null,
+          "credit": "57.97",
+          "balance": "3530.82"
+        },
+        {
+          "line_no": 10,
+          "date": "1990-06-12",
+          "description": "CHQ 062080",
+          "debit": "181.07",
+          "credit": null,
+          "balance": "3349.75"
+        },
+        {
+          "line_no": 11,
+          "date": "1990-06-18",
+          "description": "STANDING ORDER INSURANCE",
+          "debit": "43.97",
+          "credit": null,
+          "balance": "3305.78"
+        },
+        {
+          "line_no": 12,
+          "date": "1990-06-24",
+          "description": "CHQ 062081",
+          "debit": "384.38",
+          "credit": null,
+          "balance": "2921.40"
+        },
+        {
+          "line_no": 13,
+          "date": "1990-06-29",
+          "description": "CHQ 062082",
+          "debit": "348.16",
+          "credit": null,
+          "balance": "2573.24"
+        },
+        {
+          "line_no": 14,
+          "date": "1990-07-01",
+          "description": "STANDING ORDER RATES",
+          "debit": "50.16",
+          "credit": null,
+          "balance": "2523.08"
+        },
+        {
+          "line_no": 15,
+          "date": "1990-07-01",
+          "description": "BANK CHARGES",
+          "debit": "10.50",
+          "credit": null,
+          "balance": "2512.58"
+        },
+        {
+          "line_no": 16,
+          "date": "1990-07-03",
+          "description": "DIRECT DEBIT ELECTRICITY",
+          "debit": "60.51",
+          "credit": null,
+          "balance": "2452.07"
+        },
+        {
+          "line_no": 17,
+          "date": "1990-07-06",
+          "description": "STANDING ORDER INSURANCE",
+          "debit": "45.99",
+          "credit": null,
+          "balance": "2406.08"
+        },
+        {
+          "line_no": 18,
+          "date": "1990-07-07",
+          "description": "CASH",
+          "debit": "95.00",
+          "credit": null,
+          "balance": "2311.08"
+        }
+      ],
+      "carried_forward": "2311.08"
+    },
+    {
+      "doc_id": "card-02-3",
+      "bank": "Thistledown County Bank",
+      "branch": "Thirsk",
+      "account_no": "57663909",
+      "holder": "Kevin Shaw",
+      "sheet_no": 7,
+      "brought_forward": "2311.08",
+      "lines": [
+        {
+          "line_no": 1,
+          "date": "1990-07-10",
+          "description": "CHQ 062083",
+          "debit": "303.16",
+          "credit": null,
+          "balance": "2007.92"
+        },
+        {
+          "line_no": 2,
+          "date": "1990-07-11",
+          "description": "SALARY",
+          "debit": null,
+          "credit": "1543.45",
+          "balance": "3551.37"
+        },
+        {
+          "line_no": 3,
+          "date": "1990-07-15",
+          "description": "CHQ 062084",
+          "debit": "285.91",
+          "credit": null,
+          "balance": "3265.46"
+        },
+        {
+          "line_no": 4,
+          "date": "1990-07-18",
+          "description": "CASH",
+          "debit": null,
+          "credit": "90.00",
+          "balance": "3355.46"
+        },
+        {
+          "line_no": 5,
+          "date": "1990-07-24",
+          "description": "CREDIT TRANSFER",
+          "debit": null,
+          "credit": "429.15",
+          "balance": "3784.61"
+        },
+        {
+          "line_no": 6,
+          "date": "1990-07-29",
+          "description": "STANDING ORDER INSURANCE",
+          "debit": "58.88",
+          "credit": null,
+          "balance": "3725.73"
+        },
+        {
+          "line_no": 7,
+          "date": "1990-08-04",
+          "description": "CASH",
+          "debit": "150.00",
+          "credit": null,
+          "balance": "3575.73"
+        },
+        {
+          "line_no": 8,
+          "date": "1990-08-10",
+          "description": "STANDING ORDER RATES",
+          "debit": "84.25",
+          "credit": null,
+          "balance": "3491.48"
+        },
+        {
+          "line_no": 9,
+          "date": "1990-08-13",
+          "description": "STANDING ORDER RATES",
+          "debit": "23.74",
+          "credit": null,
+          "balance": "3467.74"
+        },
+        {
+          "line_no": 10,
+          "date": "1990-08-14",
+          "description": "CHQ 062085",
+          "debit": "446.64",
+          "credit": null,
+          "balance": "3021.10"
+        },
+        {
+          "line_no": 11,
+          "date": "1990-08-14",
+          "description": "DIRECT DEBIT ELECTRICITY",
+          "debit": "55.84",
+          "credit": null,
+          "balance": "2965.26"
+        },
+        {
+          "line_no": 12,
+          "date": "1990-08-17",
+          "description": "CHQ 062086",
+          "debit": "292.72",
+          "credit": null,
+          "balance": "2672.54"
+        },
+        {
+          "line_no": 13,
+          "date": "1990-08-21",
+          "description": "CASH",
+          "debit": "185.00",
+          "credit": null,
+          "balance": "2487.54"
+        },
+        {
+          "line_no": 14,
+          "date": "1990-08-24",
+          "description": "CHQ 062087",
+          "debit": "97.23",
+          "credit": null,
+          "balance": "2390.31"
+        },
+        {
+          "line_no": 15,
+          "date": "1990-08-28",
+          "description": "STANDING ORDER RATES",
+          "debit": "87.13",
+          "credit": null,
+          "balance": "2303.18"
+        },
+        {
+          "line_no": 16,
+          "date": "1990-09-02",
+          "description": "CASH",
+          "debit": "115.00",
+          "credit": null,
+          "balance": "2188.18"
+        },
+        {
+          "line_no": 17,
+          "date": "1990-09-02",
+          "description": "CHQ 062088",
+          "debit": "29.87",
+          "credit": null,
+          "balance": "2158.31"
+        },
+        {
+          "line_no": 18,
+          "date": "1990-09-05",
+          "description": "CASH",
+          "debit": null,
+          "credit": "45.00",
+          "balance": "2203.31"
+        }
+      ],
+      "carried_forward": "2203.31"
+    }
+  ],
+  "memos": [
+    {
+      "doc_id": "memo-0001",
+      "memo_no": "053063",
+      "date": "1994-10-08",
+      "account_no": "10055503",
+      "counterparty": "Abbie Mitchell-Clark",
+      "amount": "242.88",
+      "amount_words": "Two hundred and forty-two pounds and eighty-eight pence",
+      "ledger_ref": "card-01-1:02",
+      "printed_ref": "Sheet 50 / Line 02"
+    },
+    {
+      "doc_id": "memo-0002",
+      "memo_no": "053064",
+      "date": "1994-10-16",
+      "account_no": "10055503",
+      "counterparty": "Carl Turner",
+      "amount": "432.61",
+      "amount_words": "Three hundred and forty-two pounds and sixty-one pence",
+      "ledger_ref": "card-01-1:04",
+      "printed_ref": "Sheet 50 / Line 04"
+    },
+    {
+      "doc_id": "memo-0003",
+      "memo_no": "053065",
+      "date": "1994-11-02",
+      "account_no": "10055503",
+      "counterparty": "Eastmoor Electricity Board",
+      "amount": "41.27",
+      "amount_words": "Forty-one pounds and twenty-seven pence",
+      "ledger_ref": "card-01-1:09",
+      "printed_ref": "Sheet 50 / Line 09"
+    },
+    {
+      "doc_id": "memo-0004",
+      "memo_no": "053066",
+      "date": "1994-12-02",
+      "account_no": "10055503",
+      "counterparty": "Wrenfield Assurance Society",
+      "amount": "26.32",
+      "amount_words": "Twenty-six pounds and thirty-two pence",
+      "ledger_ref": "card-01-2:04",
+      "printed_ref": "Sheet 51 / Line 04"
+    },
+    {
+      "doc_id": "memo-0005",
+      "memo_no": "053067",
+      "date": "1995-01-08",
+      "account_no": "10055503",
+      "counterparty": "Cook LLC",
+      "amount": "50.06",
+      "amount_words": "Fifty pounds and sixty pence",
+      "ledger_ref": "card-01-2:15",
+      "printed_ref": "Sheet 51 / Line 15"
+    },
+    {
+      "doc_id": "memo-0006",
+      "memo_no": "053068",
+      "date": "1995-01-22",
+      "account_no": "10055503",
+      "counterparty": "Payne-Brown",
+      "amount": "40.07",
+      "amount_words": "Forty pounds and seven pence",
+      "ledger_ref": "card-01-3:05",
+      "printed_ref": "Sheet 52 / Line 05"
+    },
+    {
+      "doc_id": "memo-0007",
+      "memo_no": "053069",
+      "date": "1990-03-10",
+      "account_no": "57663909",
+      "counterparty": "Anderson LLC",
+      "amount": "297.28",
+      "amount_words": "Two hundred and ninety-seven pounds and twenty-eight pence",
+      "ledger_ref": "card-02-1:01",
+      "printed_ref": "Sheet 5 / Line 01"
+    },
+    {
+      "doc_id": "memo-0008",
+      "memo_no": "053070",
+      "date": "1990-03-28",
+      "account_no": "57663909",
+      "counterparty": "Douglas Joyce",
+      "amount": "125.98",
+      "amount_words": "One hundred and twenty-five pounds and ninety-eight pence",
+      "ledger_ref": "card-02-1:08",
+      "printed_ref": "Sheet 5 / Line 08"
+    },
+    {
+      "doc_id": "memo-0009",
+      "memo_no": "053071",
+      "date": "1990-04-14",
+      "account_no": "57663909",
+      "counterparty": "Joe Edwards",
+      "amount": "75.77",
+      "amount_words": "Seventy-seven pounds and fifty-seven pence",
+      "ledger_ref": "card-02-1:12",
+      "printed_ref": "Sheet 5 / Line 12"
+    },
+    {
+      "doc_id": "memo-0010",
+      "memo_no": "053072",
+      "date": "1990-06-23",
+      "account_no": "57663909",
+      "counterparty": "Max Turner",
+      "amount": "384.38",
+      "amount_words": "Three hundred and eighty-four pounds and thirty-eight pence",
+      "ledger_ref": "card-02-2:12",
+      "printed_ref": "Sheet 6 / Line 12"
+    },
+    {
+      "doc_id": "memo-0011",
+      "memo_no": "053073",
+      "date": "1990-07-06",
+      "account_no": "57663909",
+      "counterparty": "Wrenfield Assurance Society",
+      "amount": "45.99",
+      "amount_words": "Forty-five pounds and ninety-nine pence",
+      "ledger_ref": "card-02-2:17",
+      "printed_ref": "Sheet 6 / Line 17"
+    },
+    {
+      "doc_id": "memo-0012",
+      "memo_no": "053074",
+      "date": "1990-07-10",
+      "account_no": "57663909",
+      "counterparty": "Melanie Elliott-Fisher",
+      "amount": "330.16",
+      "amount_words": "Three hundred and three pounds and sixteen pence",
+      "ledger_ref": "card-02-3:01",
+      "printed_ref": "Sheet 7 / Line 01"
+    },
+    {
+      "doc_id": "memo-0013",
+      "memo_no": "053075",
+      "date": "1990-08-10",
+      "account_no": "57663909",
+      "counterparty": "District Council Rates Office",
+      "amount": "84.25",
+      "amount_words": "Eighty-four pounds and twenty-five pence",
+      "ledger_ref": "card-02-3:08",
+      "printed_ref": "Sheet 7 / Line 08"
+    },
+    {
+      "doc_id": "memo-0014",
+      "memo_no": "053076",
+      "date": "1990-08-13",
+      "account_no": "57663909",
+      "counterparty": "Eastmoor Electricity Board",
+      "amount": "55.88",
+      "amount_words": "Fifty-five pounds and eighty-eight pence",
+      "ledger_ref": "card-02-3:11",
+      "printed_ref": "Sheet 7 / Line 11"
+    }
+  ],
+  "source_errors": [
+    {
+      "kind": "balance_arithmetic",
+      "field_ids": [
+        "L:card-01-3:10:balance"
+      ],
+      "note": "printed balance 2730.90 should be 2730.97"
+    },
+    {
+      "kind": "words_figures_mismatch",
+      "field_ids": [
+        "M:memo-0002:amount",
+        "M:memo-0002:amount_words"
+      ],
+      "note": "figures 432.61 transpose the 342.61 stated in words"
+    },
+    {
+      "kind": "words_figures_mismatch",
+      "field_ids": [
+        "M:memo-0005:amount",
+        "M:memo-0005:amount_words"
+      ],
+      "note": "figures 50.06 transpose the 50.60 stated in words"
+    },
+    {
+      "kind": "words_figures_mismatch",
+      "field_ids": [
+        "M:memo-0009:amount",
+        "M:memo-0009:amount_words"
+      ],
+      "note": "figures 75.77 transpose the 77.57 stated in words"
+    },
+    {
+      "kind": "words_figures_mismatch",
+      "field_ids": [
+        "M:memo-0012:amount",
+        "M:memo-0012:amount_words"
+      ],
+      "note": "figures 330.16 transpose the 303.16 stated in words"
+    },
+    {
+      "kind": "memo_ledger_mismatch",
+      "field_ids": [
+        "M:memo-0014:amount",
+        "L:card-02-3:11:debit"
+      ],
+      "note": "memo states 55.88; ledger line shows 55.84"
+    }
+  ]
+}

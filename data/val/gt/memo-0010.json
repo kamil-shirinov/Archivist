@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0010",
+  "doc_type": "memo",
+  "image_path": "images/memo-0010.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 0,
+  "fields": [
+    {
+      "field_id": "M:memo-0010:memo_no",
+      "printed": "053072",
+      "bbox": {
+        "x0": 263,
+        "y0": 258,
+        "x1": 359,
+        "y1": 282
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0010:date",
+      "printed": "23/06/90",
+      "bbox": {
+        "x0": 667,
+        "y0": 254,
+        "x1": 786,
+        "y1": 287
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0010:account_no",
+      "printed": "57663909",
+      "bbox": {
+        "x0": 299,
+        "y0": 347,
+        "x1": 422,
+        "y1": 371
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0010:counterparty",
+      "printed": "Max Turner",
+      "bbox": {
+        "x0": 217,
+        "y0": 437,
+        "x1": 408,
+        "y1": 475
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0010:amount",
+      "printed": "384.38",
+      "bbox": {
+        "x0": 662,
+        "y0": 553,
+        "x1": 752,
+        "y1": 579
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0010:amount_words",
+      "printed": "Three hundred and eighty-four pounds and thirty-eight pence",
+      "bbox": {
+        "x0": 114,
+        "y0": 699,
+        "x1": 859,
+        "y1": 745
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0010:ledger_ref",
+      "printed": "Sheet 6 / Line 12",
+      "bbox": {
+        "x0": 276,
+        "y0": 808,
+        "x1": 533,
+        "y1": 846
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0010:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 437,
+        "y0": 1009,
+        "x1": 725,
+        "y1": 1079
+      }
+    }
+  ],
+  "source_errors": []
+}

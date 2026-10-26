@@ -1,0 +1,122 @@
+{
+  "page_id": "memo-0004",
+  "doc_type": "memo",
+  "image_path": "images/memo-0004.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 3,
+  "fields": [
+    {
+      "field_id": "M:memo-0004:memo_no",
+      "printed": "053066",
+      "bbox": {
+        "x0": 250,
+        "y0": 264,
+        "x1": 335,
+        "y1": 300
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0004:date",
+      "printed": "02/12/94",
+      "bbox": {
+        "x0": 652,
+        "y0": 246,
+        "x1": 771,
+        "y1": 280
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0004:account_no",
+      "printed": "10055503",
+      "bbox": {
+        "x0": 282,
+        "y0": 350,
+        "x1": 395,
+        "y1": 386
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0004:counterparty",
+      "printed": "Wrenfield Assurance Society",
+      "bbox": {
+        "x0": 205,
+        "y0": 435,
+        "x1": 602,
+        "y1": 487
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0004:amount",
+      "printed": "26.32",
+      "bbox": {
+        "x0": 683,
+        "y0": 544,
+        "x1": 753,
+        "y1": 579
+      },
+      "occluded_by": [
+        "A:memo-0004:02"
+      ]
+    },
+    {
+      "field_id": "M:memo-0004:amount_words",
+      "printed": "Twenty-six pounds and thirty-two pence",
+      "bbox": {
+        "x0": 120,
+        "y0": 694,
+        "x1": 700,
+        "y1": 751
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0004:ledger_ref",
+      "printed": "Sheet 51 / Line 04",
+      "bbox": {
+        "x0": 277,
+        "y0": 806,
+        "x1": 532,
+        "y1": 846
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0004:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 438,
+        "y0": 1000,
+        "x1": 725,
+        "y1": 1084
+      }
+    },
+    {
+      "artefact_id": "A:memo-0004:02",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 625,
+        "y0": 478,
+        "x1": 794,
+        "y1": 647
+      }
+    },
+    {
+      "artefact_id": "A:memo-0004:03",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 55,
+        "y0": 1213,
+        "x1": 217,
+        "y1": 1313
+      }
+    }
+  ],
+  "source_errors": []
+}

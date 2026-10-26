@@ -1,4 +1,4 @@
-"""Citation correction from the image alone, on a drawn page with a known drift."""
+"""Citation correction from the image alone, on a drawn page with a known drift and skew."""
 
 import io
 
@@ -6,12 +6,14 @@ import numpy as np
 import pytest
 from PIL import Image, ImageDraw
 
-from archivist.pipeline.citations import correct, theil_sen, word_boxes
+from archivist.pipeline.citations import correct, fit_plane, word_boxes
 from archivist.schema import BBox, Citation, ExtractedValue
 
 PAGE = "page-1"
 # truth = ALPHA * predicted + BETA, in y: wide enough that matching from the identity fails.
 ALPHA, BETA = 1.25, -60.0
+# A skewed scan adds SKEW * x to that: column b sits 15 px lower against its ink than column a.
+SKEW = 0.04
 ROWS = 10
 ROW_TOP, PITCH, TEXT = 100, 50, 24
 COLUMNS = {"a": (100, 215), "b": (500, 552)}  # x ranges of the words in each column
@@ -45,13 +47,14 @@ def _page() -> tuple[bytes, dict[str, BBox]]:
     return buffer.getvalue(), truth
 
 
-def _predicted(box: BBox) -> BBox:
+def _predicted(box: BBox, skew: float = 0.0) -> BBox:
     """Where a drifting extractor puts the box: the inverse of the drift, a little off in x."""
-    y0, y1 = ((v - BETA) / ALPHA for v in (box.y0, box.y1))
-    return BBox(x0=box.x0 + 4, y0=round(y0), x1=box.x1 + 4, y1=round(y1))
+    x0, x1 = box.x0 + 4, box.x1 + 4
+    y0, y1 = ((v - BETA - skew * (x0 + x1) / 2) / ALPHA for v in (box.y0, box.y1))
+    return BBox(x0=x0, y0=round(y0), x1=x1, y1=round(y1))
 
 
-def _values(truth: dict[str, BBox]) -> list[ExtractedValue]:
+def _values(truth: dict[str, BBox], skew: float = 0.0) -> list[ExtractedValue]:
     values = []
     for key, box in truth.items():
         blank = key[0] == "b" and int(key[1:]) in BLANK_IN_B
@@ -59,7 +62,7 @@ def _values(truth: dict[str, BBox]) -> list[ExtractedValue]:
             ExtractedValue(
                 field_id=key,
                 value="" if blank else "1.00",
-                citation=Citation(page_id=PAGE, bbox=_predicted(box)),
+                citation=Citation(page_id=PAGE, bbox=_predicted(box, skew)),
             )
         )
     return values
@@ -88,14 +91,16 @@ def test_word_boxes_find_every_word_and_drop_rules_and_specks():
         assert (box.x0, box.y0, box.x1, box.y1) in words
 
 
-def test_every_inked_box_lands_on_its_own_ink_and_blanks_move_with_the_fit():
+@pytest.mark.parametrize("skew", [0.0, SKEW])
+def test_every_inked_box_lands_on_its_own_ink_and_blanks_move_with_the_fit(skew):
     image, truth = _page()
-    values = _values(truth)
+    values = _values(truth, skew)
 
     fix = correct(image, values)
 
     assert fix.alpha == pytest.approx(ALPHA, abs=0.01)
     assert fix.beta == pytest.approx(BETA, abs=3)
+    assert fix.gamma == pytest.approx(skew, abs=0.003)
     assert (fix.inked, fix.matched) == (2 * ROWS - len(BLANK_IN_B),) * 2
     for value in fix.values:
         box, target = value.citation.bbox, truth[value.field_id]
@@ -121,13 +126,20 @@ def test_a_page_without_enough_ink_to_match_is_left_as_it_was():
     for page in (blank.getvalue(), _page()[0]):
         fix = correct(page, values)
         assert fix.values == values
-        assert fix.alpha is None and fix.matched == 0
+        assert fix.alpha is None and fix.gamma is None and fix.matched == 0
 
 
-def test_theil_sen_ignores_a_gross_outlier():
-    x = np.arange(10, dtype=float) * 50
-    y = 1.1 * x - 20
-    y[3] += 400
-    slope, intercept = theil_sen(x, y, min_dx=1)
-    assert slope == pytest.approx(1.1)
-    assert intercept == pytest.approx(-20)
+def test_the_plane_fit_recovers_drift_and_skew_and_ignores_a_line_off_match():
+    y = np.tile(np.arange(10, dtype=float) * 50 + 100, 3)
+    x = np.repeat([100.0, 500.0, 900.0], 10)
+    truth = 1.1 * y - 20 + 0.02 * x
+    truth[3] += 50  # matched to the word a line below
+    fit = fit_plane(y, x, truth, seed=(1.0, 0.0, 0.0), text_height=24)
+    assert fit == pytest.approx((1.1, -20, 0.02))
+
+
+def test_a_slope_the_matches_cannot_pin_down_keeps_its_seed():
+    y = np.arange(5, dtype=float) * 50
+    x = np.full(5, 300.0)  # one column: no lever on the skew
+    fit = fit_plane(y, x, 1.1 * y + 7, seed=(1.0, 0.0, 0.01), text_height=24)
+    assert fit == pytest.approx((1.1, 7 - 3.0, 0.01))

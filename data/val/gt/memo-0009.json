@@ -1,0 +1,129 @@
+{
+  "page_id": "memo-0009",
+  "doc_type": "memo",
+  "image_path": "images/memo-0009.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 2,
+  "fields": [
+    {
+      "field_id": "M:memo-0009:memo_no",
+      "printed": "053071",
+      "bbox": {
+        "x0": 261,
+        "y0": 259,
+        "x1": 368,
+        "y1": 280
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0009:date",
+      "printed": "14/04/90",
+      "bbox": {
+        "x0": 667,
+        "y0": 260,
+        "x1": 808,
+        "y1": 289
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0009:account_no",
+      "printed": "57663909",
+      "bbox": {
+        "x0": 293,
+        "y0": 352,
+        "x1": 434,
+        "y1": 373
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0009:counterparty",
+      "printed": "Joe Edwards",
+      "bbox": {
+        "x0": 216,
+        "y0": 438,
+        "x1": 408,
+        "y1": 462
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0009:amount",
+      "printed": "75.77",
+      "bbox": {
+        "x0": 661,
+        "y0": 554,
+        "x1": 751,
+        "y1": 575
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0009:amount_words",
+      "printed": "Seventy-seven pounds and fifty-seven pence",
+      "bbox": {
+        "x0": 118,
+        "y0": 705,
+        "x1": 837,
+        "y1": 736
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0009:ledger_ref",
+      "printed": "Sheet 5 / Line 12",
+      "bbox": {
+        "x0": 275,
+        "y0": 806,
+        "x1": 569,
+        "y1": 836
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0009:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 410,
+        "y0": 1000,
+        "x1": 712,
+        "y1": 1076
+      }
+    },
+    {
+      "artefact_id": "A:memo-0009:02",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 627,
+        "y0": 552,
+        "x1": 654,
+        "y1": 576
+      }
+    },
+    {
+      "artefact_id": "A:memo-0009:03",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 55,
+        "y0": 742,
+        "x1": 226,
+        "y1": 913
+      }
+    }
+  ],
+  "source_errors": [
+    {
+      "kind": "words_figures_mismatch",
+      "field_ids": [
+        "M:memo-0009:amount",
+        "M:memo-0009:amount_words"
+      ],
+      "note": "figures 75.77 transpose the 77.57 stated in words"
+    }
+  ]
+}

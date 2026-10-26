@@ -1,0 +1,109 @@
+{
+  "page_id": "memo-0005",
+  "doc_type": "memo",
+  "image_path": "images/memo-0005.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 0,
+  "fields": [
+    {
+      "field_id": "M:memo-0005:memo_no",
+      "printed": "053067",
+      "bbox": {
+        "x0": 260,
+        "y0": 256,
+        "x1": 361,
+        "y1": 282
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0005:date",
+      "printed": "08/01/95",
+      "bbox": {
+        "x0": 664,
+        "y0": 254,
+        "x1": 798,
+        "y1": 282
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0005:account_no",
+      "printed": "10055503",
+      "bbox": {
+        "x0": 296,
+        "y0": 350,
+        "x1": 428,
+        "y1": 376
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0005:counterparty",
+      "printed": "Cook LLC",
+      "bbox": {
+        "x0": 219,
+        "y0": 436,
+        "x1": 346,
+        "y1": 462
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0005:amount",
+      "printed": "50.06",
+      "bbox": {
+        "x0": 671,
+        "y0": 551,
+        "x1": 750,
+        "y1": 577
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0005:amount_words",
+      "printed": "Fifty pounds and sixty pence",
+      "bbox": {
+        "x0": 115,
+        "y0": 707,
+        "x1": 539,
+        "y1": 738
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0005:ledger_ref",
+      "printed": "Sheet 51 / Line 15",
+      "bbox": {
+        "x0": 280,
+        "y0": 808,
+        "x1": 537,
+        "y1": 836
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0005:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 419,
+        "y0": 1008,
+        "x1": 613,
+        "y1": 1082
+      }
+    }
+  ],
+  "source_errors": [
+    {
+      "kind": "words_figures_mismatch",
+      "field_ids": [
+        "M:memo-0005:amount",
+        "M:memo-0005:amount_words"
+      ],
+      "note": "figures 50.06 transpose the 50.60 stated in words"
+    }
+  ]
+}

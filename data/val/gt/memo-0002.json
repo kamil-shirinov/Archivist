@@ -1,0 +1,141 @@
+{
+  "page_id": "memo-0002",
+  "doc_type": "memo",
+  "image_path": "images/memo-0002.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 3,
+  "fields": [
+    {
+      "field_id": "M:memo-0002:memo_no",
+      "printed": "053064",
+      "bbox": {
+        "x0": 265,
+        "y0": 252,
+        "x1": 368,
+        "y1": 280
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0002:date",
+      "printed": "16/10/94",
+      "bbox": {
+        "x0": 673,
+        "y0": 255,
+        "x1": 808,
+        "y1": 285
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0002:account_no",
+      "printed": "10055503",
+      "bbox": {
+        "x0": 298,
+        "y0": 347,
+        "x1": 431,
+        "y1": 375
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0002:counterparty",
+      "printed": "Carl Turner",
+      "bbox": {
+        "x0": 222,
+        "y0": 431,
+        "x1": 398,
+        "y1": 459
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0002:amount",
+      "printed": "432.61",
+      "bbox": {
+        "x0": 661,
+        "y0": 554,
+        "x1": 758,
+        "y1": 580
+      },
+      "occluded_by": [
+        "A:memo-0002:02"
+      ]
+    },
+    {
+      "field_id": "M:memo-0002:amount_words",
+      "printed": "Three hundred and forty-two pounds and sixty-one pence",
+      "bbox": {
+        "x0": 115,
+        "y0": 702,
+        "x1": 946,
+        "y1": 742
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0002:ledger_ref",
+      "printed": "Sheet 50 / Line 04",
+      "bbox": {
+        "x0": 273,
+        "y0": 804,
+        "x1": 535,
+        "y1": 835
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0002:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 434,
+        "y0": 1005,
+        "x1": 714,
+        "y1": 1079
+      }
+    },
+    {
+      "artefact_id": "A:memo-0002:02",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 625,
+        "y0": 489,
+        "x1": 790,
+        "y1": 655
+      }
+    },
+    {
+      "artefact_id": "A:memo-0002:03",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 218,
+        "y0": 884,
+        "x1": 414,
+        "y1": 1015
+      }
+    },
+    {
+      "artefact_id": "A:memo-0002:04",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 623,
+        "y0": 556,
+        "x1": 651,
+        "y1": 579
+      }
+    }
+  ],
+  "source_errors": [
+    {
+      "kind": "words_figures_mismatch",
+      "field_ids": [
+        "M:memo-0002:amount",
+        "M:memo-0002:amount_words"
+      ],
+      "note": "figures 432.61 transpose the 342.61 stated in words"
+    }
+  ]
+}

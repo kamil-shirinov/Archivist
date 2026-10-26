@@ -7,5 +7,6 @@ __pycache__/
 cache/
 results/scratch/
 data/dev/images/
+data/val/images/
 .DS_Store
 .vscode/

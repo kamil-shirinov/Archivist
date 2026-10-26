@@ -1,8 +1,11 @@
-"""Citation correction from the page image alone: the S1+ink strategy.
+"""Citation correction from the page image alone: the +ink step of S0+ink and S1+ink.
 
 The extractor's boxes drift down a page by a scale and an offset that differ from page to page
 (results/runs/baseline-dev-v1/analysis.md, section 2), so a box can sit two or three lines away
-from its ink. This puts each box back on its ink without any knowledge of the form's layout:
+from its ink. On a skewed scan the drift also differs across the page: a column at the right
+edge can sit a line further off than one at the left. The extractor follows the page's rotation
+only partly, and not in a fixed way, so the skew is fitted from the boxes rather than measured
+from the scan. This puts each box back on its ink without any knowledge of the form's layout:
 
 1. Binarise the page against its local paper brightness, drop ruled lines and specks, and smear
    the ink sideways into word boxes.
@@ -10,10 +13,14 @@ from its ink. This puts each box back on its ink without any knowledge of the fo
    centre falls in.
 3. Seed y = α·y_pred + β by a vote over a grid of (α, β): how many inked values land on a word of
    their column. Blank cells make each column's pattern of ink distinctive, so a shift by one line
-   loses votes. Ties go to the smallest move.
+   loses votes. Ties go to the smallest move. The seed has no skew: a vote over skews too finds
+   tilts that put one side of the page a line off and still win (tried on dev).
 4. Match predicted boxes to words by order within each column (a monotone alignment that may skip
-   words, such as stamps and stains, and values with no word nearby), and fit α and β to the
-   matched pairs with the Theil–Sen estimator; twice, re-aligning under the first fit.
+   words, such as stamps and stains, and values with no word nearby), and fit
+   y = α·y_pred + β + γ·x_pred to the matched pairs by least squares, dropping pairs far off the
+   fit; twice, re-aligning under the first fit. Columns the seed got right outvote those a skew
+   put a line off, and the second alignment brings those back. A slope the matches span too
+   little of keeps its seed.
 5. Move every box by the fit, then snap each matched one to its word box.
 
 Only values with something written ("" is a blank cell, None an unreadable one) take part in the
@@ -49,6 +56,9 @@ SKIP_VALUE = 1.0  # cost of leaving a value unmatched (× height)
 SKIP_WORD = 0.05  # cost of passing over a word (× height)
 X_WEIGHT = 0.25  # horizontal distance counts this much in a match's cost
 MIN_MATCHES = 3
+MIN_SPREAD = 1.0  # a slope is fitted only if its matches span this much (× height)
+TRIM = 2.5  # pairs further off the fit than this many robust sds are dropped from it
+TRIM_FLOOR = 0.1  # × height; the smallest sd that trimming assumes
 
 
 @dataclass(frozen=True)
@@ -56,6 +66,7 @@ class Correction:
     values: list[ExtractedValue]
     alpha: float | None  # None when the page was left as it was
     beta: float | None
+    gamma: float | None
     inked: int  # values that took part in the matching
     matched: int  # of those, the ones snapped to a word
 
@@ -179,8 +190,8 @@ def _columns(boxes: list[Box]) -> list[tuple[float, float, list[int]]]:
 
 def _seed(
     ys: list[np.ndarray], word_ys: list[np.ndarray], page_height: int, text_height: float
-) -> tuple[float, float]:
-    """The (α, β) on the grid that lands the most values on a word, nearest the identity."""
+) -> tuple[float, float, float]:
+    """The (α, β) on the grid that lands the most values on a word, nearest the identity; γ = 0."""
     betas = np.arange(-BETA_RANGE * page_height, BETA_RANGE * page_height + 1, 2.0)
     votes = np.zeros((len(ALPHAS), len(betas)))
     for y, wy in zip(ys, word_ys, strict=True):
@@ -195,17 +206,18 @@ def _seed(
     shift = np.abs((ALPHAS[:, None, None] - 1) * y_all + betas[None, :, None]).mean(axis=2)
     best = np.argwhere(votes == votes.max())
     a, b = min(best, key=lambda ab: shift[ab[0], ab[1]])
-    return float(ALPHAS[a]), float(betas[b])
+    return float(ALPHAS[a]), float(betas[b]), 0.0
 
 
 def _align(
-    values: list[Box], words: list[Box], alpha: float, beta: float, text_height: float
+    values: list[Box], words: list[Box], fit: tuple[float, float, float], text_height: float
 ) -> list[tuple[int, int]]:
     """Monotone matching of values to words within one column, as (value, word) index pairs.
 
     Both are taken top to bottom; a pair costs its distance once the value is moved by the fit,
     and a value may go unmatched or a word be passed over at a price.
     """
+    alpha, beta, gamma = fit
     vs = sorted(range(len(values)), key=lambda i: _centre_y(values[i]))
     ws = sorted(range(len(words)), key=lambda j: _centre_y(words[j]))
     gate, skip_v, skip_w = (k * text_height for k in (MATCH_GATE, SKIP_VALUE, SKIP_WORD))
@@ -217,7 +229,7 @@ def _align(
     move[1:, 0], move[0, 1:] = 1, 2
     for a in range(1, n + 1):
         value = values[vs[a - 1]]
-        y = alpha * _centre_y(value) + beta
+        y = alpha * _centre_y(value) + beta + gamma * _centre_x(value)
         for b in range(1, m + 1):
             word = words[ws[b - 1]]
             options = [cost[a - 1, b] + skip_v, cost[a, b - 1] + skip_w]
@@ -238,12 +250,36 @@ def _align(
     return pairs[::-1]
 
 
-def theil_sen(x: np.ndarray, y: np.ndarray, min_dx: float) -> tuple[float, float]:
-    """Median slope over pairs at least min_dx apart in x, and the median intercept."""
-    i, j = np.triu_indices(len(x), k=1)
-    far = np.abs(x[j] - x[i]) >= min_dx
-    slope = float(np.median((y[j] - y[i])[far] / (x[j] - x[i])[far])) if far.any() else 1.0
-    return slope, float(np.median(y - slope * x))
+def fit_plane(
+    y_pred: np.ndarray,
+    x_pred: np.ndarray,
+    y_true: np.ndarray,
+    seed: tuple[float, float, float],
+    text_height: float,
+) -> tuple[float, float, float]:
+    """(α, β, γ) with y_true ≈ α·y_pred + β + γ·x_pred: least squares, refitted twice without
+    the pairs more than TRIM robust sds off. A slope whose points span less than MIN_SPREAD text
+    heights keeps its seed value.
+    """
+    alpha, _, gamma = seed
+    free = [np.ptp(v) >= MIN_SPREAD * text_height for v in (y_pred, x_pred)]
+    fixed = (0 if free[0] else alpha * y_pred) + (0 if free[1] else gamma * x_pred)
+    design = np.stack(
+        [np.ones(len(y_pred))] + [v for v, f in zip((y_pred, x_pred), free, strict=True) if f],
+        axis=1,
+    )
+    keep = np.ones(len(y_pred), dtype=bool)
+    for _ in range(3):
+        solution = list(np.linalg.lstsq(design[keep], (y_true - fixed)[keep], rcond=None)[0])
+        beta = float(solution.pop(0))
+        alpha = float(solution.pop(0)) if free[0] else alpha
+        gamma = float(solution.pop(0)) if free[1] else gamma
+        residual = np.abs(y_true - (alpha * y_pred + beta + gamma * x_pred))
+        scale = max(1.4826 * float(np.median(residual[keep])), TRIM_FLOOR * text_height)
+        keep = residual <= TRIM * scale
+        if keep.sum() < MIN_MATCHES:
+            break
+    return alpha, beta, gamma
 
 
 def _box(value: ExtractedValue) -> Box:
@@ -263,7 +299,7 @@ def correct(image: bytes, values: list[ExtractedValue]) -> Correction:
     width, height = gray_image.size
     cited = [i for i, v in enumerate(values) if v.citation is not None]
     inked = [i for i in cited if values[i].value]
-    unchanged = Correction(list(values), None, None, len(inked), 0)
+    unchanged = Correction(list(values), None, None, None, len(inked), 0)
     if len(inked) < MIN_MATCHES:
         return unchanged
     boxes = {i: _box(values[i]) for i in cited}
@@ -276,27 +312,33 @@ def correct(image: bytes, values: list[ExtractedValue]) -> Correction:
         columns.append(([inked[k] for k in members], in_column))
     ys = [np.array([_centre_y(boxes[i]) for i in vs]) for vs, _ in columns]
     word_ys = [np.sort([_centre_y(words[j]) for j in ws]) for _, ws in columns]
-    alpha, beta = _seed(ys, word_ys, height, text_height)
+    fit = _seed(ys, word_ys, height, text_height)
 
     matches: dict[int, int] = {}
     for _ in range(2):
         matches = {}
         for vs, ws in columns:
-            pairs = _align([boxes[i] for i in vs], [words[j] for j in ws], alpha, beta, text_height)
+            pairs = _align([boxes[i] for i in vs], [words[j] for j in ws], fit, text_height)
             matches.update({vs[a]: ws[b] for a, b in pairs})
         if len(matches) < MIN_MATCHES:
             return unchanged
-        x = np.array([_centre_y(boxes[i]) for i in matches])
-        y = np.array([_centre_y(words[j]) for j in matches.values()])
-        alpha, beta = theil_sen(x, y, min_dx=text_height)
+        fit = fit_plane(
+            np.array([_centre_y(boxes[i]) for i in matches]),
+            np.array([_centre_x(boxes[i]) for i in matches]),
+            np.array([_centre_y(words[j]) for j in matches.values()]),
+            fit,
+            text_height,
+        )
 
+    alpha, beta, gamma = fit
     out = list(values)
     for i in cited:
         if i in matches:
             box = words[matches[i]]
         else:
             x0, y0, x1, y1 = boxes[i]
-            box = (x0, alpha * y0 + beta, x1, alpha * y1 + beta)
+            shift = beta + gamma * _centre_x(boxes[i])
+            box = (x0, alpha * y0 + shift, x1, alpha * y1 + shift)
         citation = Citation(page_id=values[i].citation.page_id, bbox=_bbox(box, width, height))
         out[i] = values[i].model_copy(update={"citation": citation})
-    return Correction(out, alpha, beta, len(inked), len(matches))
+    return Correction(out, alpha, beta, gamma, len(inked), len(matches))

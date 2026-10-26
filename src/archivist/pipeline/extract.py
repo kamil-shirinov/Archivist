@@ -4,8 +4,8 @@
 
 --citations picks how the boxes are made: S0 takes them from the extraction call as asked in P10;
 S1 asks for them the way Muse Spark's grounding guidance says, around the ink rather than the
-cell; S1+ink takes S1's boxes and corrects them page by page from the image alone
-(pipeline/citations.py). The default is the winner of eval/citation_experiment.py.
+cell; S0+ink and S1+ink take S0's or S1's boxes and correct them page by page from the image
+alone (pipeline/citations.py). The default follows results/citation_validation.json.
 
 Every image in data/<split>/images/ goes through the extractor role, already Cache(Budget(...)).
 A page's id is its file stem and is never interpreted. A page classified as unsupported yields no
@@ -43,7 +43,7 @@ from archivist.schema import ExtractedValue
 DATA_ROOT = Path("data")
 RUNS_DIR = Path("results/runs")
 ROLE = "extractor"
-CITATION_STRATEGIES = ("S0", "S1", "S1+ink")  # simplest first
+CITATION_STRATEGIES = ("S0", "S0+ink", "S1", "S1+ink")  # simplest first
 CITATIONS = "S0"  # the winner in results/citation_experiment.json
 CLASSIFY_TOKENS = 2_048
 EXTRACT_TOKENS = 16_000  # a full card is 95 values with boxes, plus reasoning
@@ -136,13 +136,13 @@ def extract_page(
     values = _ask(
         llm,
         f"{doc_type} extraction",
-        plugin.extraction_prompt(grounding=citation_strategy != "S0"),
+        plugin.extraction_prompt(grounding=citation_strategy.startswith("S1")),
         image,
         plugin.extraction_schema(),
         EXTRACT_TOKENS,
         lambda data: plugin.parse(page_id, data, width, height),
     )
-    if citation_strategy == "S1+ink":
+    if citation_strategy.endswith("+ink"):
         values = citations.correct(image, values).values
     return PageExtraction(page_id=page_id, doc_type=doc_type, values=values)
 

@@ -1,0 +1,67 @@
+{
+  "split": "val",
+  "seed": 2002,
+  "params": {
+    "n_accounts": 2,
+    "cards_per_account": 3,
+    "memo_rate": 0.35,
+    "source_error_rate": 0.2
+  },
+  "generator_commit": "abaf12c767292838788e6855467d4bdc3f8c6cd5",
+  "dirty": false,
+  "counts": {
+    "by_doc_type": {
+      "ledger": 6,
+      "memo": 14
+    },
+    "by_severity": {
+      "0": 5,
+      "1": 5,
+      "2": 5,
+      "3": 5
+    }
+  },
+  "files": {
+    "gt/card-01-1.json": "5aed5473f189c42ccd8be77d454a8aca3167dbe138d69e2804bfdb8bb5c354cb",
+    "gt/card-01-2.json": "8d3bc54cf76ac64e104c04b65092daae15c474b5c3dce7149951c0fa1db6c561",
+    "gt/card-01-3.json": "2ce87c8514dd480ee1e553c598db26c5169370f1fa581f436a66c203a0faf6e6",
+    "gt/card-02-1.json": "696ef1a4c4432e6375fe715f09a949acc42e2122216d7ca0ae3456be4ef558b3",
+    "gt/card-02-2.json": "f2e98c5a56b15e2e67860e7ef0a1cd27066e98bea0aa4389587be5caacd0c999",
+    "gt/card-02-3.json": "2fbbec1e9584749f9c76cc1f0a3912e6475bf632c7f8942da69295943e217e79",
+    "gt/memo-0001.json": "9f12feb88b8c82615d8ceeda01f31107c8d39fe676782965fa6e8d9b1af64857",
+    "gt/memo-0002.json": "561000b1087b64148da67597d680bbfb6aa050316c232130b6599f2760a53cec",
+    "gt/memo-0003.json": "e3b44a36378fe09a6da06b4aa44e6acad8fa71c04613d1f4cdb22929b54be134",
+    "gt/memo-0004.json": "ee4ee7882fc35672f6cc686a44a915549fcab9a482688033c51d67a01d50089d",
+    "gt/memo-0005.json": "1ec7b146ed12fd781265c0808f417c11d6dade1a03004d385c58652cf39e3280",
+    "gt/memo-0006.json": "a322a3f8bd5f02b53ad962e54d1261e4bc6be29eb93b24025c7ddbbeef4a4749",
+    "gt/memo-0007.json": "5d40c5964ba008ca1565d1ab661d74a87653ef915e8dd52429ded72e6ceae5f6",
+    "gt/memo-0008.json": "699e32e6b56c711db9373074d9c88978fddc8d9cdfc84eac83c57263a58f4c19",
+    "gt/memo-0009.json": "6b183571fcae2630116b25d3f461c2891d40db4b05a1336d6297d107fe9110bc",
+    "gt/memo-0010.json": "ffd63b8a99c7350d99547dbe96bd9fcd66722d5180942b2bfd32d724da847895",
+    "gt/memo-0011.json": "32eddc8efc5aa51df87f4a7000ca7addf85c0e7eb900d1bff2a991e8f8e51d5e",
+    "gt/memo-0012.json": "f3c35def8ded862d4697a853085c95241fb26566455a021f49160b7d9665213a",
+    "gt/memo-0013.json": "4b9e20ad79b5f0601f566328b924a29e5d641cc8cfe54d3cc7bcb95fc6eb3fd4",
+    "gt/memo-0014.json": "c8e8ca62df1f45745d660c9018dbd43517588ed3cdcc86712b0e1781f240c92d",
+    "gt/world.json": "e15c6e8ccb2e8afb5b6f6235b4595e8613d5d719fe6954b46eb474195c6e2a0c",
+    "images/card-01-1.jpg": "16e682cf6e86c1dc709e2fd4e749ec1eeabe5f98a9bc04d878ec02d6b881b730",
+    "images/card-01-2.jpg": "a39b04d3be1ee132693101f51eaa4bbad076b071da4b5003cb2ccb0c79f8e523",
+    "images/card-01-3.jpg": "624d8d98bef20f921cc68ab260fa5a993e5e302a1819c1b9a53e97b4ab4a39e2",
+    "images/card-02-1.jpg": "ffa7b76cbebda48ddcb03a9a1617c86f2b774ec2113a95880a205df12e17ae26",
+    "images/card-02-2.jpg": "285a6ae6efbd3b7cc4d4fe3cc9f7994c6430773068b7e49f15f5974df0b998ef",
+    "images/card-02-3.jpg": "956237b9ca66d7064a627f42c088bca507abb70bbe51760acfdce619592c798d",
+    "images/memo-0001.jpg": "def0be33c96837ff5983e9004a105163937fe8168651ef0a03d6063e0c1a32b0",
+    "images/memo-0002.jpg": "e638085a7ce4417c6eb747d077bb0e0986cb904fbb92a490fc8f2067b103d6e5",
+    "images/memo-0003.jpg": "b3e55b571ef67618ab0b5b70c952d95cc389c6986f3ff4c84d2ba46405e2173c",
+    "images/memo-0004.jpg": "d9db49e7db3b543c4d8d724a64b0dca11ca239b03f087a328659d57b15967f77",
+    "images/memo-0005.jpg": "aaa24940eace585254faf70de3167660da0b8f48ccdb1fdd7f4059e3bd49353d",
+    "images/memo-0006.jpg": "6d26539a38e68203b78c82ef0c7e9bef4f40925eda934be23b5e5d59c9489b02",
+    "images/memo-0007.jpg": "f04dd618e05b84f6fd72a2d3424c4cf66abf827eb126572492f6d5592c6210ef",
+    "images/memo-0008.jpg": "2e0bb0d43487dc6cbd7450ebeac671cb308da1e40b2c3f4c4ff44d1a7ff330f4",
+    "images/memo-0009.jpg": "f17384df7e5ab1f40413c7c60f87ea9ac6f8f1225b01485cfa0a0ff956834937",
+    "images/memo-0010.jpg": "118f1d9be754d8c701e607c85fec896c7972d1e55e29a5794264ea382a78948a",
+    "images/memo-0011.jpg": "708113e94aea042356dc1d5e55a960eda312d3fa7a60d17ed7dd1557d6ef2d88",
+    "images/memo-0012.jpg": "adbd7fc9adec7f98f7a7ef6a367cb7749fdd3b6bea7191bfd4d104909510f47c",
+    "images/memo-0013.jpg": "82748a28ee50f514d0ff0c98ad6153536c32be09a9d3b16901d3fe68a837342e",
+    "images/memo-0014.jpg": "657e7bd157e5fa9c60de641f87f3ebf2c30473340581eeaabdb76564c2743356"
+  }
+}

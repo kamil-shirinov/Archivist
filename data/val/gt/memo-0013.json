@@ -1,0 +1,110 @@
+{
+  "page_id": "memo-0013",
+  "doc_type": "memo",
+  "image_path": "images/memo-0013.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 2,
+  "fields": [
+    {
+      "field_id": "M:memo-0013:memo_no",
+      "printed": "053075",
+      "bbox": {
+        "x0": 269,
+        "y0": 251,
+        "x1": 371,
+        "y1": 280
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0013:date",
+      "printed": "10/08/90",
+      "bbox": {
+        "x0": 676,
+        "y0": 255,
+        "x1": 814,
+        "y1": 286
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0013:account_no",
+      "printed": "57663909",
+      "bbox": {
+        "x0": 302,
+        "y0": 342,
+        "x1": 435,
+        "y1": 371
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0013:counterparty",
+      "printed": "District Council Rates Office",
+      "bbox": {
+        "x0": 222,
+        "y0": 429,
+        "x1": 655,
+        "y1": 464
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0013:amount",
+      "printed": "84.25",
+      "bbox": {
+        "x0": 673,
+        "y0": 554,
+        "x1": 753,
+        "y1": 582
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0013:amount_words",
+      "printed": "Eighty-four pounds and twenty-five pence",
+      "bbox": {
+        "x0": 116,
+        "y0": 698,
+        "x1": 738,
+        "y1": 742
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0013:ledger_ref",
+      "printed": "Sheet 7 / Line 08",
+      "bbox": {
+        "x0": 271,
+        "y0": 803,
+        "x1": 517,
+        "y1": 837
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0013:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 323,
+        "y0": 992,
+        "x1": 633,
+        "y1": 1074
+      }
+    },
+    {
+      "artefact_id": "A:memo-0013:02",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 763,
+        "y0": 560,
+        "x1": 792,
+        "y1": 585
+      }
+    }
+  ],
+  "source_errors": []
+}

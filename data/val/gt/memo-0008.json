@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0008",
+  "doc_type": "memo",
+  "image_path": "images/memo-0008.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 1,
+  "fields": [
+    {
+      "field_id": "M:memo-0008:memo_no",
+      "printed": "053070",
+      "bbox": {
+        "x0": 263,
+        "y0": 257,
+        "x1": 371,
+        "y1": 278
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0008:date",
+      "printed": "28/03/90",
+      "bbox": {
+        "x0": 667,
+        "y0": 256,
+        "x1": 809,
+        "y1": 286
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0008:account_no",
+      "printed": "57663909",
+      "bbox": {
+        "x0": 298,
+        "y0": 350,
+        "x1": 439,
+        "y1": 372
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0008:counterparty",
+      "printed": "Douglas Joyce",
+      "bbox": {
+        "x0": 221,
+        "y0": 433,
+        "x1": 447,
+        "y1": 463
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0008:amount",
+      "printed": "125.98",
+      "bbox": {
+        "x0": 647,
+        "y0": 557,
+        "x1": 754,
+        "y1": 579
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0008:amount_words",
+      "printed": "One hundred and twenty-five pounds and ninety-eight pence",
+      "bbox": {
+        "x0": 114,
+        "y0": 700,
+        "x1": 974,
+        "y1": 733
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0008:ledger_ref",
+      "printed": "Sheet 5 / Line 08",
+      "bbox": {
+        "x0": 273,
+        "y0": 804,
+        "x1": 567,
+        "y1": 835
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0008:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 321,
+        "y0": 1001,
+        "x1": 547,
+        "y1": 1076
+      }
+    }
+  ],
+  "source_errors": []
+}
