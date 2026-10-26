@@ -15,13 +15,13 @@ backend = "meta"
 model_id = "muse-spark-1.3-contributor"
 settings = { reasoning_effort = "low" }
 
-# SAM 3.1 comes in P8b.
 [roles.segmenter]
 kind = "segmenter"
-backend = "mock"
-model_id = "mock-segmenter"
+backend = "meta"
+model_id = "sam-3.1"
 
-# USD per million tokens, keyed by model_id. The spend cap projects each call from these.
+# USD per million tokens, keyed by model_id, and optionally per_image_usd: USD per image sent to a
+# segmenter. The spend cap projects each call from these.
 # Muse Spark from https://dev.meta.ai/docs/pricing-rate-limits (read 2026-10-26). Cached input
 # ($0.15 Standard, $0.002 Contributor) is billed as ordinary input here: spend is overstated,
 # never understated. Reasoning tokens are billed as output.
@@ -32,6 +32,13 @@ output_per_mtok = 4.25
 [prices."muse-spark-1.3-contributor"]
 input_per_mtok = 0.10
 output_per_mtok = 0.20
+
+# SAM 3.1 from the same page: image segmentation is billed per image, not per token, at $2.50 per
+# 1,000 images, streaming or not. One image is billed per request, i.e. per prompt.
+[prices."sam-3.1"]
+input_per_mtok = 0.0
+output_per_mtok = 0.0
+per_image_usd = 0.0025
 
 [prices.mock-llm]
 input_per_mtok = 0.0

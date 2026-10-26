@@ -18,7 +18,7 @@ from typing import Literal
 from archivist.models.base import Segmenter, VisionLLM
 from archivist.models.budget import LEDGER_PATH, Budget, BudgetGuard, Price
 from archivist.models.cache import CACHE_DIR, Cache
-from archivist.models.meta_api import MetaLLM
+from archivist.models.meta_api import MetaLLM, MetaSAM
 from archivist.models.mock import MockLLM, MockSegmenter
 
 CONFIG_PATH = Path("config/models.toml")
@@ -43,6 +43,7 @@ def register_backend(name: str, kind: Kind, factory: Factory, *, priced: bool = 
 register_backend("mock", "llm", lambda model_id: MockLLM(model_id=model_id))
 register_backend("mock", "segmenter", lambda model_id: MockSegmenter(model_id=model_id))
 register_backend("meta", "llm", MetaLLM, priced=True)
+register_backend("meta", "segmenter", MetaSAM, priced=True)
 
 
 def _read(config_path: Path) -> tuple[dict[str, dict], dict[str, dict]]:
@@ -60,7 +61,10 @@ def _build(
         raise ValueError(f"role {role!r}: no {kind} backend {name!r}; registered: {known}")
     if model_id not in prices:
         raise ValueError(f"role {role!r}: no [prices.{model_id}] entry in the config")
-    price = Price(prices[model_id]["input_per_mtok"], prices[model_id]["output_per_mtok"])
+    entry = prices[model_id]
+    price = Price(
+        entry["input_per_mtok"], entry["output_per_mtok"], entry.get("per_image_usd", 0.0)
+    )
     factory, priced = _BACKENDS[(name, kind)]
     options = dict(spec.get("settings", {}))
     if priced:

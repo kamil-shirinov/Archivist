@@ -27,7 +27,9 @@ from archivist.models.base import (
 
 LEDGER_PATH = Path("results/spend_ledger.jsonl")
 IMAGE_TOKENS = 2_000  # projected input tokens per image, on the high side
-SEGMENT_OUTPUT_TOKENS = 4_096  # a SegmentRequest has no output limit; project the LLM default
+# A SegmentRequest has no output limit; project the LLM default. SAM 3.1 is billed per image, not
+# per token, so its token prices are zero and this only matters to a token-priced segmenter.
+SEGMENT_OUTPUT_TOKENS = 4_096
 
 
 class BudgetExceeded(RuntimeError):
@@ -36,10 +38,11 @@ class BudgetExceeded(RuntimeError):
 
 @dataclass(frozen=True)
 class Price:
-    """USD per million tokens."""
+    """USD per million tokens, plus USD per image sent to a segmenter (one image per prompt)."""
 
     input_per_mtok: float
     output_per_mtok: float
+    per_image_usd: float = 0.0
 
 
 class BudgetGuard:
@@ -81,8 +84,10 @@ def project_cost(request: LLMRequest | SegmentRequest, price: Price) -> float:
     """A deliberately pessimistic cost for one call: assume the whole output limit is used.
 
     Input is 4 characters per token plus IMAGE_TOKENS per image. Everything sent counts, so for
-    an LLMRequest that is the system prompt and the JSON schema as well as the prompt.
+    an LLMRequest that is the system prompt and the JSON schema as well as the prompt. A
+    SegmentRequest also pays per_image_usd once per prompt: a segmenter sends the page with each.
     """
+    per_image = 0.0
     if isinstance(request, LLMRequest):
         chars = len(request.prompt) + len(request.system or "")
         if request.json_schema is not None:
@@ -92,7 +97,9 @@ def project_cost(request: LLMRequest | SegmentRequest, price: Price) -> float:
     else:
         input_tokens = sum(len(prompt) for prompt in request.prompts) / 4 + IMAGE_TOKENS
         output_tokens = SEGMENT_OUTPUT_TOKENS
-    return (input_tokens * price.input_per_mtok + output_tokens * price.output_per_mtok) / 1e6
+        per_image = price.per_image_usd * len(request.prompts)
+    tokens = (input_tokens * price.input_per_mtok + output_tokens * price.output_per_mtok) / 1e6
+    return tokens + per_image
 
 
 class Budget:
