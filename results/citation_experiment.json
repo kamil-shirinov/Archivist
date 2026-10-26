@@ -1,0 +1,37 @@
+{
+  "split": "dev",
+  "rule": "Choose the variant with the highest citation accuracy whose field accuracy is no more than 0.5 points below S0's; on a tie, prefer the simpler one (S0, then S1, then S1+ink).",
+  "winner": "S0",
+  "variants": {
+    "S0": {
+      "run_id": "baseline-dev-v1",
+      "citation_accuracy": {
+        "all": 0.4514200298953662,
+        "ledger": 0.4339622641509434,
+        "memo": 0.5377777777777778
+      },
+      "field_accuracy": 0.9660649819494584,
+      "error_rate": 0.031136857349746562
+    },
+    "S1": {
+      "run_id": "baseline-dev-s1",
+      "citation_accuracy": {
+        "all": 0.5691729323308271,
+        "ledger": 0.5808491418247516,
+        "memo": 0.5112107623318386
+      },
+      "field_accuracy": 0.9602888086642599,
+      "error_rate": 0.038322487346348515
+    },
+    "S1+ink": {
+      "run_id": "baseline-dev-s1-ink",
+      "citation_accuracy": {
+        "all": 0.9428571428571428,
+        "ledger": 0.9394760614272809,
+        "memo": 0.9596412556053812
+      },
+      "field_accuracy": 0.9602888086642599,
+      "error_rate": 0.038322487346348515
+    }
+  }
+}
