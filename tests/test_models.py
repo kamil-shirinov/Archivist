@@ -297,7 +297,7 @@ def test_load_roles_builds_cache_budget_backend_for_every_role(tmp_path):
     for role, client in roles.items():
         assert isinstance(client, Cache)
         assert isinstance(client.inner, Budget)
-        assert isinstance(client.inner.inner, MockSegmenter if role == "segmenter" else MockLLM)
+        assert client.inner.inner.name == describe_config(CONFIG)[role]["backend"]
     assert len({id(client.inner.guard) for client in roles.values()}) == 1  # one cap for all
 
 
@@ -321,7 +321,14 @@ def test_describe_config_matches_models_toml(tmp_path):
 
 
 def test_roles_work_end_to_end_and_write_only_where_told(tmp_path):
-    roles = load(tmp_path)
+    config = tmp_path / "models.toml"  # all mock: the shipped config reaches a paid API
+    config.write_text(
+        '[roles.extractor]\nkind = "llm"\nbackend = "mock"\nmodel_id = "mock-llm"\n'
+        '[roles.segmenter]\nkind = "segmenter"\nbackend = "mock"\nmodel_id = "mock-segmenter"\n'
+        "[prices.mock-llm]\ninput_per_mtok = 0.0\noutput_per_mtok = 0.0\n"
+        "[prices.mock-segmenter]\ninput_per_mtok = 0.0\noutput_per_mtok = 0.0\n"
+    )
+    roles = load(tmp_path, config)
     request = LLMRequest(role="extractor", prompt="hello")
 
     assert roles["extractor"].complete(request).cached is False

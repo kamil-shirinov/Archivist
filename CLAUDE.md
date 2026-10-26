@@ -35,3 +35,4 @@ uv run pytest -q
 - [x] P6 dataset builder and dev set
 - [x] P6b JPEG scans; dev images out of git
 - [x] P7 model layer: one interface, cache and spend cap
+- [x] P8 Muse Spark backend and the first real call

@@ -1,7 +1,7 @@
 """Response cache: one wrapper for both protocols, also the replay log of a run.
 
-The key covers the backend, the model and every field of the request, so changing any of them
-is a miss. A hit returns the stored response with cached=True and never reaches the backend.
+The key covers the backend, the model, the backend's settings (such as reasoning_effort) and
+every field of the request, so changing any of them is a miss. A hit returns the stored response with cached=True and never reaches the backend.
 It still carries the usage of the original call: spend is what the ledger says, not what
 responses say.
 """
@@ -12,7 +12,7 @@ import dataclasses
 import hashlib
 import json
 import os
-from collections.abc import Callable
+from collections.abc import Callable, Mapping
 from pathlib import Path
 
 from pydantic import BaseModel
@@ -40,9 +40,19 @@ def _canonical(value: object) -> object:
     return value
 
 
-def cache_key(backend: str, model_id: str, request: LLMRequest | SegmentRequest) -> str:
+def cache_key(
+    backend: str,
+    model_id: str,
+    request: LLMRequest | SegmentRequest,
+    settings: Mapping[str, object] | None = None,
+) -> str:
     fields = {f.name: _canonical(getattr(request, f.name)) for f in dataclasses.fields(request)}
-    payload = {"backend": backend, "model_id": model_id, "request": fields}
+    payload = {
+        "backend": backend,
+        "model_id": model_id,
+        "settings": dict(settings or {}),
+        "request": fields,
+    }
     canonical = json.dumps(payload, sort_keys=True, separators=(",", ":"))
     return hashlib.sha256(canonical.encode()).hexdigest()
 
@@ -66,11 +76,17 @@ def _load_segment(data: dict) -> SegmentResponse:
 
 
 class Cache:
-    def __init__(self, inner: VisionLLM | Segmenter, cache_dir: Path = CACHE_DIR) -> None:
+    def __init__(
+        self,
+        inner: VisionLLM | Segmenter,
+        cache_dir: Path = CACHE_DIR,
+        settings: Mapping[str, object] | None = None,
+    ) -> None:
         self.inner = inner
         self.name = inner.name
         self.model_id = inner.model_id
         self.cache_dir = cache_dir
+        self.settings = dict(settings or {})
 
     def complete(self, request: LLMRequest) -> LLMResponse:
         return self._through(request, self.inner.complete, _load_llm)
@@ -81,7 +97,7 @@ class Cache:
     def _through[Req: (LLMRequest, SegmentRequest), Resp: (LLMResponse, SegmentResponse)](
         self, request: Req, call: Callable[[Req], Resp], load: Callable[[dict], Resp]
     ) -> Resp:
-        key = cache_key(self.name, self.model_id, request)
+        key = cache_key(self.name, self.model_id, request, self.settings)
         path = self.cache_dir / key[:2] / f"{key}.json"
         if path.exists():
             return dataclasses.replace(load(json.loads(path.read_text())), cached=True)
