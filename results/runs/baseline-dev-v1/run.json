@@ -1,0 +1,40 @@
+{
+  "run_id": "baseline-dev-v1",
+  "images": "data/dev/images",
+  "config": {
+    "extractor": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "rereader": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "segmenter": {
+      "backend": "meta",
+      "model_id": "sam-3.1"
+    }
+  },
+  "counts": {
+    "pages": 47,
+    "extracted": 47,
+    "failed": 0,
+    "by_doc_type": {
+      "ledger_card": 12,
+      "payment_memo": 35
+    }
+  },
+  "failed_pages": {},
+  "cost_usd": 0.03877889999999999,
+  "started_at": "2026-10-26T18:15:01+00:00",
+  "finished_at": "2026-10-26T18:18:06+00:00",
+  "sessions": [
+    {
+      "started_at": "2026-10-26T18:15:01+00:00",
+      "finished_at": "2026-10-26T18:18:06+00:00",
+      "pages_extracted": 47,
+      "cost_usd": 0.03877889999999999,
+      "aborted": null
+    }
+  ]
+}
