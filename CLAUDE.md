@@ -44,3 +44,4 @@ uv run pytest -q
 - [x] P10d validated citation correction
 - [x] P11 the documents' own checksums
 - [x] P12 verification: blind re-reads, occlusion and verdicts
+- [x] P12b read every value twice

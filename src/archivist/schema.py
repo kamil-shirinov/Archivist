@@ -67,6 +67,7 @@ class PageGT(BaseModel):
 class Citation(BaseModel):
     page_id: str
     bbox: BBox
+    raw_bbox: BBox | None = None  # the extractor's own box, kept when bbox has been corrected
 
 
 class ExtractedValue(BaseModel):

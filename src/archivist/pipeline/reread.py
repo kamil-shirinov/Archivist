@@ -4,13 +4,16 @@ The crop is the box padded by PAD_Y of its height above and below and PAD_X of i
 right, clamped to the page, and sent as PNG. The correction snaps a box to one word of ink, so a
 box around "STANDING ORDER INSURANCE" can come back around "ORDER" alone; the extractor's own box
 spans the cell but drifts vertically (citations.py). So the corrected box is first widened to the
-extractor's horizontal extent when that is known (widen): on dev this took the share of crops
-holding the whole printed description from 0.86 to 0.99, the payee from 0.77 to 1.00.
+extractor's horizontal extent, which every corrected citation keeps as raw_bbox (region): on dev
+this took the share of crops holding the whole printed description from 0.86 to 0.99, the payee
+from 0.77 to 1.00.
 
 The prompt comes from the field's document type: it names the document and the field (e.g. "the
 Balance column of a ledger card line") and never the value the extractor read, so agreement is
-evidence and not an echo. The re-reader is the rereader role. It answers {"value": string or
-null}: the value as printed, "" for a blank cell, null when it can't be read. An answer that
+evidence and not an echo. Each call sees one cell, so the re-reader can't make values agree across
+rows the way a reading of the whole page can (D26). The re-reader is the rereader role. It answers
+{"value": string or null}: the value as printed, "" for a blank cell, null when it can't be read.
+An answer that
 doesn't parse is asked for once more, with a note; if that fails too, ReReadFailed is raised.
 """
 
@@ -23,7 +26,7 @@ import math
 from PIL import Image
 
 from archivist.models import LLMRequest, VisionLLM
-from archivist.schema import BBox
+from archivist.schema import BBox, Citation
 
 ROLE = "rereader"
 PAD_Y = 0.5  # × the box height, above and below
@@ -50,6 +53,11 @@ def widen(box: BBox, reach: BBox | None) -> BBox:
     if reach is None:
         return box
     return BBox(x0=min(box.x0, reach.x0), y0=box.y0, x1=max(box.x1, reach.x1), y1=box.y1)
+
+
+def region(citation: Citation) -> BBox:
+    """The box to crop around: the corrected box, widened to the extractor's own."""
+    return widen(citation.bbox, citation.raw_bbox)
 
 
 def crop_box(box: BBox, width: int, height: int) -> BBox:

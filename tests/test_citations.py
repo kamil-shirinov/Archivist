@@ -6,7 +6,7 @@ import numpy as np
 import pytest
 from PIL import Image, ImageDraw
 
-from archivist.pipeline.citations import correct, fit_plane, word_boxes
+from archivist.pipeline.citations import correct, fit_plane, outside_table, word_boxes
 from archivist.schema import BBox, Citation, ExtractedValue
 
 PAGE = "page-1"
@@ -112,6 +112,38 @@ def test_every_inked_box_lands_on_its_own_ink_and_blanks_move_with_the_fit(skew)
             assert cy == pytest.approx(_centre(target)[1], abs=2)
     assert [v.field_id for v in fix.values] == [v.field_id for v in values]
     assert {v.value for v in fix.values} == {"", "1.00"}
+
+
+def test_header_fields_move_with_the_fit_but_are_never_snapped_or_matched():
+    image, truth = _page()
+    heading = BBox(x0=100, y0=40, x1=160, y1=64)  # the heading's word, under column a
+    header = ExtractedValue(
+        field_id="L:page-1:hdr:account_no",
+        value="34192727",
+        citation=Citation(page_id=PAGE, bbox=_predicted(heading)),
+    )
+    values = _values(truth)
+
+    fix, plain = correct(image, [*values, header]), correct(image, values)
+
+    assert (fix.alpha, fix.beta, fix.gamma) == (plain.alpha, plain.beta, plain.gamma)
+    assert (fix.inked, fix.matched) == (plain.inked, plain.matched)
+    box = fix.values[-1].citation.bbox
+    assert (box.x0, box.x1) == (104, 164)  # the extractor's own extent, not the word's
+    assert _centre(box)[1] == pytest.approx(_centre(heading)[1], abs=2)
+    assert outside_table("L:p:hdr:holder") and outside_table("L:p:hdr:sheet_no")
+    assert not outside_table("L:p:hdr:brought_forward") and not outside_table("M:p:account_no")
+
+
+def test_every_corrected_citation_keeps_the_extractors_box_through_a_second_correction():
+    image, truth = _page()
+    values = _values(truth)
+    once = correct(image, values)
+    twice = correct(image, once.values)
+    raw = [v.citation.bbox for v in values]
+    assert [v.citation.raw_bbox for v in once.values] == raw
+    assert [v.citation.raw_bbox for v in twice.values] == raw
+    assert any(v.citation.bbox != v.citation.raw_bbox for v in once.values)
 
 
 def test_a_page_without_enough_ink_to_match_is_left_as_it_was():

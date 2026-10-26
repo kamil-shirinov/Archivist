@@ -1,37 +1,44 @@
-"""Verification: a verdict for every extracted value, with its evidence (D25).
+"""Verification: a verdict for every extracted value, with its evidence (D25, D26).
 
-    python -m archivist.pipeline.verify --run baseline-dev-v1 --out archivist-dev-v1 --workers 4
+    python -m archivist.pipeline.verify --run baseline-dev-v1 --out archivist-dev-v2 --workers 4
 
 The policy, pre-registered before it is scored on the test set:
 
-- Money fields (debit, credit, balance, brought and carried forward, the memo's amount) are
-  verified by the arithmetic: accepted when no check involving them fails.
-- Every other field (dates, descriptions, names, account, sheet and memo numbers, the amount in
-  words, ledger references) gets a blind re-read (reread.py), and is accepted when the re-read
-  agrees with the extracted value after normalisation.
-- A field implicated by a failed check, or whose re-read disagrees or is illegible, goes to
-  review. Flagged money fields are re-read too, and both readings are kept as evidence. Where a
-  check suggests a value and the re-read agrees with that suggestion, the suggestion is attached
-  as the proposed correction. The extracted value itself is never changed.
-- Occluded fields (occlusion.py: a stamp or stain covers at least 10% of the box) are re-read
-  too, money included, and accepted only if everything agrees, with lower confidence.
+- Every value is read twice (D26): once in context, by the extractor reading the whole page, and
+  once in isolation, by a blind re-read of its cell alone (reread.py). Money fields are re-read
+  like any other: reading a page in context can make a mistake add up (a misread debit carried
+  through every later balance), and a re-reader that sees one cell at a time can't.
+- A field is accepted only when the two reads agree after normalisation and no check on the
+  extracted values involving it fails.
+- The document checks run twice: on the extracted values and on the re-read values. Where a
+  re-read disagrees with the extraction, the re-read value is proposed as the correction if the
+  re-read values hold up: no check on the re-read values fails on the field, and some equation
+  of the documents' arithmetic holds for it with every value in it read (ledger.balanced). That
+  covers both re-read values passing a check the extracted ones fail and a consistent misreading
+  whose extracted chain adds up as well as the re-read one. Failing that, a check's suggestion
+  the re-read agrees with is proposed, as before. Both chains' flags are kept as evidence.
+- A disagreement, a failed check, an illegible or failed re-read, or a field without a citation
+  box to re-read goes to review. The extracted value itself is never changed; a correction is
+  only ever proposed.
+- Occluded fields (occlusion.py: a stamp or stain covers at least 10% of the box) are accepted
+  only if everything agrees, with lower confidence.
 - A field the extractor abstained on (null) is abstained, and is not re-read.
-- A field that needs a re-read but has no citation box, or whose re-read call fails, goes to
-  review: it could not be verified.
 
-Confidence, for the risk–coverage curve: 0.99 accepted (checked, or re-read agreement); 0.9 the
-same but occluded; 0.5 for review with a proposed correction; 0.3 for review without one (an
-unresolved disagreement); 0.0 when the extractor abstained.
+Confidence, for the risk–coverage curve: 0.99 accepted; 0.9 the same but occluded; 0.5 for
+review with a proposed correction; 0.3 for review without one (an unresolved disagreement); 0.0
+when the extractor abstained.
 
-Unresolvable cross-document flags are notes: kept as evidence, never a reason for review.
+Unresolvable cross-document flags are notes: kept as evidence, never a reason for review. A check
+that fails only on the re-read values is evidence too: when the two reads agree on a field, the
+failure lies with a neighbour's re-read, and that neighbour goes to review on its disagreement.
 Agreement compares canonical forms: money as an amount (the clerk's notation, ledger.money),
 dates as a calendar date, account and memo numbers as digits, the amount in words as its letters
 (D22), anything else as text with spacing and case ignored.
 
 Re-reads use the corrected citation boxes: a run extracted with S0 or S1 is corrected here as
 S0+ink would (citations.py, D23), and each corrected box is widened to the extractor's own
-horizontal extent before cropping (reread.widen). Both the corrected box and the region sent to
-the re-reader are part of the evidence. Every model call
+horizontal extent, kept on the citation as raw_bbox, before cropping (reread.region). Both the
+corrected box and the region sent to the re-reader are part of the evidence. Every model call
 goes through the roles, so a rerun replays the cache and spends nothing.
 
 Writes results/runs/<out>/verdicts.jsonl, one VerdictRecord (a FieldVerdict with its page, doc
@@ -56,7 +63,7 @@ from PIL import Image
 from pydantic import BaseModel
 
 from archivist.doctypes import REGISTRY, is_unresolvable
-from archivist.doctypes.ledger import calendar_date, money
+from archivist.doctypes.ledger import balanced, calendar_date, money
 from archivist.models import BudgetExceeded, Region, describe_config, load_roles
 from archivist.models.budget import BudgetGuard
 from archivist.pipeline import citations, occlusion, reread
@@ -92,13 +99,16 @@ class Occluder(BaseModel):
 
 
 class Evidence(BaseModel):
-    route: Literal["arithmetic", "reread"]  # what verifies the field when nothing else applies
-    citation: Citation | None  # the corrected box
+    route: Literal["arithmetic", "reread"]  # arithmetic: money, checked by sums as well as re-read
+    citation: Citation | None  # the corrected box, and the extractor's own as raw_bbox
     crop: BBox | None = None  # the region of the page the re-reader saw
     occluded_by: list[Occluder] = []
     reread: str | None = None  # the blind re-read; None when illegible or not re-read
     reread_status: ReReadStatus
-    proposed: str | None = None  # a check's suggestion that the re-read agrees with
+    reread_flags: list[Flag] = []  # the checks run on the re-read values: the second chain
+    reread_balances: bool = False  # an equation holds for the re-read value (ledger.balanced)
+    proposed: str | None = None  # the proposed correction
+    proposed_by: Literal["reread_chain", "check"] | None = None
 
 
 class VerdictRecord(FieldVerdict):
@@ -138,12 +148,9 @@ def same_reading(field_id: str, a: str, b: str) -> bool:
     return canonical(field_id, a) == canonical(field_id, b)
 
 
-def needs_reread(value: ExtractedValue, flags: Sequence[Flag], occluded: bool) -> bool:
-    """Whether the policy asks for a blind re-read of this field."""
-    if value.abstained or value.value is None:
-        return False
-    failed = any(not is_unresolvable(f) for f in flags)
-    return field_kind(value.field_id) not in MONEY_FIELDS or occluded or failed
+def needs_reread(value: ExtractedValue) -> bool:
+    """Whether the policy asks for a blind re-read of this field: of every one read (D26)."""
+    return not value.abstained and value.value is not None
 
 
 def _reread_status(value: ExtractedValue, reading: ReRead | None) -> ReReadStatus:
@@ -164,6 +171,25 @@ REREAD_DETAIL = {
 }
 
 
+def _proposal(
+    fid: str, read: str, failed: Sequence[Flag], reread_failed: Sequence[Flag], balances: bool
+) -> tuple[str | None, str | None, str]:
+    """The proposed correction for a disagreement, what proposed it, and the note's wording."""
+    detail = f"the blind re-read reads {read!r}"
+    if balances and not reread_failed:
+        if failed:
+            why = "the re-read values pass the checks the extracted values fail"
+        else:
+            why = "the extracted values add up, but so do the re-read values, which disagree"
+        return read, "reread_chain", f"{detail}; {why}: proposed as the correction"
+    suggestions = [f.suggested for f in failed if f.suggested is not None]
+    suggested = next((s for s in suggestions if same_reading(fid, s, read)), None)
+    if suggested is not None:
+        detail += f", as a check suggests ({suggested}): proposed as the correction"
+        return suggested, "check", detail
+    return None, None, detail
+
+
 def decide(
     page_id: str,
     doc_type: str,
@@ -171,8 +197,13 @@ def decide(
     flags: Sequence[Flag],
     occluders: Sequence[Occluder],
     reading: ReRead | None,
+    reread_flags: Sequence[Flag] = (),
+    balances: bool = False,
 ) -> VerdictRecord:
-    """The policy for one field: its flags from the checks, what covers it, its re-read if any."""
+    """The policy for one field: its flags from the checks on the extracted values, what covers
+    it, its re-read, the flags from the checks on the re-read values, and whether an equation
+    holds for its re-read value.
+    """
     route = "arithmetic" if field_kind(value.field_id) in MONEY_FIELDS else "reread"
     fid = value.field_id
     notes = [
@@ -197,18 +228,12 @@ def decide(
         )
 
     failed = [f for f in flags if not is_unresolvable(f)]
-    if needs_reread(value, flags, bool(occluders)):
-        status = _reread_status(value, reading)
-    else:
-        status = "not_reread"
+    reread_failed = [f for f in reread_flags if not is_unresolvable(f)]
+    status = _reread_status(value, reading)
     read = reading.value if reading is not None and status != "no_citation" else None
-    proposed = None
+    proposed = proposed_by = None
     if status == "disagrees":
-        suggestions = [f.suggested for f in failed if f.suggested is not None]
-        proposed = next((s for s in suggestions if same_reading(fid, s, read)), None)
-        detail = f"the blind re-read reads {read!r}"
-        if proposed is not None:
-            detail += f", as a check suggests ({proposed}): proposed as the correction"
+        proposed, proposed_by, detail = _proposal(fid, read, failed, reread_failed, balances)
         notes.append(Flag(field_id=fid, check="reread", detail=detail, suggested=proposed))
     elif status == "failed":
         detail = f"the re-read failed: {reading.error}"
@@ -236,7 +261,10 @@ def decide(
             crop=reading.crop if reading is not None else None,
             reread=read,
             reread_status=status,
+            reread_flags=list(reread_flags),
+            reread_balances=balances,
             proposed=proposed,
+            proposed_by=proposed_by,
         ),
     )
 
@@ -246,8 +274,22 @@ class _Page:
     extraction: PageExtraction
     image: bytes
     values: list[ExtractedValue]  # with corrected citations
-    reach: dict[str, BBox]  # the extractor's own boxes, when corrected here
     regions: list[Region]
+
+
+def reread_values(
+    pages: Sequence[PageExtraction], readings: Mapping[str, ReRead]
+) -> list[PageExtraction]:
+    """The pages as the re-reader read them: a value it couldn't give is unread (None)."""
+    out = []
+    for page in pages:
+        values = []
+        for v in page.values:
+            reading = readings.get(v.field_id)
+            text = reading.value if reading is not None and reading.error is None else None
+            values.append(v.model_copy(update={"value": text, "abstained": text is None}))
+        out.append(page.model_copy(update={"values": values}))
+    return out
 
 
 def _occluders(value: ExtractedValue, regions: Sequence[Region]) -> list[Occluder]:
@@ -267,18 +309,14 @@ def verify(
 ) -> tuple[list[VerdictRecord], dict]:
     """Every value of every page through the policy; returns the verdicts and the call counts."""
     segmenter, llm = roles[occlusion.ROLE], roles[reread.ROLE]
-    by_field: dict[str, list[Flag]] = defaultdict(list)
-    for flag in run_checks(pages):
-        by_field[flag.field_id].append(flag)
 
     def prepare(page: PageExtraction) -> _Page:
         image = images[page.page_id].read_bytes()
-        values, reach = page.values, {}
+        values = page.values
         if correct_citations and values:
             values = citations.correct(image, values).values
-            reach = {v.field_id: v.citation.bbox for v in page.values if v.citation is not None}
         regions = occlusion.detect(image, segmenter) if values else []
-        return _Page(page, image, values, reach, regions)
+        return _Page(page, image, values, regions)
 
     def read_one(job: tuple[bytes, BBox, str]) -> tuple[ReRead, bool]:
         image, box, prompt = job
@@ -298,15 +336,21 @@ def verify(
         for page in prepared:
             plugin = REGISTRY.get(page.extraction.doc_type)
             for value in page.values:
-                occluded = bool(occlusion.occluders(value, page.regions))
-                if value.citation is not None and needs_reread(
-                    value, by_field[value.field_id], occluded
-                ):
-                    box = reread.widen(value.citation.bbox, page.reach.get(value.field_id))
+                if value.citation is not None and needs_reread(value):
+                    box = reread.region(value.citation)
                     jobs.append((page.image, box, plugin.reread_prompt(value.field_id)))
                     keys.append(value.field_id)
         results = list(pool.map(read_one, jobs))
     readings = {key: reading for key, (reading, _) in zip(keys, results, strict=True)}
+
+    reread_pages = reread_values(pages, readings)
+    by_field: dict[str, list[Flag]] = defaultdict(list)
+    for flag in run_checks(pages):
+        by_field[flag.field_id].append(flag)
+    reread_by_field: dict[str, list[Flag]] = defaultdict(list)
+    for flag in run_checks(reread_pages):
+        reread_by_field[flag.field_id].append(flag)
+    holds = balanced(reread_pages)
 
     verdicts = [
         decide(
@@ -316,6 +360,8 @@ def verify(
             by_field[value.field_id],
             _occluders(value, page.regions),
             readings.get(value.field_id),
+            reread_by_field[value.field_id],
+            value.field_id in holds,
         )
         for page in prepared
         for value in page.values
@@ -331,6 +377,7 @@ def verify(
 
 
 def _counts(verdicts: Sequence[VerdictRecord]) -> dict:
+    proposers = [v.evidence.proposed_by for v in verdicts]
     return {
         "fields": len(verdicts),
         "by_status": dict(sorted(Counter(v.status for v in verdicts).items())),
@@ -343,6 +390,8 @@ def _counts(verdicts: Sequence[VerdictRecord]) -> dict:
         ),
         "occluded": sum(bool(v.evidence.occluded_by) for v in verdicts),
         "proposed_corrections": sum(v.evidence.proposed is not None for v in verdicts),
+        "proposed_by": dict(sorted(Counter(filter(None, proposers)).items())),
+        "reread_chain_flags": sum(len(v.evidence.reread_flags) for v in verdicts),
     }
 
 
@@ -391,6 +440,7 @@ def run(
         "config": dict(config),
         "citations": strategy if strategy.endswith("+ink") else f"{strategy}+ink (corrected here)",
         "policy": {
+            "version": "D26: every field read twice, checks on both chains",
             "money_fields": sorted(MONEY_FIELDS),
             "confidence": CONFIDENCE,
             "occlusion_prompts": list(occlusion.PROMPTS),

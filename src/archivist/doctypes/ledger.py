@@ -308,7 +308,8 @@ class PaymentMemo:
 # Only rules a bank clerk would apply to the documents themselves (D24): a running balance adds
 # up, a card carries forward its last balance and the next sheet brings it forward, a line is a
 # debit or a credit, dates and cheque numbers only move forward, words agree with figures, and a
-# memo matches the ledger line it cites. They read the extracted values only. A card whose
+# memo matches the ledger line it cites. They read only the values they are given, which may be
+# the extractor's or the blind re-reads (D26), never the page or ground truth. A card whose
 # account number is misread is still placed by its holder and the gap it fills in an account's
 # sheets, and a memo by the posting it cites, as a clerk would find them.
 #
@@ -745,6 +746,37 @@ def _account_checks(accounts: dict[str, list[_Card]]) -> list[Flag]:
         flags += _cross_sequence(sheets, _date_items, "the date")
         flags += _cross_sequence(sheets, _cheque_items, "the cheque number")
     return flags
+
+
+def balanced(pages: Sequence[PageExtraction]) -> set[str]:
+    """The fields some equation of the documents' own arithmetic holds for, every value in it read.
+
+    The equations are a line's running balance (the balance before it, its debit, credit and
+    balance), the carried forward against the last balance, the next sheet's brought forward
+    against it, and a memo's figures against its words. The checks say only where values fail;
+    this says where they hold, so values that add up can be told from values nothing could check.
+    """
+    out: set[str] = set()
+    ignored: list[Flag] = []
+    cards = [_read_card(p, ignored) for p in pages if p.doc_type == LedgerCard.name]
+    for card in cards:
+        prev_id, prev = card.hdr("brought_forward"), card.brought
+        for line in card.lines:
+            if _adds_up(prev, line):
+                out |= {prev_id, line.ids["debit"], line.ids["credit"], line.ids["balance"]}
+            prev_id, prev = line.ids["balance"], line.balance
+        if _known(card.carried, prev) and card.carried == prev:
+            out |= {prev_id, card.hdr("carried_forward")}
+    for sheets in _accounts(cards, ignored).values():
+        for a, b in zip(sheets, sheets[1:], strict=False):
+            if b.sheet == a.sheet + 1 and _known(a.carried, b.brought) and a.carried == b.brought:
+                out |= {a.hdr("carried_forward"), b.hdr("brought_forward")}
+    for page in pages:
+        if page.doc_type == PaymentMemo.name:
+            memo = _read_memo(page, ignored)
+            if _known(memo.amount, memo.words) and memo.amount == memo.words:
+                out |= {memo.ids["amount"], memo.ids["amount_words"]}
+    return out
 
 
 @dataclass

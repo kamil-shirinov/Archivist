@@ -24,7 +24,11 @@ from the scan. This puts each box back on its ink without any knowledge of the f
 5. Move every box by the fit, then snap each matched one to its word box.
 
 Only values with something written ("" is a blank cell, None an unreadable one) take part in the
-matching; every box still moves with the fit. A page with too few matches is left as it was.
+matching; every box still moves with the fit. The ledger card's header fields above the table
+(account number, holder, sheet number) lie across the table's columns without belonging to any,
+so they are left out of the matching too: they move with the fit but are never snapped. A page
+with too few matches is left as it was. A corrected citation keeps the extractor's own box as
+raw_bbox, whose horizontal extent spans the whole cell when a snapped box holds one word of it.
 """
 
 from __future__ import annotations
@@ -59,6 +63,7 @@ MIN_MATCHES = 3
 MIN_SPREAD = 1.0  # a slope is fitted only if its matches span this much (× height)
 TRIM = 2.5  # pairs further off the fit than this many robust sds are dropped from it
 TRIM_FLOOR = 0.1  # × height; the smallest sd that trimming assumes
+OUTSIDE_TABLE = frozenset({"account_no", "holder", "sheet_no"})  # ledger header fields
 
 
 @dataclass(frozen=True)
@@ -282,6 +287,12 @@ def fit_plane(
     return alpha, beta, gamma
 
 
+def outside_table(field_id: str) -> bool:
+    """A ledger header field above the table, which no column of the table holds."""
+    parts = field_id.split(":")
+    return len(parts) == 4 and parts[0] == "L" and parts[2] == "hdr" and parts[3] in OUTSIDE_TABLE
+
+
 def _box(value: ExtractedValue) -> Box:
     bbox = value.citation.bbox
     return (bbox.x0, bbox.y0, bbox.x1, bbox.y1)
@@ -298,7 +309,7 @@ def correct(image: bytes, values: list[ExtractedValue]) -> Correction:
     gray_image = Image.open(io.BytesIO(image)).convert("L")
     width, height = gray_image.size
     cited = [i for i, v in enumerate(values) if v.citation is not None]
-    inked = [i for i in cited if values[i].value]
+    inked = [i for i in cited if values[i].value and not outside_table(values[i].field_id)]
     unchanged = Correction(list(values), None, None, None, len(inked), 0)
     if len(inked) < MIN_MATCHES:
         return unchanged
@@ -339,6 +350,9 @@ def correct(image: bytes, values: list[ExtractedValue]) -> Correction:
             x0, y0, x1, y1 = boxes[i]
             shift = beta + gamma * _centre_x(boxes[i])
             box = (x0, alpha * y0 + shift, x1, alpha * y1 + shift)
-        citation = Citation(page_id=values[i].citation.page_id, bbox=_bbox(box, width, height))
+        raw = values[i].citation
+        citation = Citation(
+            page_id=raw.page_id, bbox=_bbox(box, width, height), raw_bbox=raw.raw_bbox or raw.bbox
+        )
         out[i] = values[i].model_copy(update={"citation": citation})
     return Correction(out, alpha, beta, gamma, len(inked), len(matches))

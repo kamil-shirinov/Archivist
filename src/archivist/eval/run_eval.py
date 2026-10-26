@@ -22,12 +22,17 @@ review, not counting a source error's fields), review rate, error rate among acc
 risk–coverage points, how often a proposed correction equals the printed value, and source-error
 detection (any of its fields sent to review). For re-read fields it also reports how often the
 re-reader agreed with a wrong extraction: the independence number, lower is better. Overall, per
-severity, per doc type and per verification route, with page-bootstrap 95% intervals.
+severity, per doc type and per verification route, with page-bootstrap 95% intervals; how many
+proposals came from the re-read chain (D26) and how many of those were right; and the wrong
+fields it accepted.
 
     python -m archivist.eval.run_eval --run archivist-dev-v1 --split dev
 
 --compare-checks DEV_RUN VAL_RUN writes results/checks_val.json: the checks report of two runs
 side by side, flags tallied by the rule that raised them, and the wrong fields no flag caught.
+
+--compare-verdicts RUN [RUN ...] writes results/verdicts_compare.json: scored verdict runs (their
+metrics.json) side by side with each other and with the extraction runs they verified.
 """
 
 from __future__ import annotations
@@ -57,6 +62,7 @@ from archivist.schema import Flag, PageGT, SourceError
 
 DATA_ROOT = Path("data")
 CHECKS_VAL_PATH = Path("results/checks_val.json")
+VERDICTS_COMPARE_PATH = Path("results/verdicts_compare.json")
 # Document-type plug-in name -> the doc_type ground truth gives the same page.
 GT_DOC_TYPE = {"ledger_card": "ledger", "payment_memo": "memo"}
 INTERVALS = {"field_accuracy": "field_accuracy_ci95", "error_rate_accepted": "error_rate_ci95"}
@@ -413,6 +419,7 @@ def _verdict_stats(
     right = sum(_same(o.field_id, p, o.printed) for o, p in proposed)
     on_wrong = [(o, p) for o, p in proposed if o.outcome in WRONG]
     fixes = sum(_same(o.field_id, p, o.printed) for o, p in on_wrong)
+    by_chain = [(o, p) for o, p in proposed if evidence[o.field_id].proposed_by == "reread_chain"]
 
     reread = [
         (o, evidence[o.field_id].reread_status)
@@ -448,6 +455,8 @@ def _verdict_stats(
         "proposal_accuracy": _ratio(right, len(proposed)),
         "proposed_on_wrong": len(on_wrong),
         "proposal_fixes": fixes,
+        "proposed_by_reread_chain": len(by_chain),
+        "reread_chain_proposals_right": sum(_same(o.field_id, p, o.printed) for o, p in by_chain),
         "n_source_errors": len(here),
         "source_errors_found": found,
         "source_error_recall": _ratio(found, len(here)),
@@ -516,7 +525,75 @@ def evaluate_verdicts(run_dir: Path, gt_dir: Path) -> dict:
         result[group] = {
             str(v): side_by_side(lambda o, key=key, v=v: key(o) == v) for v in values
         }
+    result["missed"] = [
+        {
+            "field_id": o.field_id,
+            "printed": o.printed,
+            "predicted": o.predicted,
+            "outcome": o.outcome,
+            "reread": evidence[o.field_id].reread if o.field_id in evidence else None,
+        }
+        for o in ours
+        if o.status == "accepted" and o.outcome != "correct"
+    ]
     return result
+
+
+COMPARED = (
+    "n_fields",
+    "n_wrong",
+    "error_rate_accepted",
+    "error_rate_accepted_ci95",
+    "errors_caught",
+    "errors_missed",
+    "false_alarms",
+    "false_alarm_rate",
+    "review_rate",
+    "n_proposed",
+    "proposed_equals_printed",
+    "proposal_accuracy",
+    "proposed_by_reread_chain",
+    "reread_chain_proposals_right",
+    "independence",
+)
+
+
+def verdict_comparison(run_dirs: Sequence[Path]) -> dict:
+    """Scored verdict runs side by side with the runs they verified, from their metrics.json."""
+    rows: dict[str, dict] = {}
+    for run_dir in run_dirs:
+        metrics = json.loads((run_dir / "metrics.json").read_text())
+        overall = metrics["overall"]
+        rows.setdefault(
+            metrics["baseline_run"],
+            {"kind": "baseline", "gt": metrics["gt"]}
+            | {k: overall["baseline"].get(k) for k in COMPARED},
+        )
+        rows[run_dir.name] = (
+            {"kind": "archivist", "gt": metrics["gt"], "verifies": metrics["baseline_run"]}
+            | {k: overall["archivist"].get(k) for k in COMPARED}
+            | {"missed": metrics.get("missed")}
+        )
+    return rows
+
+
+def comparison_table(rows: dict) -> str:
+    header = (
+        f"{'':<18} {'split':<5} {'fields':>6} {'wrong':>5}  {'error rate accepted [95% CI]':<29} "
+        f"{'caught':>6} {'missed':>6} {'alarms':>6} {'review':>6}  {'proposals right':>15}"
+    )
+    lines = [header, "-" * len(header)]
+    for name, r in rows.items():
+        proposals = f"{r['proposed_equals_printed']}/{r['n_proposed']}"
+        if r["kind"] == "baseline":
+            proposals = ""
+        lines.append(
+            f"{name:<18} {Path(r['gt']).parent.name:<5} {r['n_fields']:>6} {r['n_wrong']:>5}  "
+            f"{_interval(r['error_rate_accepted'], r['error_rate_accepted_ci95']):<29} "
+            f"{r['errors_caught']:>6} {r['errors_missed']:>6} {r['false_alarms']:>6} "
+            f"{_number(r['review_rate']):>6}  {proposals:>15}"
+        )
+    return "\n".join(lines)
 
 
 def verdicts_table(metrics: dict) -> str:
@@ -582,8 +659,19 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--run")
     parser.add_argument("--split")
     parser.add_argument("--compare-checks", nargs=2, metavar=("DEV_RUN", "VAL_RUN"))
+    parser.add_argument("--compare-verdicts", nargs="+", metavar="VERDICT_RUN")
     args = parser.parse_args(argv)
 
+    if args.compare_verdicts:
+        rows = verdict_comparison([RUNS_DIR / r for r in args.compare_verdicts])
+        VERDICTS_COMPARE_PATH.write_text(json.dumps(rows, indent=2) + "\n")
+        print(comparison_table(rows))
+        print(
+            "error rate among accepted fields; caught/missed = wrong fields sent to review/"
+            "accepted;\nalarms = correct fields sent to review; proposals = equal to the "
+            f"printed value/made -> {VERDICTS_COMPARE_PATH}"
+        )
+        return
     if args.compare_checks:
         dev, val = args.compare_checks
         report = checks_generalisation({"dev": RUNS_DIR / dev, "val": RUNS_DIR / val})

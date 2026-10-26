@@ -5,18 +5,36 @@ import json
 from pathlib import Path
 
 import pytest
-from PIL import Image
+from PIL import Image, ImageDraw
 
 from archivist.doctypes import REGISTRY, UNRESOLVABLE
-from archivist.doctypes.ledger import LEDGER_REREAD, MEMO_REREAD, LedgerCard, PaymentMemo
+from archivist.doctypes.ledger import (
+    COLUMNS,
+    LEDGER_REREAD,
+    LINES,
+    MEMO_REREAD,
+    LedgerCard,
+    PaymentMemo,
+)
 from archivist.eval import run_eval
 from archivist.models.base import Region
 from archivist.models.budget import BudgetGuard
 from archivist.models.mock import MockLLM, MockSegmenter
 from archivist.pipeline import occlusion, reread, verify
+from archivist.pipeline.checks import run_checks
 from archivist.pipeline.extract import PageExtraction
 from archivist.pipeline.verify import Occluder, ReRead, decide
-from archivist.schema import BBox, Citation, ExtractedValue, FieldGT, Flag, PageGT, memo_field_id
+from archivist.schema import (
+    BBox,
+    Citation,
+    ExtractedValue,
+    FieldGT,
+    Flag,
+    PageGT,
+    ledger_header_id,
+    ledger_line_id,
+    memo_field_id,
+)
 
 WIDTH, HEIGHT = 400, 300
 MEMO_VALUES = {
@@ -48,8 +66,10 @@ def _flag(field_id: str, suggested: str | None = None, detail: str = "line 01 fa
     return Flag(field_id=field_id, check="arithmetic", detail=detail, suggested=suggested)
 
 
-def _decide(value, flags=(), occluders=(), reading=None):
-    return decide("m1", "payment_memo", value, list(flags), list(occluders), reading)
+def _decide(value, flags=(), occluders=(), reading=None, reread_flags=(), balances=False):
+    return decide(
+        "m1", "payment_memo", value, list(flags), list(occluders), reading, reread_flags, balances
+    )
 
 
 AMOUNT = memo_field_id("m1", "amount")
@@ -102,6 +122,13 @@ def test_a_box_snapped_to_one_word_is_widened_to_the_extractors_extent_on_its_ow
     assert reread.widen(word, None) == word
 
 
+def test_the_crop_region_is_the_corrected_box_widened_to_the_extractors_own():
+    raw = BBox(x0=306, y0=246, x1=731, y1=270)
+    citation = Citation(page_id="p1", bbox=BBox(x0=475, y0=250, x1=559, y1=267), raw_bbox=raw)
+    assert reread.region(citation) == BBox(x0=306, y0=250, x1=731, y1=267)
+    assert reread.region(Citation(page_id="p1", bbox=raw)) == raw
+
+
 def test_the_crop_is_a_png_of_the_padded_box():
     image = Image.new("RGB", (WIDTH, HEIGHT), "white")
     picture = Image.open(io.BytesIO(reread.crop(image, BBox(x0=100, y0=100, x1=200, y1=140))))
@@ -151,22 +178,24 @@ def test_a_field_is_occluded_when_one_box_covers_a_tenth_of_it():
 # --- The policy table ------------------------------------------------------------------------
 
 
-def test_an_unflagged_money_field_is_accepted_on_the_arithmetic_without_a_reread():
-    verdict = _decide(_value(AMOUNT, "65.48"))
-    assert (verdict.status, verdict.confidence) == ("accepted", 0.99)
-    assert verdict.evidence.route == "arithmetic"
-    assert verdict.evidence.reread_status == "not_reread"
-    assert not verify.needs_reread(_value(AMOUNT, "65.48"), [], occluded=False)
+def test_a_money_field_is_reread_too_and_accepted_only_when_both_reads_agree():
+    value = _value(AMOUNT, "65.48")
+    assert verify.needs_reread(value)
+    agrees = _decide(value, reading=ReRead("65.48"))
+    assert (agrees.status, agrees.confidence) == ("accepted", 0.99)
+    assert (agrees.evidence.route, agrees.evidence.reread_status) == ("arithmetic", "agrees")
+    disagrees = _decide(value, reading=ReRead("65.43"))
+    assert (disagrees.status, disagrees.confidence) == ("review", 0.3)
+    assert disagrees.evidence.proposed is None  # nothing says which read is right
 
 
 def test_a_flagged_money_field_is_reread_and_its_matching_suggestion_proposed():
     value = _value(AMOUNT, "65.43")
     flag = _flag(AMOUNT, suggested="65.48")
-    assert verify.needs_reread(value, [flag], occluded=False)
     verdict = _decide(value, [flag], reading=ReRead("65.48"))
     assert (verdict.status, verdict.confidence) == ("review", 0.5)
     assert verdict.value == "65.43"  # never changed
-    assert verdict.evidence.proposed == "65.48"
+    assert (verdict.evidence.proposed, verdict.evidence.proposed_by) == ("65.48", "check")
     assert verdict.evidence.reread == "65.48"
     reread_flags = [f for f in verdict.flags if f.check == "reread"]
     assert [f.suggested for f in reread_flags] == ["65.48"]
@@ -181,6 +210,23 @@ def test_no_correction_is_proposed_when_the_reread_and_the_suggestion_differ():
         assert (verdict.status, verdict.confidence) == ("review", 0.3)
         assert verdict.evidence.proposed is None
         assert all(f.suggested is None for f in verdict.flags if f.check == "reread")
+
+
+def test_reread_values_that_pass_the_checks_the_extraction_fails_are_proposed():
+    value = _value(AMOUNT, "65.43")
+    verdict = _decide(value, [_flag(AMOUNT)], reading=ReRead("65.48"), balances=True)
+    assert (verdict.status, verdict.confidence) == ("review", 0.5)
+    assert (verdict.evidence.proposed, verdict.evidence.proposed_by) == ("65.48", "reread_chain")
+    assert verdict.value == "65.43"
+    # Not when a check fails on the re-read values too, nor when no equation holds for them.
+    failing = _decide(
+        value, [_flag(AMOUNT)], reading=ReRead("65.48"), reread_flags=[_flag(AMOUNT)],
+        balances=True,
+    )
+    unchecked = _decide(value, [_flag(AMOUNT)], reading=ReRead("65.48"))
+    for verdict in (failing, unchecked):
+        assert (verdict.confidence, verdict.evidence.proposed) == (0.3, None)
+    assert failing.evidence.reread_flags == [_flag(AMOUNT)]
 
 
 def test_a_check_without_a_suggestion_never_yields_a_proposal():
@@ -245,7 +291,6 @@ def test_an_unresolvable_note_alone_is_no_reason_for_review():
 
 def test_occluded_fields_are_reread_and_accepted_only_on_agreement_with_less_confidence():
     money = _value(AMOUNT, "65.48")
-    assert verify.needs_reread(money, [], occluded=True)
     agrees = _decide(money, occluders=[STAMP], reading=ReRead("65.48"))
     disagrees = _decide(money, occluders=[STAMP], reading=ReRead("66.48"))
     assert (agrees.status, agrees.confidence) == ("accepted", 0.9)
@@ -259,7 +304,7 @@ def test_occluded_fields_are_reread_and_accepted_only_on_agreement_with_less_con
 
 def test_an_abstained_field_is_abstained_with_no_confidence_and_no_reread():
     value = _value(PAYEE, None)
-    assert not verify.needs_reread(value, [], occluded=True)
+    assert not verify.needs_reread(value)
     verdict = _decide(value, occluders=[STAMP])
     assert (verdict.status, verdict.confidence, verdict.value) == ("abstained", 0.0, None)
 
@@ -368,6 +413,124 @@ def test_a_reread_that_fails_sends_its_field_to_review_without_stopping_the_run(
     assert calls["rereads_failed"] == 1
 
 
+# --- Reading twice: a misreading that adds up ------------------------------------------------
+
+CARD = "c1"
+CARD_IDS = LedgerCard().field_ids(CARD)
+CARD_LINES = [  # date, particulars, debit, credit, balance, as printed, from 1,000.00
+    ("02/01/86", "CASH", "50.00", "", "950.00"),
+    ("05/01/86", "CHQ 889341", "39.06", "", "910.94"),
+    ("09/01/86", "SALARY", "", "500.00", "1,410.94"),
+    ("12/01/86", "CASH", "20.00", "", "1,390.94"),
+]
+
+
+def _card_printed() -> dict[str, str]:
+    printed = {
+        ledger_header_id(CARD, "account_no"): "34192727",
+        ledger_header_id(CARD, "holder"): "Mr Dennis Atkinson",
+        ledger_header_id(CARD, "sheet_no"): "32",
+        ledger_header_id(CARD, "brought_forward"): "1,000.00",
+        ledger_header_id(CARD, "carried_forward"): "1,390.94",
+    }
+    for no in LINES:
+        cells = CARD_LINES[no - 1] if no <= len(CARD_LINES) else ("",) * len(COLUMNS)
+        printed |= {ledger_line_id(CARD, no, c): t for c, t in zip(COLUMNS, cells, strict=True)}
+    return printed
+
+
+def _card_box(i: int) -> BBox:
+    x0, y0 = 20 + 200 * (i % 5), 20 + 40 * (i // 5)
+    return BBox(x0=x0, y0=y0, x1=x0 + 180, y1=y0 + 30)
+
+
+def _card_image(folder: Path) -> Path:
+    """Each field's box filled with its own shade of red, so a crop shows whose cell it is."""
+    image = Image.new("RGB", (1020, 800), "white")
+    draw = ImageDraw.Draw(image)
+    for i in range(len(CARD_IDS)):
+        box = _card_box(i)
+        draw.rectangle([box.x0, box.y0, box.x1 - 1, box.y1 - 1], fill=(i + 1, 0, 0))
+    folder.mkdir(parents=True, exist_ok=True)
+    path = folder / f"{CARD}.png"
+    image.save(path)
+    return path
+
+
+def _card_page(values: dict[str, str]) -> PageExtraction:
+    return PageExtraction(
+        page_id=CARD,
+        doc_type="ledger_card",
+        values=[
+            ExtractedValue(
+                field_id=f, value=values[f], citation=Citation(page_id=CARD, bbox=_card_box(i))
+            )
+            for i, f in enumerate(CARD_IDS)
+        ],
+    )
+
+
+def _cell_rereader(answers: dict[str, str]) -> MockLLM:
+    """Reads the one cell in the crop, told apart by the shade at its centre; sees nothing else."""
+
+    def respond(request) -> str:
+        crop = Image.open(io.BytesIO(request.images[0])).convert("RGB")
+        shade = crop.getpixel((crop.width // 2, crop.height // 2))[0]
+        return json.dumps({"value": answers[CARD_IDS[shade - 1]]})
+
+    return MockLLM(respond)
+
+
+def _verify_card(extracted: dict, answers: dict, folder: Path) -> dict[str, verify.VerdictRecord]:
+    verdicts, _ = verify.verify(
+        [_card_page(extracted)],
+        {CARD: _card_image(folder)},
+        {"segmenter": MockSegmenter(), "rereader": _cell_rereader(answers)},
+        correct_citations=False,
+    )
+    return {v.field_id: v for v in verdicts}
+
+
+def test_a_misread_debit_carried_through_every_later_balance_goes_to_review_with_the_rereads(
+    tmp_path,
+):
+    printed = _card_printed()
+    misread = {
+        ledger_line_id(CARD, 2, "debit"): "34.06",
+        ledger_line_id(CARD, 2, "balance"): "915.94",
+        ledger_line_id(CARD, 3, "balance"): "1,415.94",
+        ledger_line_id(CARD, 4, "balance"): "1,395.94",
+        ledger_header_id(CARD, "carried_forward"): "1,395.94",
+    }
+    extracted = printed | misread
+    # The extracted chain adds up: the arithmetic alone passes every one of these.
+    assert run_checks([_card_page(extracted)]) == []
+
+    verdicts = _verify_card(extracted, printed, tmp_path)
+
+    for field_id, wrong in misread.items():
+        verdict = verdicts[field_id]
+        assert (verdict.status, verdict.confidence, verdict.value) == ("review", 0.5, wrong)
+        evidence = verdict.evidence
+        assert (evidence.proposed, evidence.proposed_by) == (printed[field_id], "reread_chain")
+        assert evidence.reread_balances and evidence.reread_flags == []
+        assert not [f for f in verdict.flags if f.check == "arithmetic"]
+    rest = [v for field_id, v in verdicts.items() if field_id not in misread]
+    assert {(v.status, v.evidence.reread_status) for v in rest} == {("accepted", "agrees")}
+
+
+def test_a_lone_misread_by_the_rereader_breaks_its_own_chain_and_proposes_nothing(tmp_path):
+    printed = _card_printed()
+    balance = ledger_line_id(CARD, 3, "balance")
+
+    verdicts = _verify_card(printed, printed | {balance: "1,470.94"}, tmp_path)
+
+    verdict = verdicts[balance]
+    assert (verdict.status, verdict.confidence, verdict.evidence.proposed) == ("review", 0.3, None)
+    assert verdict.evidence.reread_flags and not verdict.evidence.reread_balances
+    assert [f for f, v in verdicts.items() if v.status != "accepted"] == [balance]
+
+
 def _gt_page() -> PageGT:
     return PageGT(
         page_id="m1",
@@ -419,3 +582,13 @@ def test_a_verdict_run_is_written_and_scored_against_the_baseline(tmp_path):
     assert base["error_rate_accepted"] == pytest.approx(2 / 7)
     assert set(metrics["by_route"]) == {"arithmetic", "reread"}
     assert metrics["baseline_run"] == "base"
+    assert metrics["missed"] == []
+
+    (runs / "checked" / "metrics.json").write_text(json.dumps(metrics))
+    rows = run_eval.verdict_comparison([runs / "checked"])
+    assert [(name, r["kind"]) for name, r in rows.items()] == [
+        ("base", "baseline"),
+        ("checked", "archivist"),
+    ]
+    assert (rows["base"]["errors_missed"], rows["checked"]["errors_caught"]) == (2, 2)
+    assert "checked" in run_eval.comparison_table(rows)
