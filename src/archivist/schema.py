@@ -92,6 +92,55 @@ class FieldVerdict(BaseModel):
     flags: list[Flag] = []
 
 
+class PageExtraction(BaseModel):
+    page_id: str
+    doc_type: str  # a registered DocType name, or "unsupported"
+    values: list[ExtractedValue]
+
+
+# --- Verdicts (pipeline/verify.py) -------------------------------------------------------------
+
+ReReadStatus = Literal["agrees", "disagrees", "illegible", "failed", "no_citation", "not_reread"]
+Proposer = Literal["reread_chain", "check", "second_look"]
+
+
+class Occluder(BaseModel):
+    label: str
+    bbox: BBox
+    cover: float  # share of the field's box this region covers
+
+
+class Evidence(BaseModel):
+    route: Literal["arithmetic", "reread"]  # arithmetic: money, checked by sums as well as re-read
+    citation: Citation | None  # the corrected box, and the extractor's own as raw_bbox
+    crop: BBox | None = None  # the region of the page the re-reader saw
+    occluded_by: list[Occluder] = []
+    reread: str | None = None  # the blind re-read; None when illegible or not re-read
+    reread_status: ReReadStatus
+    reread_flags: list[Flag] = []  # the checks run on the re-read values: the second chain
+    reread_balances: bool = False  # an equation holds for the re-read value (DocType.balanced)
+    proposed: str | None = None  # the proposed correction, under the verdict's own policy
+    proposed_by: Proposer | None = None
+    second_look: str | None = None  # v3's second look; None when illegible or not taken
+    second_look_status: ReReadStatus = "not_reread"  # compared with the extracted value
+    second_crop: BBox | None = None  # the region of the page the second look saw
+
+
+class PolicyOutcome(BaseModel):
+    status: Literal["accepted", "review", "abstained"]
+    confidence: float
+    proposed: str | None = None
+    proposed_by: Proposer | None = None
+
+
+class VerdictRecord(FieldVerdict):
+    page_id: str
+    doc_type: str
+    evidence: Evidence
+    policy: str = "v2"  # whose outcome status, confidence and evidence.proposed are
+    policies: dict[str, PolicyOutcome] = {}  # every policy's outcome; empty before v3 existed
+
+
 LEDGER_COLUMNS = frozenset({"date", "description", "debit", "credit", "balance"})
 LEDGER_HEADER_NAMES = frozenset(
     {"account_no", "holder", "sheet_no", "brought_forward", "carried_forward"}

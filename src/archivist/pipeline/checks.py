@@ -15,8 +15,8 @@ from collections.abc import Sequence
 from pathlib import Path
 
 from archivist.doctypes import REGISTRY, is_unresolvable
-from archivist.pipeline.extract import RUNS_DIR, PageExtraction, load_predictions
-from archivist.schema import Flag
+from archivist.pipeline.extract import RUNS_DIR, load_predictions
+from archivist.schema import Flag, PageExtraction
 
 FLAGS_FILE = "flags.jsonl"
 

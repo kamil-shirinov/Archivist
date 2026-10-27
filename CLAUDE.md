@@ -14,22 +14,29 @@ Turns scanned financial archives into a verified database: every value cited to 
 - Finish every task by committing ("Pn: …") and pushing, only after its Check passes and pre-commit is clean. Never use --no-verify, never force-push, never rewrite history.
 - Nothing runs on data/test except the pre-registered runs. PREREGISTRATION.md may only change in its Deviations section.
 
-## Layout (planned)
-src/archivist/schema.py — data contracts
+## Layout
+src/archivist/schema.py — data contracts, including PageExtraction and the verdict models
 src/archivist/synth/ — world.py, render.py, degrade.py, build.py
-src/archivist/models/ — base.py, mock.py, cache.py, budget.py, meta_api.py, registry.py
-src/archivist/pipeline/ — segment, extract, citations, verify/, confidence, db
-src/archivist/eval/ — metrics.py, run_eval.py, analyse.py, citation_experiment.py
+src/archivist/models/ — base.py, mock.py, cache.py, budget.py, meta_api.py, baseten_api.py, registry.py
+src/archivist/doctypes/ — __init__.py (DocType protocol, registry, AccountReader/PostingReader), ledger.py (cards and memos), words.py
+src/archivist/pipeline/ — extract.py, citations.py, checks.py, reread.py, occlusion.py, verify.py
+src/archivist/export/ — bundle.py, database.py, rules.py, schema.py
+src/archivist/eval/ — metrics.py, run_eval.py, analyse.py, citation_experiment.py, compare_arms.py, compare_extractors.py, sam_spike.py, test_report.py
+src/archivist/replay.py — replays every current run from the cache and proves nothing it produced changed
 ui/ — static review app (Vite + React + TypeScript), reads data/bundles/<run_id>/bundle.json; types generated from schema.py
 data/dev, data/test — test is frozen and hashed; never used for tuning
 
 ## Run
 uv run pytest -q
+uv run python -m archivist.replay  # after any change to code the committed runs depend on; spends nothing, a cache miss aborts
+
+## Document types
+- A new type implements DocType and registers in doctypes/__init__.py; verify.py and the exporter need no edit. A type whose pages link to others also implements AccountReader or PostingReader; one that doesn't is exported page by page.
 
 ## Export
-- `uv run python -m archivist.export.bundle --run <run> [--truth] [--check]` writes data/bundles/<run>/bundle.json; `archivist.export.database --run <run>` writes exports/<run>/archivist.sqlite and one CSV per table (accounts, documents, transactions, memos, values, links). In SQL, `values` must be quoted.
+- `uv run python -m archivist.export.bundle --run <run> [--truth] [--check]` writes data/bundles/<run>/bundle.json; `archivist.export.database --run <run>` writes exports/<run>/archivist.sqlite and one CSV per table (accounts, documents, transactions, memos, field_values, links).
 - Purely derived from committed runs and the split's images: export never changes a run, never imports archivist.eval or archivist.synth, and reads gt/ only for `--truth`, which writes a separate truth.json for the demo.
-- Rule ids come from flag wording (export/rules.py) and must agree with eval.run_eval.check_rule; accounts and postings come from the ledger's own readers, so they match what the checks saw.
+- Rule ids come from flag wording (export/rules.py) and must agree with eval.run_eval.check_rule; accounts and postings come from the doc types' public readers (AccountReader, PostingReader), so they match what the checks saw.
 - Output is byte-identical for the same inputs. After changing export/schema.py, bump SCHEMA_VERSION, run `python -m archivist.export.schema` (ui/schema/bundle.schema.json) and re-export the committed bundles; tests fail on a stale schema or export.
 
 ## Status
@@ -57,3 +64,4 @@ uv run pytest -q
 - [x] P15 frozen test set and pre-registration
 - [x] P16 pre-registered test runs
 - [x] P18 run exporter and verified database
+- [x] P19 true plug-ins, proven by replay

@@ -17,7 +17,7 @@ Policy v2, pre-registered before it is scored on the test set:
 - The document checks run twice: on the extracted values and on the re-read values. Where a
   re-read disagrees with the extraction, the re-read value is proposed as the correction if the
   re-read values hold up: no check on the re-read values fails on the field, and some equation
-  of the documents' arithmetic holds for it with every value in it read (ledger.balanced). That
+  of the documents' arithmetic holds for it with every value in it read (DocType.balanced). That
   covers both re-read values passing a check the extracted ones fail and a consistent misreading
   whose extracted chain adds up as well as the re-read one. Failing that, a check's suggestion
   the re-read agrees with is proposed, as before. Both chains' flags are kept as evidence.
@@ -43,9 +43,10 @@ disagreement); 0.0 when the extractor abstained.
 Unresolvable cross-document flags are notes: kept as evidence, never a reason for review. A check
 that fails only on the re-read values is evidence too: when the two reads agree on a field, the
 failure lies with a neighbour's re-read, and that neighbour goes to review on its disagreement.
-Agreement compares canonical forms: money as an amount (the clerk's notation, ledger.money),
-dates as a calendar date, account and memo numbers as digits, the amount in words as its letters
-(D22), anything else as text with spacing and case ignored.
+Agreement compares the forms the field's document type gives (DocType.canonical); the ledger
+family's are money as an amount in the clerk's notation, dates as a calendar date, account and memo
+numbers as digits, the amount in words as its letters (D22), anything else as text with spacing and
+case ignored. Which fields are money (the "arithmetic" route) is the type's money_fields.
 
 Re-reads use the corrected citation boxes: a run extracted with S0 or S1 is corrected here as
 S0+ink would (citations.py, D23), and each corrected box is widened to the extractor's own
@@ -64,7 +65,6 @@ from __future__ import annotations
 import argparse
 import io
 import json
-import re
 import threading
 from collections import Counter, defaultdict
 from collections.abc import Mapping, Sequence
@@ -75,22 +75,27 @@ from pathlib import Path
 from typing import Any, Literal
 
 from PIL import Image
-from pydantic import BaseModel
 
-from archivist.doctypes import REGISTRY, is_unresolvable
-from archivist.doctypes.ledger import balanced, calendar_date, money
+from archivist.doctypes import REGISTRY, is_unresolvable, type_of
 from archivist.models import BudgetExceeded, Region, describe_config, load_roles
 from archivist.models.budget import BudgetGuard
 from archivist.models.registry import CONFIG_PATH
 from archivist.pipeline import citations, occlusion, reread
 from archivist.pipeline.checks import run_checks
-from archivist.pipeline.extract import IMAGE_SUFFIXES, RUNS_DIR, PageExtraction, load_predictions
-from archivist.schema import BBox, Citation, ExtractedValue, FieldVerdict, Flag
-
-MONEY_FIELDS = frozenset(
-    {"debit", "credit", "balance", "brought_forward", "carried_forward", "amount"}
+from archivist.pipeline.extract import IMAGE_SUFFIXES, RUNS_DIR, load_predictions
+from archivist.schema import (
+    BBox,
+    Evidence,
+    ExtractedValue,
+    Flag,
+    Occluder,
+    PageExtraction,
+    PolicyOutcome,
+    Proposer,
+    ReReadStatus,
+    VerdictRecord,
 )
-DIGIT_FIELDS = frozenset({"account_no", "memo_no"})
+
 ACCEPTED = 0.99
 ACCEPTED_OCCLUDED = 0.9
 PROPOSED = 0.5
@@ -105,51 +110,12 @@ CONFIDENCE = {
 }
 VERDICTS_FILE = "verdicts.jsonl"
 
-ReReadStatus = Literal["agrees", "disagrees", "illegible", "failed", "no_citation", "not_reread"]
 Policy = Literal["v2", "v3"]
 POLICIES: tuple[Policy, ...] = ("v2", "v3")
 # Whose outcome a verdict's own status, confidence and proposal are: the headline policy (D29,
 # results/arms_compare.json).
 POLICY: Policy = "v2"
 SECOND_LOOK: frozenset[str] = frozenset({"disagrees", "illegible"})  # what a second look is for
-Proposer = Literal["reread_chain", "check", "second_look"]
-
-
-class Occluder(BaseModel):
-    label: str
-    bbox: BBox
-    cover: float  # share of the field's box this region covers
-
-
-class Evidence(BaseModel):
-    route: Literal["arithmetic", "reread"]  # arithmetic: money, checked by sums as well as re-read
-    citation: Citation | None  # the corrected box, and the extractor's own as raw_bbox
-    crop: BBox | None = None  # the region of the page the re-reader saw
-    occluded_by: list[Occluder] = []
-    reread: str | None = None  # the blind re-read; None when illegible or not re-read
-    reread_status: ReReadStatus
-    reread_flags: list[Flag] = []  # the checks run on the re-read values: the second chain
-    reread_balances: bool = False  # an equation holds for the re-read value (ledger.balanced)
-    proposed: str | None = None  # the proposed correction, under the verdict's own policy
-    proposed_by: Proposer | None = None
-    second_look: str | None = None  # v3's second look; None when illegible or not taken
-    second_look_status: ReReadStatus = "not_reread"  # compared with the extracted value
-    second_crop: BBox | None = None  # the region of the page the second look saw
-
-
-class PolicyOutcome(BaseModel):
-    status: Literal["accepted", "review", "abstained"]
-    confidence: float
-    proposed: str | None = None
-    proposed_by: Proposer | None = None
-
-
-class VerdictRecord(FieldVerdict):
-    page_id: str
-    doc_type: str
-    evidence: Evidence
-    policy: str = "v2"  # whose outcome status, confidence and evidence.proposed are
-    policies: dict[str, PolicyOutcome] = {}  # every policy's outcome; empty before v3 existed
 
 
 @dataclass(frozen=True)
@@ -163,23 +129,14 @@ def field_kind(field_id: str) -> str:
     return field_id.rsplit(":", 1)[-1]
 
 
-def canonical(field_id: str, text: str) -> str:
-    """The form two readings of a field are compared in; see the module docstring."""
-    if not text.strip():
-        return ""
-    kind = field_kind(field_id)
-    if kind in MONEY_FIELDS and (amount := money(text)) is not None:
-        return str(amount)
-    if kind == "date" and (day := calendar_date(text)) is not None:
-        return day.isoformat()
-    if kind in DIGIT_FIELDS and (digits := re.sub(r"\D", "", text)):
-        return digits
-    if kind == "amount_words" and (letters := re.sub(r"[^A-Z]", "", text.upper())):
-        return letters
-    return " ".join(text.split()).upper()
+def money_fields() -> frozenset[str]:
+    """The field names any registered type holds money in."""
+    return frozenset().union(*(doc_type.money_fields for doc_type in REGISTRY.values()))
 
 
 def same_reading(field_id: str, a: str, b: str) -> bool:
+    """Whether two readings agree, compared as the field's document type compares them."""
+    canonical = type_of(field_id).canonical
     return canonical(field_id, a) == canonical(field_id, b)
 
 
@@ -262,8 +219,8 @@ def decide(
     for its re-read value, and its second look (None if not taken). The verdict's own status,
     confidence and proposal are `policy`'s.
     """
-    route = "arithmetic" if field_kind(value.field_id) in MONEY_FIELDS else "reread"
     fid = value.field_id
+    route = "arithmetic" if field_kind(fid) in type_of(fid).money_fields else "reread"
     notes = [
         Flag(field_id=fid, check="occlusion", detail=f"{o.cover:.0%} covered by {o.label}")
         for o in occluders
@@ -496,7 +453,7 @@ def verify(
     reread_by_field: dict[str, list[Flag]] = defaultdict(list)
     for flag in run_checks(reread_pages):
         reread_by_field[flag.field_id].append(flag)
-    holds = balanced(reread_pages)
+    holds = set().union(*(doc_type.balanced(reread_pages) for doc_type in REGISTRY.values()))
 
     verdicts = [
         decide(
@@ -614,7 +571,7 @@ def run(
             "recorded": list(POLICIES),
             "v2": "D26: every field read twice, checks on both chains",
             "v3": "D29: v2, with a second look before an alarm",
-            "money_fields": sorted(MONEY_FIELDS),
+            "money_fields": sorted(money_fields()),
             "confidence": CONFIDENCE,
             "occlusion_prompts": list(occlusion.PROMPTS),
             "occlusion_cover": occlusion.COVER,

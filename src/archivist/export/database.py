@@ -8,8 +8,8 @@ Writes exports/<run>/archivist.sqlite and one CSV per table, with the same rows 
 - documents: one row per page, with its account, sheet or memo number and its fields by status.
 - transactions: the used ledger lines, joined to the memos posted to them.
 - memos: one row per payment memo, with the ledger line it is posted to.
-- values: one row per extracted field, with its status, confidence, page, citation box, checks,
-  reasons and proposal. In SQL the table is "values", quoted: VALUES is a keyword.
+- field_values: one row per extracted field, with its status, confidence, page, citation box,
+  checks, reasons and proposal.
 - links: memo to ledger line, card to account, sheet to the next sheet, and whether each agrees.
 
 Text is as the extractor read it; money columns are added beside it in pence (*_pence), parsed as
@@ -99,7 +99,7 @@ TABLES: dict[str, tuple[tuple[str, str], ...]] = {
         ("amount_pence", "INTEGER"),
         ("agrees", "INTEGER"),
     ),
-    "values": (
+    "field_values": (
         ("field_id", "TEXT"),
         ("page_id", "TEXT"),
         ("doc_type", "TEXT"),
@@ -239,7 +239,7 @@ def rows(bundle: Bundle) -> dict[str, list[Row]]:
                 _bool(link.agrees) if link else None,
             )
         )
-    values = [
+    field_values = [
         (
             f.field_id,
             f.page_id,
@@ -282,7 +282,7 @@ def rows(bundle: Bundle) -> dict[str, list[Row]]:
         "documents": documents,
         "transactions": transactions,
         "memos": memos,
-        "values": values,
+        "field_values": field_values,
         "links": link_rows,
     }
 

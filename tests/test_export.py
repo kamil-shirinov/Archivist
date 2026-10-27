@@ -13,6 +13,7 @@ import sys
 from collections import Counter
 from pathlib import Path
 
+import jsonschema
 import pytest
 from PIL import Image
 
@@ -338,13 +339,13 @@ def test_database_row_counts_match_the_verdicts(world, built):
     def count(table: str) -> int:
         return db.execute(f'SELECT COUNT(*) FROM "{table}"').fetchone()[0]
 
-    assert count("values") == len(verdicts)
-    by_status = dict(db.execute('SELECT status, COUNT(*) FROM "values" GROUP BY status'))
+    assert count("field_values") == len(verdicts)
+    by_status = dict(db.execute("SELECT status, COUNT(*) FROM field_values GROUP BY status"))
     assert by_status == dict(Counter(v.status for v in verdicts))
     assert count("documents") == 8 and count("memos") == 3 and count("accounts") == 1
     assert count("transactions") == 5 and count("links") == 3 + 3 + 2
     row = db.execute(
-        'SELECT status, confidence, page_id, x0, y0, x1, y1, checks, proposal FROM "values" '
+        "SELECT status, confidence, page_id, x0, y0, x1, y1, checks, proposal FROM field_values "
         "WHERE field_id = ?",
         (memo_field_id("memo-002", "amount"),),
     ).fetchone()
@@ -354,7 +355,7 @@ def test_database_row_counts_match_the_verdicts(world, built):
         "WHERE txn_id = 'card-2:02'"
     ).fetchone() == (4000, 21000, "memo-002", 0)
     db.close()
-    lines = (out / "values.csv").read_text().splitlines()
+    lines = (out / "field_values.csv").read_text().splitlines()
     assert len(lines) == len(verdicts) + 1 and lines[0].startswith("field_id,")
 
 
@@ -472,6 +473,17 @@ def test_committed_exports_are_current(run, tmp_path, monkeypatch):
     assert database.check(b, database.EXPORTS_DIR / run, tmp_path) == []
     verdicts = load_verdicts(COMMITTED_RUNS / run / "verdicts.jsonl")
     db = sqlite3.connect(database.EXPORTS_DIR / run / database.DATABASE_FILE)
-    by_status = dict(db.execute('SELECT status, COUNT(*) FROM "values" GROUP BY status'))
+    by_status = dict(db.execute("SELECT status, COUNT(*) FROM field_values GROUP BY status"))
     db.close()
     assert by_status == dict(Counter(v.status for v in verdicts))
+
+
+@pytest.mark.parametrize(
+    "run", [r for r in COMMITTED if (ROOT / bundle.BUNDLES_DIR / r / bundle.BUNDLE_FILE).exists()]
+)
+def test_committed_bundles_validate_against_the_ui_schema(run):
+    """The committed bundles against ui/schema/bundle.schema.json, the file the UI's types come
+    from, by a validator that is not pydantic."""
+    schema = json.loads((ROOT / SCHEMA_PATH).read_text())
+    data = json.loads((ROOT / bundle.BUNDLES_DIR / run / bundle.BUNDLE_FILE).read_text())
+    jsonschema.validate(data, schema, cls=jsonschema.Draft202012Validator)

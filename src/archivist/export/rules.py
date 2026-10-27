@@ -6,22 +6,28 @@ pipeline/verify.py). The check rules use the same ids and phrases as eval.run_ev
 the two always agree (tests/test_export.py holds them to it on the committed test runs); the notes
 the verification adds (re-reads, occlusion) get ids of their own.
 
-A flag's equation is found by reading the batch the way the checks read it, through the ledger's
-own readers: the same used lines, the same accounts (strays included) and the same postings. The
-batch is read once per chain, the extracted values for a field's flags and the re-read values for
-its re-read flags, as each set of flags was raised on its own chain.
+A flag's equation is found by reading the batch the way the checks read it, through the readers the
+registered types offer (doctypes.AccountReader, doctypes.PostingReader): the same used lines, the
+same accounts (strays included) and the same postings. The batch is read once per chain, the
+extracted values for a field's flags and the re-read values for its re-read flags, as each set of
+flags was raised on its own chain.
 """
 
 from __future__ import annotations
 
 import re
 from collections.abc import Callable, Sequence
-from dataclasses import dataclass
 
-from archivist.doctypes import is_unresolvable
-from archivist.doctypes import ledger as L
-from archivist.pipeline.extract import PageExtraction
-from archivist.schema import Flag
+from archivist.doctypes import (
+    REGISTRY,
+    AccountReader,
+    Card,
+    Posting,
+    PostingReader,
+    is_unresolvable,
+)
+from archivist.doctypes.ledger import cheque_items, date_items, fmt
+from archivist.schema import Flag, PageExtraction
 
 CHECKS = frozenset({"arithmetic", "words_figures", "crossdoc"})  # what the checks raise
 # Which rule raised a flag, from the wording of its detail: (rule, check, phrases), first match.
@@ -92,58 +98,27 @@ def reasons(
     return out
 
 
-@dataclass(frozen=True)
-class Posting:
-    """Where a memo's ledger reference leads, found as _memo_ledger_check finds it."""
-
-    memo: L._Memo
-    account: str | None  # the account group the line was found in
-    card: L._Card | None
-    line: L._Line | None
-    by_amount: bool  # found by the amount the line debits, not by the memo's own account
-    unresolved: str | None  # why no line was found
-
-
 class Reading:
-    """A batch of pages as one chain read them: cards, accounts in sheet order, memos, postings."""
+    """A batch of pages as one chain read them: cards, accounts in sheet order, memos, postings.
+
+    Every registered type that reads accounts or postings contributes them; a type that reads
+    neither adds nothing here, and its pages are exported without links.
+    """
 
     def __init__(self, pages: Sequence[PageExtraction]) -> None:
-        ignored: list[Flag] = []
         batch = sorted(pages, key=lambda p: p.page_id)
-        self.cards = {
-            p.page_id: L._read_card(p, ignored) for p in batch if p.doc_type == L.LedgerCard.name
-        }
-        self.accounts = L._accounts(list(self.cards.values()), ignored)
+        self.cards: dict[str, Card] = {}
+        self.accounts: dict[str, list[Card]] = {}
+        for doc_type in REGISTRY.values():
+            if isinstance(doc_type, AccountReader):
+                cards = doc_type.cards(batch)
+                self.cards |= cards
+                self.accounts |= doc_type.accounts(list(cards.values()))
         self.account_of = {c.page_id: key for key, group in self.accounts.items() for c in group}
-        memos = {
-            p.page_id: L._read_memo(p, ignored) for p in batch if p.doc_type == L.PaymentMemo.name
-        }
-        self.postings = {page_id: self._posting(memo) for page_id, memo in memos.items()}
-
-    def _posting(self, memo: L._Memo) -> Posting:
-        if memo.ref is None:
-            return Posting(memo, None, None, None, False, "no ledger reference can be read")
-        if memo.account is None and memo.raw["account_no"] is None:
-            return Posting(memo, None, None, None, False, "the memo's account was not read")
-        sheet, line_no = memo.ref
-        account = memo.account
-        matches = [c for c in self.accounts.get(account or "", []) if c.sheet == sheet]
-        by_amount = False
-        if not matches:
-            found = L._posting(memo, self.accounts)
-            if found and any(c.account == found[0] for c in self.accounts[found[0]]):
-                (account, card), by_amount = found, True
-                matches = [card]
-        if len(matches) != 1:
-            found = "no card" if not matches else f"{len(matches)} cards"
-            where = f"sheet {sheet} of account {account or memo.raw['account_no']}"
-            return Posting(memo, account, None, None, by_amount, f"{found} for {where}")
-        card = matches[0]
-        line = card.by_no.get(line_no)
-        if line is None:
-            why = f"line {line_no:02d} of sheet {sheet} is empty or not on the card"
-            return Posting(memo, account, card, None, by_amount, why)
-        return Posting(memo, account, card, line, by_amount, None)
+        self.postings: dict[str, Posting] = {}
+        for doc_type in REGISTRY.values():
+            if isinstance(doc_type, PostingReader):
+                self.postings |= doc_type.postings(batch, self.accounts)
 
     def memos_on(self, field_id: str) -> list[Posting]:
         """The postings to the ledger line a field belongs to."""
@@ -153,7 +128,7 @@ class Reading:
             if p.line is not None and field_id in p.line.ids.values()
         ]
 
-    def group_of(self, page_id: str) -> list[L._Card]:
+    def group_of(self, page_id: str) -> list[Card]:
         return self.accounts.get(self.account_of.get(page_id, ""), [])
 
 
@@ -166,7 +141,7 @@ def line_of(field_id: str) -> int | None:
     return int(part) if part.isdigit() else None
 
 
-def _line(reading: Reading, field_id: str) -> tuple[L._Card, int] | None:
+def _line(reading: Reading, field_id: str) -> tuple[Card, int] | None:
     card = reading.cards.get(page_of(field_id))
     no = line_of(field_id)
     if card is None or no is None or no not in card.by_no:
@@ -209,7 +184,7 @@ def _one_side(flag: Flag, reading: Reading) -> list[str]:
 _BACKWARDS = re.compile(r"goes backwards: (.*) then (.*)$")
 
 
-def _descent(items_of: Callable[[L._Card], list]) -> Callable[[Flag, Reading], list[str]]:
+def _descent(items_of: Callable[[Card], list]) -> Callable[[Flag, Reading], list[str]]:
     def equation(flag: Flag, reading: Reading) -> list[str]:
         card = reading.cards.get(page_of(flag.field_id))
         match = _BACKWARDS.search(flag.detail)
@@ -231,7 +206,7 @@ def _sheet_order(flag: Flag, reading: Reading) -> list[str]:
     match = _ALONG.search(flag.detail)
     if match is None:
         return []
-    items_of = L._cheque_items if "cheque number" in flag.detail else L._date_items
+    items_of = cheque_items if "cheque number" in flag.detail else date_items
     seq = [(c, items) for c in reading.group_of(page_of(flag.field_id)) if (items := items_of(c))]
     b_sheet, a_sheet = match.groups()
     for (a, a_items), (b, b_items) in zip(seq, seq[1:], strict=False):
@@ -299,7 +274,7 @@ def _memo_amount(flag: Flag, reading: Reading) -> list[str]:
         return ids
     ids = []  # the flag is on the ledger line: the memos posted to it that pay what it says
     for p in reading.memos_on(flag.field_id):
-        if p.memo.amount is not None and f"the memo pays {L._fmt(p.memo.amount)}," in flag.detail:
+        if p.memo.amount is not None and f"the memo pays {fmt(p.memo.amount)}," in flag.detail:
             ids += [p.memo.ids["amount"], p.line.ids["debit"]]
             if not_a_debit:
                 ids.append(p.line.ids["credit"])
@@ -327,8 +302,8 @@ EQUATIONS: dict[str, Callable[[Flag, Reading], list[str]]] = {
     "running_balance": _running_balance,
     "carried_forward": _carried_forward,
     "one_side": _one_side,
-    "date_order": _descent(L._date_items),
-    "cheque_order": _descent(L._cheque_items),
+    "date_order": _descent(date_items),
+    "cheque_order": _descent(cheque_items),
     "words_figures": _words_figures,
     "sheet_order": _sheet_order,
     "carry_across_sheets": _carry_across_sheets,

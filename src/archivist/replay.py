@@ -226,7 +226,7 @@ def _config_problems(run_id: str, config: str, committed: dict) -> list[str]:
 
 
 def _git(*args: str) -> subprocess.CompletedProcess:
-    return subprocess.run(["git", *args], capture_output=True, text=True)
+    return subprocess.run(["git", *args], check=False, capture_output=True, text=True)
 
 
 def check_results() -> list[str]:

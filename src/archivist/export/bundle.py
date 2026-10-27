@@ -33,7 +33,8 @@ from pathlib import Path
 
 from PIL import Image
 
-from archivist.doctypes import ledger as L
+from archivist.doctypes import Card, Posting
+from archivist.doctypes.ledger import MEMO_LEAD, date_items
 from archivist.export import rules
 from archivist.export.schema import (
     Account,
@@ -51,9 +52,9 @@ from archivist.export.schema import (
     Truth,
     TruthPage,
 )
-from archivist.pipeline.extract import IMAGE_SUFFIXES, RUNS_DIR, PageExtraction, load_predictions
-from archivist.pipeline.verify import VERDICTS_FILE, VerdictRecord, field_kind, load_verdicts
-from archivist.schema import Flag, PageGT
+from archivist.pipeline.extract import IMAGE_SUFFIXES, RUNS_DIR, load_predictions
+from archivist.pipeline.verify import VERDICTS_FILE, field_kind, load_verdicts
+from archivist.schema import Flag, PageExtraction, PageGT, VerdictRecord
 
 BUNDLES_DIR = Path("data/bundles")
 BUNDLE_FILE = "bundle.json"
@@ -159,7 +160,7 @@ def _accounts(reading: rules.Reading, text: dict[str, str | None]) -> list[Accou
     return out
 
 
-def _memo_link(page_id: str, p: rules.Posting) -> Link:
+def _memo_link(page_id: str, p: Posting) -> Link:
     memo = p.memo
     source_fields = [memo.ids[n] for n in ("ledger_ref", "account_no", "amount", "date")]
     if p.line is None:
@@ -180,7 +181,7 @@ def _memo_link(page_id: str, p: rules.Posting) -> Link:
         amount = line.debit != 0 and line.debit == memo.amount
     date = None
     if memo.date is not None and line.date is not None:
-        date = memo.date <= line.date and line.date - memo.date <= L.MEMO_LEAD
+        date = memo.date <= line.date and line.date - memo.date <= MEMO_LEAD
     checks = {"account": not p.by_amount, "amount": amount, "date": date}
     return Link(
         link_id=f"memo_line:{page_id}",
@@ -203,7 +204,7 @@ def _memo_link(page_id: str, p: rules.Posting) -> Link:
     )
 
 
-def _card_link(card: L._Card, reading: rules.Reading) -> Link:
+def _card_link(card: Card, reading: rules.Reading) -> Link:
     key = reading.account_of.get(card.page_id)
     group = reading.accounts.get(key, []) if key else []
     note = None
@@ -233,7 +234,7 @@ def _sheet_links(reading: rules.Reading) -> list[Link]:
             carry = None
             if consecutive and a.carried is not None and b.brought is not None:
                 carry = a.carried == b.brought
-            a_dates, b_dates = L._date_items(a), L._date_items(b)
+            a_dates, b_dates = date_items(a), date_items(b)
             dates = b_dates[0][1] >= a_dates[-1][1] if a_dates and b_dates else None
             checks = {"carry": carry, "dates": dates}
             note = None
@@ -277,7 +278,7 @@ def _transactions(
                     page_id=card.page_id,
                     sheet=card.sheet,
                     line=line.no,
-                    **{c: text.get(line.ids[c]) for c in L.COLUMNS},
+                    **{c: text.get(field_id) for c, field_id in line.ids.items()},
                     field_ids=dict(line.ids),
                     status=worst([status[f] for f in line.ids.values()]),
                     memos=memos,

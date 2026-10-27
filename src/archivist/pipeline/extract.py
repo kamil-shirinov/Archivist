@@ -33,14 +33,13 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 from PIL import Image
-from pydantic import BaseModel
 
 from archivist.doctypes import REGISTRY, UNSUPPORTED
 from archivist.models import BudgetExceeded, LLMRequest, VisionLLM, describe_config, load_roles
 from archivist.models.budget import BudgetGuard
 from archivist.models.registry import CONFIG_PATH
 from archivist.pipeline import citations
-from archivist.schema import ExtractedValue
+from archivist.schema import PageExtraction
 
 DATA_ROOT = Path("data")
 RUNS_DIR = Path("results/runs")
@@ -54,12 +53,6 @@ RETRY_NOTE = (
     "\n\nYour previous answer was cut off or did not match the JSON schema. Answer again in full, "
     "as JSON that matches the schema."
 )
-
-
-class PageExtraction(BaseModel):
-    page_id: str
-    doc_type: str  # a registered DocType name, or "unsupported"
-    values: list[ExtractedValue]
 
 
 class ExtractionFailed(RuntimeError):
