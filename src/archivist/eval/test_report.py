@@ -518,8 +518,12 @@ def render(report: Mapping, deviations: str) -> str:
         f"pages with {report['n_fields']} fields. Every configuration ran on it once, with the "
         "code and settings frozen in PREREGISTRATION.md, and nothing below was used to change "
         "the system.",
-        "A value is *accepted* when the system lets it into the database without a person "
-        "looking, and *sent to review* otherwise. A *wrong value* is a value that is not the "
+        "Each value is *accepted* (the system lets it into the database without a person "
+        "looking), *sent to review* (a person checks it first) or *abstained* (the extractor "
+        "returned no value). Only values sent to review count toward the review rate and H3; "
+        "abstained values are counted separately (n_abstained in results/test_report.json). "
+        "The fields of a page that failed to extract are none of these. A *wrong value* is a "
+        "value that is not the "
         "printed one, or a blank where something is printed. An *error among accepted fields* is "
         "a wrong value that got in. Intervals are 95% intervals from 2,000 resamples of whole "
         "pages.",
