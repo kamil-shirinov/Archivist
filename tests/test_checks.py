@@ -6,7 +6,7 @@ from pathlib import Path
 
 import pytest
 
-from archivist.doctypes import REGISTRY, is_unresolvable
+from archivist.doctypes import REGISTRY, is_unresolvable, ledger
 from archivist.doctypes.ledger import (
     LINES,
     LedgerCard,
@@ -439,6 +439,38 @@ def test_a_memo_posted_to_a_group_no_card_reads_is_unresolvable_not_a_crash():
     cited = flags[memo_field_id("m1", "ledger_ref")]
     assert len(cited) == 1 and is_unresolvable(cited[0])
     assert memo_field_id("m1", "account_no") not in flags
+
+
+def test_a_stray_card_does_not_join_a_group_no_card_reads_the_account_of():
+    """Cards 41 and 42 move on (41 into 42's group, 42 into 43's), leaving 42's key holding only
+    card 41, which reads another account. Card 40's account text can't be read as an account, so
+    it looks for the one group with the sheets beside its own, finds that one, and had no card
+    reading the key to take the printed account from: it raised StopIteration.
+    """
+
+    def card(page_id: str, sheet: int, account: str | None, text: str) -> ledger._Card:
+        return ledger._Card(
+            page_id=page_id,
+            account=account,
+            account_text=text,
+            holder=HOLDER,
+            sheet=sheet,
+            brought=None,
+            carried=None,
+            carried_text=None,
+            lines=[],
+        )
+
+    cards = [
+        card("c41", 41, "41000001", "41000001"),
+        card("c42", 42, "42000002", "42000002"),
+        card("c43", 43, "43000003", "43000003"),
+        card("c40", 40, None, "4?000000"),
+    ]
+    flags: list[Flag] = []
+    accounts = ledger._accounts(cards, flags)
+    assert "c40" not in {c.page_id for group in accounts.values() for c in group}
+    assert ledger_header_id("c40", "account_no") not in {f.field_id for f in flags}
 
 
 # --- the runner and the report -----------------------------------------------------------------

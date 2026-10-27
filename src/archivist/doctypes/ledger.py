@@ -700,7 +700,9 @@ def _accounts(cards: Sequence[_Card], flags: list[Flag]) -> dict[str, list[_Card
 
     A card whose account number no other card shares (or can't be read) joins the one account
     held by the same holder that has the sheets either side of it, or one of them, and not its
-    own: its account number is flagged with that account's.
+    own: its account number is flagged with that account's. A group that no card reads the account
+    of (the moves can leave one) has no account number to flag with, so a card whose account
+    number is to be flagged does not join it.
     """
     accounts: dict[str, list[_Card]] = defaultdict(list)
     for card in cards:
@@ -721,6 +723,8 @@ def _accounts(cards: Sequence[_Card], flags: list[Flag]) -> dict[str, list[_Card
         if len(homes) != 1:
             continue
         home = accounts[homes[0]]
+        if card.account_text is not None and not any(c.account == homes[0] for c in home):
+            continue
         accounts[card.account or ""].remove(card)
         detail = (
             f"{card.label} of {card.holder} reads account {card.account_text!r}, but it fills the "
