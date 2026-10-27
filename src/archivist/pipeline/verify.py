@@ -108,7 +108,9 @@ VERDICTS_FILE = "verdicts.jsonl"
 ReReadStatus = Literal["agrees", "disagrees", "illegible", "failed", "no_citation", "not_reread"]
 Policy = Literal["v2", "v3"]
 POLICIES: tuple[Policy, ...] = ("v2", "v3")
-POLICY: Policy = "v3"  # whose outcome a verdict's own status, confidence and proposal are
+# Whose outcome a verdict's own status, confidence and proposal are: the headline policy (D29,
+# results/arms_compare.json).
+POLICY: Policy = "v2"
 SECOND_LOOK: frozenset[str] = frozenset({"disagrees", "illegible"})  # what a second look is for
 Proposer = Literal["reread_chain", "check", "second_look"]
 

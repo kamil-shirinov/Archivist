@@ -1,0 +1,132 @@
+{
+  "run_id": "arm-b-dev",
+  "source_run": "baseline-dev-open",
+  "images": "data/dev/images",
+  "config": {
+    "extractor": {
+      "backend": "baseten",
+      "model_id": "meta-models/muse-spark-open-1026"
+    },
+    "rereader": {
+      "backend": "baseten",
+      "model_id": "meta-models/muse-spark-open-1026"
+    },
+    "segmenter": {
+      "backend": "meta",
+      "model_id": "sam-3.1"
+    }
+  },
+  "citations": "S0+ink",
+  "policy": {
+    "version": "v3",
+    "recorded": [
+      "v2",
+      "v3"
+    ],
+    "v2": "D26: every field read twice, checks on both chains",
+    "v3": "D29: v2, with a second look before an alarm",
+    "money_fields": [
+      "amount",
+      "balance",
+      "brought_forward",
+      "carried_forward",
+      "credit",
+      "debit"
+    ],
+    "confidence": {
+      "accepted": 0.99,
+      "accepted_occluded": 0.9,
+      "review_proposed": 0.5,
+      "review_unresolved": 0.3,
+      "abstained": 0.0
+    },
+    "occlusion_prompts": [
+      "stamp",
+      "stain"
+    ],
+    "occlusion_cover": 0.1,
+    "reread_padding": {
+      "vertical": 0.5,
+      "horizontal": 0.2
+    },
+    "second_look_padding": {
+      "vertical": 1.0,
+      "horizontal": 0.4
+    }
+  },
+  "counts": {
+    "pages": 47,
+    "fields": 1385,
+    "by_status": {
+      "abstained": 3,
+      "accepted": 1238,
+      "review": 144
+    },
+    "by_confidence": {
+      "0.0": 3,
+      "0.3": 85,
+      "0.5": 59,
+      "0.9": 23,
+      "0.99": 1215
+    },
+    "by_route": {
+      "arithmetic": 707,
+      "reread": 678
+    },
+    "by_reread_status": {
+      "agrees": 1165,
+      "disagrees": 206,
+      "illegible": 11,
+      "not_reread": 3
+    },
+    "occluded": 40,
+    "proposed_corrections": 59,
+    "proposed_by": {
+      "check": 2,
+      "reread_chain": 1,
+      "second_look": 56
+    },
+    "reread_chain_flags": 259,
+    "by_second_look": {
+      "agrees": 89,
+      "disagrees": 120,
+      "illegible": 8,
+      "not_reread": 1168
+    },
+    "by_policy": {
+      "v2": {
+        "by_status": {
+          "abstained": 3,
+          "accepted": 1149,
+          "review": 233
+        },
+        "proposed_corrections": 3
+      },
+      "v3": {
+        "by_status": {
+          "abstained": 3,
+          "accepted": 1238,
+          "review": 144
+        },
+        "proposed_corrections": 59
+      }
+    }
+  },
+  "calls": {
+    "segmenter_pages": 47,
+    "regions": {
+      "stain": 14,
+      "stamp": 28
+    },
+    "rereads": 1382,
+    "rereads_from_cache": 1165,
+    "rereads_failed": 0,
+    "second_looks": 217,
+    "second_looks_from_cache": 164,
+    "second_looks_failed": 0
+  },
+  "cost_usd": 0.32878900000000044,
+  "cost_full_usd": 2.1437544999999996,
+  "started_at": "2026-10-27T00:20:11+00:00",
+  "finished_at": "2026-10-27T00:25:17+00:00"
+}

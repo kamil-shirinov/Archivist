@@ -1,0 +1,848 @@
+{
+  "what": "Three arms under policies v2 and v3 on dev and val, and the headline (P14, D29).",
+  "rule": "Lowest pooled (dev + val) error rate among accepted fields; among the arm-policy pairs within 0.1 percentage points of the lowest, the lower pooled review rate; if still tied, the lower pooled cost per page. Fixed before the comparison ran. Arm B is reported regardless, as the all-open-weights configuration.",
+  "caveats": [
+    "dev and val are both development data (D26). Nothing here was scored on the frozen test set.",
+    "Cost per page: the extraction run's recorded spend plus every verification call (occlusion and re-reads, second looks included) at the price it was first made at, cache hits counted. Muse Spark 1.3 runs at Contributor prices (D19); Muse Spark Open's are the figures Baseten's pricing page prints (config/models.toml), not a contract.",
+    "Pooled intervals resample the pages of dev and val together. The extractor of B differs from A and C, so B's fields carry different extraction errors: its error rate measures the whole configuration, not the verifier alone.",
+    "baseline_error_rate_accepted is the error rate of the extraction run alone, which accepts every value it didn't abstain on."
+  ],
+  "arms": {
+    "A": {
+      "config": "config/arms/a.toml",
+      "what": "extractor and rereader on Muse Spark 1.3 Contributor",
+      "runs": {
+        "dev": {
+          "source_run": "baseline-dev-v1",
+          "verdict_run": "arm-a-dev",
+          "config": {
+            "extractor": {
+              "backend": "meta",
+              "model_id": "muse-spark-1.3-contributor"
+            },
+            "rereader": {
+              "backend": "meta",
+              "model_id": "muse-spark-1.3-contributor"
+            },
+            "segmenter": {
+              "backend": "meta",
+              "model_id": "sam-3.1"
+            }
+          },
+          "calls": {
+            "segmenter_pages": 47,
+            "regions": {
+              "stain": 14,
+              "stamp": 28
+            },
+            "rereads": 1381,
+            "rereads_from_cache": 1373,
+            "rereads_failed": 0,
+            "second_looks": 163,
+            "second_looks_from_cache": 0,
+            "second_looks_failed": 0
+          },
+          "cost_usd_extraction_and_verification": 0.41766499999999984
+        },
+        "val": {
+          "source_run": "baseline-val-s0",
+          "verdict_run": "arm-a-val",
+          "config": {
+            "extractor": {
+              "backend": "meta",
+              "model_id": "muse-spark-1.3-contributor"
+            },
+            "rereader": {
+              "backend": "meta",
+              "model_id": "muse-spark-1.3-contributor"
+            },
+            "segmenter": {
+              "backend": "meta",
+              "model_id": "sam-3.1"
+            }
+          },
+          "calls": {
+            "segmenter_pages": 20,
+            "regions": {
+              "stain": 5,
+              "stamp": 13
+            },
+            "rereads": 666,
+            "rereads_from_cache": 663,
+            "rereads_failed": 2,
+            "second_looks": 102,
+            "second_looks_from_cache": 0,
+            "second_looks_failed": 0
+          },
+          "cost_usd_extraction_and_verification": 0.1881169
+        }
+      }
+    },
+    "B": {
+      "config": "config/arms/b.toml",
+      "what": "extractor and rereader on Muse Spark Open (Baseten): all open weights",
+      "runs": {
+        "dev": {
+          "source_run": "baseline-dev-open",
+          "verdict_run": "arm-b-dev",
+          "config": {
+            "extractor": {
+              "backend": "baseten",
+              "model_id": "meta-models/muse-spark-open-1026"
+            },
+            "rereader": {
+              "backend": "baseten",
+              "model_id": "meta-models/muse-spark-open-1026"
+            },
+            "segmenter": {
+              "backend": "meta",
+              "model_id": "sam-3.1"
+            }
+          },
+          "calls": {
+            "segmenter_pages": 47,
+            "regions": {
+              "stain": 14,
+              "stamp": 28
+            },
+            "rereads": 1382,
+            "rereads_from_cache": 0,
+            "rereads_failed": 225,
+            "second_looks": 186,
+            "second_looks_from_cache": 0,
+            "second_looks_failed": 23
+          },
+          "cost_usd_extraction_and_verification": 2.4030514999999992
+        },
+        "val": {
+          "source_run": "baseline-val-open",
+          "verdict_run": "arm-b-val",
+          "config": {
+            "extractor": {
+              "backend": "baseten",
+              "model_id": "meta-models/muse-spark-open-1026"
+            },
+            "rereader": {
+              "backend": "baseten",
+              "model_id": "meta-models/muse-spark-open-1026"
+            },
+            "segmenter": {
+              "backend": "meta",
+              "model_id": "sam-3.1"
+            }
+          },
+          "calls": {
+            "segmenter_pages": 20,
+            "regions": {
+              "stain": 5,
+              "stamp": 13
+            },
+            "rereads": 665,
+            "rereads_from_cache": 0,
+            "rereads_failed": 112,
+            "second_looks": 104,
+            "second_looks_from_cache": 0,
+            "second_looks_failed": 14
+          },
+          "cost_usd_extraction_and_verification": 1.1377532499999998
+        }
+      }
+    },
+    "C": {
+      "config": "config/arms/c.toml",
+      "what": "extractor on Muse Spark 1.3 Contributor, rereader on Muse Spark Open (Baseten)",
+      "runs": {
+        "dev": {
+          "source_run": "baseline-dev-v1",
+          "verdict_run": "arm-c-dev",
+          "config": {
+            "extractor": {
+              "backend": "meta",
+              "model_id": "muse-spark-1.3-contributor"
+            },
+            "rereader": {
+              "backend": "baseten",
+              "model_id": "meta-models/muse-spark-open-1026"
+            },
+            "segmenter": {
+              "backend": "meta",
+              "model_id": "sam-3.1"
+            }
+          },
+          "calls": {
+            "segmenter_pages": 47,
+            "regions": {
+              "stain": 14,
+              "stamp": 28
+            },
+            "rereads": 1381,
+            "rereads_from_cache": 32,
+            "rereads_failed": 218,
+            "second_looks": 156,
+            "second_looks_from_cache": 0,
+            "second_looks_failed": 15
+          },
+          "cost_usd_extraction_and_verification": 1.8542916500000026
+        },
+        "val": {
+          "source_run": "baseline-val-s0",
+          "verdict_run": "arm-c-val",
+          "config": {
+            "extractor": {
+              "backend": "meta",
+              "model_id": "muse-spark-1.3-contributor"
+            },
+            "rereader": {
+              "backend": "baseten",
+              "model_id": "meta-models/muse-spark-open-1026"
+            },
+            "segmenter": {
+              "backend": "meta",
+              "model_id": "sam-3.1"
+            }
+          },
+          "calls": {
+            "segmenter_pages": 20,
+            "regions": {
+              "stain": 5,
+              "stamp": 13
+            },
+            "rereads": 666,
+            "rereads_from_cache": 14,
+            "rereads_failed": 95,
+            "second_looks": 112,
+            "second_looks_from_cache": 4,
+            "second_looks_failed": 11
+          },
+          "cost_usd_extraction_and_verification": 0.9511993999999987
+        }
+      }
+    }
+  },
+  "results": {
+    "A": {
+      "v2": {
+        "dev": {
+          "n_pages": 47,
+          "n_fields": 1385,
+          "n_wrong": 43,
+          "n_accepted": 1191,
+          "n_review": 190,
+          "error_rate_accepted": 0.0016792611251049538,
+          "error_rate_accepted_ci95": [
+            0.0,
+            0.005093725450071188
+          ],
+          "errors_caught": 41,
+          "catch_rate": 0.9534883720930233,
+          "errors_missed": 2,
+          "false_alarms": 136,
+          "false_alarm_rate": 0.10264150943396226,
+          "review_rate": 0.1371841155234657,
+          "n_proposed": 2,
+          "proposed_equals_printed": 2,
+          "proposal_accuracy": 1.0,
+          "independence": 0.3023255813953488,
+          "review_rate_severity_3": 0.4031620553359684,
+          "cost_usd": 0.41766499999999984,
+          "cost_per_page_usd": 0.008886489361702124,
+          "baseline_error_rate_accepted": 0.031136857349746562,
+          "missing_pages": []
+        },
+        "val": {
+          "n_pages": 20,
+          "n_fields": 668,
+          "n_wrong": 19,
+          "n_accepted": 550,
+          "n_review": 116,
+          "error_rate_accepted": 0.0036363636363636364,
+          "error_rate_accepted_ci95": [
+            0.0,
+            0.012196992368696683
+          ],
+          "errors_caught": 17,
+          "catch_rate": 0.8947368421052632,
+          "errors_missed": 2,
+          "false_alarms": 90,
+          "false_alarm_rate": 0.141287284144427,
+          "review_rate": 0.17365269461077845,
+          "n_proposed": 1,
+          "proposed_equals_printed": 1,
+          "proposal_accuracy": 1.0,
+          "independence": 0.15789473684210525,
+          "review_rate_severity_3": 0.3333333333333333,
+          "cost_usd": 0.1881169,
+          "cost_per_page_usd": 0.009405845,
+          "baseline_error_rate_accepted": 0.028528528528528527,
+          "missing_pages": []
+        },
+        "pooled": {
+          "n_pages": 67,
+          "n_fields": 2053,
+          "n_wrong": 62,
+          "n_accepted": 1741,
+          "n_review": 306,
+          "error_rate_accepted": 0.0022975301550832855,
+          "error_rate_accepted_ci95": [
+            0.0,
+            0.005710472415094153
+          ],
+          "errors_caught": 58,
+          "catch_rate": 0.9354838709677419,
+          "errors_missed": 4,
+          "false_alarms": 226,
+          "false_alarm_rate": 0.11518858307849134,
+          "review_rate": 0.14905017048222113,
+          "n_proposed": 3,
+          "proposed_equals_printed": 3,
+          "proposal_accuracy": 1.0,
+          "independence": 0.25806451612903225,
+          "review_rate_severity_3": 0.3803191489361702,
+          "cost_usd": 0.6057818999999999,
+          "cost_per_page_usd": 0.009041520895522386,
+          "baseline_error_rate_accepted": 0.030288226673180263,
+          "missing_pages": []
+        }
+      },
+      "v3": {
+        "dev": {
+          "n_pages": 47,
+          "n_fields": 1385,
+          "n_wrong": 43,
+          "n_accepted": 1252,
+          "n_review": 129,
+          "error_rate_accepted": 0.0023961661341853034,
+          "error_rate_accepted_ci95": [
+            0.0,
+            0.006512058101576535
+          ],
+          "errors_caught": 40,
+          "catch_rate": 0.9302325581395349,
+          "errors_missed": 3,
+          "false_alarms": 76,
+          "false_alarm_rate": 0.057358490566037736,
+          "review_rate": 0.09314079422382672,
+          "n_proposed": 36,
+          "proposed_equals_printed": 3,
+          "proposal_accuracy": 0.08333333333333333,
+          "independence": 0.3023255813953488,
+          "review_rate_severity_3": 0.32806324110671936,
+          "cost_usd": 0.41766499999999984,
+          "cost_per_page_usd": 0.008886489361702124,
+          "baseline_error_rate_accepted": 0.031136857349746562,
+          "missing_pages": []
+        },
+        "val": {
+          "n_pages": 20,
+          "n_fields": 668,
+          "n_wrong": 19,
+          "n_accepted": 586,
+          "n_review": 80,
+          "error_rate_accepted": 0.005119453924914676,
+          "error_rate_accepted_ci95": [
+            0.0,
+            0.01451945194783269
+          ],
+          "errors_caught": 16,
+          "catch_rate": 0.8421052631578947,
+          "errors_missed": 3,
+          "false_alarms": 55,
+          "false_alarm_rate": 0.08634222919937205,
+          "review_rate": 0.11976047904191617,
+          "n_proposed": 40,
+          "proposed_equals_printed": 2,
+          "proposal_accuracy": 0.05,
+          "independence": 0.15789473684210525,
+          "review_rate_severity_3": 0.22764227642276422,
+          "cost_usd": 0.1881169,
+          "cost_per_page_usd": 0.009405845,
+          "baseline_error_rate_accepted": 0.028528528528528527,
+          "missing_pages": []
+        },
+        "pooled": {
+          "n_pages": 67,
+          "n_fields": 2053,
+          "n_wrong": 62,
+          "n_accepted": 1838,
+          "n_review": 209,
+          "error_rate_accepted": 0.003264417845484222,
+          "error_rate_accepted_ci95": [
+            0.0006463842569849319,
+            0.0070547020033870575
+          ],
+          "errors_caught": 56,
+          "catch_rate": 0.9032258064516129,
+          "errors_missed": 6,
+          "false_alarms": 131,
+          "false_alarm_rate": 0.06676860346585117,
+          "review_rate": 0.10180224062347784,
+          "n_proposed": 76,
+          "proposed_equals_printed": 5,
+          "proposal_accuracy": 0.06578947368421052,
+          "independence": 0.25806451612903225,
+          "review_rate_severity_3": 0.29521276595744683,
+          "cost_usd": 0.6057818999999999,
+          "cost_per_page_usd": 0.009041520895522386,
+          "baseline_error_rate_accepted": 0.030288226673180263,
+          "missing_pages": []
+        }
+      }
+    },
+    "B": {
+      "v2": {
+        "dev": {
+          "n_pages": 47,
+          "n_fields": 1385,
+          "n_wrong": 55,
+          "n_accepted": 959,
+          "n_review": 423,
+          "error_rate_accepted": 0.0020855057351407717,
+          "error_rate_accepted_ci95": [
+            0.0,
+            0.005926145730300031
+          ],
+          "errors_caught": 53,
+          "catch_rate": 0.9636363636363636,
+          "errors_missed": 2,
+          "false_alarms": 358,
+          "false_alarm_rate": 0.2724505327245053,
+          "review_rate": 0.30541516245487366,
+          "n_proposed": 1,
+          "proposed_equals_printed": 1,
+          "proposal_accuracy": 1.0,
+          "independence": 0.06666666666666667,
+          "review_rate_severity_3": 0.5138339920948617,
+          "cost_usd": 2.4030514999999992,
+          "cost_per_page_usd": 0.05112875531914892,
+          "baseline_error_rate_accepted": 0.03979739507959479,
+          "missing_pages": []
+        },
+        "val": {
+          "n_pages": 20,
+          "n_fields": 668,
+          "n_wrong": 3,
+          "n_accepted": 439,
+          "n_review": 226,
+          "error_rate_accepted": 0.0,
+          "error_rate_accepted_ci95": [
+            0.0,
+            0.0
+          ],
+          "errors_caught": 3,
+          "catch_rate": 1.0,
+          "errors_missed": 0,
+          "false_alarms": 213,
+          "false_alarm_rate": 0.3266871165644172,
+          "review_rate": 0.3383233532934132,
+          "n_proposed": 4,
+          "proposed_equals_printed": 0,
+          "proposal_accuracy": 0.0,
+          "independence": 1.0,
+          "review_rate_severity_3": 0.4878048780487805,
+          "cost_usd": 1.1377532499999998,
+          "cost_per_page_usd": 0.05688766249999999,
+          "baseline_error_rate_accepted": 0.004511278195488722,
+          "missing_pages": []
+        },
+        "pooled": {
+          "n_pages": 67,
+          "n_fields": 2053,
+          "n_wrong": 58,
+          "n_accepted": 1398,
+          "n_review": 649,
+          "error_rate_accepted": 0.001430615164520744,
+          "error_rate_accepted_ci95": [
+            0.0,
+            0.0038466744006187136
+          ],
+          "errors_caught": 56,
+          "catch_rate": 0.9655172413793104,
+          "errors_missed": 2,
+          "false_alarms": 571,
+          "false_alarm_rate": 0.2904374364191251,
+          "review_rate": 0.3161227471992207,
+          "n_proposed": 5,
+          "proposed_equals_printed": 1,
+          "proposal_accuracy": 0.2,
+          "independence": 0.08695652173913043,
+          "review_rate_severity_3": 0.5053191489361702,
+          "cost_usd": 3.540804749999999,
+          "cost_per_page_usd": 0.052847832089552224,
+          "baseline_error_rate_accepted": 0.028334147532975085,
+          "missing_pages": []
+        }
+      },
+      "v3": {
+        "dev": {
+          "n_pages": 47,
+          "n_fields": 1385,
+          "n_wrong": 55,
+          "n_accepted": 1031,
+          "n_review": 351,
+          "error_rate_accepted": 0.006789524733268671,
+          "error_rate_accepted_ci95": [
+            0.0008284490609187453,
+            0.0172671652541996
+          ],
+          "errors_caught": 48,
+          "catch_rate": 0.8727272727272727,
+          "errors_missed": 7,
+          "false_alarms": 291,
+          "false_alarm_rate": 0.22146118721461186,
+          "review_rate": 0.25342960288808664,
+          "n_proposed": 42,
+          "proposed_equals_printed": 4,
+          "proposal_accuracy": 0.09523809523809523,
+          "independence": 0.06666666666666667,
+          "review_rate_severity_3": 0.4505928853754941,
+          "cost_usd": 2.4030514999999992,
+          "cost_per_page_usd": 0.05112875531914892,
+          "baseline_error_rate_accepted": 0.03979739507959479,
+          "missing_pages": []
+        },
+        "val": {
+          "n_pages": 20,
+          "n_fields": 668,
+          "n_wrong": 3,
+          "n_accepted": 484,
+          "n_review": 181,
+          "error_rate_accepted": 0.0,
+          "error_rate_accepted_ci95": [
+            0.0,
+            0.0
+          ],
+          "errors_caught": 3,
+          "catch_rate": 1.0,
+          "errors_missed": 0,
+          "false_alarms": 168,
+          "false_alarm_rate": 0.25766871165644173,
+          "review_rate": 0.27095808383233533,
+          "n_proposed": 25,
+          "proposed_equals_printed": 0,
+          "proposal_accuracy": 0.0,
+          "independence": 1.0,
+          "review_rate_severity_3": 0.4065040650406504,
+          "cost_usd": 1.1377532499999998,
+          "cost_per_page_usd": 0.05688766249999999,
+          "baseline_error_rate_accepted": 0.004511278195488722,
+          "missing_pages": []
+        },
+        "pooled": {
+          "n_pages": 67,
+          "n_fields": 2053,
+          "n_wrong": 58,
+          "n_accepted": 1515,
+          "n_review": 532,
+          "error_rate_accepted": 0.0046204620462046205,
+          "error_rate_accepted_ci95": [
+            0.0005934630100918368,
+            0.010807013786120414
+          ],
+          "errors_caught": 51,
+          "catch_rate": 0.8793103448275862,
+          "errors_missed": 7,
+          "false_alarms": 459,
+          "false_alarm_rate": 0.23346897253306206,
+          "review_rate": 0.25913297613248903,
+          "n_proposed": 67,
+          "proposed_equals_printed": 4,
+          "proposal_accuracy": 0.05970149253731343,
+          "independence": 0.08695652173913043,
+          "review_rate_severity_3": 0.43617021276595747,
+          "cost_usd": 3.540804749999999,
+          "cost_per_page_usd": 0.052847832089552224,
+          "baseline_error_rate_accepted": 0.028334147532975085,
+          "missing_pages": []
+        }
+      }
+    },
+    "C": {
+      "v2": {
+        "dev": {
+          "n_pages": 47,
+          "n_fields": 1385,
+          "n_wrong": 43,
+          "n_accepted": 984,
+          "n_review": 397,
+          "error_rate_accepted": 0.0020325203252032522,
+          "error_rate_accepted_ci95": [
+            0.0,
+            0.006142789642789641
+          ],
+          "errors_caught": 41,
+          "catch_rate": 0.9534883720930233,
+          "errors_missed": 2,
+          "false_alarms": 343,
+          "false_alarm_rate": 0.2588679245283019,
+          "review_rate": 0.28664259927797836,
+          "n_proposed": 2,
+          "proposed_equals_printed": 2,
+          "proposal_accuracy": 1.0,
+          "independence": 0.3076923076923077,
+          "review_rate_severity_3": 0.44664031620553357,
+          "cost_usd": 1.8542916500000026,
+          "cost_per_page_usd": 0.03945301382978729,
+          "baseline_error_rate_accepted": 0.031136857349746562,
+          "missing_pages": []
+        },
+        "val": {
+          "n_pages": 20,
+          "n_fields": 668,
+          "n_wrong": 19,
+          "n_accepted": 447,
+          "n_review": 219,
+          "error_rate_accepted": 0.0,
+          "error_rate_accepted_ci95": [
+            0.0,
+            0.0
+          ],
+          "errors_caught": 19,
+          "catch_rate": 1.0,
+          "errors_missed": 0,
+          "false_alarms": 191,
+          "false_alarm_rate": 0.29984301412872844,
+          "review_rate": 0.3278443113772455,
+          "n_proposed": 0,
+          "proposed_equals_printed": 0,
+          "proposal_accuracy": null,
+          "independence": 0.0625,
+          "review_rate_severity_3": 0.42276422764227645,
+          "cost_usd": 0.9511993999999987,
+          "cost_per_page_usd": 0.04755996999999994,
+          "baseline_error_rate_accepted": 0.028528528528528527,
+          "missing_pages": []
+        },
+        "pooled": {
+          "n_pages": 67,
+          "n_fields": 2053,
+          "n_wrong": 62,
+          "n_accepted": 1431,
+          "n_review": 616,
+          "error_rate_accepted": 0.001397624039133473,
+          "error_rate_accepted_ci95": [
+            0.0,
+            0.003976420583357905
+          ],
+          "errors_caught": 60,
+          "catch_rate": 0.967741935483871,
+          "errors_missed": 2,
+          "false_alarms": 534,
+          "false_alarm_rate": 0.27217125382262997,
+          "review_rate": 0.30004870920603993,
+          "n_proposed": 2,
+          "proposed_equals_printed": 2,
+          "proposal_accuracy": 1.0,
+          "independence": 0.23636363636363636,
+          "review_rate_severity_3": 0.43882978723404253,
+          "cost_usd": 2.8054910500000014,
+          "cost_per_page_usd": 0.04187300074626868,
+          "baseline_error_rate_accepted": 0.030288226673180263,
+          "missing_pages": []
+        }
+      },
+      "v3": {
+        "dev": {
+          "n_pages": 47,
+          "n_fields": 1385,
+          "n_wrong": 43,
+          "n_accepted": 1045,
+          "n_review": 336,
+          "error_rate_accepted": 0.003827751196172249,
+          "error_rate_accepted_ci95": [
+            0.0,
+            0.01052671211160431
+          ],
+          "errors_caught": 39,
+          "catch_rate": 0.9069767441860465,
+          "errors_missed": 4,
+          "false_alarms": 284,
+          "false_alarm_rate": 0.21433962264150944,
+          "review_rate": 0.24259927797833936,
+          "n_proposed": 25,
+          "proposed_equals_printed": 2,
+          "proposal_accuracy": 0.08,
+          "independence": 0.3076923076923077,
+          "review_rate_severity_3": 0.3952569169960474,
+          "cost_usd": 1.8542916500000026,
+          "cost_per_page_usd": 0.03945301382978729,
+          "baseline_error_rate_accepted": 0.031136857349746562,
+          "missing_pages": []
+        },
+        "val": {
+          "n_pages": 20,
+          "n_fields": 668,
+          "n_wrong": 19,
+          "n_accepted": 490,
+          "n_review": 176,
+          "error_rate_accepted": 0.0020408163265306124,
+          "error_rate_accepted_ci95": [
+            0.0,
+            0.006623620309050767
+          ],
+          "errors_caught": 18,
+          "catch_rate": 0.9473684210526315,
+          "errors_missed": 1,
+          "false_alarms": 149,
+          "false_alarm_rate": 0.23390894819466249,
+          "review_rate": 0.2634730538922156,
+          "n_proposed": 31,
+          "proposed_equals_printed": 2,
+          "proposal_accuracy": 0.06451612903225806,
+          "independence": 0.0625,
+          "review_rate_severity_3": 0.3333333333333333,
+          "cost_usd": 0.9511993999999987,
+          "cost_per_page_usd": 0.04755996999999994,
+          "baseline_error_rate_accepted": 0.028528528528528527,
+          "missing_pages": []
+        },
+        "pooled": {
+          "n_pages": 67,
+          "n_fields": 2053,
+          "n_wrong": 62,
+          "n_accepted": 1535,
+          "n_review": 512,
+          "error_rate_accepted": 0.003257328990228013,
+          "error_rate_accepted_ci95": [
+            0.0005633249553437347,
+            0.0075203645960997935
+          ],
+          "errors_caught": 57,
+          "catch_rate": 0.9193548387096774,
+          "errors_missed": 5,
+          "false_alarms": 433,
+          "false_alarm_rate": 0.22069317023445464,
+          "review_rate": 0.24939113492450074,
+          "n_proposed": 56,
+          "proposed_equals_printed": 4,
+          "proposal_accuracy": 0.07142857142857142,
+          "independence": 0.23636363636363636,
+          "review_rate_severity_3": 0.375,
+          "cost_usd": 2.8054910500000014,
+          "cost_per_page_usd": 0.04187300074626868,
+          "baseline_error_rate_accepted": 0.030288226673180263,
+          "missing_pages": []
+        }
+      }
+    }
+  },
+  "ranking": [
+    {
+      "arm": "C",
+      "policy": "v2",
+      "error_rate_accepted": 0.001397624039133473,
+      "within_tie": true,
+      "review_rate": 0.30004870920603993,
+      "cost_per_page_usd": 0.04187300074626868
+    },
+    {
+      "arm": "B",
+      "policy": "v2",
+      "error_rate_accepted": 0.001430615164520744,
+      "within_tie": true,
+      "review_rate": 0.3161227471992207,
+      "cost_per_page_usd": 0.052847832089552224
+    },
+    {
+      "arm": "A",
+      "policy": "v2",
+      "error_rate_accepted": 0.0022975301550832855,
+      "within_tie": true,
+      "review_rate": 0.14905017048222113,
+      "cost_per_page_usd": 0.009041520895522386
+    },
+    {
+      "arm": "C",
+      "policy": "v3",
+      "error_rate_accepted": 0.003257328990228013,
+      "within_tie": false,
+      "review_rate": 0.24939113492450074,
+      "cost_per_page_usd": 0.04187300074626868
+    },
+    {
+      "arm": "A",
+      "policy": "v3",
+      "error_rate_accepted": 0.003264417845484222,
+      "within_tie": false,
+      "review_rate": 0.10180224062347784,
+      "cost_per_page_usd": 0.009041520895522386
+    },
+    {
+      "arm": "B",
+      "policy": "v3",
+      "error_rate_accepted": 0.0046204620462046205,
+      "within_tie": false,
+      "review_rate": 0.25913297613248903,
+      "cost_per_page_usd": 0.052847832089552224
+    }
+  ],
+  "winner": {
+    "arm": "A",
+    "policy": "v2",
+    "config": "config/arms/a.toml",
+    "what": "extractor and rereader on Muse Spark 1.3 Contributor",
+    "pooled": {
+      "error_rate_accepted": 0.0022975301550832855,
+      "review_rate": 0.14905017048222113
+    }
+  },
+  "all_open_weights": {
+    "arm": "B",
+    "config": "config/arms/b.toml",
+    "pooled": {
+      "v2": {
+        "n_pages": 67,
+        "n_fields": 2053,
+        "n_wrong": 58,
+        "n_accepted": 1398,
+        "n_review": 649,
+        "error_rate_accepted": 0.001430615164520744,
+        "error_rate_accepted_ci95": [
+          0.0,
+          0.0038466744006187136
+        ],
+        "errors_caught": 56,
+        "catch_rate": 0.9655172413793104,
+        "errors_missed": 2,
+        "false_alarms": 571,
+        "false_alarm_rate": 0.2904374364191251,
+        "review_rate": 0.3161227471992207,
+        "n_proposed": 5,
+        "proposed_equals_printed": 1,
+        "proposal_accuracy": 0.2,
+        "independence": 0.08695652173913043,
+        "review_rate_severity_3": 0.5053191489361702,
+        "cost_usd": 3.540804749999999,
+        "cost_per_page_usd": 0.052847832089552224,
+        "baseline_error_rate_accepted": 0.028334147532975085,
+        "missing_pages": []
+      },
+      "v3": {
+        "n_pages": 67,
+        "n_fields": 2053,
+        "n_wrong": 58,
+        "n_accepted": 1515,
+        "n_review": 532,
+        "error_rate_accepted": 0.0046204620462046205,
+        "error_rate_accepted_ci95": [
+          0.0005934630100918368,
+          0.010807013786120414
+        ],
+        "errors_caught": 51,
+        "catch_rate": 0.8793103448275862,
+        "errors_missed": 7,
+        "false_alarms": 459,
+        "false_alarm_rate": 0.23346897253306206,
+        "review_rate": 0.25913297613248903,
+        "n_proposed": 67,
+        "proposed_equals_printed": 4,
+        "proposal_accuracy": 0.05970149253731343,
+        "independence": 0.08695652173913043,
+        "review_rate_severity_3": 0.43617021276595747,
+        "cost_usd": 3.540804749999999,
+        "cost_per_page_usd": 0.052847832089552224,
+        "baseline_error_rate_accepted": 0.028334147532975085,
+        "missing_pages": []
+      }
+    }
+  }
+}

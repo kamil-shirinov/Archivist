@@ -46,3 +46,4 @@ uv run pytest -q
 - [x] P12 verification: blind re-reads, occlusion and verdicts
 - [x] P12b read every value twice
 - [x] P13 Muse Spark Open on Baseten
+- [x] P14 arms and second look

@@ -164,3 +164,9 @@ def test_the_smoke_call_picks_its_config_by_backend(monkeypatch, tmp_path):
         Path("config/arms/a.toml"),
         Path("config/models.toml"),
     ]
+
+
+def test_the_default_config_and_policy_are_the_headline_the_comparison_chose():
+    winner = json.loads(Path("results/arms_compare.json").read_text())["winner"]
+    assert _roles("config/models.toml") == _roles(compare_arms.ARMS[winner["arm"]]["config"])
+    assert verify.POLICY == winner["policy"]

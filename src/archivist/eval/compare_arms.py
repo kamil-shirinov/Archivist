@@ -104,6 +104,12 @@ CAVEATS = [
     "whole configuration, not the verifier alone.",
     "baseline_error_rate_accepted is the error rate of the extraction run alone, which accepts "
     "every value it didn't abstain on.",
+    "The P14 run was resumed once. At --workers 8, 538 Baseten re-reads of arms B and C failed "
+    "on HTTP 429 after their retries, and a failed re-read sends its field to review; those "
+    "scores are kept in arms_compare_first_pass.json. A failed call is not cached, so the "
+    "resume (--workers 2) asked only those calls again and replayed every answer already given; "
+    "no re-read or second look of B or C failed in the end. The rule chose the same winner on "
+    "both passes. Arm A's two failed re-reads on val are empty answers, not errors, and stand.",
 ]
 
 
