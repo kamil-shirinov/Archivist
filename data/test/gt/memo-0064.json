@@ -1,0 +1,141 @@
+{
+  "page_id": "memo-0064",
+  "doc_type": "memo",
+  "image_path": "images/memo-0064.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 3,
+  "fields": [
+    {
+      "field_id": "M:memo-0064:memo_no",
+      "printed": "034209",
+      "bbox": {
+        "x0": 268,
+        "y0": 254,
+        "x1": 375,
+        "y1": 276
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0064:date",
+      "printed": "27/01/94",
+      "bbox": {
+        "x0": 671,
+        "y0": 261,
+        "x1": 812,
+        "y1": 292
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0064:account_no",
+      "printed": "28349835",
+      "bbox": {
+        "x0": 298,
+        "y0": 345,
+        "x1": 439,
+        "y1": 368
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0064:counterparty",
+      "printed": "Jill Taylor-Moore",
+      "bbox": {
+        "x0": 219,
+        "y0": 435,
+        "x1": 513,
+        "y1": 468
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0064:amount",
+      "printed": "349.54",
+      "bbox": {
+        "x0": 651,
+        "y0": 558,
+        "x1": 758,
+        "y1": 580
+      },
+      "occluded_by": [
+        "A:memo-0064:02"
+      ]
+    },
+    {
+      "field_id": "M:memo-0064:amount_words",
+      "printed": "Three hundred and forty-nine pounds and fifty-four pence",
+      "bbox": {
+        "x0": 115,
+        "y0": 703,
+        "x1": 960,
+        "y1": 741
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0064:ledger_ref",
+      "printed": "Sheet 45 / Line 17",
+      "bbox": {
+        "x0": 272,
+        "y0": 801,
+        "x1": 583,
+        "y1": 834
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0064:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 367,
+        "y0": 1000,
+        "x1": 665,
+        "y1": 1079
+      }
+    },
+    {
+      "artefact_id": "A:memo-0064:02",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 605,
+        "y0": 480,
+        "x1": 778,
+        "y1": 653
+      }
+    },
+    {
+      "artefact_id": "A:memo-0064:03",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 769,
+        "y0": 561,
+        "x1": 796,
+        "y1": 584
+      }
+    },
+    {
+      "artefact_id": "A:memo-0064:04",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 767,
+        "y0": 552,
+        "x1": 799,
+        "y1": 584
+      }
+    }
+  ],
+  "source_errors": [
+    {
+      "kind": "memo_ledger_mismatch",
+      "field_ids": [
+        "M:memo-0064:amount",
+        "L:card-07-2:17:debit"
+      ],
+      "note": "memo states 349.54; ledger line shows 349.84"
+    }
+  ]
+}

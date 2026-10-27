@@ -1,0 +1,122 @@
+{
+  "page_id": "memo-0020",
+  "doc_type": "memo",
+  "image_path": "images/memo-0020.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 3,
+  "fields": [
+    {
+      "field_id": "M:memo-0020:memo_no",
+      "printed": "034165",
+      "bbox": {
+        "x0": 277,
+        "y0": 243,
+        "x1": 374,
+        "y1": 271
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0020:date",
+      "printed": "11/03/88",
+      "bbox": {
+        "x0": 678,
+        "y0": 260,
+        "x1": 785,
+        "y1": 297
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0020:account_no",
+      "printed": "55834596",
+      "bbox": {
+        "x0": 306,
+        "y0": 335,
+        "x1": 439,
+        "y1": 364
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0020:counterparty",
+      "printed": "Parker, Walker and Lyons",
+      "bbox": {
+        "x0": 223,
+        "y0": 426,
+        "x1": 500,
+        "y1": 475
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0020:amount",
+      "printed": "11.01",
+      "bbox": {
+        "x0": 696,
+        "y0": 553,
+        "x1": 756,
+        "y1": 581
+      },
+      "occluded_by": [
+        "A:memo-0020:02"
+      ]
+    },
+    {
+      "field_id": "M:memo-0020:amount_words",
+      "printed": "Eleven pounds and one penny",
+      "bbox": {
+        "x0": 114,
+        "y0": 681,
+        "x1": 492,
+        "y1": 740
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0020:ledger_ref",
+      "printed": "Sheet 6 / Line 14",
+      "bbox": {
+        "x0": 275,
+        "y0": 798,
+        "x1": 535,
+        "y1": 846
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0020:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 345,
+        "y0": 1005,
+        "x1": 611,
+        "y1": 1083
+      }
+    },
+    {
+      "artefact_id": "A:memo-0020:02",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 621,
+        "y0": 467,
+        "x1": 813,
+        "y1": 658
+      }
+    },
+    {
+      "artefact_id": "A:memo-0020:03",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 588,
+        "y0": 353,
+        "x1": 772,
+        "y1": 537
+      }
+    }
+  ],
+  "source_errors": []
+}

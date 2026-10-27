@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0090",
+  "doc_type": "memo",
+  "image_path": "images/memo-0090.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 1,
+  "fields": [
+    {
+      "field_id": "M:memo-0090:memo_no",
+      "printed": "034235",
+      "bbox": {
+        "x0": 267,
+        "y0": 252,
+        "x1": 370,
+        "y1": 277
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0090:date",
+      "printed": "26/06/89",
+      "bbox": {
+        "x0": 671,
+        "y0": 253,
+        "x1": 790,
+        "y1": 288
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0090:account_no",
+      "printed": "58364924",
+      "bbox": {
+        "x0": 302,
+        "y0": 340,
+        "x1": 435,
+        "y1": 366
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0090:counterparty",
+      "printed": "Dixon, Curtis and Stevenson",
+      "bbox": {
+        "x0": 216,
+        "y0": 429,
+        "x1": 595,
+        "y1": 470
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0090:amount",
+      "printed": "103.66",
+      "bbox": {
+        "x0": 670,
+        "y0": 549,
+        "x1": 753,
+        "y1": 576
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0090:amount_words",
+      "printed": "One hundred and three pounds and sixty-six pence",
+      "bbox": {
+        "x0": 117,
+        "y0": 692,
+        "x1": 736,
+        "y1": 743
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0090:ledger_ref",
+      "printed": "Sheet 55 / Line 11",
+      "bbox": {
+        "x0": 276,
+        "y0": 806,
+        "x1": 547,
+        "y1": 846
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0090:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 485,
+        "y0": 1005,
+        "x1": 707,
+        "y1": 1085
+      }
+    }
+  ],
+  "source_errors": []
+}

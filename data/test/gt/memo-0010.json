@@ -1,0 +1,146 @@
+{
+  "page_id": "memo-0010",
+  "doc_type": "memo",
+  "image_path": "images/memo-0010.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 3,
+  "fields": [
+    {
+      "field_id": "M:memo-0010:memo_no",
+      "printed": "034155",
+      "bbox": {
+        "x0": 259,
+        "y0": 265,
+        "x1": 366,
+        "y1": 286
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0010:date",
+      "printed": "01/03/88",
+      "bbox": {
+        "x0": 663,
+        "y0": 255,
+        "x1": 804,
+        "y1": 285
+      },
+      "occluded_by": [
+        "A:memo-0010:03"
+      ]
+    },
+    {
+      "field_id": "M:memo-0010:account_no",
+      "printed": "84608901",
+      "bbox": {
+        "x0": 296,
+        "y0": 353,
+        "x1": 437,
+        "y1": 375
+      },
+      "occluded_by": [
+        "A:memo-0010:05"
+      ]
+    },
+    {
+      "field_id": "M:memo-0010:counterparty",
+      "printed": "District Council Rates Office",
+      "bbox": {
+        "x0": 215,
+        "y0": 435,
+        "x1": 713,
+        "y1": 463
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0010:amount",
+      "printed": "26.61",
+      "bbox": {
+        "x0": 661,
+        "y0": 553,
+        "x1": 751,
+        "y1": 575
+      },
+      "occluded_by": [
+        "A:memo-0010:02"
+      ]
+    },
+    {
+      "field_id": "M:memo-0010:amount_words",
+      "printed": "Twenty-six pounds and sixty-one pence",
+      "bbox": {
+        "x0": 117,
+        "y0": 705,
+        "x1": 751,
+        "y1": 738
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0010:ledger_ref",
+      "printed": "Sheet 45 / Line 08",
+      "bbox": {
+        "x0": 280,
+        "y0": 806,
+        "x1": 591,
+        "y1": 837
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0010:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 430,
+        "y0": 1005,
+        "x1": 640,
+        "y1": 1086
+      }
+    },
+    {
+      "artefact_id": "A:memo-0010:02",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 638,
+        "y0": 509,
+        "x1": 807,
+        "y1": 611
+      }
+    },
+    {
+      "artefact_id": "A:memo-0010:03",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 623,
+        "y0": 216,
+        "x1": 772,
+        "y1": 365
+      }
+    },
+    {
+      "artefact_id": "A:memo-0010:04",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 97,
+        "y0": 1114,
+        "x1": 262,
+        "y1": 1279
+      }
+    },
+    {
+      "artefact_id": "A:memo-0010:05",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 144,
+        "y0": 286,
+        "x1": 311,
+        "y1": 382
+      }
+    }
+  ],
+  "source_errors": []
+}

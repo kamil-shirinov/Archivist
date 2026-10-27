@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0103",
+  "doc_type": "memo",
+  "image_path": "images/memo-0103.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 0,
+  "fields": [
+    {
+      "field_id": "M:memo-0103:memo_no",
+      "printed": "034248",
+      "bbox": {
+        "x0": 260,
+        "y0": 257,
+        "x1": 362,
+        "y1": 281
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0103:date",
+      "printed": "28/04/82",
+      "bbox": {
+        "x0": 669,
+        "y0": 257,
+        "x1": 790,
+        "y1": 290
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0103:account_no",
+      "printed": "32170284",
+      "bbox": {
+        "x0": 294,
+        "y0": 346,
+        "x1": 417,
+        "y1": 370
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0103:counterparty",
+      "printed": "Wrenfield Assurance Society",
+      "bbox": {
+        "x0": 219,
+        "y0": 438,
+        "x1": 494,
+        "y1": 475
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0103:amount",
+      "printed": "13.04",
+      "bbox": {
+        "x0": 683,
+        "y0": 550,
+        "x1": 753,
+        "y1": 576
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0103:amount_words",
+      "printed": "Thirteen pounds and four pence",
+      "bbox": {
+        "x0": 116,
+        "y0": 696,
+        "x1": 514,
+        "y1": 742
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0103:ledger_ref",
+      "printed": "Sheet 44 / Line 05",
+      "bbox": {
+        "x0": 276,
+        "y0": 804,
+        "x1": 558,
+        "y1": 842
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0103:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 309,
+        "y0": 1004,
+        "x1": 614,
+        "y1": 1076
+      }
+    }
+  ],
+  "source_errors": []
+}

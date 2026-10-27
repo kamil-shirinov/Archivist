@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0072",
+  "doc_type": "memo",
+  "image_path": "images/memo-0072.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 1,
+  "fields": [
+    {
+      "field_id": "M:memo-0072:memo_no",
+      "printed": "034217",
+      "bbox": {
+        "x0": 263,
+        "y0": 260,
+        "x1": 366,
+        "y1": 287
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0072:date",
+      "printed": "17/12/75",
+      "bbox": {
+        "x0": 667,
+        "y0": 256,
+        "x1": 799,
+        "y1": 285
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0072:account_no",
+      "printed": "32493403",
+      "bbox": {
+        "x0": 294,
+        "y0": 347,
+        "x1": 430,
+        "y1": 374
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0072:counterparty",
+      "printed": "Kathleen Hunt",
+      "bbox": {
+        "x0": 218,
+        "y0": 439,
+        "x1": 425,
+        "y1": 465
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0072:amount",
+      "printed": "124.55",
+      "bbox": {
+        "x0": 656,
+        "y0": 553,
+        "x1": 750,
+        "y1": 579
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0072:amount_words",
+      "printed": "One hundred and twenty-four pounds and fifty-five pence",
+      "bbox": {
+        "x0": 117,
+        "y0": 702,
+        "x1": 957,
+        "y1": 735
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0072:ledger_ref",
+      "printed": "Sheet 14 / Line 11",
+      "bbox": {
+        "x0": 276,
+        "y0": 809,
+        "x1": 538,
+        "y1": 838
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0072:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 312,
+        "y0": 1004,
+        "x1": 602,
+        "y1": 1075
+      }
+    }
+  ],
+  "source_errors": []
+}

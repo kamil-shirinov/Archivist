@@ -1,0 +1,110 @@
+{
+  "page_id": "memo-0017",
+  "doc_type": "memo",
+  "image_path": "images/memo-0017.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 2,
+  "fields": [
+    {
+      "field_id": "M:memo-0017:memo_no",
+      "printed": "034162",
+      "bbox": {
+        "x0": 256,
+        "y0": 261,
+        "x1": 352,
+        "y1": 288
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0017:date",
+      "printed": "05/02/88",
+      "bbox": {
+        "x0": 660,
+        "y0": 253,
+        "x1": 782,
+        "y1": 289
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0017:account_no",
+      "printed": "55834596",
+      "bbox": {
+        "x0": 290,
+        "y0": 348,
+        "x1": 422,
+        "y1": 375
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0017:counterparty",
+      "printed": "Bruce Roberts",
+      "bbox": {
+        "x0": 210,
+        "y0": 440,
+        "x1": 437,
+        "y1": 481
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0017:amount",
+      "printed": "216.73",
+      "bbox": {
+        "x0": 669,
+        "y0": 548,
+        "x1": 754,
+        "y1": 575
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0017:amount_words",
+      "printed": "Two hundred and sixteen pounds and seventy-three pence",
+      "bbox": {
+        "x0": 119,
+        "y0": 689,
+        "x1": 845,
+        "y1": 750
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0017:ledger_ref",
+      "printed": "Sheet 6 / Line 03",
+      "bbox": {
+        "x0": 280,
+        "y0": 807,
+        "x1": 541,
+        "y1": 851
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0017:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 467,
+        "y0": 997,
+        "x1": 679,
+        "y1": 1077
+      }
+    },
+    {
+      "artefact_id": "A:memo-0017:02",
+      "kind": "stain",
+      "bbox": {
+        "x0": 588,
+        "y0": 846,
+        "x1": 792,
+        "y1": 1037
+      }
+    }
+  ],
+  "source_errors": []
+}

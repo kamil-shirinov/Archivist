@@ -1,0 +1,120 @@
+{
+  "page_id": "memo-0098",
+  "doc_type": "memo",
+  "image_path": "images/memo-0098.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 2,
+  "fields": [
+    {
+      "field_id": "M:memo-0098:memo_no",
+      "printed": "034243",
+      "bbox": {
+        "x0": 250,
+        "y0": 258,
+        "x1": 353,
+        "y1": 286
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0098:date",
+      "printed": "28/02/82",
+      "bbox": {
+        "x0": 653,
+        "y0": 249,
+        "x1": 776,
+        "y1": 286
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0098:account_no",
+      "printed": "32170284",
+      "bbox": {
+        "x0": 288,
+        "y0": 346,
+        "x1": 413,
+        "y1": 374
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0098:counterparty",
+      "printed": "George Kemp",
+      "bbox": {
+        "x0": 209,
+        "y0": 438,
+        "x1": 350,
+        "y1": 479
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0098:amount",
+      "printed": "427.61",
+      "bbox": {
+        "x0": 664,
+        "y0": 543,
+        "x1": 750,
+        "y1": 573
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0098:amount_words",
+      "printed": "Four hundred and twenty-seven pounds and sixty-one pence",
+      "bbox": {
+        "x0": 119,
+        "y0": 690,
+        "x1": 859,
+        "y1": 756
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0098:ledger_ref",
+      "printed": "Sheet 43 / Line 05",
+      "bbox": {
+        "x0": 276,
+        "y0": 805,
+        "x1": 558,
+        "y1": 852
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0098:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 396,
+        "y0": 1011,
+        "x1": 688,
+        "y1": 1083
+      }
+    },
+    {
+      "artefact_id": "A:memo-0098:02",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 615,
+        "y0": 546,
+        "x1": 649,
+        "y1": 571
+      }
+    },
+    {
+      "artefact_id": "A:memo-0098:03",
+      "kind": "stain",
+      "bbox": {
+        "x0": 850,
+        "y0": 590,
+        "x1": 981,
+        "y1": 720
+      }
+    }
+  ],
+  "source_errors": []
+}

@@ -1,0 +1,119 @@
+{
+  "page_id": "memo-0114",
+  "doc_type": "memo",
+  "image_path": "images/memo-0114.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 2,
+  "fields": [
+    {
+      "field_id": "M:memo-0114:memo_no",
+      "printed": "034259",
+      "bbox": {
+        "x0": 263,
+        "y0": 258,
+        "x1": 358,
+        "y1": 290
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0114:date",
+      "printed": "27/11/85",
+      "bbox": {
+        "x0": 665,
+        "y0": 254,
+        "x1": 771,
+        "y1": 286
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0114:account_no",
+      "printed": "65422443",
+      "bbox": {
+        "x0": 294,
+        "y0": 344,
+        "x1": 427,
+        "y1": 377
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0114:counterparty",
+      "printed": "Wrenfield Assurance Society",
+      "bbox": {
+        "x0": 214,
+        "y0": 434,
+        "x1": 610,
+        "y1": 474
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0114:amount",
+      "printed": "42.51",
+      "bbox": {
+        "x0": 682,
+        "y0": 548,
+        "x1": 753,
+        "y1": 580
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0114:amount_words",
+      "printed": "Forty-two pounds and fifty-one pence",
+      "bbox": {
+        "x0": 120,
+        "y0": 700,
+        "x1": 662,
+        "y1": 740
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0114:ledger_ref",
+      "printed": "Sheet 29 / Line 13",
+      "bbox": {
+        "x0": 274,
+        "y0": 806,
+        "x1": 522,
+        "y1": 838
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0114:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 454,
+        "y0": 1013,
+        "x1": 731,
+        "y1": 1085
+      }
+    },
+    {
+      "artefact_id": "A:memo-0114:02",
+      "kind": "stain",
+      "bbox": {
+        "x0": 751,
+        "y0": 500,
+        "x1": 927,
+        "y1": 680
+      }
+    }
+  ],
+  "source_errors": [
+    {
+      "kind": "memo_ledger_mismatch",
+      "field_ids": [
+        "M:memo-0114:amount",
+        "L:card-11-3:13:debit"
+      ],
+      "note": "memo states 42.51; ledger line shows 42.50"
+    }
+  ]
+}

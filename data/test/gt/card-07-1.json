@@ -1,0 +1,1121 @@
+{
+  "page_id": "card-07-1",
+  "doc_type": "ledger",
+  "image_path": "images/card-07-1.jpg",
+  "width": 1700,
+  "height": 1100,
+  "severity": 3,
+  "fields": [
+    {
+      "field_id": "L:card-07-1:hdr:account_no",
+      "printed": "28349835",
+      "bbox": {
+        "x0": 221,
+        "y0": 91,
+        "x1": 338,
+        "y1": 124
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:hdr:holder",
+      "printed": "Eleanor Page",
+      "bbox": {
+        "x0": 615,
+        "y0": 95,
+        "x1": 755,
+        "y1": 129
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:hdr:sheet_no",
+      "printed": "44",
+      "bbox": {
+        "x0": 1397,
+        "y0": 109,
+        "x1": 1440,
+        "y1": 139
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:hdr:brought_forward",
+      "printed": "1,186.51",
+      "bbox": {
+        "x0": 1569,
+        "y0": 218,
+        "x1": 1636,
+        "y1": 249
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:01:date",
+      "printed": "15/10/93",
+      "bbox": {
+        "x0": 148,
+        "y0": 234,
+        "x1": 243,
+        "y1": 264
+      },
+      "occluded_by": [
+        "A:card-07-1:03"
+      ]
+    },
+    {
+      "field_id": "L:card-07-1:01:description",
+      "printed": "CHQ 895071",
+      "bbox": {
+        "x0": 324,
+        "y0": 242,
+        "x1": 459,
+        "y1": 273
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:01:debit",
+      "printed": "282.61",
+      "bbox": {
+        "x0": 1089,
+        "y0": 254,
+        "x1": 1158,
+        "y1": 285
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:01:credit",
+      "printed": "",
+      "bbox": {
+        "x0": 1168,
+        "y0": 250,
+        "x1": 1402,
+        "y1": 290
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:01:balance",
+      "printed": "903.90",
+      "bbox": {
+        "x0": 1559,
+        "y0": 258,
+        "x1": 1641,
+        "y1": 289
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:02:date",
+      "printed": "21/10/93",
+      "bbox": {
+        "x0": 154,
+        "y0": 279,
+        "x1": 252,
+        "y1": 310
+      },
+      "occluded_by": [
+        "A:card-07-1:03"
+      ]
+    },
+    {
+      "field_id": "L:card-07-1:02:description",
+      "printed": "CREDIT TRANSFER",
+      "bbox": {
+        "x0": 320,
+        "y0": 278,
+        "x1": 558,
+        "y1": 312
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:02:debit",
+      "printed": "",
+      "bbox": {
+        "x0": 927,
+        "y0": 289,
+        "x1": 1161,
+        "y1": 329
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:02:credit",
+      "printed": "394.47",
+      "bbox": {
+        "x0": 1312,
+        "y0": 298,
+        "x1": 1401,
+        "y1": 330
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:02:balance",
+      "printed": "1,298.37",
+      "bbox": {
+        "x0": 1554,
+        "y0": 300,
+        "x1": 1639,
+        "y1": 332
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:03:date",
+      "printed": "24/10/93",
+      "bbox": {
+        "x0": 151,
+        "y0": 320,
+        "x1": 260,
+        "y1": 351
+      },
+      "occluded_by": [
+        "A:card-07-1:03"
+      ]
+    },
+    {
+      "field_id": "L:card-07-1:03:description",
+      "printed": "DIRECT DEBIT ELECTRICITY",
+      "bbox": {
+        "x0": 322,
+        "y0": 326,
+        "x1": 652,
+        "y1": 360
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:03:debit",
+      "printed": "47.93",
+      "bbox": {
+        "x0": 1089,
+        "y0": 339,
+        "x1": 1159,
+        "y1": 370
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:03:credit",
+      "printed": "",
+      "bbox": {
+        "x0": 1167,
+        "y0": 336,
+        "x1": 1400,
+        "y1": 376
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:03:balance",
+      "printed": "1,250.44",
+      "bbox": {
+        "x0": 1544,
+        "y0": 342,
+        "x1": 1639,
+        "y1": 374
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:04:date",
+      "printed": "30/10/93",
+      "bbox": {
+        "x0": 147,
+        "y0": 364,
+        "x1": 250,
+        "y1": 395
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:04:description",
+      "printed": "CHQ 895072",
+      "bbox": {
+        "x0": 318,
+        "y0": 370,
+        "x1": 460,
+        "y1": 402
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:04:debit",
+      "printed": "240.95",
+      "bbox": {
+        "x0": 1070,
+        "y0": 383,
+        "x1": 1154,
+        "y1": 414
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:04:credit",
+      "printed": "",
+      "bbox": {
+        "x0": 1166,
+        "y0": 379,
+        "x1": 1399,
+        "y1": 419
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:04:balance",
+      "printed": "1,009.49",
+      "bbox": {
+        "x0": 1548,
+        "y0": 388,
+        "x1": 1638,
+        "y1": 420
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:05:date",
+      "printed": "04/11/93",
+      "bbox": {
+        "x0": 146,
+        "y0": 407,
+        "x1": 248,
+        "y1": 438
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:05:description",
+      "printed": "STANDING ORDER RATES",
+      "bbox": {
+        "x0": 321,
+        "y0": 412,
+        "x1": 642,
+        "y1": 447
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:05:debit",
+      "printed": "23.41",
+      "bbox": {
+        "x0": 1089,
+        "y0": 425,
+        "x1": 1155,
+        "y1": 456
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:05:credit",
+      "printed": "",
+      "bbox": {
+        "x0": 1165,
+        "y0": 422,
+        "x1": 1399,
+        "y1": 462
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:05:balance",
+      "printed": "986.08",
+      "bbox": {
+        "x0": 1566,
+        "y0": 435,
+        "x1": 1637,
+        "y1": 466
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:06:date",
+      "printed": "08/11/93",
+      "bbox": {
+        "x0": 151,
+        "y0": 452,
+        "x1": 247,
+        "y1": 483
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:06:description",
+      "printed": "BANK CHARGES",
+      "bbox": {
+        "x0": 316,
+        "y0": 455,
+        "x1": 516,
+        "y1": 489
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:06:debit",
+      "printed": "1.75",
+      "bbox": {
+        "x0": 1109,
+        "y0": 468,
+        "x1": 1157,
+        "y1": 498
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:06:credit",
+      "printed": "",
+      "bbox": {
+        "x0": 1164,
+        "y0": 465,
+        "x1": 1398,
+        "y1": 505
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:06:balance",
+      "printed": "984.33",
+      "bbox": {
+        "x0": 1550,
+        "y0": 476,
+        "x1": 1633,
+        "y1": 508
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:07:date",
+      "printed": "09/11/93",
+      "bbox": {
+        "x0": 146,
+        "y0": 494,
+        "x1": 243,
+        "y1": 525
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:07:description",
+      "printed": "CREDIT TRANSFER",
+      "bbox": {
+        "x0": 320,
+        "y0": 494,
+        "x1": 558,
+        "y1": 528
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:07:debit",
+      "printed": "",
+      "bbox": {
+        "x0": 924,
+        "y0": 504,
+        "x1": 1157,
+        "y1": 544
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:07:credit",
+      "printed": "414.49",
+      "bbox": {
+        "x0": 1300,
+        "y0": 513,
+        "x1": 1392,
+        "y1": 545
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:07:balance",
+      "printed": "1,398.82",
+      "bbox": {
+        "x0": 1553,
+        "y0": 518,
+        "x1": 1637,
+        "y1": 550
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:08:date",
+      "printed": "09/11/93",
+      "bbox": {
+        "x0": 149,
+        "y0": 540,
+        "x1": 247,
+        "y1": 571
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:08:description",
+      "printed": "CASH",
+      "bbox": {
+        "x0": 315,
+        "y0": 539,
+        "x1": 383,
+        "y1": 571
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:08:debit",
+      "printed": "",
+      "bbox": {
+        "x0": 923,
+        "y0": 547,
+        "x1": 1157,
+        "y1": 587
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:08:credit",
+      "printed": "260.00",
+      "bbox": {
+        "x0": 1317,
+        "y0": 555,
+        "x1": 1392,
+        "y1": 587
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:08:balance",
+      "printed": "1,658.82",
+      "bbox": {
+        "x0": 1557,
+        "y0": 559,
+        "x1": 1635,
+        "y1": 590
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:09:date",
+      "printed": "09/11/93",
+      "bbox": {
+        "x0": 143,
+        "y0": 583,
+        "x1": 241,
+        "y1": 614
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:09:description",
+      "printed": "CASH",
+      "bbox": {
+        "x0": 314,
+        "y0": 584,
+        "x1": 382,
+        "y1": 616
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:09:debit",
+      "printed": "55.00",
+      "bbox": {
+        "x0": 1089,
+        "y0": 598,
+        "x1": 1156,
+        "y1": 628
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:09:credit",
+      "printed": "",
+      "bbox": {
+        "x0": 1162,
+        "y0": 594,
+        "x1": 1396,
+        "y1": 634
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:09:balance",
+      "printed": "1,603.82",
+      "bbox": {
+        "x0": 1554,
+        "y0": 605,
+        "x1": 1631,
+        "y1": 637
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:10:date",
+      "printed": "14/11/93",
+      "bbox": {
+        "x0": 145,
+        "y0": 625,
+        "x1": 239,
+        "y1": 656
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:10:description",
+      "printed": "BANK CHARGES",
+      "bbox": {
+        "x0": 315,
+        "y0": 623,
+        "x1": 515,
+        "y1": 657
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:10:debit",
+      "printed": "1.50",
+      "bbox": {
+        "x0": 1103,
+        "y0": 640,
+        "x1": 1149,
+        "y1": 670
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:10:credit",
+      "printed": "",
+      "bbox": {
+        "x0": 1161,
+        "y0": 637,
+        "x1": 1395,
+        "y1": 677
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:10:balance",
+      "printed": "1,602.32",
+      "bbox": {
+        "x0": 1552,
+        "y0": 644,
+        "x1": 1631,
+        "y1": 676
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:11:date",
+      "printed": "17/11/93",
+      "bbox": {
+        "x0": 146,
+        "y0": 667,
+        "x1": 235,
+        "y1": 698
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:11:description",
+      "printed": "DIRECT DEBIT ELECTRICITY",
+      "bbox": {
+        "x0": 312,
+        "y0": 671,
+        "x1": 642,
+        "y1": 706
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:11:debit",
+      "printed": "40.01",
+      "bbox": {
+        "x0": 1082,
+        "y0": 683,
+        "x1": 1150,
+        "y1": 715
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:11:credit",
+      "printed": "",
+      "bbox": {
+        "x0": 1161,
+        "y0": 680,
+        "x1": 1394,
+        "y1": 720
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:11:balance",
+      "printed": "1,562.31",
+      "bbox": {
+        "x0": 1559,
+        "y0": 692,
+        "x1": 1631,
+        "y1": 723
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:12:date",
+      "printed": "19/11/93",
+      "bbox": {
+        "x0": 145,
+        "y0": 707,
+        "x1": 236,
+        "y1": 738
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:12:description",
+      "printed": "STANDING ORDER INSURANCE",
+      "bbox": {
+        "x0": 310,
+        "y0": 711,
+        "x1": 685,
+        "y1": 748
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:12:debit",
+      "printed": "58.01",
+      "bbox": {
+        "x0": 1089,
+        "y0": 722,
+        "x1": 1148,
+        "y1": 752
+      },
+      "occluded_by": [
+        "A:card-07-1:01"
+      ]
+    },
+    {
+      "field_id": "L:card-07-1:12:credit",
+      "printed": "",
+      "bbox": {
+        "x0": 1160,
+        "y0": 723,
+        "x1": 1394,
+        "y1": 763
+      },
+      "occluded_by": [
+        "A:card-07-1:01"
+      ]
+    },
+    {
+      "field_id": "L:card-07-1:12:balance",
+      "printed": "1,504.30",
+      "bbox": {
+        "x0": 1539,
+        "y0": 734,
+        "x1": 1627,
+        "y1": 766
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:13:date",
+      "printed": "24/11/93",
+      "bbox": {
+        "x0": 140,
+        "y0": 749,
+        "x1": 242,
+        "y1": 781
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:13:description",
+      "printed": "CASH",
+      "bbox": {
+        "x0": 313,
+        "y0": 757,
+        "x1": 381,
+        "y1": 789
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:13:debit",
+      "printed": "110.00",
+      "bbox": {
+        "x0": 1075,
+        "y0": 767,
+        "x1": 1147,
+        "y1": 797
+      },
+      "occluded_by": [
+        "A:card-07-1:01",
+        "A:card-07-1:02"
+      ]
+    },
+    {
+      "field_id": "L:card-07-1:13:credit",
+      "printed": "",
+      "bbox": {
+        "x0": 1159,
+        "y0": 766,
+        "x1": 1393,
+        "y1": 806
+      },
+      "occluded_by": [
+        "A:card-07-1:01"
+      ]
+    },
+    {
+      "field_id": "L:card-07-1:13:balance",
+      "printed": "1,394.30",
+      "bbox": {
+        "x0": 1545,
+        "y0": 777,
+        "x1": 1632,
+        "y1": 809
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:14:date",
+      "printed": "24/11/93",
+      "bbox": {
+        "x0": 145,
+        "y0": 793,
+        "x1": 247,
+        "y1": 824
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:14:description",
+      "printed": "INTEREST",
+      "bbox": {
+        "x0": 314,
+        "y0": 795,
+        "x1": 447,
+        "y1": 828
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:14:debit",
+      "printed": "",
+      "bbox": {
+        "x0": 919,
+        "y0": 805,
+        "x1": 1152,
+        "y1": 845
+      },
+      "occluded_by": [
+        "A:card-07-1:01",
+        "A:card-07-1:02"
+      ]
+    },
+    {
+      "field_id": "L:card-07-1:14:credit",
+      "printed": "3.38",
+      "bbox": {
+        "x0": 1342,
+        "y0": 817,
+        "x1": 1392,
+        "y1": 848
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:14:balance",
+      "printed": "1,397.68",
+      "bbox": {
+        "x0": 1557,
+        "y0": 819,
+        "x1": 1631,
+        "y1": 850
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:15:date",
+      "printed": "28/11/93",
+      "bbox": {
+        "x0": 138,
+        "y0": 840,
+        "x1": 235,
+        "y1": 872
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:15:description",
+      "printed": "CASH",
+      "bbox": {
+        "x0": 308,
+        "y0": 843,
+        "x1": 375,
+        "y1": 874
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:15:debit",
+      "printed": "",
+      "bbox": {
+        "x0": 918,
+        "y0": 848,
+        "x1": 1151,
+        "y1": 888
+      },
+      "occluded_by": [
+        "A:card-07-1:02"
+      ]
+    },
+    {
+      "field_id": "L:card-07-1:15:credit",
+      "printed": "80.00",
+      "bbox": {
+        "x0": 1318,
+        "y0": 857,
+        "x1": 1386,
+        "y1": 887
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:15:balance",
+      "printed": "1,477.68",
+      "bbox": {
+        "x0": 1550,
+        "y0": 859,
+        "x1": 1629,
+        "y1": 891
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:16:date",
+      "printed": "30/11/93",
+      "bbox": {
+        "x0": 140,
+        "y0": 879,
+        "x1": 236,
+        "y1": 910
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:16:description",
+      "printed": "CREDIT TRANSFER",
+      "bbox": {
+        "x0": 311,
+        "y0": 884,
+        "x1": 550,
+        "y1": 918
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:16:debit",
+      "printed": "",
+      "bbox": {
+        "x0": 917,
+        "y0": 891,
+        "x1": 1151,
+        "y1": 931
+      },
+      "occluded_by": [
+        "A:card-07-1:02"
+      ]
+    },
+    {
+      "field_id": "L:card-07-1:16:credit",
+      "printed": "240.95",
+      "bbox": {
+        "x0": 1302,
+        "y0": 902,
+        "x1": 1387,
+        "y1": 933
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:16:balance",
+      "printed": "1,718.63",
+      "bbox": {
+        "x0": 1559,
+        "y0": 908,
+        "x1": 1629,
+        "y1": 939
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:17:date",
+      "printed": "05/12/93",
+      "bbox": {
+        "x0": 137,
+        "y0": 924,
+        "x1": 238,
+        "y1": 955
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:17:description",
+      "printed": "DIVIDEND",
+      "bbox": {
+        "x0": 310,
+        "y0": 928,
+        "x1": 426,
+        "y1": 960
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:17:debit",
+      "printed": "",
+      "bbox": {
+        "x0": 916,
+        "y0": 934,
+        "x1": 1150,
+        "y1": 974
+      },
+      "occluded_by": [
+        "A:card-07-1:02"
+      ]
+    },
+    {
+      "field_id": "L:card-07-1:17:credit",
+      "printed": "95.56",
+      "bbox": {
+        "x0": 1326,
+        "y0": 944,
+        "x1": 1388,
+        "y1": 975
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:17:balance",
+      "printed": "1,814.19",
+      "bbox": {
+        "x0": 1548,
+        "y0": 944,
+        "x1": 1626,
+        "y1": 976
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:18:date",
+      "printed": "07/12/93",
+      "bbox": {
+        "x0": 136,
+        "y0": 964,
+        "x1": 240,
+        "y1": 996
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:18:description",
+      "printed": "DIVIDEND",
+      "bbox": {
+        "x0": 308,
+        "y0": 966,
+        "x1": 423,
+        "y1": 998
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:18:debit",
+      "printed": "",
+      "bbox": {
+        "x0": 916,
+        "y0": 977,
+        "x1": 1149,
+        "y1": 1017
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:18:credit",
+      "printed": "78.07",
+      "bbox": {
+        "x0": 1318,
+        "y0": 985,
+        "x1": 1386,
+        "y1": 1015
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:18:balance",
+      "printed": "1,892.26",
+      "bbox": {
+        "x0": 1546,
+        "y0": 991,
+        "x1": 1624,
+        "y1": 1023
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "L:card-07-1:hdr:carried_forward",
+      "printed": "1,892.26",
+      "bbox": {
+        "x0": 1550,
+        "y0": 1033,
+        "x1": 1628,
+        "y1": 1065
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:card-07-1:01",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 1012,
+        "y0": 720,
+        "x1": 1197,
+        "y1": 852
+      }
+    },
+    {
+      "artefact_id": "A:card-07-1:02",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 944,
+        "y0": 774,
+        "x1": 1111,
+        "y1": 941
+      }
+    },
+    {
+      "artefact_id": "A:card-07-1:03",
+      "kind": "stain",
+      "bbox": {
+        "x0": 164,
+        "y0": 217,
+        "x1": 283,
+        "y1": 331
+      }
+    }
+  ],
+  "source_errors": [
+    {
+      "kind": "memo_ledger_mismatch",
+      "field_ids": [
+        "M:memo-0058:amount",
+        "L:card-07-1:11:debit"
+      ],
+      "note": "memo states 44.01; ledger line shows 40.01"
+    }
+  ]
+}

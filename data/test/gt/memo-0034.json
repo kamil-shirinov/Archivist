@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0034",
+  "doc_type": "memo",
+  "image_path": "images/memo-0034.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 0,
+  "fields": [
+    {
+      "field_id": "M:memo-0034:memo_no",
+      "printed": "034179",
+      "bbox": {
+        "x0": 264,
+        "y0": 258,
+        "x1": 352,
+        "y1": 282
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0034:date",
+      "printed": "22/06/91",
+      "bbox": {
+        "x0": 670,
+        "y0": 256,
+        "x1": 787,
+        "y1": 289
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0034:account_no",
+      "printed": "20127332",
+      "bbox": {
+        "x0": 295,
+        "y0": 345,
+        "x1": 420,
+        "y1": 368
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0034:counterparty",
+      "printed": "O'Brien, Jones and Cross",
+      "bbox": {
+        "x0": 214,
+        "y0": 434,
+        "x1": 521,
+        "y1": 472
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0034:amount",
+      "printed": "151.68",
+      "bbox": {
+        "x0": 675,
+        "y0": 551,
+        "x1": 755,
+        "y1": 577
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0034:amount_words",
+      "printed": "One hundred and fifty-one pounds and sixty-eight pence",
+      "bbox": {
+        "x0": 117,
+        "y0": 697,
+        "x1": 779,
+        "y1": 743
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0034:ledger_ref",
+      "printed": "Sheet 35 / Line 03",
+      "bbox": {
+        "x0": 277,
+        "y0": 802,
+        "x1": 554,
+        "y1": 840
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0034:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 317,
+        "y0": 999,
+        "x1": 642,
+        "y1": 1075
+      }
+    }
+  ],
+  "source_errors": []
+}

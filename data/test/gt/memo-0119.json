@@ -1,0 +1,110 @@
+{
+  "page_id": "memo-0119",
+  "doc_type": "memo",
+  "image_path": "images/memo-0119.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 2,
+  "fields": [
+    {
+      "field_id": "M:memo-0119:memo_no",
+      "printed": "034264",
+      "bbox": {
+        "x0": 259,
+        "y0": 259,
+        "x1": 363,
+        "y1": 285
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0119:date",
+      "printed": "17/09/89",
+      "bbox": {
+        "x0": 659,
+        "y0": 252,
+        "x1": 764,
+        "y1": 287
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0119:account_no",
+      "printed": "49143149",
+      "bbox": {
+        "x0": 296,
+        "y0": 345,
+        "x1": 415,
+        "y1": 371
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0119:counterparty",
+      "printed": "Lawson-Finch",
+      "bbox": {
+        "x0": 215,
+        "y0": 434,
+        "x1": 429,
+        "y1": 473
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0119:amount",
+      "printed": "124.63",
+      "bbox": {
+        "x0": 668,
+        "y0": 546,
+        "x1": 755,
+        "y1": 573
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0119:amount_words",
+      "printed": "One hundred and twenty-four pounds and sixty-three pence",
+      "bbox": {
+        "x0": 119,
+        "y0": 696,
+        "x1": 829,
+        "y1": 750
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0119:ledger_ref",
+      "printed": "Sheet 21 / Line 14",
+      "bbox": {
+        "x0": 275,
+        "y0": 805,
+        "x1": 546,
+        "y1": 846
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0119:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 366,
+        "y0": 1004,
+        "x1": 685,
+        "y1": 1078
+      }
+    },
+    {
+      "artefact_id": "A:memo-0119:02",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 955,
+        "y0": 937,
+        "x1": 1071,
+        "y1": 1039
+      }
+    }
+  ],
+  "source_errors": []
+}

@@ -1,0 +1,109 @@
+{
+  "page_id": "memo-0028",
+  "doc_type": "memo",
+  "image_path": "images/memo-0028.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 1,
+  "fields": [
+    {
+      "field_id": "M:memo-0028:memo_no",
+      "printed": "034173",
+      "bbox": {
+        "x0": 261,
+        "y0": 253,
+        "x1": 345,
+        "y1": 284
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0028:date",
+      "printed": "03/07/80",
+      "bbox": {
+        "x0": 666,
+        "y0": 253,
+        "x1": 778,
+        "y1": 284
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0028:account_no",
+      "printed": "77945262",
+      "bbox": {
+        "x0": 295,
+        "y0": 347,
+        "x1": 420,
+        "y1": 380
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0028:counterparty",
+      "printed": "Lee PLC",
+      "bbox": {
+        "x0": 217,
+        "y0": 437,
+        "x1": 327,
+        "y1": 468
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0028:amount",
+      "printed": "5.32",
+      "bbox": {
+        "x0": 700,
+        "y0": 545,
+        "x1": 756,
+        "y1": 577
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0028:amount_words",
+      "printed": "Five pounds and thirty-two pence",
+      "bbox": {
+        "x0": 113,
+        "y0": 695,
+        "x1": 589,
+        "y1": 735
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0028:ledger_ref",
+      "printed": "Sheet 10 / Line 15",
+      "bbox": {
+        "x0": 280,
+        "y0": 802,
+        "x1": 524,
+        "y1": 834
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0028:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 345,
+        "y0": 998,
+        "x1": 589,
+        "y1": 1082
+      }
+    }
+  ],
+  "source_errors": [
+    {
+      "kind": "memo_ledger_mismatch",
+      "field_ids": [
+        "M:memo-0028:amount",
+        "L:card-03-1:15:debit"
+      ],
+      "note": "memo states 5.32; ledger line shows 5.37"
+    }
+  ]
+}

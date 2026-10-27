@@ -1,0 +1,110 @@
+{
+  "page_id": "memo-0074",
+  "doc_type": "memo",
+  "image_path": "images/memo-0074.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 1,
+  "fields": [
+    {
+      "field_id": "M:memo-0074:memo_no",
+      "printed": "034219",
+      "bbox": {
+        "x0": 265,
+        "y0": 252,
+        "x1": 353,
+        "y1": 284
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0074:date",
+      "printed": "08/01/76",
+      "bbox": {
+        "x0": 671,
+        "y0": 255,
+        "x1": 777,
+        "y1": 288
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0074:account_no",
+      "printed": "32493403",
+      "bbox": {
+        "x0": 296,
+        "y0": 346,
+        "x1": 419,
+        "y1": 377
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0074:counterparty",
+      "printed": "Stevenson, Walker and Yates",
+      "bbox": {
+        "x0": 214,
+        "y0": 436,
+        "x1": 614,
+        "y1": 475
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0074:amount",
+      "printed": "427.46",
+      "bbox": {
+        "x0": 664,
+        "y0": 549,
+        "x1": 757,
+        "y1": 582
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0074:amount_words",
+      "printed": "Four hundred and twenty-seven pounds and forty-six pence",
+      "bbox": {
+        "x0": 115,
+        "y0": 697,
+        "x1": 945,
+        "y1": 739
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0074:ledger_ref",
+      "printed": "Sheet 15 / Line 02",
+      "bbox": {
+        "x0": 276,
+        "y0": 806,
+        "x1": 527,
+        "y1": 839
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0074:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 466,
+        "y0": 998,
+        "x1": 662,
+        "y1": 1083
+      }
+    },
+    {
+      "artefact_id": "A:memo-0074:02",
+      "kind": "stain",
+      "bbox": {
+        "x0": 285,
+        "y0": 891,
+        "x1": 472,
+        "y1": 1088
+      }
+    }
+  ],
+  "source_errors": []
+}

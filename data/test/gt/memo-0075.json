@@ -1,0 +1,142 @@
+{
+  "page_id": "memo-0075",
+  "doc_type": "memo",
+  "image_path": "images/memo-0075.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 3,
+  "fields": [
+    {
+      "field_id": "M:memo-0075:memo_no",
+      "printed": "034220",
+      "bbox": {
+        "x0": 271,
+        "y0": 248,
+        "x1": 376,
+        "y1": 277
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0075:date",
+      "printed": "13/01/76",
+      "bbox": {
+        "x0": 674,
+        "y0": 258,
+        "x1": 809,
+        "y1": 289
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0075:account_no",
+      "printed": "32493403",
+      "bbox": {
+        "x0": 303,
+        "y0": 344,
+        "x1": 439,
+        "y1": 373
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0075:counterparty",
+      "printed": "Howard, Davies and Hughes",
+      "bbox": {
+        "x0": 223,
+        "y0": 434,
+        "x1": 609,
+        "y1": 474
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0075:amount",
+      "printed": "162.06",
+      "bbox": {
+        "x0": 661,
+        "y0": 552,
+        "x1": 757,
+        "y1": 580
+      },
+      "occluded_by": [
+        "A:memo-0075:02"
+      ]
+    },
+    {
+      "field_id": "M:memo-0075:amount_words",
+      "printed": "One hundred and sixty-two pounds and six pence",
+      "bbox": {
+        "x0": 117,
+        "y0": 695,
+        "x1": 825,
+        "y1": 740
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0075:ledger_ref",
+      "printed": "Sheet 15 / Line 05",
+      "bbox": {
+        "x0": 277,
+        "y0": 801,
+        "x1": 537,
+        "y1": 834
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0075:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 370,
+        "y0": 998,
+        "x1": 601,
+        "y1": 1074
+      }
+    },
+    {
+      "artefact_id": "A:memo-0075:02",
+      "kind": "stain",
+      "bbox": {
+        "x0": 656,
+        "y0": 500,
+        "x1": 796,
+        "y1": 645
+      }
+    },
+    {
+      "artefact_id": "A:memo-0075:03",
+      "kind": "stain",
+      "bbox": {
+        "x0": 761,
+        "y0": 590,
+        "x1": 907,
+        "y1": 732
+      }
+    },
+    {
+      "artefact_id": "A:memo-0075:04",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 140,
+        "y0": 850,
+        "x1": 328,
+        "y1": 976
+      }
+    },
+    {
+      "artefact_id": "A:memo-0075:05",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 702,
+        "y0": 781,
+        "x1": 853,
+        "y1": 932
+      }
+    }
+  ],
+  "source_errors": []
+}

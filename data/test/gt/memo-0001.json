@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0001",
+  "doc_type": "memo",
+  "image_path": "images/memo-0001.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 1,
+  "fields": [
+    {
+      "field_id": "M:memo-0001:memo_no",
+      "printed": "034146",
+      "bbox": {
+        "x0": 259,
+        "y0": 259,
+        "x1": 366,
+        "y1": 280
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0001:date",
+      "printed": "25/10/87",
+      "bbox": {
+        "x0": 665,
+        "y0": 260,
+        "x1": 806,
+        "y1": 289
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0001:account_no",
+      "printed": "84608901",
+      "bbox": {
+        "x0": 294,
+        "y0": 348,
+        "x1": 435,
+        "y1": 369
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0001:counterparty",
+      "printed": "Payne PLC",
+      "bbox": {
+        "x0": 213,
+        "y0": 443,
+        "x1": 371,
+        "y1": 469
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0001:amount",
+      "printed": "419.75",
+      "bbox": {
+        "x0": 644,
+        "y0": 557,
+        "x1": 751,
+        "y1": 578
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0001:amount_words",
+      "printed": "Four hundred and nineteen pounds and seventy-five pence",
+      "bbox": {
+        "x0": 119,
+        "y0": 708,
+        "x1": 949,
+        "y1": 736
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0001:ledger_ref",
+      "printed": "Sheet 43 / Line 06",
+      "bbox": {
+        "x0": 277,
+        "y0": 809,
+        "x1": 588,
+        "y1": 839
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0001:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 414,
+        "y0": 1006,
+        "x1": 661,
+        "y1": 1076
+      }
+    }
+  ],
+  "source_errors": []
+}

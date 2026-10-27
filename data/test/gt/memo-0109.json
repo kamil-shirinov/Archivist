@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0109",
+  "doc_type": "memo",
+  "image_path": "images/memo-0109.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 0,
+  "fields": [
+    {
+      "field_id": "M:memo-0109:memo_no",
+      "printed": "034254",
+      "bbox": {
+        "x0": 261,
+        "y0": 259,
+        "x1": 363,
+        "y1": 285
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0109:date",
+      "printed": "31/08/85",
+      "bbox": {
+        "x0": 664,
+        "y0": 258,
+        "x1": 798,
+        "y1": 286
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0109:account_no",
+      "printed": "65422443",
+      "bbox": {
+        "x0": 295,
+        "y0": 351,
+        "x1": 429,
+        "y1": 376
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0109:counterparty",
+      "printed": "Paula Lawson",
+      "bbox": {
+        "x0": 216,
+        "y0": 436,
+        "x1": 409,
+        "y1": 462
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0109:amount",
+      "printed": "23.70",
+      "bbox": {
+        "x0": 676,
+        "y0": 554,
+        "x1": 755,
+        "y1": 580
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0109:amount_words",
+      "printed": "Twenty-three pounds and seventy pence",
+      "bbox": {
+        "x0": 119,
+        "y0": 704,
+        "x1": 691,
+        "y1": 735
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0109:ledger_ref",
+      "printed": "Sheet 27 / Line 18",
+      "bbox": {
+        "x0": 276,
+        "y0": 804,
+        "x1": 536,
+        "y1": 832
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0109:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 318,
+        "y0": 1014,
+        "x1": 552,
+        "y1": 1078
+      }
+    }
+  ],
+  "source_errors": []
+}

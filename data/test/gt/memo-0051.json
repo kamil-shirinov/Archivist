@@ -1,0 +1,134 @@
+{
+  "page_id": "memo-0051",
+  "doc_type": "memo",
+  "image_path": "images/memo-0051.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 3,
+  "fields": [
+    {
+      "field_id": "M:memo-0051:memo_no",
+      "printed": "034196",
+      "bbox": {
+        "x0": 250,
+        "y0": 265,
+        "x1": 357,
+        "y1": 290
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0051:date",
+      "printed": "28/06/80",
+      "bbox": {
+        "x0": 653,
+        "y0": 249,
+        "x1": 795,
+        "y1": 283
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0051:account_no",
+      "printed": "51618255",
+      "bbox": {
+        "x0": 284,
+        "y0": 352,
+        "x1": 426,
+        "y1": 378
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0051:counterparty",
+      "printed": "District Council Rates Office",
+      "bbox": {
+        "x0": 207,
+        "y0": 433,
+        "x1": 706,
+        "y1": 473
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0051:amount",
+      "printed": "94.89",
+      "bbox": {
+        "x0": 660,
+        "y0": 551,
+        "x1": 751,
+        "y1": 575
+      },
+      "occluded_by": [
+        "A:memo-0051:02"
+      ]
+    },
+    {
+      "field_id": "M:memo-0051:amount_words",
+      "printed": "Ninety-four pounds and eighty-nine pence",
+      "bbox": {
+        "x0": 120,
+        "y0": 692,
+        "x1": 805,
+        "y1": 743
+      },
+      "occluded_by": [
+        "A:memo-0051:04"
+      ]
+    },
+    {
+      "field_id": "M:memo-0051:ledger_ref",
+      "printed": "Sheet 3 / Line 14",
+      "bbox": {
+        "x0": 278,
+        "y0": 806,
+        "x1": 573,
+        "y1": 844
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0051:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 338,
+        "y0": 1002,
+        "x1": 628,
+        "y1": 1089
+      }
+    },
+    {
+      "artefact_id": "A:memo-0051:02",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 635,
+        "y0": 507,
+        "x1": 769,
+        "y1": 626
+      }
+    },
+    {
+      "artefact_id": "A:memo-0051:03",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 759,
+        "y0": 545,
+        "x1": 785,
+        "y1": 571
+      }
+    },
+    {
+      "artefact_id": "A:memo-0051:04",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 115,
+        "y0": 667,
+        "x1": 268,
+        "y1": 819
+      }
+    }
+  ],
+  "source_errors": []
+}

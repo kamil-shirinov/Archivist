@@ -1,0 +1,120 @@
+{
+  "page_id": "memo-0040",
+  "doc_type": "memo",
+  "image_path": "images/memo-0040.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 2,
+  "fields": [
+    {
+      "field_id": "M:memo-0040:memo_no",
+      "printed": "034185",
+      "bbox": {
+        "x0": 257,
+        "y0": 259,
+        "x1": 351,
+        "y1": 285
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0040:date",
+      "printed": "03/03/94",
+      "bbox": {
+        "x0": 658,
+        "y0": 251,
+        "x1": 777,
+        "y1": 286
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0040:account_no",
+      "printed": "51448960",
+      "bbox": {
+        "x0": 293,
+        "y0": 343,
+        "x1": 418,
+        "y1": 370
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0040:counterparty",
+      "printed": "Miss Jade Ryan",
+      "bbox": {
+        "x0": 211,
+        "y0": 436,
+        "x1": 375,
+        "y1": 477
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0040:amount",
+      "printed": "24.91",
+      "bbox": {
+        "x0": 675,
+        "y0": 546,
+        "x1": 749,
+        "y1": 574
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0040:amount_words",
+      "printed": "Twenty-four pounds and ninety-one pence",
+      "bbox": {
+        "x0": 118,
+        "y0": 696,
+        "x1": 630,
+        "y1": 749
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0040:ledger_ref",
+      "printed": "Sheet 27 / Line 08",
+      "bbox": {
+        "x0": 280,
+        "y0": 806,
+        "x1": 556,
+        "y1": 849
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0040:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 325,
+        "y0": 1008,
+        "x1": 595,
+        "y1": 1079
+      }
+    },
+    {
+      "artefact_id": "A:memo-0040:02",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 316,
+        "y0": 1023,
+        "x1": 482,
+        "y1": 1189
+      }
+    },
+    {
+      "artefact_id": "A:memo-0040:03",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 755,
+        "y0": 546,
+        "x1": 781,
+        "y1": 569
+      }
+    }
+  ],
+  "source_errors": []
+}

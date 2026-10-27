@@ -1,0 +1,122 @@
+{
+  "page_id": "memo-0082",
+  "doc_type": "memo",
+  "image_path": "images/memo-0082.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 3,
+  "fields": [
+    {
+      "field_id": "M:memo-0082:memo_no",
+      "printed": "034227",
+      "bbox": {
+        "x0": 277,
+        "y0": 246,
+        "x1": 378,
+        "y1": 274
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0082:date",
+      "printed": "09/03/89",
+      "bbox": {
+        "x0": 678,
+        "y0": 261,
+        "x1": 792,
+        "y1": 299
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0082:account_no",
+      "printed": "58364924",
+      "bbox": {
+        "x0": 306,
+        "y0": 340,
+        "x1": 440,
+        "y1": 369
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0082:counterparty",
+      "printed": "District Council Rates Office",
+      "bbox": {
+        "x0": 227,
+        "y0": 426,
+        "x1": 507,
+        "y1": 473
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0082:amount",
+      "printed": "94.32",
+      "bbox": {
+        "x0": 685,
+        "y0": 551,
+        "x1": 761,
+        "y1": 580
+      },
+      "occluded_by": [
+        "A:memo-0082:02"
+      ]
+    },
+    {
+      "field_id": "M:memo-0082:amount_words",
+      "printed": "Ninety-four pounds and thirty-two pence",
+      "bbox": {
+        "x0": 114,
+        "y0": 682,
+        "x1": 609,
+        "y1": 744
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0082:ledger_ref",
+      "printed": "Sheet 53 / Line 13",
+      "bbox": {
+        "x0": 275,
+        "y0": 799,
+        "x1": 549,
+        "y1": 846
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0082:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 425,
+        "y0": 1000,
+        "x1": 693,
+        "y1": 1082
+      }
+    },
+    {
+      "artefact_id": "A:memo-0082:02",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 649,
+        "y0": 513,
+        "x1": 819,
+        "y1": 631
+      }
+    },
+    {
+      "artefact_id": "A:memo-0082:03",
+      "kind": "stain",
+      "bbox": {
+        "x0": 250,
+        "y0": 1052,
+        "x1": 441,
+        "y1": 1249
+      }
+    }
+  ],
+  "source_errors": []
+}

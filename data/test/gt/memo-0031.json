@@ -1,0 +1,110 @@
+{
+  "page_id": "memo-0031",
+  "doc_type": "memo",
+  "image_path": "images/memo-0031.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 1,
+  "fields": [
+    {
+      "field_id": "M:memo-0031:memo_no",
+      "printed": "034176",
+      "bbox": {
+        "x0": 264,
+        "y0": 259,
+        "x1": 371,
+        "y1": 280
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0031:date",
+      "printed": "27/10/80",
+      "bbox": {
+        "x0": 667,
+        "y0": 258,
+        "x1": 808,
+        "y1": 287
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0031:account_no",
+      "printed": "77945262",
+      "bbox": {
+        "x0": 295,
+        "y0": 350,
+        "x1": 436,
+        "y1": 371
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0031:counterparty",
+      "printed": "Wrenfield Assurance Society",
+      "bbox": {
+        "x0": 218,
+        "y0": 434,
+        "x1": 683,
+        "y1": 464
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0031:amount",
+      "printed": "29.48",
+      "bbox": {
+        "x0": 663,
+        "y0": 556,
+        "x1": 753,
+        "y1": 577
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0031:amount_words",
+      "printed": "Twenty-nine pounds and forty-eight pence",
+      "bbox": {
+        "x0": 118,
+        "y0": 701,
+        "x1": 803,
+        "y1": 731
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0031:ledger_ref",
+      "printed": "Sheet 12 / Line 09",
+      "bbox": {
+        "x0": 277,
+        "y0": 810,
+        "x1": 588,
+        "y1": 840
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0031:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 442,
+        "y0": 1005,
+        "x1": 657,
+        "y1": 1079
+      }
+    },
+    {
+      "artefact_id": "A:memo-0031:02",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 306,
+        "y0": 512,
+        "x1": 477,
+        "y1": 683
+      }
+    }
+  ],
+  "source_errors": []
+}

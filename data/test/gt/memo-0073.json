@@ -1,0 +1,109 @@
+{
+  "page_id": "memo-0073",
+  "doc_type": "memo",
+  "image_path": "images/memo-0073.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 0,
+  "fields": [
+    {
+      "field_id": "M:memo-0073:memo_no",
+      "printed": "034218",
+      "bbox": {
+        "x0": 260,
+        "y0": 256,
+        "x1": 346,
+        "y1": 286
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0073:date",
+      "printed": "18/12/75",
+      "bbox": {
+        "x0": 666,
+        "y0": 255,
+        "x1": 771,
+        "y1": 286
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0073:account_no",
+      "printed": "32493403",
+      "bbox": {
+        "x0": 298,
+        "y0": 344,
+        "x1": 420,
+        "y1": 374
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0073:counterparty",
+      "printed": "Eastmoor Electricity Board",
+      "bbox": {
+        "x0": 218,
+        "y0": 435,
+        "x1": 598,
+        "y1": 473
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0073:amount",
+      "printed": "23.22",
+      "bbox": {
+        "x0": 679,
+        "y0": 553,
+        "x1": 751,
+        "y1": 583
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0073:amount_words",
+      "printed": "Twenty-two pounds and thirty-two pence",
+      "bbox": {
+        "x0": 118,
+        "y0": 699,
+        "x1": 712,
+        "y1": 737
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0073:ledger_ref",
+      "printed": "Sheet 14 / Line 12",
+      "bbox": {
+        "x0": 275,
+        "y0": 807,
+        "x1": 523,
+        "y1": 838
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0073:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 379,
+        "y0": 1007,
+        "x1": 689,
+        "y1": 1083
+      }
+    }
+  ],
+  "source_errors": [
+    {
+      "kind": "words_figures_mismatch",
+      "field_ids": [
+        "M:memo-0073:amount",
+        "M:memo-0073:amount_words"
+      ],
+      "note": "figures 23.22 transpose the 22.32 stated in words"
+    }
+  ]
+}

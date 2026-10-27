@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0107",
+  "doc_type": "memo",
+  "image_path": "images/memo-0107.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 0,
+  "fields": [
+    {
+      "field_id": "M:memo-0107:memo_no",
+      "printed": "034252",
+      "bbox": {
+        "x0": 265,
+        "y0": 264,
+        "x1": 371,
+        "y1": 284
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0107:date",
+      "printed": "07/08/85",
+      "bbox": {
+        "x0": 670,
+        "y0": 261,
+        "x1": 810,
+        "y1": 289
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0107:account_no",
+      "printed": "65422443",
+      "bbox": {
+        "x0": 296,
+        "y0": 351,
+        "x1": 436,
+        "y1": 371
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0107:counterparty",
+      "printed": "Judith Thomas",
+      "bbox": {
+        "x0": 216,
+        "y0": 436,
+        "x1": 441,
+        "y1": 459
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0107:amount",
+      "printed": "446.92",
+      "bbox": {
+        "x0": 645,
+        "y0": 560,
+        "x1": 751,
+        "y1": 580
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0107:amount_words",
+      "printed": "Four hundred and forty-six pounds and ninety-two pence",
+      "bbox": {
+        "x0": 120,
+        "y0": 707,
+        "x1": 934,
+        "y1": 733
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0107:ledger_ref",
+      "printed": "Sheet 27 / Line 06",
+      "bbox": {
+        "x0": 278,
+        "y0": 806,
+        "x1": 588,
+        "y1": 834
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0107:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 457,
+        "y0": 1013,
+        "x1": 670,
+        "y1": 1083
+      }
+    }
+  ],
+  "source_errors": []
+}

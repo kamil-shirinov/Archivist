@@ -1,0 +1,119 @@
+{
+  "page_id": "memo-0093",
+  "doc_type": "memo",
+  "image_path": "images/memo-0093.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 2,
+  "fields": [
+    {
+      "field_id": "M:memo-0093:memo_no",
+      "printed": "034238",
+      "bbox": {
+        "x0": 267,
+        "y0": 253,
+        "x1": 369,
+        "y1": 280
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0093:date",
+      "printed": "28/01/82",
+      "bbox": {
+        "x0": 676,
+        "y0": 258,
+        "x1": 792,
+        "y1": 294
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0093:account_no",
+      "printed": "32170284",
+      "bbox": {
+        "x0": 300,
+        "y0": 342,
+        "x1": 424,
+        "y1": 369
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0093:counterparty",
+      "printed": "District Council Rates Office",
+      "bbox": {
+        "x0": 219,
+        "y0": 427,
+        "x1": 499,
+        "y1": 470
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0093:amount",
+      "printed": "11.66",
+      "bbox": {
+        "x0": 691,
+        "y0": 555,
+        "x1": 755,
+        "y1": 582
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0093:amount_words",
+      "printed": "Eleven pounds and sixty-six pence",
+      "bbox": {
+        "x0": 116,
+        "y0": 688,
+        "x1": 536,
+        "y1": 741
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0093:ledger_ref",
+      "printed": "Sheet 42 / Line 10",
+      "bbox": {
+        "x0": 277,
+        "y0": 799,
+        "x1": 553,
+        "y1": 843
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0093:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 432,
+        "y0": 1007,
+        "x1": 670,
+        "y1": 1079
+      }
+    },
+    {
+      "artefact_id": "A:memo-0093:02",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 653,
+        "y0": 554,
+        "x1": 682,
+        "y1": 582
+      }
+    }
+  ],
+  "source_errors": [
+    {
+      "kind": "memo_ledger_mismatch",
+      "field_ids": [
+        "M:memo-0093:amount",
+        "L:card-10-1:10:debit"
+      ],
+      "note": "memo states 11.66; ledger line shows 41.66"
+    }
+  ]
+}

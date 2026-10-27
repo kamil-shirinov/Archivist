@@ -1,0 +1,110 @@
+{
+  "page_id": "memo-0086",
+  "doc_type": "memo",
+  "image_path": "images/memo-0086.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 1,
+  "fields": [
+    {
+      "field_id": "M:memo-0086:memo_no",
+      "printed": "034231",
+      "bbox": {
+        "x0": 256,
+        "y0": 260,
+        "x1": 363,
+        "y1": 281
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0086:date",
+      "printed": "29/04/89",
+      "bbox": {
+        "x0": 666,
+        "y0": 254,
+        "x1": 807,
+        "y1": 284
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0086:account_no",
+      "printed": "58364924",
+      "bbox": {
+        "x0": 291,
+        "y0": 354,
+        "x1": 432,
+        "y1": 376
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0086:counterparty",
+      "printed": "Eastmoor Electricity Board",
+      "bbox": {
+        "x0": 213,
+        "y0": 440,
+        "x1": 660,
+        "y1": 472
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0086:amount",
+      "printed": "72.58",
+      "bbox": {
+        "x0": 660,
+        "y0": 556,
+        "x1": 750,
+        "y1": 578
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0086:amount_words",
+      "printed": "Seventy-two pounds and fifty-eight pence",
+      "bbox": {
+        "x0": 117,
+        "y0": 701,
+        "x1": 802,
+        "y1": 734
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0086:ledger_ref",
+      "printed": "Sheet 54 / Line 11",
+      "bbox": {
+        "x0": 278,
+        "y0": 805,
+        "x1": 589,
+        "y1": 836
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0086:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 368,
+        "y0": 1012,
+        "x1": 618,
+        "y1": 1083
+      }
+    },
+    {
+      "artefact_id": "A:memo-0086:02",
+      "kind": "stain",
+      "bbox": {
+        "x0": 35,
+        "y0": 172,
+        "x1": 205,
+        "y1": 334
+      }
+    }
+  ],
+  "source_errors": []
+}

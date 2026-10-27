@@ -1,0 +1,120 @@
+{
+  "page_id": "memo-0078",
+  "doc_type": "memo",
+  "image_path": "images/memo-0078.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 2,
+  "fields": [
+    {
+      "field_id": "M:memo-0078:memo_no",
+      "printed": "034223",
+      "bbox": {
+        "x0": 255,
+        "y0": 260,
+        "x1": 358,
+        "y1": 287
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0078:date",
+      "printed": "29/02/76",
+      "bbox": {
+        "x0": 659,
+        "y0": 251,
+        "x1": 779,
+        "y1": 287
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0078:account_no",
+      "printed": "32493403",
+      "bbox": {
+        "x0": 290,
+        "y0": 346,
+        "x1": 422,
+        "y1": 373
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0078:counterparty",
+      "printed": "Hudson Inc",
+      "bbox": {
+        "x0": 212,
+        "y0": 440,
+        "x1": 404,
+        "y1": 480
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0078:amount",
+      "printed": "377.87",
+      "bbox": {
+        "x0": 672,
+        "y0": 547,
+        "x1": 754,
+        "y1": 575
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0078:amount_words",
+      "printed": "Three hundred and seventy-seven pounds and eighty-seven pence",
+      "bbox": {
+        "x0": 119,
+        "y0": 688,
+        "x1": 903,
+        "y1": 746
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0078:ledger_ref",
+      "printed": "Sheet 15 / Line 18",
+      "bbox": {
+        "x0": 279,
+        "y0": 803,
+        "x1": 549,
+        "y1": 845
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0078:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 431,
+        "y0": 998,
+        "x1": 670,
+        "y1": 1082
+      }
+    },
+    {
+      "artefact_id": "A:memo-0078:02",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 764,
+        "y0": 546,
+        "x1": 797,
+        "y1": 568
+      }
+    },
+    {
+      "artefact_id": "A:memo-0078:03",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 750,
+        "y0": 465,
+        "x1": 933,
+        "y1": 582
+      }
+    }
+  ],
+  "source_errors": []
+}

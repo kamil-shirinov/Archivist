@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0041",
+  "doc_type": "memo",
+  "image_path": "images/memo-0041.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 1,
+  "fields": [
+    {
+      "field_id": "M:memo-0041:memo_no",
+      "printed": "034186",
+      "bbox": {
+        "x0": 257,
+        "y0": 256,
+        "x1": 361,
+        "y1": 284
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0041:date",
+      "printed": "12/03/94",
+      "bbox": {
+        "x0": 663,
+        "y0": 257,
+        "x1": 798,
+        "y1": 287
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0041:account_no",
+      "printed": "51448960",
+      "bbox": {
+        "x0": 293,
+        "y0": 347,
+        "x1": 429,
+        "y1": 376
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0041:counterparty",
+      "printed": "James Davis",
+      "bbox": {
+        "x0": 214,
+        "y0": 439,
+        "x1": 389,
+        "y1": 467
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0041:amount",
+      "printed": "413.69",
+      "bbox": {
+        "x0": 658,
+        "y0": 549,
+        "x1": 755,
+        "y1": 577
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0041:amount_words",
+      "printed": "Four hundred and thirteen pounds and sixty-nine pence",
+      "bbox": {
+        "x0": 118,
+        "y0": 703,
+        "x1": 936,
+        "y1": 742
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0041:ledger_ref",
+      "printed": "Sheet 27 / Line 14",
+      "bbox": {
+        "x0": 280,
+        "y0": 806,
+        "x1": 542,
+        "y1": 837
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0041:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 370,
+        "y0": 1003,
+        "x1": 566,
+        "y1": 1076
+      }
+    }
+  ],
+  "source_errors": []
+}

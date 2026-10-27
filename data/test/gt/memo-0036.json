@@ -1,0 +1,132 @@
+{
+  "page_id": "memo-0036",
+  "doc_type": "memo",
+  "image_path": "images/memo-0036.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 3,
+  "fields": [
+    {
+      "field_id": "M:memo-0036:memo_no",
+      "printed": "034181",
+      "bbox": {
+        "x0": 262,
+        "y0": 260,
+        "x1": 367,
+        "y1": 287
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0036:date",
+      "printed": "09/09/91",
+      "bbox": {
+        "x0": 664,
+        "y0": 257,
+        "x1": 800,
+        "y1": 286
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0036:account_no",
+      "printed": "20127332",
+      "bbox": {
+        "x0": 294,
+        "y0": 346,
+        "x1": 428,
+        "y1": 373
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0036:counterparty",
+      "printed": "Eastmoor Electricity Board",
+      "bbox": {
+        "x0": 219,
+        "y0": 440,
+        "x1": 623,
+        "y1": 473
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0036:amount",
+      "printed": "61.53",
+      "bbox": {
+        "x0": 676,
+        "y0": 554,
+        "x1": 754,
+        "y1": 580
+      },
+      "occluded_by": [
+        "A:memo-0036:02"
+      ]
+    },
+    {
+      "field_id": "M:memo-0036:amount_words",
+      "printed": "Sixty-one pounds and fifty-three pence",
+      "bbox": {
+        "x0": 115,
+        "y0": 703,
+        "x1": 699,
+        "y1": 736
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0036:ledger_ref",
+      "printed": "Sheet 36 / Line 05",
+      "bbox": {
+        "x0": 274,
+        "y0": 808,
+        "x1": 534,
+        "y1": 837
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0036:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 322,
+        "y0": 998,
+        "x1": 638,
+        "y1": 1079
+      }
+    },
+    {
+      "artefact_id": "A:memo-0036:02",
+      "kind": "stain",
+      "bbox": {
+        "x0": 591,
+        "y0": 457,
+        "x1": 821,
+        "y1": 673
+      }
+    },
+    {
+      "artefact_id": "A:memo-0036:03",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 137,
+        "y0": 766,
+        "x1": 285,
+        "y1": 914
+      }
+    },
+    {
+      "artefact_id": "A:memo-0036:04",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 785,
+        "y0": 323,
+        "x1": 963,
+        "y1": 501
+      }
+    }
+  ],
+  "source_errors": []
+}

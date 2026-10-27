@@ -1,0 +1,110 @@
+{
+  "page_id": "memo-0030",
+  "doc_type": "memo",
+  "image_path": "images/memo-0030.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 2,
+  "fields": [
+    {
+      "field_id": "M:memo-0030:memo_no",
+      "printed": "034175",
+      "bbox": {
+        "x0": 267,
+        "y0": 256,
+        "x1": 369,
+        "y1": 285
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0030:date",
+      "printed": "19/08/80",
+      "bbox": {
+        "x0": 668,
+        "y0": 255,
+        "x1": 805,
+        "y1": 285
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0030:account_no",
+      "printed": "77945262",
+      "bbox": {
+        "x0": 303,
+        "y0": 345,
+        "x1": 436,
+        "y1": 373
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0030:counterparty",
+      "printed": "Lee PLC",
+      "bbox": {
+        "x0": 217,
+        "y0": 432,
+        "x1": 325,
+        "y1": 460
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0030:amount",
+      "printed": "59.85",
+      "bbox": {
+        "x0": 680,
+        "y0": 557,
+        "x1": 758,
+        "y1": 585
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0030:amount_words",
+      "printed": "Fifty-nine pounds and eighty-five pence",
+      "bbox": {
+        "x0": 118,
+        "y0": 702,
+        "x1": 721,
+        "y1": 740
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0030:ledger_ref",
+      "printed": "Sheet 11 / Line 08",
+      "bbox": {
+        "x0": 277,
+        "y0": 802,
+        "x1": 539,
+        "y1": 833
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0030:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 405,
+        "y0": 1010,
+        "x1": 709,
+        "y1": 1079
+      }
+    },
+    {
+      "artefact_id": "A:memo-0030:02",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 645,
+        "y0": 556,
+        "x1": 671,
+        "y1": 578
+      }
+    }
+  ],
+  "source_errors": []
+}

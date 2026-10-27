@@ -1,0 +1,136 @@
+{
+  "page_id": "memo-0056",
+  "doc_type": "memo",
+  "image_path": "images/memo-0056.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 3,
+  "fields": [
+    {
+      "field_id": "M:memo-0056:memo_no",
+      "printed": "034201",
+      "bbox": {
+        "x0": 263,
+        "y0": 260,
+        "x1": 370,
+        "y1": 282
+      },
+      "occluded_by": [
+        "A:memo-0056:03"
+      ]
+    },
+    {
+      "field_id": "M:memo-0056:date",
+      "printed": "10/10/80",
+      "bbox": {
+        "x0": 666,
+        "y0": 259,
+        "x1": 807,
+        "y1": 289
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0056:account_no",
+      "printed": "51618255",
+      "bbox": {
+        "x0": 298,
+        "y0": 349,
+        "x1": 439,
+        "y1": 371
+      },
+      "occluded_by": [
+        "A:memo-0056:03"
+      ]
+    },
+    {
+      "field_id": "M:memo-0056:counterparty",
+      "printed": "West, Griffiths and Davies",
+      "bbox": {
+        "x0": 215,
+        "y0": 437,
+        "x1": 663,
+        "y1": 467
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0056:amount",
+      "printed": "354.66",
+      "bbox": {
+        "x0": 648,
+        "y0": 559,
+        "x1": 755,
+        "y1": 580
+      },
+      "occluded_by": [
+        "A:memo-0056:02"
+      ]
+    },
+    {
+      "field_id": "M:memo-0056:amount_words",
+      "printed": "Three hundred and fifty-four pounds and sixty-six pence",
+      "bbox": {
+        "x0": 116,
+        "y0": 707,
+        "x1": 946,
+        "y1": 737
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0056:ledger_ref",
+      "printed": "Sheet 5 / Line 13",
+      "bbox": {
+        "x0": 277,
+        "y0": 810,
+        "x1": 571,
+        "y1": 841
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0056:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 317,
+        "y0": 1006,
+        "x1": 580,
+        "y1": 1081
+      }
+    },
+    {
+      "artefact_id": "A:memo-0056:02",
+      "kind": "stain",
+      "bbox": {
+        "x0": 659,
+        "y0": 513,
+        "x1": 786,
+        "y1": 639
+      }
+    },
+    {
+      "artefact_id": "A:memo-0056:03",
+      "kind": "stain",
+      "bbox": {
+        "x0": 151,
+        "y0": 217,
+        "x1": 355,
+        "y1": 418
+      }
+    },
+    {
+      "artefact_id": "A:memo-0056:04",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 763,
+        "y0": 556,
+        "x1": 790,
+        "y1": 580
+      }
+    }
+  ],
+  "source_errors": []
+}

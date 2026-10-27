@@ -1,0 +1,110 @@
+{
+  "page_id": "memo-0099",
+  "doc_type": "memo",
+  "image_path": "images/memo-0099.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 2,
+  "fields": [
+    {
+      "field_id": "M:memo-0099:memo_no",
+      "printed": "034244",
+      "bbox": {
+        "x0": 252,
+        "y0": 261,
+        "x1": 356,
+        "y1": 293
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0099:date",
+      "printed": "09/03/82",
+      "bbox": {
+        "x0": 658,
+        "y0": 252,
+        "x1": 773,
+        "y1": 285
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0099:account_no",
+      "printed": "32170284",
+      "bbox": {
+        "x0": 292,
+        "y0": 349,
+        "x1": 409,
+        "y1": 382
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0099:counterparty",
+      "printed": "Norris-Williams",
+      "bbox": {
+        "x0": 209,
+        "y0": 435,
+        "x1": 431,
+        "y1": 470
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0099:amount",
+      "printed": "146.44",
+      "bbox": {
+        "x0": 663,
+        "y0": 542,
+        "x1": 754,
+        "y1": 577
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0099:amount_words",
+      "printed": "One hundred and forty-six pounds and forty-four pence",
+      "bbox": {
+        "x0": 117,
+        "y0": 689,
+        "x1": 895,
+        "y1": 740
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0099:ledger_ref",
+      "printed": "Sheet 43 / Line 08",
+      "bbox": {
+        "x0": 279,
+        "y0": 804,
+        "x1": 536,
+        "y1": 840
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0099:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 413,
+        "y0": 1002,
+        "x1": 678,
+        "y1": 1078
+      }
+    },
+    {
+      "artefact_id": "A:memo-0099:02",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 242,
+        "y0": 1043,
+        "x1": 392,
+        "y1": 1193
+      }
+    }
+  ],
+  "source_errors": []
+}

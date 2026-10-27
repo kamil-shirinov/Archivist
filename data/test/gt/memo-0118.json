@@ -1,0 +1,109 @@
+{
+  "page_id": "memo-0118",
+  "doc_type": "memo",
+  "image_path": "images/memo-0118.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 0,
+  "fields": [
+    {
+      "field_id": "M:memo-0118:memo_no",
+      "printed": "034263",
+      "bbox": {
+        "x0": 263,
+        "y0": 253,
+        "x1": 352,
+        "y1": 285
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0118:date",
+      "printed": "27/08/89",
+      "bbox": {
+        "x0": 670,
+        "y0": 257,
+        "x1": 784,
+        "y1": 286
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0118:account_no",
+      "printed": "49143149",
+      "bbox": {
+        "x0": 298,
+        "y0": 342,
+        "x1": 415,
+        "y1": 372
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0118:counterparty",
+      "printed": "Wrenfield Assurance Society",
+      "bbox": {
+        "x0": 218,
+        "y0": 432,
+        "x1": 613,
+        "y1": 470
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0118:amount",
+      "printed": "38.67",
+      "bbox": {
+        "x0": 689,
+        "y0": 548,
+        "x1": 752,
+        "y1": 580
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0118:amount_words",
+      "printed": "Thirty-eight pounds and seventy-six pence",
+      "bbox": {
+        "x0": 119,
+        "y0": 695,
+        "x1": 718,
+        "y1": 733
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0118:ledger_ref",
+      "printed": "Sheet 21 / Line 07",
+      "bbox": {
+        "x0": 277,
+        "y0": 805,
+        "x1": 526,
+        "y1": 836
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0118:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 306,
+        "y0": 999,
+        "x1": 621,
+        "y1": 1077
+      }
+    }
+  ],
+  "source_errors": [
+    {
+      "kind": "words_figures_mismatch",
+      "field_ids": [
+        "M:memo-0118:amount",
+        "M:memo-0118:amount_words"
+      ],
+      "note": "figures 38.67 transpose the 38.76 stated in words"
+    }
+  ]
+}

@@ -1,0 +1,136 @@
+{
+  "page_id": "memo-0009",
+  "doc_type": "memo",
+  "image_path": "images/memo-0009.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 3,
+  "fields": [
+    {
+      "field_id": "M:memo-0009:memo_no",
+      "printed": "034154",
+      "bbox": {
+        "x0": 250,
+        "y0": 267,
+        "x1": 357,
+        "y1": 292
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0009:date",
+      "printed": "12/01/88",
+      "bbox": {
+        "x0": 654,
+        "y0": 250,
+        "x1": 796,
+        "y1": 283
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0009:account_no",
+      "printed": "84608901",
+      "bbox": {
+        "x0": 283,
+        "y0": 356,
+        "x1": 424,
+        "y1": 382
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0009:counterparty",
+      "printed": "Eastmoor Electricity Board",
+      "bbox": {
+        "x0": 206,
+        "y0": 436,
+        "x1": 654,
+        "y1": 479
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0009:amount",
+      "printed": "44.26",
+      "bbox": {
+        "x0": 662,
+        "y0": 549,
+        "x1": 752,
+        "y1": 573
+      },
+      "occluded_by": [
+        "A:memo-0009:02"
+      ]
+    },
+    {
+      "field_id": "M:memo-0009:amount_words",
+      "printed": "Forty-four pounds and twenty-six pence",
+      "bbox": {
+        "x0": 116,
+        "y0": 694,
+        "x1": 767,
+        "y1": 743
+      },
+      "occluded_by": [
+        "A:memo-0009:04"
+      ]
+    },
+    {
+      "field_id": "M:memo-0009:ledger_ref",
+      "printed": "Sheet 44 / Line 13",
+      "bbox": {
+        "x0": 282,
+        "y0": 804,
+        "x1": 594,
+        "y1": 843
+      },
+      "occluded_by": [
+        "A:memo-0009:04"
+      ]
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0009:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 339,
+        "y0": 1016,
+        "x1": 561,
+        "y1": 1085
+      }
+    },
+    {
+      "artefact_id": "A:memo-0009:02",
+      "kind": "stain",
+      "bbox": {
+        "x0": 596,
+        "y0": 464,
+        "x1": 782,
+        "y1": 648
+      }
+    },
+    {
+      "artefact_id": "A:memo-0009:03",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 489,
+        "y0": 928,
+        "x1": 641,
+        "y1": 1079
+      }
+    },
+    {
+      "artefact_id": "A:memo-0009:04",
+      "kind": "stain",
+      "bbox": {
+        "x0": 508,
+        "y0": 644,
+        "x1": 721,
+        "y1": 862
+      }
+    }
+  ],
+  "source_errors": []
+}

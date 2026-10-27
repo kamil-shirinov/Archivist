@@ -1,0 +1,110 @@
+{
+  "page_id": "memo-0002",
+  "doc_type": "memo",
+  "image_path": "images/memo-0002.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 1,
+  "fields": [
+    {
+      "field_id": "M:memo-0002:memo_no",
+      "printed": "034147",
+      "bbox": {
+        "x0": 265,
+        "y0": 254,
+        "x1": 356,
+        "y1": 285
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0002:date",
+      "printed": "29/10/87",
+      "bbox": {
+        "x0": 671,
+        "y0": 256,
+        "x1": 781,
+        "y1": 286
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0002:account_no",
+      "printed": "84608901",
+      "bbox": {
+        "x0": 300,
+        "y0": 341,
+        "x1": 412,
+        "y1": 374
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0002:counterparty",
+      "printed": "Dr Philip Hill",
+      "bbox": {
+        "x0": 218,
+        "y0": 433,
+        "x1": 394,
+        "y1": 465
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0002:amount",
+      "printed": "91.44",
+      "bbox": {
+        "x0": 680,
+        "y0": 554,
+        "x1": 753,
+        "y1": 584
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0002:amount_words",
+      "printed": "Ninety-one pounds and forty-four pence",
+      "bbox": {
+        "x0": 116,
+        "y0": 694,
+        "x1": 683,
+        "y1": 735
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0002:ledger_ref",
+      "printed": "Sheet 43 / Line 08",
+      "bbox": {
+        "x0": 275,
+        "y0": 807,
+        "x1": 531,
+        "y1": 839
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0002:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 395,
+        "y0": 1005,
+        "x1": 719,
+        "y1": 1080
+      }
+    },
+    {
+      "artefact_id": "A:memo-0002:02",
+      "kind": "stain",
+      "bbox": {
+        "x0": 472,
+        "y0": 142,
+        "x1": 627,
+        "y1": 297
+      }
+    }
+  ],
+  "source_errors": []
+}

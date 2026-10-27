@@ -1,0 +1,121 @@
+{
+  "page_id": "memo-0055",
+  "doc_type": "memo",
+  "image_path": "images/memo-0055.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 1,
+  "fields": [
+    {
+      "field_id": "M:memo-0055:memo_no",
+      "printed": "034200",
+      "bbox": {
+        "x0": 259,
+        "y0": 256,
+        "x1": 359,
+        "y1": 281
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0055:date",
+      "printed": "26/09/80",
+      "bbox": {
+        "x0": 664,
+        "y0": 255,
+        "x1": 782,
+        "y1": 289
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0055:account_no",
+      "printed": "51618255",
+      "bbox": {
+        "x0": 293,
+        "y0": 346,
+        "x1": 418,
+        "y1": 371
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0055:counterparty",
+      "printed": "Eastmoor Electricity Board",
+      "bbox": {
+        "x0": 217,
+        "y0": 433,
+        "x1": 500,
+        "y1": 472
+      },
+      "occluded_by": [
+        "A:memo-0055:02"
+      ]
+    },
+    {
+      "field_id": "M:memo-0055:amount",
+      "printed": "58.47",
+      "bbox": {
+        "x0": 674,
+        "y0": 548,
+        "x1": 751,
+        "y1": 575
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0055:amount_words",
+      "printed": "Fifty-eight pounds and forty-seven pence",
+      "bbox": {
+        "x0": 117,
+        "y0": 694,
+        "x1": 615,
+        "y1": 743
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0055:ledger_ref",
+      "printed": "Sheet 5 / Line 08",
+      "bbox": {
+        "x0": 278,
+        "y0": 804,
+        "x1": 542,
+        "y1": 843
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0055:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 330,
+        "y0": 1012,
+        "x1": 568,
+        "y1": 1079
+      }
+    },
+    {
+      "artefact_id": "A:memo-0055:02",
+      "kind": "stain",
+      "bbox": {
+        "x0": 185,
+        "y0": 414,
+        "x1": 303,
+        "y1": 540
+      }
+    }
+  ],
+  "source_errors": [
+    {
+      "kind": "memo_ledger_mismatch",
+      "field_ids": [
+        "M:memo-0055:amount",
+        "L:card-06-3:08:debit"
+      ],
+      "note": "memo states 58.47; ledger line shows 58.17"
+    }
+  ]
+}

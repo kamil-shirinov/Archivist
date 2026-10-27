@@ -1,0 +1,110 @@
+{
+  "page_id": "memo-0027",
+  "doc_type": "memo",
+  "image_path": "images/memo-0027.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 1,
+  "fields": [
+    {
+      "field_id": "M:memo-0027:memo_no",
+      "printed": "034172",
+      "bbox": {
+        "x0": 261,
+        "y0": 255,
+        "x1": 349,
+        "y1": 286
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0027:date",
+      "printed": "15/06/80",
+      "bbox": {
+        "x0": 666,
+        "y0": 250,
+        "x1": 773,
+        "y1": 284
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0027:account_no",
+      "printed": "77945262",
+      "bbox": {
+        "x0": 295,
+        "y0": 343,
+        "x1": 420,
+        "y1": 377
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0027:counterparty",
+      "printed": "Wrenfield Assurance Society",
+      "bbox": {
+        "x0": 212,
+        "y0": 432,
+        "x1": 608,
+        "y1": 474
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0027:amount",
+      "printed": "47.93",
+      "bbox": {
+        "x0": 681,
+        "y0": 550,
+        "x1": 753,
+        "y1": 582
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0027:amount_words",
+      "printed": "Forty-seven pounds and ninety-three pence",
+      "bbox": {
+        "x0": 119,
+        "y0": 694,
+        "x1": 728,
+        "y1": 737
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0027:ledger_ref",
+      "printed": "Sheet 10 / Line 10",
+      "bbox": {
+        "x0": 278,
+        "y0": 806,
+        "x1": 520,
+        "y1": 839
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0027:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 410,
+        "y0": 1002,
+        "x1": 643,
+        "y1": 1078
+      }
+    },
+    {
+      "artefact_id": "A:memo-0027:02",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 765,
+        "y0": 549,
+        "x1": 790,
+        "y1": 575
+      }
+    }
+  ],
+  "source_errors": []
+}

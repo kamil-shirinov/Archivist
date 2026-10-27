@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0059",
+  "doc_type": "memo",
+  "image_path": "images/memo-0059.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 0,
+  "fields": [
+    {
+      "field_id": "M:memo-0059:memo_no",
+      "printed": "034204",
+      "bbox": {
+        "x0": 264,
+        "y0": 263,
+        "x1": 370,
+        "y1": 283
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0059:date",
+      "printed": "18/11/93",
+      "bbox": {
+        "x0": 664,
+        "y0": 255,
+        "x1": 804,
+        "y1": 283
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0059:account_no",
+      "printed": "28349835",
+      "bbox": {
+        "x0": 299,
+        "y0": 352,
+        "x1": 439,
+        "y1": 372
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0059:counterparty",
+      "printed": "Wrenfield Assurance Society",
+      "bbox": {
+        "x0": 218,
+        "y0": 439,
+        "x1": 682,
+        "y1": 467
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0059:amount",
+      "printed": "58.01",
+      "bbox": {
+        "x0": 663,
+        "y0": 559,
+        "x1": 752,
+        "y1": 579
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0059:amount_words",
+      "printed": "Fifty-eight pounds and one penny",
+      "bbox": {
+        "x0": 116,
+        "y0": 706,
+        "x1": 664,
+        "y1": 734
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0059:ledger_ref",
+      "printed": "Sheet 44 / Line 12",
+      "bbox": {
+        "x0": 277,
+        "y0": 807,
+        "x1": 587,
+        "y1": 835
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0059:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 450,
+        "y0": 1009,
+        "x1": 696,
+        "y1": 1076
+      }
+    }
+  ],
+  "source_errors": []
+}

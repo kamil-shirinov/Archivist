@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0092",
+  "doc_type": "memo",
+  "image_path": "images/memo-0092.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 0,
+  "fields": [
+    {
+      "field_id": "M:memo-0092:memo_no",
+      "printed": "034237",
+      "bbox": {
+        "x0": 263,
+        "y0": 255,
+        "x1": 365,
+        "y1": 281
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0092:date",
+      "printed": "11/01/82",
+      "bbox": {
+        "x0": 666,
+        "y0": 259,
+        "x1": 800,
+        "y1": 287
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0092:account_no",
+      "printed": "32170284",
+      "bbox": {
+        "x0": 300,
+        "y0": 349,
+        "x1": 435,
+        "y1": 375
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0092:counterparty",
+      "printed": "Pearce Group",
+      "bbox": {
+        "x0": 219,
+        "y0": 438,
+        "x1": 406,
+        "y1": 469
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0092:amount",
+      "printed": "273.67",
+      "bbox": {
+        "x0": 662,
+        "y0": 554,
+        "x1": 756,
+        "y1": 580
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0092:amount_words",
+      "printed": "Two hundred and seventy-three pounds and sixty-seven pence",
+      "bbox": {
+        "x0": 117,
+        "y0": 707,
+        "x1": 983,
+        "y1": 738
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0092:ledger_ref",
+      "printed": "Sheet 42 / Line 07",
+      "bbox": {
+        "x0": 278,
+        "y0": 805,
+        "x1": 539,
+        "y1": 833
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0092:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 379,
+        "y0": 1011,
+        "x1": 645,
+        "y1": 1080
+      }
+    }
+  ],
+  "source_errors": []
+}

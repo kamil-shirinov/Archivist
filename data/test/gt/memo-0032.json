@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0032",
+  "doc_type": "memo",
+  "image_path": "images/memo-0032.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 0,
+  "fields": [
+    {
+      "field_id": "M:memo-0032:memo_no",
+      "printed": "034177",
+      "bbox": {
+        "x0": 262,
+        "y0": 258,
+        "x1": 347,
+        "y1": 288
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0032:date",
+      "printed": "02/11/80",
+      "bbox": {
+        "x0": 664,
+        "y0": 256,
+        "x1": 767,
+        "y1": 284
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0032:account_no",
+      "printed": "77945262",
+      "bbox": {
+        "x0": 300,
+        "y0": 344,
+        "x1": 424,
+        "y1": 376
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0032:counterparty",
+      "printed": "Abbie Gilbert",
+      "bbox": {
+        "x0": 217,
+        "y0": 438,
+        "x1": 396,
+        "y1": 469
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0032:amount",
+      "printed": "293.91",
+      "bbox": {
+        "x0": 677,
+        "y0": 551,
+        "x1": 753,
+        "y1": 581
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0032:amount_words",
+      "printed": "Two hundred and ninety-three pounds and ninety-one pence",
+      "bbox": {
+        "x0": 117,
+        "y0": 699,
+        "x1": 951,
+        "y1": 737
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0032:ledger_ref",
+      "printed": "Sheet 12 / Line 11",
+      "bbox": {
+        "x0": 280,
+        "y0": 807,
+        "x1": 517,
+        "y1": 838
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0032:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 385,
+        "y0": 1004,
+        "x1": 635,
+        "y1": 1076
+      }
+    }
+  ],
+  "source_errors": []
+}

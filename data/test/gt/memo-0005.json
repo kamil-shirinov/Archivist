@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0005",
+  "doc_type": "memo",
+  "image_path": "images/memo-0005.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 0,
+  "fields": [
+    {
+      "field_id": "M:memo-0005:memo_no",
+      "printed": "034150",
+      "bbox": {
+        "x0": 264,
+        "y0": 262,
+        "x1": 370,
+        "y1": 282
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0005:date",
+      "printed": "26/11/87",
+      "bbox": {
+        "x0": 666,
+        "y0": 261,
+        "x1": 806,
+        "y1": 289
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0005:account_no",
+      "printed": "84608901",
+      "bbox": {
+        "x0": 297,
+        "y0": 350,
+        "x1": 437,
+        "y1": 370
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0005:counterparty",
+      "printed": "Mistry Group",
+      "bbox": {
+        "x0": 217,
+        "y0": 441,
+        "x1": 425,
+        "y1": 469
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0005:amount",
+      "printed": "96.17",
+      "bbox": {
+        "x0": 667,
+        "y0": 559,
+        "x1": 756,
+        "y1": 579
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0005:amount_words",
+      "printed": "Ninety-six pounds and seventeen pence",
+      "bbox": {
+        "x0": 116,
+        "y0": 707,
+        "x1": 749,
+        "y1": 735
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0005:ledger_ref",
+      "printed": "Sheet 43 / Line 17",
+      "bbox": {
+        "x0": 277,
+        "y0": 805,
+        "x1": 587,
+        "y1": 833
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0005:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 424,
+        "y0": 1010,
+        "x1": 701,
+        "y1": 1079
+      }
+    }
+  ],
+  "source_errors": []
+}

@@ -1,0 +1,109 @@
+{
+  "page_id": "memo-0101",
+  "doc_type": "memo",
+  "image_path": "images/memo-0101.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 1,
+  "fields": [
+    {
+      "field_id": "M:memo-0101:memo_no",
+      "printed": "034246",
+      "bbox": {
+        "x0": 264,
+        "y0": 251,
+        "x1": 366,
+        "y1": 276
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0101:date",
+      "printed": "10/03/82",
+      "bbox": {
+        "x0": 666,
+        "y0": 257,
+        "x1": 778,
+        "y1": 291
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0101:account_no",
+      "printed": "32170284",
+      "bbox": {
+        "x0": 296,
+        "y0": 344,
+        "x1": 420,
+        "y1": 369
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0101:counterparty",
+      "printed": "Holland-Webb",
+      "bbox": {
+        "x0": 214,
+        "y0": 436,
+        "x1": 429,
+        "y1": 472
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0101:amount",
+      "printed": "341.97",
+      "bbox": {
+        "x0": 672,
+        "y0": 549,
+        "x1": 756,
+        "y1": 576
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0101:amount_words",
+      "printed": "Three hundred and forty-nine pounds and seventeen pence",
+      "bbox": {
+        "x0": 115,
+        "y0": 696,
+        "x1": 825,
+        "y1": 744
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0101:ledger_ref",
+      "printed": "Sheet 43 / Line 10",
+      "bbox": {
+        "x0": 273,
+        "y0": 804,
+        "x1": 546,
+        "y1": 843
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0101:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 382,
+        "y0": 1009,
+        "x1": 675,
+        "y1": 1079
+      }
+    }
+  ],
+  "source_errors": [
+    {
+      "kind": "words_figures_mismatch",
+      "field_ids": [
+        "M:memo-0101:amount",
+        "M:memo-0101:amount_words"
+      ],
+      "note": "figures 341.97 transpose the 349.17 stated in words"
+    }
+  ]
+}

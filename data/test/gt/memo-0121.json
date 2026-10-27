@@ -1,0 +1,119 @@
+{
+  "page_id": "memo-0121",
+  "doc_type": "memo",
+  "image_path": "images/memo-0121.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 2,
+  "fields": [
+    {
+      "field_id": "M:memo-0121:memo_no",
+      "printed": "034266",
+      "bbox": {
+        "x0": 270,
+        "y0": 253,
+        "x1": 374,
+        "y1": 282
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0121:date",
+      "printed": "25/11/89",
+      "bbox": {
+        "x0": 676,
+        "y0": 255,
+        "x1": 810,
+        "y1": 287
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0121:account_no",
+      "printed": "49143149",
+      "bbox": {
+        "x0": 307,
+        "y0": 343,
+        "x1": 444,
+        "y1": 373
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0121:counterparty",
+      "printed": "Stephenson-Gibson",
+      "bbox": {
+        "x0": 225,
+        "y0": 430,
+        "x1": 507,
+        "y1": 468
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0121:amount",
+      "printed": "116.04",
+      "bbox": {
+        "x0": 660,
+        "y0": 558,
+        "x1": 758,
+        "y1": 587
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0121:amount_words",
+      "printed": "One hundred and sixteen pounds and four pence",
+      "bbox": {
+        "x0": 118,
+        "y0": 693,
+        "x1": 803,
+        "y1": 741
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0121:ledger_ref",
+      "printed": "Sheet 22 / Line 18",
+      "bbox": {
+        "x0": 272,
+        "y0": 796,
+        "x1": 533,
+        "y1": 831
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0121:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 325,
+        "y0": 1000,
+        "x1": 551,
+        "y1": 1076
+      }
+    },
+    {
+      "artefact_id": "A:memo-0121:02",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 772,
+        "y0": 566,
+        "x1": 809,
+        "y1": 589
+      }
+    }
+  ],
+  "source_errors": [
+    {
+      "kind": "memo_ledger_mismatch",
+      "field_ids": [
+        "M:memo-0121:amount",
+        "L:card-12-3:18:debit"
+      ],
+      "note": "memo states 116.04; ledger line shows 116.07"
+    }
+  ]
+}

@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0007",
+  "doc_type": "memo",
+  "image_path": "images/memo-0007.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 0,
+  "fields": [
+    {
+      "field_id": "M:memo-0007:memo_no",
+      "printed": "034152",
+      "bbox": {
+        "x0": 265,
+        "y0": 255,
+        "x1": 353,
+        "y1": 286
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0007:date",
+      "printed": "30/12/87",
+      "bbox": {
+        "x0": 666,
+        "y0": 258,
+        "x1": 773,
+        "y1": 288
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0007:account_no",
+      "printed": "84608901",
+      "bbox": {
+        "x0": 297,
+        "y0": 344,
+        "x1": 408,
+        "y1": 376
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0007:counterparty",
+      "printed": "District Council Rates Office",
+      "bbox": {
+        "x0": 215,
+        "y0": 433,
+        "x1": 618,
+        "y1": 465
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0007:amount",
+      "printed": "25.55",
+      "bbox": {
+        "x0": 677,
+        "y0": 548,
+        "x1": 751,
+        "y1": 579
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0007:amount_words",
+      "printed": "Twenty-five pounds and fifty-five pence",
+      "bbox": {
+        "x0": 114,
+        "y0": 697,
+        "x1": 691,
+        "y1": 735
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0007:ledger_ref",
+      "printed": "Sheet 44 / Line 10",
+      "bbox": {
+        "x0": 279,
+        "y0": 802,
+        "x1": 536,
+        "y1": 833
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0007:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 326,
+        "y0": 1013,
+        "x1": 546,
+        "y1": 1078
+      }
+    }
+  ],
+  "source_errors": []
+}

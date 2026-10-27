@@ -1,0 +1,120 @@
+{
+  "page_id": "memo-0049",
+  "doc_type": "memo",
+  "image_path": "images/memo-0049.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 2,
+  "fields": [
+    {
+      "field_id": "M:memo-0049:memo_no",
+      "printed": "034194",
+      "bbox": {
+        "x0": 248,
+        "y0": 261,
+        "x1": 353,
+        "y1": 291
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0049:date",
+      "printed": "23/06/80",
+      "bbox": {
+        "x0": 654,
+        "y0": 251,
+        "x1": 791,
+        "y1": 283
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0049:account_no",
+      "printed": "51618255",
+      "bbox": {
+        "x0": 289,
+        "y0": 353,
+        "x1": 421,
+        "y1": 383
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0049:counterparty",
+      "printed": "Philip Swift",
+      "bbox": {
+        "x0": 212,
+        "y0": 442,
+        "x1": 399,
+        "y1": 478
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0049:amount",
+      "printed": "190.65",
+      "bbox": {
+        "x0": 653,
+        "y0": 548,
+        "x1": 749,
+        "y1": 577
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0049:amount_words",
+      "printed": "One hundred and ninety pounds and sixty-five pence",
+      "bbox": {
+        "x0": 117,
+        "y0": 693,
+        "x1": 885,
+        "y1": 743
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0049:ledger_ref",
+      "printed": "Sheet 3 / Line 11",
+      "bbox": {
+        "x0": 282,
+        "y0": 803,
+        "x1": 528,
+        "y1": 838
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0049:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 406,
+        "y0": 1004,
+        "x1": 677,
+        "y1": 1085
+      }
+    },
+    {
+      "artefact_id": "A:memo-0049:02",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 605,
+        "y0": 556,
+        "x1": 641,
+        "y1": 578
+      }
+    },
+    {
+      "artefact_id": "A:memo-0049:03",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 759,
+        "y0": 550,
+        "x1": 788,
+        "y1": 577
+      }
+    }
+  ],
+  "source_errors": []
+}

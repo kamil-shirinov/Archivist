@@ -1,0 +1,132 @@
+{
+  "page_id": "memo-0104",
+  "doc_type": "memo",
+  "image_path": "images/memo-0104.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 3,
+  "fields": [
+    {
+      "field_id": "M:memo-0104:memo_no",
+      "printed": "034249",
+      "bbox": {
+        "x0": 252,
+        "y0": 259,
+        "x1": 353,
+        "y1": 286
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0104:date",
+      "printed": "12/05/82",
+      "bbox": {
+        "x0": 657,
+        "y0": 254,
+        "x1": 773,
+        "y1": 290
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0104:account_no",
+      "printed": "32170284",
+      "bbox": {
+        "x0": 293,
+        "y0": 349,
+        "x1": 418,
+        "y1": 376
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0104:counterparty",
+      "printed": "Eastmoor Electricity Board",
+      "bbox": {
+        "x0": 215,
+        "y0": 437,
+        "x1": 499,
+        "y1": 480
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0104:amount",
+      "printed": "48.39",
+      "bbox": {
+        "x0": 679,
+        "y0": 545,
+        "x1": 752,
+        "y1": 573
+      },
+      "occluded_by": [
+        "A:memo-0104:02",
+        "A:memo-0104:03"
+      ]
+    },
+    {
+      "field_id": "M:memo-0104:amount_words",
+      "printed": "Forty-three pounds and eighty-nine pence",
+      "bbox": {
+        "x0": 117,
+        "y0": 698,
+        "x1": 615,
+        "y1": 753
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0104:ledger_ref",
+      "printed": "Sheet 44 / Line 10",
+      "bbox": {
+        "x0": 278,
+        "y0": 803,
+        "x1": 554,
+        "y1": 847
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0104:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 405,
+        "y0": 996,
+        "x1": 701,
+        "y1": 1079
+      }
+    },
+    {
+      "artefact_id": "A:memo-0104:02",
+      "kind": "stain",
+      "bbox": {
+        "x0": 628,
+        "y0": 476,
+        "x1": 787,
+        "y1": 639
+      }
+    },
+    {
+      "artefact_id": "A:memo-0104:03",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 659,
+        "y0": 507,
+        "x1": 833,
+        "y1": 681
+      }
+    }
+  ],
+  "source_errors": [
+    {
+      "kind": "words_figures_mismatch",
+      "field_ids": [
+        "M:memo-0104:amount",
+        "M:memo-0104:amount_words"
+      ],
+      "note": "figures 48.39 transpose the 43.89 stated in words"
+    }
+  ]
+}

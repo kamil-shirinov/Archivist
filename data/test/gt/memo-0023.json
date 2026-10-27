@@ -1,0 +1,142 @@
+{
+  "page_id": "memo-0023",
+  "doc_type": "memo",
+  "image_path": "images/memo-0023.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 3,
+  "fields": [
+    {
+      "field_id": "M:memo-0023:memo_no",
+      "printed": "034168",
+      "bbox": {
+        "x0": 255,
+        "y0": 260,
+        "x1": 350,
+        "y1": 286
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0023:date",
+      "printed": "19/05/88",
+      "bbox": {
+        "x0": 663,
+        "y0": 252,
+        "x1": 775,
+        "y1": 287
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0023:account_no",
+      "printed": "55834596",
+      "bbox": {
+        "x0": 290,
+        "y0": 343,
+        "x1": 423,
+        "y1": 370
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0023:counterparty",
+      "printed": "Lawrence Bates-Parry",
+      "bbox": {
+        "x0": 214,
+        "y0": 437,
+        "x1": 452,
+        "y1": 477
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0023:amount",
+      "printed": "349.56",
+      "bbox": {
+        "x0": 662,
+        "y0": 544,
+        "x1": 754,
+        "y1": 572
+      },
+      "occluded_by": [
+        "A:memo-0023:02"
+      ]
+    },
+    {
+      "field_id": "M:memo-0023:amount_words",
+      "printed": "Three hundred and forty-nine pounds and fifty-six pence",
+      "bbox": {
+        "x0": 113,
+        "y0": 691,
+        "x1": 804,
+        "y1": 746
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0023:ledger_ref",
+      "printed": "Sheet 7 / Line 17",
+      "bbox": {
+        "x0": 275,
+        "y0": 804,
+        "x1": 527,
+        "y1": 846
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0023:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 469,
+        "y0": 1008,
+        "x1": 679,
+        "y1": 1076
+      }
+    },
+    {
+      "artefact_id": "A:memo-0023:02",
+      "kind": "stain",
+      "bbox": {
+        "x0": 661,
+        "y0": 495,
+        "x1": 773,
+        "y1": 615
+      }
+    },
+    {
+      "artefact_id": "A:memo-0023:03",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 903,
+        "y0": 271,
+        "x1": 1052,
+        "y1": 420
+      }
+    },
+    {
+      "artefact_id": "A:memo-0023:04",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 762,
+        "y0": 548,
+        "x1": 790,
+        "y1": 570
+      }
+    },
+    {
+      "artefact_id": "A:memo-0023:05",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 827,
+        "y0": 618,
+        "x1": 1000,
+        "y1": 791
+      }
+    }
+  ],
+  "source_errors": []
+}

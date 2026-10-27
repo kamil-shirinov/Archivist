@@ -1,0 +1,120 @@
+{
+  "page_id": "memo-0057",
+  "doc_type": "memo",
+  "image_path": "images/memo-0057.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 2,
+  "fields": [
+    {
+      "field_id": "M:memo-0057:memo_no",
+      "printed": "034202",
+      "bbox": {
+        "x0": 254,
+        "y0": 259,
+        "x1": 359,
+        "y1": 288
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0057:date",
+      "printed": "27/10/93",
+      "bbox": {
+        "x0": 656,
+        "y0": 247,
+        "x1": 791,
+        "y1": 279
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0057:account_no",
+      "printed": "28349835",
+      "bbox": {
+        "x0": 287,
+        "y0": 351,
+        "x1": 423,
+        "y1": 382
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0057:counterparty",
+      "printed": "Francesca Wilson",
+      "bbox": {
+        "x0": 212,
+        "y0": 438,
+        "x1": 467,
+        "y1": 471
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0057:amount",
+      "printed": "240.95",
+      "bbox": {
+        "x0": 655,
+        "y0": 548,
+        "x1": 752,
+        "y1": 577
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0057:amount_words",
+      "printed": "Two hundred and forty pounds and ninety-five pence",
+      "bbox": {
+        "x0": 118,
+        "y0": 694,
+        "x1": 883,
+        "y1": 744
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0057:ledger_ref",
+      "printed": "Sheet 44 / Line 04",
+      "bbox": {
+        "x0": 282,
+        "y0": 804,
+        "x1": 547,
+        "y1": 839
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0057:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 337,
+        "y0": 1002,
+        "x1": 629,
+        "y1": 1083
+      }
+    },
+    {
+      "artefact_id": "A:memo-0057:02",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 105,
+        "y0": 104,
+        "x1": 272,
+        "y1": 272
+      }
+    },
+    {
+      "artefact_id": "A:memo-0057:03",
+      "kind": "stain",
+      "bbox": {
+        "x0": 768,
+        "y0": 933,
+        "x1": 880,
+        "y1": 1042
+      }
+    }
+  ],
+  "source_errors": []
+}

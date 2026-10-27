@@ -1,0 +1,120 @@
+{
+  "page_id": "memo-0068",
+  "doc_type": "memo",
+  "image_path": "images/memo-0068.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 2,
+  "fields": [
+    {
+      "field_id": "M:memo-0068:memo_no",
+      "printed": "034213",
+      "bbox": {
+        "x0": 254,
+        "y0": 264,
+        "x1": 361,
+        "y1": 287
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0068:date",
+      "printed": "24/11/75",
+      "bbox": {
+        "x0": 660,
+        "y0": 254,
+        "x1": 801,
+        "y1": 286
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0068:account_no",
+      "printed": "32493403",
+      "bbox": {
+        "x0": 287,
+        "y0": 352,
+        "x1": 429,
+        "y1": 376
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0068:counterparty",
+      "printed": "Brown, Chamberlain and Dickinson",
+      "bbox": {
+        "x0": 208,
+        "y0": 435,
+        "x1": 758,
+        "y1": 474
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0068:amount",
+      "printed": "310.60",
+      "bbox": {
+        "x0": 647,
+        "y0": 555,
+        "x1": 754,
+        "y1": 578
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0068:amount_words",
+      "printed": "Three hundred and ten pounds and sixty pence",
+      "bbox": {
+        "x0": 116,
+        "y0": 697,
+        "x1": 869,
+        "y1": 741
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0068:ledger_ref",
+      "printed": "Sheet 13 / Line 18",
+      "bbox": {
+        "x0": 279,
+        "y0": 804,
+        "x1": 590,
+        "y1": 839
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0068:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 432,
+        "y0": 995,
+        "x1": 685,
+        "y1": 1076
+      }
+    },
+    {
+      "artefact_id": "A:memo-0068:02",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 615,
+        "y0": 561,
+        "x1": 642,
+        "y1": 582
+      }
+    },
+    {
+      "artefact_id": "A:memo-0068:03",
+      "kind": "stain",
+      "bbox": {
+        "x0": 698,
+        "y0": 943,
+        "x1": 858,
+        "y1": 1094
+      }
+    }
+  ],
+  "source_errors": []
+}

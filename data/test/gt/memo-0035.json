@@ -1,0 +1,110 @@
+{
+  "page_id": "memo-0035",
+  "doc_type": "memo",
+  "image_path": "images/memo-0035.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 2,
+  "fields": [
+    {
+      "field_id": "M:memo-0035:memo_no",
+      "printed": "034180",
+      "bbox": {
+        "x0": 271,
+        "y0": 252,
+        "x1": 377,
+        "y1": 282
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0035:date",
+      "printed": "03/08/91",
+      "bbox": {
+        "x0": 677,
+        "y0": 261,
+        "x1": 815,
+        "y1": 293
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0035:account_no",
+      "printed": "20127332",
+      "bbox": {
+        "x0": 308,
+        "y0": 339,
+        "x1": 443,
+        "y1": 370
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0035:counterparty",
+      "printed": "Dr Ross Nolan",
+      "bbox": {
+        "x0": 224,
+        "y0": 427,
+        "x1": 425,
+        "y1": 458
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0035:amount",
+      "printed": "146.76",
+      "bbox": {
+        "x0": 659,
+        "y0": 557,
+        "x1": 755,
+        "y1": 587
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0035:amount_words",
+      "printed": "One hundred and forty-six pounds and seventy-six pence",
+      "bbox": {
+        "x0": 113,
+        "y0": 692,
+        "x1": 946,
+        "y1": 746
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0035:ledger_ref",
+      "printed": "Sheet 35 / Line 15",
+      "bbox": {
+        "x0": 270,
+        "y0": 801,
+        "x1": 529,
+        "y1": 837
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0035:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 309,
+        "y0": 1000,
+        "x1": 578,
+        "y1": 1079
+      }
+    },
+    {
+      "artefact_id": "A:memo-0035:02",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 766,
+        "y0": 560,
+        "x1": 792,
+        "y1": 586
+      }
+    }
+  ],
+  "source_errors": []
+}

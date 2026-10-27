@@ -1,0 +1,144 @@
+{
+  "page_id": "memo-0087",
+  "doc_type": "memo",
+  "image_path": "images/memo-0087.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 3,
+  "fields": [
+    {
+      "field_id": "M:memo-0087:memo_no",
+      "printed": "034232",
+      "bbox": {
+        "x0": 242,
+        "y0": 265,
+        "x1": 337,
+        "y1": 300
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0087:date",
+      "printed": "02/05/89",
+      "bbox": {
+        "x0": 653,
+        "y0": 247,
+        "x1": 771,
+        "y1": 283
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0087:account_no",
+      "printed": "58364924",
+      "bbox": {
+        "x0": 283,
+        "y0": 349,
+        "x1": 409,
+        "y1": 386
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0087:counterparty",
+      "printed": "Sheila Wood-McCarthy",
+      "bbox": {
+        "x0": 204,
+        "y0": 435,
+        "x1": 516,
+        "y1": 485
+      },
+      "occluded_by": [
+        "A:memo-0087:05"
+      ]
+    },
+    {
+      "field_id": "M:memo-0087:amount",
+      "printed": "94.44",
+      "bbox": {
+        "x0": 664,
+        "y0": 544,
+        "x1": 749,
+        "y1": 577
+      },
+      "occluded_by": [
+        "A:memo-0087:02"
+      ]
+    },
+    {
+      "field_id": "M:memo-0087:amount_words",
+      "printed": "Ninety-four pounds and forty-four pence",
+      "bbox": {
+        "x0": 116,
+        "y0": 691,
+        "x1": 697,
+        "y1": 752
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0087:ledger_ref",
+      "printed": "Sheet 54 / Line 12",
+      "bbox": {
+        "x0": 280,
+        "y0": 802,
+        "x1": 537,
+        "y1": 843
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0087:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 399,
+        "y0": 994,
+        "x1": 647,
+        "y1": 1083
+      }
+    },
+    {
+      "artefact_id": "A:memo-0087:02",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 618,
+        "y0": 513,
+        "x1": 796,
+        "y1": 619
+      }
+    },
+    {
+      "artefact_id": "A:memo-0087:03",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 756,
+        "y0": 546,
+        "x1": 787,
+        "y1": 569
+      }
+    },
+    {
+      "artefact_id": "A:memo-0087:04",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 53,
+        "y0": 544,
+        "x1": 223,
+        "y1": 714
+      }
+    },
+    {
+      "artefact_id": "A:memo-0087:05",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 304,
+        "y0": 414,
+        "x1": 491,
+        "y1": 551
+      }
+    }
+  ],
+  "source_errors": []
+}

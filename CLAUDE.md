@@ -12,6 +12,7 @@ Turns scanned financial archives into a verified database: every value cited to 
 - The UI never calls a model; it only renders exported run bundles.
 - Tests never touch the network. One task per session; never edit files the task doesn't name.
 - Finish every task by committing ("Pn: …") and pushing, only after its Check passes and pre-commit is clean. Never use --no-verify, never force-push, never rewrite history.
+- Nothing runs on data/test except the pre-registered runs. PREREGISTRATION.md may only change in its Deviations section.
 
 ## Layout (planned)
 src/archivist/schema.py — data contracts
@@ -47,3 +48,4 @@ uv run pytest -q
 - [x] P12b read every value twice
 - [x] P13 Muse Spark Open on Baseten
 - [x] P14 arms and second look
+- [x] P15 frozen test set and pre-registration

@@ -1,0 +1,110 @@
+{
+  "page_id": "memo-0046",
+  "doc_type": "memo",
+  "image_path": "images/memo-0046.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 1,
+  "fields": [
+    {
+      "field_id": "M:memo-0046:memo_no",
+      "printed": "034191",
+      "bbox": {
+        "x0": 267,
+        "y0": 251,
+        "x1": 347,
+        "y1": 282
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0046:date",
+      "printed": "05/07/94",
+      "bbox": {
+        "x0": 666,
+        "y0": 255,
+        "x1": 787,
+        "y1": 288
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0046:account_no",
+      "printed": "51448960",
+      "bbox": {
+        "x0": 296,
+        "y0": 340,
+        "x1": 415,
+        "y1": 374
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0046:counterparty",
+      "printed": "Carl Ward",
+      "bbox": {
+        "x0": 218,
+        "y0": 433,
+        "x1": 352,
+        "y1": 467
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0046:amount",
+      "printed": "132.14",
+      "bbox": {
+        "x0": 679,
+        "y0": 551,
+        "x1": 755,
+        "y1": 583
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0046:amount_words",
+      "printed": "One hundred and thirty-two pounds and fourteen pence",
+      "bbox": {
+        "x0": 115,
+        "y0": 692,
+        "x1": 890,
+        "y1": 736
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0046:ledger_ref",
+      "printed": "Sheet 29 / Line 12",
+      "bbox": {
+        "x0": 273,
+        "y0": 805,
+        "x1": 525,
+        "y1": 838
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0046:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 335,
+        "y0": 1010,
+        "x1": 563,
+        "y1": 1084
+      }
+    },
+    {
+      "artefact_id": "A:memo-0046:02",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 646,
+        "y0": 558,
+        "x1": 672,
+        "y1": 583
+      }
+    }
+  ],
+  "source_errors": []
+}

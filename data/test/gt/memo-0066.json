@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0066",
+  "doc_type": "memo",
+  "image_path": "images/memo-0066.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 0,
+  "fields": [
+    {
+      "field_id": "M:memo-0066:memo_no",
+      "printed": "034211",
+      "bbox": {
+        "x0": 264,
+        "y0": 257,
+        "x1": 367,
+        "y1": 283
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0066:date",
+      "printed": "10/10/75",
+      "bbox": {
+        "x0": 667,
+        "y0": 258,
+        "x1": 800,
+        "y1": 286
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0066:account_no",
+      "printed": "32493403",
+      "bbox": {
+        "x0": 297,
+        "y0": 349,
+        "x1": 432,
+        "y1": 375
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0066:counterparty",
+      "printed": "Williams, Cox and Arnold",
+      "bbox": {
+        "x0": 216,
+        "y0": 437,
+        "x1": 582,
+        "y1": 467
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0066:amount",
+      "printed": "346.89",
+      "bbox": {
+        "x0": 660,
+        "y0": 553,
+        "x1": 756,
+        "y1": 579
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0066:amount_words",
+      "printed": "Three hundred and forty-six pounds and eighty-nine pence",
+      "bbox": {
+        "x0": 118,
+        "y0": 702,
+        "x1": 981,
+        "y1": 733
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0066:ledger_ref",
+      "printed": "Sheet 13 / Line 03",
+      "bbox": {
+        "x0": 277,
+        "y0": 808,
+        "x1": 537,
+        "y1": 836
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0066:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 412,
+        "y0": 999,
+        "x1": 612,
+        "y1": 1075
+      }
+    }
+  ],
+  "source_errors": []
+}

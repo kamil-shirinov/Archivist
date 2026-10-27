@@ -1,0 +1,120 @@
+{
+  "page_id": "memo-0062",
+  "doc_type": "memo",
+  "image_path": "images/memo-0062.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 2,
+  "fields": [
+    {
+      "field_id": "M:memo-0062:memo_no",
+      "printed": "034207",
+      "bbox": {
+        "x0": 269,
+        "y0": 244,
+        "x1": 369,
+        "y1": 272
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0062:date",
+      "printed": "14/01/94",
+      "bbox": {
+        "x0": 677,
+        "y0": 256,
+        "x1": 788,
+        "y1": 292
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0062:account_no",
+      "printed": "28349835",
+      "bbox": {
+        "x0": 302,
+        "y0": 340,
+        "x1": 431,
+        "y1": 368
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0062:counterparty",
+      "printed": "Kaur, Lloyd and Summers",
+      "bbox": {
+        "x0": 221,
+        "y0": 426,
+        "x1": 502,
+        "y1": 472
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0062:amount",
+      "printed": "212.50",
+      "bbox": {
+        "x0": 668,
+        "y0": 549,
+        "x1": 760,
+        "y1": 579
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0062:amount_words",
+      "printed": "Two hundred and twelve pounds and fifty pence",
+      "bbox": {
+        "x0": 113,
+        "y0": 684,
+        "x1": 716,
+        "y1": 746
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0062:ledger_ref",
+      "printed": "Sheet 45 / Line 12",
+      "bbox": {
+        "x0": 273,
+        "y0": 795,
+        "x1": 551,
+        "y1": 841
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0062:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 362,
+        "y0": 1000,
+        "x1": 609,
+        "y1": 1074
+      }
+    },
+    {
+      "artefact_id": "A:memo-0062:02",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 250,
+        "y0": 931,
+        "x1": 429,
+        "y1": 1050
+      }
+    },
+    {
+      "artefact_id": "A:memo-0062:03",
+      "kind": "stain",
+      "bbox": {
+        "x0": 578,
+        "y0": 847,
+        "x1": 705,
+        "y1": 971
+      }
+    }
+  ],
+  "source_errors": []
+}

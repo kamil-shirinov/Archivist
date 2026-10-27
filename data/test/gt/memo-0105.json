@@ -1,0 +1,112 @@
+{
+  "page_id": "memo-0105",
+  "doc_type": "memo",
+  "image_path": "images/memo-0105.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 2,
+  "fields": [
+    {
+      "field_id": "M:memo-0105:memo_no",
+      "printed": "034250",
+      "bbox": {
+        "x0": 270,
+        "y0": 259,
+        "x1": 377,
+        "y1": 282
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0105:date",
+      "printed": "09/06/82",
+      "bbox": {
+        "x0": 672,
+        "y0": 262,
+        "x1": 813,
+        "y1": 293
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0105:account_no",
+      "printed": "32170284",
+      "bbox": {
+        "x0": 303,
+        "y0": 347,
+        "x1": 444,
+        "y1": 370
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0105:counterparty",
+      "printed": "District Council Rates Office",
+      "bbox": {
+        "x0": 217,
+        "y0": 429,
+        "x1": 716,
+        "y1": 461
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0105:amount",
+      "printed": "83.99",
+      "bbox": {
+        "x0": 662,
+        "y0": 556,
+        "x1": 753,
+        "y1": 579
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0105:amount_words",
+      "printed": "Eighty-three pounds and ninety-nine pence",
+      "bbox": {
+        "x0": 115,
+        "y0": 700,
+        "x1": 817,
+        "y1": 740
+      },
+      "occluded_by": [
+        "A:memo-0105:02"
+      ]
+    },
+    {
+      "field_id": "M:memo-0105:ledger_ref",
+      "printed": "Sheet 44 / Line 17",
+      "bbox": {
+        "x0": 272,
+        "y0": 805,
+        "x1": 584,
+        "y1": 839
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0105:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 406,
+        "y0": 1001,
+        "x1": 699,
+        "y1": 1085
+      }
+    },
+    {
+      "artefact_id": "A:memo-0105:02",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 574,
+        "y0": 690,
+        "x1": 755,
+        "y1": 871
+      }
+    }
+  ],
+  "source_errors": []
+}

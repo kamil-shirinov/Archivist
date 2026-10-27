@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0060",
+  "doc_type": "memo",
+  "image_path": "images/memo-0060.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 1,
+  "fields": [
+    {
+      "field_id": "M:memo-0060:memo_no",
+      "printed": "034205",
+      "bbox": {
+        "x0": 256,
+        "y0": 262,
+        "x1": 363,
+        "y1": 284
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0060:date",
+      "printed": "12/12/93",
+      "bbox": {
+        "x0": 662,
+        "y0": 255,
+        "x1": 803,
+        "y1": 286
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0060:account_no",
+      "printed": "28349835",
+      "bbox": {
+        "x0": 291,
+        "y0": 351,
+        "x1": 433,
+        "y1": 373
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0060:counterparty",
+      "printed": "Ian Harris",
+      "bbox": {
+        "x0": 217,
+        "y0": 437,
+        "x1": 392,
+        "y1": 462
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0060:amount",
+      "printed": "25.41",
+      "bbox": {
+        "x0": 661,
+        "y0": 558,
+        "x1": 751,
+        "y1": 580
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0060:amount_words",
+      "printed": "Twenty-five pounds and forty-one pence",
+      "bbox": {
+        "x0": 116,
+        "y0": 701,
+        "x1": 767,
+        "y1": 735
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0060:ledger_ref",
+      "printed": "Sheet 45 / Line 01",
+      "bbox": {
+        "x0": 279,
+        "y0": 810,
+        "x1": 591,
+        "y1": 842
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0060:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 386,
+        "y0": 996,
+        "x1": 657,
+        "y1": 1076
+      }
+    }
+  ],
+  "source_errors": []
+}

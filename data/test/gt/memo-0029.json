@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0029",
+  "doc_type": "memo",
+  "image_path": "images/memo-0029.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 1,
+  "fields": [
+    {
+      "field_id": "M:memo-0029:memo_no",
+      "printed": "034174",
+      "bbox": {
+        "x0": 259,
+        "y0": 255,
+        "x1": 352,
+        "y1": 280
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0029:date",
+      "printed": "30/07/80",
+      "bbox": {
+        "x0": 665,
+        "y0": 255,
+        "x1": 779,
+        "y1": 289
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0029:account_no",
+      "printed": "77945262",
+      "bbox": {
+        "x0": 294,
+        "y0": 344,
+        "x1": 419,
+        "y1": 369
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0029:counterparty",
+      "printed": "Gray-Charlton",
+      "bbox": {
+        "x0": 218,
+        "y0": 438,
+        "x1": 369,
+        "y1": 477
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0029:amount",
+      "printed": "244.43",
+      "bbox": {
+        "x0": 657,
+        "y0": 551,
+        "x1": 756,
+        "y1": 578
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0029:amount_words",
+      "printed": "Two hundred and forty-four pounds and forty-three pence",
+      "bbox": {
+        "x0": 117,
+        "y0": 698,
+        "x1": 836,
+        "y1": 747
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0029:ledger_ref",
+      "printed": "Sheet 11 / Line 03",
+      "bbox": {
+        "x0": 276,
+        "y0": 807,
+        "x1": 542,
+        "y1": 846
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0029:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 329,
+        "y0": 1004,
+        "x1": 570,
+        "y1": 1077
+      }
+    }
+  ],
+  "source_errors": []
+}

@@ -1,0 +1,134 @@
+{
+  "page_id": "memo-0081",
+  "doc_type": "memo",
+  "image_path": "images/memo-0081.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 3,
+  "fields": [
+    {
+      "field_id": "M:memo-0081:memo_no",
+      "printed": "034226",
+      "bbox": {
+        "x0": 275,
+        "y0": 251,
+        "x1": 382,
+        "y1": 275
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0081:date",
+      "printed": "12/02/89",
+      "bbox": {
+        "x0": 681,
+        "y0": 264,
+        "x1": 823,
+        "y1": 297
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0081:account_no",
+      "printed": "58364924",
+      "bbox": {
+        "x0": 305,
+        "y0": 340,
+        "x1": 447,
+        "y1": 365
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0081:counterparty",
+      "printed": "Barry Harris",
+      "bbox": {
+        "x0": 222,
+        "y0": 427,
+        "x1": 432,
+        "y1": 462
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0081:amount",
+      "printed": "317.69",
+      "bbox": {
+        "x0": 648,
+        "y0": 556,
+        "x1": 756,
+        "y1": 580
+      },
+      "occluded_by": [
+        "A:memo-0081:02"
+      ]
+    },
+    {
+      "field_id": "M:memo-0081:amount_words",
+      "printed": "Three hundred and seventeen pounds and sixty-nine pence",
+      "bbox": {
+        "x0": 115,
+        "y0": 695,
+        "x1": 945,
+        "y1": 746
+      },
+      "occluded_by": [
+        "A:memo-0081:04"
+      ]
+    },
+    {
+      "field_id": "M:memo-0081:ledger_ref",
+      "printed": "Sheet 53 / Line 07",
+      "bbox": {
+        "x0": 272,
+        "y0": 802,
+        "x1": 583,
+        "y1": 839
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0081:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 388,
+        "y0": 1009,
+        "x1": 587,
+        "y1": 1081
+      }
+    },
+    {
+      "artefact_id": "A:memo-0081:02",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 623,
+        "y0": 516,
+        "x1": 752,
+        "y1": 628
+      }
+    },
+    {
+      "artefact_id": "A:memo-0081:03",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 615,
+        "y0": 553,
+        "x1": 642,
+        "y1": 576
+      }
+    },
+    {
+      "artefact_id": "A:memo-0081:04",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 56,
+        "y0": 665,
+        "x1": 232,
+        "y1": 841
+      }
+    }
+  ],
+  "source_errors": []
+}

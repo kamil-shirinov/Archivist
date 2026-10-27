@@ -1,0 +1,109 @@
+{
+  "page_id": "memo-0096",
+  "doc_type": "memo",
+  "image_path": "images/memo-0096.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 0,
+  "fields": [
+    {
+      "field_id": "M:memo-0096:memo_no",
+      "printed": "034241",
+      "bbox": {
+        "x0": 260,
+        "y0": 257,
+        "x1": 357,
+        "y1": 281
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0096:date",
+      "printed": "18/02/82",
+      "bbox": {
+        "x0": 667,
+        "y0": 255,
+        "x1": 778,
+        "y1": 288
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0096:account_no",
+      "printed": "32170284",
+      "bbox": {
+        "x0": 300,
+        "y0": 342,
+        "x1": 423,
+        "y1": 366
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0096:counterparty",
+      "printed": "Scott-Clayton",
+      "bbox": {
+        "x0": 219,
+        "y0": 437,
+        "x1": 363,
+        "y1": 474
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0096:amount",
+      "printed": "259.47",
+      "bbox": {
+        "x0": 660,
+        "y0": 550,
+        "x1": 753,
+        "y1": 576
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0096:amount_words",
+      "printed": "Two hundred and ninety-five pounds and forty-seven pence",
+      "bbox": {
+        "x0": 115,
+        "y0": 697,
+        "x1": 834,
+        "y1": 743
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0096:ledger_ref",
+      "printed": "Sheet 43 / Line 02",
+      "bbox": {
+        "x0": 280,
+        "y0": 803,
+        "x1": 559,
+        "y1": 841
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0096:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 319,
+        "y0": 1003,
+        "x1": 568,
+        "y1": 1084
+      }
+    }
+  ],
+  "source_errors": [
+    {
+      "kind": "words_figures_mismatch",
+      "field_ids": [
+        "M:memo-0096:amount",
+        "M:memo-0096:amount_words"
+      ],
+      "note": "figures 259.47 transpose the 295.47 stated in words"
+    }
+  ]
+}

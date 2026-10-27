@@ -1,0 +1,132 @@
+{
+  "page_id": "memo-0054",
+  "doc_type": "memo",
+  "image_path": "images/memo-0054.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 3,
+  "fields": [
+    {
+      "field_id": "M:memo-0054:memo_no",
+      "printed": "034199",
+      "bbox": {
+        "x0": 258,
+        "y0": 259,
+        "x1": 361,
+        "y1": 288
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0054:date",
+      "printed": "12/09/80",
+      "bbox": {
+        "x0": 661,
+        "y0": 254,
+        "x1": 797,
+        "y1": 285
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0054:account_no",
+      "printed": "51618255",
+      "bbox": {
+        "x0": 290,
+        "y0": 350,
+        "x1": 421,
+        "y1": 379
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0054:counterparty",
+      "printed": "Mrs Ashleigh Bell",
+      "bbox": {
+        "x0": 214,
+        "y0": 440,
+        "x1": 476,
+        "y1": 476
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0054:amount",
+      "printed": "445.37",
+      "bbox": {
+        "x0": 658,
+        "y0": 549,
+        "x1": 755,
+        "y1": 578
+      },
+      "occluded_by": [
+        "A:memo-0054:02"
+      ]
+    },
+    {
+      "field_id": "M:memo-0054:amount_words",
+      "printed": "Four hundred and forty-five pounds and thirty-seven pence",
+      "bbox": {
+        "x0": 120,
+        "y0": 696,
+        "x1": 967,
+        "y1": 741
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0054:ledger_ref",
+      "printed": "Sheet 5 / Line 03",
+      "bbox": {
+        "x0": 279,
+        "y0": 805,
+        "x1": 524,
+        "y1": 838
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0054:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 361,
+        "y0": 1004,
+        "x1": 603,
+        "y1": 1081
+      }
+    },
+    {
+      "artefact_id": "A:memo-0054:02",
+      "kind": "stain",
+      "bbox": {
+        "x0": 636,
+        "y0": 505,
+        "x1": 764,
+        "y1": 632
+      }
+    },
+    {
+      "artefact_id": "A:memo-0054:03",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 623,
+        "y0": 556,
+        "x1": 650,
+        "y1": 578
+      }
+    },
+    {
+      "artefact_id": "A:memo-0054:04",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 747,
+        "y0": 750,
+        "x1": 912,
+        "y1": 855
+      }
+    }
+  ],
+  "source_errors": []
+}

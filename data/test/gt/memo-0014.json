@@ -1,0 +1,110 @@
+{
+  "page_id": "memo-0014",
+  "doc_type": "memo",
+  "image_path": "images/memo-0014.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 1,
+  "fields": [
+    {
+      "field_id": "M:memo-0014:memo_no",
+      "printed": "034159",
+      "bbox": {
+        "x0": 257,
+        "y0": 255,
+        "x1": 351,
+        "y1": 280
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0014:date",
+      "printed": "04/01/88",
+      "bbox": {
+        "x0": 663,
+        "y0": 254,
+        "x1": 777,
+        "y1": 289
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0014:account_no",
+      "printed": "55834596",
+      "bbox": {
+        "x0": 291,
+        "y0": 348,
+        "x1": 423,
+        "y1": 374
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0014:counterparty",
+      "printed": "Gary Barry",
+      "bbox": {
+        "x0": 215,
+        "y0": 439,
+        "x1": 345,
+        "y1": 479
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0014:amount",
+      "printed": "61.61",
+      "bbox": {
+        "x0": 687,
+        "y0": 547,
+        "x1": 751,
+        "y1": 574
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0014:amount_words",
+      "printed": "Sixty-one pounds and sixty-one pence",
+      "bbox": {
+        "x0": 116,
+        "y0": 699,
+        "x1": 577,
+        "y1": 749
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0014:ledger_ref",
+      "printed": "Sheet 5 / Line 08",
+      "bbox": {
+        "x0": 275,
+        "y0": 803,
+        "x1": 539,
+        "y1": 843
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0014:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 394,
+        "y0": 1011,
+        "x1": 644,
+        "y1": 1083
+      }
+    },
+    {
+      "artefact_id": "A:memo-0014:02",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 381,
+        "y0": 903,
+        "x1": 553,
+        "y1": 1076
+      }
+    }
+  ],
+  "source_errors": []
+}

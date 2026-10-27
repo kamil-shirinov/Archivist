@@ -1,0 +1,131 @@
+{
+  "page_id": "memo-0058",
+  "doc_type": "memo",
+  "image_path": "images/memo-0058.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 3,
+  "fields": [
+    {
+      "field_id": "M:memo-0058:memo_no",
+      "printed": "034203",
+      "bbox": {
+        "x0": 267,
+        "y0": 250,
+        "x1": 359,
+        "y1": 283
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0058:date",
+      "printed": "16/11/93",
+      "bbox": {
+        "x0": 670,
+        "y0": 259,
+        "x1": 764,
+        "y1": 294
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0058:account_no",
+      "printed": "28349835",
+      "bbox": {
+        "x0": 298,
+        "y0": 339,
+        "x1": 419,
+        "y1": 373
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0058:counterparty",
+      "printed": "Eastmoor Electricity Board",
+      "bbox": {
+        "x0": 223,
+        "y0": 430,
+        "x1": 604,
+        "y1": 474
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0058:amount",
+      "printed": "44.01",
+      "bbox": {
+        "x0": 680,
+        "y0": 553,
+        "x1": 754,
+        "y1": 584
+      },
+      "occluded_by": [
+        "A:memo-0058:02"
+      ]
+    },
+    {
+      "field_id": "M:memo-0058:amount_words",
+      "printed": "Forty-four pounds and one penny",
+      "bbox": {
+        "x0": 118,
+        "y0": 689,
+        "x1": 585,
+        "y1": 735
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0058:ledger_ref",
+      "printed": "Sheet 44 / Line 11",
+      "bbox": {
+        "x0": 276,
+        "y0": 798,
+        "x1": 528,
+        "y1": 833
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0058:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 399,
+        "y0": 1001,
+        "x1": 645,
+        "y1": 1084
+      }
+    },
+    {
+      "artefact_id": "A:memo-0058:02",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 647,
+        "y0": 488,
+        "x1": 814,
+        "y1": 654
+      }
+    },
+    {
+      "artefact_id": "A:memo-0058:03",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 808,
+        "y0": 1146,
+        "x1": 934,
+        "y1": 1250
+      }
+    }
+  ],
+  "source_errors": [
+    {
+      "kind": "memo_ledger_mismatch",
+      "field_ids": [
+        "M:memo-0058:amount",
+        "L:card-07-1:11:debit"
+      ],
+      "note": "memo states 44.01; ledger line shows 40.01"
+    }
+  ]
+}

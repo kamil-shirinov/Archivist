@@ -1,0 +1,142 @@
+{
+  "page_id": "memo-0026",
+  "doc_type": "memo",
+  "image_path": "images/memo-0026.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 3,
+  "fields": [
+    {
+      "field_id": "M:memo-0026:memo_no",
+      "printed": "034171",
+      "bbox": {
+        "x0": 269,
+        "y0": 247,
+        "x1": 350,
+        "y1": 280
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0026:date",
+      "printed": "09/06/80",
+      "bbox": {
+        "x0": 677,
+        "y0": 260,
+        "x1": 790,
+        "y1": 296
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0026:account_no",
+      "printed": "77945262",
+      "bbox": {
+        "x0": 308,
+        "y0": 336,
+        "x1": 434,
+        "y1": 372
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0026:counterparty",
+      "printed": "Chapman-Reid",
+      "bbox": {
+        "x0": 220,
+        "y0": 426,
+        "x1": 412,
+        "y1": 465
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0026:amount",
+      "printed": "32.73",
+      "bbox": {
+        "x0": 692,
+        "y0": 552,
+        "x1": 759,
+        "y1": 585
+      },
+      "occluded_by": [
+        "A:memo-0026:02"
+      ]
+    },
+    {
+      "field_id": "M:memo-0026:amount_words",
+      "printed": "Thirty-two pounds and seventy-three pence",
+      "bbox": {
+        "x0": 116,
+        "y0": 688,
+        "x1": 736,
+        "y1": 743
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0026:ledger_ref",
+      "printed": "Sheet 10 / Line 09",
+      "bbox": {
+        "x0": 271,
+        "y0": 796,
+        "x1": 520,
+        "y1": 835
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0026:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 383,
+        "y0": 999,
+        "x1": 594,
+        "y1": 1076
+      }
+    },
+    {
+      "artefact_id": "A:memo-0026:02",
+      "kind": "stain",
+      "bbox": {
+        "x0": 646,
+        "y0": 466,
+        "x1": 832,
+        "y1": 667
+      }
+    },
+    {
+      "artefact_id": "A:memo-0026:03",
+      "kind": "stain",
+      "bbox": {
+        "x0": 740,
+        "y0": 989,
+        "x1": 929,
+        "y1": 1170
+      }
+    },
+    {
+      "artefact_id": "A:memo-0026:04",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 766,
+        "y0": 559,
+        "x1": 805,
+        "y1": 582
+      }
+    },
+    {
+      "artefact_id": "A:memo-0026:05",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 653,
+        "y0": 557,
+        "x1": 681,
+        "y1": 583
+      }
+    }
+  ],
+  "source_errors": []
+}

@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0042",
+  "doc_type": "memo",
+  "image_path": "images/memo-0042.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 1,
+  "fields": [
+    {
+      "field_id": "M:memo-0042:memo_no",
+      "printed": "034187",
+      "bbox": {
+        "x0": 258,
+        "y0": 255,
+        "x1": 349,
+        "y1": 280
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0042:date",
+      "printed": "18/03/94",
+      "bbox": {
+        "x0": 665,
+        "y0": 256,
+        "x1": 776,
+        "y1": 291
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0042:account_no",
+      "printed": "51448960",
+      "bbox": {
+        "x0": 293,
+        "y0": 345,
+        "x1": 418,
+        "y1": 371
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0042:counterparty",
+      "printed": "Green Ltd",
+      "bbox": {
+        "x0": 216,
+        "y0": 435,
+        "x1": 384,
+        "y1": 474
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0042:amount",
+      "printed": "397.28",
+      "bbox": {
+        "x0": 664,
+        "y0": 547,
+        "x1": 753,
+        "y1": 575
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0042:amount_words",
+      "printed": "Three hundred and ninety-seven pounds and twenty-eight pence",
+      "bbox": {
+        "x0": 118,
+        "y0": 691,
+        "x1": 888,
+        "y1": 742
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0042:ledger_ref",
+      "printed": "Sheet 27 / Line 15",
+      "bbox": {
+        "x0": 277,
+        "y0": 802,
+        "x1": 550,
+        "y1": 842
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0042:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 344,
+        "y0": 1005,
+        "x1": 578,
+        "y1": 1079
+      }
+    }
+  ],
+  "source_errors": []
+}

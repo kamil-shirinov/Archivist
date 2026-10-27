@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0033",
+  "doc_type": "memo",
+  "image_path": "images/memo-0033.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 0,
+  "fields": [
+    {
+      "field_id": "M:memo-0033:memo_no",
+      "printed": "034178",
+      "bbox": {
+        "x0": 261,
+        "y0": 258,
+        "x1": 351,
+        "y1": 282
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0033:date",
+      "printed": "14/11/80",
+      "bbox": {
+        "x0": 665,
+        "y0": 255,
+        "x1": 766,
+        "y1": 288
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0033:account_no",
+      "printed": "77945262",
+      "bbox": {
+        "x0": 297,
+        "y0": 347,
+        "x1": 421,
+        "y1": 371
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0033:counterparty",
+      "printed": "Keith Williams",
+      "bbox": {
+        "x0": 214,
+        "y0": 434,
+        "x1": 447,
+        "y1": 470
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0033:amount",
+      "printed": "308.12",
+      "bbox": {
+        "x0": 668,
+        "y0": 550,
+        "x1": 752,
+        "y1": 576
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0033:amount_words",
+      "printed": "Three hundred and eight pounds and twelve pence",
+      "bbox": {
+        "x0": 115,
+        "y0": 694,
+        "x1": 734,
+        "y1": 739
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0033:ledger_ref",
+      "printed": "Sheet 12 / Line 16",
+      "bbox": {
+        "x0": 276,
+        "y0": 808,
+        "x1": 543,
+        "y1": 846
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0033:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 469,
+        "y0": 1000,
+        "x1": 714,
+        "y1": 1074
+      }
+    }
+  ],
+  "source_errors": []
+}

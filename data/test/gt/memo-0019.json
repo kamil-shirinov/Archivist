@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0019",
+  "doc_type": "memo",
+  "image_path": "images/memo-0019.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 0,
+  "fields": [
+    {
+      "field_id": "M:memo-0019:memo_no",
+      "printed": "034164",
+      "bbox": {
+        "x0": 265,
+        "y0": 254,
+        "x1": 360,
+        "y1": 278
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0019:date",
+      "printed": "05/03/88",
+      "bbox": {
+        "x0": 670,
+        "y0": 256,
+        "x1": 788,
+        "y1": 289
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0019:account_no",
+      "printed": "55834596",
+      "bbox": {
+        "x0": 298,
+        "y0": 342,
+        "x1": 429,
+        "y1": 366
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0019:counterparty",
+      "printed": "Sheila Williams",
+      "bbox": {
+        "x0": 218,
+        "y0": 432,
+        "x1": 484,
+        "y1": 469
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0019:amount",
+      "printed": "137.43",
+      "bbox": {
+        "x0": 673,
+        "y0": 547,
+        "x1": 754,
+        "y1": 573
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0019:amount_words",
+      "printed": "One hundred and thirty-seven pounds and forty-three pence",
+      "bbox": {
+        "x0": 120,
+        "y0": 695,
+        "x1": 834,
+        "y1": 741
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0019:ledger_ref",
+      "printed": "Sheet 6 / Line 13",
+      "bbox": {
+        "x0": 276,
+        "y0": 802,
+        "x1": 531,
+        "y1": 840
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0019:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 384,
+        "y0": 1004,
+        "x1": 660,
+        "y1": 1075
+      }
+    }
+  ],
+  "source_errors": []
+}

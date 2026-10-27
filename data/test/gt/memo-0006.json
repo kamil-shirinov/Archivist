@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0006",
+  "doc_type": "memo",
+  "image_path": "images/memo-0006.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 0,
+  "fields": [
+    {
+      "field_id": "M:memo-0006:memo_no",
+      "printed": "034151",
+      "bbox": {
+        "x0": 262,
+        "y0": 258,
+        "x1": 342,
+        "y1": 289
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0006:date",
+      "printed": "14/12/87",
+      "bbox": {
+        "x0": 665,
+        "y0": 252,
+        "x1": 773,
+        "y1": 281
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0006:account_no",
+      "printed": "84608901",
+      "bbox": {
+        "x0": 296,
+        "y0": 345,
+        "x1": 407,
+        "y1": 377
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0006:counterparty",
+      "printed": "Hardy-Wilkins",
+      "bbox": {
+        "x0": 218,
+        "y0": 438,
+        "x1": 414,
+        "y1": 476
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0006:amount",
+      "printed": "130.69",
+      "bbox": {
+        "x0": 683,
+        "y0": 551,
+        "x1": 755,
+        "y1": 583
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0006:amount_words",
+      "printed": "One hundred and thirty pounds and sixty-nine pence",
+      "bbox": {
+        "x0": 120,
+        "y0": 698,
+        "x1": 845,
+        "y1": 736
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0006:ledger_ref",
+      "printed": "Sheet 44 / Line 06",
+      "bbox": {
+        "x0": 278,
+        "y0": 806,
+        "x1": 539,
+        "y1": 838
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0006:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 315,
+        "y0": 1006,
+        "x1": 632,
+        "y1": 1080
+      }
+    }
+  ],
+  "source_errors": []
+}

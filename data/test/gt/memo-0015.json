@@ -1,0 +1,110 @@
+{
+  "page_id": "memo-0015",
+  "doc_type": "memo",
+  "image_path": "images/memo-0015.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 1,
+  "fields": [
+    {
+      "field_id": "M:memo-0015:memo_no",
+      "printed": "034160",
+      "bbox": {
+        "x0": 262,
+        "y0": 256,
+        "x1": 366,
+        "y1": 283
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0015:date",
+      "printed": "06/01/88",
+      "bbox": {
+        "x0": 668,
+        "y0": 254,
+        "x1": 805,
+        "y1": 283
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0015:account_no",
+      "printed": "55834596",
+      "bbox": {
+        "x0": 293,
+        "y0": 350,
+        "x1": 425,
+        "y1": 377
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0015:counterparty",
+      "printed": "Patel Group",
+      "bbox": {
+        "x0": 219,
+        "y0": 441,
+        "x1": 390,
+        "y1": 473
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0015:amount",
+      "printed": "384.53",
+      "bbox": {
+        "x0": 656,
+        "y0": 552,
+        "x1": 752,
+        "y1": 579
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0015:amount_words",
+      "printed": "Three hundred and eighty-four pounds and fifty-three pence",
+      "bbox": {
+        "x0": 115,
+        "y0": 704,
+        "x1": 976,
+        "y1": 737
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0015:ledger_ref",
+      "printed": "Sheet 5 / Line 11",
+      "bbox": {
+        "x0": 278,
+        "y0": 808,
+        "x1": 522,
+        "y1": 837
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0015:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 436,
+        "y0": 1006,
+        "x1": 674,
+        "y1": 1078
+      }
+    },
+    {
+      "artefact_id": "A:memo-0015:02",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 159,
+        "y0": 1087,
+        "x1": 331,
+        "y1": 1257
+      }
+    }
+  ],
+  "source_errors": []
+}

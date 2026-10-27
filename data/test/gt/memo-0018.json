@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0018",
+  "doc_type": "memo",
+  "image_path": "images/memo-0018.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 1,
+  "fields": [
+    {
+      "field_id": "M:memo-0018:memo_no",
+      "printed": "034163",
+      "bbox": {
+        "x0": 264,
+        "y0": 257,
+        "x1": 367,
+        "y1": 284
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0018:date",
+      "printed": "14/02/88",
+      "bbox": {
+        "x0": 668,
+        "y0": 252,
+        "x1": 805,
+        "y1": 281
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0018:account_no",
+      "printed": "55834596",
+      "bbox": {
+        "x0": 295,
+        "y0": 348,
+        "x1": 427,
+        "y1": 375
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0018:counterparty",
+      "printed": "Lowe Ltd",
+      "bbox": {
+        "x0": 217,
+        "y0": 440,
+        "x1": 345,
+        "y1": 467
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0018:amount",
+      "printed": "410.65",
+      "bbox": {
+        "x0": 657,
+        "y0": 555,
+        "x1": 753,
+        "y1": 582
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0018:amount_words",
+      "printed": "Four hundred and ten pounds and sixty-five pence",
+      "bbox": {
+        "x0": 120,
+        "y0": 706,
+        "x1": 854,
+        "y1": 739
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0018:ledger_ref",
+      "printed": "Sheet 6 / Line 07",
+      "bbox": {
+        "x0": 279,
+        "y0": 809,
+        "x1": 524,
+        "y1": 838
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0018:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 397,
+        "y0": 1011,
+        "x1": 711,
+        "y1": 1081
+      }
+    }
+  ],
+  "source_errors": []
+}

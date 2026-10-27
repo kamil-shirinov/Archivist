@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0076",
+  "doc_type": "memo",
+  "image_path": "images/memo-0076.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 0,
+  "fields": [
+    {
+      "field_id": "M:memo-0076:memo_no",
+      "printed": "034221",
+      "bbox": {
+        "x0": 264,
+        "y0": 253,
+        "x1": 353,
+        "y1": 283
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0076:date",
+      "printed": "02/02/76",
+      "bbox": {
+        "x0": 664,
+        "y0": 258,
+        "x1": 780,
+        "y1": 290
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0076:account_no",
+      "printed": "32493403",
+      "bbox": {
+        "x0": 298,
+        "y0": 347,
+        "x1": 420,
+        "y1": 377
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0076:counterparty",
+      "printed": "Roberts, Smith and O'Brien",
+      "bbox": {
+        "x0": 216,
+        "y0": 432,
+        "x1": 581,
+        "y1": 470
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0076:amount",
+      "printed": "152.85",
+      "bbox": {
+        "x0": 674,
+        "y0": 546,
+        "x1": 754,
+        "y1": 577
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0076:amount_words",
+      "printed": "One hundred and fifty-two pounds and eighty-five pence",
+      "bbox": {
+        "x0": 117,
+        "y0": 697,
+        "x1": 908,
+        "y1": 735
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0076:ledger_ref",
+      "printed": "Sheet 15 / Line 09",
+      "bbox": {
+        "x0": 277,
+        "y0": 807,
+        "x1": 525,
+        "y1": 838
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0076:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 352,
+        "y0": 1012,
+        "x1": 639,
+        "y1": 1078
+      }
+    }
+  ],
+  "source_errors": []
+}

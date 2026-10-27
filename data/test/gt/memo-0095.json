@@ -1,0 +1,132 @@
+{
+  "page_id": "memo-0095",
+  "doc_type": "memo",
+  "image_path": "images/memo-0095.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 3,
+  "fields": [
+    {
+      "field_id": "M:memo-0095:memo_no",
+      "printed": "034240",
+      "bbox": {
+        "x0": 279,
+        "y0": 245,
+        "x1": 382,
+        "y1": 273
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0095:date",
+      "printed": "06/02/82",
+      "bbox": {
+        "x0": 679,
+        "y0": 257,
+        "x1": 800,
+        "y1": 295
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0095:account_no",
+      "printed": "32170284",
+      "bbox": {
+        "x0": 308,
+        "y0": 337,
+        "x1": 433,
+        "y1": 366
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0095:counterparty",
+      "printed": "Bradshaw Ltd",
+      "bbox": {
+        "x0": 228,
+        "y0": 424,
+        "x1": 459,
+        "y1": 470
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0095:amount",
+      "printed": "182.91",
+      "bbox": {
+        "x0": 684,
+        "y0": 556,
+        "x1": 762,
+        "y1": 586
+      },
+      "occluded_by": [
+        "A:memo-0095:02"
+      ]
+    },
+    {
+      "field_id": "M:memo-0095:amount_words",
+      "printed": "One hundred and eighty-two pounds and ninety-one pence",
+      "bbox": {
+        "x0": 114,
+        "y0": 683,
+        "x1": 796,
+        "y1": 753
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0095:ledger_ref",
+      "printed": "Sheet 42 / Line 15",
+      "bbox": {
+        "x0": 275,
+        "y0": 793,
+        "x1": 554,
+        "y1": 842
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0095:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 378,
+        "y0": 995,
+        "x1": 657,
+        "y1": 1076
+      }
+    },
+    {
+      "artefact_id": "A:memo-0095:02",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 618,
+        "y0": 477,
+        "x1": 795,
+        "y1": 654
+      }
+    },
+    {
+      "artefact_id": "A:memo-0095:03",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 772,
+        "y0": 561,
+        "x1": 797,
+        "y1": 583
+      }
+    },
+    {
+      "artefact_id": "A:memo-0095:04",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 871,
+        "y0": 193,
+        "x1": 999,
+        "y1": 295
+      }
+    }
+  ],
+  "source_errors": []
+}

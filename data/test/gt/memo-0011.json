@@ -1,0 +1,112 @@
+{
+  "page_id": "memo-0011",
+  "doc_type": "memo",
+  "image_path": "images/memo-0011.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 2,
+  "fields": [
+    {
+      "field_id": "M:memo-0011:memo_no",
+      "printed": "034156",
+      "bbox": {
+        "x0": 250,
+        "y0": 266,
+        "x1": 358,
+        "y1": 289
+      },
+      "occluded_by": [
+        "A:memo-0011:02"
+      ]
+    },
+    {
+      "field_id": "M:memo-0011:date",
+      "printed": "14/03/88",
+      "bbox": {
+        "x0": 660,
+        "y0": 251,
+        "x1": 802,
+        "y1": 283
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0011:account_no",
+      "printed": "84608901",
+      "bbox": {
+        "x0": 291,
+        "y0": 354,
+        "x1": 433,
+        "y1": 378
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0011:counterparty",
+      "printed": "Dr Thomas Jones",
+      "bbox": {
+        "x0": 214,
+        "y0": 438,
+        "x1": 474,
+        "y1": 467
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0011:amount",
+      "printed": "426.64",
+      "bbox": {
+        "x0": 641,
+        "y0": 554,
+        "x1": 749,
+        "y1": 578
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0011:amount_words",
+      "printed": "Four hundred and twenty-six pounds and sixty-four pence",
+      "bbox": {
+        "x0": 119,
+        "y0": 698,
+        "x1": 949,
+        "y1": 743
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0011:ledger_ref",
+      "printed": "Sheet 45 / Line 12",
+      "bbox": {
+        "x0": 280,
+        "y0": 810,
+        "x1": 591,
+        "y1": 845
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0011:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 425,
+        "y0": 1004,
+        "x1": 706,
+        "y1": 1084
+      }
+    },
+    {
+      "artefact_id": "A:memo-0011:02",
+      "kind": "stain",
+      "bbox": {
+        "x0": 321,
+        "y0": 167,
+        "x1": 452,
+        "y1": 297
+      }
+    }
+  ],
+  "source_errors": []
+}

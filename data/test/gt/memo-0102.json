@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0102",
+  "doc_type": "memo",
+  "image_path": "images/memo-0102.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 0,
+  "fields": [
+    {
+      "field_id": "M:memo-0102:memo_no",
+      "printed": "034247",
+      "bbox": {
+        "x0": 264,
+        "y0": 258,
+        "x1": 364,
+        "y1": 282
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0102:date",
+      "printed": "16/03/82",
+      "bbox": {
+        "x0": 668,
+        "y0": 258,
+        "x1": 779,
+        "y1": 291
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0102:account_no",
+      "printed": "32170284",
+      "bbox": {
+        "x0": 295,
+        "y0": 348,
+        "x1": 418,
+        "y1": 372
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0102:counterparty",
+      "printed": "Benjamin Williams",
+      "bbox": {
+        "x0": 218,
+        "y0": 436,
+        "x1": 413,
+        "y1": 473
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0102:amount",
+      "printed": "203.58",
+      "bbox": {
+        "x0": 656,
+        "y0": 549,
+        "x1": 751,
+        "y1": 575
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0102:amount_words",
+      "printed": "Two hundred and three pounds and fifty-eight pence",
+      "bbox": {
+        "x0": 116,
+        "y0": 696,
+        "x1": 761,
+        "y1": 742
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0102:ledger_ref",
+      "printed": "Sheet 43 / Line 12",
+      "bbox": {
+        "x0": 279,
+        "y0": 808,
+        "x1": 553,
+        "y1": 846
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0102:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 345,
+        "y0": 1009,
+        "x1": 557,
+        "y1": 1080
+      }
+    }
+  ],
+  "source_errors": []
+}

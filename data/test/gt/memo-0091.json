@@ -1,0 +1,131 @@
+{
+  "page_id": "memo-0091",
+  "doc_type": "memo",
+  "image_path": "images/memo-0091.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 3,
+  "fields": [
+    {
+      "field_id": "M:memo-0091:memo_no",
+      "printed": "034236",
+      "bbox": {
+        "x0": 262,
+        "y0": 255,
+        "x1": 365,
+        "y1": 283
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0091:date",
+      "printed": "26/12/81",
+      "bbox": {
+        "x0": 663,
+        "y0": 255,
+        "x1": 798,
+        "y1": 285
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0091:account_no",
+      "printed": "32170284",
+      "bbox": {
+        "x0": 296,
+        "y0": 345,
+        "x1": 432,
+        "y1": 373
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0091:counterparty",
+      "printed": "District Council Rates Office",
+      "bbox": {
+        "x0": 214,
+        "y0": 436,
+        "x1": 647,
+        "y1": 465
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0091:amount",
+      "printed": "30.20",
+      "bbox": {
+        "x0": 669,
+        "y0": 552,
+        "x1": 750,
+        "y1": 580
+      },
+      "occluded_by": [
+        "A:memo-0091:02"
+      ]
+    },
+    {
+      "field_id": "M:memo-0091:amount_words",
+      "printed": "Thirty pounds and twenty pence",
+      "bbox": {
+        "x0": 114,
+        "y0": 704,
+        "x1": 575,
+        "y1": 739
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0091:ledger_ref",
+      "printed": "Sheet 42 / Line 03",
+      "bbox": {
+        "x0": 280,
+        "y0": 804,
+        "x1": 542,
+        "y1": 834
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0091:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 313,
+        "y0": 1014,
+        "x1": 621,
+        "y1": 1080
+      }
+    },
+    {
+      "artefact_id": "A:memo-0091:02",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 631,
+        "y0": 514,
+        "x1": 750,
+        "y1": 616
+      }
+    },
+    {
+      "artefact_id": "A:memo-0091:03",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 899,
+        "y0": 271,
+        "x1": 1064,
+        "y1": 435
+      }
+    }
+  ],
+  "source_errors": [
+    {
+      "kind": "memo_ledger_mismatch",
+      "field_ids": [
+        "M:memo-0091:amount",
+        "L:card-10-1:03:debit"
+      ],
+      "note": "memo states 30.20; ledger line shows 90.20"
+    }
+  ]
+}

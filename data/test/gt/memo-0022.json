@@ -1,0 +1,122 @@
+{
+  "page_id": "memo-0022",
+  "doc_type": "memo",
+  "image_path": "images/memo-0022.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 3,
+  "fields": [
+    {
+      "field_id": "M:memo-0022:memo_no",
+      "printed": "034167",
+      "bbox": {
+        "x0": 249,
+        "y0": 261,
+        "x1": 342,
+        "y1": 288
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0022:date",
+      "printed": "15/05/88",
+      "bbox": {
+        "x0": 652,
+        "y0": 248,
+        "x1": 768,
+        "y1": 285
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0022:account_no",
+      "printed": "55834596",
+      "bbox": {
+        "x0": 289,
+        "y0": 345,
+        "x1": 422,
+        "y1": 373
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0022:counterparty",
+      "printed": "Callum Holden",
+      "bbox": {
+        "x0": 211,
+        "y0": 437,
+        "x1": 451,
+        "y1": 478
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0022:amount",
+      "printed": "283.29",
+      "bbox": {
+        "x0": 661,
+        "y0": 546,
+        "x1": 753,
+        "y1": 576
+      },
+      "occluded_by": [
+        "A:memo-0022:02"
+      ]
+    },
+    {
+      "field_id": "M:memo-0022:amount_words",
+      "printed": "Two hundred and eighty-three pounds and twenty-nine pence",
+      "bbox": {
+        "x0": 118,
+        "y0": 687,
+        "x1": 857,
+        "y1": 753
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0022:ledger_ref",
+      "printed": "Sheet 7 / Line 15",
+      "bbox": {
+        "x0": 281,
+        "y0": 805,
+        "x1": 538,
+        "y1": 851
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0022:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 337,
+        "y0": 1005,
+        "x1": 650,
+        "y1": 1088
+      }
+    },
+    {
+      "artefact_id": "A:memo-0022:02",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 598,
+        "y0": 469,
+        "x1": 787,
+        "y1": 659
+      }
+    },
+    {
+      "artefact_id": "A:memo-0022:03",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 80,
+        "y0": 1010,
+        "x1": 252,
+        "y1": 1119
+      }
+    }
+  ],
+  "source_errors": []
+}

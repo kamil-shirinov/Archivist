@@ -1,0 +1,129 @@
+{
+  "page_id": "memo-0106",
+  "doc_type": "memo",
+  "image_path": "images/memo-0106.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 2,
+  "fields": [
+    {
+      "field_id": "M:memo-0106:memo_no",
+      "printed": "034251",
+      "bbox": {
+        "x0": 251,
+        "y0": 261,
+        "x1": 349,
+        "y1": 288
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0106:date",
+      "printed": "26/07/85",
+      "bbox": {
+        "x0": 656,
+        "y0": 250,
+        "x1": 777,
+        "y1": 286
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0106:account_no",
+      "printed": "65422443",
+      "bbox": {
+        "x0": 290,
+        "y0": 349,
+        "x1": 428,
+        "y1": 376
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0106:counterparty",
+      "printed": "Eastmoor Electricity Board",
+      "bbox": {
+        "x0": 211,
+        "y0": 436,
+        "x1": 494,
+        "y1": 480
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0106:amount",
+      "printed": "35.45",
+      "bbox": {
+        "x0": 671,
+        "y0": 545,
+        "x1": 753,
+        "y1": 573
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0106:amount_words",
+      "printed": "Thirty-four pounds and fifty-five pence",
+      "bbox": {
+        "x0": 115,
+        "y0": 695,
+        "x1": 608,
+        "y1": 751
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0106:ledger_ref",
+      "printed": "Sheet 27 / Line 04",
+      "bbox": {
+        "x0": 276,
+        "y0": 801,
+        "x1": 555,
+        "y1": 845
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0106:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 360,
+        "y0": 1002,
+        "x1": 628,
+        "y1": 1087
+      }
+    },
+    {
+      "artefact_id": "A:memo-0106:02",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 639,
+        "y0": 545,
+        "x1": 665,
+        "y1": 568
+      }
+    },
+    {
+      "artefact_id": "A:memo-0106:03",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 631,
+        "y0": 548,
+        "x1": 658,
+        "y1": 575
+      }
+    }
+  ],
+  "source_errors": [
+    {
+      "kind": "words_figures_mismatch",
+      "field_ids": [
+        "M:memo-0106:amount",
+        "M:memo-0106:amount_words"
+      ],
+      "note": "figures 35.45 transpose the 34.55 stated in words"
+    }
+  ]
+}

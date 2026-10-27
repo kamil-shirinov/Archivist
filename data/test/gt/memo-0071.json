@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0071",
+  "doc_type": "memo",
+  "image_path": "images/memo-0071.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 0,
+  "fields": [
+    {
+      "field_id": "M:memo-0071:memo_no",
+      "printed": "034216",
+      "bbox": {
+        "x0": 260,
+        "y0": 256,
+        "x1": 345,
+        "y1": 288
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0071:date",
+      "printed": "16/12/75",
+      "bbox": {
+        "x0": 670,
+        "y0": 255,
+        "x1": 774,
+        "y1": 287
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0071:account_no",
+      "printed": "32493403",
+      "bbox": {
+        "x0": 299,
+        "y0": 344,
+        "x1": 421,
+        "y1": 374
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0071:counterparty",
+      "printed": "Dr Leigh Boyle",
+      "bbox": {
+        "x0": 218,
+        "y0": 433,
+        "x1": 417,
+        "y1": 469
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0071:amount",
+      "printed": "289.77",
+      "bbox": {
+        "x0": 668,
+        "y0": 550,
+        "x1": 751,
+        "y1": 579
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0071:amount_words",
+      "printed": "Two hundred and eighty-nine pounds and seventy-seven pence",
+      "bbox": {
+        "x0": 117,
+        "y0": 698,
+        "x1": 976,
+        "y1": 736
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0071:ledger_ref",
+      "printed": "Sheet 14 / Line 10",
+      "bbox": {
+        "x0": 274,
+        "y0": 808,
+        "x1": 520,
+        "y1": 839
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0071:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 380,
+        "y0": 1012,
+        "x1": 585,
+        "y1": 1078
+      }
+    }
+  ],
+  "source_errors": []
+}

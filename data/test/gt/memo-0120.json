@@ -1,0 +1,120 @@
+{
+  "page_id": "memo-0120",
+  "doc_type": "memo",
+  "image_path": "images/memo-0120.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 2,
+  "fields": [
+    {
+      "field_id": "M:memo-0120:memo_no",
+      "printed": "034265",
+      "bbox": {
+        "x0": 263,
+        "y0": 257,
+        "x1": 365,
+        "y1": 285
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0120:date",
+      "printed": "03/10/89",
+      "bbox": {
+        "x0": 670,
+        "y0": 257,
+        "x1": 806,
+        "y1": 286
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0120:account_no",
+      "printed": "49143149",
+      "bbox": {
+        "x0": 301,
+        "y0": 344,
+        "x1": 437,
+        "y1": 371
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0120:counterparty",
+      "printed": "Dr Geraldine Hewitt",
+      "bbox": {
+        "x0": 214,
+        "y0": 435,
+        "x1": 509,
+        "y1": 463
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0120:amount",
+      "printed": "85.52",
+      "bbox": {
+        "x0": 677,
+        "y0": 551,
+        "x1": 755,
+        "y1": 578
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0120:amount_words",
+      "printed": "Eighty-five pounds and fifty-two pence",
+      "bbox": {
+        "x0": 118,
+        "y0": 699,
+        "x1": 702,
+        "y1": 733
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0120:ledger_ref",
+      "printed": "Sheet 22 / Line 01",
+      "bbox": {
+        "x0": 276,
+        "y0": 801,
+        "x1": 538,
+        "y1": 831
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0120:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 411,
+        "y0": 1013,
+        "x1": 617,
+        "y1": 1080
+      }
+    },
+    {
+      "artefact_id": "A:memo-0120:02",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 447,
+        "y0": 1015,
+        "x1": 627,
+        "y1": 1127
+      }
+    },
+    {
+      "artefact_id": "A:memo-0120:03",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 874,
+        "y0": 1102,
+        "x1": 1046,
+        "y1": 1272
+      }
+    }
+  ],
+  "source_errors": []
+}

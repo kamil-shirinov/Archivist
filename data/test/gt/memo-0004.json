@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0004",
+  "doc_type": "memo",
+  "image_path": "images/memo-0004.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 0,
+  "fields": [
+    {
+      "field_id": "M:memo-0004:memo_no",
+      "printed": "034149",
+      "bbox": {
+        "x0": 265,
+        "y0": 262,
+        "x1": 371,
+        "y1": 282
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0004:date",
+      "printed": "03/11/87",
+      "bbox": {
+        "x0": 667,
+        "y0": 256,
+        "x1": 807,
+        "y1": 284
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0004:account_no",
+      "printed": "84608901",
+      "bbox": {
+        "x0": 296,
+        "y0": 351,
+        "x1": 436,
+        "y1": 371
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0004:counterparty",
+      "printed": "Eastmoor Electricity Board",
+      "bbox": {
+        "x0": 219,
+        "y0": 437,
+        "x1": 665,
+        "y1": 465
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0004:amount",
+      "printed": "22.48",
+      "bbox": {
+        "x0": 665,
+        "y0": 558,
+        "x1": 754,
+        "y1": 578
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0004:amount_words",
+      "printed": "Twenty-two pounds and forty-eight pence",
+      "bbox": {
+        "x0": 119,
+        "y0": 706,
+        "x1": 786,
+        "y1": 734
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0004:ledger_ref",
+      "printed": "Sheet 43 / Line 10",
+      "bbox": {
+        "x0": 276,
+        "y0": 810,
+        "x1": 586,
+        "y1": 838
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0004:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 494,
+        "y0": 1003,
+        "x1": 720,
+        "y1": 1076
+      }
+    }
+  ],
+  "source_errors": []
+}

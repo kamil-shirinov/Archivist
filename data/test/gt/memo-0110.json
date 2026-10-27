@@ -1,0 +1,110 @@
+{
+  "page_id": "memo-0110",
+  "doc_type": "memo",
+  "image_path": "images/memo-0110.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 2,
+  "fields": [
+    {
+      "field_id": "M:memo-0110:memo_no",
+      "printed": "034255",
+      "bbox": {
+        "x0": 273,
+        "y0": 251,
+        "x1": 378,
+        "y1": 279
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0110:date",
+      "printed": "11/10/85",
+      "bbox": {
+        "x0": 675,
+        "y0": 255,
+        "x1": 778,
+        "y1": 291
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0110:account_no",
+      "printed": "65422443",
+      "bbox": {
+        "x0": 303,
+        "y0": 338,
+        "x1": 440,
+        "y1": 366
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0110:counterparty",
+      "printed": "Miss Wendy Parker",
+      "bbox": {
+        "x0": 222,
+        "y0": 427,
+        "x1": 431,
+        "y1": 471
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0110:amount",
+      "printed": "169.80",
+      "bbox": {
+        "x0": 680,
+        "y0": 549,
+        "x1": 760,
+        "y1": 578
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0110:amount_words",
+      "printed": "One hundred and sixty-nine pounds and eighty pence",
+      "bbox": {
+        "x0": 117,
+        "y0": 685,
+        "x1": 739,
+        "y1": 745
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0110:ledger_ref",
+      "printed": "Sheet 28 / Line 13",
+      "bbox": {
+        "x0": 275,
+        "y0": 801,
+        "x1": 547,
+        "y1": 845
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0110:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 441,
+        "y0": 1009,
+        "x1": 718,
+        "y1": 1085
+      }
+    },
+    {
+      "artefact_id": "A:memo-0110:02",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 222,
+        "y0": 119,
+        "x1": 396,
+        "y1": 243
+      }
+    }
+  ],
+  "source_errors": []
+}

@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0112",
+  "doc_type": "memo",
+  "image_path": "images/memo-0112.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 0,
+  "fields": [
+    {
+      "field_id": "M:memo-0112:memo_no",
+      "printed": "034257",
+      "bbox": {
+        "x0": 259,
+        "y0": 255,
+        "x1": 359,
+        "y1": 279
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0112:date",
+      "printed": "14/11/85",
+      "bbox": {
+        "x0": 670,
+        "y0": 252,
+        "x1": 774,
+        "y1": 285
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0112:account_no",
+      "printed": "65422443",
+      "bbox": {
+        "x0": 300,
+        "y0": 345,
+        "x1": 436,
+        "y1": 369
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0112:counterparty",
+      "printed": "Patricia Ward",
+      "bbox": {
+        "x0": 218,
+        "y0": 438,
+        "x1": 443,
+        "y1": 473
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0112:amount",
+      "printed": "252.70",
+      "bbox": {
+        "x0": 661,
+        "y0": 548,
+        "x1": 754,
+        "y1": 574
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0112:amount_words",
+      "printed": "Two hundred and fifty-two pounds and seventy pence",
+      "bbox": {
+        "x0": 116,
+        "y0": 695,
+        "x1": 774,
+        "y1": 741
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0112:ledger_ref",
+      "printed": "Sheet 29 / Line 08",
+      "bbox": {
+        "x0": 275,
+        "y0": 806,
+        "x1": 551,
+        "y1": 844
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0112:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 401,
+        "y0": 1006,
+        "x1": 589,
+        "y1": 1072
+      }
+    }
+  ],
+  "source_errors": []
+}

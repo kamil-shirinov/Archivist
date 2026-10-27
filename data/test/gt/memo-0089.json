@@ -1,0 +1,134 @@
+{
+  "page_id": "memo-0089",
+  "doc_type": "memo",
+  "image_path": "images/memo-0089.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 3,
+  "fields": [
+    {
+      "field_id": "M:memo-0089:memo_no",
+      "printed": "034234",
+      "bbox": {
+        "x0": 254,
+        "y0": 256,
+        "x1": 352,
+        "y1": 289
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0089:date",
+      "printed": "08/06/89",
+      "bbox": {
+        "x0": 659,
+        "y0": 252,
+        "x1": 771,
+        "y1": 288
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0089:account_no",
+      "printed": "58364924",
+      "bbox": {
+        "x0": 286,
+        "y0": 349,
+        "x1": 412,
+        "y1": 385
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0089:counterparty",
+      "printed": "Jones, O'Neill and Jones",
+      "bbox": {
+        "x0": 209,
+        "y0": 437,
+        "x1": 519,
+        "y1": 483
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0089:amount",
+      "printed": "46.57",
+      "bbox": {
+        "x0": 679,
+        "y0": 542,
+        "x1": 753,
+        "y1": 576
+      },
+      "occluded_by": [
+        "A:memo-0089:02"
+      ]
+    },
+    {
+      "field_id": "M:memo-0089:amount_words",
+      "printed": "Forty-six pounds and fifty-seven pence",
+      "bbox": {
+        "x0": 118,
+        "y0": 696,
+        "x1": 672,
+        "y1": 748
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0089:ledger_ref",
+      "printed": "Sheet 55 / Line 07",
+      "bbox": {
+        "x0": 281,
+        "y0": 808,
+        "x1": 538,
+        "y1": 846
+      },
+      "occluded_by": [
+        "A:memo-0089:03"
+      ]
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0089:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 481,
+        "y0": 1005,
+        "x1": 711,
+        "y1": 1084
+      }
+    },
+    {
+      "artefact_id": "A:memo-0089:02",
+      "kind": "stain",
+      "bbox": {
+        "x0": 605,
+        "y0": 455,
+        "x1": 808,
+        "y1": 654
+      }
+    },
+    {
+      "artefact_id": "A:memo-0089:03",
+      "kind": "stain",
+      "bbox": {
+        "x0": 302,
+        "y0": 781,
+        "x1": 481,
+        "y1": 967
+      }
+    },
+    {
+      "artefact_id": "A:memo-0089:04",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 755,
+        "y0": 543,
+        "x1": 785,
+        "y1": 571
+      }
+    }
+  ],
+  "source_errors": []
+}

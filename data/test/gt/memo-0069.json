@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0069",
+  "doc_type": "memo",
+  "image_path": "images/memo-0069.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 1,
+  "fields": [
+    {
+      "field_id": "M:memo-0069:memo_no",
+      "printed": "034214",
+      "bbox": {
+        "x0": 265,
+        "y0": 254,
+        "x1": 363,
+        "y1": 279
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0069:date",
+      "printed": "12/12/75",
+      "bbox": {
+        "x0": 666,
+        "y0": 253,
+        "x1": 777,
+        "y1": 287
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0069:account_no",
+      "printed": "32493403",
+      "bbox": {
+        "x0": 299,
+        "y0": 347,
+        "x1": 430,
+        "y1": 372
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0069:counterparty",
+      "printed": "Nicole Hart",
+      "bbox": {
+        "x0": 220,
+        "y0": 436,
+        "x1": 412,
+        "y1": 472
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0069:amount",
+      "printed": "168.19",
+      "bbox": {
+        "x0": 682,
+        "y0": 552,
+        "x1": 757,
+        "y1": 579
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0069:amount_words",
+      "printed": "One hundred and sixty-eight pounds and nineteen pence",
+      "bbox": {
+        "x0": 115,
+        "y0": 699,
+        "x1": 771,
+        "y1": 746
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0069:ledger_ref",
+      "printed": "Sheet 14 / Line 05",
+      "bbox": {
+        "x0": 273,
+        "y0": 805,
+        "x1": 549,
+        "y1": 844
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0069:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 467,
+        "y0": 1012,
+        "x1": 683,
+        "y1": 1081
+      }
+    }
+  ],
+  "source_errors": []
+}

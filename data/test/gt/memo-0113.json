@@ -1,0 +1,132 @@
+{
+  "page_id": "memo-0113",
+  "doc_type": "memo",
+  "image_path": "images/memo-0113.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 3,
+  "fields": [
+    {
+      "field_id": "M:memo-0113:memo_no",
+      "printed": "034258",
+      "bbox": {
+        "x0": 257,
+        "y0": 260,
+        "x1": 364,
+        "y1": 282
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0113:date",
+      "printed": "17/11/85",
+      "bbox": {
+        "x0": 658,
+        "y0": 254,
+        "x1": 799,
+        "y1": 285
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0113:account_no",
+      "printed": "65422443",
+      "bbox": {
+        "x0": 294,
+        "y0": 349,
+        "x1": 435,
+        "y1": 372
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0113:counterparty",
+      "printed": "Eastmoor Electricity Board",
+      "bbox": {
+        "x0": 216,
+        "y0": 437,
+        "x1": 664,
+        "y1": 472
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0113:amount",
+      "printed": "45.41",
+      "bbox": {
+        "x0": 662,
+        "y0": 557,
+        "x1": 752,
+        "y1": 579
+      },
+      "occluded_by": [
+        "A:memo-0113:02"
+      ]
+    },
+    {
+      "field_id": "M:memo-0113:amount_words",
+      "printed": "Forty-five pounds and forty-one pence",
+      "bbox": {
+        "x0": 120,
+        "y0": 702,
+        "x1": 754,
+        "y1": 739
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0113:ledger_ref",
+      "printed": "Sheet 29 / Line 09",
+      "bbox": {
+        "x0": 277,
+        "y0": 810,
+        "x1": 588,
+        "y1": 843
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0113:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 340,
+        "y0": 1010,
+        "x1": 559,
+        "y1": 1086
+      }
+    },
+    {
+      "artefact_id": "A:memo-0113:02",
+      "kind": "stain",
+      "bbox": {
+        "x0": 618,
+        "y0": 457,
+        "x1": 836,
+        "y1": 685
+      }
+    },
+    {
+      "artefact_id": "A:memo-0113:03",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 837,
+        "y0": 375,
+        "x1": 1014,
+        "y1": 476
+      }
+    },
+    {
+      "artefact_id": "A:memo-0113:04",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 627,
+        "y0": 560,
+        "x1": 656,
+        "y1": 582
+      }
+    }
+  ],
+  "source_errors": []
+}

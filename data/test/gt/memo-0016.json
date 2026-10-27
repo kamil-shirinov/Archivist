@@ -1,0 +1,110 @@
+{
+  "page_id": "memo-0016",
+  "doc_type": "memo",
+  "image_path": "images/memo-0016.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 2,
+  "fields": [
+    {
+      "field_id": "M:memo-0016:memo_no",
+      "printed": "034161",
+      "bbox": {
+        "x0": 266,
+        "y0": 250,
+        "x1": 344,
+        "y1": 284
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0016:date",
+      "printed": "22/01/88",
+      "bbox": {
+        "x0": 671,
+        "y0": 256,
+        "x1": 782,
+        "y1": 286
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0016:account_no",
+      "printed": "55834596",
+      "bbox": {
+        "x0": 300,
+        "y0": 343,
+        "x1": 420,
+        "y1": 377
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0016:counterparty",
+      "printed": "Morgan, Marshall and Howells",
+      "bbox": {
+        "x0": 216,
+        "y0": 431,
+        "x1": 622,
+        "y1": 473
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0016:amount",
+      "printed": "286.84",
+      "bbox": {
+        "x0": 668,
+        "y0": 545,
+        "x1": 755,
+        "y1": 579
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0016:amount_words",
+      "printed": "Two hundred and eighty-six pounds and eighty-four pence",
+      "bbox": {
+        "x0": 113,
+        "y0": 692,
+        "x1": 921,
+        "y1": 738
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0016:ledger_ref",
+      "printed": "Sheet 5 / Line 14",
+      "bbox": {
+        "x0": 278,
+        "y0": 800,
+        "x1": 519,
+        "y1": 834
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0016:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 376,
+        "y0": 1010,
+        "x1": 691,
+        "y1": 1083
+      }
+    },
+    {
+      "artefact_id": "A:memo-0016:02",
+      "kind": "handwritten_amendment",
+      "bbox": {
+        "x0": 629,
+        "y0": 552,
+        "x1": 658,
+        "y1": 579
+      }
+    }
+  ],
+  "source_errors": []
+}

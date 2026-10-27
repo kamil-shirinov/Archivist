@@ -1,0 +1,100 @@
+{
+  "page_id": "memo-0117",
+  "doc_type": "memo",
+  "image_path": "images/memo-0117.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 1,
+  "fields": [
+    {
+      "field_id": "M:memo-0117:memo_no",
+      "printed": "034262",
+      "bbox": {
+        "x0": 264,
+        "y0": 254,
+        "x1": 367,
+        "y1": 281
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0117:date",
+      "printed": "08/08/89",
+      "bbox": {
+        "x0": 667,
+        "y0": 258,
+        "x1": 805,
+        "y1": 288
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0117:account_no",
+      "printed": "49143149",
+      "bbox": {
+        "x0": 299,
+        "y0": 343,
+        "x1": 435,
+        "y1": 371
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0117:counterparty",
+      "printed": "Abdul Cooper",
+      "bbox": {
+        "x0": 220,
+        "y0": 439,
+        "x1": 410,
+        "y1": 472
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0117:amount",
+      "printed": "101.19",
+      "bbox": {
+        "x0": 656,
+        "y0": 551,
+        "x1": 752,
+        "y1": 579
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0117:amount_words",
+      "printed": "One hundred and one pounds and nineteen pence",
+      "bbox": {
+        "x0": 114,
+        "y0": 698,
+        "x1": 802,
+        "y1": 734
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0117:ledger_ref",
+      "printed": "Sheet 21 / Line 02",
+      "bbox": {
+        "x0": 277,
+        "y0": 802,
+        "x1": 538,
+        "y1": 832
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0117:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 314,
+        "y0": 1008,
+        "x1": 540,
+        "y1": 1077
+      }
+    }
+  ],
+  "source_errors": []
+}

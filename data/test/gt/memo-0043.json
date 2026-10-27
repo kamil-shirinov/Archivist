@@ -1,0 +1,120 @@
+{
+  "page_id": "memo-0043",
+  "doc_type": "memo",
+  "image_path": "images/memo-0043.jpg",
+  "width": 1100,
+  "height": 1400,
+  "severity": 2,
+  "fields": [
+    {
+      "field_id": "M:memo-0043:memo_no",
+      "printed": "034188",
+      "bbox": {
+        "x0": 274,
+        "y0": 247,
+        "x1": 359,
+        "y1": 280
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0043:date",
+      "printed": "23/03/94",
+      "bbox": {
+        "x0": 676,
+        "y0": 259,
+        "x1": 795,
+        "y1": 293
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0043:account_no",
+      "printed": "51448960",
+      "bbox": {
+        "x0": 303,
+        "y0": 339,
+        "x1": 423,
+        "y1": 374
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0043:counterparty",
+      "printed": "District Council Rates Office",
+      "bbox": {
+        "x0": 225,
+        "y0": 427,
+        "x1": 630,
+        "y1": 469
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0043:amount",
+      "printed": "82.84",
+      "bbox": {
+        "x0": 682,
+        "y0": 554,
+        "x1": 757,
+        "y1": 585
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0043:amount_words",
+      "printed": "Eighty-two pounds and eighty-four pence",
+      "bbox": {
+        "x0": 114,
+        "y0": 687,
+        "x1": 697,
+        "y1": 740
+      },
+      "occluded_by": []
+    },
+    {
+      "field_id": "M:memo-0043:ledger_ref",
+      "printed": "Sheet 27 / Line 16",
+      "bbox": {
+        "x0": 272,
+        "y0": 798,
+        "x1": 521,
+        "y1": 837
+      },
+      "occluded_by": []
+    }
+  ],
+  "artefacts": [
+    {
+      "artefact_id": "A:memo-0043:01",
+      "kind": "signature",
+      "bbox": {
+        "x0": 387,
+        "y0": 996,
+        "x1": 637,
+        "y1": 1079
+      }
+    },
+    {
+      "artefact_id": "A:memo-0043:02",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 305,
+        "y0": 886,
+        "x1": 456,
+        "y1": 1037
+      }
+    },
+    {
+      "artefact_id": "A:memo-0043:03",
+      "kind": "stamp",
+      "bbox": {
+        "x0": 813,
+        "y0": 1147,
+        "x1": 981,
+        "y1": 1315
+      }
+    }
+  ],
+  "source_errors": []
+}
