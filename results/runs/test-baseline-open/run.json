@@ -1,0 +1,48 @@
+{
+  "run_id": "test-baseline-open",
+  "images": "data/test/images",
+  "config": {
+    "extractor": {
+      "backend": "baseten",
+      "model_id": "meta-models/muse-spark-open-1026"
+    },
+    "rereader": {
+      "backend": "baseten",
+      "model_id": "meta-models/muse-spark-open-1026"
+    },
+    "segmenter": {
+      "backend": "meta",
+      "model_id": "sam-3.1"
+    }
+  },
+  "citations": "S0+ink",
+  "counts": {
+    "pages": 157,
+    "extracted": 157,
+    "failed": 0,
+    "by_doc_type": {
+      "ledger_card": 36,
+      "payment_memo": 121
+    }
+  },
+  "failed_pages": {},
+  "cost_usd": 1.9328344999999985,
+  "started_at": "2026-10-27T12:40:41+00:00",
+  "finished_at": "2026-10-27T13:48:04+00:00",
+  "sessions": [
+    {
+      "started_at": "2026-10-27T12:40:41+00:00",
+      "finished_at": "2026-10-27T12:50:20+00:00",
+      "pages_extracted": 116,
+      "cost_usd": 1.597109249999999,
+      "aborted": "KeyboardInterrupt: "
+    },
+    {
+      "started_at": "2026-10-27T13:45:21+00:00",
+      "finished_at": "2026-10-27T13:48:04+00:00",
+      "pages_extracted": 41,
+      "cost_usd": 0.3357252499999994,
+      "aborted": null
+    }
+  ]
+}
