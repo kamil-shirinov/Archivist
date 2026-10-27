@@ -10,3 +10,6 @@ data/dev/images/
 data/val/images/
 .DS_Store
 .vscode/
+data/real/pdf/
+data/real/pages/
+data/real/.ingest.lock

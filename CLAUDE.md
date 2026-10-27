@@ -4,6 +4,7 @@ Turns scanned financial archives into a verified database: every value cited to 
 ## Hard rules
 - New work only, built during the Meta Global AI Developer Hackathon (26 Oct – 4 Nov 2026). Never copy code from other projects.
 - Public repo. Never read, print or commit .env or any key. No real bank or customer data, ever.
+- Never put personal data (an email, a name or a local path) in any outgoing request, header or URL. Identify only with the public repo URL: archivist-hackathon/0.1 (+https://github.com/kamil-shirinov/Archivist).
 - Only synthetic or public-domain pages are ever sent to a model.
 - Assets only with clear rights: OFL/Apache fonts with their licence files, procedural textures, invented names.
 - Every model call goes through archivist.models (registry → cache → budget → backend). No HTTP calls anywhere else.
@@ -22,13 +23,17 @@ src/archivist/doctypes/ — __init__.py (DocType protocol, registry, AccountRead
 src/archivist/pipeline/ — extract.py, citations.py, checks.py, reread.py, occlusion.py, verify.py
 src/archivist/export/ — bundle.py, database.py, rules.py, schema.py
 src/archivist/eval/ — metrics.py, run_eval.py, analyse.py, citation_experiment.py, compare_arms.py, compare_extractors.py, sam_spike.py, test_report.py
+src/archivist/ingest/ — fraser.py (downloads, renders and records the Treasury Bulletin; resumable, safe to interrupt), survey.py (table families from the OCR title hints; no model)
 src/archivist/replay.py — replays every current run from the cache and proves nothing it produced changed
 ui/ — static review app (Vite + React + TypeScript), reads data/bundles/<run_id>/bundle.json; types generated from schema.py
 data/dev, data/test — test is frozen and hashed; never used for tuning
+data/real — Treasury Bulletin from FRASER: pdf/ and pages/ are gitignored; sources.json, manifest.json and split.json are committed. split.json fixes the development and held-out issues before any model has seen a real page; held-out is never used for tuning
+results/real/survey.md — the recurring table families, from the manifest's title hints
 
 ## Run
 uv run pytest -q
 uv run python -m archivist.replay  # after any change to code the committed runs depend on; spends nothing, a cache miss aborts
+uv run python -m archivist.ingest.fraser  # fetch and render the real pages; Ctrl-C is safe, rerun resumes; --verify checks files against the records, offline
 
 ## Document types
 - A new type implements DocType and registers in doctypes/__init__.py; verify.py and the exporter need no edit. A type whose pages link to others also implements AccountReader or PostingReader; one that doesn't is exported page by page.
@@ -65,3 +70,4 @@ uv run python -m archivist.replay  # after any change to code the committed runs
 - [x] P16 pre-registered test runs
 - [x] P18 run exporter and verified database
 - [x] P19 true plug-ins, proven by replay
+- [x] P20 real public-domain pages, ingest only (no model has seen a real page)
