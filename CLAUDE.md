@@ -26,6 +26,12 @@ data/dev, data/test — test is frozen and hashed; never used for tuning
 ## Run
 uv run pytest -q
 
+## Export
+- `uv run python -m archivist.export.bundle --run <run> [--truth] [--check]` writes data/bundles/<run>/bundle.json; `archivist.export.database --run <run>` writes exports/<run>/archivist.sqlite and one CSV per table (accounts, documents, transactions, memos, values, links). In SQL, `values` must be quoted.
+- Purely derived from committed runs and the split's images: export never changes a run, never imports archivist.eval or archivist.synth, and reads gt/ only for `--truth`, which writes a separate truth.json for the demo.
+- Rule ids come from flag wording (export/rules.py) and must agree with eval.run_eval.check_rule; accounts and postings come from the ledger's own readers, so they match what the checks saw.
+- Output is byte-identical for the same inputs. After changing export/schema.py, bump SCHEMA_VERSION, run `python -m archivist.export.schema` (ui/schema/bundle.schema.json) and re-export the committed bundles; tests fail on a stale schema or export.
+
 ## Status
 - [x] P1 scaffold
 - [x] P2 schema
@@ -50,3 +56,4 @@ uv run pytest -q
 - [x] P14 arms and second look
 - [x] P15 frozen test set and pre-registration
 - [x] P16 pre-registered test runs
+- [x] P18 run exporter and verified database

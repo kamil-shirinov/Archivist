@@ -1,0 +1,892 @@
+{
+  "$defs": {
+    "Account": {
+      "properties": {
+        "account_no": {
+          "title": "Account No",
+          "type": "string"
+        },
+        "printed": {
+          "title": "Printed",
+          "type": "string"
+        },
+        "holder": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Holder"
+        },
+        "sheets": {
+          "items": {
+            "$ref": "#/$defs/Sheet"
+          },
+          "title": "Sheets",
+          "type": "array"
+        },
+        "missing_sheets": {
+          "items": {
+            "type": "integer"
+          },
+          "title": "Missing Sheets",
+          "type": "array"
+        }
+      },
+      "required": [
+        "account_no",
+        "printed",
+        "holder",
+        "sheets",
+        "missing_sheets"
+      ],
+      "title": "Account",
+      "type": "object"
+    },
+    "BBox": {
+      "description": "Axis-aligned box in page pixels, origin top-left.",
+      "properties": {
+        "x0": {
+          "title": "X0",
+          "type": "integer"
+        },
+        "y0": {
+          "title": "Y0",
+          "type": "integer"
+        },
+        "x1": {
+          "title": "X1",
+          "type": "integer"
+        },
+        "y1": {
+          "title": "Y1",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "x0",
+        "y0",
+        "x1",
+        "y1"
+      ],
+      "title": "BBox",
+      "type": "object"
+    },
+    "BundleField": {
+      "properties": {
+        "field_id": {
+          "title": "Field Id",
+          "type": "string"
+        },
+        "page_id": {
+          "title": "Page Id",
+          "type": "string"
+        },
+        "doc_type": {
+          "title": "Doc Type",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "line": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Line"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Value"
+        },
+        "status": {
+          "enum": [
+            "accepted",
+            "review",
+            "abstained"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "confidence": {
+          "title": "Confidence",
+          "type": "number"
+        },
+        "box": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/BBox"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "original_box": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/BBox"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "crop": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/BBox"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "reread": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Reread"
+        },
+        "reread_status": {
+          "enum": [
+            "agrees",
+            "disagrees",
+            "illegible",
+            "failed",
+            "no_citation",
+            "not_reread"
+          ],
+          "title": "Reread Status",
+          "type": "string"
+        },
+        "second_look": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Second Look"
+        },
+        "flags": {
+          "items": {
+            "$ref": "#/$defs/BundleFlag"
+          },
+          "title": "Flags",
+          "type": "array"
+        },
+        "reread_flags": {
+          "items": {
+            "$ref": "#/$defs/BundleFlag"
+          },
+          "title": "Reread Flags",
+          "type": "array"
+        },
+        "proposal": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Proposal"
+        },
+        "proposed_by": {
+          "anyOf": [
+            {
+              "enum": [
+                "reread_chain",
+                "check",
+                "second_look"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Proposed By"
+        },
+        "occluders": {
+          "items": {
+            "$ref": "#/$defs/BundleOccluder"
+          },
+          "title": "Occluders",
+          "type": "array"
+        },
+        "reasons": {
+          "items": {
+            "$ref": "#/$defs/Reason"
+          },
+          "title": "Reasons",
+          "type": "array"
+        }
+      },
+      "required": [
+        "field_id",
+        "page_id",
+        "doc_type",
+        "name",
+        "line",
+        "value",
+        "status",
+        "confidence",
+        "box",
+        "original_box",
+        "crop",
+        "reread",
+        "reread_status",
+        "second_look",
+        "flags",
+        "reread_flags",
+        "proposal",
+        "proposed_by",
+        "occluders",
+        "reasons"
+      ],
+      "title": "BundleField",
+      "type": "object"
+    },
+    "BundleFlag": {
+      "properties": {
+        "check": {
+          "enum": [
+            "arithmetic",
+            "words_figures",
+            "crossdoc",
+            "reread",
+            "occlusion"
+          ],
+          "title": "Check",
+          "type": "string"
+        },
+        "rule": {
+          "title": "Rule",
+          "type": "string"
+        },
+        "detail": {
+          "title": "Detail",
+          "type": "string"
+        },
+        "suggested": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Suggested"
+        },
+        "related": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Related",
+          "type": "array"
+        }
+      },
+      "required": [
+        "check",
+        "rule",
+        "detail",
+        "suggested",
+        "related"
+      ],
+      "title": "BundleFlag",
+      "type": "object"
+    },
+    "BundleOccluder": {
+      "properties": {
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "box": {
+          "$ref": "#/$defs/BBox"
+        },
+        "cover": {
+          "title": "Cover",
+          "type": "number"
+        }
+      },
+      "required": [
+        "label",
+        "box",
+        "cover"
+      ],
+      "title": "BundleOccluder",
+      "type": "object"
+    },
+    "Document": {
+      "properties": {
+        "page_id": {
+          "title": "Page Id",
+          "type": "string"
+        },
+        "doc_type": {
+          "title": "Doc Type",
+          "type": "string"
+        },
+        "account_no": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Account No"
+        },
+        "sheet": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Sheet"
+        },
+        "memo_no": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Memo No"
+        },
+        "fields": {
+          "title": "Fields",
+          "type": "integer"
+        },
+        "by_status": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "title": "By Status",
+          "type": "object"
+        }
+      },
+      "required": [
+        "page_id",
+        "doc_type",
+        "account_no",
+        "sheet",
+        "memo_no",
+        "fields",
+        "by_status"
+      ],
+      "title": "Document",
+      "type": "object"
+    },
+    "Link": {
+      "properties": {
+        "link_id": {
+          "title": "Link Id",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "memo_line",
+            "card_account",
+            "sheet_sheet"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "source": {
+          "title": "Source",
+          "type": "string"
+        },
+        "target": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Target"
+        },
+        "source_fields": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Source Fields",
+          "type": "array"
+        },
+        "target_fields": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Target Fields",
+          "type": "array"
+        },
+        "checks": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "boolean"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "title": "Checks",
+          "type": "object"
+        },
+        "agrees": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Agrees"
+        },
+        "note": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Note"
+        }
+      },
+      "required": [
+        "link_id",
+        "kind",
+        "source",
+        "target",
+        "source_fields",
+        "target_fields",
+        "checks",
+        "agrees"
+      ],
+      "title": "Link",
+      "type": "object"
+    },
+    "Page": {
+      "properties": {
+        "page_id": {
+          "title": "Page Id",
+          "type": "string"
+        },
+        "image_path": {
+          "title": "Image Path",
+          "type": "string"
+        },
+        "width": {
+          "title": "Width",
+          "type": "integer"
+        },
+        "height": {
+          "title": "Height",
+          "type": "integer"
+        },
+        "doc_type": {
+          "title": "Doc Type",
+          "type": "string"
+        },
+        "failure": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Failure"
+        },
+        "field_ids": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Field Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "page_id",
+        "image_path",
+        "width",
+        "height",
+        "doc_type",
+        "field_ids"
+      ],
+      "title": "Page",
+      "type": "object"
+    },
+    "Reason": {
+      "properties": {
+        "code": {
+          "enum": [
+            "read_mismatch",
+            "reread_illegible",
+            "reread_failed",
+            "no_citation",
+            "rule_failed",
+            "obscured",
+            "not_read"
+          ],
+          "title": "Code",
+          "type": "string"
+        },
+        "rule": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rule"
+        }
+      },
+      "required": [
+        "code"
+      ],
+      "title": "Reason",
+      "type": "object"
+    },
+    "RunInfo": {
+      "properties": {
+        "run_id": {
+          "title": "Run Id",
+          "type": "string"
+        },
+        "extraction_run": {
+          "title": "Extraction Run",
+          "type": "string"
+        },
+        "split": {
+          "title": "Split",
+          "type": "string"
+        },
+        "images": {
+          "title": "Images",
+          "type": "string"
+        },
+        "policy": {
+          "title": "Policy",
+          "type": "string"
+        },
+        "citations": {
+          "title": "Citations",
+          "type": "string"
+        },
+        "verification": {
+          "additionalProperties": true,
+          "title": "Verification",
+          "type": "object"
+        },
+        "extraction": {
+          "additionalProperties": true,
+          "title": "Extraction",
+          "type": "object"
+        }
+      },
+      "required": [
+        "run_id",
+        "extraction_run",
+        "split",
+        "images",
+        "policy",
+        "citations",
+        "verification",
+        "extraction"
+      ],
+      "title": "RunInfo",
+      "type": "object"
+    },
+    "Sheet": {
+      "properties": {
+        "sheet": {
+          "title": "Sheet",
+          "type": "integer"
+        },
+        "page_id": {
+          "title": "Page Id",
+          "type": "string"
+        },
+        "account_reads": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Account Reads"
+        },
+        "agrees": {
+          "title": "Agrees",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "sheet",
+        "page_id",
+        "account_reads",
+        "agrees"
+      ],
+      "title": "Sheet",
+      "type": "object"
+    },
+    "Transaction": {
+      "description": "A used ledger line, joined to the memos posted to it.",
+      "properties": {
+        "txn_id": {
+          "title": "Txn Id",
+          "type": "string"
+        },
+        "account_no": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Account No"
+        },
+        "page_id": {
+          "title": "Page Id",
+          "type": "string"
+        },
+        "sheet": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Sheet"
+        },
+        "line": {
+          "title": "Line",
+          "type": "integer"
+        },
+        "date": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Date"
+        },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Description"
+        },
+        "debit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Debit"
+        },
+        "credit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Credit"
+        },
+        "balance": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Balance"
+        },
+        "field_ids": {
+          "additionalProperties": {
+            "type": "string"
+          },
+          "title": "Field Ids",
+          "type": "object"
+        },
+        "status": {
+          "enum": [
+            "accepted",
+            "review",
+            "abstained"
+          ],
+          "title": "Status",
+          "type": "string"
+        },
+        "memos": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Memos",
+          "type": "array"
+        },
+        "memos_agree": {
+          "anyOf": [
+            {
+              "type": "boolean"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Memos Agree"
+        }
+      },
+      "required": [
+        "txn_id",
+        "account_no",
+        "page_id",
+        "sheet",
+        "line",
+        "date",
+        "description",
+        "debit",
+        "credit",
+        "balance",
+        "field_ids",
+        "status",
+        "memos",
+        "memos_agree"
+      ],
+      "title": "Transaction",
+      "type": "object"
+    }
+  },
+  "properties": {
+    "schema_version": {
+      "default": "1.0",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "run": {
+      "$ref": "#/$defs/RunInfo"
+    },
+    "pages": {
+      "items": {
+        "$ref": "#/$defs/Page"
+      },
+      "title": "Pages",
+      "type": "array"
+    },
+    "fields": {
+      "items": {
+        "$ref": "#/$defs/BundleField"
+      },
+      "title": "Fields",
+      "type": "array"
+    },
+    "documents": {
+      "items": {
+        "$ref": "#/$defs/Document"
+      },
+      "title": "Documents",
+      "type": "array"
+    },
+    "accounts": {
+      "items": {
+        "$ref": "#/$defs/Account"
+      },
+      "title": "Accounts",
+      "type": "array"
+    },
+    "transactions": {
+      "items": {
+        "$ref": "#/$defs/Transaction"
+      },
+      "title": "Transactions",
+      "type": "array"
+    },
+    "links": {
+      "items": {
+        "$ref": "#/$defs/Link"
+      },
+      "title": "Links",
+      "type": "array"
+    }
+  },
+  "required": [
+    "run",
+    "pages",
+    "fields",
+    "documents",
+    "accounts",
+    "transactions",
+    "links"
+  ],
+  "title": "Bundle",
+  "type": "object"
+}

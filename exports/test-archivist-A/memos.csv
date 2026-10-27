@@ -1,0 +1,122 @@
+page_id,memo_no,date,account_no,counterparty,amount,amount_words,ledger_ref,status,posted_account_no,txn_id,amount_pence,agrees
+memo-0001,034146,25/10/87,84608901,Payne PLC,419.75,Four hundred and nineteen pounds and seventy-five pence,Sheet 43 / Line 06,accepted,84608901,card-01-1:06,41975,1
+memo-0002,034147,29/10/87,84608901,Dr Philip Hill,91.44,Ninety-one pounds and forty-four pence,Sheet 43 / Line 08,accepted,84608901,card-01-1:08,9144,1
+memo-0003,034148,27/10/87,84608901,Gail Lees,211.57,Two hundred and eleven pounds and fifty-seven pence,Sheet 43 / Line 09,accepted,84608901,card-01-1:09,21157,1
+memo-0004,034149,03/11/87,84608901,Eastmoor Electricity Board,22.48,Twenty-two pounds and forty-eight pence,Sheet 43 / Line 10,accepted,84608901,card-01-1:10,2248,1
+memo-0005,034150,26/11/87,84608901,Mistry Group,96.17,Ninety-six pounds and seventeen pence,Sheet 43 / Line 17,accepted,84608901,card-01-1:17,9617,1
+memo-0006,034151,14/12/87,84608901,Hardy-Wilkins,130.69,one hundred and thirty pounds and sixty-nine pence,Sheet 44 / Line 06,accepted,84608901,card-01-2:06,13069,1
+memo-0007,034152,30/12/87,84608901,District council Rates office,25.55,Twenty-five pounds and fifty-five pence,Sheet 44 / Line 10,review,84608901,card-01-2:10,2555,1
+memo-0008,034153,07/01/88,84608901,Mrs Georgia Payne,218.43,Two hundred and eighteen pounds and forty-three pence,Sheet 44 / Line 12,accepted,84608901,card-01-2:12,21843,1
+memo-0009,034154,12/01/88,84608901,Eastmoor Electricity Board,44.26,Forty-four pounds and twenty-six pence,Sheet 44 / Line 13,review,84608901,card-01-2:13,4426,1
+memo-0010,034155,01/03/88,,District Council Rates Office,,Twenty-six pounds and sixty-one pence,Sheet 45 / Line 08,abstained,,,,
+memo-0011,034156,14/03/88,84608901,Dr Thomas Jones,426.64,Four hundred and twenty-six pounds and sixty-four pence,Sheet 45 / Line 12,accepted,84608901,card-01-3:12,42664,1
+memo-0012,034157,04/04/88,84608901,Mansfield Assurance Society,28.12,Twenty-eight pounds and twelve pence,Sheet 45 / Line 18,review,84608901,card-01-3:18,2812,1
+memo-0013,034158,17/12/87,55834596,District Council Rates Office,49.80,Forty-nine pounds and eighty pence,Sheet 5 / Line 01,accepted,55834596,card-02-1:01,4980,1
+memo-0014,034159,04/01/88,55834596,Gary Barry,61.61,Sixty-one pounds and sixty-one pence,Sheet 5 / Line 08,review,55834596,card-02-1:08,6161,1
+memo-0015,034160,06/01/88,55834596,Patel Group,384.53,Three hundred and eighty-four pounds and fifty-three pence,Sheet 5 / Line 11,review,55834596,card-02-1:11,38453,1
+memo-0016,034161,22/01/88,55834596,"Morgan, Marshall and Howells",286.84,Two hundred and eighty-six pounds and eighty-four pence,Sheet 5 / Line 14,accepted,55834596,card-02-1:14,28684,1
+memo-0017,034162,05/02/88.,55834546,Bruce Roberts,"216, 73",Two hundred and sixteen pounds and seventy-three pence,Sheet 6 / Line 03,review,55834596,card-02-2:03,,0
+memo-0018,034163,14/02/88,55834596,Lowe Ltd,410.65,Four hundred and ten pounds and sixty-five pence,Sheet 6 / Line 07,review,55834596,card-02-2:07,41065,0
+memo-0019,034/64,05/03/88,55834596,Sheila Milliams,137.43,One hundred and thirty-seven pounds and forty-three pence,Sheet 6 / Line 13,review,55834596,card-02-2:13,13743,0
+memo-0020,034165,11/05/77,55834596,"Parker, Walker and Lyons",,Eleven pounds and one penny,Sheet 6 / Line 14,review,55834596,card-02-2:14,,0
+memo-0021,034166,29/03/88,55834596,Davies-Brooks,130.85,One hundred and thirty pounds and eighty-five pence,Sheet 7 / Line 02,review,55834596,card-02-3:02,13085,1
+memo-0022,034167,15/05/99,55754596,Callum Holden,,Two hundred and eighty three pounds and twenty nine pence,Sheet 7 / Line 15,abstained,55834596,card-02-3:15,,0
+memo-0023,034168,14/05/78,55754596,Lawrence Bates Parry,349.56,Three hundred and forty nine pounds and fifty six pence.,Sheet 7 / Line 17,review,55834596,card-02-3:17,34956,0
+memo-0024,034169,20/05/80,77945262,Wrenfield Assurance Society,20.75,Twenty pounds and seventy-five pence,Sheet 10 / Line 02,review,77945262,card-03-1:02,2075,1
+memo-0025,034170,24/05/80,77945262,District Council Rates Office,23.36,Twenty-three pounds and thirty-six pence,Sheet 10 / Line 03,accepted,77945262,card-03-1:03,2336,1
+memo-0026,034171,09/06/80,77945262.,chapman-Reid,32.73,Thirty-two pounds and seventy-three pence,Sheet 10 / Line 09,review,77945262,card-03-1:09,3273,0
+memo-0027,034172,15/06/80,77945262,Wrenfield Assurance Society,47.93,Forty-seven pounds and ninety-three pence,Sheet 10 / Line 10,review,77945262,card-03-1:10,4793,1
+memo-0028,034173,03/07/80,77945262,Lee PLC,5.32,Five pounds and thirty-two pence,Sheet 10 / Line 15,review,77945262,card-03-1:15,532,0
+memo-0029,034174,30/07/80,77945262,Gray Charlton,244.43,Two hundred and forty four pounds and forty-three pence,Sheet 11 / Line 03,review,77945262,card-03-2:03,24443,1
+memo-0030,034175,19/08/80,77945262,Lee PLC,59.85,Fifty-nine pounds and eighty-five pence,Sheet 11 / Line 08,accepted,77945262,card-03-2:08,5985,1
+memo-0031,034176,27/10/80,77945262,Wrenfield Assurance Society,29.48,Twenty-nine pounds and forty-eight pence,Sheet 12 / Line 09,review,77945262,card-03-3:09,2948,1
+memo-0032,034177,02/11/80,77945262,Abbie Gilbert,293.91,Two hundred and ninety-three pounds and ninety-one pence,Sheet 12 / Line 11,accepted,77945262,card-03-3:11,29391,1
+memo-0033,034178,14/11/80,77945262,Keith Milliams,308.12,Three hundred and eight pounds and twelve pence,Sheet 12 / Line 16,review,77945262,card-03-3:16,30812,1
+memo-0034,034/79,22/06/91,20127332,"O'Brien, Jones and Cross",151.68,One hundred and fifty-one pounds and sixty-eight pence,Sheet 35 / Line 03,review,20127332,card-04-1:03,15168,1
+memo-0035,034180,03/08/91,20127332,Dr Ross Nolan,146.76,One hundred and forty-six pounds and seventy-six pence,Sheet 35 / Line 15,accepted,20127332,card-04-1:15,14676,1
+memo-0036,034181,09/09/91,20127332,Eastmoor Electricity Board,61.53,Sixty-one pounds and fifty-three pence,Sheet 36 / Line 05,review,20127332,card-04-2:05,6153,1
+memo-0037,034182,22/10/91,20127332,Fletcher-Rahman,128.32,one hundred and twenty-eight pounds and thirty-two pence,Sheet 36 / Line 18,review,20127332,card-04-2:18,12832,0
+memo-0038,034183,27/11/91,20127332,Lynn Fuller,237.77,Two hundred and thirty-seven pounds and seventy-seven pence,Sheet 37 / Line 12,review,20127332,card-04-3:12,23777,1
+memo-0039,034184,15/02/94,51448960,Edwards Inc,195.64,One hundred and ninety-five pounds and sixty-four pence,Sheet 27 / Line 04,review,51448960,card-05-1:04,19564,1
+memo-0040,034185,03/03/94,51448960,Miss Jade Ryan,24.91,Twenty four pounds and ninety one pence,Sheet 27 / Line 08,review,51448960,card-05-1:08,2491,1
+memo-0041,034186,12/03/94,51448960,James Davis,413.69,Four hundred and thirteen pounds and sixty-nine pence,Sheet 27 / Line 14,accepted,51448960,card-05-1:14,41369,1
+memo-0042,034187,18/03/94,51448960,Green Ltd,397.28,Three hundred and ninetyseven pounds and twenty-eight pence,Sheet 27 / Line 15,accepted,51448960,card-05-1:15,39728,1
+memo-0043,034188,23/03/94,51448960,District council Rates office,82.84,Eighty-two pounds and eighty-four pence,Sheet 27 / Line 16.,accepted,51448960,card-05-1:16,8284,1
+memo-0044,034-189,30/04/94,51448960,James LLC,437.54,Four hundred and thirty-seven pounds and fifty-four pence,Sheet 28 / Line 12,review,51448960,card-05-2:12,43754,1
+memo-0045,034190,29/06/94,51448960,District Council Rates Office,22.50,Twenty-two pounds and fifty pence,Sheet 29 / Line 11,review,51448960,card-05-3:11,2250,1
+memo-0046,034191,05/07/94,51448960,carl ward,132.14,one hundred and thirty-two pounds and fourteen pence,Sheet 29 / Line 12,accepted,51448960,card-05-3:12,13214,1
+memo-0047,034192,27/07/94,51448960,District council Rates office,45.85,Forty-five pounds and eighty-five pence,Sheet 29 / Line 18,review,51448960,card-05-3:18,4585,1
+memo-0048,034/93,19/05/80,51618255,Ronald Knight,165.08,One hundred and fifty six pounds and eight pence,Sheet 3 / Line 03,review,51618255,card-06-1:03,16508,0
+memo-0049,034194,23/06/80,51618255,Philip Swift,190.65,One hundred and ninety pounds and sixty-five pence,Sheet 3 / Line 11,accepted,51618255,card-06-1:11,19065,1
+memo-0050,034195,26/06/80,51618255,"Khan, Lyons and Brookes",,Thirty pounds and twenty-nine pence,Sheet 3 / Line 12,review,51618255,card-06-1:12,,1
+memo-0051,034196,28/06/80,51618255,District Council Rates Office,,,Sheet 3 / Line 14,abstained,51618255,card-06-1:14,,1
+memo-0052,034197,27/07/80,51618255,Mr Marcus Holt,286.28,Two hundred and eighty-six pounds and twenty-eight pence,Sheet 4 / Line 07,accepted,51618255,card-06-2:07,28628,1
+memo-0053,034198,04/09/80,51618255,District Council Rates Office,,Eighteen pounds and thirteen pence,Sheet 4 / Line 18,abstained,51618255,card-06-2:18,,1
+memo-0054,034199,12/09/80,51618255,Mrs Ashleigh Bell,445.37,Four hundred and forty-five pounds and thirty-seven pence,Sheet 5 / Line 03,review,51618255,card-06-3:03,44537,1
+memo-0055,034200,26/09/80,51618255,Eastmoor Electricity Board,58.47,Fifty-eight pounds and forty-seven pence,Sheet 5 / Line 08,review,51618255,card-06-3:08,5847,0
+memo-0056,034201,10/10/80,51618255,"West, Griffiths and Davies",354.66,Three hundred and fifty-four pounds and sixty-six pence,Sheet 5 / Line 13,review,51618255,card-06-3:13,35466,1
+memo-0057,034202,27/10/93,28349835,Francesca Wilson,240.95,Two hundred and forty pounds and ninety-five pence,Sheet 44 / Line 04,review,28349835,card-07-1:04,24095,1
+memo-0058,034203,16/11/93,28349835,Eastmoor Electricity Board,,Forty-four pounds and one penny,Sheet 44 / Line 11,abstained,28349835,card-07-1:11,,1
+memo-0059,034204,18/11/93,28349835,Wrenfield Assurance Society,58.01,Fifty-eight pounds and one penny,Sheet 44 / Line 12,accepted,28349835,card-07-1:12,5801,1
+memo-0060,034205,12/12/93,28349835,Ian Harris,25.41,Twenty-five pounds and forty-one pence,Sheet 45 / Line 01,review,27349735,card-07-2:01,2541,0
+memo-0061,034206,04/01/94,28349835,Brett Bull,118.88,one hundred and eighteen pounds and eighty-eight pence,Sheet 45 / Line 08,review,27349735,card-07-2:08,11888,0
+memo-0062,034207,14/01/94,28349835,"Kaur, Lloyd and Summers",212.50,Two hundred and twelve pounds and fifty pence,Sheet 45 / Line 12,review,27349735,card-07-2:12,21250,0
+memo-0063,034208,20/01/94,28349835,District Council Rates Office,88.32,Eighty-eight pounds and thirty-two pence,Sheet 45 / Line 14,review,27349735,card-07-2:14,8832,0
+memo-0064,034209,27/01/94,28349835,Jill Taylor-Moore,349.54,Three hundred and forty-nine pounds and fifty-four pence,Sheet 45 / Line 17,review,,,34954,
+memo-0065,034210,29/01/94,28349835,District council Rates office,94.37,Ninety-four pounds and thirty-seven pence,Sheet 45 / Line 18,review,27349735,card-07-2:18,9437,0
+memo-0066,034211,10/10/75,32493403,"Williams, Cox and Arnold",346.89,Three hundred and forty-six pounds and eighty-nine pence,Sheet 13 / Line 03,review,32493403,card-08-1:03,34689,1
+memo-0067,034212,31/10/75,32493403,Cross Howard,209.16,Two hundred and nine pounds and sixty-one pence,Sheet 13 / Line 09,review,32493403,card-08-1:09,20916,0
+memo-0068,034213,24/11/75,32493403,"Brown, Chamberlain and Dickinson",310.60,Three hundred and ten pounds and sixty pence,Sheet 13 / Line 18,accepted,32493403,card-08-1:18,31060,1
+memo-0069,034214,12/12/75,32493403,Nicole Hart,168.19,One hundred and sixty-eight pounds and nineteen pence,Sheet 14 / Line 05,accepted,32493403,card-08-2:05,16819,1
+memo-0070,034215,17/12/75,32493403,Eastmoor Electricity Board,19.89,Nineteen pounds and eighty-nine pence,Sheet 14 / Line 09,accepted,32493403,card-08-2:09,1989,1
+memo-0071,034216,16/12/75,32493403,Dr Leigh Boyle,289.77,Two hundred and eighty-nine pounds and seventy-seven pence,Sheet 14 / Line 10,review,32493403,card-08-2:10,28977,1
+memo-0072,034217,17/12/75,32493403,Kathleen Hunt,124.55,One hundred and twenty-four pounds and fifty-five pence,Sheet 14 / Line 11,accepted,32493403,card-08-2:11,12455,1
+memo-0073,034218,18/12/75,32493403,Eastmoor Electricity Board,23.22,Twenty-two pounds and thirty-two pence,Sheet 14 / Line 12,review,32493403,card-08-2:12,2322,0
+memo-0074,034219,08/01/76,32493403,"Stevenson, Walker and Yates",427.46,Four hundred and twenty-seven pounds and forty-Six pence,Sheet 15 / Line 02,review,32493403,card-08-3:02,42746,1
+memo-0075,034220,13/01/76,32493403,"Howard, Davies and Hughes",162.06,One hundred and sixty-two pounds and six pence,Sheet 15 / Line 05,review,32493403,card-08-3:05,16206,1
+memo-0076,034221,02/02/76,32493403,"Roberts, Smith and o'Brien",152.85,one hundred and fifty-two pounds and eighty-five pence,Sheet 15 / Line 09,accepted,32493403,card-08-3:09,15285,1
+memo-0077,034222,11/02/76,32493403,Wrenfield Assurance Society,45.33,Forty five pounds and thirty three pence,Sheet 15 / Line 13,review,32493403,card-08-3:13,4533,1
+memo-0078,034223,29/02/76,32493403,Hudson Inc,377.87,Three hundred and seventy-seven pounds and eighty-seven pence,Sheet 15 / Line 18,review,32493403,card-08-3:18,37787,1
+memo-0079,034224,01/02/89,58364924,Eastmoor Electricity Board,64.65,Sixty-four pounds and sixty-five pence,Sheet 53 / Line 02,accepted,58364924,card-09-1:02,6465,1
+memo-0080,034225,08/02/89,58364924,District Council Rates Office,48.39,Forty-eight pounds and thirty-nine pence,Sheet 53 / Line 05,accepted,58364924,card-09-1:05,4839,1
+memo-0081,034226,12/02/89,58364924,Barry Harris,,,Sheet 53 / Line 07,abstained,58364924,card-09-1:07,,1
+memo-0082,054227,04/03/29,57364924,District Council Rates Office,,Ninety four pounds and thirty two pence,Sheet 53 / Line 13,review,58364924,card-09-1:13,,0
+memo-0083,034228,18/03/89,58364924,Mrenfield Assurance society,22.81,Twenty-two pounds and eighty-one pence,Sheet 53 / Line 17,review,58364924,card-09-1:17,2281,1
+memo-0084,034229,25/03/89,58364924,District Council Rates Office,35.69,Thirty five pounds and sixty-nine pence,Sheet 54 / Line 01,review,58364924,card-09-2:01,3569,1
+memo-0085,034230,10/04/99,59364924,Mayfield Assurance Society,,Forty pounds and twenty one pence,Sheet 04 / Line 08,review,,,,
+memo-0086,034231,29/04/89,58364924,Eastmoor Electricity Board,72.58,Seventy-two pounds and fifty-eight pence,Sheet 54 / Line 11,accepted,58364924,card-09-2:11,7258,1
+memo-0087,034232,02/05/89,58364924,Sheila Wood-Mccarthy,,Ninety-four pounds and forty-four pence,Sheet 54 / Line 12,review,58364924,card-09-2:12,,1
+memo-0088,034233,27/05/89,58364924,Wrenfield Assurance Society,46.48,Forty-six pounds and forty-eight pence,Sheet 55 / Line 01,review,58364924,card-09-3:01,4648,0
+memo-0089,034-234,08/06/89,58364924,"Jones, O'Neill and Jones",46.57,Forty-six pounds and fifty-seven pence,Sheet 55 / Line 07.,review,58364924,card-09-3:07,4657,1
+memo-0090,034235,26/06/89,58364924,"Dixon, Curtis and Stevenson",103.66,One hundred and three pounds and sixty-six pence,Sheet 55 / Line 11,review,58364924,card-09-3:11,10366,1
+memo-0091,034236,26/12/81,32170284,District Council Rates Office,,Thirty pounds and twenty pence,Sheet 42 / Line 03,review,32170284,card-10-1:03,,0
+memo-0092,034237,11/01/82,32170284,Pearce Group,273.67,Two hundred and seventy-three pounds and sixty-seven pence,Sheet 42 / Line 07,review,32170284,card-10-1:07,27367,0
+memo-0093,034238,28/01/82,32170284,District Council Rates Office,11.66,Eleven pounds and sixty-six pence,Sheet 42 / Line 10,review,32170284,card-10-1:10,1166,0
+memo-0094,034234,05/02/82,32170294,Mansfield Assurance Society,,Fifty-one pounds and thirty pence,Sheet 42 / Line 14,review,32170284,card-10-1:14,,0
+memo-0095,034340,06/02/82,32170294,Bradshaw Ltd,,One hundred and eighty-two pounds and ninety-one pence,Sheet 42 / Line 15,abstained,32170284,card-10-1:15,,0
+memo-0096,034241,18/02/82,32170284,Scott Clayton,259.47,Two hundred and ninety five pounds and forty seven pence,Sheet 43 / Line 02,review,32170284,card-10-2:02,25947,0
+memo-0097,034242,01/03/82,32170284,District council Rates office,28.33,Twenty-eight pounds and thirty-three pence,Sheet 43 / Line 04,accepted,32170284,card-10-2:04,2833,1
+memo-0098,034243,28/02/82.,32170284,George Kemp.,427.61,Four hundred and twenty-seven pounds and sixty-one pence,Sheet 43 / Line 05.,review,32170284,card-10-2:05,42761,1
+memo-0099,034244,09/03/82,32170284,Norris-Williams,146.44,one hundred and forty-six pounds and forty-four pence,Sheet 43 / Line 08,accepted,32170284,card-10-2:08,14644,1
+memo-0100,034245,11/03/82,32170284,Bruce Hill-Wilkinson,,Three hundred and thirty-one pounds and thirty-one pence,Sheet 43 / Line 09,abstained,32170284,card-10-2:09,,1
+memo-0101,034246,10/03/82,32170284,Holland Webb,"341,97",Three hundred and forty-nine pounds and seventeen pence,Sheet 43 / Line 10,review,32170284,card-10-2:10,,1
+memo-0102,034247,16/03/82,32170284,Benjamin Williams,203.58,Two hundred and three pounds and fifty-eight pence,Sheet 43 / Line 12,review,32170284,card-10-2:12,20358,1
+memo-0103,034248,28/04/82,32170284,Wrenfield Assurance Society,13.04,Thirteen pounds and four pence,Sheet 44 / Line 05,review,32170284,card-10-3:05,1304,1
+memo-0104,034249,12/05/82,32170284,Eastmoor Electricity Board,,Forty three pounds and eighty nine pence,Sheet 44 / Line 10,review,32170284,card-10-3:10,,1
+memo-0105,034250,09/06/82,32170284,District Council Rates Office,83.99,Eighty-three pounds. and ninety-nine pence,Sheet 44 / Line 17,accepted,32170284,card-10-3:17,8399,1
+memo-0106,034251,26/07/85,65422443,Eastmoor Electricity Board,35.45,Thirty four pounds and fifty five pence,Sheet 27 / Line 04,review,65422443,card-11-1:04,3545,0
+memo-0107,034252,07/08/85,65422443,Judith Thomas,446.92,Four hundred and forty-six pounds and ninety-two pence,Sheet 27 / Line 06,accepted,65422443,card-11-1:06,44692,1
+memo-0108,034253,17/08/85,65422443,Moran-McDonald,247.72,Two hundred and forty-seven pounds and seventy-two pence,Sheet 27 / Line 13,accepted,65422443,card-11-1:13,24772,1
+memo-0109,034254,31/08/85,65422443,Paula Lawson,23.70,Twenty-three pounds and seventy pence,Sheet 27 / Line 18,review,65422443,card-11-1:18,2370,1
+memo-0110,034255,11/10/85,65422443,Miss Wendy Parker,169.80,One hundred and sixty nine pounds and eighty pence,Sheet 28 / Line 13,review,,,16980,
+memo-0111,034256,12/11/85,65422443,Slater Ltd,209.59,Two hundred and nine pounds and fifty-nine pence,Sheet 29 / Line 07,review,65422443,card-11-3:07,20959,0
+memo-0112,034257,14/11/85,65422443,Patricia Ward,252.70,Two hundred and fifty-two pounds and seventy pence,Sheet 29 / Line 08,accepted,65422443,card-11-3:08,25270,1
+memo-0113,034258,17/11/95,65422443,Eastmoor Electricity Board,45.41,Forty-five pounds and forty-one pence,Sheet 29 / Line 09.,review,65422443,card-11-3:09,4541,0
+memo-0114,034259,27/11/85,65422443,Wrenfield Assurance Society,42.51,Forty-two pounds and fifty-one pence,Sheet 29. / Line 13,review,,,4251,
+memo-0115,034260,07/06/89,49/43/49,Wrenfield Assurance Society,41.76,Forty-one pounds and seventy-six pence,Sheet 20 / Line 01,review,49143149,card-12-1:01,4176,0
+memo-0116,034261,27/07/89,49143149,District council Rates Office,93.06,Ninety-three pounds and Six pence,Sheet 20 / Line 15,accepted,49143149,card-12-1:15,9306,1
+memo-0117,034262,08/08/89,49143149,Abdul Cooper,101.19,One hundred and one pounds and nineteen pence,Sheet 21 / Line 02,accepted,49143149,card-12-2:02,10119,1
+memo-0118,034263,27/08/89,49143149,wrenfield Assurance Society,38.67,Thirty-eight pounds and seventy-Six pence,Sheet 21 / Line 07,review,49143149,card-12-2:07,3867,0
+memo-0119,034264,17/09/89,49/43/49,Lawson-Finch,124.63,One hundred and twenty four pounds and sixty-three pence,Sheet 21 / Line 14,review,49143149,card-12-2:14,12463,0
+memo-0120,034265,03/10/89,49143149,Dr Geraldine Hewitt,85.52,Eighty-five pounds and fifty-two pence,Sheet 22 / Line 01,review,49143149,card-12-3:01,8552,1
+memo-0121,034266,25/11/89,49143149,Stephenson-Gibson,116.04,One hundred and sixteen pounds and four pence,Sheet 22 / Line 18,review,49143149,card-12-3:18,11604,0
