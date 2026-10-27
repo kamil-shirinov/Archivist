@@ -417,6 +417,30 @@ def test_a_memo_with_a_misread_account_is_found_by_its_posting():
     assert not any(is_unresolvable(f) for f in flags)
 
 
+def test_a_memo_posted_to_a_group_no_card_reads_is_unresolvable_not_a_crash():
+    """Three sheets of one holder with three different misread accounts: each is a group of one,
+    sheet 31 joins sheet 32's group, then sheet 32 moves on to sheet 33's, and sheet 32's key is
+    left holding sheet 31, which reads another account. A memo whose posting is sheet 31 found no
+    card reading that key to take the printed account from, and raised StopIteration.
+    """
+    pages = _sheets(
+        c31={"hdr:account_no": "11111111"},
+        c32={"hdr:account_no": "22222222"},
+        c33={"hdr:account_no": "33333333"},
+    )
+    memo = _memo(
+        "m1",
+        date="01/12/85",
+        amount="375.50",
+        amount_words="Three hundred and seventy-five pounds and fifty pence",
+        ledger_ref="Sheet 31 / Line 01",
+    )
+    flags = _by_field(_flags([*pages, memo]))
+    cited = flags[memo_field_id("m1", "ledger_ref")]
+    assert len(cited) == 1 and is_unresolvable(cited[0])
+    assert memo_field_id("m1", "account_no") not in flags
+
+
 # --- the runner and the report -----------------------------------------------------------------
 
 

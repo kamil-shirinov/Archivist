@@ -860,7 +860,9 @@ def _memo_ledger_check(memo: _Memo, accounts: dict[str, list[_Card]]) -> list[Fl
 
     If the memo's account has no such sheet in the batch, or its account can't be read, the one
     card whose cited line debits the memo's amount is taken as the posting and the memo's account
-    number is flagged with that card's.
+    number is flagged with that card's. A posting in a group that no card reads the account of
+    (the moves in _accounts can leave one) has no account number to flag with: the memo then has
+    no card, as below.
     """
     if memo.ref is None or (memo.account is None and memo.raw["account_no"] is None):
         return []
@@ -869,7 +871,8 @@ def _memo_ledger_check(memo: _Memo, accounts: dict[str, list[_Card]]) -> list[Fl
     account = memo.account
     matches = [c for c in accounts.get(account or "", []) if c.sheet == sheet]
     flags = []
-    if not matches and (posting := _posting(memo, accounts)):
+    posting = None if matches else _posting(memo, accounts)
+    if posting and any(c.account == posting[0] for c in accounts[posting[0]]):
         account, card = posting
         detail = (
             f"the memo's account reads {memo.raw['account_no']!r}, but sheet {sheet} line "
