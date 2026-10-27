@@ -49,3 +49,4 @@ uv run pytest -q
 - [x] P13 Muse Spark Open on Baseten
 - [x] P14 arms and second look
 - [x] P15 frozen test set and pre-registration
+- [x] P16 pre-registered test runs

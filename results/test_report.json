@@ -1,0 +1,1064 @@
+{
+  "what": "Pre-registered test-set evaluation (P16): four configurations, each run once.",
+  "preregistration": "PREREGISTRATION.md",
+  "split": "test",
+  "manifest_sha256": "78db32f34cdb7a2aa2fb5ab4f24e5d9540d11729460e9657b604b141c250c1e4",
+  "n_pages": 157,
+  "n_fields": 4267,
+  "policy": "v2",
+  "bootstrap": {
+    "unit": "page",
+    "resamples": 2000,
+    "seed": 0
+  },
+  "configurations": {
+    "baseline": {
+      "label": "Baseline",
+      "what": "Muse Spark 1.3 Contributor reads each page once; every value is accepted",
+      "config": "config/models.toml",
+      "runs": {
+        "extraction": {
+          "run": "test-baseline",
+          "config": {
+            "extractor": {
+              "backend": "meta",
+              "model_id": "muse-spark-1.3-contributor"
+            },
+            "rereader": {
+              "backend": "meta",
+              "model_id": "muse-spark-1.3-contributor"
+            },
+            "segmenter": {
+              "backend": "meta",
+              "model_id": "sam-3.1"
+            }
+          },
+          "citations": "S0+ink",
+          "counts": {
+            "pages": 157,
+            "extracted": 157,
+            "failed": 0,
+            "by_doc_type": {
+              "ledger_card": 36,
+              "payment_memo": 121
+            }
+          },
+          "failed_pages": {},
+          "sessions": 1,
+          "aborted": [],
+          "cost_usd": 0.12776629999999933
+        }
+      },
+      "stats": {
+        "n_fields": 4267,
+        "n_wrong": 189,
+        "n_correct": 4025,
+        "n_accepted": 4251,
+        "n_review": 0,
+        "n_abstained": 16,
+        "coverage": 0.9962502929458636,
+        "review_rate": 0.0,
+        "errors_caught": 0,
+        "catch_rate": 0.0,
+        "errors_missed": 189,
+        "error_rate_accepted": 0.04446012702893437,
+        "false_alarms": 0,
+        "false_alarm_rate": 0.0,
+        "n_proposed": 0,
+        "proposed_equals_printed": 0,
+        "proposal_accuracy": null,
+        "proposed_on_wrong": 0,
+        "proposal_fixes": 0,
+        "proposed_by_reread_chain": 0,
+        "reread_chain_proposals_right": 0,
+        "n_source_errors": 26,
+        "source_errors_found": 0,
+        "source_error_recall": 0.0,
+        "reread_fields": 0,
+        "reread_on_wrong": 0,
+        "reread_agreed_with_wrong": 0,
+        "independence": null,
+        "reread_on_correct": 0,
+        "reread_agreed_with_correct": 0,
+        "reread_confirmation_rate": null,
+        "error_rate_accepted_ci95": [
+          0.022756224324416978,
+          0.07141104294478527
+        ],
+        "catch_rate_ci95": [
+          0.0,
+          0.0
+        ],
+        "false_alarm_rate_ci95": [
+          0.0,
+          0.0
+        ],
+        "review_rate_ci95": [
+          0.0,
+          0.0
+        ],
+        "risk_coverage": [
+          [
+            0.9963,
+            0.0445
+          ]
+        ],
+        "wrong_unanswered": 0
+      },
+      "extraction_alone": {
+        "n_accepted": 4251,
+        "errors_missed": 189,
+        "error_rate_accepted": 0.04446012702893437,
+        "error_rate_accepted_ci95": [
+          0.022756224324416978,
+          0.07141104294478527
+        ]
+      },
+      "by_severity": {
+        "0": {
+          "n_pages": 40,
+          "n_fields": 1248,
+          "n_review": 0,
+          "review_rate": 0.0,
+          "n_wrong": 7,
+          "errors_caught": 0,
+          "n_accepted": 1248,
+          "errors_missed": 7
+        },
+        "1": {
+          "n_pages": 39,
+          "n_fields": 1065,
+          "n_review": 0,
+          "review_rate": 0.0,
+          "n_wrong": 4,
+          "errors_caught": 0,
+          "n_accepted": 1065,
+          "errors_missed": 4
+        },
+        "2": {
+          "n_pages": 39,
+          "n_fields": 713,
+          "n_review": 0,
+          "review_rate": 0.0,
+          "n_wrong": 17,
+          "errors_caught": 0,
+          "n_accepted": 713,
+          "errors_missed": 17
+        },
+        "3": {
+          "n_pages": 39,
+          "n_fields": 1241,
+          "n_review": 0,
+          "review_rate": 0.0,
+          "n_wrong": 161,
+          "errors_caught": 0,
+          "n_accepted": 1225,
+          "errors_missed": 161
+        }
+      },
+      "classification": {
+        "right": 157,
+        "pages": 157,
+        "accuracy": 1.0
+      },
+      "citation_accuracy": 0.9005416051206302,
+      "cost": {
+        "pages": 157,
+        "extraction_usd": 0.12776629999999933,
+        "verification_usd": 0.0,
+        "total_usd": 0.12776629999999933,
+        "per_page_usd": 0.0008137980891719703
+      }
+    },
+    "A": {
+      "label": "Archivist, arm A (headline)",
+      "what": "Muse Spark 1.3 Contributor reads every value in context and again in isolation, the documents' own checks, SAM 3.1 occlusion; policy v2",
+      "config": "config/arms/a.toml",
+      "runs": {
+        "extraction": {
+          "run": "test-baseline",
+          "config": {
+            "extractor": {
+              "backend": "meta",
+              "model_id": "muse-spark-1.3-contributor"
+            },
+            "rereader": {
+              "backend": "meta",
+              "model_id": "muse-spark-1.3-contributor"
+            },
+            "segmenter": {
+              "backend": "meta",
+              "model_id": "sam-3.1"
+            }
+          },
+          "citations": "S0+ink",
+          "counts": {
+            "pages": 157,
+            "extracted": 157,
+            "failed": 0,
+            "by_doc_type": {
+              "ledger_card": 36,
+              "payment_memo": 121
+            }
+          },
+          "failed_pages": {},
+          "sessions": 1,
+          "aborted": [],
+          "cost_usd": 0.12776629999999933
+        },
+        "verification": {
+          "run": "test-archivist-A",
+          "config": {
+            "extractor": {
+              "backend": "meta",
+              "model_id": "muse-spark-1.3-contributor"
+            },
+            "rereader": {
+              "backend": "meta",
+              "model_id": "muse-spark-1.3-contributor"
+            },
+            "segmenter": {
+              "backend": "meta",
+              "model_id": "sam-3.1"
+            }
+          },
+          "policy": "v2",
+          "counts": {
+            "pages": 157,
+            "fields": 4267,
+            "by_status": {
+              "abstained": 16,
+              "accepted": 3330,
+              "review": 921
+            },
+            "by_confidence": {
+              "0.0": 16,
+              "0.3": 904,
+              "0.5": 17,
+              "0.9": 55,
+              "0.99": 3275
+            },
+            "by_route": {
+              "arithmetic": 2137,
+              "reread": 2130
+            },
+            "by_reread_status": {
+              "agrees": 3460,
+              "disagrees": 765,
+              "failed": 1,
+              "illegible": 25,
+              "not_reread": 16
+            },
+            "occluded": 138,
+            "proposed_corrections": 17,
+            "proposed_by": {
+              "check": 3,
+              "reread_chain": 14
+            },
+            "reread_chain_flags": 906,
+            "by_second_look": {
+              "agrees": 211,
+              "disagrees": 558,
+              "illegible": 21,
+              "not_reread": 3477
+            },
+            "by_policy": {
+              "v2": {
+                "by_status": {
+                  "abstained": 16,
+                  "accepted": 3330,
+                  "review": 921
+                },
+                "proposed_corrections": 17
+              },
+              "v3": {
+                "by_status": {
+                  "abstained": 16,
+                  "accepted": 3523,
+                  "review": 728
+                },
+                "proposed_corrections": 310
+              }
+            }
+          },
+          "calls": {
+            "segmenter_pages": 157,
+            "regions": {
+              "stain": 35,
+              "stamp": 92
+            },
+            "rereads": 4251,
+            "rereads_from_cache": 0,
+            "rereads_failed": 1,
+            "second_looks": 790,
+            "second_looks_from_cache": 0,
+            "second_looks_failed": 0
+          },
+          "spent_usd": 1.2643327000000006,
+          "cost_full_usd": 1.264332699999994
+        }
+      },
+      "stats": {
+        "n_fields": 4267,
+        "n_wrong": 189,
+        "n_correct": 4025,
+        "n_accepted": 3330,
+        "n_review": 921,
+        "n_abstained": 16,
+        "coverage": 0.7804077806421373,
+        "review_rate": 0.21584251230372628,
+        "errors_caught": 177,
+        "catch_rate": 0.9365079365079365,
+        "errors_missed": 12,
+        "error_rate_accepted": 0.0036036036036036037,
+        "false_alarms": 713,
+        "false_alarm_rate": 0.17714285714285713,
+        "n_proposed": 17,
+        "proposed_equals_printed": 6,
+        "proposal_accuracy": 0.35294117647058826,
+        "proposed_on_wrong": 6,
+        "proposal_fixes": 6,
+        "proposed_by_reread_chain": 14,
+        "reread_chain_proposals_right": 3,
+        "n_source_errors": 26,
+        "source_errors_found": 23,
+        "source_error_recall": 0.8846153846153846,
+        "reread_fields": 4250,
+        "reread_on_wrong": 189,
+        "reread_agreed_with_wrong": 35,
+        "independence": 0.18518518518518517,
+        "reread_on_correct": 4061,
+        "reread_agreed_with_correct": 3425,
+        "reread_confirmation_rate": 0.8433883279980301,
+        "error_rate_accepted_ci95": [
+          0.0013943534865770222,
+          0.006657257439348398
+        ],
+        "catch_rate_ci95": [
+          0.8830977845683727,
+          0.972829759106933
+        ],
+        "false_alarm_rate_ci95": [
+          0.12466280925622718,
+          0.2341973013527203
+        ],
+        "review_rate_ci95": [
+          0.1543518062762122,
+          0.2786501054605109
+        ],
+        "risk_coverage": [
+          [
+            0.7675,
+            0.0037
+          ],
+          [
+            0.7804,
+            0.0036
+          ],
+          [
+            0.7844,
+            0.0054
+          ],
+          [
+            0.9963,
+            0.0445
+          ],
+          [
+            1.0,
+            0.048
+          ]
+        ],
+        "wrong_unanswered": 0
+      },
+      "extraction_alone": {
+        "n_accepted": 4251,
+        "errors_missed": 189,
+        "error_rate_accepted": 0.04446012702893437,
+        "error_rate_accepted_ci95": [
+          0.022756224324416978,
+          0.07141104294478527
+        ]
+      },
+      "by_severity": {
+        "0": {
+          "n_pages": 40,
+          "n_fields": 1248,
+          "n_review": 130,
+          "review_rate": 0.10416666666666667,
+          "n_wrong": 7,
+          "errors_caught": 6,
+          "n_accepted": 1118,
+          "errors_missed": 1
+        },
+        "1": {
+          "n_pages": 39,
+          "n_fields": 1065,
+          "n_review": 74,
+          "review_rate": 0.06948356807511737,
+          "n_wrong": 4,
+          "errors_caught": 2,
+          "n_accepted": 991,
+          "errors_missed": 2
+        },
+        "2": {
+          "n_pages": 39,
+          "n_fields": 713,
+          "n_review": 168,
+          "review_rate": 0.23562412342215988,
+          "n_wrong": 17,
+          "errors_caught": 13,
+          "n_accepted": 545,
+          "errors_missed": 4
+        },
+        "3": {
+          "n_pages": 39,
+          "n_fields": 1241,
+          "n_review": 549,
+          "review_rate": 0.44238517324738114,
+          "n_wrong": 161,
+          "errors_caught": 156,
+          "n_accepted": 676,
+          "errors_missed": 5
+        }
+      },
+      "classification": {
+        "right": 157,
+        "pages": 157,
+        "accuracy": 1.0
+      },
+      "citation_accuracy": 0.9005416051206302,
+      "cost": {
+        "pages": 157,
+        "extraction_usd": 0.12776629999999933,
+        "verification_usd": 1.264332699999994,
+        "total_usd": 1.3920989999999933,
+        "per_page_usd": 0.008866872611464925
+      }
+    },
+    "B": {
+      "label": "Archivist, arm B (all open weights)",
+      "what": "Muse Spark Open on Baseten for the extraction and both reads, the documents' own checks, SAM 3.1 occlusion; policy v2",
+      "config": "config/arms/b.toml",
+      "runs": {
+        "extraction": {
+          "run": "test-baseline-open",
+          "config": {
+            "extractor": {
+              "backend": "baseten",
+              "model_id": "meta-models/muse-spark-open-1026"
+            },
+            "rereader": {
+              "backend": "baseten",
+              "model_id": "meta-models/muse-spark-open-1026"
+            },
+            "segmenter": {
+              "backend": "meta",
+              "model_id": "sam-3.1"
+            }
+          },
+          "citations": "S0+ink",
+          "counts": {
+            "pages": 157,
+            "extracted": 157,
+            "failed": 0,
+            "by_doc_type": {
+              "ledger_card": 36,
+              "payment_memo": 121
+            }
+          },
+          "failed_pages": {},
+          "sessions": 2,
+          "aborted": [
+            "KeyboardInterrupt: "
+          ],
+          "cost_usd": 1.9328344999999985
+        },
+        "verification": {
+          "run": "test-archivist-B",
+          "config": {
+            "extractor": {
+              "backend": "baseten",
+              "model_id": "meta-models/muse-spark-open-1026"
+            },
+            "rereader": {
+              "backend": "baseten",
+              "model_id": "meta-models/muse-spark-open-1026"
+            },
+            "segmenter": {
+              "backend": "meta",
+              "model_id": "sam-3.1"
+            }
+          },
+          "policy": "v2",
+          "counts": {
+            "pages": 157,
+            "fields": 4267,
+            "by_status": {
+              "abstained": 14,
+              "accepted": 3296,
+              "review": 957
+            },
+            "by_confidence": {
+              "0.0": 14,
+              "0.3": 932,
+              "0.5": 25,
+              "0.9": 55,
+              "0.99": 3241
+            },
+            "by_route": {
+              "arithmetic": 2137,
+              "reread": 2130
+            },
+            "by_reread_status": {
+              "agrees": 3425,
+              "disagrees": 796,
+              "illegible": 32,
+              "not_reread": 14
+            },
+            "occluded": 129,
+            "proposed_corrections": 25,
+            "proposed_by": {
+              "check": 2,
+              "reread_chain": 23
+            },
+            "reread_chain_flags": 811,
+            "by_second_look": {
+              "agrees": 296,
+              "disagrees": 504,
+              "illegible": 28,
+              "not_reread": 3439
+            },
+            "by_policy": {
+              "v2": {
+                "by_status": {
+                  "abstained": 14,
+                  "accepted": 3296,
+                  "review": 957
+                },
+                "proposed_corrections": 25
+              },
+              "v3": {
+                "by_status": {
+                  "abstained": 14,
+                  "accepted": 3572,
+                  "review": 681
+                },
+                "proposed_corrections": 239
+              }
+            }
+          },
+          "calls": {
+            "segmenter_pages": 157,
+            "regions": {
+              "stain": 35,
+              "stamp": 92
+            },
+            "rereads": 4253,
+            "rereads_from_cache": 303,
+            "rereads_failed": 0,
+            "second_looks": 828,
+            "second_looks_from_cache": 16,
+            "second_looks_failed": 0
+          },
+          "spent_usd": 5.7759350000000005,
+          "cost_full_usd": 6.928147000000003
+        }
+      },
+      "stats": {
+        "n_fields": 4267,
+        "n_wrong": 202,
+        "n_correct": 4013,
+        "n_accepted": 3296,
+        "n_review": 957,
+        "n_abstained": 14,
+        "coverage": 0.7724396531520975,
+        "review_rate": 0.22427935317553316,
+        "errors_caught": 192,
+        "catch_rate": 0.9504950495049505,
+        "errors_missed": 10,
+        "error_rate_accepted": 0.003033980582524272,
+        "false_alarms": 734,
+        "false_alarm_rate": 0.18290555693994517,
+        "n_proposed": 25,
+        "proposed_equals_printed": 15,
+        "proposal_accuracy": 0.6,
+        "proposed_on_wrong": 16,
+        "proposal_fixes": 15,
+        "proposed_by_reread_chain": 23,
+        "reread_chain_proposals_right": 13,
+        "n_source_errors": 26,
+        "source_errors_found": 22,
+        "source_error_recall": 0.8461538461538461,
+        "reread_fields": 4253,
+        "reread_on_wrong": 202,
+        "reread_agreed_with_wrong": 31,
+        "independence": 0.15346534653465346,
+        "reread_on_correct": 4051,
+        "reread_agreed_with_correct": 3394,
+        "reread_confirmation_rate": 0.8378178227598124,
+        "error_rate_accepted_ci95": [
+          0.0012375759702939711,
+          0.0054119602842047695
+        ],
+        "catch_rate_ci95": [
+          0.8888888888888888,
+          0.9795935662400553
+        ],
+        "false_alarm_rate_ci95": [
+          0.14178539216250766,
+          0.2288718781369553
+        ],
+        "review_rate_ci95": [
+          0.17010127007566378,
+          0.2833077007974727
+        ],
+        "risk_coverage": [
+          [
+            0.7596,
+            0.0031
+          ],
+          [
+            0.7724,
+            0.003
+          ],
+          [
+            0.7783,
+            0.0078
+          ],
+          [
+            0.9967,
+            0.0475
+          ],
+          [
+            1.0,
+            0.0506
+          ]
+        ],
+        "wrong_unanswered": 0
+      },
+      "extraction_alone": {
+        "n_accepted": 4253,
+        "errors_missed": 202,
+        "error_rate_accepted": 0.04749588525746532,
+        "error_rate_accepted_ci95": [
+          0.023314592472828268,
+          0.07781404374242562
+        ]
+      },
+      "by_severity": {
+        "0": {
+          "n_pages": 40,
+          "n_fields": 1248,
+          "n_review": 151,
+          "review_rate": 0.12099358974358974,
+          "n_wrong": 9,
+          "errors_caught": 6,
+          "n_accepted": 1097,
+          "errors_missed": 3
+        },
+        "1": {
+          "n_pages": 39,
+          "n_fields": 1065,
+          "n_review": 134,
+          "review_rate": 0.12582159624413145,
+          "n_wrong": 7,
+          "errors_caught": 6,
+          "n_accepted": 931,
+          "errors_missed": 1
+        },
+        "2": {
+          "n_pages": 39,
+          "n_fields": 713,
+          "n_review": 162,
+          "review_rate": 0.22720897615708274,
+          "n_wrong": 10,
+          "errors_caught": 7,
+          "n_accepted": 551,
+          "errors_missed": 3
+        },
+        "3": {
+          "n_pages": 39,
+          "n_fields": 1241,
+          "n_review": 510,
+          "review_rate": 0.410958904109589,
+          "n_wrong": 176,
+          "errors_caught": 173,
+          "n_accepted": 717,
+          "errors_missed": 3
+        }
+      },
+      "classification": {
+        "right": 157,
+        "pages": 157,
+        "accuracy": 1.0
+      },
+      "citation_accuracy": 0.9348309059491483,
+      "cost": {
+        "pages": 157,
+        "extraction_usd": 1.9328344999999985,
+        "verification_usd": 6.928147000000003,
+        "total_usd": 8.860981500000001,
+        "per_page_usd": 0.05643937261146498
+      }
+    },
+    "C": {
+      "label": "Archivist, arm C (two models)",
+      "what": "Muse Spark 1.3 Contributor reads in context, Muse Spark Open re-reads in isolation, the documents' own checks, SAM 3.1 occlusion; policy v2",
+      "config": "config/arms/c.toml",
+      "runs": {
+        "extraction": {
+          "run": "test-baseline",
+          "config": {
+            "extractor": {
+              "backend": "meta",
+              "model_id": "muse-spark-1.3-contributor"
+            },
+            "rereader": {
+              "backend": "meta",
+              "model_id": "muse-spark-1.3-contributor"
+            },
+            "segmenter": {
+              "backend": "meta",
+              "model_id": "sam-3.1"
+            }
+          },
+          "citations": "S0+ink",
+          "counts": {
+            "pages": 157,
+            "extracted": 157,
+            "failed": 0,
+            "by_doc_type": {
+              "ledger_card": 36,
+              "payment_memo": 121
+            }
+          },
+          "failed_pages": {},
+          "sessions": 1,
+          "aborted": [],
+          "cost_usd": 0.12776629999999933
+        },
+        "verification": {
+          "run": "test-archivist-C",
+          "config": {
+            "extractor": {
+              "backend": "meta",
+              "model_id": "muse-spark-1.3-contributor"
+            },
+            "rereader": {
+              "backend": "baseten",
+              "model_id": "meta-models/muse-spark-open-1026"
+            },
+            "segmenter": {
+              "backend": "meta",
+              "model_id": "sam-3.1"
+            }
+          },
+          "policy": "v2",
+          "counts": {
+            "pages": 157,
+            "fields": 4267,
+            "by_status": {
+              "abstained": 16,
+              "accepted": 3224,
+              "review": 1027
+            },
+            "by_confidence": {
+              "0.0": 16,
+              "0.3": 1008,
+              "0.5": 19,
+              "0.9": 57,
+              "0.99": 3167
+            },
+            "by_route": {
+              "arithmetic": 2137,
+              "reread": 2130
+            },
+            "by_reread_status": {
+              "agrees": 3352,
+              "disagrees": 873,
+              "illegible": 26,
+              "not_reread": 16
+            },
+            "occluded": 138,
+            "proposed_corrections": 19,
+            "proposed_by": {
+              "check": 4,
+              "reread_chain": 15
+            },
+            "reread_chain_flags": 1119,
+            "by_second_look": {
+              "agrees": 299,
+              "disagrees": 582,
+              "illegible": 18,
+              "not_reread": 3368
+            },
+            "by_policy": {
+              "v2": {
+                "by_status": {
+                  "abstained": 16,
+                  "accepted": 3224,
+                  "review": 1027
+                },
+                "proposed_corrections": 19
+              },
+              "v3": {
+                "by_status": {
+                  "abstained": 16,
+                  "accepted": 3505,
+                  "review": 746
+                },
+                "proposed_corrections": 310
+              }
+            }
+          },
+          "calls": {
+            "segmenter_pages": 157,
+            "regions": {
+              "stain": 35,
+              "stamp": 92
+            },
+            "rereads": 4251,
+            "rereads_from_cache": 4251,
+            "rereads_failed": 0,
+            "second_looks": 899,
+            "second_looks_from_cache": 694,
+            "second_looks_failed": 0
+          },
+          "spent_usd": 0.2777309999999993,
+          "cost_full_usd": 7.1133380000000015
+        }
+      },
+      "stats": {
+        "n_fields": 4267,
+        "n_wrong": 189,
+        "n_correct": 4025,
+        "n_accepted": 3224,
+        "n_review": 1027,
+        "n_abstained": 16,
+        "coverage": 0.7555659714084837,
+        "review_rate": 0.2406843215373799,
+        "errors_caught": 174,
+        "catch_rate": 0.9206349206349206,
+        "errors_missed": 15,
+        "error_rate_accepted": 0.004652605459057072,
+        "false_alarms": 824,
+        "false_alarm_rate": 0.20472049689440994,
+        "n_proposed": 19,
+        "proposed_equals_printed": 6,
+        "proposal_accuracy": 0.3157894736842105,
+        "proposed_on_wrong": 7,
+        "proposal_fixes": 6,
+        "proposed_by_reread_chain": 15,
+        "reread_chain_proposals_right": 3,
+        "n_source_errors": 26,
+        "source_errors_found": 23,
+        "source_error_recall": 0.8846153846153846,
+        "reread_fields": 4251,
+        "reread_on_wrong": 189,
+        "reread_agreed_with_wrong": 38,
+        "independence": 0.20105820105820105,
+        "reread_on_correct": 4062,
+        "reread_agreed_with_correct": 3314,
+        "reread_confirmation_rate": 0.8158542589857213,
+        "error_rate_accepted_ci95": [
+          0.002210193509981502,
+          0.008111171830621327
+        ],
+        "catch_rate_ci95": [
+          0.8620518948446568,
+          0.9565284487385937
+        ],
+        "false_alarm_rate_ci95": [
+          0.15653979499547782,
+          0.2564305086260663
+        ],
+        "review_rate_ci95": [
+          0.18433421150923182,
+          0.29898023358716136
+        ],
+        "risk_coverage": [
+          [
+            0.7422,
+            0.0047
+          ],
+          [
+            0.7556,
+            0.0047
+          ],
+          [
+            0.76,
+            0.0068
+          ],
+          [
+            0.9963,
+            0.0445
+          ],
+          [
+            1.0,
+            0.048
+          ]
+        ],
+        "wrong_unanswered": 0
+      },
+      "extraction_alone": {
+        "n_accepted": 4251,
+        "errors_missed": 189,
+        "error_rate_accepted": 0.04446012702893437,
+        "error_rate_accepted_ci95": [
+          0.022756224324416978,
+          0.07141104294478527
+        ]
+      },
+      "by_severity": {
+        "0": {
+          "n_pages": 40,
+          "n_fields": 1248,
+          "n_review": 177,
+          "review_rate": 0.14182692307692307,
+          "n_wrong": 7,
+          "errors_caught": 6,
+          "n_accepted": 1071,
+          "errors_missed": 1
+        },
+        "1": {
+          "n_pages": 39,
+          "n_fields": 1065,
+          "n_review": 101,
+          "review_rate": 0.09483568075117371,
+          "n_wrong": 4,
+          "errors_caught": 2,
+          "n_accepted": 964,
+          "errors_missed": 2
+        },
+        "2": {
+          "n_pages": 39,
+          "n_fields": 713,
+          "n_review": 198,
+          "review_rate": 0.2776998597475456,
+          "n_wrong": 17,
+          "errors_caught": 13,
+          "n_accepted": 515,
+          "errors_missed": 4
+        },
+        "3": {
+          "n_pages": 39,
+          "n_fields": 1241,
+          "n_review": 551,
+          "review_rate": 0.44399677679290894,
+          "n_wrong": 161,
+          "errors_caught": 153,
+          "n_accepted": 674,
+          "errors_missed": 8
+        }
+      },
+      "classification": {
+        "right": 157,
+        "pages": 157,
+        "accuracy": 1.0
+      },
+      "citation_accuracy": 0.9005416051206302,
+      "cost": {
+        "pages": 157,
+        "extraction_usd": 0.12776629999999933,
+        "verification_usd": 7.1133380000000015,
+        "total_usd": 7.241104300000001,
+        "per_page_usd": 0.046121683439490455
+      }
+    }
+  },
+  "hypotheses": {
+    "H1": {
+      "claim": "The headline's error rate among accepted fields is lower than the baseline's, with non-overlapping 95% intervals.",
+      "met": true,
+      "numbers": {
+        "headline": {
+          "accepted": 3330,
+          "wrong": 12,
+          "rate": 0.0036036036036036037,
+          "ci95": [
+            0.0013943534865770222,
+            0.006657257439348398
+          ]
+        },
+        "baseline": {
+          "accepted": 4251,
+          "wrong": 189,
+          "rate": 0.04446012702893437,
+          "ci95": [
+            0.022756224324416978,
+            0.07141104294478527
+          ]
+        },
+        "lower": true,
+        "intervals_apart": true
+      },
+      "summary": "Archivist (arm A) accepted 3330 values and 12 were wrong: 0.36% (95% interval 0.14% to 0.67%). The baseline accepted 4251 values and 189 were wrong: 4.45% (95% interval 2.28% to 7.14%). Archivist's rate is lower and the intervals do not overlap."
+    },
+    "H2": {
+      "claim": "The headline catches at least 85% of wrong values.",
+      "met": true,
+      "numbers": {
+        "caught": 177,
+        "wrong": 189,
+        "rate": 0.9365079365079365,
+        "ci95": [
+          0.8830977845683727,
+          0.972829759106933
+        ],
+        "threshold": 0.85
+      },
+      "summary": "Of 189 wrong values, Archivist (arm A) sent 177 to review: 93.65% (95% interval 88.31% to 97.28%). The threshold is 85% or more."
+    },
+    "H3": {
+      "claim": "The headline sends at most 20% of fields to review.",
+      "met": false,
+      "numbers": {
+        "review": 921,
+        "fields": 4267,
+        "rate": 0.21584251230372628,
+        "ci95": [
+          0.1543518062762122,
+          0.2786501054605109
+        ],
+        "threshold": 0.2
+      },
+      "summary": "Archivist (arm A) sent 921 of 4267 fields to review: 21.58% (95% interval 15.44% to 27.87%). The threshold is 20% or less."
+    },
+    "H4": {
+      "claim": "The all-open-weights arm's error rate among accepted fields is below 1%.",
+      "met": true,
+      "numbers": {
+        "accepted": 3296,
+        "wrong": 10,
+        "rate": 0.003033980582524272,
+        "ci95": [
+          0.0012375759702939711,
+          0.0054119602842047695
+        ],
+        "threshold": 0.01
+      },
+      "summary": "Arm B accepted 3296 values and 10 were wrong: 0.30% (95% interval 0.12% to 0.54%). The threshold is below 1%, judged on the rate itself."
+    },
+    "H5": {
+      "claim": "The headline flags at least 90% of the planted source errors.",
+      "met": false,
+      "numbers": {
+        "found": 23,
+        "planted": 26,
+        "rate": 0.8846153846153846,
+        "threshold": 0.9
+      },
+      "summary": "Archivist (arm A) sent a field of 23 of 26 planted source errors to review: 88.46%. The threshold is 90% or more."
+    }
+  },
+  "notes": [
+    "One run of each configuration on one synthetic test set: 157 pages from 12 accounts, with source errors planted at a fixed rate. Real archives will differ.",
+    "The intervals resample pages as if they were independent, as pre-registered. Pages of one account share names, amounts and balances, so they are not, and the intervals may understate the uncertainty.",
+    "The headline (arm A, policy v2) was chosen on dev and val before the test set was run (D29). The test set decided nothing.",
+    "Error rate among accepted fields counts every accepted value that is not the printed one, including values accepted as blank. A page that failed to extract scores all its fields as omitted: they count as wrong values nobody caught, and are not accepted.",
+    "False alarms are correct values sent to review, not counting the fields of a planted source error, where a flag is a find. A source error counts as found when any of its fields is sent to review; the report does not check the reason given.",
+    "Classification and citation accuracy belong to the extraction run, so the arms that verify the same extraction share them. Citation accuracy is the share of correct values whose box has its centre inside the printed value's box.",
+    "Cost per page is computed from the price lists in the configs, not from invoices. Muse Spark 1.3 runs at Contributor prices (D19). Muse Spark Open's prices are the figures Baseten's marketing page prints, which is not a contract. Cached input is billed as ordinary input, so cost is overstated, never understated.",
+    "Arm B extracts with a different model, so its error rate measures the whole configuration, not the verification alone. The row 'extraction alone' shows what each arm's extraction run would have accepted without verification."
+  ]
+}
