@@ -1,0 +1,62 @@
+# Hand-written example of a document-type template (P21a). Not approved, so never registered:
+# it is validated with every other template, and no page is classified as it.
+identity:
+  family: gold_assets_and_liabilities
+  title: Gold Assets and Liabilities of the Treasury
+  description: >-
+    A Treasury Bulletin table "Gold Assets and Liabilities of the Treasury", in millions of
+    dollars: one row per calendar year or month, with the gold assets and four liability columns
+    (gold certificates, gold reserve against U.S. notes, the Stabilization Fund and gold in the
+    General Fund).
+  title_patterns:
+    - 'gold\s+assets\s+and\s+liabilities\s+of\s+the\s+treasury'
+
+layout:
+  unit: millions of dollars
+  precision: "0.1"
+  # The rows roll from issue to issue (the last five years, then the last thirteen months), so
+  # they are read top to bottom; September 1939 prints 18.
+  rows:
+    read: 24
+  columns:
+    - key: period
+      printed: End of calendar year or month
+      kind: text
+    - key: gold_assets
+      printed: Gold Assets
+      kind: money
+    - key: gold_certificates
+      printed: Liabilities - Gold Certificates 1/
+      kind: money
+    - key: gold_reserve
+      printed: Liabilities - Gold Reserve against U. S. notes, etc. 2/
+      kind: money
+    - key: stabilization_fund
+      printed: Liabilities - Stabilization Fund 3/
+      kind: money
+    - key: gold_in_general_fund
+      printed: Liabilities - Gold in General Fund
+      kind: money
+
+identities:
+  - id: assets_equal_liabilities
+    description: the gold assets equal the four liabilities
+    for_each: row
+    left:
+      cell: {column: gold_assets}
+    right:
+      sum:
+        columns: [gold_certificates, gold_reserve, stabilization_fund, gold_in_general_fund]
+
+provenance:
+  status: example, not approved
+  drafted_by:
+    kind: person
+    id: Archivist maintainers, by hand
+  drafted_on: 2026-10-27
+  evidence:
+    - >-
+      data/real/pages/1939-09/p057.jpg (development issue, Bulletin page 41), read by hand: the
+      identity holds on all 18 rows within its tolerance of 0.25 (five values printed to 0.1);
+      six rows are 0.1 apart and one 0.2, from the rounding of the printed figures
+      (tests/test_template.py).

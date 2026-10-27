@@ -19,7 +19,8 @@ Turns scanned financial archives into a verified database: every value cited to 
 src/archivist/schema.py — data contracts, including PageExtraction and the verdict models
 src/archivist/synth/ — world.py, render.py, degrade.py, build.py
 src/archivist/models/ — base.py, mock.py, cache.py, budget.py, meta_api.py, baseten_api.py, registry.py
-src/archivist/doctypes/ — __init__.py (DocType protocol, registry, AccountReader/PostingReader), ledger.py (cards and memos), words.py
+src/archivist/doctypes/ — __init__.py (DocType protocol, registry, AccountReader/PostingReader/RuleReader), ledger.py (cards and memos), template.py (types from template files), words.py
+templates/ — one <family>.yaml per template type; only approved ones are registered
 src/archivist/pipeline/ — extract.py, citations.py, checks.py, reread.py, occlusion.py, verify.py
 src/archivist/export/ — bundle.py, database.py, rules.py, schema.py
 src/archivist/eval/ — metrics.py, run_eval.py, analyse.py, citation_experiment.py, compare_arms.py, compare_extractors.py, sam_spike.py, test_report.py
@@ -37,6 +38,8 @@ uv run python -m archivist.ingest.fraser  # fetch and render the real pages; Ctr
 
 ## Document types
 - A new type implements DocType and registers in doctypes/__init__.py; verify.py and the exporter need no edit. A type whose pages link to others also implements AccountReader or PostingReader; one that doesn't is exported page by page.
+- A table type can instead be a template, templates/<family>.yaml (doctypes/template.py): identity (family, printed title, classifier description, title patterns), layout (unit, printed precision, fixed or read rows, columns with kind money/count/percent/date/text), identities and provenance. Identities are structured expressions (cell, sum over named rows or columns, difference, a cell of another table of the same issue), worked out in Decimal and never eval'd; each holds within n half-units of the printed precision for n printed values. A failed one flags every cell with the value it implies; its detail names its rule ("identity <family>.<id> on ..."), which the exporter reads through RuleReader.
+- Every template file must validate, drafts included, or the import fails; only status "approved" (with approver, date and evidence) is registered, and an approved template may refer only to approved ones. Registering one changes the classifier prompt, so committed runs no longer replay: approve templates only for new runs. A page's issue, for cross-table identities, is its id up to the last "_".
 
 ## Export
 - `uv run python -m archivist.export.bundle --run <run> [--truth] [--check]` writes data/bundles/<run>/bundle.json; `archivist.export.database --run <run>` writes exports/<run>/archivist.sqlite and one CSV per table (accounts, documents, transactions, memos, field_values, links).
@@ -71,3 +74,4 @@ uv run python -m archivist.ingest.fraser  # fetch and render the real pages; Ctr
 - [x] P18 run exporter and verified database
 - [x] P19 true plug-ins, proven by replay
 - [x] P20 real public-domain pages, ingest only (no model has seen a real page)
+- [x] P21a document types from template files (one hand-written example, not approved)

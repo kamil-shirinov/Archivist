@@ -9,7 +9,13 @@ Verification needs nothing more of a type than DocType gives: which fields hold 
 readings of a field compare, the type's amounts and dates, and which fields its own equations hold
 for. A type whose pages link to others (the ledger family's accounts and postings) also offers the
 readers its checks join them with, AccountReader and PostingReader, and the exporter reads the
-links through those alone; a type that offers neither is exported page by page.
+links through those alone; a type that offers neither is exported page by page. A type whose
+checks name their rules in their own wording (a template's identities) offers RuleReader, and the
+exporter asks it which rule raised a flag and which cells are in its equation.
+
+Besides the built-in types, every approved template in templates/ is a type (template.py); the
+classifier is given its description like any other. Drafts and examples are validated, never
+registered.
 """
 
 from __future__ import annotations
@@ -28,6 +34,7 @@ from archivist.doctypes.ledger import (
     PaymentMemo,
     Posting,
 )
+from archivist.doctypes.template import TEMPLATES_DIR, TemplateError, TemplateType, load_templates
 from archivist.schema import ExtractedValue, Flag, PageExtraction
 
 UNSUPPORTED = "unsupported"
@@ -79,6 +86,15 @@ class PostingReader(Protocol):
     ) -> dict[str, Posting]: ...  # by page id
 
 
+@runtime_checkable
+class RuleReader(Protocol):
+    """Flags whose rule the type names itself, and the cells of the equation each was raised on."""
+
+    def rule(self, flag: Flag) -> str | None: ...  # None: not one of this type's
+
+    def equation(self, flag: Flag, pages: Sequence[PageExtraction]) -> list[str]: ...
+
+
 REGISTRY: dict[str, DocType] = {}
 
 
@@ -90,6 +106,9 @@ def register(doc_type: DocType) -> None:
 
 register(LedgerCard())
 register(PaymentMemo())
+for _template in load_templates(TEMPLATES_DIR, reserved=[*REGISTRY, UNSUPPORTED]):
+    register(_template)
+
 
 def is_unresolvable(flag: Flag) -> bool:
     """A cross-document check that couldn't find what it needed: a note, not an error."""
@@ -118,6 +137,9 @@ __all__ = [
     "PaymentMemo",
     "Posting",
     "PostingReader",
+    "RuleReader",
+    "TemplateError",
+    "TemplateType",
     "is_unresolvable",
     "register",
     "type_of",

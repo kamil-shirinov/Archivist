@@ -11,6 +11,9 @@ registered types offer (doctypes.AccountReader, doctypes.PostingReader): the sam
 same accounts (strays included) and the same postings. The batch is read once per chain, the
 extracted values for a field's flags and the re-read values for its re-read flags, as each set of
 flags was raised on its own chain.
+
+A type whose checks name their own rules (doctypes.RuleReader: the template types) is asked first:
+its rule id and its equation's cells come from the type, which reads the same batch.
 """
 
 from __future__ import annotations
@@ -24,6 +27,7 @@ from archivist.doctypes import (
     Card,
     Posting,
     PostingReader,
+    RuleReader,
     is_unresolvable,
 )
 from archivist.doctypes.ledger import cheque_items, date_items, fmt
@@ -61,9 +65,19 @@ REREAD_REASONS = {
 }
 
 
+def _reader_of(flag: Flag) -> RuleReader | None:
+    """The registered type that names this flag's rule itself, if any."""
+    for doc_type in REGISTRY.values():
+        if isinstance(doc_type, RuleReader) and doc_type.rule(flag) is not None:
+            return doc_type
+    return None
+
+
 def rule_id(flag: Flag) -> str:
     if is_unresolvable(flag):
         return "unresolvable"
+    if (reader := _reader_of(flag)) is not None:
+        return reader.rule(flag)
     for rule, check, phrases in RULES:
         if flag.check == check and any(p in flag.detail for p in phrases):
             return rule
@@ -107,6 +121,7 @@ class Reading:
 
     def __init__(self, pages: Sequence[PageExtraction]) -> None:
         batch = sorted(pages, key=lambda p: p.page_id)
+        self.pages = batch
         self.cards: dict[str, Card] = {}
         self.accounts: dict[str, list[Card]] = {}
         for doc_type in REGISTRY.values():
@@ -318,6 +333,11 @@ def related(flag: Flag, reading: Reading) -> list[str]:
     """The other fields in the flag's equation, in the equation's order; none for a rule without
     one (an unreadable value, an unresolvable reference, a note).
     """
-    equation = EQUATIONS.get(rule_id(flag))
-    ids = equation(flag, reading) if equation else []
+    if is_unresolvable(flag):
+        ids = []
+    elif (reader := _reader_of(flag)) is not None:
+        ids = reader.equation(flag, reading.pages)
+    else:
+        equation = EQUATIONS.get(rule_id(flag))
+        ids = equation(flag, reading) if equation else []
     return [f for f in dict.fromkeys(ids) if f != flag.field_id]
