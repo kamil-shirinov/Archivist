@@ -113,8 +113,8 @@ NOTES = [
     "marketing page prints, which is not a contract. Cached input is billed as ordinary input, "
     "so cost is overstated, never understated.",
     "Arm B extracts with a different model, so its error rate measures the whole configuration, "
-    "not the verification alone. The row 'extraction alone' shows what each arm's extraction run "
-    "would have accepted without verification.",
+    "not the verification alone. The table \"What each arm's extraction would have let in "
+    "without verification\" shows what each arm's extraction run would have accepted on its own.",
 ]
 
 
