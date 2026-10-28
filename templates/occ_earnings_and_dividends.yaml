@@ -1,0 +1,132 @@
+# Drafted by muse-spark-1.3-contributor from 1905_p186, 1925_p061 on 2026-10-28 (P21b).
+# A draft: validated, never registered. python -m archivist.templates.test checks its
+# identities; only a person, with python -m archivist.templates.approve, approves it.
+identity:
+  family: occ_earnings_and_dividends
+  title: Abstract of reports of earnings and dividends of national banks for the year ended June 30, 1925
+  description: Earnings abstract by location with net earnings, recoveries, losses charged off and ratios
+    in thousands of dollars
+  title_patterns:
+  - abstract\s+of\s+reports\s+of\s+earnings\s+and\s+dividends\s+of\s+national\s+banks\s+for\s+the\s+year\s+ended\s+june\s+30,\s*1925
+layout:
+  unit: thousands of dollars
+  precision: '0.01'
+  rows:
+    read: 60
+  columns:
+  - key: location
+    printed: Location
+    kind: text
+    blank_means: unknown
+  - key: net_earnings
+    printed: Net earnings during year
+    kind: money
+    blank_means: zero
+  - key: recoveries
+    printed: Recoveries on charged-off assets
+    kind: money
+    blank_means: zero
+  - key: total_net_earnings
+    printed: Total net earnings and recoveries on charged-off assets
+    kind: money
+    blank_means: zero
+  - key: losses_loans
+    printed: On loans and discounts
+    kind: money
+    blank_means: zero
+  - key: losses_bonds
+    printed: On bonds, securities, etc.
+    kind: money
+    blank_means: zero
+  - key: losses_trust
+    printed: On trust department operations
+    kind: money
+    blank_means: zero
+  - key: losses_other
+    printed: Other losses
+    kind: money
+    blank_means: zero
+  - key: losses_foreign
+    printed: On foreign exchange
+    kind: money
+    blank_means: zero
+  - key: losses_total
+    printed: Total losses charged off
+    kind: money
+    blank_means: zero
+  - key: net_addition
+    printed: Net addition to profits during year
+    kind: money
+    blank_means: zero
+  - key: dividends
+    printed: Dividends
+    kind: money
+    blank_means: zero
+  - key: ratio_dividends_capital
+    printed: Dividends to capital
+    kind: percent
+    blank_means: unknown
+  - key: ratio_dividends_capital_surplus
+    printed: Dividends to capital and surplus
+    kind: percent
+    blank_means: unknown
+  - key: ratio_netadd_capital_surplus
+    printed: Net addition to profits to capital and surplus
+    kind: percent
+    blank_means: unknown
+  - key: ratio_netadd_capital
+    printed: Net addition to profits to capital
+    kind: percent
+    blank_means: unknown
+identities:
+- id: total_net_earnings
+  description: Total net earnings and recoveries equals net earnings plus recoveries
+  for_each: row
+  left:
+    cell:
+      column: total_net_earnings
+  right:
+    sum:
+      columns:
+      - net_earnings
+      - recoveries
+- id: total_losses
+  description: Total losses charged off equals sum of loss components
+  for_each: row
+  left:
+    cell:
+      column: losses_total
+  right:
+    sum:
+      columns:
+      - losses_loans
+      - losses_bonds
+      - losses_trust
+      - losses_other
+      - losses_foreign
+- id: net_addition
+  description: Net addition to profits equals total net earnings less total losses
+  for_each: row
+  left:
+    cell:
+      column: net_addition
+  right:
+    difference:
+    - cell:
+        column: total_net_earnings
+    - cell:
+        column: losses_total
+provenance:
+  status: draft
+  drafted_by:
+    kind: model
+    id: muse-spark-1.3-contributor
+  drafted_on: '2026-10-28'
+  drafted_from:
+  - 1905_p186
+  - 1925_p061
+  evidence:
+  - drafted by muse-spark-1.3-contributor from 1905_p186, 1925_p061 (drafter role, P21b)
+  - told to describe only the table printed as 'Abstract of reports of earnings and dividends of national
+    banks for the year ended June 30, 1925'
+  dropped: []

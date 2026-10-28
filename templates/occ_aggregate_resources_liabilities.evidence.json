@@ -1,0 +1,130 @@
+{
+  "family": "occ_aggregate_resources_liabilities",
+  "template": "templates/occ_aggregate_resources_liabilities.yaml",
+  "template_sha256": "83859271895fdcc7f7541970c605609d497c9e5094a757b0b9fc4e866cf43a2a",
+  "tested_on": "2026-10-28",
+  "config": {
+    "drafter": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "extractor": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "rereader": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    }
+  },
+  "citations": "S0+grid",
+  "rule": "every identity evaluated wherever it applies, on cells whose two reads agree; held within n half-units of the printed precision for n printed values",
+  "pages": [
+    {
+      "ref": "1905_p395",
+      "page_id": "1905_p395",
+      "classified_as": "unsupported",
+      "grid": {
+        "rows": 0,
+        "bands": 0,
+        "fixed": 0,
+        "order": null
+      },
+      "anchored": 0,
+      "box_sources": {
+        "model": 186
+      },
+      "read": "ok",
+      "needed": 186,
+      "cells": 217,
+      "read_first": 217,
+      "read_twice": 183,
+      "agree": 94,
+      "no_second_read": {
+        "illegible to the re-read": 3
+      }
+    },
+    {
+      "ref": "1925_p326",
+      "page_id": "1925_p326",
+      "classified_as": "occ_aggregate_resources_liabilities",
+      "grid": {
+        "rows": 31,
+        "bands": 0,
+        "fixed": 0,
+        "order": null
+      },
+      "anchored": 21,
+      "box_sources": {
+        "model": 165,
+        "ocr": 21
+      },
+      "read": "ok",
+      "needed": 186,
+      "cells": 217,
+      "read_first": 217,
+      "read_twice": 181,
+      "agree": 11,
+      "no_second_read": {
+        "illegible to the re-read": 5
+      }
+    },
+    {
+      "ref": "1905_p398",
+      "page_id": "1905_p398",
+      "classified_as": "unsupported",
+      "grid": {
+        "rows": 0,
+        "bands": 0,
+        "fixed": 0,
+        "order": null
+      },
+      "anchored": 0,
+      "box_sources": {
+        "model": 186
+      },
+      "read": "ok",
+      "needed": 186,
+      "cells": 217,
+      "read_first": 0,
+      "read_twice": 0,
+      "agree": 0,
+      "no_second_read": {
+        "not read the first time": 186
+      }
+    }
+  ],
+  "outcomes": {
+    "rejected": 0,
+    "sometimes fails": 0,
+    "holds": 1,
+    "untested": 0
+  },
+  "identities": [
+    {
+      "id": "total_equals_sum",
+      "description": "Total resources equals sum of all resource items in the same call",
+      "for_each": "column",
+      "over": [
+        "jan13",
+        "mar4",
+        "jun30",
+        "sep12",
+        "oct31",
+        "dec31"
+      ],
+      "equation": "total = loans + overdrafts + us_bonds_circulation + misc_securities + us_bonds_deposits + other_bonds_deposits + us_bonds_hand + premiums + bonds_securities + stocks + banking_house + other_real_estate + due_national + due_state + due_fed + due_approved + due_banks + checks_same + exchange_clearing + outside_checks + checks_cash + bills_other + fractional + fed_notes + specie + legal_tender + redemption_fund + due_treasurer + clearing_cert + gold_fund",
+      "applies": 18,
+      "evaluated": 2,
+      "held": 2,
+      "failed": 0,
+      "hold_rate": 1.0,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 9,
+        "a cell was not read twice": 7
+      },
+      "outcome": "holds",
+      "failures": []
+    }
+  ]
+}

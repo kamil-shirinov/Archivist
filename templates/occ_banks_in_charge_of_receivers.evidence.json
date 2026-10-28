@@ -1,0 +1,71 @@
+{
+  "family": "occ_banks_in_charge_of_receivers",
+  "template": "templates/occ_banks_in_charge_of_receivers.yaml",
+  "template_sha256": "7741f779303ac40f5b788cbd62af00e358642906dccfeb6ba2d8fe132962b417",
+  "tested_on": "2026-10-28",
+  "config": {
+    "drafter": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "extractor": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "rereader": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    }
+  },
+  "citations": "S0+grid",
+  "rule": "every identity evaluated wherever it applies, on cells whose two reads agree; held within n half-units of the printed precision for n printed values",
+  "pages": [
+    {
+      "ref": "1905_p239",
+      "page_id": "1905_p239",
+      "classified_as": "occ_banks_in_charge_of_receivers",
+      "grid": {
+        "rows": 44,
+        "bands": 44,
+        "fixed": 30,
+        "order": null
+      },
+      "anchored": 0,
+      "box_sources": {},
+      "read": "ok",
+      "needed": 0,
+      "cells": 550,
+      "read_first": 550,
+      "read_twice": 0,
+      "agree": 0,
+      "no_second_read": {}
+    },
+    {
+      "ref": "1925_p238",
+      "page_id": "1925_p238",
+      "classified_as": "occ_banks_in_charge_of_receivers",
+      "grid": {
+        "rows": 33,
+        "bands": 35,
+        "fixed": 33,
+        "order": null
+      },
+      "anchored": 0,
+      "box_sources": {},
+      "read": "ok",
+      "needed": 0,
+      "cells": 550,
+      "read_first": 550,
+      "read_twice": 0,
+      "agree": 0,
+      "no_second_read": {}
+    }
+  ],
+  "outcomes": {
+    "rejected": 0,
+    "sometimes fails": 0,
+    "holds": 0,
+    "untested": 0
+  },
+  "identities": []
+}

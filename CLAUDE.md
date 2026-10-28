@@ -93,3 +93,4 @@ uv run python -m archivist.templates.rediscover  # drafts cards and memos from v
 - [ ] P21c grid-based citations for the 1980s country tables, whose OCR layer lacks the figures but whose grid columns are found exactly (results/templates/grid_dev.md); the grid reader was not built in P21b
 - [ ] P21d multi-panel templates: one template describes a table printed as two or more panels on one page (side by side, or one above the other), since a page is classified as one type. Collections of Internal Revenue was set aside for this (results/real/family_choice.md, amendment); its draft is in results/templates/set_aside/
 - [x] P23 second real source, Comptroller of the Currency annual reports, ingest only: data/real_occ (no model has seen a page), results/real_occ/survey.md
+- [x] P25 Comptroller tables chosen by a fixed rule (results/real_occ/family_choice.md), drafted and tested on development pages only (1905, 1925): four drafts awaiting approval, templates/occ_*.yaml

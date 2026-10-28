@@ -1,0 +1,82 @@
+# Drafted by muse-spark-1.3-contributor from 1905_p239, 1925_p238 on 2026-10-28 (P21b).
+# A draft: validated, never registered. python -m archivist.templates.test checks its
+# identities; only a person, with python -m archivist.templates.approve, approves it.
+identity:
+  family: occ_banks_in_charge_of_receivers
+  title: National banks in charge of receivers, capital at date of organization and at date of failure,
+    causes of failure, dividends paid while solvent, circulation outstanding at date of failure, lawful
+    money deposited with Treasurer of the United States to redeem circulation, and total deposits at date
+    of suspension
+  description: Page lists individual national banks in charge of receivers with organization capital and
+    failure, receiver, circulation and deposits figures.
+  title_patterns:
+  - national banks in charge of receivers
+  - capital at date of organization and at date of failure
+  - lawful money deposited.*to redeem circulation
+layout:
+  unit: as printed
+  precision: '0.01'
+  rows:
+    read: 50
+  columns:
+  - key: name
+    printed: Name and location of banks
+    kind: text
+    blank_means: unknown
+  - key: charter_no
+    printed: Charter No.
+    kind: text
+    blank_means: unknown
+  - key: org_date
+    printed: Date
+    kind: date
+    blank_means: unknown
+  - key: org_capital
+    printed: Capital
+    kind: money
+    blank_means: unknown
+  - key: dividends
+    printed: Total dividends paid during existence as a national banking association
+    kind: money
+    blank_means: unknown
+  - key: fail_capital
+    printed: Capital
+    kind: money
+    blank_means: unknown
+  - key: receiver_appointed
+    printed: Receiver appointed
+    kind: date
+    blank_means: unknown
+  - key: cause
+    printed: Cause of failure
+    kind: text
+    blank_means: unknown
+  - key: lawful_money
+    printed: Lawful money deposited
+    kind: money
+    blank_means: unknown
+  - key: circulation
+    printed: Circulation outstanding at date of failure
+    kind: money
+    blank_means: unknown
+  - key: total_deposits
+    printed: Total deposits at date of suspension
+    kind: money
+    blank_means: unknown
+identities: []
+provenance:
+  status: draft
+  drafted_by:
+    kind: model
+    id: muse-spark-1.3-contributor
+  drafted_on: '2026-10-28'
+  drafted_from:
+  - 1905_p239
+  - 1925_p238
+  evidence:
+  - drafted by muse-spark-1.3-contributor from 1905_p239, 1925_p238 (drafter role, P21b)
+  - told to describe only the table printed as 'National banks in charge of receivers, year ended October
+    31, 1925, capital at date of organization and at date of failure, causes of failure, dividends paid
+    while solvent, circulation outstanding at date of failure, lawful money deposited with Treasurer of
+    the United States to redeem circulation, and total deposits at date of suspension'
+  dropped: []

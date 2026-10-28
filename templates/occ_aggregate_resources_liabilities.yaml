@@ -1,0 +1,167 @@
+# Drafted by muse-spark-1.3-contributor from 1905_p395, 1925_p326, 1905_p398 on 2026-10-28 (P21b).
+# A draft: validated, never registered. python -m archivist.templates.test checks its
+# identities; only a person, with python -m archivist.templates.approve, approves it.
+identity:
+  family: occ_aggregate_resources_liabilities
+  title: Aggregate resources and liabilities of national banks from January, 1914, to September, 1925
+  description: Table No. 58 Aggregate resources and liabilities 1914 to 1925 with dated calls and bank
+    counts in headings
+  title_patterns:
+  - aggregate\s+resources\s+and\s+liabilities\s+of\s+national\s+banks\s+from\s+january,?\s+1914,?\s+to\s+september,?\s+1925
+layout:
+  unit: as printed
+  precision: '0.01'
+  rows:
+  - key: loans
+    printed: Loans and discounts
+  - key: overdrafts
+    printed: Overdrafts
+  - key: us_bonds_circulation
+    printed: United States bonds to secure circulation
+  - key: misc_securities
+    printed: Miscellaneous securities to secure circulation
+  - key: us_bonds_deposits
+    printed: United States bonds to secure United States deposits
+  - key: other_bonds_deposits
+    printed: Other bonds to secure United States deposits
+  - key: us_bonds_hand
+    printed: United States bonds on hand
+  - key: premiums
+    printed: Premiums on United States bonds
+  - key: bonds_securities
+    printed: Bonds, securities, etc.
+  - key: stocks
+    printed: Stocks
+  - key: banking_house
+    printed: Banking house, furniture, and fixtures
+  - key: other_real_estate
+    printed: Other real estate owned
+  - key: due_national
+    printed: Due from national banks (not reserve agents)
+  - key: due_state
+    printed: Due from State banks and bankers
+  - key: due_fed
+    printed: Due from Federal reserve bank
+  - key: due_approved
+    printed: Due from approved reserve agents
+  - key: due_banks
+    printed: Due from banks and bankers
+  - key: checks_same
+    printed: Checks on banks in same place
+  - key: exchange_clearing
+    printed: Exchanges for clearing house
+  - key: outside_checks
+    printed: Outside checks, cash items, etc.
+  - key: checks_cash
+    printed: Checks and other cash items
+  - key: bills_other
+    printed: Bills of other national banks
+  - key: fractional
+    printed: Fractional currency, nickels and cents
+  - key: fed_notes
+    printed: Federal-reserve notes
+  - key: specie
+    printed: Specie
+  - key: legal_tender
+    printed: Legal-tender notes
+  - key: redemption_fund
+    printed: Five per cent redemption fund
+  - key: due_treasurer
+    printed: Due from Treasurer United States
+  - key: clearing_cert
+    printed: Clearing-house loan certificate
+  - key: gold_fund
+    printed: Amount paid on account of $100,000,000 gold fund
+  - key: total
+    printed: Total
+  columns:
+  - key: resource
+    printed: Resources
+    kind: text
+    blank_means: unknown
+  - key: jan13
+    printed: Jan. 13 (7,493 banks)
+    kind: money
+    blank_means: zero
+  - key: mar4
+    printed: Mar. 4 (7,493 banks)
+    kind: money
+    blank_means: zero
+  - key: jun30
+    printed: June 30 (7,525 banks)
+    kind: money
+    blank_means: zero
+  - key: sep12
+    printed: Sept. 12 (7,538 banks)
+    kind: money
+    blank_means: zero
+  - key: oct31
+    printed: Oct. 31 (7,571 banks)
+    kind: money
+    blank_means: zero
+  - key: dec31
+    printed: Dec. 31 (7,581 banks)
+    kind: money
+    blank_means: zero
+identities:
+- id: total_equals_sum
+  description: Total resources equals sum of all resource items in the same call
+  for_each: column
+  over:
+  - jan13
+  - mar4
+  - jun30
+  - sep12
+  - oct31
+  - dec31
+  left:
+    cell:
+      row: total
+  right:
+    sum:
+      rows:
+      - loans
+      - overdrafts
+      - us_bonds_circulation
+      - misc_securities
+      - us_bonds_deposits
+      - other_bonds_deposits
+      - us_bonds_hand
+      - premiums
+      - bonds_securities
+      - stocks
+      - banking_house
+      - other_real_estate
+      - due_national
+      - due_state
+      - due_fed
+      - due_approved
+      - due_banks
+      - checks_same
+      - exchange_clearing
+      - outside_checks
+      - checks_cash
+      - bills_other
+      - fractional
+      - fed_notes
+      - specie
+      - legal_tender
+      - redemption_fund
+      - due_treasurer
+      - clearing_cert
+      - gold_fund
+provenance:
+  status: draft
+  drafted_by:
+    kind: model
+    id: muse-spark-1.3-contributor
+  drafted_on: '2026-10-28'
+  drafted_from:
+  - 1905_p395
+  - 1925_p326
+  - 1905_p398
+  evidence:
+  - drafted by muse-spark-1.3-contributor from 1905_p395, 1925_p326, 1905_p398 (drafter role, P21b)
+  - told to describe only the table printed as 'Aggregate resources and liabilities of national banks
+    from January, 1914, to September, 1925'
+  dropped: []

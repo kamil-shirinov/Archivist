@@ -1,0 +1,151 @@
+{
+  "family": "occ_abstract_by_states",
+  "template": "templates/occ_abstract_by_states.yaml",
+  "template_sha256": "761517e4dc06db4fbbfd2eec0ca578945fd62d5dd3c04a632b07070be15fa1e5",
+  "tested_on": "2026-10-28",
+  "config": {
+    "drafter": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "extractor": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "rereader": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    }
+  },
+  "citations": "S0+grid",
+  "rule": "every identity evaluated wherever it applies, on cells whose two reads agree; held within n half-units of the printed precision for n printed values",
+  "pages": [
+    {
+      "ref": "1905_p507",
+      "page_id": "1905_p507",
+      "classified_as": "unsupported",
+      "grid": {
+        "rows": 0,
+        "bands": 0,
+        "fixed": 0,
+        "order": null
+      },
+      "anchored": 0,
+      "box_sources": {
+        "model": 120
+      },
+      "read": "ok",
+      "needed": 120,
+      "cells": 150,
+      "read_first": 0,
+      "read_twice": 0,
+      "agree": 0,
+      "no_second_read": {
+        "not read the first time": 120
+      }
+    },
+    {
+      "ref": "1925_p342",
+      "page_id": "1925_p342",
+      "classified_as": "occ_abstract_by_states",
+      "grid": {
+        "rows": 30,
+        "bands": 30,
+        "fixed": 13,
+        "order": null
+      },
+      "anchored": 32,
+      "box_sources": {
+        "grid": 20,
+        "model": 68,
+        "ocr": 32
+      },
+      "read": "ok",
+      "needed": 120,
+      "cells": 150,
+      "read_first": 150,
+      "read_twice": 119,
+      "agree": 26,
+      "no_second_read": {
+        "illegible to the re-read": 1
+      }
+    }
+  ],
+  "outcomes": {
+    "rejected": 0,
+    "sometimes fails": 0,
+    "holds": 0,
+    "untested": 3
+  },
+  "identities": [
+    {
+      "id": "resources_total",
+      "description": "Total resources equals sum of resource items",
+      "for_each": "column",
+      "over": [
+        "dec_31_1924",
+        "apr_6_1925",
+        "jun_30_1925",
+        "sep_28_1925"
+      ],
+      "equation": "total_resources = loans_discounts + overdrafts + us_govt_securities + other_bonds + banking_house + other_real_estate + lawful_reserve + items_in_process + cash_vault + due_from_state + exchanges_clearing + outside_checks + redemption_fund + other_assets",
+      "applies": 8,
+      "evaluated": 0,
+      "held": 0,
+      "failed": 0,
+      "hold_rate": null,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 4,
+        "a cell was not read twice": 4
+      },
+      "outcome": "untested",
+      "failures": []
+    },
+    {
+      "id": "liabilities_total",
+      "description": "Total liabilities equals sum of liability items",
+      "for_each": "column",
+      "over": [
+        "dec_31_1924",
+        "apr_6_1925",
+        "jun_30_1925",
+        "sep_28_1925"
+      ],
+      "equation": "total_liabilities = capital_stock + surplus_fund + undivided_profits + reserved_taxes + national_bank_notes + due_to_national + due_to_state + certified_checks + cashiers_checks + demand_deposits + time_deposits + us_deposits + bills_payable + other_liabilities",
+      "applies": 8,
+      "evaluated": 0,
+      "held": 0,
+      "failed": 0,
+      "hold_rate": null,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 4,
+        "a cell was not read twice": 4
+      },
+      "outcome": "untested",
+      "failures": []
+    },
+    {
+      "id": "total_balance",
+      "description": "Total resources equals total liabilities",
+      "for_each": "column",
+      "over": [
+        "dec_31_1924",
+        "apr_6_1925",
+        "jun_30_1925",
+        "sep_28_1925"
+      ],
+      "equation": "total_resources = total_liabilities",
+      "applies": 8,
+      "evaluated": 0,
+      "held": 0,
+      "failed": 0,
+      "hold_rate": null,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 4,
+        "a cell was not read twice": 4
+      },
+      "outcome": "untested",
+      "failures": []
+    }
+  ]
+}
