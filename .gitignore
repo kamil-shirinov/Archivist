@@ -16,3 +16,6 @@ data/real/.ingest.lock
 data/real_occ/pdf/
 data/real_occ/pages/
 data/real_occ/.ingest.lock
+data/real_frb/pdf/
+data/real_frb/pages/
+data/real_frb/.ingest.lock

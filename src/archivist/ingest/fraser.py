@@ -761,23 +761,27 @@ def verify(root: Path, log: Callable[[str], None] = print) -> int:
 
 
 def main(argv: list[str] | None = None) -> None:
-    from archivist.ingest import occ  # here, not at the top: occ builds on this module
+    from archivist.ingest import frb, occ  # here, not at the top: both build on this module
 
     # source -> (default root, ingest, verify)
     sources = {
         "treasury": (DEFAULT_ROOT, ingest, verify),
         "occ": (occ.DEFAULT_ROOT, occ.ingest, occ.verify),
+        "frb": (frb.DEFAULT_ROOT, frb.ingest, frb.verify),
     }
     parser = argparse.ArgumentParser(
         prog="python -m archivist.ingest.fraser",
-        description="Download the real FRASER sources (the Treasury Bulletin and the Comptroller of "
-        "the Currency's annual reports), render their pages and record them.",
+        description="Download the real FRASER sources (the Treasury Bulletin, the Comptroller of "
+        "the Currency's annual reports and the Federal Reserve Bulletin), render their pages and "
+        "record them.",
     )
     parser.add_argument(
         "--source", choices=list(sources), help="only this source (default: every source)"
     )
     parser.add_argument(
-        "--root", type=Path, help="where --source's pages live (default: data/real or data/real_occ)"
+        "--root",
+        type=Path,
+        help="where --source's pages live (default: data/real, data/real_occ or data/real_frb)",
     )
     parser.add_argument(
         "--verify", action="store_true", help="offline: check the files against the records"

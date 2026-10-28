@@ -9,9 +9,9 @@ import pytest
 from pydantic import ValidationError
 from test_fraser import image_pdf, text_pdf
 
-from archivist.ingest import fraser, occ
+from archivist.ingest import frb, fraser, occ
 
-REAL = Path(__file__).resolve().parents[1] / "data" / "real_occ"
+REAL =Path(__file__).resolve().parents[1] / "data" / "real_occ"
 TREASURY = Path(__file__).resolve().parents[1] / "data" / "real"
 
 BASIS = fraser.RecordedBasis(
@@ -654,10 +654,15 @@ def test_verify_checks_every_source_and_reports_the_worst(monkeypatch):
     seen = []
     monkeypatch.setattr(fraser, "verify", lambda root: seen.append(("treasury", root)) or 0)
     monkeypatch.setattr(occ, "verify", lambda root: seen.append(("occ", root)) or 1)
+    monkeypatch.setattr(frb, "verify", lambda root: seen.append(("frb", root)) or 0)
     with pytest.raises(SystemExit) as stop:
         fraser.main(["--verify"])
     assert stop.value.code == 1
-    assert seen == [("treasury", fraser.DEFAULT_ROOT), ("occ", occ.DEFAULT_ROOT)]  # one failing does not hide the other
+    assert seen == [  # one failing does not hide the others
+        ("treasury", fraser.DEFAULT_ROOT),
+        ("occ", occ.DEFAULT_ROOT),
+        ("frb", frb.DEFAULT_ROOT),
+    ]
 
     seen.clear()
     with pytest.raises(SystemExit) as stop:
