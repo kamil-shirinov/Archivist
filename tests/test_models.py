@@ -3,6 +3,8 @@
 import dataclasses
 import itertools
 import json
+import multiprocessing
+import os
 import threading
 import time
 import tomllib
@@ -92,6 +94,41 @@ def test_identical_requests_made_at_once_share_one_call_and_one_answer(tmp_path)
     assert replayed.text == "answer 0"
 
 
+def _ask_from_another_process(cache_dir: Path, calls: Path, barrier, answers) -> None:
+    """A separate process asking REQUEST through its own Cache, its backend slow to answer."""
+
+    def respond(request):
+        (calls / str(os.getpid())).touch()
+        time.sleep(0.5)  # the other processes ask while this call is in flight
+        return f"answer from process {os.getpid()}"
+
+    barrier.wait(30)
+    answers.put(Cache(MockLLM(respond), cache_dir).complete(REQUEST).text)
+
+
+def test_identical_requests_from_separate_processes_share_one_call(tmp_path):
+    context = multiprocessing.get_context("spawn")
+    calls, cache_dir = tmp_path / "calls", tmp_path / "cache"
+    calls.mkdir()
+    barrier, answers = context.Barrier(3), context.Queue()
+    processes = [
+        context.Process(target=_ask_from_another_process, args=(cache_dir, calls, barrier, answers))
+        for _ in range(3)
+    ]
+    for process in processes:
+        process.start()
+    texts = {answers.get(timeout=60) for _ in processes}
+    for process in processes:
+        process.join(30)
+        assert process.exitcode == 0
+
+    assert len(list(calls.iterdir())) == 1  # one call, from whichever process asked first
+    (text,) = texts
+    replayed = Cache(MockLLM(lambda request: "never asked"), cache_dir).complete(REQUEST)
+    assert replayed.text == text
+    assert [p.suffix for p in cache_dir.rglob("*") if p.is_file()] == [".json"]  # no lock left
+
+
 def test_when_the_one_call_fails_the_next_caller_asks_in_its_place(tmp_path):
     outcomes = iter([TimeoutError("the backend timed out"), "4,375.50"])
 
@@ -121,7 +158,15 @@ def test_an_entry_is_written_whole_or_not_at_all(tmp_path, monkeypatch):
     other = dataclasses.replace(REQUEST, prompt="read the date")
     with pytest.raises(OSError, match="disk full"):
         cache.complete(other)
-    assert sorted(p.name for p in cache_dir.rglob("*") if p.is_file()) == files  # nothing new
+    left = sorted(p.name for p in cache_dir.rglob("*") if p.is_file())
+    key = cache_key(MockLLM().name, MockLLM().model_id, other)
+    # no temporary file, no partial entry: only the key's lock, kept for the next caller
+    assert left == sorted([*files, f"{key}.json.lock"])
+    monkeypatch.undo()
+    cache.complete(other)
+    assert sorted(p.name for p in cache_dir.rglob("*") if p.is_file()) == sorted(
+        [*files, f"{key}.json"]
+    )  # the lock goes once the entry exists
 
 
 def test_different_image_bytes_miss(tmp_path):

@@ -11,22 +11,31 @@ even across a power cut. A write that fails removes its temporary file. A proces
 mid-write can leave a stray temporary file, never a partial entry: only <key>.json is ever read,
 and the call is asked again next time.
 
-One answer per request (single-flight by key): identical requests made at once in one process,
-through any Cache over the same directory, share one call. The first asks the backend and stores
-the answer; the others wait for it and are answered from the stored entry, cached=True, exactly as
-a replay would be. Without this, two threads re-reading identical crops could each get their own
-answer while the cache kept only the last written, and a replay would not reproduce the run. If
-the first call fails, the next waiter asks in its place.
+One answer per request (single-flight by key): identical requests made at once, by threads or by
+separate processes, through any Cache over the same directory, share one call. The first asks the
+backend and stores the answer; the others wait for it and are answered from the stored entry,
+cached=True, exactly as a replay would be. Without this, two workers re-reading identical crops
+could each get their own answer while the cache kept only the last written, and a replay would
+not reproduce the run. If the first call fails, the next waiter asks in its place.
+
+A miss is asked under a thread lock for its key and an exclusive flock on <key>.json.lock beside
+the entry, and the entry is looked for again once both are held. The lock file is removed once the
+entry exists, when no caller can need it: a later caller finds the entry, and one that opens a
+fresh lock file finds it on looking again. A failed call leaves the lock file for the next waiter.
+The operating system releases the flock of a process that dies, so a killed run can leave a stray
+lock file, never a held lock. A hit takes no lock: an entry that exists is complete.
 """
 
 from __future__ import annotations
 
+import contextlib
 import dataclasses
+import fcntl
 import hashlib
 import json
 import os
 import threading
-from collections.abc import Callable, Mapping
+from collections.abc import Callable, Iterator, Mapping
 from pathlib import Path
 
 from pydantic import BaseModel
@@ -44,13 +53,29 @@ from archivist.models.base import (
 from archivist.schema import BBox
 
 CACHE_DIR = Path("cache")
-_FLIGHTS: dict[Path, threading.Lock] = {}  # an entry's path -> the lock its callers queue on
+_FLIGHTS: dict[Path, threading.Lock] = {}  # an entry's path -> the lock its threads queue on
 _FLIGHTS_LOCK = threading.Lock()
 
 
-def _flight(path: Path) -> threading.Lock:
+def _thread_lock(path: Path) -> threading.Lock:
     with _FLIGHTS_LOCK:
         return _FLIGHTS.setdefault(path.resolve(), threading.Lock())
+
+
+@contextlib.contextmanager
+def _flight(path: Path) -> Iterator[None]:
+    """Held by one caller of the entry at a time, in this process and across processes."""
+    with _thread_lock(path):
+        path.parent.mkdir(parents=True, exist_ok=True)
+        lock = path.with_name(f"{path.name}.lock")
+        with lock.open("a") as handle:
+            fcntl.flock(handle, fcntl.LOCK_EX)  # waits while another process asks
+            try:
+                yield
+            finally:
+                if path.exists():
+                    lock.unlink(missing_ok=True)  # no caller needs it once the entry exists
+                fcntl.flock(handle, fcntl.LOCK_UN)
 
 
 def _canonical(value: object) -> object:
@@ -120,9 +145,15 @@ class Cache:
     ) -> Resp:
         key = cache_key(self.name, self.model_id, request, self.settings)
         path = self.cache_dir / key[:2] / f"{key}.json"
+
+        def stored() -> Resp:
+            return dataclasses.replace(load(json.loads(path.read_text())), cached=True)
+
+        if path.exists():
+            return stored()
         with _flight(path):  # a caller asking the same thing waits here, then reads the entry
             if path.exists():
-                return dataclasses.replace(load(json.loads(path.read_text())), cached=True)
+                return stored()
             response = call(request)
             _write_atomically(path, json.dumps(dataclasses.asdict(response), default=_encode))
             return response
