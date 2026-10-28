@@ -33,7 +33,7 @@ data/dev, data/test — test is frozen and hashed; never used for tuning
 data/real — Treasury Bulletin from FRASER: pdf/ and pages/ are gitignored; sources.json, manifest.json and split.json are committed. split.json fixes the development and held-out issues before any model has seen a real page; held-out is never used for tuning
 data/real_occ — Annual Report of the Comptroller of the Currency from FRASER: 10 volumes in 8 years (one report every five years, 1905–1940; 1915 and 1920 have two volumes each), 6,830 pages. Same layout and gitignore as data/real; a volume's id is its year, plus -v1, -v2 where a year has two. split.json is by year: development 1905 and 1925, held-out 1910, 1915, 1920, 1930, 1935 and 1940, fixed before any model has seen a real page; held-out is never used for tuning. FRASER shows no rights statement for this title (unlike the Treasury Bulletin), so sources.json carries a recorded basis (works of the US Government, 17 U.S.C. § 105, and public domain by age to 1930) in place of "No Copyright - United States"; fraser.check_sources takes FRASER's statement or such a basis, never nothing, and the ingest stops, downloading nothing, if FRASER ever shows another statement
 results/real/survey.md — the recurring table families, from the manifest's title hints
-results/real_occ/survey.md — the same for the annual reports, from the manifest's title hints and OCR counts; its rules were written on 1905 and 1925 only
+results/real_occ/survey.md — the same for the annual reports, from the manifest's title hints and OCR counts; its rules were tuned on 1905 and 1925 (one, the running head's match, was loosened after the first all-years run; see survey_occ.py)
 
 ## Run
 uv run pytest -q

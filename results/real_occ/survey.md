@@ -12,6 +12,7 @@ Made by `python -m archivist.ingest.survey_occ` from the title hints and OCR cou
 - **T**, printed totals: at least 50% of the family's table pages have a line that begins `Total`. *With totals*, *With Resources* and *With Liabilities* count table pages.
 - The OCR is imperfect, so counts are approximate: a family can be split in two by a bad misreading, and two real tables with near-identical titles can be merged. A hint keeps the first 4 lines of 100 characters, so a long title is cut.
 - Families are made from the words of a title, so a table printed under a different title in different years is two families: the 1905 `ABSTRACT OF REPORTS OF THE NATIONAL BANKING ASSOCIATIONS` and the 1925 `ABSTRACT OF CONDITION OF NATIONAL BANKS` are two families, each found in one year only, so neither is listed.
+- The rules were tuned on the text of the 1905 and 1925 volumes (the development years) and applied unchanged to the rest, except that the running head's match was loosened once, after the first all-years run showed a leftover of it (`COMPTROISkER OF THE CURRENCY`) as a family; it is present in both development volumes, and the change was checked on those two alone.
 - FRASER notes that for 1923 to 1941 the *Individual Statements of Condition of National Banks* were published as a separate supplement; the volumes of 1925, 1930, 1935 and 1940 therefore hold no individual statements, only aggregates.
 
 ## Totals

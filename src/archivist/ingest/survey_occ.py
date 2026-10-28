@@ -10,8 +10,11 @@ its pages are dense with figures. Two things are highlighted: statements of cond
 a Resources or a Liabilities heading) and tables with printed totals (pages with a line that begins
 "Total"), both counted from the OCR text when the manifest was written.
 
-The rules were written while looking only at the development volumes (1905 and 1925) and applied
-unchanged to the rest.
+The rules were written and tuned on the text of the development volumes (1905 and 1925) and applied
+unchanged to the rest, with one exception: after the first all-years run the running head's match was
+loosened, because a leftover of it (`COMPTROISkER OF THE CURRENCY`) headed a family in the totals table.
+That table shows held-out counts, so this one change was made after seeing them; the leftover is in both
+development volumes, and the change was checked on those two alone.
 
     python -m archivist.ingest.survey_occ   # data/real_occ/manifest.json -> results/real_occ/survey.md
 """
@@ -309,6 +312,12 @@ def render(manifest: occ.Manifest) -> str:
             "different years is two families: the 1905 `ABSTRACT OF REPORTS OF THE NATIONAL BANKING "
             "ASSOCIATIONS` and the 1925 `ABSTRACT OF CONDITION OF NATIONAL BANKS` are two families, each found in "
             "one year only, so neither is listed."
+        ),
+        (
+            "- The rules were tuned on the text of the 1905 and 1925 volumes (the development years) and "
+            "applied unchanged to the rest, except that the running head's match was loosened once, after "
+            "the first all-years run showed a leftover of it (`COMPTROISkER OF THE CURRENCY`) as a family; "
+            "it is present in both development volumes, and the change was checked on those two alone."
         ),
         (
             "- FRASER notes that for 1923 to 1941 the *Individual Statements of Condition of National "
