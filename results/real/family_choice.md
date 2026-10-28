@@ -18,21 +18,21 @@ Made by `python -m archivist.templates.families` before any template was drafted
 | 2 | `security_transactions_as_reported_by`: Security Transactions as Reported by Banks, Bankers, Brokers and Dealers | 1939-1942 | 54 | 27 | 12 | 1939-01_p055, 1939-07_p075, 1939-12_p055 |
 | 3 | `outstanding_forward_exchange_contracts`: Outstanding Forward Exchange Contracts as Reported by Banks | 1939-1942 | 27 | 27 | 12 | 1939-01_p061, 1939-07_p085, 1939-12_p060 |
 | 4 | `receipts_and_expenditures_under_railroad`: Receipts and Expenditures Under Railroad Retirement and Railroad Unemployment | 1939-1942 | 25 | 25 | 4 | 1939-08_p043, 1939-10_p024, 1939-12_p025 |
-| 5 | `total_liabilities_by_country`: Total Liabilities by Country | 1982-1994 | 24 | 10 | 3 | 1982-06_p091, 1983-06_p097, 1984-06_p055 |
-| 6 | `total_claims_by_country`: Total Claims by Country | 1982-1994 | 22 | 10 | 3 | 1982-06_p094, 1983-06_p092, 1984-06_p058 |
+| 5 | `total_claims_by_country`: Total Claims by Country | 1982-1994 | 22 | 10 | 3 | 1982-06_p094, 1983-06_p092, 1984-06_p058 |
+| 6 | `total_liabilities_by_type_payable_in`: Total Liabilities by Type, Payable in Dollars | 1982-1994 | 10 | 10 | 2 | 1983-06_p088, 1984-06_p054 |
 
-## Set aside after the choice (1)
+## Set aside after the choice (2)
 
 | Family | Era | Held-out pages | Drafted from | Set aside on | Why |
 |---|---|--:|---|---|---|
 | Collections of Internal Revenue | 1939-1942 | 48 | 1939-02_p029, 1939-07_p023, 1939-12_p018 | 2026-10-28 | the title covers two different tables, collections by source of revenue and collections by period, and each is printed as two panels on one page (side by side, or one above the other); a page is classified as one type, so each would be one template with two panels, which the template language cannot yet describe. Its draft read the by-period table's columns across all three pages, two of which print the by-source table (results/templates/citations_dev.md) |
+| Total Liabilities by Country | 1982-1994 | 24 | 1982-06_p091, 1983-06_p097, 1984-06_p055 | 2026-10-28 | not approved: its evidence is too thin, because the grid (S0+grid) cannot place rows on two of its three development pages (1983-06_p097, 1984-06_p055), so 6 of its 8 identities went untested (templates/total_liabilities_by_country.evidence.json) |
 
-## Passed every rule but not chosen (13)
+## Passed every rule but not chosen (12)
 
 | Family | Era | Held-out pages |
 |---|---|--:|
 | Net Movement of Silver to and from the United States | 1939-1942 | 24 |
-| Total Liabilities by Type, Payable in Dollars | 1982-1994 | 10 |
 | Dollar Liabilities to, and Dollar Claims on, Foreigners | 1982-1994 | 9 |
 | Foreign Purchases and Sales of Long-Term Securities, by Type and Country, During Fir | 1982-1994 | 9 |
 | Interest-Bearing Securities Issued by Government Agencies | 1982-1994 | 9 |

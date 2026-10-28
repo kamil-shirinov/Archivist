@@ -63,6 +63,23 @@ def test_repeated_request_hits_the_cache_without_calling_the_backend(tmp_path):
     assert (tmp_path / "cache" / key[:2] / f"{key}.json").is_file()
 
 
+def test_an_entry_is_written_whole_or_not_at_all(tmp_path, monkeypatch):
+    cache_dir = tmp_path / "cache"
+    cache = Cache(MockLLM(lambda request: "4,375.50"), cache_dir)
+    cache.complete(REQUEST)
+    files = [p.name for p in cache_dir.rglob("*") if p.is_file()]
+    assert len(files) == 1 and files[0].endswith(".json")  # no temporary file left behind
+
+    def failing_fsync(fd):
+        raise OSError("disk full")
+
+    monkeypatch.setattr("archivist.models.cache.os.fsync", failing_fsync)
+    other = dataclasses.replace(REQUEST, prompt="read the date")
+    with pytest.raises(OSError, match="disk full"):
+        cache.complete(other)
+    assert sorted(p.name for p in cache_dir.rglob("*") if p.is_file()) == files  # nothing new
+
+
 def test_different_image_bytes_miss(tmp_path):
     backend = MockLLM()
     cache = Cache(backend, tmp_path / "cache")

@@ -1,9 +1,15 @@
 """Response cache: one wrapper for both protocols, also the replay log of a run.
 
 The key covers the backend, the model, the backend's settings (such as reasoning_effort) and
-every field of the request, so changing any of them is a miss. A hit returns the stored response with cached=True and never reaches the backend.
-It still carries the usage of the original call: spend is what the ledger says, not what
-responses say.
+every field of the request, so changing any of them is a miss. A hit returns the stored response
+with cached=True and never reaches the backend. It still carries the usage of the original call:
+spend is what the ledger says, not what responses say.
+
+Writes are atomic: an entry is written whole to a temporary file beside it (<key>.json.<pid>.tmp),
+flushed to disk, and only then renamed onto its name, so an entry is either absent or complete,
+even across a power cut. A write that fails removes its temporary file. A process killed
+mid-write can leave a stray temporary file, never a partial entry: only <key>.json is ever read,
+and the call is asked again next time.
 """
 
 from __future__ import annotations
@@ -102,8 +108,20 @@ class Cache:
         if path.exists():
             return dataclasses.replace(load(json.loads(path.read_text())), cached=True)
         response = call(request)
-        path.parent.mkdir(parents=True, exist_ok=True)
-        partial = path.with_name(f"{path.name}.{os.getpid()}.tmp")
-        partial.write_text(json.dumps(dataclasses.asdict(response), default=_encode))
-        partial.replace(path)  # never leaves a half-written entry behind
+        _write_atomically(path, json.dumps(dataclasses.asdict(response), default=_encode))
         return response
+
+
+def _write_atomically(path: Path, text: str) -> None:
+    """text at path, whole or not at all: written and flushed beside it, then renamed onto it."""
+    path.parent.mkdir(parents=True, exist_ok=True)
+    partial = path.with_name(f"{path.name}.{os.getpid()}.tmp")
+    try:
+        with partial.open("w", encoding="utf-8") as out:
+            out.write(text)
+            out.flush()
+            os.fsync(out.fileno())
+        partial.replace(path)
+    except BaseException:
+        partial.unlink(missing_ok=True)
+        raise

@@ -1,6 +1,7 @@
 # Drafted by muse-spark-1.3-contributor from 1982-06_p094, 1983-06_p092, 1984-06_p058 on 2026-10-28 (P21b).
-# A draft: validated, never registered. python -m archivist.templates.test checks its
-# identities; only a person, with python -m archivist.templates.approve, approves it.
+# Approved by Kamil Shirinov on 2026-10-28, identity by identity, on the evidence in
+# total_claims_by_country.evidence.json (sha256 6f6892fb6161cdf6056c59820195130a67d4501c90f9b8049a623ed01370ca40).
+# Registered, but no run enables it until a run config names it ([doc_types] enabled).
 identity:
   family: total_claims_by_country
   title: Table CM-II-2. - Total Claims by Country
@@ -202,30 +203,39 @@ layout:
   - key: country
     printed: Country
     kind: text
+    blank_means: unknown
   - key: c1
     printed: Calendar year 1981
     kind: money
+    blank_means: unknown
   - key: c2
     printed: June 1982
     kind: money
+    blank_means: unknown
   - key: c3
     printed: Sept. 1982
     kind: money
+    blank_means: unknown
   - key: c4
     printed: Dec. 1982
     kind: money
+    blank_means: unknown
   - key: c5
     printed: Mar. 1983
     kind: money
+    blank_means: unknown
   - key: c6
     printed: June 1983
     kind: money
+    blank_means: unknown
   - key: c7
     printed: Sept. 1983
     kind: money
+    blank_means: unknown
   - key: c8
     printed: Dec. 1983
     kind: money
+    blank_means: unknown
 identities:
 - id: total_europe
   description: Total Europe equals sum of European countries
@@ -385,7 +395,7 @@ identities:
       - total_foreign_countries
       - total_international_regional
 provenance:
-  status: draft
+  status: approved
   drafted_by:
     kind: model
     id: muse-spark-1.3-contributor
@@ -394,7 +404,15 @@ provenance:
   - 1982-06_p094
   - 1983-06_p092
   - 1984-06_p058
+  approved_by: Kamil Shirinov
+  approved_on: '2026-10-28'
   evidence:
   - drafted by muse-spark-1.3-contributor from 1982-06_p094, 1983-06_p092, 1984-06_p058 (drafter role,
     P21b)
+  - 'templates/total_claims_by_country.evidence.json: the arithmetic test of 2026-10-28 on 1982-06_p094,
+    1983-06_p092, 1984-06_p058'
+  - 'approver: identity total_international was untested by the arithmetic test (the two reads of
+    a cell disagreed at all 24 places it applies); accepted on a hand check of 1982-06_p094, where
+    it holds within rounding in the 1980, 1981 and March 1982 columns'
+  evidence_sha256: 6f6892fb6161cdf6056c59820195130a67d4501c90f9b8049a623ed01370ca40
   dropped: []

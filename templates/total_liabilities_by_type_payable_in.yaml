@@ -1,0 +1,114 @@
+# Drafted by muse-spark-1.3-contributor from 1983-06_p088, 1984-06_p054 on 2026-10-28 (P21b).
+# A draft: validated, never registered. python -m archivist.templates.test checks its
+# identities; only a person, with python -m archivist.templates.approve, approves it.
+identity:
+  family: total_liabilities_by_type_payable_in
+  title: Table CM-I-2. - Total Liabilities by Type, Payable in Dollars Part A - Foreign Countries
+  description: Capital Movements table with Total foreign countries and Official institutions Banks Other
+    foreigners breakdown in millions of dollars
+  title_patterns:
+  - Total\s+Liabilities\s+by\s+Type,?\s+Payable\s+in\s+Dollars
+  - Part\s+A\s*[-\u2014\u2013-]\s*Foreign\s+Countries
+layout:
+  unit: millions of dollars
+  precision: '1'
+  rows:
+    read: 17
+  columns:
+  - key: period
+    printed: End of calendar year or month
+    kind: text
+    blank_means: unknown
+  - key: total
+    printed: Total foreign countries (1)
+    kind: money
+    blank_means: unknown
+  - key: off_demand
+    printed: Demand (2)
+    kind: money
+    blank_means: unknown
+  - key: off_time
+    printed: Time 2/ (3)
+    kind: money
+    blank_means: unknown
+  - key: off_bills
+    printed: U.S. Treasury bills & certificates (4)
+    kind: money
+    blank_means: unknown
+  - key: off_other
+    printed: Other liabilities 2/ (5)
+    kind: money
+    blank_means: unknown
+  - key: bank_demand
+    printed: Demand (6)
+    kind: money
+    blank_means: unknown
+  - key: bank_time
+    printed: Time 2/ (7)
+    kind: money
+    blank_means: unknown
+  - key: bank_bills
+    printed: U.S. Treasury bills & certificates (8)
+    kind: money
+    blank_means: unknown
+  - key: bank_other
+    printed: Other liabilities 2/ (9)
+    kind: money
+    blank_means: unknown
+  - key: bank_own
+    printed: To own foreign offices (10)
+    kind: money
+    blank_means: unknown
+  - key: oth_demand
+    printed: Demand (11)
+    kind: money
+    blank_means: unknown
+  - key: oth_time
+    printed: Time 2/ (12)
+    kind: money
+    blank_means: unknown
+  - key: oth_bills
+    printed: U.S. Treasury bills & certificates (13)
+    kind: money
+    blank_means: unknown
+  - key: oth_other
+    printed: Other liabilities 2/ (14)
+    kind: money
+    blank_means: unknown
+identities:
+- id: total_equals_components
+  description: Total foreign countries equals sum of all official institutions banks and other foreigners
+    components
+  for_each: row
+  left:
+    cell:
+      column: total
+  right:
+    sum:
+      columns:
+      - off_demand
+      - off_time
+      - off_bills
+      - off_other
+      - bank_demand
+      - bank_time
+      - bank_bills
+      - bank_other
+      - bank_own
+      - oth_demand
+      - oth_time
+      - oth_bills
+      - oth_other
+provenance:
+  status: draft
+  drafted_by:
+    kind: model
+    id: muse-spark-1.3-contributor
+  drafted_on: '2026-10-28'
+  drafted_from:
+  - 1983-06_p088
+  - 1984-06_p054
+  evidence:
+  - drafted by muse-spark-1.3-contributor from 1983-06_p088, 1984-06_p054 (drafter role, P21b)
+  - told to describe only the table printed as 'Total Liabilities by Type, Payable in Dollars'
+  dropped: []

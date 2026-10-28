@@ -1,0 +1,86 @@
+{
+  "family": "total_liabilities_by_type_payable_in",
+  "template": "templates/total_liabilities_by_type_payable_in.yaml",
+  "template_sha256": "ea6fcbff8d8ba38a5789743b2259bd0031c6a5ae689b0d813e6ef311c0bd8faf",
+  "tested_on": "2026-10-28",
+  "config": {
+    "drafter": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "extractor": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "rereader": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    }
+  },
+  "citations": "S0+grid",
+  "rule": "every identity evaluated wherever it applies, on cells whose two reads agree; held within n half-units of the printed precision for n printed values",
+  "pages": [
+    {
+      "ref": "1983-06_p088",
+      "page_id": "1983-06_p088",
+      "classified_as": "total_liabilities_by_type_payable_in",
+      "anchored": 0,
+      "box_sources": {
+        "model": 238
+      },
+      "read": "ok",
+      "needed": 238,
+      "cells": 255,
+      "read_first": 255,
+      "read_twice": 235,
+      "agree": 0,
+      "no_second_read": {
+        "illegible to the re-read": 3
+      }
+    },
+    {
+      "ref": "1984-06_p054",
+      "page_id": "1984-06_p054",
+      "classified_as": "total_liabilities_by_type_payable_in",
+      "anchored": 0,
+      "box_sources": {
+        "model": 238
+      },
+      "read": "ok",
+      "needed": 238,
+      "cells": 255,
+      "read_first": 255,
+      "read_twice": 219,
+      "agree": 0,
+      "no_second_read": {
+        "illegible to the re-read": 17,
+        "the re-read failed: ReReadFailed: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | retry: JSONDecodeError: Expecting value: line 1 column 1 (char 0)": 2
+      }
+    }
+  ],
+  "outcomes": {
+    "rejected": 0,
+    "sometimes fails": 0,
+    "holds": 0,
+    "untested": 1
+  },
+  "identities": [
+    {
+      "id": "total_equals_components",
+      "description": "Total foreign countries equals sum of all official institutions banks and other foreigners components",
+      "for_each": "row",
+      "over": null,
+      "equation": "total = off_demand + off_time + off_bills + off_other + bank_demand + bank_time + bank_bills + bank_other + bank_own + oth_demand + oth_time + oth_bills + oth_other",
+      "applies": 34,
+      "evaluated": 0,
+      "held": 0,
+      "failed": 0,
+      "hold_rate": null,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 34
+      },
+      "outcome": "untested",
+      "failures": []
+    }
+  ]
+}

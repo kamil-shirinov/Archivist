@@ -61,6 +61,12 @@ SET_ASIDE = {  # title -> (date, why), before any held-out page was touched
         "read the by-period table's columns across all three pages, two of which print the "
         "by-source table (results/templates/citations_dev.md)",
     ),
+    "Total Liabilities by Country": (
+        "2026-10-28",
+        "not approved: its evidence is too thin, because the grid (S0+grid) cannot place rows on "
+        "two of its three development pages (1983-06_p097, 1984-06_p055), so 6 of its 8 "
+        "identities went untested (templates/total_liabilities_by_country.evidence.json)",
+    ),
 }
 
 
