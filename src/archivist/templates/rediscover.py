@@ -34,6 +34,7 @@ from dataclasses import dataclass
 from pathlib import Path
 
 from archivist.doctypes.template import (
+    ReadRows,
     Template,
     TemplateType,
     evidence_path,
@@ -186,8 +187,10 @@ def meaning(template: Template) -> tuple[dict[str, str | None], dict[str, int | 
     columns = {c.key: _column_meaning(c.printed) for c in template.layout.columns}
     if isinstance(template.layout.rows, list):
         rows = {r.key: _row_place(r.key, r.printed) for r in template.layout.rows}
-    else:  # read rows are numbered from the top: the n-th row is line n
+    elif isinstance(template.layout.rows, ReadRows):  # numbered from the top: row n is line n
         rows = {key: int(key) for key in template.layout.row_keys}
+    else:  # rows in sections: no line of a card
+        rows = dict.fromkeys(template.layout.row_keys)
     return columns, rows
 
 

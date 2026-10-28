@@ -1,7 +1,7 @@
 {
   "family": "outstanding_forward_exchange_contracts",
   "template": "templates/outstanding_forward_exchange_contracts.yaml",
-  "template_sha256": "3d2889ee694d685cffdef979d30b5e26c7309fbda1329fe222a780cfa086ce45",
+  "template_sha256": "a24a7927ee88f8e532450da0c92df6e43826e29a56f371839400f9e860918fc8",
   "tested_on": "2026-10-28",
   "config": {
     "drafter": {
@@ -24,62 +24,66 @@
       "ref": "1939-01_p061",
       "page_id": "1939-01_p061",
       "classified_as": "outstanding_forward_exchange_contracts",
-      "anchored": 0,
+      "anchored": 221,
       "read": "ok",
-      "needed": 52,
-      "cells": 70,
-      "read_first": 70,
-      "read_twice": 52,
-      "agree": 41,
-      "no_second_read": {}
+      "needed": 312,
+      "cells": 420,
+      "read_first": 420,
+      "read_twice": 310,
+      "agree": 188,
+      "no_second_read": {
+        "illegible to the re-read": 2
+      }
     },
     {
       "ref": "1939-07_p085",
       "page_id": "1939-07_p085",
       "classified_as": "outstanding_forward_exchange_contracts",
-      "anchored": 0,
+      "anchored": 21,
       "read": "ok",
-      "needed": 65,
-      "cells": 70,
-      "read_first": 70,
-      "read_twice": 65,
-      "agree": 49,
-      "no_second_read": {}
+      "needed": 390,
+      "cells": 420,
+      "read_first": 420,
+      "read_twice": 382,
+      "agree": 32,
+      "no_second_read": {
+        "illegible to the re-read": 8
+      }
     },
     {
       "ref": "1939-12_p060",
       "page_id": "1939-12_p060",
       "classified_as": "outstanding_forward_exchange_contracts",
-      "anchored": 49,
+      "anchored": 231,
       "read": "ok",
-      "needed": 52,
-      "cells": 70,
-      "read_first": 70,
-      "read_twice": 52,
-      "agree": 46,
+      "needed": 312,
+      "cells": 420,
+      "read_first": 420,
+      "read_twice": 312,
+      "agree": 207,
       "no_second_read": {}
     }
   ],
   "outcomes": {
     "rejected": 0,
     "sometimes fails": 0,
-    "holds": 2,
+    "holds": 4,
     "untested": 0
   },
   "identities": [
     {
       "id": "total_europe",
-      "description": "Total Europe equals sum of United Kingdom, France, Germany, Italy, Netherlands, Switzerland and Other Europe",
+      "description": "Total Europe equals sum of European currencies",
       "for_each": "row",
       "over": null,
       "equation": "united_kingdom + france + germany + italy + netherlands + switzerland + other_europe = total_europe",
-      "applies": 13,
-      "evaluated": 4,
-      "held": 4,
+      "applies": 78,
+      "evaluated": 1,
+      "held": 1,
       "failed": 0,
       "hold_rate": 1.0,
       "not_evaluated": {
-        "the two reads of a cell disagree": 9
+        "the two reads of a cell disagree": 77
       },
       "outcome": "holds",
       "failures": []
@@ -90,13 +94,76 @@
       "for_each": "row",
       "over": null,
       "equation": "total_europe + canada + latin_america + far_east + all_other = grand_total",
-      "applies": 13,
-      "evaluated": 3,
-      "held": 3,
+      "applies": 78,
+      "evaluated": 1,
+      "held": 1,
       "failed": 0,
       "hold_rate": 1.0,
       "not_evaluated": {
-        "the two reads of a cell disagree": 10
+        "the two reads of a cell disagree": 77
+      },
+      "outcome": "holds",
+      "failures": []
+    },
+    {
+      "id": "total_purchase_breakdown",
+      "description": "Total purchase contracts equal foreign plus domestic purchase contracts",
+      "for_each": "position",
+      "over": [
+        "united_kingdom",
+        "france",
+        "germany",
+        "italy",
+        "netherlands",
+        "switzerland",
+        "other_europe",
+        "total_europe",
+        "canada",
+        "latin_america",
+        "far_east",
+        "all_other",
+        "grand_total"
+      ],
+      "equation": "total_purchase = purchase_foreign + purchase_domestic",
+      "applies": 169,
+      "evaluated": 30,
+      "held": 30,
+      "failed": 0,
+      "hold_rate": 1.0,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 138,
+        "a cell was not read twice": 1
+      },
+      "outcome": "holds",
+      "failures": []
+    },
+    {
+      "id": "total_sale_breakdown",
+      "description": "Total sale contracts equal foreign plus domestic sale contracts",
+      "for_each": "position",
+      "over": [
+        "united_kingdom",
+        "france",
+        "germany",
+        "italy",
+        "netherlands",
+        "switzerland",
+        "other_europe",
+        "total_europe",
+        "canada",
+        "latin_america",
+        "far_east",
+        "all_other",
+        "grand_total"
+      ],
+      "equation": "total_sale = sale_foreign + sale_domestic",
+      "applies": 169,
+      "evaluated": 32,
+      "held": 32,
+      "failed": 0,
+      "hold_rate": 1.0,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 137
       },
       "outcome": "holds",
       "failures": []

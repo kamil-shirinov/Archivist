@@ -17,7 +17,7 @@
       "model_id": "muse-spark-1.3-contributor"
     }
   },
-  "citations": "S0+ocr",
+  "citations": "S0+grid",
   "rule": "every identity evaluated wherever it applies, on cells whose two reads agree; held within n half-units of the printed precision for n printed values",
   "pages": [
     {
@@ -25,14 +25,19 @@
       "page_id": "1982-06_p091",
       "classified_as": "total_liabilities_by_country",
       "anchored": 26,
+      "box_sources": {
+        "grid": 548,
+        "model": 200,
+        "ocr": 26
+      },
       "read": "ok",
       "needed": 774,
       "cells": 860,
       "read_first": 853,
-      "read_twice": 733,
-      "agree": 78,
+      "read_twice": 744,
+      "agree": 314,
       "no_second_read": {
-        "illegible to the re-read": 34,
+        "illegible to the re-read": 23,
         "not read the first time": 7
       }
     },
@@ -41,6 +46,9 @@
       "page_id": "1983-06_p097",
       "classified_as": "total_liabilities_by_country",
       "anchored": 0,
+      "box_sources": {
+        "model": 774
+      },
       "read": "ok",
       "needed": 774,
       "cells": 860,
@@ -57,22 +65,27 @@
       "page_id": "1984-06_p055",
       "classified_as": "total_liabilities_by_country",
       "anchored": 32,
+      "box_sources": {
+        "grid": 96,
+        "model": 646,
+        "ocr": 32
+      },
       "read": "ok",
       "needed": 774,
       "cells": 860,
       "read_first": 860,
-      "read_twice": 731,
-      "agree": 129,
+      "read_twice": 736,
+      "agree": 199,
       "no_second_read": {
-        "illegible to the re-read": 43
+        "illegible to the re-read": 38
       }
     }
   ],
   "outcomes": {
     "rejected": 0,
     "sometimes fails": 0,
-    "holds": 1,
-    "untested": 7
+    "holds": 2,
+    "untested": 6
   },
   "identities": [
     {
@@ -135,14 +148,14 @@
       "over": null,
       "equation": "total_africa = egypt + ghana + liberia + morocco + south_africa + zaire + oil_africa + other_africa",
       "applies": 27,
-      "evaluated": 0,
-      "held": 0,
+      "evaluated": 2,
+      "held": 2,
       "failed": 0,
-      "hold_rate": null,
+      "hold_rate": 1.0,
       "not_evaluated": {
-        "the two reads of a cell disagree": 27
+        "the two reads of a cell disagree": 25
       },
-      "outcome": "untested",
+      "outcome": "holds",
       "failures": []
     },
     {
@@ -152,13 +165,13 @@
       "over": null,
       "equation": "total_other = australia + all_other",
       "applies": 27,
-      "evaluated": 2,
-      "held": 2,
+      "evaluated": 6,
+      "held": 6,
       "failed": 0,
       "hold_rate": 1.0,
       "not_evaluated": {
-        "the two reads of a cell disagree": 24,
-        "a cell was not read twice": 1
+        "the two reads of a cell disagree": 19,
+        "a cell was not read twice": 2
       },
       "outcome": "holds",
       "failures": []

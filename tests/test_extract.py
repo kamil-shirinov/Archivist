@@ -27,6 +27,7 @@ from archivist.models.cache import Cache
 from archivist.models.mock import MockLLM
 from archivist.pipeline import citations
 from archivist.pipeline.extract import (
+    ARCHIVE_GRID,
     ARCHIVE_OCR,
     CITATION_STRATEGIES,
     EXTRACT_TOKENS,
@@ -273,12 +274,13 @@ def test_an_unknown_citation_strategy_is_refused(tmp_path):
 def test_each_type_names_its_own_strategy_and_the_ledger_family_keeps_s0_ink():
     assert CITATION_STRATEGIES == ("S0", "S0+ink", "S1", "S1+ink")
     assert {t.citations for t in TYPES.values()} == {"S0+ink"}
-    assert template.CITATIONS == ARCHIVE_OCR  # by the rule in results/templates/citations_dev_v2.md
+    assert template.CITATIONS == ARCHIVE_GRID  # chosen in results/templates/citations_dev_v3.md
 
 
-def test_the_pipeline_refuses_the_archive_ocr_strategy_by_name():
+@pytest.mark.parametrize("strategy", [ARCHIVE_OCR, ARCHIVE_GRID])
+def test_the_pipeline_refuses_the_archive_strategies_by_name(strategy):
     with pytest.raises(ValueError, match="never does"):
-        recorded_citations(TYPES, ARCHIVE_OCR)
+        recorded_citations(TYPES, strategy)
 
 
 def test_a_run_records_one_strategy_or_each_types(monkeypatch):

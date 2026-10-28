@@ -39,6 +39,7 @@ from archivist.templates import (
     compare_citations,
     draft,
     families,
+    grid,
     grid_probe,
     ocr,
     pages,
@@ -229,6 +230,19 @@ def test_a_previous_row_is_kept_and_a_false_one_is_dropped():
     assert written(identity) == "both = both (row above) − july"
     assert "previous_row: true" in draft.to_yaml(template, "x")
     assert "previous_row: false" not in draft.to_yaml(template, "x")
+
+
+def test_a_title_names_the_one_table_to_describe_and_nothing_else(tmp_path, fake_pages):
+    llm = _drafter(json.dumps(ANSWER))
+    path = draft.draft(
+        FAMILY, REFS, llm, directory=tmp_path, today=TODAY, title="Receipts by Source"
+    )
+    (request,) = llm.calls
+    assert request.prompt == draft.PROMPT.format(n=2) + draft.TITLE_NOTE.format(
+        title="Receipts by Source"
+    )
+    notes = read_template(path).provenance.evidence
+    assert "told to describe only the table printed as 'Receipts by Source'" in notes
 
 
 def test_an_unusable_answer_is_asked_again_once_with_what_was_wrong(tmp_path, fake_pages):
@@ -802,7 +816,8 @@ def test_a_running_balance_on_the_previous_row_is_found_on_rows_read_from_the_to
     ]
     doc_type = TemplateType(Template.model_validate(template))
     found = rediscover.match(doc_type)
-    assert {k: f.rule for k, f in found.items()} == {"running": "running_balance", "wrong_way": None}
+    rules = {k: f.rule for k, f in found.items()}
+    assert rules == {"running": "running_balance", "wrong_way": None}
     assert (found["running"].at, found["running"].of) == (4, 4)  # row 01 has no row above
 
 
@@ -845,14 +860,15 @@ def test_the_rediscovery_drafts_from_three_val_pages_of_each_kind():
 # --- Which box strategy suits template tables ----------------------------------------------------
 
 
-def test_the_box_strategy_with_more_agreeing_cells_wins_and_a_tie_keeps_s0():
+def test_the_box_strategy_with_more_agreeing_cells_wins_and_a_tie_keeps_the_simpler():
+    assert compare_citations.STRATEGIES == ("S0+ocr", "S0+grid")  # simplest first
     page = {"read": "ok", "sampled": 10}
-    better = [page | {"S0": {"agree": 6}, "S0+ocr": {"agree": 7}}]
-    assert compare_citations.decide(better) == ("S0+ocr", {"S0": 0.6, "S0+ocr": 0.7})
-    tie = [page | {"S0": {"agree": 5}, "S0+ocr": {"agree": 5}}]
-    assert compare_citations.decide(tie)[0] == "S0"
+    better = [page | {"S0+ocr": {"agree": 6}, "S0+grid": {"agree": 7}}]
+    assert compare_citations.decide(better) == ("S0+grid", {"S0+ocr": 0.6, "S0+grid": 0.7})
+    tie = [page | {"S0+ocr": {"agree": 5}, "S0+grid": {"agree": 5}}]
+    assert compare_citations.decide(tie)[0] == "S0+ocr"
     unread = [{"read": "failed: x"}]
-    assert compare_citations.decide(unread) == ("S0", {"S0": None, "S0+ocr": None})
+    assert compare_citations.decide(unread) == ("S0+ocr", {"S0+ocr": None, "S0+grid": None})
 
 
 # --- S0+ocr: boxes from the archive's OCR layer --------------------------------------------------
@@ -974,3 +990,85 @@ def test_the_grid_probe_finds_drawn_rows_and_columns_through_ruled_lines():
 def test_runs_merge_small_gaps_and_drop_specks():
     flags = np.array([1, 1, 0, 1, 0, 0, 0, 1, 0, 0, 0, 0, 1, 1, 1], dtype=bool)
     assert grid_probe.runs(flags, 1, 2) == [(0, 4), (12, 15)]
+
+
+# --- S0+grid: boxes from the table's grid found in the page --------------------------------------
+
+GRID_ROWS = ["Austria", "Belgium", "Bulgaria", "Denmark", "Finland", "France"]
+
+
+def _grid_page(rows=GRID_ROWS):
+    """A drawn table: a stub of labels and three figure columns, one figure per cell; the model's
+    boxes a line low; the OCR layer with the labels only, as on the 1980s pages."""
+    image = Image.new("L", (900, 600), 235)
+    canvas = ImageDraw.Draw(image)
+    template = Template.model_validate(
+        {
+            "identity": {
+                "family": "countries",
+                "title": "Countries",
+                "description": "Countries.",
+                "title_patterns": ["countries"],
+            },
+            "layout": {
+                "unit": "dollars",
+                "precision": "1",
+                "rows": {"read": len(rows)},
+                "columns": [
+                    {"key": "country", "printed": "Country", "kind": "text"},
+                    *({"key": k, "printed": k, "kind": "money"} for k in ("a", "b", "c")),
+                ],
+            },
+            "provenance": {
+                "status": "draft",
+                "drafted_by": {"kind": "person", "id": "a test"},
+                "drafted_on": "2026-10-28",
+            },
+        }
+    )
+    doc_type = TemplateType(template)
+    values, layer, truth = [], [], {}
+    for r, label in enumerate(rows):
+        y = 100 + 40 * r
+        layer.append(_word(label, (60, y, 160, y + 20)))
+        key = f"{r + 1:02d}"
+        stub = cell_id("countries", "p", key, "country")
+        values.append(_value(stub, label, (60, y, 160, y + 20)))
+        for c, column in enumerate(("a", "b", "c")):
+            x = 300 + 180 * c
+            canvas.rectangle([x, y, x + 80, y + 20], fill=50)
+            field = cell_id("countries", "p", key, column)
+            truth[field] = (x, y)
+            values.append(_value(field, f"{r + 1}{c}0", (x, y + 40, x + 80, y + 60)))  # a line low
+    buffer = io.BytesIO()
+    image.save(buffer, format="PNG")
+    return doc_type, buffer.getvalue(), values, layer, truth
+
+
+def test_rows_between_labelled_rows_take_their_grid_cells_by_order():
+    doc_type, image, values, layer, truth = _grid_page()
+    layer = [w for w in layer if w.text in ("Austria", "France")]  # two labels fix the ends
+    out, sources = grid.assign(values, doc_type, image, layer)
+    boxes = {v.field_id: v.citation.bbox for v in out}
+    for field, (x, y) in truth.items():
+        assert sources[field] == "grid"
+        box = boxes[field]
+        assert box.x0 <= x + 5 and box.x1 >= x + 75  # its column
+        assert box.y0 <= y + 4 and box.y1 >= y + 16 and box.y1 - box.y0 < 35  # its own line
+
+
+def test_an_anchored_figure_keeps_its_ocr_box_and_an_unfixed_table_keeps_the_models():
+    doc_type, image, values, layer, truth = _grid_page()
+    anchor = _word("2,10", (480, 140, 560, 160))  # the figure "210" of row 02, column b
+    out, sources = grid.assign(values, doc_type, image, [anchor])  # no label: one fixed row only
+    field = cell_id("countries", "p", "02", "b")
+    assert sources[field] == "ocr"
+    assert {v.field_id: v for v in out}[field].citation.bbox == anchor.box
+    same_row = {f for f in truth if ":02:" in f and f != field}
+    assert {sources[f] for f in same_row} == {"grid"}  # its row is fixed by the anchor
+    assert {sources[f] for f in truth if ":02:" not in f} == {"model"}  # nothing fixes the rest
+
+
+def test_merged_bands_are_cut_into_their_lines():
+    bands = [(0, 20), (40, 60), (80, 180), (200, 220)]  # at a 40 px pitch the third holds three
+    assert grid.split(bands) == [(0, 20), (40, 60), (80, 113), (113, 147), (147, 180), (200, 220)]

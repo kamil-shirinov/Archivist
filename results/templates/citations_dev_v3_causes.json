@@ -1,0 +1,202 @@
+{
+ "S0+ocr T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_02:italy": {
+  "cause": "re-read wrong",
+  "note": "anchored to the right figure: the crop shows 431; the re-reader read 1,131",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_01:latin_america": {
+  "cause": "box offset",
+  "note": "model's box (no anchor): on Oct. 26's 4,014, three lines below Oct. 5",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.outstanding_forward_exchange_contracts:1939-07_p085:total_sale_01:italy": {
+  "cause": "box offset",
+  "note": "model's box: on Apr. 19's 543, two lines below Apr. 5",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.outstanding_forward_exchange_contracts:1939-07_p085:total_sale_04:other_europe": {
+  "cause": "box offset",
+  "note": "model's box: in the blank line before the next section",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.outstanding_forward_exchange_contracts:1939-12_p060:purchase_domestic_01:germany": {
+  "cause": "box offset",
+  "note": "model's box: between two columns, beside the dash",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.receipts_and_expenditures_under_railroad:1939-08_p043:16:to_unemployment": {
+  "cause": "box offset",
+  "note": "model's box: on July's 15.0, a line below June's dash",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.receipts_and_expenditures_under_railroad:1939-08_p043:17:admin": {
+  "cause": "re-read wrong",
+  "note": "model's box on the right figure: the crop shows .5; the re-reader dropped the point",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.receipts_and_expenditures_under_railroad:1939-10_p024:03:to_unemployment": {
+  "cause": "box offset",
+  "note": "model's box: between the dash columns",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.receipts_and_expenditures_under_railroad:1939-12_p025:04:to_unemployment": {
+  "cause": "box offset",
+  "note": "model's box: between the dash columns",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.short_term_foreign_liabilities_as:1939-01_p051:23:total_europe": {
+  "cause": "box offset",
+  "note": "model's box: on the heading above Oct. 12",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.short_term_foreign_liabilities_as:1939-07_p071:05:all_other": {
+  "cause": "re-read wrong",
+  "note": "anchored to the right figure: the crop shows 47,254; the re-reader read 47,234",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.short_term_foreign_liabilities_as:1939-12_p053:47:far_east": {
+  "cause": "formatting only",
+  "note": "anchored to the right figure; the re-reader wrote 1, 332",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.total_claims_by_country:1982-06_p094:asian_regional:c7": {
+  "cause": "box offset",
+  "note": "model's box: on the regional heading, blank",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.total_claims_by_country:1984-06_p058:african_regional:c4": {
+  "cause": "box offset",
+  "note": "model's box: on Total foreign countries, rows above",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.total_claims_by_country:1984-06_p058:australia:c8": {
+  "cause": "box offset",
+  "note": "model's box: on Other Africa, rows above Australia",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.total_claims_by_country:1984-06_p058:belgium_luxembourg:c8": {
+  "cause": "box offset",
+  "note": "model's box: on Finland, rows below Belgium-Luxembourg",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.total_claims_by_country:1984-06_p058:peru:c7": {
+  "cause": "box offset",
+  "note": "model's box: on Uruguay, rows below Peru",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.total_liabilities_by_country:1982-06_p091:pakistan:c8": {
+  "cause": "box offset",
+  "note": "model's box: rows below Pakistan, faint print",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.total_liabilities_by_country:1982-06_p091:peru:c3": {
+  "cause": "box offset",
+  "note": "model's box: on Venezuela, rows below Peru",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.total_liabilities_by_country:1982-06_p091:poland:c6": {
+  "cause": "box offset",
+  "note": "model's box: on Portugal, a row below Poland",
+  "judged_by": "Claude"
+ },
+ "S0+grid T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_02:italy": {
+  "cause": "re-read wrong",
+  "note": "anchored to the right figure: the crop shows 431; the re-reader read 1,131",
+  "judged_by": "Claude"
+ },
+ "S0+grid T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_04:france": {
+  "cause": "box offset",
+  "note": "grid box: its band spans three printed lines (a merged band left unsplit); the re-read took the middle one",
+  "judged_by": "Claude"
+ },
+ "S0+grid T.outstanding_forward_exchange_contracts:1939-12_p060:total_sale_01:latin_america": {
+  "cause": "re-read wrong",
+  "note": "anchored to the right figure: the crop shows 3,513; the re-reader read 3,512",
+  "judged_by": "Claude"
+ },
+ "S0+grid T.receipts_and_expenditures_under_railroad:1939-08_p043:01:admin": {
+  "cause": "box offset",
+  "note": "model's box (no grid row): straddles .3 and 1.5",
+  "judged_by": "Claude"
+ },
+ "S0+grid T.receipts_and_expenditures_under_railroad:1939-08_p043:06:to_unemployment": {
+  "cause": "formatting only",
+  "note": "grid box on the right cell: the crop shows the nil dash, read as blank",
+  "judged_by": "Claude"
+ },
+ "S0+grid T.receipts_and_expenditures_under_railroad:1939-12_p025:01:total_exp": {
+  "cause": "box offset",
+  "note": "model's box (no grid row): straddles .3 and 1.5",
+  "judged_by": "Claude"
+ },
+ "S0+grid T.receipts_and_expenditures_under_railroad:1939-12_p025:07:to_unemployment": {
+  "cause": "unreadable crop",
+  "note": "grid box: a band a few pixels tall, too thin to read",
+  "judged_by": "Claude"
+ },
+ "S0+grid T.receipts_and_expenditures_under_railroad:1939-12_p025:10:to_unemployment": {
+  "cause": "box offset",
+  "note": "model's box (no grid row): beside the dash column",
+  "judged_by": "Claude"
+ },
+ "S0+grid T.security_transactions_as_reported_by:1939-07_p075:04:france": {
+  "cause": "re-read wrong",
+  "note": "anchored to the right figure: the crop shows 3,992; the re-reader read 1,992",
+  "judged_by": "Claude"
+ },
+ "S0+grid T.total_claims_by_country:1983-06_p092:peru:c7": {
+  "cause": "re-read wrong",
+  "note": "anchored to the right figure: the crop shows 2,324; the re-reader read 2,345",
+  "judged_by": "Claude"
+ },
+ "S0+grid T.total_claims_by_country:1983-06_p092:syria:c7": {
+  "cause": "re-read wrong",
+  "note": "grid box on the right cell: the crop shows 42; the re-reader read 45",
+  "judged_by": "Claude"
+ },
+ "S0+grid T.total_claims_by_country:1984-06_p058:syria:c7": {
+  "cause": "re-read wrong",
+  "note": "grid box on the right cell: the crop shows a faint 57; the re-reader read 67",
+  "judged_by": "Claude"
+ },
+ "S0+grid T.total_liabilities_by_country:1982-06_p091:taiwan:c8": {
+  "cause": "box offset",
+  "note": "model's box (no grid row on this page's Asia rows): rows off",
+  "judged_by": "Claude"
+ },
+ "S0+grid T.total_liabilities_by_country:1983-06_p097:australia:c4": {
+  "cause": "box offset",
+  "note": "model's box (no grid on this page at all): on Total Africa",
+  "judged_by": "Claude"
+ },
+ "S0+grid T.total_liabilities_by_country:1984-06_p055:african_regional:c4": {
+  "cause": "box offset",
+  "note": "model's box (no grid row): straddles two regional rows",
+  "judged_by": "Claude"
+ },
+ "S0+grid T.total_liabilities_by_country:1984-06_p055:asian_regional:c7": {
+  "cause": "box offset",
+  "note": "model's box (no grid row): straddles two regional rows",
+  "judged_by": "Claude"
+ },
+ "S0+grid T.total_liabilities_by_country:1984-06_p055:china_mainland:c3": {
+  "cause": "box offset",
+  "note": "model's box (no grid row): rows below Mainland",
+  "judged_by": "Claude"
+ },
+ "S0+grid T.total_liabilities_by_country:1984-06_p055:china_mainland:c5": {
+  "cause": "box offset",
+  "note": "model's box (no grid row): rows below Mainland",
+  "judged_by": "Claude"
+ },
+ "S0+grid T.total_liabilities_by_country:1984-06_p055:france:c3": {
+  "cause": "box offset",
+  "note": "model's box (no grid row): rows below France",
+  "judged_by": "Claude"
+ },
+ "S0+grid T.total_liabilities_by_country:1984-06_p055:switzerland:c3": {
+  "cause": "first read wrong",
+  "note": "grid box on the right cell: the page prints 32,566 and the re-read agrees; the first read, 32,365, is wrong",
+  "judged_by": "Claude"
+ }
+}

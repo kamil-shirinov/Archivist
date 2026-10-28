@@ -52,6 +52,7 @@ RUNS_DIR = Path("results/runs")
 ROLE = "extractor"
 CITATION_STRATEGIES = ("S0", "S0+ink", "S1", "S1+ink")  # simplest first
 ARCHIVE_OCR = "S0+ocr"  # a template's strategy; archivist.templates.ocr, never the pipeline
+ARCHIVE_GRID = "S0+grid"  # likewise: archivist.templates.grid, which reads the OCR layer too
 CLASSIFY_TOKENS = 2_048
 EXTRACT_TOKENS = 16_000  # a full card is 95 values with boxes, plus reasoning
 IMAGE_SUFFIXES = frozenset({".jpg", ".jpeg", ".png"})
@@ -121,9 +122,9 @@ def classify(image: bytes, llm: VisionLLM, doc_types: Mapping[str, DocType]) -> 
 
 
 def _checked(strategy: str) -> str:
-    if strategy == ARCHIVE_OCR:
+    if strategy in (ARCHIVE_OCR, ARCHIVE_GRID):
         raise ValueError(
-            f"citation strategy {ARCHIVE_OCR} reads the archive PDF's OCR layer, which the "
+            f"citation strategy {strategy} reads the archive PDF's OCR layer, which the "
             "pipeline never does (it reads page images only): it runs in archivist.templates; "
             f"give a pipeline run one of {CITATION_STRATEGIES} with --citations"
         )

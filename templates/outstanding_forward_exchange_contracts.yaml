@@ -1,64 +1,98 @@
 # Drafted by muse-spark-1.3-contributor from 1939-01_p061, 1939-07_p085, 1939-12_p060 on 2026-10-28 (P21b).
-# A draft: validated, never registered. python -m archivist.templates.test checks its
-# identities; only a person, with python -m archivist.templates.approve, approves it.
+# Approved by Kamil Shirinov on 2026-10-28, identity by identity, on the evidence in
+# outstanding_forward_exchange_contracts.evidence.json (sha256 afe03066edf93c97e091fb60f6a48c92f1d187f5c26ea66a746c36599bb60494).
+# Registered, but no run enables it until a run config names it ([doc_types] enabled).
 identity:
   family: outstanding_forward_exchange_contracts
-  title: Net Position in Foreign Currencies of Reporting Banks and Bankers in the United States
-  description: Page with net foreign currency position by country where minus indicates short position
+  title: Outstanding Forward Exchange Contracts as Reported by Banks and Bankers in the United States
+    During
+  description: Table of outstanding forward exchange contracts by currency with purchase and sale totals
+    split into foreign and domestic customers
   title_patterns:
-  - net\s+position\s+in\s+foreign\s+currencies\s+of\s+reporting\s+banks
+  - Outstanding\s+Forward\s+Exchange\s+Contracts\s+as\s+Reported\s+by\s+Banks
 layout:
   unit: thousands of dollars
   precision: '1'
   rows:
-    read: 5
+    sections:
+    - key: total_purchase
+      printed: 'TOTAL PURCHASE CONTRACTS:'
+      read: 5
+    - key: purchase_foreign
+      printed: 'Contracts for purchases from foreign customers:'
+      read: 5
+    - key: purchase_domestic
+      printed: 'Contracts for purchases from domestic customers:'
+      read: 5
+    - key: total_sale
+      printed: 'TOTAL SALES CONTRACTS:'
+      read: 5
+    - key: sale_foreign
+      printed: 'Contracts for sale to foreign customers:'
+      read: 5
+    - key: sale_domestic
+      printed: 'Contracts for sale to domestic customers:'
+      read: 5
   columns:
   - key: label
-    printed: Position as of following dates
+    printed: Contracts as of following dates
     kind: text
+    blank_means: unknown
   - key: united_kingdom
     printed: United Kingdom
     kind: money
+    blank_means: zero
   - key: france
     printed: France
     kind: money
+    blank_means: zero
   - key: germany
     printed: Germany
     kind: money
+    blank_means: zero
   - key: italy
     printed: Italy
     kind: money
+    blank_means: zero
   - key: netherlands
     printed: Netherlands
     kind: money
+    blank_means: zero
   - key: switzerland
     printed: Switzerland
     kind: money
+    blank_means: zero
   - key: other_europe
     printed: Other Europe
     kind: money
+    blank_means: zero
   - key: total_europe
     printed: Total Europe
     kind: money
+    blank_means: zero
   - key: canada
     printed: Canada
     kind: money
+    blank_means: zero
   - key: latin_america
     printed: Latin America
     kind: money
+    blank_means: zero
   - key: far_east
     printed: Far East
     kind: money
+    blank_means: zero
   - key: all_other
     printed: All other
     kind: money
+    blank_means: zero
   - key: grand_total
     printed: Grand total
     kind: money
+    blank_means: zero
 identities:
 - id: total_europe
-  description: Total Europe equals sum of United Kingdom, France, Germany, Italy, Netherlands, Switzerland
-    and Other Europe
+  description: Total Europe equals sum of European currencies
   for_each: row
   left:
     sum:
@@ -87,8 +121,58 @@ identities:
   right:
     cell:
       column: grand_total
+- id: total_purchase_breakdown
+  description: Total purchase contracts equal foreign plus domestic purchase contracts
+  for_each: position
+  over:
+  - united_kingdom
+  - france
+  - germany
+  - italy
+  - netherlands
+  - switzerland
+  - other_europe
+  - total_europe
+  - canada
+  - latin_america
+  - far_east
+  - all_other
+  - grand_total
+  left:
+    cell:
+      section: total_purchase
+  right:
+    sum:
+      sections:
+      - purchase_foreign
+      - purchase_domestic
+- id: total_sale_breakdown
+  description: Total sale contracts equal foreign plus domestic sale contracts
+  for_each: position
+  over:
+  - united_kingdom
+  - france
+  - germany
+  - italy
+  - netherlands
+  - switzerland
+  - other_europe
+  - total_europe
+  - canada
+  - latin_america
+  - far_east
+  - all_other
+  - grand_total
+  left:
+    cell:
+      section: total_sale
+  right:
+    sum:
+      sections:
+      - sale_foreign
+      - sale_domestic
 provenance:
-  status: draft
+  status: approved
   drafted_by:
     kind: model
     id: muse-spark-1.3-contributor
@@ -97,7 +181,14 @@ provenance:
   - 1939-01_p061
   - 1939-07_p085
   - 1939-12_p060
+  approved_by: Kamil Shirinov
+  approved_on: '2026-10-28'
   evidence:
   - drafted by muse-spark-1.3-contributor from 1939-01_p061, 1939-07_p085, 1939-12_p060 (drafter role,
     P21b)
+  - told to describe only the table printed as 'Outstanding Forward Exchange Contracts as Reported by
+    Banks'
+  - 'templates/outstanding_forward_exchange_contracts.evidence.json: the arithmetic test of 2026-10-28
+    on 1939-01_p061, 1939-07_p085, 1939-12_p060'
+  evidence_sha256: afe03066edf93c97e091fb60f6a48c92f1d187f5c26ea66a746c36599bb60494
   dropped: []

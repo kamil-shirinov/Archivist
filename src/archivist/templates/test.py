@@ -11,7 +11,9 @@ of --config (default config/templates.toml), every call cached and budgeted:
 2. read and cite: the draft's extraction of the whole table, its boxes corrected from the image
    (extract.read_page with the template types' own citation strategy, template.CITATIONS, unless
    --citations picks another; the evidence records which). S0+ocr reads with S0 and anchors each
-   value's box to the page's OCR text layer where it can (ocr.py; the evidence records how many).
+   value's box to the page's OCR text layer where it can (ocr.py; the evidence records how many);
+   S0+grid takes each box from the OCR layer, else the table's grid found in the page, else the
+   model (grid.py; the evidence records how many came from each).
    A big table gets a larger output allowance: OUTPUT_PER_CELL tokens per cell beyond the
    pipeline's own EXTRACT_TOKENS.
 3. blind second read: every cell some identity needs, re-read from a crop of its corrected box
@@ -67,7 +69,7 @@ from archivist.pipeline.extract import (
     ExtractionFailed,
 )
 from archivist.schema import ExtractedValue, PageExtraction
-from archivist.templates import ocr
+from archivist.templates import grid, ocr
 from archivist.templates.draft import CONFIG
 from archivist.templates.pages import Page, resolve
 
@@ -272,7 +274,7 @@ def read_pages(
         record: dict = {"ref": page.ref, "page_id": page.page_id}
         record["classified_as"] = extract.classify(image, llm, {doc_type.name: doc_type})
         try:
-            strategy = "S0" if citations == ocr.STRATEGY else citations
+            strategy = "S0" if citations in (ocr.STRATEGY, grid.STRATEGY) else citations
             values = extract.read_page(
                 image, page.page_id, llm, doc_type, strategy, output_tokens(doc_type)
             )
@@ -280,15 +282,20 @@ def read_pages(
             records.append({**record, "read": f"failed: {error}"[:1000]})
             print(f"{page.ref}: the read failed", flush=True)
             continue
-        anchored = None
+        anchored, sources = None, None
         if citations == ocr.STRATEGY:
             values, anchored = ocr.anchor(values, ocr.words(page.ref))
+        elif citations == grid.STRATEGY:
+            values, sources = grid.assign(values, doc_type, image, ocr.words(page.ref))
+            anchored = {f for f, source in sources.items() if source == "ocr"}
         extraction = PageExtraction(page_id=page.page_id, doc_type=doc_type.name, values=values)
         wanted = needed(doc_type, extraction)
         second = reread_cells(image, values, wanted, doc_type, rereader, workers)
         both = agreed(doc_type, extraction, second)
         if anchored is not None:  # of the cells the identities need, those boxed from the OCR layer
             record["anchored"] = len(anchored & wanted)
+        if sources is not None:  # of the cells the identities need, by where each box came from
+            record["box_sources"] = dict(sorted(Counter(sources[f] for f in wanted).items()))
         record |= {
             "read": "ok",
             "needed": len(wanted),
@@ -364,7 +371,7 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--workers", type=int, default=8)
     parser.add_argument(
         "--citations",
-        choices=(*CITATION_STRATEGIES, ocr.STRATEGY),
+        choices=(*CITATION_STRATEGIES, ocr.STRATEGY, grid.STRATEGY),
         help="default: the template types' own",
     )
     args = parser.parse_args(argv)

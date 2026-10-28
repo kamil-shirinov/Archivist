@@ -4,9 +4,9 @@ Made by `python -m archivist.templates.grid_probe`: a feasibility probe in plain
 
 | Family | Page | Layout rows x figure columns | Rows read / found | Figure columns read / found | Boxes on a row | Ruled lines (across / down) |
 |---|---|---|--:|--:|--:|--:|
-| `outstanding_forward_exchange_contracts` | 1939-01_p061 | 5 x 13 | 4 / 4 (3-4) | 13 / 13 | 42% | 6 / 8 |
-| `outstanding_forward_exchange_contracts` | 1939-07_p085 | 5 x 13 | 5 / 4 (3-5) | 13 / 12 | 48% | 10 / 10 |
-| `outstanding_forward_exchange_contracts` | 1939-12_p060 | 5 x 13 | 4 / 4 (2-4) | 13 / 13 | 86% | 8 / 1 |
+| `outstanding_forward_exchange_contracts` | 1939-01_p061 | 30 x 13 | 24 / 19 (16-21) | 13 / 13 | 35% | 6 / 8 |
+| `outstanding_forward_exchange_contracts` | 1939-07_p085 | 30 x 13 | 30 / 25 (21-27) | 13 / 11 | 45% | 10 / 10 |
+| `outstanding_forward_exchange_contracts` | 1939-12_p060 | 30 x 13 | 24 / 18 (11-23) | 13 / 10 | 40% | 8 / 1 |
 | `receipts_and_expenditures_under_railroad` | 1939-08_p043 | 17 x 5 | 17 / 10 (1-16) | 5 / 6 | 33% | 8 / 0 |
 | `receipts_and_expenditures_under_railroad` | 1939-10_p024 | 17 x 5 | 17 / 12 (1-17) | 5 / 5 | 47% | 6 / 0 |
 | `receipts_and_expenditures_under_railroad` | 1939-12_p025 | 17 x 5 | 17 / 13 (1-17) | 5 / 5 | 14% | 8 / 3 |

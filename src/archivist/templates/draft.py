@@ -9,7 +9,8 @@ description and title patterns, its layout (unit, printed precision, fixed or re
 with their kinds) and every identity the model believes the printed figures satisfy, in the
 template language as it stands (cells, including the previous row's, sums and differences). It
 describes only what that language can express: it never names a document type of ours, a rule
-of theirs, nor the family the draft is saved as.
+of theirs, nor the family the draft is saved as. With --title, for pages that print more than one
+table, it adds one sentence naming the printed title of the table to describe, and nothing else.
 
 The answer is checked as a template is: the title, the patterns and the layout must validate, or
 the model is asked once more with what was wrong; each identity is then checked on its own, and
@@ -54,6 +55,7 @@ _NAME = {"type": "string"}
 _NAMES = {"type": ["array", "null"], "items": _NAME}
 _OPTIONAL = {"type": ["string", "null"]}
 BLANK_MEANS = ["zero", "unknown", None]
+_COUNT = {"type": "integer"}
 
 
 def _object(properties: dict) -> dict:
@@ -68,12 +70,27 @@ def _object(properties: dict) -> dict:
 _CELL = _object(
     {
         "cell": _object(
-            {"row": _OPTIONAL, "column": _OPTIONAL, "previous_row": {"type": ["boolean", "null"]}}
+            {
+                "row": _OPTIONAL,
+                "column": _OPTIONAL,
+                "previous_row": {"type": ["boolean", "null"]},
+                "section": _OPTIONAL,
+            }
         )
     }
 )
 _SUM = _object(
-    {"sum": _object({"rows": _NAMES, "columns": _NAMES, "row": _OPTIONAL, "column": _OPTIONAL})}
+    {
+        "sum": _object(
+            {
+                "rows": _NAMES,
+                "columns": _NAMES,
+                "sections": _NAMES,
+                "row": _OPTIONAL,
+                "column": _OPTIONAL,
+            }
+        )
+    }
 )
 _SIMPLE = {"anyOf": [_CELL, _SUM]}
 _DIFFERENCE = _object(
@@ -98,6 +115,16 @@ SCHEMA = _object(
                     "anyOf": [
                         {"type": "array", "items": _LABEL},
                         _object({"read": {"type": "integer"}}),
+                        _object(
+                            {
+                                "sections": {
+                                    "type": "array",
+                                    "items": _object(
+                                        {"key": _NAME, "printed": _NAME, "read": _COUNT}
+                                    ),
+                                }
+                            }
+                        ),
                     ]
                 },
                 "columns": {
@@ -122,7 +149,10 @@ SCHEMA = _object(
                 {
                     "id": _NAME,
                     "description": _NAME,
-                    "for_each": {"type": "string", "enum": ["table", "row", "column"]},
+                    "for_each": {
+                        "type": "string",
+                        "enum": ["table", "row", "column", "position"],
+                    },
                     "over": _NAMES,
                     "left": _EXPR,
                     "right": _EXPR,
@@ -153,7 +183,10 @@ one decimal place, "0.01" for two.
 each {{"key": ..., "printed": its label as printed}}; or {{"read": n}} when the rows change from \
 page to page (dates, a rolling run of months), to read n rows in order from the top, n at least \
 as many as any page prints. With "read", a column holds each row's label, and the rows are keyed \
-"01", "02", ... from the top.
+"01", "02", ... from the top. Or, when the rows fall into sections, each under a printed heading \
+with rows that change from page to page, {{"sections": [{{"key": ..., "printed": its heading as \
+printed, "read": n}}, ...]}} in order from the top, n at least as many rows as any page prints \
+under that heading; a section's rows are keyed "<key>_01", "<key>_02", ... from its top.
 - layout.columns: every column, left to right, each {{"key": ..., "printed": its heading as \
 printed, "kind": ..., "blank_means": ...}}; kind is "money" for an amount, "count" for a whole \
 number of things, "percent", "date", or "text" for labels and anything else. The column of row \
@@ -165,8 +198,10 @@ checked. A text or date column's is null.
 and its parts, a subtotal, a difference. For each: "id", a one-line "description", "left" and \
 "right", the two sides that are equal, and where it applies: "for_each" is "table" for a \
 relation between named cells, "row" for one that holds along each row, "column" for one that \
-holds down each column; "over" lists the rows or the columns it applies to, or is null for \
-every one. Each side is one of:
+holds down each column, "position" (rows in sections only) for one that holds at each row \
+position within sections (the first row of each section, the second, ...) in each figure \
+column; "over" lists the rows or the columns it applies to, or is null for every one. Each side \
+is one of:
   - {{"cell": {{"row": ..., "column": ...}}}}: a cell; leave out (null) the row or the column \
 that for_each supplies. With for_each "row", {{"cell": {{"column": ..., "previous_row": true}}}} \
 is that column's cell in the row directly above the one the relation is applied to; a relation \
@@ -174,6 +209,9 @@ that uses it is not applied to the first row;
   - {{"sum": {{"rows": [...], "column": ...}}}}: named rows of one column, or {{"sum": \
 {{"columns": [...], "row": ...}}}}: named columns of one row; null for what is not used or \
 what for_each supplies;
+  - with for_each "position", {{"cell": {{"section": ...}}}}: the named section's cell at that \
+position, and {{"sum": {{"sections": [...]}}}}: the named sections' cells at that position, \
+added;
   - {{"difference": [a, b]}}: a minus b, each a cell or a sum.
   Only figures (money, count or percent columns) can be in a relation. Figures are rounded as \
 printed, so a relation only has to hold to within that rounding.
@@ -181,6 +219,11 @@ printed, so a relation only has to hold to within that rounding.
 Every key is lower case, letters, digits and "_", starting with a letter; row and column keys \
 are unique, and a relation names only keys of this template. List only relations you believe \
 hold on every page of this kind."""
+
+TITLE_NOTE = (
+    '\n\nA page may print more than one table. Describe only the table whose printed title is '
+    '"{title}", and nothing else on the page.'
+)
 
 RETRY_NOTE = (
     "\n\nYour previous answer could not be used as a template: {error}. Answer again in full, as "
@@ -275,9 +318,16 @@ def parse_draft(
     return template, left_out
 
 
-def ask(llm: VisionLLM, images: Sequence[bytes], family: str, provenance: dict):
-    """The drafter's template for the pages; asked once more if it can't be used."""
-    prompt = PROMPT.format(n=len(images))
+def ask(
+    llm: VisionLLM,
+    images: Sequence[bytes],
+    family: str,
+    provenance: dict,
+    title: str | None = None,
+):
+    """The drafter's template for the pages, of the table printed with title if given; asked
+    once more if it can't be used."""
+    prompt = PROMPT.format(n=len(images)) + (TITLE_NOTE.format(title=title) if title else "")
     errors: list[str] = []
     for retry in (False, True):
         request = LLMRequest(
@@ -308,8 +358,10 @@ def draft(
     *,
     directory: Path = TEMPLATES_DIR,
     today: date | None = None,
+    title: str | None = None,
 ) -> Path:
-    """Draft <directory>/<family>.yaml from the pages; returns its path."""
+    """Draft <directory>/<family>.yaml from the pages, of the table printed with title if given
+    (for pages that print more than one table); returns its path."""
     if re.fullmatch(KEY, family) is None or len(family) > 40:
         raise ValueError(f"{family!r} is not a family name: lower case, letters, digits and _")
     if family in REGISTRY or family == UNSUPPORTED:
@@ -331,8 +383,11 @@ def draft(
         "drafted_on": today.isoformat(),
         "drafted_from": list(refs),
     }
-    template, left_out = ask(llm, [p.path.read_bytes() for p in pages], family, provenance)
+    images = [p.path.read_bytes() for p in pages]
+    template, left_out = ask(llm, images, family, provenance, title)
     notes = [f"drafted by {llm.model_id} from {', '.join(refs)} ({ROLE} role, P21b)"]
+    if title:
+        notes.append(f"told to describe only the table printed as {title!r}")
     notes += [f"left out at drafting: identity {name!r}: {why}" for name, why in left_out]
     template = template.model_copy(
         update={"provenance": template.provenance.model_copy(update={"evidence": notes})}
@@ -352,6 +407,9 @@ def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description=__doc__.split("\n", 1)[0])
     parser.add_argument("--family", required=True)
     parser.add_argument("--pages", nargs="+", required=True)
+    parser.add_argument(
+        "--title", help="the printed title of the table to describe, if a page prints several"
+    )
     parser.add_argument("--config", type=Path, default=CONFIG)
     parser.add_argument("--dir", type=Path, default=TEMPLATES_DIR)
     args = parser.parse_args(argv)
@@ -359,7 +417,7 @@ def main(argv: list[str] | None = None) -> None:
     llm = roles[ROLE]
     guard = llm.inner.guard  # Cache -> Budget -> the guard shared by every role
     before = guard.spent()
-    path = draft(args.family, args.pages, llm, directory=args.dir)
+    path = draft(args.family, args.pages, llm, directory=args.dir, title=args.title)
     template = read_template(path)
     print(
         f"{path}: {template.identity.title!r}, {len(template.layout.row_keys)} rows x "

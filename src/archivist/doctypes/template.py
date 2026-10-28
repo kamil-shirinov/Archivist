@@ -30,11 +30,16 @@ in another table. A numeric cell that can't be read as a figure is flagged as th
 
 Rows are fixed, each with a key and its printed label, or read: numbered "01", "02", ... from the
 top, for a table whose rows change from issue to issue (a rolling run of months), with the row's
-label read as one of the columns. A row whose cells are all blank is unused, and identities skip
-it; a value not read leaves an identity that needs it unchecked. A lone dash is nil. What a blank
-cell means is the column's blank_means: "unknown" (the default) leaves an identity that needs it
-unchecked, as for a figure not printed; "zero" counts it as 0, for a column where a blank is
-nothing (only a figure's column may say so). A blank counted as 0 is not a printed value, so it
+label read as one of the columns; or read in sections, for a table printed as sections under
+headings, each with such rows: "<section>_01", "<section>_02", ... from the top of the section. An
+identity for_each: position holds at each position within sections (the first row of each, the
+second, ...) in every numeric column, its cells naming a section ({"cell": {"section": ...}}) or
+summing several ({"sum": {"sections": [...]}}) at that position; a position at which no section
+prints a row on a page is skipped there. A row whose cells are all blank is unused, and identities
+skip it; a value not read leaves an identity that needs it unchecked. A lone dash is nil. What a
+blank cell means is the column's blank_means: "unknown" (the default) leaves an identity that
+needs it unchecked, as for a figure not printed; "zero" counts it as 0, for a column where a blank
+is nothing (only a figure's column may say so). A blank counted as 0 is not a printed value, so it
 adds nothing to the rounding tolerance.
 
 A page's issue is its id up to the last "_" ("1939-09_p057" is issue "1939-09"). An identity that
@@ -77,9 +82,11 @@ PREFIX = "T."  # a template field id: T.<family>:<page id>:<row>:<column>
 KEY = r"^[a-z][a-z0-9_]*$"
 NUMERIC = frozenset({"money", "count", "percent"})
 DASHES = frozenset({"-", "–", "—", "−"})  # nil, as statistical tables print it
-CITATIONS = "S0+ocr"  # every template's box strategy, by the rule: templates/citations_dev_v2.md
+CITATIONS = "S0+grid"  # every template's box strategy, by the rule: templates/citations_dev_v3.md
 _FIGURE = re.compile(r"(\d{1,3}(?:,\d{3})+|\d+)?(?:\.(\d+))?")
-_DETAIL = re.compile(r"^identity (\S+) on (row \S+|column \S+|the table): ")
+_DETAIL = re.compile(
+    r"^identity (\S+) on (row \S+|column \S+|position \d+ in column \S+|the table): "
+)
 _FOOTNOTE = re.compile(r"\s*\d+/")
 
 
@@ -140,10 +147,22 @@ class ReadRows(_Strict):
     read: int = Field(ge=1, le=99)  # how many rows to ask for, numbered from the top
 
 
+class Section(_Strict):
+    """Rows printed under one heading, read from the top of the section."""
+
+    key: str = Field(pattern=KEY, max_length=36)
+    printed: str = Field(min_length=1)  # the heading, as printed
+    read: int = Field(ge=1, le=99)  # how many rows to ask for under it
+
+
+class Sections(_Strict):
+    sections: list[Section] = Field(min_length=1)
+
+
 class Layout(_Strict):
     unit: str = Field(min_length=1)  # e.g. "millions of dollars"
     precision: str = Field(pattern=r"^(1|0\.0*1)$")  # the last printed digit: "0.1", "1"
-    rows: list[Label] | ReadRows
+    rows: list[Label] | ReadRows | Sections
     columns: list[Column] = Field(min_length=1)
 
     @model_validator(mode="after")
@@ -157,7 +176,14 @@ class Layout(_Strict):
     def row_keys(self) -> list[str]:
         if isinstance(self.rows, ReadRows):
             return [f"{n:02d}" for n in range(1, self.rows.read + 1)]
+        if isinstance(self.rows, Sections):
+            return [f"{s.key}_{n:02d}" for s in self.rows.sections for n in range(1, s.read + 1)]
         return [row.key for row in self.rows]
+
+    def section(self, key: str) -> Section | None:
+        if not isinstance(self.rows, Sections):
+            return None
+        return next((s for s in self.rows.sections if s.key == key), None)
 
     @property
     def step(self) -> Decimal:
@@ -177,11 +203,16 @@ class CellRef(_Strict):
     row: str | None = None
     column: str | None = None
     previous_row: Literal[True] | None = None  # the row above the one for_each: row supplies
+    section: str | None = Field(default=None, pattern=KEY)  # its row at for_each: position
 
     @model_validator(mode="after")
     def _above(self) -> CellRef:
         if self.previous_row and (self.row is not None or self.table is not None):
             raise ValueError("previous_row is the row above this table's own: name no row or table")
+        if self.section is not None and (
+            self.row is not None or self.table is not None or self.previous_row
+        ):
+            raise ValueError("a section's cell takes its row from for_each: position alone")
         return self
 
 
@@ -190,24 +221,29 @@ class Cell(_Strict):
 
 
 class Over(_Strict):
-    """Named rows of one column, or named columns of one row."""
+    """Named rows of one column, named columns of one row, or, at for_each: position, the cells
+    of named sections at that position."""
 
     table: str | None = Field(default=None, pattern=KEY)
     rows: list[str] | None = None
     columns: list[str] | None = None
+    sections: list[str] | None = None
     row: str | None = None  # the row of the named columns
-    column: str | None = None  # the column of the named rows
+    column: str | None = None  # the column of the named rows or sections
 
     @model_validator(mode="after")
     def _one_axis(self) -> Over:
-        if (self.rows is None) == (self.columns is None):
-            raise ValueError("a sum names either rows or columns")
-        if not (self.rows or self.columns):
-            raise ValueError("a sum names at least one row or column")
-        if (self.rows is not None and self.row is not None) or (
-            self.columns is not None and self.column is not None
-        ):
-            raise ValueError("a sum over rows takes a column, a sum over columns a row")
+        named = [n for n in (self.rows, self.columns, self.sections) if n is not None]
+        if len(named) != 1:
+            raise ValueError("a sum names rows, columns or sections, one of them")
+        if not named[0]:
+            raise ValueError("a sum names at least one row, column or section")
+        if (self.rows is not None or self.sections is not None) and self.row is not None:
+            raise ValueError("a sum over rows or sections takes a column, not a row")
+        if self.columns is not None and self.column is not None:
+            raise ValueError("a sum over columns takes a row, not a column")
+        if self.sections is not None and self.table is not None:
+            raise ValueError("a sum over sections is of this table's own")
         return self
 
 
@@ -228,7 +264,7 @@ class Identity(_Strict):
 
     id: str = Field(pattern=KEY, max_length=40)
     description: str = Field(min_length=1)
-    for_each: Literal["table", "row", "column"] = "table"
+    for_each: Literal["table", "row", "column", "position"] = "table"
     over: list[str] | None = None  # the rows or columns it applies to; default every one
     left: Expr
     right: Expr
@@ -289,9 +325,8 @@ class Template(_Strict):
             raise ValueError(f"identity ids repeat: {ids}")
         for identity in self.identities:
             try:
-                instances = list(_contexts(identity, self.layout))
-                for row, column, _, above in instances:
-                    terms = _linear(identity, row, column, above)
+                for place in _contexts(identity, self.layout):
+                    terms = _linear(identity, place)
                     if not any(t.table is None for t in terms):
                         raise ValueError("no cell of this table")
                     for term in terms:
@@ -324,16 +359,34 @@ def _uses_previous(expr: Expr) -> bool:
     return False
 
 
-Context = tuple[str | None, str | None, str, str | None]  # row, column, where, the row above
+def _sections_in(expr: Expr) -> set[str]:
+    if isinstance(expr, Cell):
+        return {expr.cell.section} if expr.cell.section else set()
+    if isinstance(expr, Sum):
+        return set(expr.sum.sections or ())
+    return set().union(*(_sections_in(part) for part in expr.difference))
 
 
-def _contexts(identity: Identity, layout: Layout) -> Iterator[Context]:
-    """(row, column, where, the row above) for each place the identity applies, every row of a
-    read table; an identity that names the previous row skips the first."""
+@dataclass(frozen=True)
+class Place:
+    """Where an identity is applied: the row or column for_each supplies, the row above it, or
+    the position within sections."""
+
+    row: str | None
+    column: str | None
+    where: str
+    above: str | None = None
+    position: int | None = None
+
+
+def _contexts(identity: Identity, layout: Layout) -> Iterator[Place]:
+    """Each place the identity applies: every row of a read table (an identity that names the
+    previous row skips the first), every numeric column, or every position within the sections it
+    names, as deep as the shallowest of them, in every numeric column."""
     if identity.for_each == "table":
         if identity.over is not None:
-            raise ValueError("over needs for_each: row or column")
-        yield None, None, "the table", None
+            raise ValueError("over needs for_each: row, column or position")
+        yield Place(None, None, "the table")
     elif identity.for_each == "row":
         keys = layout.row_keys
         previous = _uses_previous(identity.left) or _uses_previous(identity.right)
@@ -343,47 +396,63 @@ def _contexts(identity: Identity, layout: Layout) -> Iterator[Context]:
             above = keys[keys.index(row) - 1] if keys.index(row) else None
             if previous and above is None:
                 continue
-            yield row, None, f"row {row}", above
+            yield Place(row, None, f"row {row}", above)
     else:
+        if identity.for_each == "position":
+            named = _sections_in(identity.left) | _sections_in(identity.right)
+            if not isinstance(layout.rows, Sections) or not named:
+                raise ValueError("for_each: position names sections of a table read in sections")
+            unknown = sorted(k for k in named if layout.section(k) is None)
+            if unknown:
+                raise ValueError(f"unknown sections {unknown}")
+            depth = min(layout.section(k).read for k in named)
         for column in identity.over or layout.numeric():
             if column not in layout.numeric():
                 raise ValueError(f"{column!r} is not a numeric column")
-            yield None, column, f"column {column}", None
+            if identity.for_each == "column":
+                yield Place(None, column, f"column {column}")
+                continue
+            for n in range(1, depth + 1):
+                yield Place(None, column, f"position {n:02d} in column {column}", position=n)
 
 
-def _terms(
-    expr: Expr, row: str | None, column: str | None, coef: int, above: str | None = None
-) -> list[Term]:
+def _terms(expr: Expr, place: Place, coef: int) -> list[Term]:
     if isinstance(expr, Cell):
-        if expr.cell.previous_row and row is None:
+        ref = expr.cell
+        if ref.previous_row and place.row is None:
             raise ValueError("previous_row needs for_each: row")
-        r = above if expr.cell.previous_row else expr.cell.row or row
-        c = expr.cell.column or column
+        if ref.section is not None:
+            if place.position is None:
+                raise ValueError("a section's cell needs for_each: position")
+            r = f"{ref.section}_{place.position:02d}"
+        else:
+            r = place.above if ref.previous_row else ref.row or place.row
+        c = ref.column or place.column
         if r is None or c is None:
             raise ValueError("a cell needs a row and a column, given or from for_each")
-        return [Term(expr.cell.table, r, c, coef)]
+        return [Term(ref.table, r, c, coef)]
     if isinstance(expr, Sum):
         over = expr.sum
-        if over.rows is not None:
-            c = over.column or column
+        if over.rows is not None or over.sections is not None:
+            c = over.column or place.column
             if c is None:
-                raise ValueError("a sum over rows needs a column, given or from for_each")
-            return [Term(over.table, r, c, coef) for r in over.rows]
-        r = over.row or row
+                raise ValueError("a sum over rows or sections needs a column, given or by for_each")
+            if over.rows is not None:
+                return [Term(over.table, r, c, coef) for r in over.rows]
+            if place.position is None:
+                raise ValueError("a sum over sections needs for_each: position")
+            return [Term(None, f"{k}_{place.position:02d}", c, coef) for k in over.sections]
+        r = over.row or place.row
         if r is None:
             raise ValueError("a sum over columns needs a row, given or from for_each")
         return [Term(over.table, r, c, coef) for c in over.columns]
     first, second = expr.difference
-    return _terms(first, row, column, coef, above) + _terms(second, row, column, -coef, above)
+    return _terms(first, place, coef) + _terms(second, place, -coef)
 
 
-def _linear(
-    identity: Identity, row: str | None, column: str | None, above: str | None = None
-) -> list[Term]:
+def _linear(identity: Identity, place: Place) -> list[Term]:
     """The identity as left − right = 0: every printed value with its sign."""
-    return _terms(identity.left, row, column, 1, above) + _terms(
-        identity.right, row, column, -1, above
-    )
+    return _terms(identity.left, place, 1) + _terms(identity.right, place, -1)
 
 
 def _check_cell(layout: Layout, term: Term, where: str) -> None:
@@ -400,14 +469,14 @@ def _render(expr: Expr) -> str:
     """An expression in words for a flag: cells by key, another table's as table.key."""
     if isinstance(expr, Cell):
         ref = expr.cell
-        parts = [p for p in (ref.row, ref.column) if p]
+        parts = [p for p in (ref.section or ref.row, ref.column) if p]
         name = "/".join(parts) or "the cell"
         if ref.previous_row:
             name += " (row above)"
         return f"{ref.table}.{name}" if ref.table else name
     if isinstance(expr, Sum):
         over = expr.sum
-        names = over.rows if over.rows is not None else over.columns
+        names = next(n for n in (over.rows, over.columns, over.sections) if n is not None)
         prefix = f"{over.table}." if over.table else ""
         return " + ".join(prefix + n for n in names)
     first, second = expr.difference
@@ -425,8 +494,8 @@ def written(identity: Identity) -> str:
 def check_references(template: Template, tables: Mapping[str, Template]) -> None:
     """Every cell in another table names a table in tables and a numeric cell it has."""
     for identity in template.identities:
-        for row, column, _, above in _contexts(identity, template.layout):
-            for term in _linear(identity, row, column, above):
+        for place in _contexts(identity, template.layout):
+            for term in _linear(identity, place):
                 if term.table is None:
                     continue
                 other = tables.get(term.table)
@@ -465,6 +534,17 @@ def read_template(path: Path) -> Template:
         if not evidence.is_file() or file_sha256(evidence) != digest:
             raise TemplateError(f"{path}: {evidence} is missing or not what it was approved on")
     return template
+
+
+def drafted_types(directory: Path = TEMPLATES_DIR) -> list[TemplateType]:
+    """Every template in directory that a model drafted from pages, draft or approved, as a type
+    in family order; a hand-written example is left out."""
+    out = []
+    for path in sorted(directory.glob("*.yaml")):
+        template = read_template(path)
+        if template.provenance.drafted_from:
+            out.append(TemplateType(template, sha256=file_sha256(path)))
+    return out
 
 
 def load_templates(directory: Path, reserved: Collection[str] = ()) -> list[TemplateType]:
@@ -599,6 +679,18 @@ class TemplateType:
                 'from the top: "01" is the first row below the column headings. Give every '
                 'entry; a row below the last printed row has "" for each cell.\n'
             )
+        elif isinstance(layout.rows, Sections):
+            rows = (
+                '"rows" holds one entry for each key below. The table is printed in sections, '
+                "each under its heading, and a section's rows are keyed in order from the top of "
+                "that section, the first row below its heading first:\n"
+                + "".join(
+                    f'- under the heading "{s.printed}": "{s.key}_01" to "{s.key}_{s.read:02d}"\n'
+                    for s in layout.rows.sections
+                )
+                + 'Give every entry; a key below a section\'s last printed row has "" for each '
+                "cell.\n"
+            )
         else:
             rows = '"rows" holds one entry for each row, keyed:\n' + "".join(
                 f'- "{row.key}": the row printed "{row.printed}"\n' for row in layout.rows
@@ -668,10 +760,14 @@ class TemplateType:
     ) -> Iterator[Instance]:
         page_id, issue = page.page_id, issue_of(page.page_id)
         for identity in self.template.identities:
-            for row, column, where, above in _contexts(identity, self.layout):
-                if row is not None and not self._used(texts, page_id, row):
+            for place in _contexts(identity, self.layout):
+                if place.row is not None and not self._used(texts, page_id, place.row):
                     continue
-                terms = _linear(identity, row, column, above)
+                terms = _linear(identity, place)
+                if place.position is not None and not any(
+                    self._used(texts, page_id, t.row) for t in terms
+                ):
+                    continue  # no section prints a row at this position on this page
                 fields, unresolved, zero = [], None, set()
                 for term in terms:
                     table = term.table or self.name
@@ -693,10 +789,10 @@ class TemplateType:
                         zero.add(field_id)
                 yield Instance(
                     rule=f"{self.name}.{identity.id}",
-                    where=where,
+                    where=place.where,
                     identity=identity,
                     fields=tuple(fields),
-                    left=len(_terms(identity.left, row, column, 1, above)),
+                    left=len(_terms(identity.left, place, 1)),
                     cross=any(t.table is not None for t in terms),
                     unresolved=unresolved,
                     zero=frozenset(zero),

@@ -17,7 +17,7 @@
       "model_id": "muse-spark-1.3-contributor"
     }
   },
-  "citations": "S0+ocr",
+  "citations": "S0+grid",
   "rule": "every identity evaluated wherever it applies, on cells whose two reads agree; held within n half-units of the printed precision for n printed values",
   "pages": [
     {
@@ -25,14 +25,19 @@
       "page_id": "1982-06_p094",
       "classified_as": "total_claims_by_country",
       "anchored": 461,
+      "box_sources": {
+        "grid": 187,
+        "model": 40,
+        "ocr": 461
+      },
       "read": "ok",
       "needed": 688,
       "cells": 837,
       "read_first": 837,
-      "read_twice": 685,
-      "agree": 387,
+      "read_twice": 686,
+      "agree": 547,
       "no_second_read": {
-        "illegible to the re-read": 3
+        "illegible to the re-read": 2
       }
     },
     {
@@ -40,37 +45,45 @@
       "page_id": "1983-06_p092",
       "classified_as": "total_claims_by_country",
       "anchored": 457,
+      "box_sources": {
+        "grid": 199,
+        "model": 32,
+        "ocr": 457
+      },
       "read": "ok",
       "needed": 688,
       "cells": 837,
       "read_first": 837,
-      "read_twice": 686,
-      "agree": 409,
-      "no_second_read": {
-        "illegible to the re-read": 2
-      }
+      "read_twice": 688,
+      "agree": 573,
+      "no_second_read": {}
     },
     {
       "ref": "1984-06_p058",
       "page_id": "1984-06_p058",
       "classified_as": "total_claims_by_country",
       "anchored": 1,
+      "box_sources": {
+        "grid": 631,
+        "model": 56,
+        "ocr": 1
+      },
       "read": "ok",
       "needed": 688,
       "cells": 837,
       "read_first": 837,
-      "read_twice": 687,
-      "agree": 3,
+      "read_twice": 682,
+      "agree": 525,
       "no_second_read": {
-        "illegible to the re-read": 1
+        "illegible to the re-read": 6
       }
     }
   ],
   "outcomes": {
     "rejected": 0,
     "sometimes fails": 0,
-    "holds": 2,
-    "untested": 6
+    "holds": 7,
+    "untested": 1
   },
   "identities": [
     {
@@ -80,12 +93,12 @@
       "over": null,
       "equation": "total_europe = austria + belgium_luxembourg + bulgaria + czechoslovakia + denmark + finland + france + german_democratic_republic + germany + greece + hungary + italy + netherlands + norway + poland + portugal + romania + spain + sweden + switzerland + turkey + united_kingdom + ussr + yugoslavia + other_europe",
       "applies": 24,
-      "evaluated": 1,
-      "held": 1,
+      "evaluated": 3,
+      "held": 3,
       "failed": 0,
       "hold_rate": 1.0,
       "not_evaluated": {
-        "the two reads of a cell disagree": 23
+        "the two reads of a cell disagree": 21
       },
       "outcome": "holds",
       "failures": []
@@ -97,14 +110,14 @@
       "over": null,
       "equation": "total_latin_america_caribbean = argentina + bahamas + bermuda + brazil + british_west_indies + chile + colombia + cuba + ecuador + guatemala + jamaica + mexico + netherlands_antilles + panama + peru + trinidad_tobago + uruguay + venezuela + other_latin_america_caribbean",
       "applies": 24,
-      "evaluated": 0,
-      "held": 0,
+      "evaluated": 3,
+      "held": 3,
       "failed": 0,
-      "hold_rate": null,
+      "hold_rate": 1.0,
       "not_evaluated": {
-        "the two reads of a cell disagree": 24
+        "the two reads of a cell disagree": 21
       },
-      "outcome": "untested",
+      "outcome": "holds",
       "failures": []
     },
     {
@@ -114,12 +127,12 @@
       "over": null,
       "equation": "total_asia = mainland + taiwan + hong_kong + india + indonesia + israel + japan + korea + lebanon + malaysia + pakistan + philippines + singapore + syria + thailand + oil_exporting_asia + other_asia",
       "applies": 24,
-      "evaluated": 1,
-      "held": 1,
+      "evaluated": 3,
+      "held": 3,
       "failed": 0,
       "hold_rate": 1.0,
       "not_evaluated": {
-        "the two reads of a cell disagree": 23
+        "the two reads of a cell disagree": 21
       },
       "outcome": "holds",
       "failures": []
@@ -131,14 +144,15 @@
       "over": null,
       "equation": "total_africa = egypt + ghana + liberia + morocco + south_africa + zaire + oil_exporting_africa + other_africa",
       "applies": 24,
-      "evaluated": 0,
-      "held": 0,
+      "evaluated": 9,
+      "held": 9,
       "failed": 0,
-      "hold_rate": null,
+      "hold_rate": 1.0,
       "not_evaluated": {
-        "the two reads of a cell disagree": 24
+        "the two reads of a cell disagree": 14,
+        "a cell was not read twice": 1
       },
-      "outcome": "untested",
+      "outcome": "holds",
       "failures": []
     },
     {
@@ -148,14 +162,14 @@
       "over": null,
       "equation": "total_other_countries = australia + all_other",
       "applies": 24,
-      "evaluated": 0,
-      "held": 0,
+      "evaluated": 17,
+      "held": 17,
       "failed": 0,
-      "hold_rate": null,
+      "hold_rate": 1.0,
       "not_evaluated": {
-        "the two reads of a cell disagree": 24
+        "the two reads of a cell disagree": 7
       },
-      "outcome": "untested",
+      "outcome": "holds",
       "failures": []
     },
     {
@@ -165,14 +179,14 @@
       "over": null,
       "equation": "total_foreign_countries = total_europe + canada + total_latin_america_caribbean + total_asia + total_africa + total_other_countries",
       "applies": 24,
-      "evaluated": 0,
-      "held": 0,
+      "evaluated": 3,
+      "held": 3,
       "failed": 0,
-      "hold_rate": null,
+      "hold_rate": 1.0,
       "not_evaluated": {
-        "the two reads of a cell disagree": 24
+        "the two reads of a cell disagree": 21
       },
-      "outcome": "untested",
+      "outcome": "holds",
       "failures": []
     },
     {
@@ -199,14 +213,14 @@
       "over": null,
       "equation": "grand_total = total_foreign_countries + total_international_regional",
       "applies": 24,
-      "evaluated": 0,
-      "held": 0,
+      "evaluated": 3,
+      "held": 3,
       "failed": 0,
-      "hold_rate": null,
+      "hold_rate": 1.0,
       "not_evaluated": {
-        "the two reads of a cell disagree": 24
+        "the two reads of a cell disagree": 21
       },
-      "outcome": "untested",
+      "outcome": "holds",
       "failures": []
     }
   ]

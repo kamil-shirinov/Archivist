@@ -439,6 +439,112 @@ def test_a_blank_counts_as_zero_only_where_its_column_says_so(tmp_path):
     assert implied[cell_id("running", PAGE, "03", "debit")] == "-1.00"  # the blank, read as 0
 
 
+CONTRACTS = """\
+identity:
+  family: contracts
+  title: Outstanding Contracts
+  description: Outstanding contracts by date, in sections.
+  title_patterns: ['outstanding\\s+contracts']
+layout:
+  unit: thousands of dollars
+  precision: "1"
+  rows:
+    sections:
+      - {key: total, printed: TOTAL PURCHASE CONTRACTS, read: 3}
+      - {key: foreign, printed: Purchases from foreign customers, read: 3}
+      - {key: domestic, printed: Purchases from domestic customers, read: 3}
+  columns:
+    - {key: date, printed: Contracts as of, kind: text}
+    - {key: europe, printed: Europe, kind: money}
+    - {key: canada, printed: Canada, kind: money}
+identities:
+  - id: total_is_both
+    description: total purchase contracts are those with foreign and domestic customers
+    for_each: position
+    left: {cell: {section: total}}
+    right: {sum: {sections: [foreign, domestic]}}
+provenance:
+  status: draft
+  drafted_by: {kind: person, id: a reviewer}
+  drafted_on: 2026-10-28
+"""
+SECTIONED = {  # two dates this month: the third row of every section is blank
+    "total": [("Apr. 5", "300", "90"), ("Apr. 12", "310", "92")],
+    "foreign": [("Apr. 5", "100", "40"), ("Apr. 12", "105", "41")],
+    "domestic": [("Apr. 5", "200", "50"), ("Apr. 12", "205", "51")],
+}
+
+
+def _sectioned(doc_type, changes=None):
+    cells = {
+        (f"{key}_{n:02d}", c): text
+        for key, rows in SECTIONED.items()
+        for n, texts in enumerate(rows, 1)
+        for c, text in zip(("date", "europe", "canada"), texts)
+    }
+    return _page(doc_type, PAGE, cells | (changes or {}))
+
+
+def test_sections_are_read_from_their_headings_and_summed_position_by_position(tmp_path):
+    doc_type = TemplateType(read_template(_write(tmp_path, "contracts", CONTRACTS)))
+    assert doc_type.layout.row_keys[:4] == ["total_01", "total_02", "total_03", "foreign_01"]
+    prompt = doc_type.extraction_prompt()
+    assert 'under the heading "Purchases from foreign customers": "foreign_01" to "foreign_03"' in (
+        prompt
+    )
+    page = _sectioned(doc_type)
+    where = [i.where for i in doc_type.instances([page])]
+    assert where == [  # position 03 prints no row in any section, so it is skipped
+        "position 01 in column europe",
+        "position 02 in column europe",
+        "position 01 in column canada",
+        "position 02 in column canada",
+    ]
+    assert doc_type.checks([page]) == []
+
+    flags = doc_type.checks([_sectioned(doc_type, {("domestic_02", "canada"): "40"})])
+    assert {f.field_id.split(":")[-2] for f in flags} == {"total_02", "foreign_02", "domestic_02"}
+    assert flags[0].detail.startswith(
+        "identity contracts.total_is_both on position 02 in column canada: total is 92, but "
+        "foreign + domestic is 81"
+    )
+    assert doc_type.rule(flags[0]) == "contracts.total_is_both"
+    ids = doc_type.equation(flags[0], [_sectioned(doc_type, {("domestic_02", "canada"): "40"})])
+    assert [i.split(":")[-2] for i in ids] == ["total_02", "foreign_02", "domestic_02"]
+
+
+@pytest.mark.parametrize(
+    "identity",
+    [
+        {"for_each": "row", "left": {"cell": {"section": "total", "column": "europe"}}},
+        {"for_each": "position", "left": {"cell": {"section": "elsewhere"}}},
+        {"for_each": "position", "left": {"cell": {"section": "total", "row": "total_01"}}},
+    ],
+)
+def test_a_section_is_named_only_at_a_position_and_must_exist(tmp_path, identity):
+    data = yaml.safe_load(CONTRACTS)
+    data["identities"][0] |= identity
+    _write(tmp_path, "contracts", yaml.safe_dump(data, sort_keys=False))
+    with pytest.raises(TemplateError):
+        read_template(tmp_path / "contracts.yaml")
+
+
+def test_a_position_identity_needs_a_table_in_sections(tmp_path):
+    data = yaml.safe_load(RECEIPTS)
+    data["identities"] = [
+        {
+            "id": "x",
+            "description": "x",
+            "for_each": "position",
+            "left": {"cell": {"section": "total"}},
+            "right": {"cell": {"section": "total"}},
+        }
+    ]
+    _write(tmp_path, "receipts", yaml.safe_dump(data, sort_keys=False))
+    with pytest.raises(TemplateError, match="sections"):
+        read_template(tmp_path / "receipts.yaml")
+
+
 def test_the_example_holds_on_the_1939_page_it_was_written_from():
     """Gold Assets and Liabilities of the Treasury, Bulletin of September 1939, page 41, as read
     by hand from data/real/pages/1939-09/p057.jpg."""

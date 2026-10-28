@@ -1,33 +1,33 @@
-"""Which box strategy suits the template tables, and why cells disagree: development pages (P21b).
+"""Which box strategy suits the template tables, and why cells disagree: development pages (P21c).
 
-    python -m archivist.templates.compare_citations   # -> results/templates/citations_dev_v2.*
+    python -m archivist.templates.compare_citations   # -> results/templates/citations_dev_v3.*
     python -m archivist.templates.compare_citations --report   # the report again, no call
 
-The second measurement. The first (results/templates/citations_dev.md, S0 against S0+ink, the
-re-reader at reasoning "low") is kept as written: it found the boxes offset under both, S0+ink
-moving some by hundreds of pixels, and a re-read that could spend its whole output allowance
-reasoning. This one sets S0, the model's own boxes, against S0+ocr, the boxes the archive's own
-OCR text layer gives the same figures (ocr.py), with the template re-reader at reasoning
-"minimal" (config/templates.toml; the committed runs' configs are untouched). It runs on the pages
-each draft in templates/ was drafted from (all development pages; pages.py refuses any other
-before a call), with the arithmetic test's own calls:
+The third measurement. The first (results/templates/citations_dev.md: S0 against S0+ink) and the
+second (citations_dev_v2.md: S0 against S0+ocr, which became the template strategy) are kept as
+written. This one sets S0+ocr against S0+grid (grid.py): each value's box from the archive's OCR
+layer where its figure is found there, else from the table's grid found in the page by plain
+code, else the model's own. The template re-reader is at reasoning "minimal". It runs on the
+pages every template in templates/ was drafted from, drafts and approved ones alike (all
+development pages; pages.py refuses any other before a call), with the arithmetic test's calls:
 
-1. read and cite: extract.read_page with S0; S0+ocr anchors each of its values to the matching
-   figure of the page's OCR layer where one is found with confidence, and keeps the model's box,
-   unanchored, where not. The same read, so no second extraction.
+1. read and cite: extract.read_page with S0, the model's boxes; each strategy then puts its own
+   boxes on the same read (no second extraction) and says where each box came from: "ocr",
+   "grid" or "model".
 2. a fixed sample of cells: SAMPLE of the page's cells that some identity needs, read as a figure
    the first time and boxed, drawn with random.Random(SEED) from their sorted field ids (all of
-   them on a page with fewer).
-3. the blind second read of each sampled cell from a crop of its S0 box and of its S0+ocr box
+   them on a page with fewer); the same cells as before wherever the draft is the same.
+3. the blind second read of each sampled cell from a crop of its box under each strategy
    (test.reread_cells, so a cell's call is the arithmetic test's and is cached for it).
 
-Also reported: the share of values anchored, on each page and among the sampled cells, and how
-the anchored cells fare under each strategy.
+Also reported: the share of cells whose box came from each source, overall, by page and by family,
+and how the sampled cells of each source fare.
 
 The measure is the share of sampled cells whose two reads agree, as the draft compares them
 (test.agreed); a re-read that fails or finds the crop illegible does not agree. Rule, fixed before
 running: the strategy with the higher share over every sampled cell becomes the template types'
-(template.CITATIONS); on a tie, the simpler, S0. The ledger family keeps S0+ink either way.
+(template.CITATIONS); on a tie, the simpler (the first in STRATEGIES). The ledger family keeps
+S0+ink either way.
 
 Why cells disagree. Every disagreement gets a cause by rule (cause()), in this order, except a
 cell whose every re-read attempt reached the output limit, which is "re-read out of tokens"
@@ -42,7 +42,7 @@ cell whose every re-read attempt reached the output limit, which is "re-read out
 - "unexplained": none of these.
 DIAGNOSED disagreements per strategy, drawn with random.Random(SEED), are shown with the crop the
 re-reader saw and a strip of the page around it (the box in red, the crop in blue); a reviewer's
-judgement of each, where given in results/templates/citations_dev_v2_causes.json ({"<strategy>
+judgement of each, where given in results/templates/citations_dev_v3_causes.json ({"<strategy>
 <field id>": {"cause": ..., "note": ..., "judged_by": ...}}), is shown beside the rule's.
 
 Long re-reads. A re-read may answer in at most reread.REREAD_TOKENS output tokens, reasoning
@@ -50,8 +50,8 @@ included. Each sampled cell's re-read request (and its retry, asked when the fir
 parse) is rebuilt exactly and looked up in the rereader's cache, never sent: the report counts
 the answers that reached the limit or ran past LONG tokens, says how each such cell was counted
 (agree, disagree, or no second read), and quotes a few. Writes
-results/templates/citations_dev_v2.json (every sampled cell, both reads), the images in
-results/templates/citations_dev_v2/, and results/templates/citations_dev_v2.md, whatever they
+results/templates/citations_dev_v3.json (every sampled cell, both reads), the images in
+results/templates/citations_dev_v3/, and results/templates/citations_dev_v3.md, whatever they
 show.
 """
 
@@ -69,37 +69,32 @@ from pathlib import Path
 
 from PIL import Image, ImageDraw
 
-from archivist.doctypes.template import (
-    TEMPLATES_DIR,
-    TemplateType,
-    cell_id,
-    file_sha256,
-    read_template,
-)
+from archivist.doctypes.template import TEMPLATES_DIR, TemplateType, cell_id, drafted_types
 from archivist.models import BudgetExceeded, LLMRequest, describe_config, load_roles
 from archivist.models.cache import cache_key
 from archivist.pipeline import extract, reread
 from archivist.schema import BBox, ExtractedValue, PageExtraction
-from archivist.templates import ocr
+from archivist.templates import grid, ocr
 from archivist.templates.draft import CONFIG
 from archivist.templates.pages import resolve
 from archivist.templates.test import agreed, needed, output_tokens, reread_cells
 
-STRATEGIES = ("S0", ocr.STRATEGY)  # simplest first, so a tie keeps the simpler
+STRATEGIES = (ocr.STRATEGY, grid.STRATEGY)  # simplest first, so a tie keeps the simpler
 SAMPLE = 40
 DIAGNOSED = 20
 LONG = 200  # output tokens: a value and its quotes take about ten
 QUOTED = 3
 SEED = 2110
 OUT = Path("results/templates")
-DATA, REPORT = OUT / "citations_dev_v2.json", OUT / "citations_dev_v2.md"
-IMAGES, JUDGED = OUT / "citations_dev_v2", OUT / "citations_dev_v2_causes.json"
-FIRST = OUT / "citations_dev.md"  # the first measurement, S0 against S0+ink, kept as written
+DATA, REPORT = OUT / "citations_dev_v3.json", OUT / "citations_dev_v3.md"
+IMAGES, JUDGED = OUT / "citations_dev_v3", OUT / "citations_dev_v3_causes.json"
+EARLIER = (OUT / "citations_dev.md", OUT / "citations_dev_v2.md")  # kept as written
 OUT_OF_TOKENS = "re-read out of tokens"
 CAUSES = (OUT_OF_TOKENS, "unreadable crop", "formatting only", "neighbouring cell", "unexplained")
 JUDGEMENTS = (
     "box offset",
     "first read misplaced",
+    "first read wrong",
     "unreadable crop",
     "formatting only",
     "re-read wrong",
@@ -108,16 +103,6 @@ JUDGEMENTS = (
 _FOOTNOTE = re.compile(r"\s*(\d+/|[*†‡]|\b[a-z]/)\s*$")
 CONTEXT_ROWS = 3  # box heights above and below the box in the context strip
 CONTEXT_WIDTH = 1200  # pixels the strip is scaled to
-
-
-def drafts(directory: Path = TEMPLATES_DIR) -> list[TemplateType]:
-    """Every draft in directory, as a type, in family order."""
-    out = []
-    for path in sorted(directory.glob("*.yaml")):
-        template = read_template(path)
-        if template.provenance.status == "draft":
-            out.append(TemplateType(template, sha256=file_sha256(path)))
-    return out
 
 
 def sample(doc_type: TemplateType, values: Sequence[ExtractedValue], page_id: str) -> list[str]:
@@ -187,16 +172,17 @@ def _box(bbox: BBox) -> list[int]:
     return [bbox.x0, bbox.y0, bbox.x1, bbox.y1]
 
 
-def _shift(raw: Sequence[ExtractedValue], inked: Sequence[ExtractedValue], ids: set[str]) -> float:
-    """The median vertical shift of the sampled boxes' centres, in pixels (down is positive)."""
-    before = {v.field_id: v.citation.bbox for v in raw if v.field_id in ids}
-    shifts = [
-        (v.citation.bbox.y0 + v.citation.bbox.y1 - before[v.field_id].y0 - before[v.field_id].y1)
-        / 2
-        for v in inked
-        if v.field_id in ids
-    ]
-    return statistics.median(shifts) if shifts else 0.0
+def boxes(
+    raw: Sequence[ExtractedValue], doc_type: TemplateType, image: bytes, ref: str
+) -> dict[str, tuple[list[ExtractedValue], dict[str, str]]]:
+    """Each strategy's boxes on the same read, and where each box came from."""
+    layer = ocr.words(ref)
+    anchored_values, anchored = ocr.anchor(raw, layer)
+    by_ocr = {v.field_id: "ocr" if v.field_id in anchored else "model" for v in raw}
+    return {
+        ocr.STRATEGY: (anchored_values, by_ocr),
+        grid.STRATEGY: grid.assign(raw, doc_type, image, layer),
+    }
 
 
 def measure_page(
@@ -214,8 +200,7 @@ def measure_page(
         raise
     except Exception as error:  # a read that fails or times out is recorded, not fatal
         return {**record, "read": f"failed: {type(error).__name__}: {error}"[:500]}
-    anchored_values, anchored = ocr.anchor(raw, ocr.words(ref))
-    boxes = {"S0": raw, ocr.STRATEGY: anchored_values}
+    boxed = boxes(raw, doc_type, image, ref)
     first = {v.field_id: None if v.abstained else v.value for v in raw}
     ids = sample(doc_type, raw, page.page_id)
     figures = sample_all(doc_type, raw, page.page_id)
@@ -223,13 +208,10 @@ def measure_page(
         "read": "ok",
         "sampled": len(ids),
         "figures": len(figures),
-        "figures_anchored": len(anchored & set(figures)),
-        "sampled_anchored": len(anchored & set(ids)),
-        "shift_px": _shift(raw, anchored_values, anchored & set(ids)),
         "height_px": Image.open(io.BytesIO(image)).height,
     }
     for strategy in STRATEGIES:
-        values = boxes[strategy]
+        values, sources = boxed[strategy]
         by_id = {v.field_id: v for v in values}
         second = reread_cells(image, values, set(ids), doc_type, rereader, workers)
         extraction = PageExtraction(page_id=page.page_id, doc_type=doc_type.name, values=values)
@@ -244,7 +226,7 @@ def measure_page(
                 "why": reading.why,
                 "box": _box(by_id[field_id].citation.bbox),
                 "region": _box(reread.region(by_id[field_id].citation)),
-                "anchored": field_id in anchored,
+                "source": sources[field_id],
                 "agree": agree,
             }
             if not agree:
@@ -253,6 +235,7 @@ def measure_page(
                 cell["cause"] = cause(first[field_id], reading.text, near, doc_type.canonical)
             cells.append(cell)
         record[strategy] = {
+            "sources": {k: sum(sources[f] == k for f in figures) for k in grid.SOURCES},
             "agree": sum(c["agree"] for c in cells),
             "no_second_read": sum(c["reread"] is None for c in cells),
             "cells": cells,
@@ -311,7 +294,7 @@ def draw(page: Mapping, cell: Mapping, strategy: str, n: int, images: Path = IMA
 def answers(pages: Sequence[Mapping], rereader: object, directory: Path = TEMPLATES_DIR) -> list:
     """Every cached answer to a sampled cell's re-read: (strategy, page, cell, attempt, output
     tokens, text). Looked up by the request's cache key; nothing is sent."""
-    types = {t.name: t for t in drafts(directory)}
+    types = {t.name: t for t in drafted_types(directory)}
     out = []
     for page in pages:
         if page["read"] != "ok":
@@ -420,32 +403,41 @@ def long_answers(found: Sequence) -> list[str]:
     return lines
 
 
-def anchoring(pages: Sequence[Mapping]) -> list[str]:
-    """How many values S0+ocr anchored, and how the anchored and unanchored sampled cells fare."""
+def _sources(counts: Mapping[str, int]) -> str:
+    total = sum(counts.values())
+    return " / ".join(f"{counts.get(k, 0)} ({_pct(counts.get(k, 0), total)})" for k in grid.SOURCES)
+
+
+def sourcing(pages: Sequence[Mapping]) -> list[str]:
+    """Where each strategy's boxes came from, and how the sampled cells of each source fare."""
     ok = [p for p in pages if p["read"] == "ok"]
-    figures, anchored = sum(p["figures"] for p in ok), sum(p["figures_anchored"] for p in ok)
     lines = [
-        "## Anchored to the OCR layer",
+        "## Where the boxes came from",
         "",
-        f"Of the {figures} figure cells the sample is drawn from, S0+ocr anchored {anchored} "
-        f"({_pct(anchored, figures)}); of the sampled cells, "
-        f"{sum(p['sampled_anchored'] for p in ok)} of {sum(p['sampled'] for p in ok)}. "
-        "Agreement among the sampled cells, by whether S0+ocr anchored them (an unanchored "
-        "cell keeps the model's box, so its S0+ocr crop is its S0 crop):",
+        f"Of the {sum(p['figures'] for p in ok)} figure cells the sample is drawn from, how many "
+        "boxes each strategy took from each source (ocr / grid / model):",
         "",
-        "| Sampled cells | Count | S0 agree | S0+ocr agree |",
-        "|---|--:|--:|--:|",
+        "| Strategy | ocr / grid / model |",
+        "|---|---|",
     ]
-    for name, want in (("anchored", True), ("unanchored", False)):
-        cells = [
-            (c, d)
-            for p in ok
-            for c, d in zip(p["S0"]["cells"], p[ocr.STRATEGY]["cells"], strict=True)
-            if d["anchored"] is want
-        ]
-        n = len(cells)
-        a0, a1 = sum(c["agree"] for c, _ in cells), sum(d["agree"] for _, d in cells)
-        lines.append(f"| {name} | {n} | {a0} ({_pct(a0, n)}) | {a1} ({_pct(a1, n)}) |")
+    for s in STRATEGIES:
+        total = Counter()
+        for p in ok:
+            total.update(p[s]["sources"])
+        lines.append(f"| {s} | {_sources(total)} |")
+    lines += [
+        "",
+        "Agreement among the sampled cells, by where each strategy's box came from:",
+        "",
+        "| Strategy | Source | Sampled cells | Agree |",
+        "|---|---|--:|--:|",
+    ]
+    for s in STRATEGIES:
+        for source in grid.SOURCES:
+            cells = [c for p in ok for c in p[s]["cells"] if c["source"] == source]
+            if cells:
+                n, a = len(cells), sum(c["agree"] for c in cells)
+                lines.append(f"| {s} | {source} | {n} | {a} ({_pct(a, n)}) |")
     return lines
 
 
@@ -473,17 +465,21 @@ def report(
         "on the development side of `data/real/split.json`. On each page, up to "
         f"{SAMPLE} cells that the draft's identities need and that were read as a figure the "
         f"first time are drawn with `random.Random({SEED})`, and each is re-read blind from a "
-        "crop of its box under both strategies: **S0**, the model's own box, and **S0+ocr**, "
-        "the box of the same figure in the archive's own OCR text layer where it is found with "
-        "confidence (near the model's box, in its row region and column; `ocr.py`), else the "
-        "model's box, unanchored. The re-reader runs at reasoning \"minimal\" (templates only). "
-        "The measure is the share of sampled cells whose two reads agree, as the draft compares "
-        "them; a failed or illegible re-read does not agree. Every sampled cell, with both reads, "
-        f"is in `{DATA.as_posix()}`. The first measurement, S0 against S0+ink with the re-reader "
-        f"at \"low\", is kept as written in `{FIRST.as_posix()}`; the sample is the same.",
+        "crop of its box under both strategies: **S0+ocr**, the box of the same figure in the "
+        "archive's own OCR text layer where it is found with confidence (`ocr.py`), else the "
+        "model's; and **S0+grid**, the OCR layer's box, else the cell of the table's grid found "
+        "in the page by plain code (columns from the ink, rows from deskewed bands, each read row "
+        "fixed by an anchored figure or its label in the OCR layer, the rows between fixed rows "
+        "mapped by order only where they are as many as the bands; `grid.py`), else the "
+        "model's. The re-reader runs at reasoning \"minimal\" (templates only). The measure is "
+        "the share of sampled cells whose two reads agree, as the draft compares them; a failed "
+        "or illegible re-read does not agree. Every sampled cell, with both reads, is in "
+        f"`{DATA.as_posix()}`. The earlier measurements are kept as written: "
+        + ", ".join(f"`{e.as_posix()}`" for e in EARLIER)
+        + "; the sample is the same wherever the draft is.",
         "",
         "Rule, fixed before running: the strategy with the higher share over all sampled cells "
-        "becomes the template types' strategy; on a tie, the simpler (S0). The ledger card and "
+        "becomes the template types' strategy; on a tie, the simpler (S0+ocr). The ledger card and "
         "payment memo keep S0+ink, so no committed run changes.",
         "",
         f"Config: `{json.dumps(dict(config))}`",
@@ -500,7 +496,7 @@ def report(
         "",
         f"**Chosen for templates by the rule: {chosen}.**",
         "",
-        *anchoring(pages),
+        *sourcing(pages),
         "",
         "## Why cells disagree, by rule",
         "",
@@ -533,35 +529,46 @@ def report(
         "",
         "## By page",
         "",
-        "Anchored: the page's figure cells (those the sample is drawn from) that S0+ocr anchored "
-        "to the OCR layer. Shift: the median vertical move, from S0 to S0+ocr, of the sampled "
-        "anchored boxes' centres, in pixels (down is positive), with the page's height.",
+        "Boxes: where S0+grid's boxes for the page's figure cells came from, ocr / grid / model.",
         "",
-        "| Family | Page | Sampled | S0 agree | S0+ocr agree | Anchored | Shift (px) | No second "
-        "read (S0 / S0+ocr) |",
-        "|---|---|--:|--:|--:|--:|--:|--:|",
+        "| Family | Page | Sampled | S0+ocr agree | S0+grid agree | S0+grid boxes (ocr / grid / "
+        "model) | No second read (S0+ocr / S0+grid) |",
+        "|---|---|--:|--:|--:|---|--:|",
     ]
-    o = ocr.STRATEGY
+    o, g = STRATEGIES
     for p in pages:
         if p["read"] != "ok":
-            lines.append(f"| `{p['family']}` | {p['ref']} | {p['read'][:120]} | | | | | |")
+            lines.append(f"| `{p['family']}` | {p['ref']} | {p['read'][:120]} | | | | |")
             continue
         n = p["sampled"]
         lines.append(
-            f"| `{p['family']}` | {p['ref']} | {n} | {p['S0']['agree']} "
-            f"({_pct(p['S0']['agree'], n)}) | {p[o]['agree']} ({_pct(p[o]['agree'], n)}) | "
-            f"{p['figures_anchored']} / {p['figures']} "
-            f"({_pct(p['figures_anchored'], p['figures'])}) | "
-            f"{p['shift_px']:+.0f} of {p['height_px']} | "
-            f"{p['S0']['no_second_read']} / {p[o]['no_second_read']} |"
+            f"| `{p['family']}` | {p['ref']} | {n} | {p[o]['agree']} ({_pct(p[o]['agree'], n)}) | "
+            f"{p[g]['agree']} ({_pct(p[g]['agree'], n)}) | {_sources(p[g]['sources'])} | "
+            f"{p[o]['no_second_read']} / {p[g]['no_second_read']} |"
         )
     families = sorted({p["family"] for p in pages})
-    lines += ["", "## By family", "", "| Family | Sampled | S0 | S0+ocr |", "|---|--:|--:|--:|"]
+    lines += [
+        "",
+        "## By family",
+        "",
+        "| Family | Sampled | S0+ocr | S0+grid | S0+ocr boxes (ocr / grid / model) | S0+grid "
+        "boxes (ocr / grid / model) |",
+        "|---|--:|--:|--:|---|---|",
+    ]
     for family in families:
         mine = [p for p in pages if p["family"] == family and p["read"] == "ok"]
         n = sum(p["sampled"] for p in mine)
         a0, a1 = (sum(p[s]["agree"] for p in mine) for s in STRATEGIES)
-        lines.append(f"| `{family}` | {n} | {a0} ({_pct(a0, n)}) | {a1} ({_pct(a1, n)}) |")
+        by_source = []
+        for s in STRATEGIES:
+            total = Counter()
+            for p in mine:
+                total.update(p[s]["sources"])
+            by_source.append(_sources(total))
+        lines.append(
+            f"| `{family}` | {n} | {a0} ({_pct(a0, n)}) | {a1} ({_pct(a1, n)}) | "
+            f"{by_source[0]} | {by_source[1]} |"
+        )
     for s in STRATEGIES:
         chosen_cells = diagnosed(pages, s)
         tally = Counter(
@@ -627,7 +634,7 @@ def main(argv: list[str] | None = None) -> None:
         guard = roles[extract.ROLE].inner.guard
         before = guard.spent()
         pages = []
-        for doc_type in drafts(args.dir):
+        for doc_type in drafted_types(args.dir):
             for ref in doc_type.template.provenance.drafted_from:
                 pages.append(measure_page(doc_type, ref, roles, args.workers))
                 summary = {k: v for k, v in pages[-1].items() if k not in STRATEGIES}
