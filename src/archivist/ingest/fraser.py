@@ -37,7 +37,7 @@ from collections.abc import Callable, Iterator
 from datetime import UTC, date, datetime
 from importlib.metadata import version
 from pathlib import Path
-from typing import Annotated, Any
+from typing import Annotated, Any, Literal, TypeVar
 
 import pypdfium2 as pdfium
 from PIL import Image
@@ -102,9 +102,24 @@ class _Record(BaseModel):
 
 
 class Rights(_Record):
+    """FRASER's own rights statement for the title, as its pages show it."""
+
     statement: str
     uri: str
     checked: date
+
+
+Text = Annotated[str, StringConstraints(strip_whitespace=True, min_length=1)]
+
+
+class RecordedBasis(_Record):
+    """FRASER shows no rights statement for the title; the project records why it may use it anyway."""
+
+    fraser_shows: Literal["no rights statement"]
+    basis: Annotated[str, StringConstraints(strip_whitespace=True, min_length=40)]
+    citations: Annotated[list[Text], Field(min_length=1)]
+    checked: date
+    pages_checked: Annotated[list[Text], Field(min_length=1)]  # the FRASER pages that were read
 
 
 class SourceFile(_Record):
@@ -120,8 +135,30 @@ class Sources(_Record):
     title: str
     publisher: str
     title_url: str
-    rights: Rights
+    rights: Rights | RecordedBasis
     files: list[SourceFile]
+
+
+def check_rights_record(rights: Rights | RecordedBasis) -> list[str]:
+    """Why a rights record does not open the gate; empty when it does.
+
+    The gate takes FRASER's own statement, "No Copyright - United States", or an explicit recorded
+    basis: FRASER shows none, why the project may use the title anyway, and the law it cites. Never nothing.
+    """
+    if isinstance(rights, Rights):
+        if rights.statement != RIGHTS_STATEMENT or rights.uri != RIGHTS_URI:
+            return [f"rights statement is {rights.statement!r}, not {RIGHTS_STATEMENT!r}"]
+        return []
+    problems = []
+    if rights.fraser_shows != "no rights statement":
+        problems.append("recorded basis does not say that FRASER shows no rights statement")
+    if not rights.basis.strip():
+        problems.append("recorded basis states no basis")
+    if not any(c.strip() for c in rights.citations):
+        problems.append("recorded basis cites no law")
+    if not any(p.strip() for p in rights.pages_checked):
+        problems.append("recorded basis does not say which FRASER pages were read")
+    return problems
 
 
 class Renderer(_Record):
@@ -188,11 +225,7 @@ def check_sources(sources: Sources) -> list[str]:
         for f in sources.files
         if f.url != pdf_url(f.issue)
     ]
-    if sources.rights.statement != RIGHTS_STATEMENT:
-        problems.append(
-            f"rights statement is {sources.rights.statement!r}, not {RIGHTS_STATEMENT!r}"
-        )
-    return problems
+    return problems + check_rights_record(sources.rights)
 
 
 def check_manifest(manifest: Manifest) -> list[str]:
@@ -389,51 +422,89 @@ def _fetch_pdf(url: str, part: Path) -> tuple[str, int, str]:
     return resolved, size, digest.hexdigest()
 
 
-def download_issue(issue: str, root: Path, sources: Sources, log: Callable[[str], None]) -> Sources:
-    """Fetch one PDF to a .part file, check it, record it, then rename it. Returns updated sources."""
-    pdf_dir = root / "pdf"
-    pdf_dir.mkdir(parents=True, exist_ok=True)
-    final = pdf_dir / pdf_name(issue)
-    part = final.with_name(final.name + ".part")
-    url = pdf_url(issue)
+T = TypeVar("T")
+
+
+def _retrying(
+    label: str,
+    url: str,
+    log: Callable[[str], None],
+    action: Callable[[], T],
+    cleanup: Callable[[], None],
+) -> T:
+    """Run action up to ATTEMPTS times, pausing longer after each failure.
+
+    A permanent HTTP error fails at once; cleanup removes whatever a failed or stopped attempt left.
+    """
     last_error = "unknown"
     for attempt in range(1, ATTEMPTS + 1):
         _check_stop()
         try:
-            resolved, size, sha = _fetch_pdf(url, part)
-            pages = _opens(part)
-            break
+            return action()
         except (Stopped, SystemExit):
-            part.unlink(missing_ok=True)
+            cleanup()
             raise
         except urllib.error.HTTPError as exc:
-            part.unlink(missing_ok=True)
+            cleanup()
             if exc.code in PERMANENT_HTTP_ERRORS:
                 raise DownloadError(f"{url}: HTTP {exc.code}") from exc
             last_error = f"HTTP {exc.code}"
         except (OSError, http.client.HTTPException, DownloadError, pdfium.PdfiumError) as exc:
-            part.unlink(missing_ok=True)
+            cleanup()
             last_error = f"{type(exc).__name__}: {exc}"
-        log(f"  {issue}: attempt {attempt}/{ATTEMPTS} failed ({last_error})")
+        log(f"  {label}: attempt {attempt}/{ATTEMPTS} failed ({last_error})")
         if attempt < ATTEMPTS:
             _pause(4**attempt)
-    else:
-        raise DownloadError(f"{url}: {last_error}")
+    raise DownloadError(f"{url}: {last_error}")
 
-    record = SourceFile(
-        issue=issue,
-        url=url,
-        resolved_url=resolved,
-        retrieved=datetime.now(UTC).date(),
-        size_bytes=size,
-        sha256=sha,
+
+def _download(
+    url: str,
+    final: Path,
+    label: str,
+    log: Callable[[str], None],
+    record: Callable[[str, int, str], None],
+) -> None:
+    """Fetch url to final's .part file and check it, call record(resolved url, size, sha256), then rename.
+
+    The record is written before the rename, so a PDF on disk always has one.
+    """
+    final.parent.mkdir(parents=True, exist_ok=True)
+    part = final.with_name(final.name + ".part")
+
+    def attempt() -> tuple[str, int, str, int]:
+        resolved, size, sha = _fetch_pdf(url, part)
+        return resolved, size, sha, _opens(part)
+
+    resolved, size, sha, pages = _retrying(
+        label, url, log, attempt, lambda: part.unlink(missing_ok=True)
     )
-    files = sorted([*(f for f in sources.files if f.issue != issue), record], key=lambda f: f.issue)
-    sources = sources.model_copy(update={"files": files})
-    _write_record(root / "sources.json", sources)  # record first: a PDF never exists without one
+    record(resolved, size, sha)
     os.replace(part, final)
-    log(f"  {issue}: downloaded {size:,} bytes, {pages} pages")
-    return sources
+    log(f"  {label}: downloaded {size:,} bytes, {pages} pages")
+
+
+def download_issue(issue: str, root: Path, sources: Sources, log: Callable[[str], None]) -> Sources:
+    """Fetch one PDF to a .part file, check it, record it, then rename it. Returns updated sources."""
+    url = pdf_url(issue)
+    updated = sources
+
+    def record(resolved: str, size: int, sha: str) -> None:
+        nonlocal updated
+        entry = SourceFile(
+            issue=issue,
+            url=url,
+            resolved_url=resolved,
+            retrieved=datetime.now(UTC).date(),
+            size_bytes=size,
+            sha256=sha,
+        )
+        files = sorted([*(f for f in sources.files if f.issue != issue), entry], key=lambda f: f.issue)
+        updated = sources.model_copy(update={"files": files})
+        _write_record(root / "sources.json", updated)
+
+    _download(url, root / "pdf" / pdf_name(issue), issue, log, record)
+    return updated
 
 
 # --- render ----------------------------------------------------------------------------------
@@ -471,8 +542,15 @@ def _page_path(root: Path, issue: str, number: int) -> Path:
 
 def render_issue(issue: str, root: Path, log: Callable[[str], None]) -> tuple[int, int]:
     """Render every page that is not already on disk; return (rendered now, already there)."""
+    return _render_pdf(root / "pdf" / pdf_name(issue), root, issue, log)
+
+
+def _render_pdf(
+    pdf_path: Path, root: Path, issue: str, log: Callable[[str], None]
+) -> tuple[int, int]:
+    """Render pdf_path's pages to root/pages/<issue>/; return (rendered now, already there)."""
     (root / "pages" / issue).mkdir(parents=True, exist_ok=True)
-    pdf = pdfium.PdfDocument(root / "pdf" / pdf_name(issue))
+    pdf = pdfium.PdfDocument(pdf_path)
     rendered = skipped = 0
     try:
         for index in range(len(pdf)):
@@ -683,24 +761,54 @@ def verify(root: Path, log: Callable[[str], None] = print) -> int:
 
 
 def main(argv: list[str] | None = None) -> None:
+    from archivist.ingest import occ  # here, not at the top: occ builds on this module
+
+    # source -> (default root, ingest, verify)
+    sources = {
+        "treasury": (DEFAULT_ROOT, ingest, verify),
+        "occ": (occ.DEFAULT_ROOT, occ.ingest, occ.verify),
+    }
     parser = argparse.ArgumentParser(
         prog="python -m archivist.ingest.fraser",
-        description="Download the Treasury Bulletin issues from FRASER, render their pages and record them.",
+        description="Download the real FRASER sources (the Treasury Bulletin and the Comptroller of "
+        "the Currency's annual reports), render their pages and record them.",
     )
-    parser.add_argument("--root", type=Path, default=DEFAULT_ROOT, help="where the real pages live")
+    parser.add_argument(
+        "--source", choices=list(sources), help="only this source (default: every source)"
+    )
+    parser.add_argument(
+        "--root", type=Path, help="where --source's pages live (default: data/real or data/real_occ)"
+    )
     parser.add_argument(
         "--verify", action="store_true", help="offline: check the files against the records"
     )
     args = parser.parse_args(argv)
+    if args.root is not None and args.source is None:
+        parser.error("--root needs --source")
+    chosen = [args.source] if args.source else list(sources)
+    roots = {name: args.root or sources[name][0] for name in chosen}
+
     if args.verify:
-        sys.exit(verify(args.root))
+        results = []
+        for name in chosen:  # every source is checked, so one failure does not hide another
+            print(f"{name}:")
+            results.append(sources[name][2](roots[name]))
+        sys.exit(max(results))
+
     signal.signal(signal.SIGINT, _request_stop)
     signal.signal(signal.SIGTERM, _request_stop)
+    worst = 0
     try:
-        sys.exit(ingest(args.root, log=lambda line: print(line, flush=True)))
+        for name in chosen:
+            print(f"{name}:", flush=True)
+            code = sources[name][1](roots[name], log=lambda line: print(line, flush=True))
+            if code == 130:
+                sys.exit(130)
+            worst = max(worst, code)
     except RightsError as exc:
         print(f"STOP: {exc}", file=sys.stderr)
         sys.exit(2)
+    sys.exit(worst)
 
 
 if __name__ == "__main__":

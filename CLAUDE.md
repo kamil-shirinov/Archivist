@@ -26,17 +26,20 @@ src/archivist/templates/ — families.py (which Treasury families to draft, by a
 src/archivist/pipeline/ — extract.py, citations.py, checks.py, reread.py, occlusion.py, verify.py
 src/archivist/export/ — bundle.py, database.py, rules.py, schema.py
 src/archivist/eval/ — metrics.py, run_eval.py, analyse.py, citation_experiment.py, compare_arms.py, compare_extractors.py, sam_spike.py, test_report.py
-src/archivist/ingest/ — fraser.py (downloads, renders and records the Treasury Bulletin; resumable, safe to interrupt), survey.py (table families from the OCR title hints; no model)
+src/archivist/ingest/ — fraser.py (downloads, renders and records the Treasury Bulletin; resumable, safe to interrupt; its retry, download, render and lock code is shared with occ.py, and its main takes --source), occ.py (the Comptroller of the Currency's annual reports, FRASER title 56: item ids, each PDF's address read from its item's metadata, rights as a recorded basis, split by year, OCR counts for each page), survey.py (table families from the OCR title hints; no model), survey_occ.py (the same for the annual reports, highlighting statements of condition and printed totals)
 src/archivist/replay.py — replays every current run from the cache and proves nothing it produced changed
 ui/ — static review app (Vite + React + TypeScript), reads data/bundles/<run_id>/bundle.json; types generated from schema.py
 data/dev, data/test — test is frozen and hashed; never used for tuning
 data/real — Treasury Bulletin from FRASER: pdf/ and pages/ are gitignored; sources.json, manifest.json and split.json are committed. split.json fixes the development and held-out issues before any model has seen a real page; held-out is never used for tuning
+data/real_occ — Annual Report of the Comptroller of the Currency from FRASER: 10 volumes in 8 years (one report every five years, 1905–1940; 1915 and 1920 have two volumes each), 6,830 pages. Same layout and gitignore as data/real; a volume's id is its year, plus -v1, -v2 where a year has two. split.json is by year: development 1905 and 1925, held-out 1910, 1915, 1920, 1930, 1935 and 1940, fixed before any model has seen a real page; held-out is never used for tuning. FRASER shows no rights statement for this title (unlike the Treasury Bulletin), so sources.json carries a recorded basis (works of the US Government, 17 U.S.C. § 105, and public domain by age to 1930) in place of "No Copyright - United States"; fraser.check_sources takes FRASER's statement or such a basis, never nothing, and the ingest stops, downloading nothing, if FRASER ever shows another statement
 results/real/survey.md — the recurring table families, from the manifest's title hints
+results/real_occ/survey.md — the same for the annual reports, from the manifest's title hints and OCR counts; its rules were written on 1905 and 1925 only
 
 ## Run
 uv run pytest -q
 uv run python -m archivist.replay  # after any change to code the committed runs depend on; spends nothing, a cache miss aborts
-uv run python -m archivist.ingest.fraser  # fetch and render the real pages; Ctrl-C is safe, rerun resumes; --verify checks files against the records, offline
+uv run python -m archivist.ingest.fraser  # fetch and render the real pages of every source (the Treasury Bulletin, then the Comptroller's reports); Ctrl-C is safe, rerun resumes; --source treasury|occ for one; --verify checks files against the records, offline, for every source
+uv run python -m archivist.ingest.survey_occ  # data/real_occ/manifest.json -> results/real_occ/survey.md
 uv run python -m archivist.templates.draft --family <name> --pages <id> <id> [<id>] [--title "<printed title>"]  # Muse Spark drafts templates/<family>.yaml (status draft) from 2-3 development pages; --title names the one table to describe on pages that print several
 uv run python -m archivist.templates.test --family <name>  # read, cite, blind second read; every identity evaluated -> templates/<family>.evidence.json
 uv run python -m archivist.templates.approve --family <name>  # interactive, for a person only
@@ -88,3 +91,4 @@ uv run python -m archivist.templates.rediscover  # drafts cards and memos from v
 - [x] P21b Muse Spark drafts document types, the arithmetic test checks them, a person approves (six Treasury drafts awaiting approval; results/real/family_choice.md, results/templates/citations_dev_v2.md, results/templates/rediscovery.md and rediscovery_v2.md)
 - [ ] P21c grid-based citations for the 1980s country tables, whose OCR layer lacks the figures but whose grid columns are found exactly (results/templates/grid_dev.md); the grid reader was not built in P21b
 - [ ] P21d multi-panel templates: one template describes a table printed as two or more panels on one page (side by side, or one above the other), since a page is classified as one type. Collections of Internal Revenue was set aside for this (results/real/family_choice.md, amendment); its draft is in results/templates/set_aside/
+- [x] P23 second real source, Comptroller of the Currency annual reports, ingest only: data/real_occ (no model has seen a page), results/real_occ/survey.md
