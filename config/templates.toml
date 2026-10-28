@@ -19,8 +19,8 @@ model_id = "muse-spark-1.3-contributor"
 settings = { reasoning_effort = "low", timeout_s = 1200.0 }  # a 570-cell table ran past 600
 
 # The rereader reasons at "minimal" (templates only; the committed runs' configs keep "low"): at
-# "low" a re-read of one cell spent a median 758 output tokens reasoning, and one in eight spent
-# the whole allowance and wrote nothing (results/templates/citations_dev.md).
+# "low" a re-read of one cell spent a median 758 output tokens reasoning, and about one answer in
+# six spent the whole allowance and came back empty (results/templates/citations_dev.md).
 [roles.rereader]
 kind = "llm"
 backend = "meta"
