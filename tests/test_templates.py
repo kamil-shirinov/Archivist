@@ -10,6 +10,7 @@ import io
 import json
 from datetime import date
 from pathlib import Path
+from types import SimpleNamespace
 
 import numpy as np
 import pytest
@@ -39,6 +40,7 @@ from archivist.templates import (
     compare_citations,
     draft,
     families,
+    families_occ,
     grid,
     grid_probe,
     ocr,
@@ -302,6 +304,31 @@ def test_pages_are_sent_only_from_development_issues_and_the_dev_and_val_splits(
     for ref in ("1939-01_p010", "1939-01_p011", "test/card-01-1", "dev/missing", "../x"):
         with pytest.raises(PageRefused):
             pages.resolve(ref, root, synth)
+
+
+def test_comptroller_pages_are_sent_only_from_development_years(tmp_path):
+    root = tmp_path / "real_occ"
+    root.mkdir()
+    (root / "split.json").write_text((ROOT / "data/real_occ/split.json").read_text())
+    real = json.loads((ROOT / "data/real_occ/manifest.json").read_text())
+    entries = []
+    for volume in ("1925", "1915-v1"):
+        image = _image(root / "pages" / volume / "p010.jpg", 90)
+        entry = next(p for p in real["pages"] if p["issue"] == volume)
+        entries.append(entry | {"page": 10, "sha256": file_sha256(image)})
+    (root / "manifest.json").write_text(json.dumps(real | {"pages": entries}))
+
+    def resolve(ref: str) -> Page:
+        return pages.resolve(ref, tmp_path / "real", tmp_path / "synth", root)
+
+    page = resolve("1925_p010")
+    assert (page.page_id, page.path) == ("1925_p010", root / "pages/1925/p010.jpg")
+    with pytest.raises(PageRefused, match="not a development year"):
+        resolve("1915-v1_p010")  # refused before its file is looked at
+    (root / "pages/1925/p010.jpg").write_bytes(b"changed")
+    for ref in ("1925_p010", "1925_p011", "1905-v3_p010"):
+        with pytest.raises(PageRefused):
+            resolve(ref)
 
 
 # --- The arithmetic test's bookkeeping ----------------------------------------------------------
@@ -688,6 +715,39 @@ def test_a_family_key_is_its_title_cut_at_a_word_and_never_an_existing_template(
 def test_a_held_out_issue_is_never_opened_for_its_text(tmp_path):
     with pytest.raises(ValueError, match="not a development issue"):
         families.ocr_text(tmp_path, "1940-01", 1)
+
+
+def _occ_candidate(name: str, condition: bool, held_out_pages: int, judged=True):
+    judgement = families_occ.JUDGED[0] if judged else None
+    years, pages_ = ("1905", "1925"), ("1905_p001", "1925_p001")
+    return families_occ.Candidate(
+        name, name, condition, judgement, years, ("1930",), held_out_pages, pages_, "A title", None
+    )
+
+
+def test_the_comptroller_choice_takes_two_statements_of_condition_then_the_best_of_the_rest():
+    tables = [_occ_candidate(f"T{n}", False, 100 - n) for n in range(4)]
+    statements = [_occ_candidate(f"C{n}", True, 10 - n) for n in range(3)]
+    chosen = families_occ.choose([*tables, *statements])
+    assert [c.name for c in chosen] == ["T0", "T1", "C0", "C1"]
+    with pytest.raises(ValueError, match="judge it"):  # an unjudged table that could be chosen
+        families_occ.choose([*tables, *statements, _occ_candidate("U", False, 98, judged=False)])
+
+
+def test_the_comptroller_choice_drafts_from_both_halves_of_a_statement_on_facing_pages():
+    def entry(issue: str, page: int, total: int, resources: bool, liabilities: bool):
+        headings = {"resources_heading": resources, "liabilities_heading": liabilities}
+        return SimpleNamespace(issue=issue, page=page, total_lines=total, **headings)
+
+    pages_ = [
+        entry("1905", 3, 0, True, False),  # no Total line: never a drafting page
+        entry("1905", 4, 2, True, False),
+        entry("1905", 5, 2, False, True),
+        entry("1925", 9, 1, True, False),
+    ]
+    assert [p.page for p in families_occ._drafting_pages(pages_, condition=True)] == [4, 9, 5]
+    assert [p.page for p in families_occ._drafting_pages(pages_, condition=False)] == [4, 9]
+    assert families_occ._drafting_pages(pages_[:3], condition=True) == []  # none in 1925
 
 
 # --- The rediscovery ----------------------------------------------------------------------------

@@ -1,7 +1,8 @@
 """S0+ocr: a value's box taken from the archive's own OCR text layer, not the model (P21b).
 
-The Treasury Bulletin PDFs from FRASER carry an OCR text layer with each character's position.
-For a development page (pages.py refuses any other before its PDF is opened), words() reads that
+The Treasury Bulletin PDFs from FRASER carry an OCR text layer with each character's position, as
+do the Comptroller of the Currency's reports (data/real_occ, read from their own PDFs). For a
+development page (pages.py refuses any other before its PDF is opened), words() reads that
 layer: characters grouped into words at whitespace, each word's box converted to the pixels of
 the stored 200 dpi image with pdfium's own page-to-device transform (FPDF_PageToDevice, the one
 its renderer uses, at the image's size), so a box lands on the ink exactly.
@@ -31,10 +32,11 @@ import pypdfium2 as pdfium
 import pypdfium2.raw as pdfium_c
 from PIL import Image
 
+from archivist.ingest import occ
 from archivist.ingest.fraser import DEFAULT_ROOT, pdf_name
 from archivist.pipeline.extract import ARCHIVE_OCR
 from archivist.schema import BBox, ExtractedValue
-from archivist.templates.pages import REAL, resolve
+from archivist.templates.pages import OCC, OCC_ROOT, REAL, resolve
 
 STRATEGY = ARCHIVE_OCR
 WINDOW = 100  # pixels above and below the model's box centre: about four printed lines
@@ -83,11 +85,14 @@ def words(ref: str, root: Path = DEFAULT_ROOT) -> tuple[Word, ...]:
     """Every word of a development page's OCR layer, boxed in the stored image's pixels; none for
     a synthetic page, which has no layer, so its values all keep the model's boxes."""
     page_ref = resolve(ref, root)  # refuses a page that may not be read, before the PDF is opened
-    found = REAL.fullmatch(ref)
-    if found is None:
+    if (found := REAL.fullmatch(ref)) is not None:
+        path = root / "pdf" / pdf_name(found["issue"])
+    elif (found := OCC.fullmatch(ref)) is not None:  # a Comptroller's report: its own root
+        path = occ.pdf_path(OCC_ROOT, found["issue"])
+    else:
         return ()
     width, height = Image.open(page_ref.path).size
-    pdf = pdfium.PdfDocument(root / "pdf" / pdf_name(found["issue"]))
+    pdf = pdfium.PdfDocument(path)
     try:
         page = pdf[int(found["page"]) - 1]
         text = page.get_textpage()
