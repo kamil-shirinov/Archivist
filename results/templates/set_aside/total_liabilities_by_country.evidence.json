@@ -1,6 +1,6 @@
 {
   "family": "total_liabilities_by_country",
-  "template": "templates/total_liabilities_by_country.yaml",
+  "template": "results/templates/set_aside/total_liabilities_by_country.yaml",
   "template_sha256": "385149516590b56d4d5875117c437b4fd171562d9cfd28bef7e0487c81ff44bc",
   "tested_on": "2026-10-28",
   "config": {
@@ -24,20 +24,26 @@
       "ref": "1982-06_p091",
       "page_id": "1982-06_p091",
       "classified_as": "total_liabilities_by_country",
+      "grid": {
+        "rows": 86,
+        "bands": 86,
+        "fixed": 72,
+        "order": null
+      },
       "anchored": 26,
       "box_sources": {
-        "grid": 548,
-        "model": 200,
+        "grid": 506,
+        "model": 242,
         "ocr": 26
       },
       "read": "ok",
       "needed": 774,
       "cells": 860,
       "read_first": 853,
-      "read_twice": 744,
-      "agree": 314,
+      "read_twice": 743,
+      "agree": 289,
       "no_second_read": {
-        "illegible to the re-read": 23,
+        "illegible to the re-read": 24,
         "not read the first time": 7
       }
     },
@@ -45,6 +51,12 @@
       "ref": "1983-06_p097",
       "page_id": "1983-06_p097",
       "classified_as": "total_liabilities_by_country",
+      "grid": {
+        "rows": 86,
+        "bands": 78,
+        "fixed": 0,
+        "order": null
+      },
       "anchored": 0,
       "box_sources": {
         "model": 774
@@ -64,20 +76,26 @@
       "ref": "1984-06_p055",
       "page_id": "1984-06_p055",
       "classified_as": "total_liabilities_by_country",
+      "grid": {
+        "rows": 86,
+        "bands": 86,
+        "fixed": 13,
+        "order": null
+      },
       "anchored": 32,
       "box_sources": {
-        "grid": 96,
-        "model": 646,
+        "grid": 416,
+        "model": 326,
         "ocr": 32
       },
       "read": "ok",
       "needed": 774,
       "cells": 860,
       "read_first": 860,
-      "read_twice": 736,
-      "agree": 199,
+      "read_twice": 757,
+      "agree": 435,
       "no_second_read": {
-        "illegible to the re-read": 38
+        "illegible to the re-read": 17
       }
     }
   ],

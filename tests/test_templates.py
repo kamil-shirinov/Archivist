@@ -862,7 +862,7 @@ def test_the_rediscovery_drafts_from_three_val_pages_of_each_kind():
 
 def test_the_box_strategy_with_more_agreeing_cells_wins_and_a_tie_keeps_the_simpler():
     simple, guarded = compare_citations.STRATEGIES
-    assert (simple, guarded) == ("S0+grid", "S0+grid+order")  # simplest first
+    assert (simple, guarded) == ("S0+grid", "S0+grid+rules")  # simplest first
     page = {"read": "ok", "sampled": 10}
     better = [page | {simple: {"agree": 6}, guarded: {"agree": 7}}]
     assert compare_citations.decide(better) == (guarded, {simple: 0.6, guarded: 0.7})
@@ -1106,3 +1106,24 @@ def test_the_order_fallback_is_not_tried_when_bands_and_rows_differ():
         values, doc_type, image, [], lambda trial, ids: called.append(1) or 20
     )
     assert (found["rows"], found["bands"], found["order"]) == (7, 6, None) and called == []
+
+
+def test_the_body_is_bounded_by_its_rules():
+    header = [(40, 52)]  # the column-number line, above the rule under the headings
+    body = [(100 + 20 * i, 112 + 20 * i) for i in range(5)]  # five printed rows
+    next_table = [(260, 272)]  # the next table's heading, below the bottom rule
+    rules = [70.0, 200.0]
+    assert grid.bound([*header, *body, *next_table], rules, 5) == body
+    leftover = (198, 202)  # a stroke of the bottom rule the long-run filter missed
+    assert grid.bound([*body, leftover], rules, 5) == body
+    assert grid.bound(body[:3], rules, 5) == body[:3]  # already short: nothing to cut
+    assert grid.bound([*header, *body], [], 5) == [*header, *body]  # no rule: unchanged
+
+
+def test_rules_are_found_across_the_figure_columns_and_a_double_rule_counts_once():
+    ink = np.zeros((200, 400), dtype=bool)
+    ink[50, 20:380] = True  # a single rule
+    ink[120, 20:380] = ink[123, 20:380] = True  # a double rule
+    ink[160, 20:120] = True  # a short underline: not a rule across the columns
+    found = grid.rules(ink, (20, 380), (0, 200), 0.0, 200.0)
+    assert found == [50.0, 121.5]

@@ -1,17 +1,17 @@
 """Which box strategy suits the template tables, and why cells disagree: development pages (P21c).
 
-    python -m archivist.templates.compare_citations   # -> results/templates/citations_dev_v4.*
+    python -m archivist.templates.compare_citations   # -> results/templates/citations_dev_v5.*
     python -m archivist.templates.compare_citations --report   # the report again, no call
 
-The fourth measurement. The earlier ones (results/templates/citations_dev.md, _v2.md, _v3.md)
-are kept as written; the third made S0+grid the template strategy. This one sets S0+grid as it
-was against S0+grid with the guarded order fallback (grid.py): a page where nothing fixes a row,
-but the grid finds exactly as many row bands as the read has rows printing a figure, maps rows
-to bands by order, kept only if GUARD_SAMPLE of the cells so mapped, re-read blind, agree with
-the first read often enough (15 of 20); else the page keeps the model's boxes. It runs on the
-development pages of the 1980s templates (ERA), those in templates/ and those set aside in
-results/templates/set_aside/ alike (pages.py refuses any page not on the development side before
-a call), with the arithmetic test's calls; the template re-reader is at reasoning "minimal":
+The fifth measurement. The earlier ones (results/templates/citations_dev.md, _v2 to _v4) are kept
+as written. This one sets S0+grid as built (with the guarded order fallback) against the same with
+each table's body bounded by its horizontal rules (grid.bound): a band sitting on a rule is
+dropped as the rule's leftover stroke, and of the stretches between rules the one whose band count
+is closest to the read's printed rows is kept, so headings, column-number lines and the next table
+cannot add bands. It runs on the development pages of every template in templates/ and of the
+1980s templates set aside (results/templates/set_aside/; ERA), with the arithmetic test's calls
+(pages.py refuses any page not on the development side before a call); the template re-reader is
+at reasoning "minimal":
 
 1. read and cite: extract.read_page with S0, the model's boxes; each strategy then puts its own
    boxes on the same read (no second extraction) and says where each box came from: "ocr",
@@ -45,7 +45,7 @@ cell whose every re-read attempt reached the output limit, which is "re-read out
 - "unexplained": none of these.
 DIAGNOSED disagreements per strategy, drawn with random.Random(SEED), are shown with the crop the
 re-reader saw and a strip of the page around it (the box in red, the crop in blue); a reviewer's
-judgement of each, where given in results/templates/citations_dev_v4_causes.json ({"<strategy>
+judgement of each, where given in results/templates/citations_dev_v5_causes.json ({"<strategy>
 <field id>": {"cause": ..., "note": ..., "judged_by": ...}}), is shown beside the rule's.
 
 Long re-reads. A re-read may answer in at most reread.REREAD_TOKENS output tokens, reasoning
@@ -53,8 +53,8 @@ included. Each sampled cell's re-read request (and its retry, asked when the fir
 parse) is rebuilt exactly and looked up in the rereader's cache, never sent: the report counts
 the answers that reached the limit or ran past LONG tokens, says how each such cell was counted
 (agree, disagree, or no second read), and quotes a few. Writes
-results/templates/citations_dev_v4.json (every sampled cell, both reads), the images in
-results/templates/citations_dev_v4/, and results/templates/citations_dev_v4.md, whatever they
+results/templates/citations_dev_v5.json (every sampled cell, both reads), the images in
+results/templates/citations_dev_v5/, and results/templates/citations_dev_v5.md, whatever they
 show.
 """
 
@@ -83,8 +83,8 @@ from archivist.templates.pages import resolve
 from archivist.templates.families import era_of
 from archivist.templates.test import agreed, blind_check, needed, output_tokens, reread_cells
 
-ORDER = f"{grid.STRATEGY}+order"  # S0+grid with the guarded order fallback
-STRATEGIES = (grid.STRATEGY, ORDER)  # simplest first, so a tie keeps the simpler
+RULES = f"{grid.STRATEGY}+rules"  # S0+grid with each body bounded by its rules
+STRATEGIES = (grid.STRATEGY, RULES)  # simplest first, so a tie keeps the simpler
 ERA = "1982-1994"
 SAMPLE = 40
 DIAGNOSED = 20
@@ -92,10 +92,10 @@ LONG = 200  # output tokens: a value and its quotes take about ten
 QUOTED = 3
 SEED = 2110
 OUT = Path("results/templates")
-DATA, REPORT = OUT / "citations_dev_v4.json", OUT / "citations_dev_v4.md"
-IMAGES, JUDGED = OUT / "citations_dev_v4", OUT / "citations_dev_v4_causes.json"
+DATA, REPORT = OUT / "citations_dev_v5.json", OUT / "citations_dev_v5.md"
+IMAGES, JUDGED = OUT / "citations_dev_v5", OUT / "citations_dev_v5_causes.json"
 SET_ASIDE = OUT / "set_aside"
-EARLIER = tuple(OUT / f"citations_dev{v}.md" for v in ("", "_v2", "_v3"))  # kept as written
+EARLIER = tuple(OUT / f"citations_dev{v}.md" for v in ("", "_v2", "_v3", "_v4"))
 OUT_OF_TOKENS = "re-read out of tokens"
 CAUSES = (OUT_OF_TOKENS, "unreadable crop", "formatting only", "neighbouring cell", "unexplained")
 JUDGEMENTS = (
@@ -180,12 +180,13 @@ def _box(bbox: BBox) -> list[int]:
 
 
 def measured_types() -> list[TemplateType]:
-    """The templates of ERA, in templates/ and set aside alike, in family order."""
-    types = [*drafted_types(TEMPLATES_DIR), *drafted_types(SET_ASIDE)]
-    return sorted(
-        (t for t in types if era_of(t.template.provenance.drafted_from[0][:7]) == ERA),
-        key=lambda t: t.name,
-    )
+    """Every template in templates/, and those of ERA set aside, in family order."""
+    aside = [
+        t
+        for t in drafted_types(SET_ASIDE)
+        if era_of(t.template.provenance.drafted_from[0][:7]) == ERA
+    ]
+    return sorted([*drafted_types(TEMPLATES_DIR), *aside], key=lambda t: t.name)
 
 
 def boxes(
@@ -194,9 +195,12 @@ def boxes(
     """Each strategy's boxes on the same read and where each box came from, and what the grid
     found on the page with the order fallback tried."""
     layer = ocr.words(ref)
-    values, sources, _ = grid.assign(raw, doc_type, image, layer)
-    ordered, ordered_sources, found = grid.assign(raw, doc_type, image, layer, check)
-    return {grid.STRATEGY: (values, sources), ORDER: (ordered, ordered_sources)}, found
+    values, sources, before = grid.assign(raw, doc_type, image, layer, check, bounded=False)
+    ruled, ruled_sources, found = grid.assign(raw, doc_type, image, layer, check, bounded=True)
+    return {grid.STRATEGY: (values, sources), RULES: (ruled, ruled_sources)}, {
+        "unbounded": before,
+        "bounded": found,
+    }
 
 
 def measure_page(
@@ -477,18 +481,17 @@ def report(
         "# Box strategy for template tables, measured on development pages",
         "",
         "Made by `python -m archivist.templates.compare_citations`. A measurement, reported "
-        f"whatever it shows. The pages are those the {ERA} templates were drafted from, in "
-        "`templates/` and set aside in `results/templates/set_aside/` alike, all on the "
-        "development side of `data/real/split.json`. On each page, up to "
+        "whatever it shows. The pages are those every template in `templates/` was drafted "
+        f"from, and those of the {ERA} templates set aside in `results/templates/set_aside/`, "
+        "all on the development side of `data/real/split.json`. On each page, up to "
         f"{SAMPLE} cells that the draft's identities need and that were read as a figure the "
         f"first time are drawn with `random.Random({SEED})`, and each is re-read blind from a "
-        f"crop of its box under both strategies: **{STRATEGIES[0]}** as it was (the OCR layer's "
-        "box, else the cell of the table's grid found in the page, where a read row is fixed by "
-        "an anchored figure or its label in the OCR layer, else the model's; `grid.py`), and "
-        f"**{STRATEGIES[1]}**, the same with the guarded order fallback: a page where nothing "
-        "fixes a row but the grid finds exactly as many row bands as the read has rows maps them "
-        f"by order, kept only if at least {grid.GUARD_SHARE:.0%} of {grid.GUARD_SAMPLE} cells so "
-        "mapped, re-read blind, agree with the first read; else the model's boxes stay. The "
+        f"crop of its box under both strategies: **{STRATEGIES[0]}** as built (the OCR layer's "
+        "box, else the cell of the table's grid found in the page, else the model's, with the "
+        f"guarded order fallback; `grid.py`), and **{STRATEGIES[1]}**, the same with the table's "
+        "body bounded by its horizontal rules: a band sitting on a rule is the rule's leftover "
+        "stroke and is dropped, and of the stretches between rules the one whose band count is "
+        "closest to the read's printed rows is kept. The "
         "re-reader runs at reasoning \"minimal\" (templates only). The measure is "
         "the share of sampled cells whose two reads agree, as the draft compares them; a failed "
         "or illegible re-read does not agree. Every sampled cell, with both reads, is in "
@@ -549,12 +552,14 @@ def report(
         "## By page",
         "",
         f"Boxes: where {STRATEGIES[1]}'s boxes for the page's figure cells came from, ocr / grid / "
-        "model. Grid: the read's rows printing a figure, the row bands found, the rows fixed by "
-        "an anchor or a label. Order fallback: tried only on a page with no fixed row and as many "
-        "bands as rows; the guard's agreeing re-reads of those sampled, and whether it was kept.",
+        "model. Rows / bands / fixed: the read's rows printing a figure, the row bands found and "
+        "the rows fixed by an anchor or a label, without and with the rules bounding the body. "
+        "Order fallback: tried only on a page with no fixed row and as many bands as rows; the "
+        "guard's agreeing re-reads of those sampled, and whether it was kept.",
         "",
         f"| Family | Page | Sampled | {STRATEGIES[0]} agree | {STRATEGIES[1]} agree | "
-        f"{STRATEGIES[1]} boxes (ocr / grid / model) | Grid (rows / bands / fixed) | Order "
+        f"{STRATEGIES[1]} boxes (ocr / grid / model) | Rows / bands / fixed, unbounded → "
+        f"bounded | {STRATEGIES[1]} order "
         "fallback |",
         "|---|---|--:|--:|--:|---|---|---|",
     ]
@@ -563,7 +568,7 @@ def report(
         if p["read"] != "ok":
             lines.append(f"| `{p['family']}` | {p['ref']} | {p['read'][:120]} | | | | | |")
             continue
-        n, found = p["sampled"], p["grid"]
+        n, before, found = p["sampled"], p["grid"]["unbounded"], p["grid"]["bounded"]
         guard = found["order"]
         fallback = (
             "not tried"
@@ -574,7 +579,8 @@ def report(
         lines.append(
             f"| `{p['family']}` | {p['ref']} | {n} | {p[o]['agree']} ({_pct(p[o]['agree'], n)}) | "
             f"{p[g]['agree']} ({_pct(p[g]['agree'], n)}) | {_sources(p[g]['sources'])} | "
-            f"{found['rows']} / {found['bands']} / {found['fixed']} | {fallback} |"
+            f"{found['rows']} / {before['bands']} → {found['bands']} / {before['fixed']} → "
+            f"{found['fixed']} | {fallback} |"
         )
     families = sorted({p["family"] for p in pages})
     lines += [

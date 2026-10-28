@@ -24,6 +24,16 @@
       "ref": "1983-06_p088",
       "page_id": "1983-06_p088",
       "classified_as": "total_liabilities_by_type_payable_in",
+      "grid": {
+        "rows": 17,
+        "bands": 17,
+        "fixed": 0,
+        "order": {
+          "sampled": 20,
+          "agree": 3,
+          "used": false
+        }
+      },
       "anchored": 0,
       "box_sources": {
         "model": 238
@@ -42,6 +52,12 @@
       "ref": "1984-06_p054",
       "page_id": "1984-06_p054",
       "classified_as": "total_liabilities_by_type_payable_in",
+      "grid": {
+        "rows": 17,
+        "bands": 18,
+        "fixed": 0,
+        "order": null
+      },
       "anchored": 0,
       "box_sources": {
         "model": 238

@@ -16,6 +16,11 @@ Each value keeps the most trustworthy box there is, and says where it came from 
      (rules lean, and a leaning row smears into its neighbours); rows are the bands of that
      profile, a band over MERGED times the usual height (faint print joins lines) cut into as
      many as the lines it holds, by the median line pitch;
+   - the body is bounded by its horizontal rules (bounded, given the read's printed rows): a
+     band sitting on a rule is the rule's leftover stroke and is dropped, and of the stretches
+     between two rules, or a rule and the open page, the one whose band count is closest to the
+     read's printed rows is kept, the widest on a tie; so a heading, a column-number line or the
+     next table below cannot add bands, and a page whose bands already fall short is unchanged;
    - a row of the read is fixed to a band by an anchored figure in it, or by its label found in
      the OCR layer left of the figure columns (the layers of the 1980s pages print the labels
      but not the figures); the read's rows that print a figure are aligned to the bands in
@@ -69,6 +74,7 @@ MAX_SKEW, SKEW_STEP = 1.5, 0.05  # degrees
 GUARD_SAMPLE, GUARD_SHARE, GUARD_SEED = 20, 0.75, 2110  # the order fallback's guard: 15 of 20
 LABEL_WINDOW = 120  # pixels: how far a label found in the OCR layer may lie from the model's row
 MERGED = 1.6  # a band this many times the usual height holds more than one line
+RULE_COVER, RULE_GAP, RULE_NEAR = 0.6, 4, 3  # a rule: inked over 60% of the span; double: 1
 
 
 @dataclass(frozen=True)
@@ -118,10 +124,15 @@ def _skew(ink: np.ndarray) -> float:
 
 
 def find_grid(
-    image: bytes, figures: Mapping[str, Sequence[ExtractedValue]], anchored: set[str]
+    image: bytes,
+    figures: Mapping[str, Sequence[ExtractedValue]],
+    anchored: set[str],
+    printed: int | None = None,
+    bounded: bool = True,
 ) -> Grid | None:
     """The grid of the table whose figure values (by column, with the model's boxes or anchored
-    ones) are given; None if no body can be found."""
+    ones) are given, its body bounded by its rules when bounded and the number of the read's
+    printed rows is given; None if no body can be found."""
     boxed = [v for column in figures.values() for v in column if v.citation is not None]
     if not boxed:
         return None
@@ -132,7 +143,8 @@ def find_grid(
     x1 = min(width, max(v.citation.bbox.x1 for v in boxed) + 10)
     y0 = max(0, round(min(v.citation.bbox.y0 for v in boxed) - BODY_LINES * line))
     y1 = min(height, round(max(v.citation.bbox.y1 for v in boxed) + BODY_LINES * line))
-    part = without_long_runs(gray[y0:y1, x0:x1] <= otsu(gray), DOWN_RUN)
+    ink = gray <= otsu(gray)
+    part = without_long_runs(ink[y0:y1, x0:x1], DOWN_RUN)
     part = without_long_runs(part.T, ACROSS_RUN).T
     profile = part.sum(axis=0)
     floor, full = np.percentile(profile, [10, 95])
@@ -169,8 +181,52 @@ def find_grid(
     base = rows.min()
     profile = np.bincount(rows - base).astype(float)
     level = ROW_LEVEL * np.percentile(profile[profile > 0], 95)
-    bands = [(a + base, b + base) for a, b in runs(profile > level, ROW_GAP, MIN_ROW)]
-    return Grid(columns, split(bands), shear, centre)
+    bands = split([(a + base, b + base) for a, b in runs(profile > level, ROW_GAP, MIN_ROW)])
+    if bounded and printed:
+        span = (min(a for a, _ in columns.values()), max(b for _, b in columns.values()))
+        top = max(0, round(y0 - BODY_LINES * line))
+        bottom = min(height, round(y1 + BODY_LINES * line))
+        bands = bound(bands, rules(ink, span, (top, bottom), shear, centre), printed)
+    return Grid(columns, bands, shear, centre)
+
+
+def rules(
+    ink: np.ndarray,
+    span: tuple[int, int],
+    window: tuple[int, int],
+    shear: float,
+    centre: float,
+) -> list[float]:
+    """The deskewed y of each horizontal rule across the figure columns: a pixel row inked over
+    RULE_COVER of their span, a double rule counted once."""
+    (x0, x1), (y0, y1) = span, window
+    ys, xs = np.nonzero(ink[y0:y1, x0:x1])
+    if len(ys) == 0:
+        return []
+    deskewed = np.round(ys + y0 - shear * (xs + x0 - centre)).astype(int)
+    base = deskewed.min()
+    coverage = np.bincount(deskewed - base) / (x1 - x0)
+    return [(a + b - 1) / 2 + base for a, b in runs(coverage >= RULE_COVER, RULE_GAP, 1)]
+
+
+def bound(
+    bands: Sequence[tuple[int, int]], lines: Sequence[float], rows: int
+) -> list[tuple[int, int]]:
+    """The bands of the table's body: those sitting on a rule dropped (a rule's leftover stroke,
+    not a printed row), then the bands between the two rules (or a rule and the open page) whose
+    count is closest to the read's printed rows, the widest such stretch on a tie."""
+    kept = [b for b in bands if all(abs((b[0] + b[1]) / 2 - y) > RULE_NEAR for y in lines)]
+    if not lines:
+        return kept
+    edges = [-math.inf, *sorted(lines), math.inf]
+    best: tuple[int, int, list[tuple[int, int]]] | None = None
+    for i, top in enumerate(edges):
+        for bottom in edges[i + 1 :]:
+            inside = [b for b in kept if top < (b[0] + b[1]) / 2 < bottom]
+            score = (-abs(len(inside) - rows), len(inside))
+            if best is None or score > best[:2]:
+                best = (*score, inside)
+    return best[2]
 
 
 def split(bands: Sequence[tuple[int, int]]) -> list[tuple[int, int]]:
@@ -245,6 +301,7 @@ def assign(
     image: bytes,
     layer: Sequence[ocr.Word],
     check: Check | None = None,
+    bounded: bool = True,
 ) -> tuple[list[ExtractedValue], dict[str, str], dict]:
     """Every value with its box, each value's box source ("ocr", "grid" or "model"), and what was
     found on the page (fixed rows, bands, the order fallback). With check, a page with no fixed
@@ -264,7 +321,7 @@ def assign(
                 printed = True
         if printed:
             printed_rows.append(row)
-    grid = find_grid(image, figures, anchored)
+    grid = find_grid(image, figures, anchored, len(printed_rows), bounded)
     sources = {v.field_id: ("ocr" if v.field_id in anchored else "model") for v in values}
     info: dict = {"rows": len(printed_rows), "bands": 0, "fixed": 0, "order": None}
     if grid is None or not grid.bands:
