@@ -13,7 +13,8 @@ of --config (default config/templates.toml), every call cached and budgeted:
    --citations picks another; the evidence records which). S0+ocr reads with S0 and anchors each
    value's box to the page's OCR text layer where it can (ocr.py; the evidence records how many);
    S0+grid takes each box from the OCR layer, else the table's grid found in the page, else the
-   model (grid.py; the evidence records how many came from each).
+   model (grid.py; the evidence records how many came from each, and for each page the rows,
+   bands and fixed rows the grid found and, where it was tried, the order fallback's guard).
    A big table gets a larger output allowance: OUTPUT_PER_CELL tokens per cell beyond the
    pipeline's own EXTRACT_TOKENS.
 3. blind second read: every cell some identity needs, re-read from a crop of its corrected box
@@ -258,6 +259,21 @@ def tally(
     return out
 
 
+def blind_check(
+    image: bytes, page_id: str, doc_type: TemplateType, rereader: object, workers: int
+) -> grid.Check:
+    """The order fallback's guard: how many of the cells re-read blind from their trial boxes
+    agree with the first read (the arithmetic test's own calls, so cached for it)."""
+
+    def check(values: Sequence[ExtractedValue], ids: Sequence[str]) -> int:
+        second = reread_cells(image, values, set(ids), doc_type, rereader, workers)
+        page = PageExtraction(page_id=page_id, doc_type=doc_type.name, values=list(values))
+        both = agreed(doc_type, page, second)
+        return sum(both.get(f) is not None for f in ids)
+
+    return check
+
+
 def read_pages(
     doc_type: TemplateType,
     pages: Sequence[Page],
@@ -286,8 +302,12 @@ def read_pages(
         if citations == ocr.STRATEGY:
             values, anchored = ocr.anchor(values, ocr.words(page.ref))
         elif citations == grid.STRATEGY:
-            values, sources = grid.assign(values, doc_type, image, ocr.words(page.ref))
+            check = blind_check(image, page.page_id, doc_type, rereader, workers)
+            values, sources, found = grid.assign(
+                values, doc_type, image, ocr.words(page.ref), check
+            )
             anchored = {f for f, source in sources.items() if source == "ocr"}
+            record["grid"] = found  # rows, bands, fixed rows and the order fallback's guard
         extraction = PageExtraction(page_id=page.page_id, doc_type=doc_type.name, values=values)
         wanted = needed(doc_type, extraction)
         second = reread_cells(image, values, wanted, doc_type, rereader, workers)

@@ -21,6 +21,12 @@ Each value keeps the most trustworthy box there is, and says where it came from 
      but not the figures); the read's rows that print a figure are aligned to the bands in
      order, and a row is mapped only when it is fixed, or lies between two fixed rows with as
      many bands between them as rows: then order alone decides, and nothing is guessed;
+   - the order fallback, only when the caller gives a check: a page with no fixed row at all,
+     whose grid has exactly as many bands as the read has rows printing a figure, may map them
+     by order. Its guard re-reads GUARD_SAMPLE of the cells so mapped (drawn with
+     random.Random(GUARD_SEED)), blind, and keeps the mapping only if at least GUARD_SHARE of
+     them agree with the first read (15 of 20); otherwise the page keeps the model's boxes. What
+     the guard found is returned with the boxes, so the evidence records it;
    - the cell's box is its band across its column's run, put back on the skewed page;
 3. "model": the model's own box, where neither of the others is found.
 """
@@ -29,9 +35,10 @@ from __future__ import annotations
 
 import io
 import math
+import random
 import re
 import statistics
-from collections.abc import Mapping, Sequence
+from collections.abc import Callable, Mapping, Sequence
 from dataclasses import dataclass
 
 import numpy as np
@@ -59,6 +66,7 @@ STRATEGY = ARCHIVE_GRID
 SOURCES = ("ocr", "grid", "model")
 BODY_LINES = 4
 MAX_SKEW, SKEW_STEP = 1.5, 0.05  # degrees
+GUARD_SAMPLE, GUARD_SHARE, GUARD_SEED = 20, 0.75, 2110  # the order fallback's guard: 15 of 20
 LABEL_WINDOW = 120  # pixels: how far a label found in the OCR layer may lie from the model's row
 MERGED = 1.6  # a band this many times the usual height holds more than one line
 
@@ -207,13 +215,40 @@ def _letters(text: str) -> str:
     return re.sub(r"[^a-z0-9]", "", text.lower().split("....")[0])
 
 
+Check = Callable[[Sequence[ExtractedValue], Sequence[str]], int]
+
+
+def _boxed(
+    values: Sequence[ExtractedValue],
+    sources: dict[str, str],
+    mapped: Mapping[str, int],
+    grid: Grid,
+) -> list[ExtractedValue]:
+    """values with each model-boxed cell of a mapped row in a grid column given its grid box;
+    sources updated to match."""
+    out = []
+    for value in values:
+        row, column = _row_col(value.field_id)
+        if sources[value.field_id] == "model" and row in mapped and column in grid.columns:
+            if value.citation is not None:
+                box = grid.box(column, mapped[row])
+                citation = value.citation.model_copy(update={"bbox": box, "raw_bbox": None})
+                value = value.model_copy(update={"citation": citation})
+                sources[value.field_id] = "grid"
+        out.append(value)
+    return out
+
+
 def assign(
     values: Sequence[ExtractedValue],
     doc_type: TemplateType,
     image: bytes,
     layer: Sequence[ocr.Word],
-) -> tuple[list[ExtractedValue], dict[str, str]]:
-    """Every value with its box, and each value's box source ("ocr", "grid" or "model")."""
+    check: Check | None = None,
+) -> tuple[list[ExtractedValue], dict[str, str], dict]:
+    """Every value with its box, each value's box source ("ocr", "grid" or "model"), and what was
+    found on the page (fixed rows, bands, the order fallback). With check, a page with no fixed
+    row and exactly as many bands as printed rows may map them by order, if the guard agrees."""
     anchored_values, anchored = ocr.anchor(values, layer)
     figure_columns = [c.key for c in doc_type.layout.columns if c.kind in NUMERIC]
     by_id = {v.field_id: v for v in anchored_values}
@@ -231,8 +266,10 @@ def assign(
             printed_rows.append(row)
     grid = find_grid(image, figures, anchored)
     sources = {v.field_id: ("ocr" if v.field_id in anchored else "model") for v in values}
+    info: dict = {"rows": len(printed_rows), "bands": 0, "fixed": 0, "order": None}
     if grid is None or not grid.bands:
-        return anchored_values, sources
+        return anchored_values, sources, info
+    info["bands"] = len(grid.bands)
 
     def band_of(y: float) -> int | None:
         hits = [i for i, (a, b) in enumerate(grid.bands) if a - 2 <= y <= b + 2]
@@ -276,19 +313,27 @@ def assign(
         bands = list(range(fixed[before] + 1, fixed[after]))
         if fixed[after] > fixed[before] and len(rows) == len(bands):
             mapped.update(zip(rows, bands))
+    info["fixed"] = len(fixed)
 
-    out = []
-    for value in anchored_values:
-        row, column = _row_col(value.field_id)
-        if sources[value.field_id] == "model" and row in mapped and column in grid.columns:
-            box = grid.box(column, mapped[row])
-            citation = (
-                value.citation.model_copy(update={"bbox": box, "raw_bbox": None})
-                if value.citation is not None
-                else None
-            )
-            if citation is not None:
-                value = value.model_copy(update={"citation": citation})
-                sources[value.field_id] = "grid"
-        out.append(value)
-    return out, sources
+    if not fixed and check is not None and printed_rows and len(grid.bands) == len(printed_rows):
+        by_order = dict(zip(printed_rows, range(len(grid.bands))))
+        trial_sources = dict(sources)
+        trial = _boxed(anchored_values, trial_sources, by_order, grid)
+        read = figure_ids(trial)
+        candidates = sorted(f for f, src in trial_sources.items() if src == "grid" and f in read)
+        sample = (
+            sorted(random.Random(GUARD_SEED).sample(candidates, GUARD_SAMPLE))
+            if len(candidates) > GUARD_SAMPLE
+            else candidates
+        )
+        agree = check(trial, sample) if sample else 0
+        used = bool(sample) and agree >= math.ceil(GUARD_SHARE * len(sample))
+        info["order"] = {"sampled": len(sample), "agree": agree, "used": used}
+        if used:
+            return trial, trial_sources, info
+    return _boxed(anchored_values, sources, mapped, grid), sources, info
+
+
+def figure_ids(values: Sequence[ExtractedValue]) -> set[str]:
+    """The values read as a figure the first time: what the guard may re-read."""
+    return {v.field_id for v in values if not v.abstained and v.value and v.value.strip()}

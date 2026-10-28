@@ -861,14 +861,15 @@ def test_the_rediscovery_drafts_from_three_val_pages_of_each_kind():
 
 
 def test_the_box_strategy_with_more_agreeing_cells_wins_and_a_tie_keeps_the_simpler():
-    assert compare_citations.STRATEGIES == ("S0+ocr", "S0+grid")  # simplest first
+    simple, guarded = compare_citations.STRATEGIES
+    assert (simple, guarded) == ("S0+grid", "S0+grid+order")  # simplest first
     page = {"read": "ok", "sampled": 10}
-    better = [page | {"S0+ocr": {"agree": 6}, "S0+grid": {"agree": 7}}]
-    assert compare_citations.decide(better) == ("S0+grid", {"S0+ocr": 0.6, "S0+grid": 0.7})
-    tie = [page | {"S0+ocr": {"agree": 5}, "S0+grid": {"agree": 5}}]
-    assert compare_citations.decide(tie)[0] == "S0+ocr"
+    better = [page | {simple: {"agree": 6}, guarded: {"agree": 7}}]
+    assert compare_citations.decide(better) == (guarded, {simple: 0.6, guarded: 0.7})
+    tie = [page | {simple: {"agree": 5}, guarded: {"agree": 5}}]
+    assert compare_citations.decide(tie)[0] == simple
     unread = [{"read": "failed: x"}]
-    assert compare_citations.decide(unread) == ("S0+ocr", {"S0+ocr": None, "S0+grid": None})
+    assert compare_citations.decide(unread) == (simple, {simple: None, guarded: None})
 
 
 # --- S0+ocr: boxes from the archive's OCR layer --------------------------------------------------
@@ -997,9 +998,10 @@ def test_runs_merge_small_gaps_and_drop_specks():
 GRID_ROWS = ["Austria", "Belgium", "Bulgaria", "Denmark", "Finland", "France"]
 
 
-def _grid_page(rows=GRID_ROWS):
-    """A drawn table: a stub of labels and three figure columns, one figure per cell; the model's
-    boxes a line low; the OCR layer with the labels only, as on the 1980s pages."""
+def _grid_page(rows=GRID_ROWS, drawn=None):
+    """A drawn table: a stub of labels and three figure columns, one figure per cell (the first
+    drawn rows only, if given); the model's boxes a line low; the OCR layer with the labels
+    only, as on the 1980s pages."""
     image = Image.new("L", (900, 600), 235)
     canvas = ImageDraw.Draw(image)
     template = Template.model_validate(
@@ -1036,7 +1038,8 @@ def _grid_page(rows=GRID_ROWS):
         values.append(_value(stub, label, (60, y, 160, y + 20)))
         for c, column in enumerate(("a", "b", "c")):
             x = 300 + 180 * c
-            canvas.rectangle([x, y, x + 80, y + 20], fill=50)
+            if drawn is None or r < drawn:
+                canvas.rectangle([x, y, x + 80, y + 20], fill=50)
             field = cell_id("countries", "p", key, column)
             truth[field] = (x, y)
             values.append(_value(field, f"{r + 1}{c}0", (x, y + 40, x + 80, y + 60)))  # a line low
@@ -1048,7 +1051,7 @@ def _grid_page(rows=GRID_ROWS):
 def test_rows_between_labelled_rows_take_their_grid_cells_by_order():
     doc_type, image, values, layer, truth = _grid_page()
     layer = [w for w in layer if w.text in ("Austria", "France")]  # two labels fix the ends
-    out, sources = grid.assign(values, doc_type, image, layer)
+    out, sources, _ = grid.assign(values, doc_type, image, layer)
     boxes = {v.field_id: v.citation.bbox for v in out}
     for field, (x, y) in truth.items():
         assert sources[field] == "grid"
@@ -1060,7 +1063,7 @@ def test_rows_between_labelled_rows_take_their_grid_cells_by_order():
 def test_an_anchored_figure_keeps_its_ocr_box_and_an_unfixed_table_keeps_the_models():
     doc_type, image, values, layer, truth = _grid_page()
     anchor = _word("2,10", (480, 140, 560, 160))  # the figure "210" of row 02, column b
-    out, sources = grid.assign(values, doc_type, image, [anchor])  # no label: one fixed row only
+    out, sources, _ = grid.assign(values, doc_type, image, [anchor])  # one fixed row only
     field = cell_id("countries", "p", "02", "b")
     assert sources[field] == "ocr"
     assert {v.field_id: v for v in out}[field].citation.bbox == anchor.box
@@ -1072,3 +1075,34 @@ def test_an_anchored_figure_keeps_its_ocr_box_and_an_unfixed_table_keeps_the_mod
 def test_merged_bands_are_cut_into_their_lines():
     bands = [(0, 20), (40, 60), (80, 180), (200, 220)]  # at a 40 px pitch the third holds three
     assert grid.split(bands) == [(0, 20), (40, 60), (80, 113), (113, 147), (147, 180), (200, 220)]
+
+
+def test_with_no_fixed_row_the_order_fallback_is_kept_only_when_the_guard_agrees():
+    doc_type, image, values, _, truth = _grid_page()  # no OCR layer at all: nothing fixes a row
+    asked = []
+
+    def agreeing(trial, ids):
+        asked.append(list(ids))
+        boxes = {v.field_id: v.citation.bbox for v in trial}
+        return sum(abs(boxes[f].y0 - truth[f][1]) < 10 for f in ids)  # the box is on its line
+
+    out, sources, found = grid.assign(values, doc_type, image, [], agreeing)
+    assert found["order"] == {"sampled": 18, "agree": 18, "used": True}  # all 18: fewer than 20
+    assert {sources[f] for f in truth} == {"grid"}
+    assert len(asked) == 1 and set(asked[0]) == set(truth)
+
+    out, sources, found = grid.assign(values, doc_type, image, [], lambda trial, ids: 13)
+    assert found["order"] == {"sampled": 18, "agree": 13, "used": False}  # needs 14 of 18
+    assert {sources[f] for f in truth} == {"model"}
+    assert {v.field_id: v.citation for v in out} == {v.field_id: v.citation for v in values}
+
+    assert grid.assign(values, doc_type, image, [])[2]["order"] is None  # no check: not tried
+
+
+def test_the_order_fallback_is_not_tried_when_bands_and_rows_differ():
+    doc_type, image, values, _, truth = _grid_page([*GRID_ROWS, "Greece"], drawn=6)
+    called = []
+    out, sources, found = grid.assign(
+        values, doc_type, image, [], lambda trial, ids: called.append(1) or 20
+    )
+    assert (found["rows"], found["bands"], found["order"]) == (7, 6, None) and called == []
