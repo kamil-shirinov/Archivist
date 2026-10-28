@@ -10,13 +10,17 @@ Run from the repository root. In order:
    committed test images).
 2. Both spend caps are set to zero (BUDGET_CAP_USD, BASETEN_CAP_USD), so any cache miss raises
    BudgetExceeded and aborts the replay, and the spend ledger's line count is recorded.
-3. Every current run is replayed into results/scratch/replay/<run>, through its own config: the
-   extraction runs (REPLAYED_EXTRACTIONS) with their recorded --citations, the verification runs
-   (REPLAYED_VERIFICATIONS) from their committed source runs with their recorded policy.
+3. Every current run is replayed into results/scratch/replay/<run>, through its own config and
+   the document types it enables: the extraction runs (REPLAYED_EXTRACTIONS) with their recorded
+   --citations, the verification runs (REPLAYED_VERIFICATIONS) from their committed source runs
+   with their recorded policy. The types registered beyond those (an approved template) play no
+   part, so approving one changes nothing here.
 4. A replayed verdicts.jsonl must be byte-identical to the committed one, a replayed
    predictions.jsonl identical once its lines are sorted (pages finish in any order), and run.json
    identical apart from the times and the cost (VOLATILE). What those may differ in is checked
-   instead: the replay spent nothing, and every call that answered came from the cache.
+   instead: the replay spent nothing, and every call that answered came from the cache. A run
+   from before P21b recorded no document types; it is compared as having enabled LEGACY, the
+   built-in ledger card and payment memo.
 5. The scoring commands (SCORING) are re-run in place, and git must show no change under results/
    apart from the ledger, whose line count must be unchanged; the exporter's checks must pass for
    every committed bundle and database.
@@ -39,6 +43,7 @@ import tempfile
 from collections.abc import Callable
 from pathlib import Path
 
+from archivist.doctypes import from_config, recorded_by
 from archivist.eval import compare_arms, compare_extractors, test_report
 from archivist.export import bundle, database
 from archivist.models import describe_config, load_roles
@@ -148,7 +153,7 @@ def _stable(record: dict) -> dict:
 
 def compare_records(run_id: str, committed: dict, replayed: dict) -> list[str]:
     """run.json against the committed one, apart from VOLATILE; and the replay spent nothing."""
-    a, b = _stable(committed), _stable(replayed)
+    a, b = _stable({**committed, "doc_types": recorded_by(committed)}), _stable(replayed)
     problems = [
         f"{run_id}: run.json differs in {key!r}"
         for key in sorted(set(a) | set(b))
@@ -179,6 +184,7 @@ def replay_extraction(run_id: str, config: str, workers: int) -> dict:
             roles,
             guard=roles[extract.ROLE].inner.guard,
             config=describe_config(Path(config)),
+            doc_types=from_config(Path(config)),
             workers=workers,
             citation_strategy=committed["citations"],
         )
@@ -202,6 +208,7 @@ def replay_verification(run_id: str, config: str, workers: int) -> dict:
         roles,
         guard=roles[reread.ROLE].inner.guard,
         config=describe_config(Path(config)),
+        doc_types=from_config(Path(config)),
         workers=workers,
         policy=committed["policy"]["version"],
     )

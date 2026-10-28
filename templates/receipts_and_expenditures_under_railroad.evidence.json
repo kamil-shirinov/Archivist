@@ -1,0 +1,95 @@
+{
+  "family": "receipts_and_expenditures_under_railroad",
+  "template": "templates/receipts_and_expenditures_under_railroad.yaml",
+  "template_sha256": "2cd6084ab877303e233eeff9787287c53a43cec4676b5bbc9fa9001fb897b8cc",
+  "tested_on": "2026-10-28",
+  "config": {
+    "drafter": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "extractor": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "rereader": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    }
+  },
+  "citations": "S0+ocr",
+  "rule": "every identity evaluated wherever it applies, on cells whose two reads agree; held within n half-units of the printed precision for n printed values",
+  "pages": [
+    {
+      "ref": "1939-08_p043",
+      "page_id": "1939-08_p043",
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "anchored": 18,
+      "read": "ok",
+      "needed": 68,
+      "cells": 102,
+      "read_first": 102,
+      "read_twice": 64,
+      "agree": 37,
+      "no_second_read": {
+        "illegible to the re-read": 4
+      }
+    },
+    {
+      "ref": "1939-10_p024",
+      "page_id": "1939-10_p024",
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "anchored": 18,
+      "read": "ok",
+      "needed": 68,
+      "cells": 102,
+      "read_first": 102,
+      "read_twice": 66,
+      "agree": 39,
+      "no_second_read": {
+        "illegible to the re-read": 2
+      }
+    },
+    {
+      "ref": "1939-12_p025",
+      "page_id": "1939-12_p025",
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "anchored": 20,
+      "read": "ok",
+      "needed": 68,
+      "cells": 102,
+      "read_first": 102,
+      "read_twice": 67,
+      "agree": 31,
+      "no_second_read": {
+        "illegible to the re-read": 1
+      }
+    }
+  ],
+  "outcomes": {
+    "rejected": 0,
+    "sometimes fails": 0,
+    "holds": 1,
+    "untested": 0
+  },
+  "identities": [
+    {
+      "id": "total_expenditures",
+      "description": "Total Expenditures is the sum of Administrative Expenses and the two transfers in each row.",
+      "for_each": "row",
+      "over": null,
+      "equation": "total_exp = admin + to_retirement + to_unemployment",
+      "applies": 51,
+      "evaluated": 2,
+      "held": 2,
+      "failed": 0,
+      "hold_rate": 1.0,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 48,
+        "a cell was not read twice": 1
+      },
+      "outcome": "holds",
+      "failures": []
+    }
+  ]
+}

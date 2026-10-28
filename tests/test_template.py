@@ -107,6 +107,7 @@ PRINTED = {  # customs, income tax, all other, total; every identity holds exact
     "total": ("16.7", "19.6", "36.3", "2.9", ""),
 }
 COLUMNS = ("july", "august", "both", "change", "note")
+DCB = ("debit", "credit", "balance")
 PAGE, OTHER = "issue-a_p001", "issue-a_p002"
 
 
@@ -363,6 +364,81 @@ def test_a_row_of_blanks_is_unused(tmp_path):
     assert len(doc_type.balanced([page])) == 4 * 4
 
 
+RUNNING = """\
+identity:
+  family: running
+  title: Running Account
+  description: A running account of debits and credits, one balance per line.
+  title_patterns: ['running\\s+account']
+layout:
+  unit: dollars
+  precision: "0.01"
+  rows: {read: 4}
+  columns:
+    - {key: debit, printed: Debit, kind: money}
+    - {key: credit, printed: Credit, kind: money}
+    - {key: balance, printed: Balance, kind: money}
+identities:
+  - id: running
+    description: each balance is the one above, less the debit, plus the credit
+    for_each: row
+    left: {difference: [{cell: {column: balance}}, {cell: {column: credit}}]}
+    right: {difference: [{cell: {column: balance, previous_row: true}}, {cell: {column: debit}}]}
+provenance:
+  status: draft
+  drafted_by: {kind: person, id: a reviewer}
+  drafted_on: 2026-10-28
+"""
+
+
+def test_a_cell_of_the_previous_row_carries_a_figure_down_the_table(tmp_path):
+    doc_type = TemplateType(read_template(_write(tmp_path, "running", RUNNING)))
+    lines = {"01": ("", "", "100.00"), "02": ("30.00", "-", "70.00"), "03": ("-", "5.50", "75.50")}
+    cells = {(row, c): t for row, texts in lines.items() for c, t in zip(DCB, texts)}
+    page = _page(doc_type, PAGE, cells)
+    where = [i.where for i in doc_type.instances([page])]
+    assert where == ["row 02", "row 03"]  # 01 has no row above
+    assert doc_type.checks([page]) == []
+
+    wrong = _page(doc_type, PAGE, cells | {("03", "balance"): "75.00"})
+    flags = doc_type.checks([wrong])
+    assert {f.field_id.rsplit(":", 2)[-2] for f in flags} == {"02", "03"}
+    assert flags[0].detail.startswith(
+        "identity running.running on row 03: balance − credit is 69.50, but "
+        "balance (row above) − debit is 70.00"
+    )
+    implied = {f.field_id: f.suggested for f in flags}
+    assert implied[cell_id("running", PAGE, "03", "balance")] == "75.50"
+    assert implied[cell_id("running", PAGE, "02", "balance")] == "69.50"
+
+
+def test_a_blank_counts_as_zero_only_where_its_column_says_so(tmp_path):
+    zero = RUNNING.replace(
+        "{key: debit, printed: Debit, kind: money}",
+        "{key: debit, printed: Debit, kind: money, blank_means: zero}",
+    ).replace(
+        "{key: credit, printed: Credit, kind: money}",
+        "{key: credit, printed: Credit, kind: money, blank_means: zero}",
+    )
+    lines = {"01": ("", "", "100.00"), "02": ("30.00", "", "70.00"), "03": ("", "5.50", "75.50")}
+    cells = {(row, c): t for row, texts in lines.items() for c, t in zip(DCB, texts)}
+    unknown = TemplateType(read_template(_write(tmp_path / "a", "running", RUNNING)))
+    counted = TemplateType(read_template(_write(tmp_path / "b", "running", zero)))
+    page = _page(unknown, PAGE, cells)
+    texts = {v.field_id: v.value for v in page.values}
+    assert [unknown.evaluate(i, texts) for i in unknown.instances([page])] == [None, None]
+    results = [counted.evaluate(i, texts) for i in counted.instances([page])]
+    assert results == [
+        (Decimal("70.00"), Decimal("70.00"), Decimal("0.015")),  # 3 printed values, not 4
+        (Decimal("70.00"), Decimal("75.50") - Decimal("5.50"), Decimal("0.015")),
+    ]
+    wrong = _page(counted, PAGE, cells | {("03", "balance"): "76.50"})
+    flags = counted.checks([wrong])
+    assert "for 3 printed values" in flags[0].detail
+    implied = {f.field_id: f.suggested for f in flags}
+    assert implied[cell_id("running", PAGE, "03", "debit")] == "-1.00"  # the blank, read as 0
+
+
 def test_the_example_holds_on_the_1939_page_it_was_written_from():
     """Gold Assets and Liabilities of the Treasury, Bulletin of September 1939, page 41, as read
     by hand from data/real/pages/1939-09/p057.jpg."""
@@ -483,6 +559,16 @@ MALFORMED = {
             "right": {"cell": {"table": "summary", "row": "total", "column": "august"}},
         },
     ),
+    "a previous row outside for_each: row": _set(
+        "identities.0.left", {"cell": {"row": "total", "previous_row": True}}
+    ),
+    "a previous row that names its row": _set(
+        "identities.1.left", {"cell": {"row": "total", "column": "both", "previous_row": True}}
+    ),
+    "a previous row in another table": _set(
+        "identities.1.left", {"cell": {"table": "summary", "column": "both", "previous_row": True}}
+    ),
+    "a text column whose blank is zero": _set("layout.columns.4.blank_means", "zero"),
     "approved without an approver": _drop("provenance.approved_by"),
     "approved before drafted": _set("provenance.approved_on", "2026-10-01"),
     "a draft with an approval": _set("provenance.status", "draft"),
@@ -553,9 +639,11 @@ def test_a_template_may_not_take_a_built_in_name(tmp_path):
         load_templates(tmp_path, reserved=["ledger_card", UNSUPPORTED])
 
 
-def test_the_committed_templates_validate_and_none_is_registered():
-    assert load_templates(ROOT / "templates", reserved=list(REGISTRY)) == []
-    assert list(REGISTRY) == ["ledger_card", "payment_memo"]
+def test_the_committed_templates_validate_and_only_approved_ones_are_registered():
+    built_in = ["ledger_card", "payment_memo"]
+    found = load_templates(ROOT / "templates", reserved=[*built_in, UNSUPPORTED])
+    assert all(t.template.provenance.approved for t in found)
+    assert list(REGISTRY) == [*built_in, *(t.name for t in found)]
 
 
 # --- Through the pipeline and the exporter -----------------------------------------------------
@@ -633,6 +721,7 @@ def test_a_template_type_runs_through_extraction_verification_and_export(
         {"extractor": MockLLM(extractor)},
         guard=guard,
         config={},
+        doc_types=registered,
         citation_strategy="S0",
     )
     verify.run(
@@ -641,7 +730,11 @@ def test_a_template_type_runs_through_extraction_verification_and_export(
         {"segmenter": MockSegmenter(), "rereader": MockLLM(rereader)},
         guard=guard,
         config={},
+        doc_types=registered,
     )
+    record = json.loads((runs / "demo-verify" / "run.json").read_text())
+    assert record["doc_types"] == {name: t.sha256 for name, t in registered.items()}
+    assert record["policy"]["money_fields"] == ["august", "both", "change", "july"]
     verdicts = {
         v.field_id: v for v in verify.load_verdicts(runs / "demo-verify" / "verdicts.jsonl")
     }

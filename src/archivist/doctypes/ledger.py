@@ -46,6 +46,7 @@ MEMO_FIELDS = (
     "ledger_ref",
 )
 DIGIT_FIELDS = frozenset({"account_no", "memo_no"})  # compared as their digits
+CITATIONS = "S0+ink"  # adopted for both types in results/citation_validation.json (D23)
 
 RULES = (
     "Rules for every value:\n"
@@ -188,6 +189,7 @@ class _Family:
     """What both types share: amounts and dates as a clerk writes them, and how readings compare."""
 
     money_fields: frozenset[str] = frozenset()
+    citations = CITATIONS
 
     def money(self, text: str) -> Decimal | None:
         return money(text)

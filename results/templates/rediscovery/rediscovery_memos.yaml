@@ -1,0 +1,52 @@
+# Drafted by muse-spark-1.3-contributor from dev/memo-0011, dev/memo-0025, dev/memo-0027 on 2026-10-28 (P21b).
+# A draft: validated, never registered. python -m archivist.templates.test checks its
+# identities; only a person, with python -m archivist.templates.approve, approves it.
+identity:
+  family: rediscovery_memos
+  title: Payment Memorandum
+  description: Bank payment memorandum form with memo number, date, account number, payee, amount in figures
+    and words and ledger reference.
+  title_patterns:
+  - payment\s+memorandum
+layout:
+  unit: as printed
+  precision: '0.01'
+  rows:
+  - key: memo_no
+    printed: Memo No.
+  - key: date
+    printed: Date
+  - key: account_no
+    printed: Account No.
+  - key: pay_to
+    printed: Pay to
+  - key: amount_figures
+    printed: Amount in figures
+  - key: amount_words
+    printed: Amount in words
+  - key: ledger_ref
+    printed: Ledger ref.
+  - key: authorised_by
+    printed: Authorised by
+  columns:
+  - key: field
+    printed: Field
+    kind: text
+  - key: details
+    printed: Details
+    kind: text
+identities: []
+provenance:
+  status: draft
+  drafted_by:
+    kind: model
+    id: muse-spark-1.3-contributor
+  drafted_on: '2026-10-28'
+  drafted_from:
+  - dev/memo-0011
+  - dev/memo-0025
+  - dev/memo-0027
+  evidence:
+  - drafted by muse-spark-1.3-contributor from dev/memo-0011, dev/memo-0025, dev/memo-0027 (drafter role,
+    P21b)
+  dropped: []

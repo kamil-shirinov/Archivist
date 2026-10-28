@@ -7,22 +7,31 @@ picks out the pages it needs by doc_type and reads only their extracted values (
 
 Verification needs nothing more of a type than DocType gives: which fields hold money, how two
 readings of a field compare, the type's amounts and dates, and which fields its own equations hold
-for. A type whose pages link to others (the ledger family's accounts and postings) also offers the
-readers its checks join them with, AccountReader and PostingReader, and the exporter reads the
-links through those alone; a type that offers neither is exported page by page. A type whose
+for. Each type names how its boxes are made (citations): the ledger family keeps S0+ink (D23), a
+template takes the strategy measured on the development tables (template.py). A type whose
+pages link to others (the ledger family's accounts and postings) also offers the readers its
+checks join them with, AccountReader and PostingReader, and the exporter reads the links through
+those alone; a type that offers neither is exported page by page. A type whose
 checks name their rules in their own wording (a template's identities) offers RuleReader, and the
 exporter asks it which rule raised a flag and which cells are in its equation.
 
-Besides the built-in types, every approved template in templates/ is a type (template.py); the
-classifier is given its description like any other. Drafts and examples are validated, never
-registered.
+Besides the built-in types, every approved template in templates/ is a type (template.py). Drafts
+and examples are validated, never registered.
+
+Registered is not enabled (P21b). A run enables the types its config names ([doc_types] enabled),
+and only those: the classifier is shown their descriptions alone, and verification takes its money
+fields from them alone, so approving a template later can never change what an old run asked or
+recorded. A run records the set it enabled, each built-in type as BUILT_IN and each template by its
+file's sha256 (recorded()); a run from before P21b recorded none and enabled LEGACY.
 """
 
 from __future__ import annotations
 
+import tomllib
 from collections.abc import Mapping, Sequence
 from datetime import date
 from decimal import Decimal
+from pathlib import Path
 from typing import Protocol, runtime_checkable
 
 from archivist.doctypes.ledger import (
@@ -44,6 +53,7 @@ class DocType(Protocol):
     name: str
     description: str  # one line, shown to the classifier
     money_fields: frozenset[str]  # field names that hold money: checked by sums as well as re-read
+    citations: str  # how its boxes are made, one of extract.CITATION_STRATEGIES
 
     def field_ids(self, page_id: str) -> list[str]: ...
 
@@ -110,6 +120,50 @@ for _template in load_templates(TEMPLATES_DIR, reserved=[*REGISTRY, UNSUPPORTED]
     register(_template)
 
 
+BUILT_IN = "built-in"  # what a run records for a type defined in code rather than a template
+LEGACY = {"ledger_card": BUILT_IN, "payment_memo": BUILT_IN}  # what a run from before P21b enabled
+
+
+def enabled(names: Sequence[str]) -> dict[str, DocType]:
+    """The registered types named, in that order; a name that isn't registered (no such type, or
+    a template that isn't approved) is refused."""
+    if not names or len(set(names)) != len(names):
+        raise ValueError(f"a run enables one or more document types, each once: {list(names)}")
+    unknown = [name for name in names if name not in REGISTRY]
+    if unknown:
+        raise ValueError(
+            f"not registered: {unknown}; registered: {list(REGISTRY)} (only approved templates are)"
+        )
+    return {name: REGISTRY[name] for name in names}
+
+
+def from_config(config_path: Path) -> dict[str, DocType]:
+    """The types a run config enables, from its [doc_types] table."""
+    with config_path.open("rb") as config_file:
+        names = tomllib.load(config_file).get("doc_types", {}).get("enabled")
+    if not isinstance(names, list):
+        raise ValueError(f"{config_path} names no document types: add [doc_types] enabled = [...]")
+    return enabled(names)
+
+
+def recorded(doc_types: Mapping[str, DocType]) -> dict[str, str]:
+    """What a run records of the types it enabled: BUILT_IN, or the template file's sha256."""
+    out = {}
+    for name, doc_type in doc_types.items():
+        if isinstance(doc_type, TemplateType):
+            if doc_type.sha256 is None:
+                raise ValueError(f"{name}: a template type not read from its file")
+            out[name] = doc_type.sha256
+        else:
+            out[name] = BUILT_IN
+    return out
+
+
+def recorded_by(record: Mapping[str, object]) -> dict[str, str]:
+    """The types a run's run.json says it enabled; LEGACY for a run from before P21b."""
+    return dict(record.get("doc_types", LEGACY))
+
+
 def is_unresolvable(flag: Flag) -> bool:
     """A cross-document check that couldn't find what it needed: a note, not an error."""
     return flag.detail.startswith(UNRESOLVABLE)
@@ -125,6 +179,8 @@ def type_of(field_id: str) -> DocType:
 
 
 __all__ = [
+    "BUILT_IN",
+    "LEGACY",
     "REGISTRY",
     "UNRESOLVABLE",
     "UNSUPPORTED",
@@ -140,7 +196,11 @@ __all__ = [
     "RuleReader",
     "TemplateError",
     "TemplateType",
+    "enabled",
+    "from_config",
     "is_unresolvable",
+    "recorded",
+    "recorded_by",
     "register",
     "type_of",
 ]

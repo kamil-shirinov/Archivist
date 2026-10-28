@@ -2,7 +2,9 @@
 
     python -m archivist.pipeline.verify --run baseline-dev-v1 --out archivist-dev-v2 --workers 4
 
---config picks the file that maps roles to models (default config/models.toml), --policy whose
+--config picks the file that maps roles to models (default config/models.toml) and names the
+document types the run enables ([doc_types] enabled), which must be the ones its source run
+enabled; run.json records them, and the money fields are theirs alone. --policy whose
 outcome a verdict's own status, confidence and proposal are (default POLICY). Every verdict
 records the outcome of both policies, v2 and v3, so both are scored from one run (as_policy).
 
@@ -48,8 +50,10 @@ family's are money as an amount in the clerk's notation, dates as a calendar dat
 numbers as digits, the amount in words as its letters (D22), anything else as text with spacing and
 case ignored. Which fields are money (the "arithmetic" route) is the type's money_fields.
 
-Re-reads use the corrected citation boxes: a run extracted with S0 or S1 is corrected here as
-S0+ink would (citations.py, D23), and each corrected box is widened to the extractor's own
+Re-reads use the boxes each document type makes its own way (DocType.citations): the pages of a
+type that corrects its boxes (S0+ink, the ledger family's, D23), extracted with S0 or S1, are
+corrected here as S0+ink would (citations.py); a type that keeps the model's own boxes is not
+corrected. Each corrected box is widened to the extractor's own
 horizontal extent, kept on the citation as raw_bbox, before cropping (reread.region). Both the
 corrected box and the regions sent to the re-reader are part of the evidence. Every model call
 goes through the roles, so a rerun replays the cache and spends nothing.
@@ -67,7 +71,7 @@ import io
 import json
 import threading
 from collections import Counter, defaultdict
-from collections.abc import Mapping, Sequence
+from collections.abc import Collection, Mapping, Sequence
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from datetime import UTC, datetime
@@ -76,7 +80,15 @@ from typing import Any, Literal
 
 from PIL import Image
 
-from archivist.doctypes import REGISTRY, is_unresolvable, type_of
+from archivist.doctypes import (
+    UNSUPPORTED,
+    DocType,
+    from_config,
+    is_unresolvable,
+    recorded,
+    recorded_by,
+    type_of,
+)
 from archivist.models import BudgetExceeded, Region, describe_config, load_roles
 from archivist.models.budget import BudgetGuard
 from archivist.models.registry import CONFIG_PATH
@@ -129,9 +141,9 @@ def field_kind(field_id: str) -> str:
     return field_id.rsplit(":", 1)[-1]
 
 
-def money_fields() -> frozenset[str]:
-    """The field names any registered type holds money in."""
-    return frozenset().union(*(doc_type.money_fields for doc_type in REGISTRY.values()))
+def money_fields(doc_types: Mapping[str, DocType]) -> frozenset[str]:
+    """The field names any of the run's types holds money in."""
+    return frozenset().union(*(doc_type.money_fields for doc_type in doc_types.values()))
 
 
 def same_reading(field_id: str, a: str, b: str) -> bool:
@@ -389,19 +401,30 @@ def verify(
     images: Mapping[str, Path],
     roles: Mapping[str, object],
     *,
-    correct_citations: bool,
+    correct_citations: bool | Collection[str],
+    doc_types: Mapping[str, DocType],
     workers: int = 1,
     policy: Policy = POLICY,
 ) -> tuple[list[VerdictRecord], dict]:
-    """Every value of every page through both policies; returns the verdicts and the call counts.
-    Second looks are asked only for the fields whose first re-read calls for one.
+    """Every value of every page through both policies, each page one of doc_types; returns the
+    verdicts and the call counts. correct_citations corrects every page's boxes, none, or those of
+    the types it names. Second looks are asked only for the fields whose first re-read calls for
+    one.
     """
+    strays = sorted({p.doc_type for p in pages} - {*doc_types, UNSUPPORTED})
+    if strays:
+        raise ValueError(f"pages of {strays}, which this run does not enable: {list(doc_types)}")
     segmenter, llm = Metered(roles[occlusion.ROLE]), Metered(roles[reread.ROLE])
 
     def prepare(page: PageExtraction) -> _Page:
         image = images[page.page_id].read_bytes()
         values = page.values
-        if correct_citations and values:
+        correct = (
+            correct_citations
+            if isinstance(correct_citations, bool)
+            else page.doc_type in correct_citations
+        )
+        if correct and values:
             values = citations.correct(image, values).values
         regions = occlusion.detect(image, segmenter) if values else []
         return _Page(page, image, values, regions)
@@ -423,7 +446,7 @@ def verify(
         jobs: list[Job] = []
         keys: list[ExtractedValue] = []
         for page in prepared:
-            plugin = REGISTRY.get(page.extraction.doc_type)
+            plugin = doc_types.get(page.extraction.doc_type)
             for value in page.values:
                 if value.citation is not None and needs_reread(value):
                     box = reread.region(value.citation)
@@ -448,12 +471,12 @@ def verify(
 
     reread_pages = reread_values(pages, readings)
     by_field: dict[str, list[Flag]] = defaultdict(list)
-    for flag in run_checks(pages):
+    for flag in run_checks(pages, doc_types):
         by_field[flag.field_id].append(flag)
     reread_by_field: dict[str, list[Flag]] = defaultdict(list)
-    for flag in run_checks(reread_pages):
+    for flag in run_checks(reread_pages, doc_types):
         reread_by_field[flag.field_id].append(flag)
-    holds = set().union(*(doc_type.balanced(reread_pages) for doc_type in REGISTRY.values()))
+    holds = set().union(*(doc_type.balanced(reread_pages) for doc_type in doc_types.values()))
 
     verdicts = [
         decide(
@@ -524,6 +547,24 @@ def load_verdicts(path: Path) -> list[VerdictRecord]:
     return [VerdictRecord.model_validate_json(line) for line in lines if line.strip()]
 
 
+def to_correct(
+    extracted: str | Mapping[str, str], doc_types: Mapping[str, DocType]
+) -> tuple[bool | set[str], str | dict[str, str]]:
+    """Which types' boxes to correct here, given how the source run made them (one strategy, or
+    each type's), and what run.json records: a type is corrected when its own strategy corrects
+    and the source's didn't."""
+    made = extracted if isinstance(extracted, Mapping) else dict.fromkeys(doc_types, extracted)
+    names = {
+        name
+        for name, t in doc_types.items()
+        if t.citations.endswith("+ink") and not made[name].endswith("+ink")
+    }
+    cited = {n: f"{s}+ink (corrected here)" if n in names else s for n, s in made.items()}
+    if not isinstance(extracted, Mapping) and len(set(cited.values())) == 1:
+        return bool(names), next(iter(cited.values()))
+    return names, cited
+
+
 def run(
     source_dir: Path,
     out_dir: Path,
@@ -531,15 +572,20 @@ def run(
     *,
     guard: BudgetGuard,
     config: Mapping[str, object],
+    doc_types: Mapping[str, DocType],
     workers: int = 1,
     policy: Policy = POLICY,
 ) -> dict:
-    """Verify the source run's predictions into out_dir; returns what goes in run.json."""
+    """Verify the source run's predictions into out_dir as doc_types, the types the source run
+    enabled; returns what goes in run.json."""
     predictions = source_dir / "predictions.jsonl"
     if not predictions.exists():
         raise FileNotFoundError(f"{predictions} is missing: run archivist.pipeline.extract first")
     source = json.loads((source_dir / "run.json").read_text())
-    strategy = source.get("citations", "S0")  # runs before --citations existed were S0
+    corrected, cited = to_correct(source.get("citations", "S0"), doc_types)  # S0 before P10c
+    enabled = recorded(doc_types)
+    if recorded_by(source) != enabled:
+        raise ValueError(f"{source_dir.name} enabled {recorded_by(source)}, this run {enabled}")
     images_dir = Path(source["images"])
     images = {p.stem: p for p in images_dir.iterdir() if p.suffix.lower() in IMAGE_SUFFIXES}
     pages = load_predictions(predictions)
@@ -552,7 +598,8 @@ def run(
         pages,
         images,
         roles,
-        correct_citations=not strategy.endswith("+ink"),
+        correct_citations=corrected,
+        doc_types=doc_types,
         workers=workers,
         policy=policy,
     )
@@ -565,13 +612,14 @@ def run(
         "source_run": source_dir.name,
         "images": str(images_dir),
         "config": dict(config),
-        "citations": strategy if strategy.endswith("+ink") else f"{strategy}+ink (corrected here)",
+        "doc_types": enabled,
+        "citations": cited,
         "policy": {
             "version": policy,
             "recorded": list(POLICIES),
             "v2": "D26: every field read twice, checks on both chains",
             "v3": "D29: v2, with a second look before an alarm",
-            "money_fields": sorted(money_fields()),
+            "money_fields": sorted(money_fields(doc_types)),
             "confidence": CONFIDENCE,
             "occlusion_prompts": list(occlusion.PROMPTS),
             "occlusion_cover": occlusion.COVER,
@@ -609,6 +657,7 @@ def main(argv: list[str] | None = None) -> None:
         roles,
         guard=guard,
         config=describe_config(args.config),
+        doc_types=from_config(args.config),
         workers=args.workers,
         policy=args.policy,
     )

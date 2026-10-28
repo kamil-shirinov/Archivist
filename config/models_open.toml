@@ -3,6 +3,11 @@
 # reasoning_effort stays "low" as in models.toml, so the two runs differ in the model, not the
 # effort; Muse Spark Open always reasons and its own default would be "xhigh".
 
+# The document types a run with this config enables (P21b): the classifier is shown these and no
+# others. A template approved later is registered, but no run enables it until its config names it.
+[doc_types]
+enabled = ["ledger_card", "payment_memo"]
+
 # Muse Spark 1.3 in Contributor mode (D19). "max" effort is not offered in Contributor mode.
 [roles.extractor]
 kind = "llm"

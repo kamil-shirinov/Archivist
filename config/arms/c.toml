@@ -3,6 +3,11 @@
 # python -m archivist.pipeline.verify --config config/arms/c.toml; scored by
 # archivist.eval.compare_arms. reasoning_effort is "low" for every role in every arm.
 
+# The document types a run with this config enables (P21b): the classifier is shown these and no
+# others. A template approved later is registered, but no run enables it until its config names it.
+[doc_types]
+enabled = ["ledger_card", "payment_memo"]
+
 [roles.extractor]
 kind = "llm"
 backend = "meta"

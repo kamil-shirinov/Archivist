@@ -11,6 +11,7 @@ from pathlib import Path
 import pytest
 from PIL import Image
 
+from archivist.doctypes import LEGACY, enabled, template
 from archivist.doctypes.ledger import (
     COLUMNS,
     HEADER_BOTTOM,
@@ -26,8 +27,8 @@ from archivist.models.cache import Cache
 from archivist.models.mock import MockLLM
 from archivist.pipeline import citations
 from archivist.pipeline.extract import (
+    ARCHIVE_OCR,
     CITATION_STRATEGIES,
-    CITATIONS,
     EXTRACT_TOKENS,
     RETRY_NOTE,
     ExtractionFailed,
@@ -35,6 +36,7 @@ from archivist.pipeline.extract import (
     classify,
     extract_page,
     load_predictions,
+    recorded_citations,
     run,
 )
 from archivist.schema import BBox, Citation, ExtractedValue, FieldGT, PageGT
@@ -47,6 +49,7 @@ LEDGER = {
 }
 MEMO = {"fields": {name: CELL for name in MEMO_FIELDS}}
 CONFIG = {"extractor": {"backend": "mock", "model_id": "mock-llm"}}
+TYPES = enabled(["ledger_card", "payment_memo"])
 
 
 @pytest.fixture(autouse=True)
@@ -109,7 +112,7 @@ def test_a_ledger_card_is_classified_then_extracted_in_full(tmp_path):
     llm = MockLLM(responder(pages))
     roles, _ = roles_for(llm, tmp_path)
 
-    page = extract_page(path, roles)
+    page = extract_page(path, roles, doc_types=TYPES)
 
     assert (page.page_id, page.doc_type) == ("scan_7", "ledger_card")
     assert len(page.values) == 95
@@ -128,7 +131,7 @@ def test_the_classifier_is_offered_every_type_and_unsupported(tmp_path):
     pages.add("p", "payment_memo")
     llm = MockLLM(responder(pages))
 
-    assert classify(next(iter(pages.kinds)), llm) == "payment_memo"
+    assert classify(next(iter(pages.kinds)), llm, TYPES) == "payment_memo"
     request = llm.calls[0]
     assert request.json_schema["properties"]["doc_type"]["enum"] == [
         "ledger_card",
@@ -144,7 +147,7 @@ def test_an_unsupported_page_yields_no_values_and_no_extraction_call(tmp_path):
     llm = MockLLM(responder(pages))
     roles, _ = roles_for(llm, tmp_path)
 
-    page = extract_page(path, roles)
+    page = extract_page(path, roles, doc_types=TYPES)
 
     assert (page.doc_type, page.values) == ("unsupported", [])
     assert len(llm.calls) == 1
@@ -164,7 +167,7 @@ def test_a_truncated_answer_is_asked_again_once_with_a_note(tmp_path):
     llm = MockLLM(respond)
     roles, _ = roles_for(llm, tmp_path)
 
-    page = extract_page(path, roles)
+    page = extract_page(path, roles, doc_types=TYPES)
 
     assert len(page.values) == 7
     assert len(llm.calls) == 3
@@ -186,7 +189,7 @@ def test_a_page_that_fails_twice_raises_instead_of_returning_part(tmp_path, answ
     roles, _ = roles_for(llm, tmp_path)
 
     with pytest.raises(ExtractionFailed, match="payment_memo extraction"):
-        extract_page(path, roles)
+        extract_page(path, roles, doc_types=TYPES)
     assert len(llm.calls) == 3
 
 
@@ -197,7 +200,7 @@ def test_a_classification_outside_the_registry_fails(tmp_path):
     roles, _ = roles_for(llm, tmp_path)
 
     with pytest.raises(ExtractionFailed, match="classification"):
-        extract_page(path, roles)
+        extract_page(path, roles, doc_types=TYPES)
 
 
 # --- citation strategies -----------------------------------------------------------------------
@@ -209,8 +212,8 @@ def test_s0_asks_for_cells_and_s1_for_ink_with_the_same_classification(tmp_path)
     llm = MockLLM(responder(pages))
     roles, _ = roles_for(llm, tmp_path)
 
-    s0 = extract_page(path, roles, "S0")
-    s1 = extract_page(path, roles, "S1")
+    s0 = extract_page(path, roles, "S0", doc_types=TYPES)
+    s1 = extract_page(path, roles, "S1", doc_types=TYPES)
 
     assert s0 == s1  # the canned answer is the same; only the request differs
     classify_0, extract_0, extract_1 = llm.calls  # S1's classification replays from the cache
@@ -235,11 +238,28 @@ def test_ink_corrects_the_boxes_of_its_base_strategy_from_the_image(
         return citations.Correction(moved, 1.0, 0.0, 0.0, len(values), len(values))
 
     monkeypatch.setattr(citations, "correct", fake_correct)
-    page = extract_page(path, roles, strategy)
+    page = extract_page(path, roles, strategy, doc_types=TYPES)
 
     assert seen == [path.read_bytes()]
     assert {v.value for v in page.values} == {"moved"}
     assert llm.calls[-1].prompt == PaymentMemo().extraction_prompt(grounding=grounding)
+
+
+@pytest.mark.parametrize("own, corrected", [("S0+ink", True), ("S0", False)])
+def test_by_default_a_page_is_cited_as_its_type_says(tmp_path, monkeypatch, own, corrected):
+    pages = Pages(tmp_path / "images")
+    path = pages.add("m1", "payment_memo")
+    roles, _ = roles_for(MockLLM(responder(pages)), tmp_path)
+    seen = []
+
+    def fake_correct(image: bytes, values: list[ExtractedValue]) -> citations.Correction:
+        seen.append(image)
+        return citations.Correction(list(values), 1.0, 0.0, 0.0, len(values), len(values))
+
+    monkeypatch.setattr(citations, "correct", fake_correct)
+    monkeypatch.setattr(PaymentMemo, "citations", own)
+    extract_page(path, roles, doc_types=TYPES)
+    assert bool(seen) is corrected
 
 
 def test_an_unknown_citation_strategy_is_refused(tmp_path):
@@ -247,12 +267,27 @@ def test_an_unknown_citation_strategy_is_refused(tmp_path):
     path = pages.add("m1", "payment_memo")
     roles, _ = roles_for(MockLLM(responder(pages)), tmp_path)
     with pytest.raises(ValueError, match="citation strategy"):
-        extract_page(path, roles, "S2")
+        extract_page(path, roles, "S2", doc_types=TYPES)
 
 
-def test_the_default_strategy_is_one_of_the_four():
+def test_each_type_names_its_own_strategy_and_the_ledger_family_keeps_s0_ink():
     assert CITATION_STRATEGIES == ("S0", "S0+ink", "S1", "S1+ink")
-    assert CITATIONS in CITATION_STRATEGIES
+    assert {t.citations for t in TYPES.values()} == {"S0+ink"}
+    assert template.CITATIONS == ARCHIVE_OCR  # by the rule in results/templates/citations_dev_v2.md
+
+
+def test_the_pipeline_refuses_the_archive_ocr_strategy_by_name():
+    with pytest.raises(ValueError, match="never does"):
+        recorded_citations(TYPES, ARCHIVE_OCR)
+
+
+def test_a_run_records_one_strategy_or_each_types(monkeypatch):
+    assert recorded_citations(TYPES) == "S0+ink"
+    assert recorded_citations(TYPES, "S0") == "S0"
+    monkeypatch.setattr(PaymentMemo, "citations", "S0")
+    assert recorded_citations(TYPES) == {"ledger_card": "S0+ink", "payment_memo": "S0"}
+    with pytest.raises(ValueError, match="citation strategy"):
+        recorded_citations(TYPES, "S2")
 
 
 # --- run ---------------------------------------------------------------------------------------
@@ -268,7 +303,13 @@ def test_run_writes_predictions_and_a_run_record(tmp_path):
     roles, guard = roles_for(llm, tmp_path)
 
     record = run(
-        tmp_path / "images", tmp_path / "runs" / "r1", roles, guard=guard, config=CONFIG, workers=4
+        tmp_path / "images",
+        tmp_path / "runs" / "r1",
+        roles,
+        guard=guard,
+        config=CONFIG,
+        doc_types=TYPES,
+        workers=4,
     )
 
     predictions = load_predictions(tmp_path / "runs" / "r1" / "predictions.jsonl")
@@ -276,7 +317,8 @@ def test_run_writes_predictions_and_a_run_record(tmp_path):
     assert counts == {"card-1": 95, "memo-1": 7, "other": 0}
     assert record == json.loads((tmp_path / "runs" / "r1" / "run.json").read_text())
     assert record["config"] == CONFIG
-    assert record["citations"] == CITATIONS
+    assert record["doc_types"] == LEGACY
+    assert record["citations"] == "S0+ink"
     assert record["counts"] == {
         "pages": 3,
         "extracted": 3,
@@ -304,7 +346,7 @@ def test_run_resumes_skipping_written_pages_and_retrying_failed_ones(tmp_path):
     roles, guard = roles_for(llm, tmp_path)
     run_dir = tmp_path / "runs" / "r1"
 
-    first = run(tmp_path / "images", run_dir, roles, guard=guard, config=CONFIG)
+    first = run(tmp_path / "images", run_dir, roles, guard=guard, config=CONFIG, doc_types=TYPES)
     assert first["counts"]["extracted"] == 1
     assert first["failed_pages"] == {"b": "ConnectionError: network down"}
     assert [p.page_id for p in load_predictions(run_dir / "predictions.jsonl")] == ["a"]
@@ -312,7 +354,9 @@ def test_run_resumes_skipping_written_pages_and_retrying_failed_ones(tmp_path):
     broken["on"] = False
     pages.add("c", "payment_memo")
     calls_before = len(llm.calls)
-    second = run(tmp_path / "images", run_dir, roles, guard=guard, config=CONFIG, workers=2)
+    second = run(
+        tmp_path / "images", run_dir, roles, guard=guard, config=CONFIG, doc_types=TYPES, workers=2
+    )
 
     asked = {request.images[0] for request in llm.calls[calls_before:]}
     assert (tmp_path / "images" / "a.jpg").read_bytes() not in asked
@@ -339,7 +383,14 @@ def test_run_stops_when_the_budget_is_exhausted(tmp_path):
     roles = {"extractor": Cache(Budget(llm, guard, Price(0.0, 1.0)), tmp_path / "cache")}
 
     with pytest.raises(BudgetExceeded):
-        run(tmp_path / "images", tmp_path / "runs" / "r1", roles, guard=guard, config=CONFIG)
+        run(
+            tmp_path / "images",
+            tmp_path / "runs" / "r1",
+            roles,
+            guard=guard,
+            config=CONFIG,
+            doc_types=TYPES,
+        )
     record = json.loads((tmp_path / "runs" / "r1" / "run.json").read_text())
     assert record["sessions"][-1]["aborted"].startswith("BudgetExceeded")
     assert llm.calls == []

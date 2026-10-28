@@ -1,0 +1,219 @@
+{
+  "family": "total_liabilities_by_country",
+  "template": "templates/total_liabilities_by_country.yaml",
+  "template_sha256": "385149516590b56d4d5875117c437b4fd171562d9cfd28bef7e0487c81ff44bc",
+  "tested_on": "2026-10-28",
+  "config": {
+    "drafter": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "extractor": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "rereader": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    }
+  },
+  "citations": "S0+ocr",
+  "rule": "every identity evaluated wherever it applies, on cells whose two reads agree; held within n half-units of the printed precision for n printed values",
+  "pages": [
+    {
+      "ref": "1982-06_p091",
+      "page_id": "1982-06_p091",
+      "classified_as": "total_liabilities_by_country",
+      "anchored": 26,
+      "read": "ok",
+      "needed": 774,
+      "cells": 860,
+      "read_first": 853,
+      "read_twice": 733,
+      "agree": 78,
+      "no_second_read": {
+        "illegible to the re-read": 34,
+        "not read the first time": 7
+      }
+    },
+    {
+      "ref": "1983-06_p097",
+      "page_id": "1983-06_p097",
+      "classified_as": "total_liabilities_by_country",
+      "anchored": 0,
+      "read": "ok",
+      "needed": 774,
+      "cells": 860,
+      "read_first": 860,
+      "read_twice": 771,
+      "agree": 36,
+      "no_second_read": {
+        "illegible to the re-read": 2,
+        "the re-read failed: ReReadFailed: JSONDecodeError: Unterminated string starting at: line 1 column 2 (char 1) | retry: JSONDecodeError: Expecting value: line 1 column 1 (char 0)": 1
+      }
+    },
+    {
+      "ref": "1984-06_p055",
+      "page_id": "1984-06_p055",
+      "classified_as": "total_liabilities_by_country",
+      "anchored": 32,
+      "read": "ok",
+      "needed": 774,
+      "cells": 860,
+      "read_first": 860,
+      "read_twice": 731,
+      "agree": 129,
+      "no_second_read": {
+        "illegible to the re-read": 43
+      }
+    }
+  ],
+  "outcomes": {
+    "rejected": 0,
+    "sometimes fails": 0,
+    "holds": 1,
+    "untested": 7
+  },
+  "identities": [
+    {
+      "id": "total_europe",
+      "description": "Total Europe equals sum of European countries",
+      "for_each": "column",
+      "over": null,
+      "equation": "total_europe = austria + belgium_luxembourg + bulgaria + czechoslovakia + denmark + finland + france + german_democratic_republic + germany + greece + hungary + italy + netherlands + norway + poland + portugal + romania + spain + sweden + switzerland + turkey + united_kingdom + ussr + yugoslavia + other_europe",
+      "applies": 27,
+      "evaluated": 0,
+      "held": 0,
+      "failed": 0,
+      "hold_rate": null,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 26,
+        "a cell is blank or not a figure": 1
+      },
+      "outcome": "untested",
+      "failures": []
+    },
+    {
+      "id": "total_latin",
+      "description": "Total Latin America and Caribbean equals sum of its countries",
+      "for_each": "column",
+      "over": null,
+      "equation": "total_latin_caribbean = argentina + bahamas + bermuda + brazil + british_west_indies + chile + colombia + cuba + ecuador + guatemala + jamaica + mexico + netherlands_antilles + panama + peru + trinidad_tobago + uruguay + venezuela + other_latin_caribbean",
+      "applies": 27,
+      "evaluated": 0,
+      "held": 0,
+      "failed": 0,
+      "hold_rate": null,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 26,
+        "a cell is blank or not a figure": 1
+      },
+      "outcome": "untested",
+      "failures": []
+    },
+    {
+      "id": "total_asia",
+      "description": "Total Asia equals sum of Asian countries",
+      "for_each": "column",
+      "over": null,
+      "equation": "total_asia = china_mainland + taiwan + hong_kong + india + indonesia + israel + japan + korea + lebanon + malaysia + pakistan + philippines + singapore + syria + thailand + oil_asia + other_asia",
+      "applies": 27,
+      "evaluated": 0,
+      "held": 0,
+      "failed": 0,
+      "hold_rate": null,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 27
+      },
+      "outcome": "untested",
+      "failures": []
+    },
+    {
+      "id": "total_africa",
+      "description": "Total Africa equals sum of African countries",
+      "for_each": "column",
+      "over": null,
+      "equation": "total_africa = egypt + ghana + liberia + morocco + south_africa + zaire + oil_africa + other_africa",
+      "applies": 27,
+      "evaluated": 0,
+      "held": 0,
+      "failed": 0,
+      "hold_rate": null,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 27
+      },
+      "outcome": "untested",
+      "failures": []
+    },
+    {
+      "id": "total_other",
+      "description": "Total other countries equals Australia plus All other",
+      "for_each": "column",
+      "over": null,
+      "equation": "total_other = australia + all_other",
+      "applies": 27,
+      "evaluated": 2,
+      "held": 2,
+      "failed": 0,
+      "hold_rate": 1.0,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 24,
+        "a cell was not read twice": 1
+      },
+      "outcome": "holds",
+      "failures": []
+    },
+    {
+      "id": "total_foreign",
+      "description": "Total foreign countries equals sum of regional totals and Canada",
+      "for_each": "column",
+      "over": null,
+      "equation": "total_foreign = total_europe + canada + total_latin_caribbean + total_asia + total_africa + total_other",
+      "applies": 27,
+      "evaluated": 0,
+      "held": 0,
+      "failed": 0,
+      "hold_rate": null,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 26,
+        "a cell is blank or not a figure": 1
+      },
+      "outcome": "untested",
+      "failures": []
+    },
+    {
+      "id": "total_international",
+      "description": "Total international and regional equals sum of its components",
+      "for_each": "column",
+      "over": null,
+      "equation": "total_international = international + european_regional + latin_american_regional + asian_regional + african_regional + middle_eastern_regional",
+      "applies": 27,
+      "evaluated": 0,
+      "held": 0,
+      "failed": 0,
+      "hold_rate": null,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 27
+      },
+      "outcome": "untested",
+      "failures": []
+    },
+    {
+      "id": "grand_total",
+      "description": "Grand total equals total foreign plus total international",
+      "for_each": "column",
+      "over": null,
+      "equation": "grand_total = total_foreign + total_international",
+      "applies": 27,
+      "evaluated": 0,
+      "held": 0,
+      "failed": 0,
+      "hold_rate": null,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 27
+      },
+      "outcome": "untested",
+      "failures": []
+    }
+  ]
+}

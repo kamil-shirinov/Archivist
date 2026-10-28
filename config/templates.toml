@@ -1,0 +1,39 @@
+# The roles of archivist.templates (P21b): the drafter writes a template from a few page images;
+# the extractor and the rereader are the headline configuration's (arm A, config/arms/a.toml),
+# for the arithmetic test's read and blind second read. All Muse Spark 1.3 in Contributor mode
+# (D19): only development pages of a public-domain archive, or synthetic pages, are sent.
+# The drafter reasons at "medium": a template is a judgement over several whole pages, not a
+# reading of one cell. timeout_s is how long a call may take (meta_api.py; not in the cache key):
+# a whole statistical table, read at once, runs to thousands of values.
+
+[roles.drafter]
+kind = "llm"
+backend = "meta"
+model_id = "muse-spark-1.3-contributor"
+settings = { reasoning_effort = "medium", timeout_s = 600.0 }
+
+[roles.extractor]
+kind = "llm"
+backend = "meta"
+model_id = "muse-spark-1.3-contributor"
+settings = { reasoning_effort = "low", timeout_s = 1200.0 }  # a 570-cell table ran past 600
+
+# The rereader reasons at "minimal" (templates only; the committed runs' configs keep "low"): at
+# "low" a re-read of one cell spent a median 758 output tokens reasoning, and one in eight spent
+# the whole allowance and wrote nothing (results/templates/citations_dev.md).
+[roles.rereader]
+kind = "llm"
+backend = "meta"
+model_id = "muse-spark-1.3-contributor"
+settings = { reasoning_effort = "minimal" }
+
+# USD per million tokens, keyed by model_id, as in config/models.toml (read 2026-10-26). Cached
+# input is billed as ordinary input here: spend is overstated, never understated. Reasoning
+# tokens are billed as output.
+[prices."muse-spark-1.3-contributor"]
+input_per_mtok = 0.10
+output_per_mtok = 0.20
+
+[prices.mock-llm]
+input_per_mtok = 0.0
+output_per_mtok = 0.0

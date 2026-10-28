@@ -1,0 +1,400 @@
+# Drafted by muse-spark-1.3-contributor from 1982-06_p094, 1983-06_p092, 1984-06_p058 on 2026-10-28 (P21b).
+# A draft: validated, never registered. python -m archivist.templates.test checks its
+# identities; only a person, with python -m archivist.templates.approve, approves it.
+identity:
+  family: total_claims_by_country
+  title: Table CM-II-2. - Total Claims by Country
+  description: Regional breakdown of total claims by country with Europe Latin America Asia Africa totals
+    and foreign and grand totals
+  title_patterns:
+  - table\s+cm-ii-2.*total\s+claims\s+by\s+country
+layout:
+  unit: millions of dollars
+  precision: '1'
+  rows:
+  - key: europe_hdr
+    printed: 'Europe:'
+  - key: austria
+    printed: Austria
+  - key: belgium_luxembourg
+    printed: Belgium-Luxembourg
+  - key: bulgaria
+    printed: Bulgaria
+  - key: czechoslovakia
+    printed: Czechoslovakia
+  - key: denmark
+    printed: Denmark
+  - key: finland
+    printed: Finland
+  - key: france
+    printed: France
+  - key: german_democratic_republic
+    printed: German Democratic Republic
+  - key: germany
+    printed: Germany
+  - key: greece
+    printed: Greece
+  - key: hungary
+    printed: Hungary
+  - key: italy
+    printed: Italy
+  - key: netherlands
+    printed: Netherlands
+  - key: norway
+    printed: Norway
+  - key: poland
+    printed: Poland
+  - key: portugal
+    printed: Portugal
+  - key: romania
+    printed: Romania
+  - key: spain
+    printed: Spain
+  - key: sweden
+    printed: Sweden
+  - key: switzerland
+    printed: Switzerland
+  - key: turkey
+    printed: Turkey
+  - key: united_kingdom
+    printed: United Kingdom
+  - key: ussr
+    printed: U.S.S.R.
+  - key: yugoslavia
+    printed: Yugoslavia
+  - key: other_europe
+    printed: Other Europe
+  - key: total_europe
+    printed: Total Europe
+  - key: canada
+    printed: Canada
+  - key: latin_hdr
+    printed: 'Latin America and Caribbean:'
+  - key: argentina
+    printed: Argentina
+  - key: bahamas
+    printed: Bahamas
+  - key: bermuda
+    printed: Bermuda
+  - key: brazil
+    printed: Brazil
+  - key: british_west_indies
+    printed: British West Indies
+  - key: chile
+    printed: Chile
+  - key: colombia
+    printed: Colombia
+  - key: cuba
+    printed: Cuba
+  - key: ecuador
+    printed: Ecuador
+  - key: guatemala
+    printed: Guatemala
+  - key: jamaica
+    printed: Jamaica
+  - key: mexico
+    printed: Mexico
+  - key: netherlands_antilles
+    printed: Netherlands Antilles
+  - key: panama
+    printed: Panama
+  - key: peru
+    printed: Peru
+  - key: trinidad_tobago
+    printed: Trinidad and Tobago
+  - key: uruguay
+    printed: Uruguay
+  - key: venezuela
+    printed: Venezuela
+  - key: other_latin_america_caribbean
+    printed: Other Latin America and Caribbean
+  - key: total_latin_america_caribbean
+    printed: Total Latin America and Caribbean
+  - key: asia_hdr
+    printed: 'Asia:'
+  - key: china_hdr
+    printed: 'China:'
+  - key: mainland
+    printed: Mainland
+  - key: taiwan
+    printed: Taiwan
+  - key: hong_kong
+    printed: Hong Kong
+  - key: india
+    printed: India
+  - key: indonesia
+    printed: Indonesia
+  - key: israel
+    printed: Israel
+  - key: japan
+    printed: Japan
+  - key: korea
+    printed: Korea
+  - key: lebanon
+    printed: Lebanon
+  - key: malaysia
+    printed: Malaysia
+  - key: pakistan
+    printed: Pakistan
+  - key: philippines
+    printed: Philippines
+  - key: singapore
+    printed: Singapore
+  - key: syria
+    printed: Syria
+  - key: thailand
+    printed: Thailand
+  - key: oil_exporting_asia
+    printed: Oil-exporting countries
+  - key: other_asia
+    printed: Other Asia
+  - key: total_asia
+    printed: Total Asia
+  - key: africa_hdr
+    printed: 'Africa:'
+  - key: egypt
+    printed: Egypt
+  - key: ghana
+    printed: Ghana
+  - key: liberia
+    printed: Liberia
+  - key: morocco
+    printed: Morocco
+  - key: south_africa
+    printed: South Africa
+  - key: zaire
+    printed: Zaire
+  - key: oil_exporting_africa
+    printed: Oil-exporting countries
+  - key: other_africa
+    printed: Other Africa
+  - key: total_africa
+    printed: Total Africa
+  - key: other_countries_hdr
+    printed: 'Other countries:'
+  - key: australia
+    printed: Australia
+  - key: all_other
+    printed: All other
+  - key: total_other_countries
+    printed: Total other countries
+  - key: total_foreign_countries
+    printed: Total foreign countries
+  - key: international_hdr
+    printed: 'International and regional:'
+  - key: international
+    printed: International
+  - key: european_regional
+    printed: European regional
+  - key: latin_american_regional
+    printed: Latin American regional
+  - key: asian_regional
+    printed: Asian regional
+  - key: african_regional
+    printed: African regional
+  - key: middle_eastern_regional
+    printed: Middle Eastern regional
+  - key: total_international_regional
+    printed: Total international and regional
+  - key: grand_total
+    printed: Grand total
+  columns:
+  - key: country
+    printed: Country
+    kind: text
+  - key: c1
+    printed: Calendar year 1981
+    kind: money
+  - key: c2
+    printed: June 1982
+    kind: money
+  - key: c3
+    printed: Sept. 1982
+    kind: money
+  - key: c4
+    printed: Dec. 1982
+    kind: money
+  - key: c5
+    printed: Mar. 1983
+    kind: money
+  - key: c6
+    printed: June 1983
+    kind: money
+  - key: c7
+    printed: Sept. 1983
+    kind: money
+  - key: c8
+    printed: Dec. 1983
+    kind: money
+identities:
+- id: total_europe
+  description: Total Europe equals sum of European countries
+  for_each: column
+  left:
+    cell:
+      row: total_europe
+  right:
+    sum:
+      rows:
+      - austria
+      - belgium_luxembourg
+      - bulgaria
+      - czechoslovakia
+      - denmark
+      - finland
+      - france
+      - german_democratic_republic
+      - germany
+      - greece
+      - hungary
+      - italy
+      - netherlands
+      - norway
+      - poland
+      - portugal
+      - romania
+      - spain
+      - sweden
+      - switzerland
+      - turkey
+      - united_kingdom
+      - ussr
+      - yugoslavia
+      - other_europe
+- id: total_latin
+  description: Total Latin America and Caribbean equals sum of its countries
+  for_each: column
+  left:
+    cell:
+      row: total_latin_america_caribbean
+  right:
+    sum:
+      rows:
+      - argentina
+      - bahamas
+      - bermuda
+      - brazil
+      - british_west_indies
+      - chile
+      - colombia
+      - cuba
+      - ecuador
+      - guatemala
+      - jamaica
+      - mexico
+      - netherlands_antilles
+      - panama
+      - peru
+      - trinidad_tobago
+      - uruguay
+      - venezuela
+      - other_latin_america_caribbean
+- id: total_asia
+  description: Total Asia equals sum of Asian countries
+  for_each: column
+  left:
+    cell:
+      row: total_asia
+  right:
+    sum:
+      rows:
+      - mainland
+      - taiwan
+      - hong_kong
+      - india
+      - indonesia
+      - israel
+      - japan
+      - korea
+      - lebanon
+      - malaysia
+      - pakistan
+      - philippines
+      - singapore
+      - syria
+      - thailand
+      - oil_exporting_asia
+      - other_asia
+- id: total_africa
+  description: Total Africa equals sum of African countries
+  for_each: column
+  left:
+    cell:
+      row: total_africa
+  right:
+    sum:
+      rows:
+      - egypt
+      - ghana
+      - liberia
+      - morocco
+      - south_africa
+      - zaire
+      - oil_exporting_africa
+      - other_africa
+- id: total_other
+  description: Total other countries equals Australia plus All other
+  for_each: column
+  left:
+    cell:
+      row: total_other_countries
+  right:
+    sum:
+      rows:
+      - australia
+      - all_other
+- id: total_foreign
+  description: Total foreign countries equals regional totals plus Canada
+  for_each: column
+  left:
+    cell:
+      row: total_foreign_countries
+  right:
+    sum:
+      rows:
+      - total_europe
+      - canada
+      - total_latin_america_caribbean
+      - total_asia
+      - total_africa
+      - total_other_countries
+- id: total_international
+  description: Total international and regional equals sum of its components
+  for_each: column
+  left:
+    cell:
+      row: total_international_regional
+  right:
+    sum:
+      rows:
+      - international
+      - european_regional
+      - latin_american_regional
+      - asian_regional
+      - african_regional
+      - middle_eastern_regional
+- id: grand_total
+  description: Grand total equals Total foreign plus Total international
+  for_each: column
+  left:
+    cell:
+      row: grand_total
+  right:
+    sum:
+      rows:
+      - total_foreign_countries
+      - total_international_regional
+provenance:
+  status: draft
+  drafted_by:
+    kind: model
+    id: muse-spark-1.3-contributor
+  drafted_on: '2026-10-28'
+  drafted_from:
+  - 1982-06_p094
+  - 1983-06_p092
+  - 1984-06_p058
+  evidence:
+  - drafted by muse-spark-1.3-contributor from 1982-06_p094, 1983-06_p092, 1984-06_p058 (drafter role,
+    P21b)
+  dropped: []

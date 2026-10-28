@@ -1,0 +1,64 @@
+# Drafted by muse-spark-1.3-contributor from val/memo-0010, val/memo-0011, val/memo-0013 on 2026-10-28 (P21b).
+# A draft: validated, never registered. python -m archivist.templates.test checks its
+# identities; only a person, with python -m archivist.templates.approve, approves it.
+identity:
+  family: rediscovery_memos
+  title: Thistledown County Bank Payment Memorandum
+  description: Payment memorandum form with Memo No., Date, Account No., Pay to, Amount in figures and
+    Amount in words
+  title_patterns:
+  - Thistledown County Bank
+  - Payment Memorandum
+layout:
+  unit: as printed
+  precision: '0.01'
+  rows:
+    read: 1
+  columns:
+  - key: memo_no
+    printed: Memo No.
+    kind: text
+    blank_means: unknown
+  - key: date
+    printed: Date
+    kind: date
+    blank_means: unknown
+  - key: account_no
+    printed: Account No.
+    kind: text
+    blank_means: unknown
+  - key: pay_to
+    printed: Pay to
+    kind: text
+    blank_means: unknown
+  - key: amount_figures
+    printed: Amount in figures
+    kind: money
+    blank_means: unknown
+  - key: amount_words
+    printed: Amount in words
+    kind: text
+    blank_means: unknown
+  - key: ledger_ref
+    printed: Ledger ref.
+    kind: text
+    blank_means: unknown
+  - key: authorised_by
+    printed: Authorised by
+    kind: text
+    blank_means: unknown
+identities: []
+provenance:
+  status: draft
+  drafted_by:
+    kind: model
+    id: muse-spark-1.3-contributor
+  drafted_on: '2026-10-28'
+  drafted_from:
+  - val/memo-0010
+  - val/memo-0011
+  - val/memo-0013
+  evidence:
+  - drafted by muse-spark-1.3-contributor from val/memo-0010, val/memo-0011, val/memo-0013 (drafter role,
+    P21b)
+  dropped: []

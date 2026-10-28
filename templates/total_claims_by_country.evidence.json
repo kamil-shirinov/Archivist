@@ -1,0 +1,213 @@
+{
+  "family": "total_claims_by_country",
+  "template": "templates/total_claims_by_country.yaml",
+  "template_sha256": "441a3187682ea97558bc0717232f27141199098ee0878c9cd371b521bac29337",
+  "tested_on": "2026-10-28",
+  "config": {
+    "drafter": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "extractor": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "rereader": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    }
+  },
+  "citations": "S0+ocr",
+  "rule": "every identity evaluated wherever it applies, on cells whose two reads agree; held within n half-units of the printed precision for n printed values",
+  "pages": [
+    {
+      "ref": "1982-06_p094",
+      "page_id": "1982-06_p094",
+      "classified_as": "total_claims_by_country",
+      "anchored": 461,
+      "read": "ok",
+      "needed": 688,
+      "cells": 837,
+      "read_first": 837,
+      "read_twice": 685,
+      "agree": 387,
+      "no_second_read": {
+        "illegible to the re-read": 3
+      }
+    },
+    {
+      "ref": "1983-06_p092",
+      "page_id": "1983-06_p092",
+      "classified_as": "total_claims_by_country",
+      "anchored": 457,
+      "read": "ok",
+      "needed": 688,
+      "cells": 837,
+      "read_first": 837,
+      "read_twice": 686,
+      "agree": 409,
+      "no_second_read": {
+        "illegible to the re-read": 2
+      }
+    },
+    {
+      "ref": "1984-06_p058",
+      "page_id": "1984-06_p058",
+      "classified_as": "total_claims_by_country",
+      "anchored": 1,
+      "read": "ok",
+      "needed": 688,
+      "cells": 837,
+      "read_first": 837,
+      "read_twice": 687,
+      "agree": 3,
+      "no_second_read": {
+        "illegible to the re-read": 1
+      }
+    }
+  ],
+  "outcomes": {
+    "rejected": 0,
+    "sometimes fails": 0,
+    "holds": 2,
+    "untested": 6
+  },
+  "identities": [
+    {
+      "id": "total_europe",
+      "description": "Total Europe equals sum of European countries",
+      "for_each": "column",
+      "over": null,
+      "equation": "total_europe = austria + belgium_luxembourg + bulgaria + czechoslovakia + denmark + finland + france + german_democratic_republic + germany + greece + hungary + italy + netherlands + norway + poland + portugal + romania + spain + sweden + switzerland + turkey + united_kingdom + ussr + yugoslavia + other_europe",
+      "applies": 24,
+      "evaluated": 1,
+      "held": 1,
+      "failed": 0,
+      "hold_rate": 1.0,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 23
+      },
+      "outcome": "holds",
+      "failures": []
+    },
+    {
+      "id": "total_latin",
+      "description": "Total Latin America and Caribbean equals sum of its countries",
+      "for_each": "column",
+      "over": null,
+      "equation": "total_latin_america_caribbean = argentina + bahamas + bermuda + brazil + british_west_indies + chile + colombia + cuba + ecuador + guatemala + jamaica + mexico + netherlands_antilles + panama + peru + trinidad_tobago + uruguay + venezuela + other_latin_america_caribbean",
+      "applies": 24,
+      "evaluated": 0,
+      "held": 0,
+      "failed": 0,
+      "hold_rate": null,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 24
+      },
+      "outcome": "untested",
+      "failures": []
+    },
+    {
+      "id": "total_asia",
+      "description": "Total Asia equals sum of Asian countries",
+      "for_each": "column",
+      "over": null,
+      "equation": "total_asia = mainland + taiwan + hong_kong + india + indonesia + israel + japan + korea + lebanon + malaysia + pakistan + philippines + singapore + syria + thailand + oil_exporting_asia + other_asia",
+      "applies": 24,
+      "evaluated": 1,
+      "held": 1,
+      "failed": 0,
+      "hold_rate": 1.0,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 23
+      },
+      "outcome": "holds",
+      "failures": []
+    },
+    {
+      "id": "total_africa",
+      "description": "Total Africa equals sum of African countries",
+      "for_each": "column",
+      "over": null,
+      "equation": "total_africa = egypt + ghana + liberia + morocco + south_africa + zaire + oil_exporting_africa + other_africa",
+      "applies": 24,
+      "evaluated": 0,
+      "held": 0,
+      "failed": 0,
+      "hold_rate": null,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 24
+      },
+      "outcome": "untested",
+      "failures": []
+    },
+    {
+      "id": "total_other",
+      "description": "Total other countries equals Australia plus All other",
+      "for_each": "column",
+      "over": null,
+      "equation": "total_other_countries = australia + all_other",
+      "applies": 24,
+      "evaluated": 0,
+      "held": 0,
+      "failed": 0,
+      "hold_rate": null,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 24
+      },
+      "outcome": "untested",
+      "failures": []
+    },
+    {
+      "id": "total_foreign",
+      "description": "Total foreign countries equals regional totals plus Canada",
+      "for_each": "column",
+      "over": null,
+      "equation": "total_foreign_countries = total_europe + canada + total_latin_america_caribbean + total_asia + total_africa + total_other_countries",
+      "applies": 24,
+      "evaluated": 0,
+      "held": 0,
+      "failed": 0,
+      "hold_rate": null,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 24
+      },
+      "outcome": "untested",
+      "failures": []
+    },
+    {
+      "id": "total_international",
+      "description": "Total international and regional equals sum of its components",
+      "for_each": "column",
+      "over": null,
+      "equation": "total_international_regional = international + european_regional + latin_american_regional + asian_regional + african_regional + middle_eastern_regional",
+      "applies": 24,
+      "evaluated": 0,
+      "held": 0,
+      "failed": 0,
+      "hold_rate": null,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 24
+      },
+      "outcome": "untested",
+      "failures": []
+    },
+    {
+      "id": "grand_total",
+      "description": "Grand total equals Total foreign plus Total international",
+      "for_each": "column",
+      "over": null,
+      "equation": "grand_total = total_foreign_countries + total_international_regional",
+      "applies": 24,
+      "evaluated": 0,
+      "held": 0,
+      "failed": 0,
+      "hold_rate": null,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 24
+      },
+      "outcome": "untested",
+      "failures": []
+    }
+  ]
+}

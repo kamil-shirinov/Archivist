@@ -1,0 +1,110 @@
+# Drafted by muse-spark-1.3-contributor from val/card-01-1, val/card-01-3, val/card-02-3 on 2026-10-28 (P21b).
+# A draft: validated, never registered. python -m archivist.templates.test checks its
+# identities; only a person, with python -m archivist.templates.approve, approves it.
+identity:
+  family: rediscovery_cards
+  title: Line Date Particulars Debit Credit Balance
+  description: Bank statement sheet with Line Date Particulars Debit Credit Balance columns and Brought
+    forward and Carried forward rows
+  title_patterns:
+  - Line\s+Date\s+Particulars\s+Debit\s+Credit\s+Balance
+layout:
+  unit: as printed
+  precision: '0.01'
+  rows:
+  - key: brought_forward
+    printed: Brought forward
+  - key: r01
+    printed: '1'
+  - key: r02
+    printed: '2'
+  - key: r03
+    printed: '3'
+  - key: r04
+    printed: '4'
+  - key: r05
+    printed: '5'
+  - key: r06
+    printed: '6'
+  - key: r07
+    printed: '7'
+  - key: r08
+    printed: '8'
+  - key: r09
+    printed: '9'
+  - key: r10
+    printed: '10'
+  - key: r11
+    printed: '11'
+  - key: r12
+    printed: '12'
+  - key: r13
+    printed: '13'
+  - key: r14
+    printed: '14'
+  - key: r15
+    printed: '15'
+  - key: r16
+    printed: '16'
+  - key: r17
+    printed: '17'
+  - key: r18
+    printed: '18'
+  - key: carried_forward
+    printed: Carried forward
+  columns:
+  - key: line
+    printed: Line
+    kind: text
+    blank_means: unknown
+  - key: date
+    printed: Date
+    kind: date
+    blank_means: unknown
+  - key: particulars
+    printed: Particulars
+    kind: text
+    blank_means: unknown
+  - key: debit
+    printed: Debit
+    kind: money
+    blank_means: zero
+  - key: credit
+    printed: Credit
+    kind: money
+    blank_means: zero
+  - key: balance
+    printed: Balance
+    kind: money
+    blank_means: unknown
+identities:
+- id: running_balance
+  description: Balance equals previous balance plus credit minus debit
+  for_each: row
+  left:
+    difference:
+    - cell:
+        column: balance
+    - cell:
+        column: balance
+        previous_row: true
+  right:
+    difference:
+    - cell:
+        column: credit
+    - cell:
+        column: debit
+provenance:
+  status: draft
+  drafted_by:
+    kind: model
+    id: muse-spark-1.3-contributor
+  drafted_on: '2026-10-28'
+  drafted_from:
+  - val/card-01-1
+  - val/card-01-3
+  - val/card-02-3
+  evidence:
+  - drafted by muse-spark-1.3-contributor from val/card-01-1, val/card-01-3, val/card-02-3 (drafter role,
+    P21b)
+  dropped: []

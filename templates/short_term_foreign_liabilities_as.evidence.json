@@ -1,0 +1,115 @@
+{
+  "family": "short_term_foreign_liabilities_as",
+  "template": "templates/short_term_foreign_liabilities_as.yaml",
+  "template_sha256": "7b7688f2685ba4a68c64d576cf6f1b53d02671ea126bd825e56b165f33f4da6d",
+  "tested_on": "2026-10-28",
+  "config": {
+    "drafter": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "extractor": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "rereader": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    }
+  },
+  "citations": "S0+ocr",
+  "rule": "every identity evaluated wherever it applies, on cells whose two reads agree; held within n half-units of the printed precision for n printed values",
+  "pages": [
+    {
+      "ref": "1939-01_p051",
+      "page_id": "1939-01_p051",
+      "classified_as": "short_term_foreign_liabilities_as",
+      "anchored": 353,
+      "read": "ok",
+      "needed": 650,
+      "cells": 700,
+      "read_first": 700,
+      "read_twice": 648,
+      "agree": 429,
+      "no_second_read": {
+        "illegible to the re-read": 2
+      }
+    },
+    {
+      "ref": "1939-07_p071",
+      "page_id": "1939-07_p071",
+      "classified_as": "short_term_foreign_liabilities_as",
+      "anchored": 383,
+      "read": "ok",
+      "needed": 650,
+      "cells": 700,
+      "read_first": 700,
+      "read_twice": 635,
+      "agree": 424,
+      "no_second_read": {
+        "illegible to the re-read": 15
+      }
+    },
+    {
+      "ref": "1939-12_p053",
+      "page_id": "1939-12_p053",
+      "classified_as": "short_term_foreign_liabilities_as",
+      "anchored": 378,
+      "read": "ok",
+      "needed": 650,
+      "cells": 700,
+      "read_first": 700,
+      "read_twice": 646,
+      "agree": 450,
+      "no_second_read": {
+        "illegible to the re-read": 4
+      }
+    }
+  ],
+  "outcomes": {
+    "rejected": 0,
+    "sometimes fails": 0,
+    "holds": 2,
+    "untested": 0
+  },
+  "identities": [
+    {
+      "id": "total_europe",
+      "description": "Total Europe equals sum of United Kingdom France Germany Italy Netherlands Switzerland and Other Europe",
+      "for_each": "row",
+      "over": null,
+      "equation": "total_europe = united_kingdom + france + germany + italy + netherlands + switzerland + other_europe",
+      "applies": 150,
+      "evaluated": 6,
+      "held": 6,
+      "failed": 0,
+      "hold_rate": 1.0,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 125,
+        "a cell was not read twice": 3,
+        "a cell is blank or not a figure": 16
+      },
+      "outcome": "holds",
+      "failures": []
+    },
+    {
+      "id": "grand_total",
+      "description": "Grand total equals Total Europe plus Canada Latin America Far East and All other",
+      "for_each": "row",
+      "over": null,
+      "equation": "grand_total = total_europe + canada + latin_america + far_east + all_other",
+      "applies": 150,
+      "evaluated": 19,
+      "held": 19,
+      "failed": 0,
+      "hold_rate": 1.0,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 113,
+        "a cell was not read twice": 3,
+        "a cell is blank or not a figure": 15
+      },
+      "outcome": "holds",
+      "failures": []
+    }
+  ]
+}

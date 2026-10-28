@@ -1,0 +1,202 @@
+{
+ "S0 T.outstanding_forward_exchange_contracts:1939-01_p061:01:canada": {
+  "cause": "formatting only",
+  "note": "the crop shows 4,072; the re-reader wrote 4.072",
+  "judged_by": "Claude"
+ },
+ "S0 T.receipts_and_expenditures_under_railroad:1939-10_p024:04:to_unemployment": {
+  "cause": "box offset",
+  "note": "the box sits left of the column of dashes; the crop is empty",
+  "judged_by": "Claude"
+ },
+ "S0 T.receipts_and_expenditures_under_railroad:1939-10_p024:05:to_unemployment": {
+  "cause": "box offset",
+  "note": "the box sits left of the column of dashes; the re-reader made 1, 1 of an empty crop",
+  "judged_by": "Claude"
+ },
+ "S0 T.receipts_and_expenditures_under_railroad:1939-10_p024:06:to_unemployment": {
+  "cause": "box offset",
+  "note": "the box sits left of the column of dashes; the re-reader made 1 of an empty crop",
+  "judged_by": "Claude"
+ },
+ "S0 T.receipts_and_expenditures_under_railroad:1939-12_p025:08:to_retirement": {
+  "cause": "box offset",
+  "note": "the value is Feb.'s dash; the box is one line lower, on Mar.'s 18.0",
+  "judged_by": "Claude"
+ },
+ "S0 T.receipts_and_expenditures_under_railroad:1939-12_p025:09:to_unemployment": {
+  "cause": "box offset",
+  "note": "the box sits between the dash column and the next; the crop is empty",
+  "judged_by": "Claude"
+ },
+ "S0 T.receipts_and_expenditures_under_railroad:1939-12_p025:11:to_unemployment": {
+  "cause": "box offset",
+  "note": "the box is two lines low, beside July's 15.0, and left of the dashes",
+  "judged_by": "Claude"
+ },
+ "S0 T.security_transactions_as_reported_by:1939-01_p055:60:switzerland": {
+  "cause": "box offset",
+  "note": "the box spans two columns, 3 and 1, across a rule",
+  "judged_by": "Claude"
+ },
+ "S0 T.short_term_foreign_liabilities_as:1939-01_p051:35:total_europe": {
+  "cause": "box offset",
+  "note": "the box straddles Oct. 19 and Oct. 26; the re-reader took the upper line",
+  "judged_by": "Claude"
+ },
+ "S0 T.short_term_foreign_liabilities_as:1939-07_p071:05:canada": {
+  "cause": "box offset",
+  "note": "the box straddles Apr. 26 and May 3; the re-read is a garble of both",
+  "judged_by": "Claude"
+ },
+ "S0 T.short_term_foreign_liabilities_as:1939-07_p071:44:united_kingdom": {
+  "cause": "box offset",
+  "note": "the box is on the blank heading line above Apr. 5",
+  "judged_by": "Claude"
+ },
+ "S0 T.short_term_foreign_liabilities_as:1939-07_p071:48:switzerland": {
+  "cause": "box offset",
+  "note": "the box is off to the left, on the neighbouring column's 132",
+  "judged_by": "Claude"
+ },
+ "S0 T.total_claims_by_country:1982-06_p094:colombia:c5": {
+  "cause": "box offset",
+  "note": "the box is half a line low and cuts the faint figure; 5 read as 3",
+  "judged_by": "Claude"
+ },
+ "S0 T.total_claims_by_country:1982-06_p094:finland:c8": {
+  "cause": "box offset",
+  "note": "the box is a line low, on France",
+  "judged_by": "Claude"
+ },
+ "S0 T.total_claims_by_country:1982-06_p094:south_africa:c6": {
+  "cause": "box offset",
+  "note": "the box is two rows up, on Liberia",
+  "judged_by": "Claude"
+ },
+ "S0 T.total_claims_by_country:1983-06_p092:total_africa:c2": {
+  "cause": "box offset",
+  "note": "the box is on Total other countries, rows below Total Africa",
+  "judged_by": "Claude"
+ },
+ "S0 T.total_claims_by_country:1983-06_p092:total_asia:c8": {
+  "cause": "box offset",
+  "note": "the box is in Africa's rows, far below Total Asia",
+  "judged_by": "Claude"
+ },
+ "S0 T.total_liabilities_by_country:1983-06_p097:latin_american_regional:c6": {
+  "cause": "box offset",
+  "note": "the box is on Total foreign countries, above the regional rows",
+  "judged_by": "Claude"
+ },
+ "S0 T.total_liabilities_by_country:1983-06_p097:panama:c5": {
+  "cause": "box offset",
+  "note": "the box is a row low, on Trinidad and Tobago",
+  "judged_by": "Claude"
+ },
+ "S0 T.total_liabilities_by_country:1984-06_p055:romania:c4": {
+  "cause": "box offset",
+  "note": "the box is rows below Romania, among Switzerland and the United Kingdom",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.outstanding_forward_exchange_contracts:1939-01_p061:01:canada": {
+  "cause": "formatting only",
+  "note": "unanchored (no OCR layer there); the crop shows 4,072; the re-reader wrote 4.072",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.outstanding_forward_exchange_contracts:1939-07_p085:04:netherlands": {
+  "cause": "re-read wrong",
+  "note": "unanchored; the crop shows -4,350 with its minus; the re-reader dropped the minus",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.receipts_and_expenditures_under_railroad:1939-10_p024:17:to_unemployment": {
+  "cause": "box offset",
+  "note": "unanchored (a dash never anchors): the model's box sits left of the dashes",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.receipts_and_expenditures_under_railroad:1939-10_p024:17:total_exp": {
+  "cause": "unreadable crop",
+  "note": "anchored to the right figure, 7.7, but the OCR word's box is 9 px tall and the crop too tight to be read",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.receipts_and_expenditures_under_railroad:1939-12_p025:01:to_retirement": {
+  "cause": "formatting only",
+  "note": "unanchored (a dash never anchors); the crop shows the nil dash, read as blank",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.security_transactions_as_reported_by:1939-01_p055:38:italy": {
+  "cause": "box offset",
+  "note": "unanchored (a dash never anchors): the model's box sits between columns",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.security_transactions_as_reported_by:1939-01_p055:43:germany": {
+  "cause": "box offset",
+  "note": "unanchored (one digit never anchors): the model's box spans a rule and two columns",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.security_transactions_as_reported_by:1939-07_p075:04:france": {
+  "cause": "re-read wrong",
+  "note": "anchored to the right figure: the crop shows 3,992; the re-reader read 1,992",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.security_transactions_as_reported_by:1939-12_p055:12:united_kingdom": {
+  "cause": "re-read wrong",
+  "note": "anchored to the right figure: the crop shows 314; the re-reader read 324",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.total_claims_by_country:1983-06_p092:african_regional:c4": {
+  "cause": "box offset",
+  "note": "unanchored (an asterisk never anchors): the model's box is on Total international",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.total_claims_by_country:1983-06_p092:thailand:c6": {
+  "cause": "formatting only",
+  "note": "anchored to the right figure; the re-reader wrote 5 02",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.total_claims_by_country:1984-06_p058:jamaica:c2": {
+  "cause": "box offset",
+  "note": "unanchored (no figures in this page's OCR layer): the model's box is two rows low",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.total_claims_by_country:1984-06_p058:other_asia:c2": {
+  "cause": "box offset",
+  "note": "unanchored (no figures in this page's OCR layer): the model's box is rows up, on Thailand",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.total_liabilities_by_country:1982-06_p091:india:c8": {
+  "cause": "box offset",
+  "note": "unanchored (no figures in this page's OCR layer): the model's box is rows up, faint print",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.total_liabilities_by_country:1982-06_p091:lebanon:c3": {
+  "cause": "box offset",
+  "note": "unanchored (no figures in this page's OCR layer): the model's box is rows below Lebanon",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.total_liabilities_by_country:1982-06_p091:malaysia:c3": {
+  "cause": "box offset",
+  "note": "unanchored (no figures in this page's OCR layer): the model's box is rows below Malaysia",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.total_liabilities_by_country:1982-06_p091:taiwan:c8": {
+  "cause": "box offset",
+  "note": "unanchored (no figures in this page's OCR layer): the model's box is rows below Taiwan",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.total_liabilities_by_country:1984-06_p055:asian_regional:c7": {
+  "cause": "box offset",
+  "note": "unanchored (no figures in this page's OCR layer): the box straddles two rows",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.total_liabilities_by_country:1984-06_p055:china_mainland:c3": {
+  "cause": "box offset",
+  "note": "unanchored (no figures in this page's OCR layer): the model's box is rows below Mainland",
+  "judged_by": "Claude"
+ },
+ "S0+ocr T.total_liabilities_by_country:1984-06_p055:china_mainland:c5": {
+  "cause": "box offset",
+  "note": "unanchored (no figures in this page's OCR layer): the model's box is rows below Mainland",
+  "judged_by": "Claude"
+ }
+}

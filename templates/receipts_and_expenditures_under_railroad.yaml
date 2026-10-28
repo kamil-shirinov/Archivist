@@ -1,0 +1,68 @@
+# Drafted by muse-spark-1.3-contributor from 1939-08_p043, 1939-10_p024, 1939-12_p025 on 2026-10-28 (P21b).
+# A draft: validated, never registered. python -m archivist.templates.test checks its
+# identities; only a person, with python -m archivist.templates.approve, approves it.
+identity:
+  family: receipts_and_expenditures_under_railroad
+  title: Receipts and Expenditures Under Railroad Retirement and Railroad Unemployment Insurance Acts
+  description: Page with receipts and expenditures under railroad retirement and unemployment insurance
+    in millions of dollars
+  title_patterns:
+  - receipts and expenditures under railroad retirement\s+and railroad unemployment insurance acts
+layout:
+  unit: millions of dollars
+  precision: '0.1'
+  rows:
+    read: 17
+  columns:
+  - key: period
+    printed: Fiscal year or month
+    kind: text
+    blank_means: unknown
+  - key: taxes
+    printed: Taxes upon carriers and their employees
+    kind: money
+    blank_means: zero
+  - key: admin
+    printed: Administrative Expenses
+    kind: money
+    blank_means: zero
+  - key: to_retirement
+    printed: Transfers to Railroad Retirement Acct.
+    kind: money
+    blank_means: zero
+  - key: to_unemployment
+    printed: Transfers to Railroad Unemployment insurance account
+    kind: money
+    blank_means: zero
+  - key: total_exp
+    printed: Total Expenditures
+    kind: money
+    blank_means: zero
+identities:
+- id: total_expenditures
+  description: Total Expenditures is the sum of Administrative Expenses and the two transfers in each
+    row.
+  for_each: row
+  left:
+    cell:
+      column: total_exp
+  right:
+    sum:
+      columns:
+      - admin
+      - to_retirement
+      - to_unemployment
+provenance:
+  status: draft
+  drafted_by:
+    kind: model
+    id: muse-spark-1.3-contributor
+  drafted_on: '2026-10-28'
+  drafted_from:
+  - 1939-08_p043
+  - 1939-10_p024
+  - 1939-12_p025
+  evidence:
+  - drafted by muse-spark-1.3-contributor from 1939-08_p043, 1939-10_p024, 1939-12_p025 (drafter role,
+    P21b)
+  dropped: []

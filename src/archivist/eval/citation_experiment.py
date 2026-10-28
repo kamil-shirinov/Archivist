@@ -34,7 +34,9 @@ from pathlib import Path
 
 from archivist.eval import run_eval
 from archivist.eval.metrics import _centre_inside
+from archivist.doctypes import from_config
 from archivist.models import describe_config, load_roles
+from archivist.models.registry import CONFIG_PATH
 from archivist.pipeline import citations, extract
 from archivist.pipeline.extract import (
     CITATION_STRATEGIES,
@@ -178,6 +180,7 @@ def validate(split: str, workers: int) -> dict:
         roles,
         guard=guard,
         config=describe_config(),
+        doc_types=from_config(CONFIG_PATH),
         workers=workers,
         citation_strategy="S0",
     )
@@ -261,6 +264,7 @@ def main(argv: list[str] | None = None) -> None:
         roles,
         guard=guard,
         config=describe_config(),
+        doc_types=from_config(CONFIG_PATH),
         workers=args.workers,
         citation_strategy="S1",
     )

@@ -1,0 +1,140 @@
+# Drafted by muse-spark-1.3-contributor from 1939-02_p029, 1939-07_p023, 1939-12_p018 on 2026-10-28 (P21b).
+# A draft: validated, never registered. python -m archivist.templates.test checks its
+# identities; only a person, with python -m archivist.templates.approve, approves it.
+identity:
+  family: collections_of_internal_revenue
+  title: Collections of Internal Revenue
+  description: Summary of collections by fiscal year and month with income payroll and miscellaneous breakdowns
+  title_patterns:
+  - collections\s+of\s+internal\s+revenue
+layout:
+  unit: thousands of dollars
+  precision: '1'
+  rows:
+    read: 30
+  columns:
+  - key: period
+    printed: Period
+    kind: text
+  - key: total
+    printed: Total
+    kind: money
+  - key: income_total
+    printed: Total
+    kind: money
+  - key: individual
+    printed: Individual
+    kind: money
+  - key: corporation
+    printed: Corporation 1/
+    kind: money
+  - key: payroll_total
+    printed: Total
+    kind: money
+  - key: title_viii
+    printed: Title VIII
+    kind: money
+  - key: title_ix
+    printed: Title IX
+    kind: money
+  - key: carriers
+    printed: Carriers' Taxing Act of 1937
+    kind: money
+  - key: misc_total
+    printed: Total
+    kind: money
+  - key: capital_stock
+    printed: Capital stock
+    kind: money
+  - key: estate_gift
+    printed: Estate and Gift
+    kind: money
+  - key: alcoholic
+    printed: Alcoholic beverages
+    kind: money
+  - key: tobacco
+    printed: Tobacco
+    kind: money
+  - key: stamp
+    printed: Stamp
+    kind: money
+  - key: manuf_excise
+    printed: Manufacturers' excises
+    kind: money
+  - key: misc_other
+    printed: Miscellaneous 2/
+    kind: money
+  - key: unjust
+    printed: Unjust enrichment
+    kind: money
+  - key: agri_adjust
+    printed: Agricultural Adjustment
+    kind: money
+identities:
+- id: income_breakdown
+  description: Income total equals individual plus corporation
+  for_each: row
+  left:
+    cell:
+      column: income_total
+  right:
+    sum:
+      columns:
+      - individual
+      - corporation
+- id: payroll_breakdown
+  description: Payroll total equals Title VIII plus Title IX plus Carriers Taxing Act
+  for_each: row
+  left:
+    cell:
+      column: payroll_total
+  right:
+    sum:
+      columns:
+      - title_viii
+      - title_ix
+      - carriers
+- id: misc_breakdown
+  description: Miscellaneous total equals its seven components
+  for_each: row
+  left:
+    cell:
+      column: misc_total
+  right:
+    sum:
+      columns:
+      - capital_stock
+      - estate_gift
+      - alcoholic
+      - tobacco
+      - stamp
+      - manuf_excise
+      - misc_other
+- id: total_breakdown
+  description: Grand total equals income plus payroll plus miscellaneous plus unjust plus agricultural
+  for_each: row
+  left:
+    cell:
+      column: total
+  right:
+    sum:
+      columns:
+      - income_total
+      - payroll_total
+      - misc_total
+      - unjust
+      - agri_adjust
+provenance:
+  status: draft
+  drafted_by:
+    kind: model
+    id: muse-spark-1.3-contributor
+  drafted_on: '2026-10-28'
+  drafted_from:
+  - 1939-02_p029
+  - 1939-07_p023
+  - 1939-12_p018
+  evidence:
+  - drafted by muse-spark-1.3-contributor from 1939-02_p029, 1939-07_p023, 1939-12_p018 (drafter role,
+    P21b)
+  dropped: []

@@ -485,6 +485,7 @@ def test_the_runner_writes_one_flag_per_line(tmp_path):
     run_dir = tmp_path / "run"
     run_dir.mkdir()
     (run_dir / "predictions.jsonl").write_text("".join(p.model_dump_json() + "\n" for p in pages))
+    (run_dir / "run.json").write_text("{}")  # a run from before P21b: the built-in types
     flags = checks.run(run_dir)
     assert checks.load_flags(run_dir / checks.FLAGS_FILE) == flags
     assert len(flags) == len((run_dir / checks.FLAGS_FILE).read_text().splitlines()) > 0

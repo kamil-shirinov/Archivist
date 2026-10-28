@@ -10,6 +10,10 @@ Usage follows the reasoning page: reasoning tokens are billed as completion toke
 completion_tokens already counts them (completion_tokens_details.reasoning_tokens is only a
 breakdown), so output_tokens is completion_tokens. Cached input is priced as ordinary input, so
 the ledger can overstate spend but never understate it.
+
+A role may wait longer than TIMEOUT_S for an answer (settings timeout_s: a whole statistical table
+read at once, say). How long a call may take is not part of what it asks, so it is not one of the
+backend's settings and not part of the cache key.
 """
 
 from __future__ import annotations
@@ -124,6 +128,7 @@ class MetaLLM:
         price: Price,
         *,
         reasoning_effort: str = "low",
+        timeout_s: float = TIMEOUT_S,  # not part of the cache key
         client: Any = None,
         sleep: Callable[[float], None] = time.sleep,
     ) -> None:
@@ -132,6 +137,7 @@ class MetaLLM:
         self.model_id = model_id
         self.price = price
         self.settings = {"reasoning_effort": reasoning_effort}  # part of the cache key
+        self.timeout_s = timeout_s
         self._client = client
         self._sleep = sleep
 
@@ -139,7 +145,7 @@ class MetaLLM:
     def client(self) -> Any:
         if self._client is None:
             self._client = openai.OpenAI(
-                api_key=api_key(), base_url=BASE_URL, timeout=TIMEOUT_S, max_retries=0
+                api_key=api_key(), base_url=BASE_URL, timeout=self.timeout_s, max_retries=0
             )
         return self._client
 
@@ -161,7 +167,8 @@ class MetaLLM:
 
     def _create(self, payload: dict[str, Any]) -> Any:
         return _with_retries(
-            lambda: self.client.chat.completions.create(**payload, timeout=TIMEOUT_S), self._sleep
+            lambda: self.client.chat.completions.create(**payload, timeout=self.timeout_s),
+            self._sleep,
         )
 
 

@@ -2,29 +2,34 @@
 
     python -m archivist.pipeline.checks --run baseline-dev-v1
 
-Reads results/runs/<run_id>/predictions.jsonl, runs every registered document type's checks over
-the whole batch, so cross-document checks see every page, and writes the flags to
+Reads results/runs/<run_id>/predictions.jsonl, runs the checks of every document type the run
+enabled (its run.json's doc_types) over the whole batch, so cross-document checks see every page,
+and writes the flags to
 results/runs/<run_id>/flags.jsonl, one Flag per line. Checks see only extracted values (D24).
 """
 
 from __future__ import annotations
 
 import argparse
+import json
 from collections import Counter
-from collections.abc import Sequence
+from collections.abc import Mapping, Sequence
 from pathlib import Path
 
-from archivist.doctypes import REGISTRY, is_unresolvable
+from archivist.doctypes import REGISTRY, DocType, enabled, is_unresolvable, recorded, recorded_by
 from archivist.pipeline.extract import RUNS_DIR, load_predictions
 from archivist.schema import Flag, PageExtraction
 
 FLAGS_FILE = "flags.jsonl"
 
 
-def run_checks(pages: Sequence[PageExtraction]) -> list[Flag]:
-    """Every registered type's checks over the batch, in registry order."""
+def run_checks(
+    pages: Sequence[PageExtraction], doc_types: Mapping[str, DocType] | None = None
+) -> list[Flag]:
+    """The checks of doc_types (default every registered type) over the batch, in their order."""
     batch = sorted(pages, key=lambda p: p.page_id)
-    return [flag for doc_type in REGISTRY.values() for flag in doc_type.checks(batch)]
+    types = REGISTRY if doc_types is None else doc_types
+    return [flag for doc_type in types.values() for flag in doc_type.checks(batch)]
 
 
 def load_flags(path: Path) -> list[Flag]:
@@ -36,7 +41,11 @@ def run(run_dir: Path) -> list[Flag]:
     predictions = run_dir / "predictions.jsonl"
     if not predictions.exists():
         raise FileNotFoundError(f"{predictions} is missing: run archivist.pipeline.extract first")
-    flags = run_checks(load_predictions(predictions))
+    named = recorded_by(json.loads((run_dir / "run.json").read_text()))
+    doc_types = enabled(list(named))
+    if recorded(doc_types) != named:
+        raise ValueError(f"{run_dir.name} enabled {named}, now {recorded(doc_types)}")
+    flags = run_checks(load_predictions(predictions), doc_types)
     text = "".join(flag.model_dump_json() + "\n" for flag in flags)
     (run_dir / FLAGS_FILE).write_text(text, encoding="utf-8")
     return flags

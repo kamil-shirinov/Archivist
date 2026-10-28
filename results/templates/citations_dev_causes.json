@@ -1,0 +1,202 @@
+{
+ "S0 T.collections_of_internal_revenue:1939-02_p029:03:title_ix": {
+  "cause": "box offset",
+  "note": "the box sits between two columns of dashes; the crop shows only the edge of one",
+  "judged_by": "Claude"
+ },
+ "S0 T.collections_of_internal_revenue:1939-02_p029:19:individual": {
+  "cause": "box offset",
+  "note": "the value is the Aug line's; the box is two printed lines lower, on Oct",
+  "judged_by": "Claude"
+ },
+ "S0 T.collections_of_internal_revenue:1939-07_p023:24:corporation": {
+  "cause": "unclear",
+  "note": "a two-panel page the draft reads as one table: the column does not hold this figure",
+  "judged_by": "Claude"
+ },
+ "S0 T.outstanding_forward_exchange_contracts:1939-01_p061:02:canada": {
+  "cause": "re-read wrong",
+  "note": "the crop shows 3,824; the re-reader read the 4 as 6",
+  "judged_by": "Claude"
+ },
+ "S0 T.outstanding_forward_exchange_contracts:1939-01_p061:03:total_europe": {
+  "cause": "re-read wrong",
+  "note": "the crop shows -20,383; the re-reader read the 3 as 5",
+  "judged_by": "Claude"
+ },
+ "S0 T.outstanding_forward_exchange_contracts:1939-07_p085:02:italy": {
+  "cause": "formatting only",
+  "note": "the first read wrote \"-,1040\" for the printed -1,040",
+  "judged_by": "Claude"
+ },
+ "S0 T.security_transactions_as_reported_by:1939-07_p075:36:united_kingdom": {
+  "cause": "box offset",
+  "note": "the value is Apr. 26's; the box is one line lower, on May 3",
+  "judged_by": "Claude"
+ },
+ "S0 T.security_transactions_as_reported_by:1939-07_p075:43:canada": {
+  "cause": "box offset",
+  "note": "the value is Apr. 26's; the box is two lines lower",
+  "judged_by": "Claude"
+ },
+ "S0 T.security_transactions_as_reported_by:1939-07_p075:52:far_east": {
+  "cause": "box offset",
+  "note": "the box is below the May 3 line, in the blank before the next section",
+  "judged_by": "Claude"
+ },
+ "S0 T.security_transactions_as_reported_by:1939-07_p075:59:france": {
+  "cause": "box offset",
+  "note": "the box is two lines low, in the next section's first line",
+  "judged_by": "Claude"
+ },
+ "S0 T.short_term_foreign_liabilities_as:1939-01_p051:49:italy": {
+  "cause": "box offset",
+  "note": "the box is half a line low; the crop takes in two lines, 48 and 94",
+  "judged_by": "Claude"
+ },
+ "S0 T.total_claims_by_country:1983-06_p092:trinidad_tobago:c2": {
+  "cause": "box offset",
+  "note": "the box is rows below Trinidad and Tobago, on Other Latin America",
+  "judged_by": "Claude"
+ },
+ "S0 T.total_claims_by_country:1984-06_p058:african_regional:c4": {
+  "cause": "box offset",
+  "note": "the box is several rows above African regional, on Total foreign countries",
+  "judged_by": "Claude"
+ },
+ "S0 T.total_claims_by_country:1984-06_p058:other_europe:c2": {
+  "cause": "box offset",
+  "note": "the box is two rows low, on Canada",
+  "judged_by": "Claude"
+ },
+ "S0 T.total_liabilities_by_country:1982-06_p091:pakistan:c4": {
+  "cause": "box offset",
+  "note": "the box is rows below Pakistan, on Thailand, where the print is also faint",
+  "judged_by": "Claude"
+ },
+ "S0 T.total_liabilities_by_country:1982-06_p091:south_africa:c8": {
+  "cause": "box offset",
+  "note": "the box is rows below South Africa, on Total Africa, where the print is faint",
+  "judged_by": "Claude"
+ },
+ "S0 T.total_liabilities_by_country:1984-06_p055:singapore:c4": {
+  "cause": "box offset",
+  "note": "the box is below Singapore's section, in the blank before Africa",
+  "judged_by": "Claude"
+ },
+ "S0 T.total_liabilities_by_country:1984-06_p055:south_africa:c6": {
+  "cause": "box offset",
+  "note": "the box is three rows below South Africa",
+  "judged_by": "Claude"
+ },
+ "S0 T.total_liabilities_by_country:1984-06_p055:total_africa:c2": {
+  "cause": "box offset",
+  "note": "the box is between Total Africa and Australia; the crop catches part of 5,909",
+  "judged_by": "Claude"
+ },
+ "S0 T.total_liabilities_by_country:1984-06_p055:total_europe:c1": {
+  "cause": "box offset",
+  "note": "the box is far below Total Europe, among Latin America's rows",
+  "judged_by": "Claude"
+ },
+ "S0+ink T.collections_of_internal_revenue:1939-02_p029:03:title_ix": {
+  "cause": "box offset",
+  "note": "ink moved the box many lines down, to the 1937 row",
+  "judged_by": "Claude"
+ },
+ "S0+ink T.collections_of_internal_revenue:1939-02_p029:18:payroll_total": {
+  "cause": "box offset",
+  "note": "ink moved the box down to the Dec line, between figures",
+  "judged_by": "Claude"
+ },
+ "S0+ink T.outstanding_forward_exchange_contracts:1939-07_p085:01:canada": {
+  "cause": "box offset",
+  "note": "ink moved every box on the page about 480 px up, into the section above",
+  "judged_by": "Claude"
+ },
+ "S0+ink T.outstanding_forward_exchange_contracts:1939-07_p085:01:france": {
+  "cause": "box offset",
+  "note": "ink moved the box about 480 px up, into the section above",
+  "judged_by": "Claude"
+ },
+ "S0+ink T.outstanding_forward_exchange_contracts:1939-07_p085:02:canada": {
+  "cause": "box offset",
+  "note": "ink moved the box up and stretched it over four lines",
+  "judged_by": "Claude"
+ },
+ "S0+ink T.outstanding_forward_exchange_contracts:1939-12_p060:04:switzerland": {
+  "cause": "box offset",
+  "note": "ink stretched the box over two lines; the re-reader read the upper one",
+  "judged_by": "Claude"
+ },
+ "S0+ink T.security_transactions_as_reported_by:1939-01_p055:18:italy": {
+  "cause": "box offset",
+  "note": "the box is one line up, on Oct. 5, and off to one side",
+  "judged_by": "Claude"
+ },
+ "S0+ink T.security_transactions_as_reported_by:1939-01_p055:50:switzerland": {
+  "cause": "unreadable crop",
+  "note": "ink made the box a thin strip down four lines; nothing legible in it",
+  "judged_by": "Claude"
+ },
+ "S0+ink T.short_term_foreign_liabilities_as:1939-01_p051:13:france": {
+  "cause": "box offset",
+  "note": "the box is one line down, on Oct. 19",
+  "judged_by": "Claude"
+ },
+ "S0+ink T.total_claims_by_country:1983-06_p092:finland:c3": {
+  "cause": "box offset",
+  "note": "the box is two rows up, on Denmark",
+  "judged_by": "Claude"
+ },
+ "S0+ink T.total_claims_by_country:1983-06_p092:german_democratic_republic:c3": {
+  "cause": "box offset",
+  "note": "the box is one row up, on France",
+  "judged_by": "Claude"
+ },
+ "S0+ink T.total_claims_by_country:1983-06_p092:total_africa:c2": {
+  "cause": "box offset",
+  "note": "the box is in another section, on Other Asia",
+  "judged_by": "Claude"
+ },
+ "S0+ink T.total_claims_by_country:1984-06_p058:trinidad_tobago:c3": {
+  "cause": "box offset",
+  "note": "the box is rows below, on Other Latin America",
+  "judged_by": "Claude"
+ },
+ "S0+ink T.total_liabilities_by_country:1982-06_p091:china_mainland:c1": {
+  "cause": "box offset",
+  "note": "the box is on Total Latin America, rows above China",
+  "judged_by": "Claude"
+ },
+ "S0+ink T.total_liabilities_by_country:1983-06_p097:taiwan:c5": {
+  "cause": "box offset",
+  "note": "the box is rows above Taiwan, among Latin America's rows",
+  "judged_by": "Claude"
+ },
+ "S0+ink T.total_liabilities_by_country:1983-06_p097:taiwan:c6": {
+  "cause": "box offset",
+  "note": "the box is rows above Taiwan, among Latin America's rows",
+  "judged_by": "Claude"
+ },
+ "S0+ink T.total_liabilities_by_country:1984-06_p055:african_regional:c4": {
+  "cause": "box offset",
+  "note": "ink moved the box about 200 px up, to South Africa",
+  "judged_by": "Claude"
+ },
+ "S0+ink T.total_liabilities_by_country:1984-06_p055:belgium_luxembourg:c8": {
+  "cause": "unreadable crop",
+  "note": "ink shrank the box to a 12 x 9 px fragment of the cell",
+  "judged_by": "Claude"
+ },
+ "S0+ink T.total_liabilities_by_country:1984-06_p055:middle_eastern_regional:c3": {
+  "cause": "box offset",
+  "note": "the box is on Zaire, rows above Middle Eastern regional",
+  "judged_by": "Claude"
+ },
+ "S0+ink T.total_liabilities_by_country:1984-06_p055:trinidad_tobago:c3": {
+  "cause": "box offset",
+  "note": "the box is one row up, on Peru",
+  "judged_by": "Claude"
+ }
+}

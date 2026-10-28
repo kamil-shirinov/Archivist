@@ -41,6 +41,7 @@ from archivist.eval.run_eval import (
     _verdict_stats,
     score_verdicts,
 )
+from archivist.doctypes import from_config
 from archivist.models import describe_config, load_roles
 from archivist.pipeline import reread, verify
 from archivist.pipeline.extract import RUNS_DIR
@@ -126,6 +127,7 @@ def verify_arms(workers: int, runs_dir: Path = RUNS_DIR) -> None:
                 roles,
                 guard=guard,
                 config=describe_config(config),
+                doc_types=from_config(config),
                 workers=workers,
             )
             calls = record["calls"]

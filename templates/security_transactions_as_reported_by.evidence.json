@@ -1,0 +1,115 @@
+{
+  "family": "security_transactions_as_reported_by",
+  "template": "templates/security_transactions_as_reported_by.yaml",
+  "template_sha256": "28a2a0608be55c54612fd092266800ef4f31bc1095bcd7d9f72ffcbb120a46fe",
+  "tested_on": "2026-10-28",
+  "config": {
+    "drafter": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "extractor": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "rereader": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    }
+  },
+  "citations": "S0+ocr",
+  "rule": "every identity evaluated wherever it applies, on cells whose two reads agree; held within n half-units of the printed precision for n printed values",
+  "pages": [
+    {
+      "ref": "1939-01_p055",
+      "page_id": "1939-01_p055",
+      "classified_as": "security_transactions_as_reported_by",
+      "anchored": 318,
+      "read": "ok",
+      "needed": 780,
+      "cells": 840,
+      "read_first": 840,
+      "read_twice": 777,
+      "agree": 557,
+      "no_second_read": {
+        "illegible to the re-read": 3
+      }
+    },
+    {
+      "ref": "1939-07_p075",
+      "page_id": "1939-07_p075",
+      "classified_as": "security_transactions_as_reported_by",
+      "anchored": 142,
+      "read": "ok",
+      "needed": 780,
+      "cells": 840,
+      "read_first": 840,
+      "read_twice": 770,
+      "agree": 327,
+      "no_second_read": {
+        "illegible to the re-read": 10
+      }
+    },
+    {
+      "ref": "1939-12_p055",
+      "page_id": "1939-12_p055",
+      "classified_as": "security_transactions_as_reported_by",
+      "anchored": 287,
+      "read": "ok",
+      "needed": 780,
+      "cells": 840,
+      "read_first": 840,
+      "read_twice": 776,
+      "agree": 530,
+      "no_second_read": {
+        "illegible to the re-read": 4
+      }
+    }
+  ],
+  "outcomes": {
+    "rejected": 0,
+    "sometimes fails": 0,
+    "holds": 2,
+    "untested": 0
+  },
+  "identities": [
+    {
+      "id": "total_europe",
+      "description": "Total Europe equals the sum of the seven European country columns",
+      "for_each": "row",
+      "over": null,
+      "equation": "total_europe = united_kingdom + france + germany + italy + netherlands + switzerland + other_europe",
+      "applies": 180,
+      "evaluated": 18,
+      "held": 18,
+      "failed": 0,
+      "hold_rate": 1.0,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 143,
+        "a cell was not read twice": 1,
+        "a cell is blank or not a figure": 18
+      },
+      "outcome": "holds",
+      "failures": []
+    },
+    {
+      "id": "grand_total",
+      "description": "Grand total equals Total Europe plus Canada, Latin America, Far East and All other",
+      "for_each": "row",
+      "over": null,
+      "equation": "grand_total = total_europe + canada + latin_america + far_east + all_other",
+      "applies": 180,
+      "evaluated": 16,
+      "held": 16,
+      "failed": 0,
+      "hold_rate": 1.0,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 148,
+        "a cell was not read twice": 3,
+        "a cell is blank or not a figure": 13
+      },
+      "outcome": "holds",
+      "failures": []
+    }
+  ]
+}

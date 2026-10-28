@@ -7,6 +7,7 @@ from pathlib import Path
 import pytest
 from test_verify import MEMO_VALUES, _gt_page, _image, _memo_page, _rereader
 
+from archivist.doctypes import enabled
 from archivist.eval import compare_arms, compare_extractors
 from archivist.models import smoke
 from archivist.models.budget import BudgetGuard
@@ -74,6 +75,7 @@ def test_every_arm_is_scored_under_both_policies_per_split_and_pooled(tmp_path):
                 {"segmenter": MockSegmenter(), "rereader": _rereader(MEMO_VALUES)},
                 guard=BudgetGuard(1.0, tmp_path / "ledger.jsonl"),
                 config={"rereader": {"backend": "mock"}},
+                doc_types=enabled(["ledger_card", "payment_memo"]),
             )
 
     report = compare_arms.compare(runs, data)

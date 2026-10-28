@@ -7,7 +7,7 @@ from pathlib import Path
 import pytest
 from PIL import Image, ImageDraw
 
-from archivist.doctypes import REGISTRY, UNRESOLVABLE
+from archivist.doctypes import LEGACY, REGISTRY, UNRESOLVABLE, enabled
 from archivist.doctypes.ledger import (
     COLUMNS,
     LEDGER_REREAD,
@@ -37,6 +37,7 @@ from archivist.schema import (
 )
 
 WIDTH, HEIGHT = 400, 300
+TYPES = enabled(["ledger_card", "payment_memo"])
 MEMO_VALUES = {
     "memo_no": "008348",
     "date": "02/01/86",
@@ -480,6 +481,7 @@ def test_verify_rereads_what_the_policy_asks_and_never_shows_the_extracted_value
         {"m1": _image(tmp_path)},
         {"segmenter": segmenter, "rereader": llm},
         correct_citations=False,
+        doc_types=TYPES,
     )
     by_name = {v.field_id.rsplit(":", 1)[-1]: verify.as_policy(v, "v2") for v in verdicts}
     # The words say 65.48, so the figures are flagged with that suggestion; the re-read agrees.
@@ -519,6 +521,7 @@ def test_a_reread_that_fails_sends_its_field_to_review_without_stopping_the_run(
         {"m1": _image(tmp_path)},
         {"segmenter": MockSegmenter(), "rereader": MockLLM(respond)},
         correct_citations=False,
+        doc_types=TYPES,
     )
     payee = next(v for v in verdicts if v.field_id == PAYEE)
     assert (payee.status, payee.evidence.reread_status) == ("review", "failed")
@@ -599,6 +602,7 @@ def _verify_card(extracted: dict, answers: dict, folder: Path) -> dict[str, veri
         {CARD: _card_image(folder)},
         {"segmenter": MockSegmenter(), "rereader": _cell_rereader(answers)},
         correct_citations=False,
+        doc_types=TYPES,
     )
     return {v.field_id: v for v in verdicts}
 
@@ -682,7 +686,9 @@ def test_a_verdict_run_is_written_and_scored_against_the_baseline(tmp_path):
         {"segmenter": MockSegmenter(), "rereader": _rereader(MEMO_VALUES | {"amount": "65.48"})},
         guard=BudgetGuard(1.0, tmp_path / "ledger.jsonl"),
         config={"rereader": {"backend": "mock"}},
+        doc_types=TYPES,
     )
+    assert record["doc_types"] == LEGACY  # the source run recorded none: it is from before P21b
     assert record["counts"]["by_status"] == {"accepted": 4, "review": 3}
     assert record["citations"] == "S0+ink"
     assert record["cost_usd"] == 0.0
@@ -717,3 +723,15 @@ def test_a_verdict_run_is_written_and_scored_against_the_baseline(tmp_path):
     ]
     assert (rows["base"]["errors_missed"], rows["checked"]["errors_caught"]) == (2, 2)
     assert "checked" in run_eval.comparison_table(rows)
+
+
+def test_only_the_types_that_correct_their_boxes_are_corrected_here(monkeypatch):
+    assert verify.to_correct("S0", TYPES) == (True, "S0+ink (corrected here)")
+    assert verify.to_correct("S0+ink", TYPES) == (False, "S0+ink")
+    monkeypatch.setattr(PaymentMemo, "citations", "S0")  # a type that keeps the model's boxes
+    assert verify.to_correct("S0", TYPES) == (
+        {"ledger_card"},
+        {"ledger_card": "S0+ink (corrected here)", "payment_memo": "S0"},
+    )
+    made = {"ledger_card": "S0+ink", "payment_memo": "S0"}
+    assert verify.to_correct(made, TYPES) == (set(), made)

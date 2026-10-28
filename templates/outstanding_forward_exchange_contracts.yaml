@@ -1,0 +1,103 @@
+# Drafted by muse-spark-1.3-contributor from 1939-01_p061, 1939-07_p085, 1939-12_p060 on 2026-10-28 (P21b).
+# A draft: validated, never registered. python -m archivist.templates.test checks its
+# identities; only a person, with python -m archivist.templates.approve, approves it.
+identity:
+  family: outstanding_forward_exchange_contracts
+  title: Net Position in Foreign Currencies of Reporting Banks and Bankers in the United States
+  description: Page with net foreign currency position by country where minus indicates short position
+  title_patterns:
+  - net\s+position\s+in\s+foreign\s+currencies\s+of\s+reporting\s+banks
+layout:
+  unit: thousands of dollars
+  precision: '1'
+  rows:
+    read: 5
+  columns:
+  - key: label
+    printed: Position as of following dates
+    kind: text
+  - key: united_kingdom
+    printed: United Kingdom
+    kind: money
+  - key: france
+    printed: France
+    kind: money
+  - key: germany
+    printed: Germany
+    kind: money
+  - key: italy
+    printed: Italy
+    kind: money
+  - key: netherlands
+    printed: Netherlands
+    kind: money
+  - key: switzerland
+    printed: Switzerland
+    kind: money
+  - key: other_europe
+    printed: Other Europe
+    kind: money
+  - key: total_europe
+    printed: Total Europe
+    kind: money
+  - key: canada
+    printed: Canada
+    kind: money
+  - key: latin_america
+    printed: Latin America
+    kind: money
+  - key: far_east
+    printed: Far East
+    kind: money
+  - key: all_other
+    printed: All other
+    kind: money
+  - key: grand_total
+    printed: Grand total
+    kind: money
+identities:
+- id: total_europe
+  description: Total Europe equals sum of United Kingdom, France, Germany, Italy, Netherlands, Switzerland
+    and Other Europe
+  for_each: row
+  left:
+    sum:
+      columns:
+      - united_kingdom
+      - france
+      - germany
+      - italy
+      - netherlands
+      - switzerland
+      - other_europe
+  right:
+    cell:
+      column: total_europe
+- id: grand_total
+  description: Grand total equals Total Europe plus Canada, Latin America, Far East and All other
+  for_each: row
+  left:
+    sum:
+      columns:
+      - total_europe
+      - canada
+      - latin_america
+      - far_east
+      - all_other
+  right:
+    cell:
+      column: grand_total
+provenance:
+  status: draft
+  drafted_by:
+    kind: model
+    id: muse-spark-1.3-contributor
+  drafted_on: '2026-10-28'
+  drafted_from:
+  - 1939-01_p061
+  - 1939-07_p085
+  - 1939-12_p060
+  evidence:
+  - drafted by muse-spark-1.3-contributor from 1939-01_p061, 1939-07_p085, 1939-12_p060 (drafter role,
+    P21b)
+  dropped: []

@@ -3,17 +3,22 @@
 A template, templates/<family>.yaml, describes one printed table: what it is called and how the
 page classifier should know it (identity), its rows and columns as printed with each column's kind
 and the table's unit (layout), the identities its figures satisfy (identities), and who drafted
-it, who approved it, when and on what evidence (provenance). Template validates the file;
+it (and from which pages), who approved it, when, on what evidence and with the sha256 of the
+evidence file beside it, and which drafted identities were left out (provenance; the drafter, the
+arithmetic test and the approval are archivist.templates). Template validates the file;
 TemplateType is the DocType built from it. It asks for every cell as the ledger family does
 ({"value", "box"}, ledger.py), under the same rules, so verify.py and the exporter take its pages
 as they take a card's.
 
 Identities are data, never code: two structured expressions over cells held equal. An expression
 is a cell, a sum over named rows or columns, or a difference of two expressions; a cell may be the
-same cell in another table of the same issue, named by that table's family. evaluate() works them
-out in Decimal from the read values; nothing is ever passed to eval. Printed figures are rounded,
-so an identity over n printed values holds when its two sides differ by no more than n half-units
-of the printed precision (half a unit of each table's own precision, for a cell in another table).
+same cell in another table of the same issue, named by that table's family, or, in an identity
+applied to every row, the cell in the row directly above (previous_row), so a row's figure can be
+worked out from the one before it; such an identity does not apply to the first row. evaluate()
+works them out in Decimal from the read values; nothing is ever passed to eval. Printed figures
+are rounded, so an identity over n printed values holds when its two sides differ by no more
+than n half-units of the printed precision (half a unit of each table's own precision, for a cell
+in another table).
 
 An identity applies to the whole table, to every used row, or to every numeric column (for_each),
 or only to the rows or columns it names (over). A failed identity flags every cell in it with the
@@ -26,7 +31,11 @@ in another table. A numeric cell that can't be read as a figure is flagged as th
 Rows are fixed, each with a key and its printed label, or read: numbered "01", "02", ... from the
 top, for a table whose rows change from issue to issue (a rolling run of months), with the row's
 label read as one of the columns. A row whose cells are all blank is unused, and identities skip
-it; a value not read, or blank, leaves an identity that needs it unchecked. A lone dash is nil.
+it; a value not read leaves an identity that needs it unchecked. A lone dash is nil. What a blank
+cell means is the column's blank_means: "unknown" (the default) leaves an identity that needs it
+unchecked, as for a figure not printed; "zero" counts it as 0, for a column where a blank is
+nothing (only a figure's column may say so). A blank counted as 0 is not a printed value, so it
+adds nothing to the rounding tolerance.
 
 A page's issue is its id up to the last "_" ("1939-09_p057" is issue "1939-09"). An identity that
 needs another table is unresolvable (a note, as the ledger's are) when its page has no issue, or
@@ -38,6 +47,7 @@ them, so a malformed template is refused rather than ignored; only approved ones
 
 from __future__ import annotations
 
+import hashlib
 import re
 from collections import defaultdict
 from collections.abc import Collection, Iterator, Mapping, Sequence
@@ -67,6 +77,7 @@ PREFIX = "T."  # a template field id: T.<family>:<page id>:<row>:<column>
 KEY = r"^[a-z][a-z0-9_]*$"
 NUMERIC = frozenset({"money", "count", "percent"})
 DASHES = frozenset({"-", "–", "—", "−"})  # nil, as statistical tables print it
+CITATIONS = "S0+ocr"  # every template's box strategy, by the rule: templates/citations_dev_v2.md
 _FIGURE = re.compile(r"(\d{1,3}(?:,\d{3})+|\d+)?(?:\.(\d+))?")
 _DETAIL = re.compile(r"^identity (\S+) on (row \S+|column \S+|the table): ")
 _FOOTNOTE = re.compile(r"\s*\d+/")
@@ -116,6 +127,13 @@ class Label(_Strict):
 
 class Column(Label):
     kind: Literal["money", "count", "percent", "date", "text"]
+    blank_means: Literal["zero", "unknown"] = "unknown"  # in an identity
+
+    @model_validator(mode="after")
+    def _zero_is_a_figure(self) -> Column:
+        if self.blank_means == "zero" and self.kind not in NUMERIC:
+            raise ValueError(f"column {self.key!r} is {self.kind}: only a figure's blank is zero")
+        return self
 
 
 class ReadRows(_Strict):
@@ -158,6 +176,13 @@ class CellRef(_Strict):
     table: str | None = Field(default=None, pattern=KEY)  # another table of the same issue
     row: str | None = None
     column: str | None = None
+    previous_row: Literal[True] | None = None  # the row above the one for_each: row supplies
+
+    @model_validator(mode="after")
+    def _above(self) -> CellRef:
+        if self.previous_row and (self.row is not None or self.table is not None):
+            raise ValueError("previous_row is the row above this table's own: name no row or table")
+        return self
 
 
 class Cell(_Strict):
@@ -214,13 +239,24 @@ class Drafter(_Strict):
     id: str = Field(min_length=1)  # a model id, or who the person is (never personal data)
 
 
+class Dropped(_Strict):
+    """An identity the draft proposed and the approved template leaves out, and why."""
+
+    id: str = Field(pattern=KEY, max_length=40)
+    by: Literal["arithmetic test", "approver"]
+    why: str = Field(min_length=1)
+
+
 class Provenance(_Strict):
     status: Literal["approved", "draft", "example, not approved"]
     drafted_by: Drafter
     drafted_on: date
+    drafted_from: list[str] = []  # the page ids a model drafted it from
     approved_by: str | None = None
     approved_on: date | None = None
     evidence: list[str] = []  # what it was drafted from and approved on: pages, runs, notes
+    evidence_sha256: str | None = Field(default=None, pattern=r"^[0-9a-f]{64}$")
+    dropped: list[Dropped] = []  # the draft's identities left out at approval
 
     @model_validator(mode="after")
     def _signed(self) -> Provenance:
@@ -231,6 +267,8 @@ class Provenance(_Strict):
                 raise ValueError("approved before it was drafted")
         elif self.approved_by is not None or self.approved_on is not None:
             raise ValueError(f"a template that is {self.status!r} has no approval")
+        elif self.evidence_sha256 is not None or self.dropped:
+            raise ValueError(f"a template that is {self.status!r} has no approval evidence")
         return self
 
     @property
@@ -252,8 +290,8 @@ class Template(_Strict):
         for identity in self.identities:
             try:
                 instances = list(_contexts(identity, self.layout))
-                for row, column, _ in instances:
-                    terms = _linear(identity, row, column)
+                for row, column, _, above in instances:
+                    terms = _linear(identity, row, column, above)
                     if not any(t.table is None for t in terms):
                         raise ValueError("no cell of this table")
                     for term in terms:
@@ -278,27 +316,49 @@ class Term:
     coef: int  # +1 on the left, −1 on the right (a difference flips its second part)
 
 
-def _contexts(identity: Identity, layout: Layout) -> Iterator[tuple[str | None, str | None, str]]:
-    """(row, column, where) for each place the identity applies, every row of a read table."""
+def _uses_previous(expr: Expr) -> bool:
+    if isinstance(expr, Cell):
+        return bool(expr.cell.previous_row)
+    if isinstance(expr, Difference):
+        return any(_uses_previous(part) for part in expr.difference)
+    return False
+
+
+Context = tuple[str | None, str | None, str, str | None]  # row, column, where, the row above
+
+
+def _contexts(identity: Identity, layout: Layout) -> Iterator[Context]:
+    """(row, column, where, the row above) for each place the identity applies, every row of a
+    read table; an identity that names the previous row skips the first."""
     if identity.for_each == "table":
         if identity.over is not None:
             raise ValueError("over needs for_each: row or column")
-        yield None, None, "the table"
+        yield None, None, "the table", None
     elif identity.for_each == "row":
-        for row in identity.over or layout.row_keys:
-            if row not in layout.row_keys:
+        keys = layout.row_keys
+        previous = _uses_previous(identity.left) or _uses_previous(identity.right)
+        for row in identity.over or keys:
+            if row not in keys:
                 raise ValueError(f"unknown row {row!r}")
-            yield row, None, f"row {row}"
+            above = keys[keys.index(row) - 1] if keys.index(row) else None
+            if previous and above is None:
+                continue
+            yield row, None, f"row {row}", above
     else:
         for column in identity.over or layout.numeric():
             if column not in layout.numeric():
                 raise ValueError(f"{column!r} is not a numeric column")
-            yield None, column, f"column {column}"
+            yield None, column, f"column {column}", None
 
 
-def _terms(expr: Expr, row: str | None, column: str | None, coef: int) -> list[Term]:
+def _terms(
+    expr: Expr, row: str | None, column: str | None, coef: int, above: str | None = None
+) -> list[Term]:
     if isinstance(expr, Cell):
-        r, c = expr.cell.row or row, expr.cell.column or column
+        if expr.cell.previous_row and row is None:
+            raise ValueError("previous_row needs for_each: row")
+        r = above if expr.cell.previous_row else expr.cell.row or row
+        c = expr.cell.column or column
         if r is None or c is None:
             raise ValueError("a cell needs a row and a column, given or from for_each")
         return [Term(expr.cell.table, r, c, coef)]
@@ -314,12 +374,16 @@ def _terms(expr: Expr, row: str | None, column: str | None, coef: int) -> list[T
             raise ValueError("a sum over columns needs a row, given or from for_each")
         return [Term(over.table, r, c, coef) for c in over.columns]
     first, second = expr.difference
-    return _terms(first, row, column, coef) + _terms(second, row, column, -coef)
+    return _terms(first, row, column, coef, above) + _terms(second, row, column, -coef, above)
 
 
-def _linear(identity: Identity, row: str | None, column: str | None) -> list[Term]:
+def _linear(
+    identity: Identity, row: str | None, column: str | None, above: str | None = None
+) -> list[Term]:
     """The identity as left − right = 0: every printed value with its sign."""
-    return _terms(identity.left, row, column, 1) + _terms(identity.right, row, column, -1)
+    return _terms(identity.left, row, column, 1, above) + _terms(
+        identity.right, row, column, -1, above
+    )
 
 
 def _check_cell(layout: Layout, term: Term, where: str) -> None:
@@ -338,6 +402,8 @@ def _render(expr: Expr) -> str:
         ref = expr.cell
         parts = [p for p in (ref.row, ref.column) if p]
         name = "/".join(parts) or "the cell"
+        if ref.previous_row:
+            name += " (row above)"
         return f"{ref.table}.{name}" if ref.table else name
     if isinstance(expr, Sum):
         over = expr.sum
@@ -351,11 +417,16 @@ def _render(expr: Expr) -> str:
     return f"{_render(first)} − {second_text}"
 
 
+def written(identity: Identity) -> str:
+    """The identity in words, "left = right", cells by key."""
+    return f"{_render(identity.left)} = {_render(identity.right)}"
+
+
 def check_references(template: Template, tables: Mapping[str, Template]) -> None:
     """Every cell in another table names a table in tables and a numeric cell it has."""
     for identity in template.identities:
-        for row, column, _ in _contexts(identity, template.layout):
-            for term in _linear(identity, row, column):
+        for row, column, _, above in _contexts(identity, template.layout):
+            for term in _linear(identity, row, column, above):
                 if term.table is None:
                     continue
                 other = tables.get(term.table)
@@ -370,8 +441,18 @@ def check_references(template: Template, tables: Mapping[str, Template]) -> None
                     ) from error
 
 
+def file_sha256(path: Path) -> str:
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def evidence_path(path: Path) -> Path:
+    """Where a template's arithmetic evidence is kept: <family>.evidence.json beside it."""
+    return path.with_name(f"{path.stem}.evidence.json")
+
+
 def read_template(path: Path) -> Template:
-    """One template file, validated; raises TemplateError naming the file."""
+    """One template file, validated; raises TemplateError naming the file. An approved template
+    that names the sha256 of its evidence must have that evidence file beside it, unchanged."""
     try:
         data = yaml.safe_load(path.read_text(encoding="utf-8"))
         template = Template.model_validate(data)
@@ -379,6 +460,10 @@ def read_template(path: Path) -> Template:
         raise TemplateError(f"{path}: {error}") from error
     if template.family != path.stem:
         raise TemplateError(f"{path}: the family is {template.family!r}, the file {path.stem!r}")
+    if (digest := template.provenance.evidence_sha256) is not None:
+        evidence = evidence_path(path)
+        if not evidence.is_file() or file_sha256(evidence) != digest:
+            raise TemplateError(f"{path}: {evidence} is missing or not what it was approved on")
     return template
 
 
@@ -387,17 +472,21 @@ def load_templates(directory: Path, reserved: Collection[str] = ()) -> list[Temp
 
     Every file must validate and every reference must resolve among the files, drafts included;
     an approved template may refer only to other approved ones, and no family may take a reserved
-    name (a built-in type's).
+    name (a built-in type's). Each type keeps its file's sha256, which a run records.
     """
     if not directory.is_dir():
         return []
-    templates = {t.family: t for t in map(read_template, sorted(directory.glob("*.yaml")))}
+    templates: dict[str, Template] = {}
+    digests: dict[str, str] = {}
+    for path in sorted(directory.glob("*.yaml")):
+        template = read_template(path)
+        templates[template.family], digests[template.family] = template, file_sha256(path)
     for template in templates.values():
         if template.family in reserved:
             raise TemplateError(f"{template.family}: the name is reserved or already registered")
         check_references(template, templates)
     approved = {k: t for k, t in templates.items() if t.provenance.approved}
-    return [TemplateType(t, approved) for t in approved.values()]
+    return [TemplateType(t, approved, sha256=digests[k]) for k, t in approved.items()]
 
 
 # --- Reading figures ---------------------------------------------------------------------------
@@ -422,6 +511,16 @@ def number(text: str, kind: str) -> Decimal | None:
     whole, fraction = match.groups()
     value = Decimal((whole or "0").replace(",", "") + (f".{fraction}" if fraction else ""))
     return -value if negative else value
+
+
+def figure(text: str | None, kind: str, blank_is_zero: bool) -> Decimal | None:
+    """A cell's figure for an identity: None if unread, blank (unless a blank is zero) or not a
+    figure."""
+    if text is None:
+        return None
+    if not text.strip():
+        return Decimal(0) if blank_is_zero else None
+    return number(text, kind)
 
 
 def _places(step: Decimal) -> int:
@@ -451,6 +550,7 @@ class Instance:
     left: int  # how many of fields are on the left
     cross: bool  # a cell is in another table
     unresolved: str | None  # why another table's cells could not be found
+    zero: frozenset[str] = frozenset()  # the fields whose column counts a blank as 0
 
     def own_field(self) -> str:
         return self.fields[0][0]
@@ -462,14 +562,22 @@ class Instance:
 class TemplateType:
     """A DocType built from an approved template (doctypes.DocType, doctypes.RuleReader)."""
 
-    def __init__(self, template: Template, tables: Mapping[str, Template] | None = None) -> None:
+    def __init__(
+        self,
+        template: Template,
+        tables: Mapping[str, Template] | None = None,
+        *,
+        sha256: str | None = None,  # the template file's, which a run records
+    ) -> None:
         self.template = template
+        self.sha256 = sha256
         self.tables = dict(tables or {})
         check_references(template, self.tables)
         self.layout = template.layout
         self.name = template.family
         self.description = template.identity.description
         self.money_fields = frozenset(c.key for c in self.layout.columns if c.kind == "money")
+        self.citations = CITATIONS
         self._patterns = [re.compile(p, re.IGNORECASE) for p in template.identity.title_patterns]
 
     def matches_title(self, text: str) -> bool:
@@ -560,11 +668,11 @@ class TemplateType:
     ) -> Iterator[Instance]:
         page_id, issue = page.page_id, issue_of(page.page_id)
         for identity in self.template.identities:
-            for row, column, where in _contexts(identity, self.layout):
+            for row, column, where, above in _contexts(identity, self.layout):
                 if row is not None and not self._used(texts, page_id, row):
                     continue
-                terms = _linear(identity, row, column)
-                fields, unresolved = [], None
+                terms = _linear(identity, row, column, above)
+                fields, unresolved, zero = [], None, set()
                 for term in terms:
                     table = term.table or self.name
                     layout = self.tables[table].layout if term.table else self.layout
@@ -578,18 +686,20 @@ class TemplateType:
                             unresolved = f"{count} of {table} for issue {issue} in this batch"
                         else:
                             on = found[0]
-                    kind = layout.column(term.column).kind
-                    fields.append(
-                        (cell_id(table, on, term.row, term.column), term.coef, layout.step, kind)
-                    )
+                    column = layout.column(term.column)
+                    field_id = cell_id(table, on, term.row, term.column)
+                    fields.append((field_id, term.coef, layout.step, column.kind))
+                    if column.blank_means == "zero":
+                        zero.add(field_id)
                 yield Instance(
                     rule=f"{self.name}.{identity.id}",
                     where=where,
                     identity=identity,
                     fields=tuple(fields),
-                    left=len(_terms(identity.left, row, column, 1)),
+                    left=len(_terms(identity.left, row, column, 1, above)),
                     cross=any(t.table is not None for t in terms),
                     unresolved=unresolved,
+                    zero=frozenset(zero),
                 )
 
     def _batch(self, pages: Sequence[PageExtraction]):
@@ -602,25 +712,37 @@ class TemplateType:
         own = [p for p in pages if p.doc_type == self.name]
         return texts, by_issue, own
 
+    def instances(self, pages: Sequence[PageExtraction]) -> Iterator[Instance]:
+        """Every identity wherever it applies on this type's pages in the batch, as the checks
+        apply them: a row is used, and another table's cells found, by the pages' read values."""
+        texts, by_issue, own = self._batch(pages)
+        for page in own:
+            yield from self._instances(page, texts, by_issue)
+
     def evaluate(
         self, instance: Instance, texts: Mapping[str, str | None]
     ) -> tuple[Decimal, Decimal, Decimal] | None:
-        """(left, right, tolerance) from the read values; None if any value is unread, blank or
-        not a figure."""
-        values = []
-        for field_id, _, _, kind in instance.fields:
-            text = texts.get(field_id)
-            value = None if text is None or not text.strip() else number(text, kind)
+        """(left, right, tolerance) from the read values; None if any value is unread, blank
+        where a blank is unknown, or not a figure. The tolerance is half a unit per printed
+        value."""
+        values, tolerance = [], Decimal(0)
+        for field_id, _, step, kind in instance.fields:
+            value = figure(texts.get(field_id), kind, field_id in instance.zero)
             if value is None:
                 return None
             values.append(value)
+            if texts[field_id].strip():
+                tolerance += step / 2
         signed = [v * coef for v, (_, coef, _, _) in zip(values, instance.fields, strict=True)]
         left, right = (
             sum(signed[: instance.left], Decimal(0)),
             -sum(signed[instance.left :], Decimal(0)),
         )
-        tolerance = sum((step / 2 for _, _, step, _ in instance.fields), Decimal(0))
         return left, right, tolerance
+
+    def printed(self, instance: Instance, texts: Mapping[str, str | None]) -> int:
+        """How many of the instance's values are printed, not blank."""
+        return sum(bool((texts.get(f) or "").strip()) for f, *_ in instance.fields)
 
     def _unreadable(self, page: PageExtraction, texts: Mapping[str, str | None]) -> list[Flag]:
         what = {
@@ -678,8 +800,8 @@ class TemplateType:
             f"identity {instance.rule} on {instance.where}: {_render(identity.left)} is "
             f"{_fmt(left, step)}, but {_render(identity.right)} is {_fmt(right, step)}, a "
             f"difference of {_fmt(abs(residual), step)}, more than the rounding tolerance of "
-            f"{format(tolerance.normalize(), 'f')} for {len(instance.fields)} printed values "
-            f"({identity.description})"
+            f"{format(tolerance.normalize(), 'f')} for {self.printed(instance, texts)} printed "
+            f"values ({identity.description})"
         )
         coefs: dict[str, int] = defaultdict(int)
         meta = {}
@@ -692,7 +814,8 @@ class TemplateType:
             field_step, kind = meta[field_id]
             suggested = None
             if coef:
-                implied = number(texts[field_id], kind) - residual / coef
+                read = figure(texts[field_id], kind, field_id in instance.zero)
+                implied = read - residual / coef
                 suggested = _fmt(implied, field_step)
             flags.append(Flag(field_id=field_id, check=check, detail=detail, suggested=suggested))
         return flags
