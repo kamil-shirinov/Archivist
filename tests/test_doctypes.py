@@ -16,6 +16,7 @@ from archivist.doctypes.ledger import (
     PaymentMemo,
     grid_to_bbox,
 )
+from archivist.doctypes.template import TemplateType
 from archivist.schema import BBox, ledger_header_id, ledger_line_id, memo_field_id
 
 PAGE = "scan-0042"  # page ids are opaque: nothing may depend on their shape
@@ -54,9 +55,12 @@ def _required_everywhere(schema: dict) -> bool:
 # --- registry ----------------------------------------------------------------------------------
 
 
-def test_registry_holds_the_ledger_family_with_one_line_descriptions():
-    assert set(REGISTRY) == {"ledger_card", "payment_memo"}
+def test_registry_holds_the_ledger_family_and_approved_templates_with_one_line_descriptions():
+    built_in = {"ledger_card", "payment_memo"}
+    assert built_in <= set(REGISTRY)
     for name, doc_type in REGISTRY.items():
+        if name not in built_in:  # a type from templates/, registered only once approved
+            assert isinstance(doc_type, TemplateType) and doc_type.template.provenance.approved
         assert doc_type.name == name
         assert doc_type.description and "\n" not in doc_type.description
 
