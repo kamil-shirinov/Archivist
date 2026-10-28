@@ -1,6 +1,7 @@
 # Drafted by muse-spark-1.3-contributor from 1939-08_p043, 1939-10_p024, 1939-12_p025 on 2026-10-28 (P21b).
-# A draft: validated, never registered. python -m archivist.templates.test checks its
-# identities; only a person, with python -m archivist.templates.approve, approves it.
+# Approved by Kamil Shirinov on 2026-10-28, identity by identity, on the evidence in
+# receipts_and_expenditures_under_railroad.evidence.json (sha256 b4177b0b109b66a843a31820ceaf9c34331739d47c4a9d904ea973adaa56a778).
+# Registered, but no run enables it until a run config names it ([doc_types] enabled).
 identity:
   family: receipts_and_expenditures_under_railroad
   title: Receipts and Expenditures Under Railroad Retirement and Railroad Unemployment Insurance Acts
@@ -53,7 +54,7 @@ identities:
       - to_retirement
       - to_unemployment
 provenance:
-  status: draft
+  status: approved
   drafted_by:
     kind: model
     id: muse-spark-1.3-contributor
@@ -62,7 +63,12 @@ provenance:
   - 1939-08_p043
   - 1939-10_p024
   - 1939-12_p025
+  approved_by: Kamil Shirinov
+  approved_on: '2026-10-28'
   evidence:
   - drafted by muse-spark-1.3-contributor from 1939-08_p043, 1939-10_p024, 1939-12_p025 (drafter role,
     P21b)
+  - 'templates/receipts_and_expenditures_under_railroad.evidence.json: the arithmetic test of 2026-10-28
+    on 1939-08_p043, 1939-10_p024, 1939-12_p025'
+  evidence_sha256: b4177b0b109b66a843a31820ceaf9c34331739d47c4a9d904ea973adaa56a778
   dropped: []
