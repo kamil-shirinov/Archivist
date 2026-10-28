@@ -40,7 +40,8 @@ skip it; a value not read leaves an identity that needs it unchecked. A lone das
 blank cell means is the column's blank_means: "unknown" (the default) leaves an identity that
 needs it unchecked, as for a figure not printed; "zero" counts it as 0, for a column where a blank
 is nothing (only a figure's column may say so). A blank counted as 0 is not a printed value, so it
-adds nothing to the rounding tolerance.
+adds nothing to the rounding tolerance; an identity whose values are all such blanks reads 0 = 0,
+which proves nothing, so it is never evaluated (empty()).
 
 A page's issue is its id up to the last "_" ("1939-09_p057" is issue "1939-09"). An identity that
 needs another table is unresolvable (a note, as the ledger's are) when its page has no issue, or
@@ -84,6 +85,7 @@ NUMERIC = frozenset({"money", "count", "percent"})
 DASHES = frozenset({"-", "–", "—", "−"})  # nil, as statistical tables print it
 CITATIONS = "S0+grid"  # every template's box strategy, by the rule: templates/citations_dev_v3.md
 _FIGURE = re.compile(r"(\d{1,3}(?:,\d{3})+|\d+)?(?:\.(\d+))?")
+SPACED = re.compile(r"(?<=\d), +(?=\d{3}(?!\d))")  # "29, 139": a space after a thousands comma
 _DETAIL = re.compile(
     r"^identity (\S+) on (row \S+|column \S+|position \d+ in column \S+|the table): "
 )
@@ -574,7 +576,9 @@ def load_templates(directory: Path, reserved: Collection[str] = ()) -> list[Temp
 
 def number(text: str, kind: str) -> Decimal | None:
     """A figure as a statistical table prints it: "1,234.5", "-12", "(12)", ".4", "-" for nil;
-    a percentage may end in "%", and a count has no decimal point."""
+    a percentage may end in "%", and a count has no decimal point. A space after a thousands
+    comma, between digits, is read through ("29, 139" is 29139), as old type often sets it; the
+    ledger family's figures are read by its own rules, not these."""
     t = text.strip()
     if kind == "percent":
         t = t.removesuffix("%").strip()
@@ -585,6 +589,7 @@ def number(text: str, kind: str) -> Decimal | None:
         negative, t = True, t[1:-1].strip()
     elif t[:1] in DASHES:
         negative, t = True, t[1:].strip()
+    t = SPACED.sub(",", t)
     match = _FIGURE.fullmatch(t)
     if match is None or not t or (kind == "count" and match.group(2) is not None):
         return None
@@ -819,8 +824,10 @@ class TemplateType:
         self, instance: Instance, texts: Mapping[str, str | None]
     ) -> tuple[Decimal, Decimal, Decimal] | None:
         """(left, right, tolerance) from the read values; None if any value is unread, blank
-        where a blank is unknown, or not a figure. The tolerance is half a unit per printed
-        value."""
+        where a blank is unknown, or not a figure, or if every value is a blank counted as 0. The
+        tolerance is half a unit per printed value."""
+        if self.empty(instance, texts):
+            return None
         values, tolerance = [], Decimal(0)
         for field_id, _, step, kind in instance.fields:
             value = figure(texts.get(field_id), kind, field_id in instance.zero)
@@ -835,6 +842,16 @@ class TemplateType:
             -sum(signed[instance.left :], Decimal(0)),
         )
         return left, right, tolerance
+
+    def empty(self, instance: Instance, texts: Mapping[str, str | None]) -> bool:
+        """Every value of the instance is a blank counted as 0: it would read 0 = 0, which holds
+        whatever the table says."""
+
+        def blank(field_id: str) -> bool:
+            text = texts.get(field_id)
+            return text is not None and not text.strip()
+
+        return all(f in instance.zero and blank(f) for f, *_ in instance.fields)
 
     def printed(self, instance: Instance, texts: Mapping[str, str | None]) -> int:
         """How many of the instance's values are printed, not blank."""

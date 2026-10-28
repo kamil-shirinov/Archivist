@@ -186,6 +186,14 @@ def _flags(types, pages):
         ("1,200", "count", Decimal(1200)),
         ("1.5", "count", None),
         ("1,23", "money", None),
+        ("29, 139", "money", Decimal(29139)),  # a space after a thousands comma, between digits
+        ("1, 234,567.5", "money", Decimal("1234567.5")),
+        ("(29,  139)", "money", Decimal(-29139)),
+        ("29, 139", "count", Decimal(29139)),
+        ("29, 13", "money", None),  # not a thousands comma
+        ("29, 1390", "money", None),
+        ("29 ,139", "money", None),
+        ("29,139, 5", "money", None),
         ("12a", "money", None),
         ("", "money", None),
         (".", "money", None),
@@ -195,10 +203,18 @@ def test_figures_are_read_as_a_statistical_table_prints_them(text, kind, value):
     assert number(text, kind) == value
 
 
+def test_a_spaced_thousands_comma_is_read_through_by_templates_only(types):
+    assert types["receipts"].money("29, 139") == Decimal(29139)
+    for name in ("ledger_card", "payment_memo"):  # their figures are read by their own rules
+        assert REGISTRY[name].money("29, 139.00") is None
+        assert REGISTRY[name].money("29,139.00") == Decimal("29139.00")
+
+
 def test_readings_compare_as_figures_dates_or_text(types):
     receipts = types["receipts"]
     july, note = _id("total", "july"), _id("customs", "note")
     assert receipts.canonical(july, "1,234.50") == receipts.canonical(july, "1234.5") == "1234.5"
+    assert receipts.canonical(july, "29, 139") == receipts.canonical(july, "29,139") == "29139"
     assert receipts.canonical(july, "-") == receipts.canonical(july, "0.0") == "0"
     assert receipts.canonical(note, " see  Note ") == "SEE NOTE"
     assert receipts.money_fields == frozenset({"july", "august", "both", "change"})

@@ -61,15 +61,15 @@
       "cells": 960,
       "read_first": 960,
       "read_twice": 290,
-      "agree": 131,
+      "agree": 147,
       "no_second_read": {}
     }
   ],
   "outcomes": {
     "rejected": 0,
     "sometimes fails": 0,
-    "holds": 2,
-    "untested": 1
+    "holds": 3,
+    "untested": 0
   },
   "identities": [
     {
@@ -79,12 +79,12 @@
       "over": null,
       "equation": "total_net_earnings = net_earnings + recoveries",
       "applies": 29,
-      "evaluated": 2,
-      "held": 2,
+      "evaluated": 3,
+      "held": 3,
       "failed": 0,
       "hold_rate": 1.0,
       "not_evaluated": {
-        "the two reads of a cell disagree": 27
+        "the two reads of a cell disagree": 26
       },
       "outcome": "holds",
       "failures": []
@@ -96,14 +96,14 @@
       "over": null,
       "equation": "losses_total = losses_loans + losses_bonds + losses_trust + losses_other + losses_foreign",
       "applies": 29,
-      "evaluated": 0,
-      "held": 0,
+      "evaluated": 1,
+      "held": 1,
       "failed": 0,
-      "hold_rate": null,
+      "hold_rate": 1.0,
       "not_evaluated": {
-        "the two reads of a cell disagree": 29
+        "the two reads of a cell disagree": 28
       },
-      "outcome": "untested",
+      "outcome": "holds",
       "failures": []
     },
     {
@@ -113,13 +113,12 @@
       "over": null,
       "equation": "net_addition = total_net_earnings − losses_total",
       "applies": 29,
-      "evaluated": 2,
-      "held": 2,
+      "evaluated": 6,
+      "held": 6,
       "failed": 0,
       "hold_rate": 1.0,
       "not_evaluated": {
-        "the two reads of a cell disagree": 25,
-        "a cell is blank or not a figure": 2
+        "the two reads of a cell disagree": 23
       },
       "outcome": "holds",
       "failures": []

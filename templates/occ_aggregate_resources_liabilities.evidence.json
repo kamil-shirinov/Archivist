@@ -38,10 +38,10 @@
       "needed": 186,
       "cells": 217,
       "read_first": 217,
-      "read_twice": 183,
-      "agree": 94,
+      "read_twice": 124,
+      "agree": 62,
       "no_second_read": {
-        "illegible to the re-read": 3
+        "illegible to the re-read": 62
       }
     },
     {
@@ -64,7 +64,7 @@
       "cells": 217,
       "read_first": 217,
       "read_twice": 181,
-      "agree": 11,
+      "agree": 12,
       "no_second_read": {
         "illegible to the re-read": 5
       }
@@ -97,8 +97,8 @@
   "outcomes": {
     "rejected": 0,
     "sometimes fails": 0,
-    "holds": 1,
-    "untested": 0
+    "holds": 0,
+    "untested": 1
   },
   "identities": [
     {
@@ -115,15 +115,16 @@
       ],
       "equation": "total = loans + overdrafts + us_bonds_circulation + misc_securities + us_bonds_deposits + other_bonds_deposits + us_bonds_hand + premiums + bonds_securities + stocks + banking_house + other_real_estate + due_national + due_state + due_fed + due_approved + due_banks + checks_same + exchange_clearing + outside_checks + checks_cash + bills_other + fractional + fed_notes + specie + legal_tender + redemption_fund + due_treasurer + clearing_cert + gold_fund",
       "applies": 18,
-      "evaluated": 2,
-      "held": 2,
+      "evaluated": 0,
+      "held": 0,
       "failed": 0,
-      "hold_rate": 1.0,
+      "hold_rate": null,
       "not_evaluated": {
-        "the two reads of a cell disagree": 9,
-        "a cell was not read twice": 7
+        "the two reads of a cell disagree": 8,
+        "a cell was not read twice": 8,
+        "all blank": 2
       },
-      "outcome": "holds",
+      "outcome": "untested",
       "failures": []
     }
   ]

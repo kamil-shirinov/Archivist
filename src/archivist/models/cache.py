@@ -10,6 +10,13 @@ flushed to disk, and only then renamed onto its name, so an entry is either abse
 even across a power cut. A write that fails removes its temporary file. A process killed
 mid-write can leave a stray temporary file, never a partial entry: only <key>.json is ever read,
 and the call is asked again next time.
+
+One answer per request (single-flight by key): identical requests made at once in one process,
+through any Cache over the same directory, share one call. The first asks the backend and stores
+the answer; the others wait for it and are answered from the stored entry, cached=True, exactly as
+a replay would be. Without this, two threads re-reading identical crops could each get their own
+answer while the cache kept only the last written, and a replay would not reproduce the run. If
+the first call fails, the next waiter asks in its place.
 """
 
 from __future__ import annotations
@@ -18,6 +25,7 @@ import dataclasses
 import hashlib
 import json
 import os
+import threading
 from collections.abc import Callable, Mapping
 from pathlib import Path
 
@@ -36,6 +44,13 @@ from archivist.models.base import (
 from archivist.schema import BBox
 
 CACHE_DIR = Path("cache")
+_FLIGHTS: dict[Path, threading.Lock] = {}  # an entry's path -> the lock its callers queue on
+_FLIGHTS_LOCK = threading.Lock()
+
+
+def _flight(path: Path) -> threading.Lock:
+    with _FLIGHTS_LOCK:
+        return _FLIGHTS.setdefault(path.resolve(), threading.Lock())
 
 
 def _canonical(value: object) -> object:
@@ -105,11 +120,12 @@ class Cache:
     ) -> Resp:
         key = cache_key(self.name, self.model_id, request, self.settings)
         path = self.cache_dir / key[:2] / f"{key}.json"
-        if path.exists():
-            return dataclasses.replace(load(json.loads(path.read_text())), cached=True)
-        response = call(request)
-        _write_atomically(path, json.dumps(dataclasses.asdict(response), default=_encode))
-        return response
+        with _flight(path):  # a caller asking the same thing waits here, then reads the entry
+            if path.exists():
+                return dataclasses.replace(load(json.loads(path.read_text())), cached=True)
+            response = call(request)
+            _write_atomically(path, json.dumps(dataclasses.asdict(response), default=_encode))
+            return response
 
 
 def _write_atomically(path: Path, text: str) -> None:

@@ -24,8 +24,9 @@ Then every identity is evaluated wherever it applies (TemplateType.instances, ro
 first read has them), using only cells whose two reads agree as the draft compares them. An
 instance whose cells all agree and are figures holds or fails within the rounding tolerance;
 any other is not evaluated, with the reason (the reads disagree; a cell was not read twice; a
-cell is blank where a blank is unknown, or not a figure). For each identity the evidence says
-how often it held, and:
+cell is blank where a blank is unknown, or not a figure; all blank, every cell a blank counted as
+zero, which would read 0 = 0 and prove nothing). For each identity the evidence says how often it
+held, and:
 
 - "rejected": it was evaluated and never held. It is dropped at approval without being asked.
 - "sometimes fails": it held and failed. Kept for the person to judge, with every failing
@@ -35,6 +36,13 @@ how often it held, and:
 
 Writes <dir>/<family>.evidence.json, with the draft's sha256 so the approval can tell the evidence
 is the draft's. An approved template is never retested in place.
+
+    python -m archivist.templates.test --family <name> --replay
+
+re-runs a draft's committed test from the cache alone (both spend caps zero, so a miss aborts), on
+the pages, strategy and date its evidence records, into results/scratch/templates/, and fails
+unless the replayed evidence file is byte for byte the committed one. The cache answers identical
+requests made at once with one call (models/cache.py), so a test's re-reads replay exactly.
 """
 
 from __future__ import annotations
@@ -42,6 +50,7 @@ from __future__ import annotations
 import argparse
 import io
 import json
+import os
 from collections import Counter, defaultdict
 from collections.abc import Mapping, Sequence
 from concurrent.futures import ThreadPoolExecutor
@@ -63,6 +72,7 @@ from archivist.doctypes.template import (
     written,
 )
 from archivist.models import BudgetExceeded, describe_config, load_roles
+from archivist.models.budget import BACKEND_CAPS
 from archivist.pipeline import extract, reread
 from archivist.pipeline.extract import (
     CITATION_STRATEGIES,
@@ -75,10 +85,12 @@ from archivist.templates.draft import CONFIG
 from archivist.templates.pages import Page, resolve
 
 OUTPUT_PER_CELL = 40  # tokens: a cell's key, value and box, with room to spare
-DISAGREE, ONCE, BLANK = (
+REPLAY_DIR = Path("results/scratch/templates")
+DISAGREE, ONCE, BLANK, EMPTY = (
     "the two reads of a cell disagree",
     "a cell was not read twice",
     "a cell is blank or not a figure",
+    "all blank",  # every cell a blank counted as zero: 0 = 0 proves nothing
 )
 OUTCOMES = ("rejected", "sometimes fails", "holds", "untested")
 
@@ -176,7 +188,7 @@ def judge(
         return ONCE, None
     result = doc_type.evaluate(instance, both)
     if result is None:
-        return BLANK, None
+        return (EMPTY if doc_type.empty(instance, both) else BLANK), None
     left, right, tolerance = result
     if abs(left - right) <= tolerance:
         return "held", None
@@ -251,7 +263,7 @@ def tally(
                 "held": held,
                 "failed": failed,
                 "hold_rate": round(held / (held + failed), 4) if held + failed else None,
-                "not_evaluated": {r: c[r] for r in (DISAGREE, ONCE, BLANK) if c[r]},
+                "not_evaluated": {r: c[r] for r in (DISAGREE, ONCE, BLANK, EMPTY) if c[r]},
                 "outcome": outcome(held, failed),
                 "failures": failures[identity.id],
             }
@@ -338,7 +350,7 @@ def read_pages(
     return extracted, seconds, records
 
 
-def run_test(
+def evidence_text(
     family: str,
     roles: Mapping[str, object],
     *,
@@ -348,8 +360,8 @@ def run_test(
     workers: int = 8,
     citations: str | None = None,
     today: date | None = None,
-) -> Path:
-    """Test the draft and write its evidence file; returns the evidence file's path."""
+) -> str:
+    """Test the draft; returns its evidence file's text, without writing it."""
     path = directory / f"{family}.yaml"
     template = read_template(path)
     if template.provenance.approved:
@@ -377,9 +389,45 @@ def run_test(
         "outcomes": {o: sum(i["outcome"] == o for i in identities) for o in OUTCOMES},
         "identities": identities,
     }
-    out = evidence_path(path)
-    out.write_text(json.dumps(evidence, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    return json.dumps(evidence, indent=2, ensure_ascii=False) + "\n"
+
+
+def run_test(family: str, roles: Mapping[str, object], **options) -> Path:
+    """Test the draft and write its evidence file; returns the evidence file's path."""
+    directory = options.get("directory", TEMPLATES_DIR)
+    text = evidence_text(family, roles, **options)
+    out = evidence_path(directory / f"{family}.yaml")
+    out.write_text(text, encoding="utf-8")
     return out
+
+
+def replay_test(
+    family: str,
+    roles: Mapping[str, object],
+    *,
+    directory: Path = TEMPLATES_DIR,
+    out_dir: Path = REPLAY_DIR,
+    workers: int = 8,
+) -> tuple[Path, bool]:
+    """Re-run a draft's committed test from the cache alone (roles whose caps are zero, so a miss
+    raises BudgetExceeded), on its pages, strategy and date; writes the replayed evidence file to
+    out_dir and returns its path and whether it is byte for byte the committed one."""
+    committed = evidence_path(directory / f"{family}.yaml")
+    recorded = json.loads(committed.read_text(encoding="utf-8"))
+    text = evidence_text(
+        family,
+        roles,
+        directory=directory,
+        refs=[page["ref"] for page in recorded["pages"]],
+        config=recorded["config"],
+        workers=workers,
+        citations=recorded["citations"],
+        today=date.fromisoformat(recorded["tested_on"]),
+    )
+    out_dir.mkdir(parents=True, exist_ok=True)
+    out = out_dir / committed.name
+    out.write_text(text, encoding="utf-8")
+    return out, out.read_bytes() == committed.read_bytes()
 
 
 def main(argv: list[str] | None = None) -> None:
@@ -394,7 +442,22 @@ def main(argv: list[str] | None = None) -> None:
         choices=(*CITATION_STRATEGIES, ocr.STRATEGY, grid.STRATEGY),
         help="default: the template types' own",
     )
+    parser.add_argument(
+        "--replay",
+        action="store_true",
+        help=f"re-run the committed test from the cache alone into {REPLAY_DIR}/ and compare",
+    )
     args = parser.parse_args(argv)
+    if args.replay:
+        for variable, _ in BACKEND_CAPS.values():
+            os.environ[variable] = "0"  # any cache miss raises BudgetExceeded: nothing is spent
+        roles = load_roles(args.config)
+        out, same = replay_test(args.family, roles, directory=args.dir, workers=args.workers)
+        committed = evidence_path(args.dir / f"{args.family}.yaml")
+        if not same:
+            raise SystemExit(f"replay FAILED: {out} differs from {committed}")
+        print(f"replay passed: {out} is byte for byte {committed}")
+        return
     roles = load_roles(args.config)
     guard = roles[extract.ROLE].inner.guard
     before = guard.spent()

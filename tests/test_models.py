@@ -1,8 +1,12 @@
 """Model layer: cache, spend cap and registry, on mock backends only."""
 
 import dataclasses
+import itertools
 import json
+import threading
+import time
 import tomllib
+from concurrent.futures import ThreadPoolExecutor
 from datetime import UTC, datetime
 from pathlib import Path
 
@@ -61,6 +65,46 @@ def test_repeated_request_hits_the_cache_without_calling_the_backend(tmp_path):
     assert dataclasses.replace(second, cached=False) == first
     key = cache_key(backend.name, backend.model_id, REQUEST)
     assert (tmp_path / "cache" / key[:2] / f"{key}.json").is_file()
+
+
+def test_identical_requests_made_at_once_share_one_call_and_one_answer(tmp_path):
+    asked, release = threading.Event(), threading.Event()
+    answers = (f"answer {n}" for n in itertools.count())  # a model that never answers alike twice
+
+    def respond(request):
+        asked.set()
+        assert release.wait(5)
+        return next(answers)
+
+    backend = MockLLM(respond)
+    caches = [Cache(backend, tmp_path / "cache") for _ in range(2)]  # two roles, one directory
+    with ThreadPoolExecutor(max_workers=8) as pool:
+        futures = [pool.submit(caches[n % 2].complete, REQUEST) for n in range(8)]
+        assert asked.wait(5)
+        time.sleep(0.1)  # the other seven are waiting on the first call by now
+        release.set()
+        responses = [future.result() for future in futures]
+
+    assert len(backend.calls) == 1
+    assert {r.text for r in responses} == {"answer 0"}
+    assert sorted(r.cached for r in responses) == [False] + [True] * 7
+    replayed = Cache(MockLLM(lambda request: "never asked"), tmp_path / "cache").complete(REQUEST)
+    assert replayed.text == "answer 0"
+
+
+def test_when_the_one_call_fails_the_next_caller_asks_in_its_place(tmp_path):
+    outcomes = iter([TimeoutError("the backend timed out"), "4,375.50"])
+
+    def respond(request):
+        outcome = next(outcomes)
+        if isinstance(outcome, Exception):
+            raise outcome
+        return outcome
+
+    cache = Cache(MockLLM(respond), tmp_path / "cache")
+    with pytest.raises(TimeoutError):
+        cache.complete(REQUEST)
+    assert cache.complete(REQUEST).text == "4,375.50"  # the failed call left no lock held
 
 
 def test_an_entry_is_written_whole_or_not_at_all(tmp_path, monkeypatch):

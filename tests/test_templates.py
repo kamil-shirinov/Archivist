@@ -6,6 +6,7 @@ under tmp_path.
 """
 
 import copy
+import hashlib
 import io
 import json
 from datetime import date
@@ -32,6 +33,7 @@ from archivist.doctypes.template import (
     written,
 )
 from archivist.models.budget import BudgetGuard
+from archivist.models.cache import Cache
 from archivist.models.mock import MockLLM, MockSegmenter
 from archivist.pipeline import checks, extract, verify
 from archivist.schema import BBox, Citation, ExtractedValue, PageExtraction
@@ -45,6 +47,7 @@ from archivist.templates import (
     grid_probe,
     ocr,
     pages,
+    recount,
     rediscover,
 )
 from archivist.templates import test as arithmetic
@@ -407,6 +410,33 @@ def test_an_identity_with_no_cell_read_twice_is_untested(drafted):
     assert by_id["total_is_sum"]["not_evaluated"] == {arithmetic.BLANK: 3}
 
 
+def test_an_instance_of_blanks_counted_as_zero_proves_nothing(drafted):
+    template = read_template(drafted)
+    columns = [
+        c.model_copy(update={"blank_means": "zero"}) if c.kind == "money" else c
+        for c in template.layout.columns
+    ]
+    layout = template.layout.model_copy(update={"columns": columns})
+    doc_type = TemplateType(template.model_copy(update={"layout": layout}))
+    blank = {row: (t[0], "", "", "") if row == "other" else t for row, t in PRINTED.items()}
+    page = _extraction(doc_type, "p-a", blank)
+    by_id = {i["id"]: i for i in arithmetic.tally(doc_type, [page], {"p-a": _second(page)})}
+
+    both = by_id["both_months"]  # "other" reads 0 = 0 + 0: not evaluated, never held
+    assert (both["applies"], both["held"], both["failed"]) == (4, 1, 2)
+    assert both["not_evaluated"] == {arithmetic.EMPTY: 1}
+    never = by_id["both_months_2"]  # its only pass would have been 0 = 0
+    assert (never["held"], never["failed"], never["outcome"]) == (0, 3, "rejected")
+    totals = by_id["total_is_sum"]  # a blank among printed figures is still counted as 0
+    assert (totals["evaluated"], totals["not_evaluated"]) == (3, {})
+
+    texts = {v.field_id: v.value for v in page.values}
+    other = cell_id(FAMILY, "p-a", "other", "both")
+    empty = [i for i in doc_type.instances([page]) if i.where == "row other"]
+    assert all(doc_type.empty(i, texts) and doc_type.evaluate(i, texts) is None for i in empty)
+    assert other not in doc_type.balanced([page])  # 0 = 0 lends a cell no support
+
+
 SIZE = 1000
 
 
@@ -415,10 +445,9 @@ def _box(row: int, column: int) -> list[int]:
     return [x0, y0, x0 + 150, y0 + 50]
 
 
-@pytest.fixture
-def tested(drafted, tmp_path, monkeypatch) -> Path:
-    """The draft's arithmetic test on its two pages, with a mock extractor and re-reader."""
-    monkeypatch.setattr(template_module, "CITATIONS", "S0")  # boxes as drawn: a crop shows its cell
+def _readers(drafted: Path) -> tuple:
+    """The draft's two pages drawn, each cell its own shade, and a mock extractor and re-reader
+    that answer for them as the page prints."""
     doc_type = _type(drafted)
     shade, printed_of, page_of = {}, {}, {}
     for ref in REFS:
@@ -456,10 +485,49 @@ def tested(drafted, tmp_path, monkeypatch) -> Path:
         field_id = by_shade[crop.getpixel((crop.width // 2, crop.height // 2))[0]]
         return json.dumps({"value": printed_of[field_id]})
 
+    return extractor, rereader
+
+
+@pytest.fixture
+def tested(drafted, tmp_path, monkeypatch) -> Path:
+    """The draft's arithmetic test on its two pages, with a mock extractor and re-reader."""
+    monkeypatch.setattr(template_module, "CITATIONS", "S0")  # boxes as drawn: a crop shows its cell
+    extractor, rereader = _readers(drafted)
     roles = {"extractor": MockLLM(extractor), "rereader": MockLLM(rereader)}
     return arithmetic.run_test(
         FAMILY, roles, directory=drafted.parent, config={"x": {}}, workers=2, today=TODAY
     )
+
+
+def test_a_test_replayed_from_the_cache_reproduces_its_evidence_byte_for_byte(
+    drafted, tmp_path, monkeypatch
+):
+    monkeypatch.setattr(template_module, "CITATIONS", "S0")
+
+    def offline(request):
+        raise AssertionError("a replay never reaches the backend")
+
+    cache = tmp_path / "cache"
+    recorded = drafted.with_name(f"{FAMILY}.evidence.json")
+    roles = {
+        role: Cache(MockLLM(respond), cache)
+        for role, respond in zip(("extractor", "rereader"), _readers(drafted), strict=True)
+    }
+    arithmetic.run_test(
+        FAMILY, roles, directory=drafted.parent, config={"x": {}}, workers=4, today=TODAY
+    )
+    committed = recorded.read_bytes()
+    roles = {role: Cache(MockLLM(offline), cache) for role in ("extractor", "rereader")}
+    out, same = arithmetic.replay_test(
+        FAMILY, roles, directory=drafted.parent, out_dir=tmp_path / "replay", workers=4
+    )
+    assert same and out == tmp_path / "replay" / recorded.name
+    assert out.read_bytes() == committed == recorded.read_bytes()  # the committed file untouched
+
+    recorded.write_bytes(committed.replace(b'"tested_on"', b'"tested_on" ', 1))  # one byte more
+    assert arithmetic.replay_test(
+        FAMILY, roles, directory=drafted.parent, out_dir=tmp_path / "replay", workers=4
+    ) == (out, False)
 
 
 def test_the_test_reads_the_pages_through_the_pipeline_and_writes_its_evidence(drafted, tested):
@@ -558,6 +626,44 @@ def test_a_blank_that_is_zero_is_drafted_and_approved_like_the_rest(zero_july, t
     approved = read_template(path)
     assert approved.layout.column("july").blank_means == "unknown"
     assert any("column 'july' is unknown, not zero" in n for n in approved.provenance.evidence)
+
+
+@pytest.fixture
+def kept(monkeypatch):
+    """The drafter proposes only identities the test keeps, so an approval may drop nothing."""
+    monkeypatch.setitem(ANSWER, "identities", ANSWER["identities"][:2])
+
+
+@pytest.mark.parametrize(("answers", "undone"), [(("a", "a"), True), (("a", "d", "no"), False)])
+def test_the_recount_finds_the_draft_an_approval_was_made_from(
+    kept, tested, drafted, answers, undone
+):
+    sha256 = json.loads(tested.read_text())["template_sha256"]
+    ask, _ = _answers(*answers, "a reviewer", "y")
+    path = approve.approve(FAMILY, directory=drafted.parent, ask=ask, say=lambda _: None)
+    assert file_sha256(path) != sha256
+    draft_text = recount.undo_approval(read_template(path))
+    if undone:  # byte for byte the draft the evidence was made on
+        assert hashlib.sha256(draft_text).hexdigest() == sha256
+    else:  # a dropped identity's definition is gone from the approved file
+        assert draft_text is None
+
+
+def test_the_recount_explains_a_count_only_by_the_instances_now_all_blank():
+    def item(held, **not_evaluated):
+        return {"applies": 6, "held": held, "failed": 1, "not_evaluated": not_evaluated}
+
+    disagree, once = arithmetic.DISAGREE, arithmetic.ONCE
+    old = item(4, **{disagree: 1})
+    assert recount._explained(old, item(2, **{disagree: 1, arithmetic.EMPTY: 2}), {}) == "yes"
+    assert recount._explained(old, item(3, **{disagree: 1, arithmetic.EMPTY: 2}), {}) == "**no**"
+    moved = item(2, **{once: 1, arithmetic.EMPTY: 2})  # the rest moved on a page not replayed
+    assert recount._explained(old, moved, {}) == "**no**"
+    blank_page = {"p-a": {"reread": 6, "shared": 6, "blank": True}}
+    assert recount._explained(old, moved, blank_page).startswith("yes; the rest moved on p-a")
+    assert recount._explained(old, moved, {"p-a": blank_page["p-a"] | {"blank": False}}) == (
+        "**no**"
+    )
 
 
 def test_nothing_is_written_unless_the_person_confirms(tested, drafted):
