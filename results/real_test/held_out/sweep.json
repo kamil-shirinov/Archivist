@@ -1,0 +1,1584 @@
+{
+  "side": "held_out",
+  "pages": 4569,
+  "classified": 4569,
+  "by_family": {
+    "short_term_foreign_liabilities_as": {
+      "classified": 54,
+      "confirmed": 44,
+      "type_unconfirmed": 10
+    },
+    "security_transactions_as_reported_by": {
+      "classified": 95,
+      "confirmed": 42,
+      "type_unconfirmed": 53
+    },
+    "outstanding_forward_exchange_contracts": {
+      "classified": 27,
+      "confirmed": 19,
+      "type_unconfirmed": 8
+    },
+    "receipts_and_expenditures_under_railroad": {
+      "classified": 63,
+      "confirmed": 21,
+      "type_unconfirmed": 42
+    },
+    "total_claims_by_country": {
+      "classified": 52,
+      "confirmed": 10,
+      "type_unconfirmed": 42
+    }
+  },
+  "set_aside_by_classifier": 4278,
+  "type_unconfirmed": 155,
+  "by_era": {
+    "1939-1942": {
+      "outstanding_forward_exchange_contracts": 27,
+      "receipts_and_expenditures_under_railroad": 63,
+      "security_transactions_as_reported_by": 87,
+      "short_term_foreign_liabilities_as": 54,
+      "unsupported": 3015
+    },
+    "1982-1994": {
+      "security_transactions_as_reported_by": 8,
+      "total_claims_by_country": 52,
+      "unsupported": 1263
+    }
+  },
+  "assigned": {
+    "1940-01_p026": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": "receipts_and_expenditures_under_railroad",
+      "set_aside_by": null
+    },
+    "1940-01_p051": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1940-01_p053": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1940-01_p054": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1940-01_p058": {
+      "classified_as": "outstanding_forward_exchange_contracts",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1940-02_p028": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": "receipts_and_expenditures_under_railroad",
+      "set_aside_by": null
+    },
+    "1940-02_p055": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1940-02_p057": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1940-02_p058": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1940-02_p062": {
+      "classified_as": "outstanding_forward_exchange_contracts",
+      "counts_for": "outstanding_forward_exchange_contracts",
+      "set_aside_by": null
+    },
+    "1940-03_p025": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": "receipts_and_expenditures_under_railroad",
+      "set_aside_by": null
+    },
+    "1940-03_p053": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1940-03_p055": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1940-03_p056": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1940-03_p060": {
+      "classified_as": "outstanding_forward_exchange_contracts",
+      "counts_for": "outstanding_forward_exchange_contracts",
+      "set_aside_by": null
+    },
+    "1940-04_p029": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": "receipts_and_expenditures_under_railroad",
+      "set_aside_by": null
+    },
+    "1940-04_p055": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1940-04_p056": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1940-04_p059": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1940-04_p060": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1940-04_p061": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1940-04_p065": {
+      "classified_as": "outstanding_forward_exchange_contracts",
+      "counts_for": "outstanding_forward_exchange_contracts",
+      "set_aside_by": null
+    },
+    "1940-05_p031": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": "receipts_and_expenditures_under_railroad",
+      "set_aside_by": null
+    },
+    "1940-05_p057": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1940-05_p058": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1940-05_p061": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1940-05_p062": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1940-05_p063": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1940-05_p064": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1940-05_p067": {
+      "classified_as": "outstanding_forward_exchange_contracts",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1940-06_p035": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": "receipts_and_expenditures_under_railroad",
+      "set_aside_by": null
+    },
+    "1940-06_p059": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1940-06_p060": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1940-06_p063": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1940-06_p064": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1940-06_p065": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1940-06_p069": {
+      "classified_as": "outstanding_forward_exchange_contracts",
+      "counts_for": "outstanding_forward_exchange_contracts",
+      "set_aside_by": null
+    },
+    "1940-07_p031": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": "receipts_and_expenditures_under_railroad",
+      "set_aside_by": null
+    },
+    "1940-07_p057": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1940-07_p058": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1940-07_p061": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1940-07_p062": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1940-07_p063": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1940-07_p067": {
+      "classified_as": "outstanding_forward_exchange_contracts",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1940-08_p024": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": "receipts_and_expenditures_under_railroad",
+      "set_aside_by": null
+    },
+    "1940-08_p053": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1940-08_p054": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1940-08_p057": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1940-08_p058": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1940-08_p059": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1940-08_p063": {
+      "classified_as": "outstanding_forward_exchange_contracts",
+      "counts_for": "outstanding_forward_exchange_contracts",
+      "set_aside_by": null
+    },
+    "1940-09_p024": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": "receipts_and_expenditures_under_railroad",
+      "set_aside_by": null
+    },
+    "1940-09_p053": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1940-09_p054": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1940-09_p057": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1940-09_p058": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1940-09_p059": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1940-09_p063": {
+      "classified_as": "outstanding_forward_exchange_contracts",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1940-10_p023": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": "receipts_and_expenditures_under_railroad",
+      "set_aside_by": null
+    },
+    "1940-10_p059": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1940-10_p060": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1940-10_p061": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1940-10_p062": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1940-10_p063": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1940-10_p067": {
+      "classified_as": "outstanding_forward_exchange_contracts",
+      "counts_for": "outstanding_forward_exchange_contracts",
+      "set_aside_by": null
+    },
+    "1940-11_p022": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1940-11_p046": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1940-11_p047": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1940-11_p050": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1940-11_p051": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1940-11_p054": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1940-11_p055": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1940-11_p056": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1940-11_p060": {
+      "classified_as": "outstanding_forward_exchange_contracts",
+      "counts_for": "outstanding_forward_exchange_contracts",
+      "set_aside_by": null
+    },
+    "1940-12_p024": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": "receipts_and_expenditures_under_railroad",
+      "set_aside_by": null
+    },
+    "1940-12_p049": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1940-12_p050": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1940-12_p053": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1940-12_p054": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1940-12_p055": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1940-12_p059": {
+      "classified_as": "outstanding_forward_exchange_contracts",
+      "counts_for": "outstanding_forward_exchange_contracts",
+      "set_aside_by": null
+    },
+    "1941-01_p022": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": "receipts_and_expenditures_under_railroad",
+      "set_aside_by": null
+    },
+    "1941-01_p048": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1941-01_p049": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1941-01_p052": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1941-01_p053": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1941-01_p054": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1941-01_p058": {
+      "classified_as": "outstanding_forward_exchange_contracts",
+      "counts_for": "outstanding_forward_exchange_contracts",
+      "set_aside_by": null
+    },
+    "1941-02_p024": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": "receipts_and_expenditures_under_railroad",
+      "set_aside_by": null
+    },
+    "1941-02_p048": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1941-02_p049": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1941-02_p052": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1941-02_p053": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1941-02_p054": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1941-02_p058": {
+      "classified_as": "outstanding_forward_exchange_contracts",
+      "counts_for": "outstanding_forward_exchange_contracts",
+      "set_aside_by": null
+    },
+    "1941-03_p017": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": "receipts_and_expenditures_under_railroad",
+      "set_aside_by": null
+    },
+    "1941-03_p052": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1941-03_p053": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1941-03_p056": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1941-03_p057": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1941-03_p060": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1941-03_p061": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1941-03_p062": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1941-03_p066": {
+      "classified_as": "outstanding_forward_exchange_contracts",
+      "counts_for": "outstanding_forward_exchange_contracts",
+      "set_aside_by": null
+    },
+    "1941-03_p069": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1941-03_p070": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1941-04_p019": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": "receipts_and_expenditures_under_railroad",
+      "set_aside_by": null
+    },
+    "1941-04_p058": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1941-04_p059": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1941-04_p062": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1941-04_p063": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1941-04_p064": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1941-04_p068": {
+      "classified_as": "outstanding_forward_exchange_contracts",
+      "counts_for": "outstanding_forward_exchange_contracts",
+      "set_aside_by": null
+    },
+    "1941-05_p021": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": "receipts_and_expenditures_under_railroad",
+      "set_aside_by": null
+    },
+    "1941-05_p058": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1941-05_p059": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1941-05_p062": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1941-05_p063": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1941-05_p064": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1941-05_p068": {
+      "classified_as": "outstanding_forward_exchange_contracts",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1941-06_p023": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": "receipts_and_expenditures_under_railroad",
+      "set_aside_by": null
+    },
+    "1941-06_p064": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1941-06_p065": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1941-06_p068": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1941-06_p069": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1941-06_p070": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1941-06_p074": {
+      "classified_as": "outstanding_forward_exchange_contracts",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1941-07_p017": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1941-07_p070": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1941-07_p071": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1941-07_p074": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1941-07_p075": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1941-07_p076": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1941-07_p080": {
+      "classified_as": "outstanding_forward_exchange_contracts",
+      "counts_for": "outstanding_forward_exchange_contracts",
+      "set_aside_by": null
+    },
+    "1941-08_p017": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1941-08_p064": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1941-08_p065": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1941-08_p068": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1941-08_p069": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1941-08_p070": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1941-08_p071": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1941-08_p074": {
+      "classified_as": "outstanding_forward_exchange_contracts",
+      "counts_for": "outstanding_forward_exchange_contracts",
+      "set_aside_by": null
+    },
+    "1941-09_p017": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": "receipts_and_expenditures_under_railroad",
+      "set_aside_by": null
+    },
+    "1941-09_p065": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1941-09_p066": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1941-09_p069": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1941-09_p070": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1941-09_p071": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1941-09_p075": {
+      "classified_as": "outstanding_forward_exchange_contracts",
+      "counts_for": "outstanding_forward_exchange_contracts",
+      "set_aside_by": null
+    },
+    "1941-10_p020": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1941-10_p023": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": "receipts_and_expenditures_under_railroad",
+      "set_aside_by": null
+    },
+    "1941-10_p082": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1941-10_p083": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1941-10_p086": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1941-10_p087": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1941-10_p088": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1941-10_p092": {
+      "classified_as": "outstanding_forward_exchange_contracts",
+      "counts_for": "outstanding_forward_exchange_contracts",
+      "set_aside_by": null
+    },
+    "1941-11_p020": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1941-11_p023": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": "receipts_and_expenditures_under_railroad",
+      "set_aside_by": null
+    },
+    "1941-11_p076": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1941-11_p077": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1941-11_p080": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1941-11_p081": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1941-11_p082": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1941-11_p083": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1941-11_p086": {
+      "classified_as": "outstanding_forward_exchange_contracts",
+      "counts_for": "outstanding_forward_exchange_contracts",
+      "set_aside_by": null
+    },
+    "1941-11_p087": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1941-12_p020": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1941-12_p023": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1941-12_p072": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1941-12_p073": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1941-12_p076": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1941-12_p077": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1941-12_p078": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1941-12_p082": {
+      "classified_as": "outstanding_forward_exchange_contracts",
+      "counts_for": "outstanding_forward_exchange_contracts",
+      "set_aside_by": null
+    },
+    "1942-01_p022": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-01_p025": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": "receipts_and_expenditures_under_railroad",
+      "set_aside_by": null
+    },
+    "1942-01_p082": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1942-01_p083": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-01_p086": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-01_p087": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1942-01_p088": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-01_p092": {
+      "classified_as": "outstanding_forward_exchange_contracts",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-02_p022": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-02_p025": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-02_p026": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-02_p082": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1942-02_p083": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1942-02_p086": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1942-02_p087": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1942-02_p088": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-02_p092": {
+      "classified_as": "outstanding_forward_exchange_contracts",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-03_p022": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-03_p025": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-03_p026": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-03_p076": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-03_p077": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-03_p080": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1942-03_p081": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1942-03_p084": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1942-03_p085": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1942-03_p086": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-03_p090": {
+      "classified_as": "outstanding_forward_exchange_contracts",
+      "counts_for": "outstanding_forward_exchange_contracts",
+      "set_aside_by": null
+    },
+    "1942-04_p019": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-04_p022": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-04_p023": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-05_p019": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-05_p022": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-05_p023": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-06_p014": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-06_p020": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-06_p023": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-06_p024": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-07_p021": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-07_p024": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-07_p025": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-08_p021": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-08_p024": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-08_p025": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-09_p021": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-09_p024": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-09_p025": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-10_p021": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-10_p024": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-10_p025": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-11_p021": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-11_p024": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-11_p025": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-12_p021": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-12_p024": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1942-12_p025": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1985-06_p058": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": "total_claims_by_country",
+      "set_aside_by": null
+    },
+    "1985-06_p059": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1985-06_p065": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1985-06_p066": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1985-06_p070": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1986-06_p060": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": "total_claims_by_country",
+      "set_aside_by": null
+    },
+    "1986-06_p061": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1986-06_p067": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1986-06_p068": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1986-06_p072": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1987-06_p072": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": "total_claims_by_country",
+      "set_aside_by": null
+    },
+    "1987-06_p073": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1987-06_p079": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1987-06_p080": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1987-06_p084": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1987-06_p085": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1988-06_p103": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": "total_claims_by_country",
+      "set_aside_by": null
+    },
+    "1988-06_p104": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1988-06_p110": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1988-06_p111": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1988-06_p115": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1989-06_p099": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": "total_claims_by_country",
+      "set_aside_by": null
+    },
+    "1989-06_p100": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1989-06_p106": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1989-06_p107": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1989-06_p111": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1990-06_p103": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": "total_claims_by_country",
+      "set_aside_by": null
+    },
+    "1990-06_p104": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1990-06_p110": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1990-06_p111": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1990-06_p115": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1991-06_p107": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": "total_claims_by_country",
+      "set_aside_by": null
+    },
+    "1991-06_p108": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1991-06_p114": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1991-06_p115": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1991-06_p119": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1992-06_p121": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1992-06_p122": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1992-06_p123": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1992-06_p124": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1992-06_p133": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1992-06_p134": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1992-06_p135": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1992-06_p136": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1993-06_p097": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": "total_claims_by_country",
+      "set_aside_by": null
+    },
+    "1993-06_p098": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": "total_claims_by_country",
+      "set_aside_by": null
+    },
+    "1993-06_p099": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1993-06_p100": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1993-06_p108": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1993-06_p109": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1993-06_p110": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1993-06_p111": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1994-06_p099": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": "total_claims_by_country",
+      "set_aside_by": null
+    },
+    "1994-06_p100": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1994-06_p101": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1994-06_p102": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1994-06_p111": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1994-06_p112": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1994-06_p113": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1994-06_p114": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    }
+  },
+  "failed": [],
+  "config": {
+    "extractor": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "rereader": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "segmenter": {
+      "backend": "meta",
+      "model_id": "sam-3.1"
+    }
+  },
+  "doc_types": {
+    "short_term_foreign_liabilities_as": "156a9632a74690d8c7235a707f3ac5061b769940fc64f93f90b31f020ed97b21",
+    "security_transactions_as_reported_by": "7659ec40ef400a8c2dfca34ee32c2e3a71a74ef09fc14026fb95d1ed9e0597ee",
+    "outstanding_forward_exchange_contracts": "3bc2e5769f6d9a2973f9147d09a55f01dd48ca50a5f9f5e0b4cc693994e199c4",
+    "receipts_and_expenditures_under_railroad": "8b6d3cf7ed6f28921fa518017a5fb64be950ef60f3e51c8c3604d596d3193d86",
+    "total_claims_by_country": "aba101beccc5c9e12ae5eb0bcd9429160e94833148773fa446e8b681489e185e"
+  },
+  "caps": {
+    "meta": 44.489364,
+    "baseten": 21.952737,
+    "allowance": 40.0,
+    "recorded_at": "2026-10-29T08:49:35+00:00"
+  },
+  "started_at": "2026-10-29T08:49:35+00:00",
+  "issues": [
+    "1940-01",
+    "1940-02",
+    "1940-03",
+    "1940-04",
+    "1940-05",
+    "1940-06",
+    "1940-07",
+    "1940-08",
+    "1940-09",
+    "1940-10",
+    "1940-11",
+    "1940-12",
+    "1941-01",
+    "1941-02",
+    "1941-03",
+    "1941-04",
+    "1941-05",
+    "1941-06",
+    "1941-07",
+    "1941-08",
+    "1941-09",
+    "1941-10",
+    "1941-11",
+    "1941-12",
+    "1942-01",
+    "1942-02",
+    "1942-03",
+    "1942-04",
+    "1942-05",
+    "1942-06",
+    "1942-07",
+    "1942-08",
+    "1942-09",
+    "1942-10",
+    "1942-11",
+    "1942-12",
+    "1985-06",
+    "1986-06",
+    "1987-06",
+    "1988-06",
+    "1989-06",
+    "1990-06",
+    "1991-06",
+    "1992-06",
+    "1993-06",
+    "1994-06"
+  ],
+  "cost_usd": 2.0829015,
+  "finished_at": "2026-10-29T10:08:30+00:00"
+}

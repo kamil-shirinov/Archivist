@@ -1,0 +1,354 @@
+{
+  "made": "2026-10-29",
+  "how": "procedure/column_layout.py on the OCR layer, read by a person; see layout_check.md",
+  "pages": [
+    {
+      "page": "1940-01_p051",
+      "family": "short_term_foreign_liabilities_as",
+      "ocr": "cannot be checked: 17 words in the OCR layer",
+      "check_by_eye": true
+    },
+    {
+      "page": "1940-02_p055",
+      "family": "short_term_foreign_liabilities_as",
+      "ocr": "cannot be checked: 26 words in the OCR layer",
+      "check_by_eye": true
+    },
+    {
+      "page": "1940-04_p055",
+      "family": "short_term_foreign_liabilities_as",
+      "ocr": "changed",
+      "check_by_eye": false
+    },
+    {
+      "page": "1940-10_p059",
+      "family": "short_term_foreign_liabilities_as",
+      "ocr": "changed",
+      "check_by_eye": false
+    },
+    {
+      "page": "1940-11_p051",
+      "family": "short_term_foreign_liabilities_as",
+      "ocr": "changed",
+      "check_by_eye": false
+    },
+    {
+      "page": "1941-03_p056",
+      "family": "short_term_foreign_liabilities_as",
+      "ocr": "changed",
+      "check_by_eye": false
+    },
+    {
+      "page": "1941-04_p058",
+      "family": "short_term_foreign_liabilities_as",
+      "ocr": "changed",
+      "check_by_eye": false
+    },
+    {
+      "page": "1941-04_p059",
+      "family": "short_term_foreign_liabilities_as",
+      "ocr": "changed",
+      "check_by_eye": false
+    },
+    {
+      "page": "1941-06_p065",
+      "family": "short_term_foreign_liabilities_as",
+      "ocr": "changed",
+      "check_by_eye": false
+    },
+    {
+      "page": "1941-07_p071",
+      "family": "short_term_foreign_liabilities_as",
+      "ocr": "changed",
+      "check_by_eye": false
+    },
+    {
+      "page": "1941-08_p065",
+      "family": "short_term_foreign_liabilities_as",
+      "ocr": "changed",
+      "check_by_eye": false
+    },
+    {
+      "page": "1941-09_p065",
+      "family": "short_term_foreign_liabilities_as",
+      "ocr": "changed",
+      "check_by_eye": false
+    },
+    {
+      "page": "1940-01_p053",
+      "family": "security_transactions_as_reported_by",
+      "ocr": "same as the template",
+      "check_by_eye": false
+    },
+    {
+      "page": "1940-02_p057",
+      "family": "security_transactions_as_reported_by",
+      "ocr": "same as far as the OCR layer reaches",
+      "check_by_eye": false
+    },
+    {
+      "page": "1940-04_p059",
+      "family": "security_transactions_as_reported_by",
+      "ocr": "changed",
+      "check_by_eye": false
+    },
+    {
+      "page": "1940-06_p063",
+      "family": "security_transactions_as_reported_by",
+      "ocr": "changed",
+      "check_by_eye": false
+    },
+    {
+      "page": "1940-10_p062",
+      "family": "security_transactions_as_reported_by",
+      "ocr": "cannot be checked: 26 words in the OCR layer",
+      "check_by_eye": true
+    },
+    {
+      "page": "1941-03_p069",
+      "family": "security_transactions_as_reported_by",
+      "ocr": "a different table",
+      "check_by_eye": false
+    },
+    {
+      "page": "1941-04_p063",
+      "family": "security_transactions_as_reported_by",
+      "ocr": "changed",
+      "check_by_eye": false
+    },
+    {
+      "page": "1941-05_p062",
+      "family": "security_transactions_as_reported_by",
+      "ocr": "changed",
+      "check_by_eye": false
+    },
+    {
+      "page": "1941-07_p074",
+      "family": "security_transactions_as_reported_by",
+      "ocr": "changed",
+      "check_by_eye": false
+    },
+    {
+      "page": "1941-08_p069",
+      "family": "security_transactions_as_reported_by",
+      "ocr": "changed",
+      "check_by_eye": false
+    },
+    {
+      "page": "1941-10_p086",
+      "family": "security_transactions_as_reported_by",
+      "ocr": "changed",
+      "check_by_eye": false
+    },
+    {
+      "page": "1941-10_p087",
+      "family": "security_transactions_as_reported_by",
+      "ocr": "changed",
+      "check_by_eye": false
+    },
+    {
+      "page": "1940-02_p062",
+      "family": "outstanding_forward_exchange_contracts",
+      "ocr": "same as the template",
+      "check_by_eye": false
+    },
+    {
+      "page": "1940-03_p060",
+      "family": "outstanding_forward_exchange_contracts",
+      "ocr": "same as the template",
+      "check_by_eye": false
+    },
+    {
+      "page": "1940-06_p069",
+      "family": "outstanding_forward_exchange_contracts",
+      "ocr": "changed",
+      "check_by_eye": false
+    },
+    {
+      "page": "1940-11_p060",
+      "family": "outstanding_forward_exchange_contracts",
+      "ocr": "changed",
+      "check_by_eye": false
+    },
+    {
+      "page": "1940-12_p059",
+      "family": "outstanding_forward_exchange_contracts",
+      "ocr": "changed",
+      "check_by_eye": false
+    },
+    {
+      "page": "1941-01_p058",
+      "family": "outstanding_forward_exchange_contracts",
+      "ocr": "changed",
+      "check_by_eye": false
+    },
+    {
+      "page": "1941-02_p058",
+      "family": "outstanding_forward_exchange_contracts",
+      "ocr": "cannot be checked: 18 words in the OCR layer; changed (L17), checked by eye by the project owner",
+      "check_by_eye": false
+    },
+    {
+      "page": "1941-04_p068",
+      "family": "outstanding_forward_exchange_contracts",
+      "ocr": "changed",
+      "check_by_eye": false
+    },
+    {
+      "page": "1941-08_p074",
+      "family": "outstanding_forward_exchange_contracts",
+      "ocr": "changed",
+      "check_by_eye": false
+    },
+    {
+      "page": "1941-09_p075",
+      "family": "outstanding_forward_exchange_contracts",
+      "ocr": "changed",
+      "check_by_eye": false
+    },
+    {
+      "page": "1941-10_p092",
+      "family": "outstanding_forward_exchange_contracts",
+      "ocr": "changed",
+      "check_by_eye": false
+    },
+    {
+      "page": "1942-03_p090",
+      "family": "outstanding_forward_exchange_contracts",
+      "ocr": "changed",
+      "check_by_eye": false
+    },
+    {
+      "page": "1940-01_p026",
+      "family": "receipts_and_expenditures_under_railroad",
+      "ocr": "cannot be checked: no heading like 'Fiscal year or month'",
+      "check_by_eye": true
+    },
+    {
+      "page": "1940-02_p028",
+      "family": "receipts_and_expenditures_under_railroad",
+      "ocr": "same as the template",
+      "check_by_eye": false
+    },
+    {
+      "page": "1940-07_p031",
+      "family": "receipts_and_expenditures_under_railroad",
+      "ocr": "changed",
+      "check_by_eye": false
+    },
+    {
+      "page": "1940-08_p024",
+      "family": "receipts_and_expenditures_under_railroad",
+      "ocr": "changed",
+      "check_by_eye": false
+    },
+    {
+      "page": "1940-10_p023",
+      "family": "receipts_and_expenditures_under_railroad",
+      "ocr": "changed",
+      "check_by_eye": false
+    },
+    {
+      "page": "1940-12_p024",
+      "family": "receipts_and_expenditures_under_railroad",
+      "ocr": "cannot be checked: no heading like 'Fiscal year or month'",
+      "check_by_eye": true
+    },
+    {
+      "page": "1941-01_p022",
+      "family": "receipts_and_expenditures_under_railroad",
+      "ocr": "cannot be checked: 24 words in the OCR layer",
+      "check_by_eye": true
+    },
+    {
+      "page": "1941-02_p024",
+      "family": "receipts_and_expenditures_under_railroad",
+      "ocr": "changed",
+      "check_by_eye": false
+    },
+    {
+      "page": "1941-04_p019",
+      "family": "receipts_and_expenditures_under_railroad",
+      "ocr": "changed",
+      "check_by_eye": false
+    },
+    {
+      "page": "1941-05_p021",
+      "family": "receipts_and_expenditures_under_railroad",
+      "ocr": "changed",
+      "check_by_eye": false
+    },
+    {
+      "page": "1941-06_p023",
+      "family": "receipts_and_expenditures_under_railroad",
+      "ocr": "changed",
+      "check_by_eye": false
+    },
+    {
+      "page": "1942-01_p025",
+      "family": "receipts_and_expenditures_under_railroad",
+      "ocr": "changed",
+      "check_by_eye": false
+    },
+    {
+      "page": "1985-06_p058",
+      "family": "total_claims_by_country",
+      "ocr": "cannot be checked: 19 words in the OCR layer",
+      "check_by_eye": true
+    },
+    {
+      "page": "1986-06_p060",
+      "family": "total_claims_by_country",
+      "ocr": "cannot be checked: no heading like 'Country'",
+      "check_by_eye": true
+    },
+    {
+      "page": "1987-06_p072",
+      "family": "total_claims_by_country",
+      "ocr": "cannot be checked: 20 words in the OCR layer",
+      "check_by_eye": true
+    },
+    {
+      "page": "1988-06_p103",
+      "family": "total_claims_by_country",
+      "ocr": "cannot be checked: no heading like 'Country'",
+      "check_by_eye": true
+    },
+    {
+      "page": "1989-06_p099",
+      "family": "total_claims_by_country",
+      "ocr": "cannot be checked: 12 words in the OCR layer",
+      "check_by_eye": true
+    },
+    {
+      "page": "1990-06_p103",
+      "family": "total_claims_by_country",
+      "ocr": "cannot be checked: no column headings beyond fragments in the OCR layer",
+      "check_by_eye": true
+    },
+    {
+      "page": "1991-06_p107",
+      "family": "total_claims_by_country",
+      "ocr": "cannot be checked: no column headings beyond fragments in the OCR layer",
+      "check_by_eye": true
+    },
+    {
+      "page": "1993-06_p097",
+      "family": "total_claims_by_country",
+      "ocr": "cannot be checked: 2 heading groups in the OCR layer",
+      "check_by_eye": true
+    },
+    {
+      "page": "1993-06_p098",
+      "family": "total_claims_by_country",
+      "ocr": "cannot be checked: no column headings beyond fragments in the OCR layer",
+      "check_by_eye": true
+    },
+    {
+      "page": "1994-06_p099",
+      "family": "total_claims_by_country",
+      "ocr": "cannot be checked: no column headings beyond fragments in the OCR layer",
+      "check_by_eye": true
+    }
+  ]
+}
