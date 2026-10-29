@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Layout check</title>
+<style>
+  :root {
+    --bg: #f4f2ee; --panel: #ffffff; --ink: #1f1d1a; --muted: #6b665e; --line: #ddd8cf;
+    --accent: #1d5fd1; --same: #2f7d4a; --changed: #a3520f; --other: #b3261e;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink);
+    font: 14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  body { display: grid; grid-template-columns: 1fr 380px; grid-template-rows: auto 1fr; height: 100vh; }
+  header { grid-column: 1 / -1; display: flex; align-items: center; gap: 16px; padding: 10px 16px;
+    border-bottom: 1px solid var(--line); background: var(--panel); }
+  header h1 { font-size: 15px; margin: 0; font-weight: 600; }
+  .progress { flex: 1; height: 6px; background: #ebe7e0; border-radius: 3px; overflow: hidden; }
+  .progress > div { height: 100%; background: var(--same); width: 0; transition: width .2s; }
+  .count { color: var(--muted); font-variant-numeric: tabular-nums; }
+  #view { overflow: auto; background: #e9e6e0; }
+  #view img { display: block; margin: 0 auto; }
+  aside { border-left: 1px solid var(--line); background: var(--panel); padding: 16px; overflow: auto;
+    display: flex; flex-direction: column; gap: 14px; }
+  aside > * { flex-shrink: 0; }
+  .label { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 2px; }
+  .field { font-size: 15px; }
+  .field.big { font-size: 17px; font-weight: 600; }
+  .family { font: 12px ui-monospace, Menlo, monospace; color: var(--muted); }
+  ol.columns { margin: 4px 0 0; padding-left: 26px; font-size: 13px; columns: 2; column-gap: 18px; }
+  ol.columns li { break-inside: avoid; padding: 1px 0; }
+  ol.columns li.text { color: var(--muted); font-style: italic; }
+  .ocr { font-size: 12px; color: var(--muted); border-left: 3px solid var(--line); padding-left: 8px; }
+  textarea { width: 100%; min-height: 64px; font: 13px/1.4 inherit; padding: 8px 10px; border: 1px solid var(--line);
+    border-radius: 6px; resize: vertical; }
+  textarea:focus { outline: 2px solid var(--accent); border-color: transparent; }
+  .buttons { display: grid; grid-template-columns: 1fr; gap: 8px; }
+  button { font: inherit; padding: 9px 10px; border-radius: 6px; border: 1px solid var(--line); background: #faf9f7;
+    cursor: pointer; text-align: left; }
+  button:hover { border-color: #bdb6aa; }
+  button.same { background: var(--same); color: #fff; border-color: var(--same); }
+  button.changed { background: var(--changed); color: #fff; border-color: var(--changed); }
+  button.other { background: var(--other); color: #fff; border-color: var(--other); }
+  kbd { font: 11px ui-monospace, Menlo, monospace; padding: 1px 5px; border: 1px solid rgba(255,255,255,.5);
+    border-bottom-width: 2px; border-radius: 4px; float: right; }
+  .own { font-size: 13px; padding: 8px 10px; border-radius: 6px; background: #f3f1ed; color: var(--muted); }
+  .own.same { background: #eef6f0; color: var(--same); }
+  .own.changed { background: #fbf1e8; color: var(--changed); }
+  .own.different_table { background: #fbeeed; color: var(--other); }
+  .nav { display: flex; gap: 8px; }
+  .nav button { flex: 1; text-align: center; }
+  .keys { font-size: 12px; color: var(--muted); display: grid; grid-template-columns: auto 1fr; gap: 3px 10px; }
+  .keys kbd { border-color: var(--line); background: #fff; float: none; }
+  .error { color: var(--other); font-size: 13px; min-height: 1em; }
+  .blocked { grid-column: 1 / -1; padding: 40px; font-size: 16px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Layout check</h1>
+  <div class="progress"><div id="bar"></div></div>
+  <span class="count" id="count"></span>
+</header>
+<div id="view"><img id="page" alt="The printed page"></div>
+<aside>
+  <div>
+    <div class="label">Page</div>
+    <div class="field big" id="where"></div>
+    <div class="family" id="family"></div>
+  </div>
+  <div>
+    <div class="label">The template's table</div>
+    <div class="field" id="title"></div>
+  </div>
+  <div>
+    <div class="label">Its columns, in order</div>
+    <ol class="columns" id="columns"></ol>
+  </div>
+  <div class="ocr" id="ocr"></div>
+  <div class="ocr">Same layout: the page prints these columns, in this order. Changed layout: the same table, with columns added, missing or in another order. Different table: the page prints another table. Say what differs in the note.</div>
+  <div>
+    <div class="label">Note</div>
+    <textarea id="note" placeholder="e.g. Grand total first; Belgium and Sweden added; no Far East"></textarea>
+  </div>
+  <div class="buttons">
+    <button class="same" id="same">Same layout <kbd>⌥S</kbd></button>
+    <button class="changed" id="changed">Changed layout <kbd>⌥C</kbd></button>
+    <button class="other" id="different">Different table <kbd>⌥D</kbd></button>
+  </div>
+  <div class="error" id="error"></div>
+  <div class="own" id="own">Not checked yet</div>
+  <div class="nav">
+    <button id="prev">◀ Previous</button>
+    <button id="next">Next ▶</button>
+  </div>
+  <div class="keys">
+    <kbd>⌥S</kbd><span>same layout, go on</span>
+    <kbd>⌥C</kbd><span>changed layout, go on</span>
+    <kbd>⌥D</kbd><span>different table, go on</span>
+    <kbd>⌥← ⌥→</kbd><span>previous, next</span>
+    <kbd>⌥N</kbd><span>next unchecked</span>
+    <kbd>⌥= ⌥−</kbd><span>zoom in, out</span>
+  </div>
+</aside>
+<script>
+const $ = (id) => document.getElementById(id);
+const NAMES = { same: "same layout", changed: "changed layout", different_table: "different table" };
+let pages = [], answers = {}, at = 0, zoom = 0;
+
+async function load() {
+  const data = await (await fetch("/api/layouts")).json();
+  if (data.error) { document.body.innerHTML = `<div class="blocked">${data.error}</div>`; return; }
+  pages = data.pages; answers = data.answers;
+  const first = pages.findIndex((p) => !(p.page in answers));
+  go(first === -1 ? 0 : first);
+}
+
+function progress() {
+  const done = pages.filter((p) => p.page in answers).length;
+  $("bar").style.width = `${(100 * done) / pages.length}%`;
+  $("count").textContent = `${done} of ${pages.length} checked`;
+}
+
+function go(index) {
+  at = Math.max(0, Math.min(pages.length - 1, index));
+  const page = pages[at];
+  $("where").textContent = `${page.page} · ${page.n} of ${pages.length}`;
+  $("family").textContent = page.family;
+  $("title").textContent = page.title;
+  $("columns").replaceChildren(...page.columns.map((name, i) => {
+    const item = document.createElement("li");
+    item.textContent = name;
+    if (i === 0) item.className = "text";  // the label column
+    return item;
+  }));
+  $("ocr").textContent = `OCR layer: ${page.ocr}`;
+  const own = answers[page.page];
+  $("own").className = `own ${own ? own.layout : ""}`;
+  $("own").textContent = own ? `Your check: ${NAMES[own.layout]}${own.note ? ` — ${own.note}` : ""}` : "Not checked yet";
+  $("note").value = own ? own.note : "";
+  $("error").textContent = "";
+  progress();
+  const image = $("page");
+  image.onload = () => { fit(); $("view").scrollTo(0, 0); };
+  image.src = `/image/${encodeURIComponent(page.page)}`;
+}
+
+function fit() {
+  const image = $("page");
+  if (!image.naturalWidth) return;
+  const scale = zoom || Math.min(1, ($("view").clientWidth - 24) / image.naturalWidth);
+  image.style.width = `${image.naturalWidth * scale}px`;
+}
+
+function setZoom(factor) {
+  const image = $("page");
+  zoom = Math.max(0.2, Math.min(3, (zoom || image.clientWidth / image.naturalWidth) * factor));
+  fit();
+}
+
+async function mark(layout) {
+  const page = pages[at];
+  const data = await (await fetch("/api/layout", {
+    method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ page: page.page, layout, note: $("note").value }),
+  })).json();
+  if (data.error) { $("error").textContent = data.error; return; }
+  answers[page.page] = { layout: data.layout, note: data.note };
+  const next = pages.findIndex((p, i) => i > at && !(p.page in answers));
+  if (next !== -1) go(next); else if (at < pages.length - 1) go(at + 1); else go(at);
+}
+
+$("same").onclick = () => mark("same");
+$("changed").onclick = () => mark("changed");
+$("different").onclick = () => mark("different_table");
+$("prev").onclick = () => go(at - 1);
+$("next").onclick = () => go(at + 1);
+document.addEventListener("keydown", (event) => {
+  if (!event.altKey) return;
+  const actions = {
+    KeyS: () => mark("same"), KeyC: () => mark("changed"), KeyD: () => mark("different_table"),
+    ArrowLeft: () => go(at - 1), ArrowRight: () => go(at + 1),
+    KeyN: () => { const i = pages.findIndex((p) => !(p.page in answers)); if (i !== -1) go(i); },
+    Equal: () => setZoom(1.25), Minus: () => setZoom(0.8),
+  };
+  const action = actions[event.code];
+  if (action) { event.preventDefault(); action(); }
+});
+window.addEventListener("resize", fit);
+load();
+</script>
+</body>
+</html>

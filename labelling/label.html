@@ -29,6 +29,7 @@
     box-shadow: 0 0 0 3px rgba(255,255,255,.7); }
   aside { border-left: 1px solid var(--line); background: var(--panel); padding: 16px; overflow: auto;
     display: flex; flex-direction: column; gap: 14px; }
+  aside > * { flex-shrink: 0; }
   .label { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 2px; }
   .field { font-size: 15px; }
   .field.big { font-size: 17px; font-weight: 600; }
@@ -45,6 +46,11 @@
   button { font: inherit; padding: 8px 10px; border-radius: 6px; border: 1px solid var(--line); background: #faf9f7;
     cursor: pointer; text-align: left; }
   button:hover { border-color: #bdb6aa; }
+  .find { font-size: 16px; line-height: 1.4; }
+  .find b { font-weight: 600; }
+  .find i { color: var(--muted); }
+  .hint { font-size: 12px; color: var(--muted); margin-top: 3px; }
+  button.wide { grid-column: 1 / -1; }
   button.primary { grid-column: 1 / -1; background: var(--accent); color: #fff; border-color: var(--accent); }
   kbd { font: 11px ui-monospace, Menlo, monospace; padding: 1px 5px; border: 1px solid var(--line); border-bottom-width: 2px;
     border-radius: 4px; background: #fff; color: var(--muted); float: right; }
@@ -74,16 +80,13 @@
     <div class="title" id="title"></div>
   </div>
   <div>
-    <div class="label">Row</div>
-    <div class="field" id="row"></div>
-  </div>
-  <div>
-    <div class="label">Column</div>
-    <div class="field" id="column"></div>
+    <div class="label">Find the cell</div>
+    <div class="field find" id="find"></div>
+    <div class="hint" id="hint"></div>
   </div>
   <div class="notice" id="nobox" hidden>No box for this cell: find it by its row and column.</div>
   <div id="lens" title="The box's surroundings, enlarged"></div>
-  <div class="note">The red box is only a locator. The cell is the one at the named row and column; where the box disagrees, the row and column win.</div>
+  <div class="note">Each cell is named by its row's printed label and the heading it sits under, as the first read returned them, and by its column heading. The row number is only a hint, and the red box only a locator: where either disagrees, the named row and column win.<br><br>Choose <b>Row not on the page</b> when that label can't be found under that heading. It counts as a wrong value for the single read, and for Archivist wherever it accepted the cell.<br><br>Choose <b>Column not on this page</b> when the page doesn't print that column heading. Results are given both ways for cells on pages whose layout differs from the template: with those cells left out, and with this choice counted as a wrong value.</div>
   <div>
     <div class="label">Printed value, typed as printed</div>
     <input type="text" id="value" autocomplete="off" spellcheck="false">
@@ -92,6 +95,8 @@
     <button class="primary" id="save">Save value <kbd>Enter</kbd></button>
     <button id="blank">Blank <kbd>⌥B</kbd></button>
     <button id="cant">Can't read <kbd>⌥X</kbd></button>
+    <button class="wide" id="norow">Row not on the page <kbd>⌥R</kbd></button>
+    <button class="wide" id="nocol">Column not on this page <kbd>⌥C</kbd></button>
   </div>
   <div class="error" id="error"></div>
   <div class="own none" id="own">Not labelled yet</div>
@@ -103,6 +108,8 @@
     <kbd>Enter</kbd><span>save the typed value, go on</span>
     <kbd>⌥B</kbd><span>blank</span>
     <kbd>⌥X</kbd><span>can't read</span>
+    <kbd>⌥R</kbd><span>row not on the page</span>
+    <kbd>⌥C</kbd><span>column not on this page</span>
     <kbd>⌥← ⌥→</kbd><span>previous, next</span>
     <kbd>⌥N</kbd><span>next unlabelled</span>
     <kbd>⌥= ⌥−</kbd><span>zoom in, out</span>
@@ -139,7 +146,21 @@ function describe(answer) {
   if (!answer) return null;
   if (answer.choice === "blank") return "blank";
   if (answer.choice === "cant_read") return "can't read";
+  if (answer.choice === "not_on_page") return "row not on the page";
+  if (answer.choice === "column_not_on_page") return "column not on this page";
   return answer.value;
+}
+
+function named(cell) {
+  // "Sept. 13, under Deposits for foreign account:, column France", built as text nodes
+  const bold = (text) => { const node = document.createElement("b"); node.textContent = text; return node; };
+  const label = cell.row_label
+    ? bold(cell.row_label)
+    : Object.assign(document.createElement("i"), { textContent: "no row label read" });
+  const parts = [label];
+  if (cell.row_heading) parts.push(", under ", bold(cell.row_heading.replace(/:\s*$/, "")));
+  parts.push(", column ", bold(cell.column));
+  return parts;
 }
 
 function go(index) {
@@ -147,8 +168,8 @@ function go(index) {
   const cell = cells[at];
   $("where").textContent = `Cell ${cell.n} of ${cells.length} · page ${cell.page}`;
   $("title").textContent = `${cell.title} (${cell.unit})`;
-  $("row").textContent = cell.row;
-  $("column").textContent = cell.column;
+  $("find").replaceChildren(...named(cell));
+  $("hint").textContent = `Hint: ${cell.row_hint}`;
   $("nobox").hidden = !!cell.box;
   const own = describe(answers[cell.cell]);
   $("own").textContent = own === null ? "Not labelled yet" : `Your label: ${own}`;
@@ -254,6 +275,8 @@ window.addEventListener("resize", () => place(false));
 $("save").onclick = () => save("value");
 $("blank").onclick = () => save("blank");
 $("cant").onclick = () => save("cant_read");
+$("norow").onclick = () => save("not_on_page");
+$("nocol").onclick = () => save("column_not_on_page");
 $("prev").onclick = () => go(at - 1);
 $("next").onclick = () => go(at + 1);
 $("value").addEventListener("keydown", (event) => {
@@ -262,7 +285,8 @@ $("value").addEventListener("keydown", (event) => {
 document.addEventListener("keydown", (event) => {
   if (!event.altKey) return;
   const actions = {
-    KeyB: () => save("blank"), KeyX: () => save("cant_read"),
+    KeyB: () => save("blank"), KeyX: () => save("cant_read"), KeyR: () => save("not_on_page"),
+    KeyC: () => save("column_not_on_page"),
     ArrowLeft: () => go(at - 1), ArrowRight: () => go(at + 1), KeyN: nextUnlabelled,
     Equal: () => setZoom(1.25), Minus: () => setZoom(0.8),
     KeyL: () => { bands = !bands; place(false); },

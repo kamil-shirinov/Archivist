@@ -2,8 +2,17 @@
 
 - The cells: every cell of a figure column (kind money) in every row the first read returned, on
   every deep-check page read without failure. The read's schema asks for every row, so a row it
-  did not find comes back with every cell abstained; such a row is not one it returned. A cell is
-  named by its id: family, page, row and column.
+  did not find comes back with every cell abstained: a row not returned. A row it returned with
+  no label and no figure is a row the read left empty. Neither is sampled; both are counted, rows
+  and figure cells, by page and by family, to show how much of each page the read covered
+  (Deviations). A cell's id is family, page, row and column.
+- How a person finds the cell (Deviations): by its row's printed label and the heading it sits
+  under, as the first read returned them, and by its column heading; the row's position is only
+  a hint. A read row's label is the first read's text in the table's label column, its leader
+  dots dropped; its heading is the nearest row above it whose label ends in a colon. A row of a
+  table read in sections takes its section's printed heading from the template, and a fixed row
+  its printed label and heading (the nearest such row above it ending in a colon) from the
+  template, which fixes it.
 - 300 cells by random.Random(4004).sample from the four 1939–1942 families' cells sorted by id,
   then, with a fresh random.Random(4004), 100 from total_claims_by_country's. A stratum with fewer
   gives all of them. A page counts in the stratum of the family it was classified as.
@@ -12,8 +21,9 @@
 - 50 pages for the classification check, random.Random(4004).sample from the pages that count
   (classified and confirmed by the title check, Deviations), sorted by page id.
 
-It records what the weights need (each family's pages, each stratum's cells) and no value, verdict
-or box source. It draws once: it refuses to run where a draw is already recorded.
+It records what the weights need (each family's pages, each stratum's cells) and the coverage
+counts; of the first read it keeps only the row labels, and no figure, verdict or box
+source. It draws once: it refuses to run where a draw is already recorded.
 
 uv run python -m labelling.draw --side held_out  # -> results/real_test/held_out/labels/draw.json
 """
@@ -23,6 +33,7 @@ from __future__ import annotations
 import argparse
 import json
 import random
+import re
 from collections import Counter, defaultdict
 from datetime import UTC, datetime
 from pathlib import Path
@@ -48,37 +59,105 @@ def parts(cell: str) -> tuple[str, str, str, str]:
     return head.removeprefix("T."), page, row, column
 
 
-def row_named(doc_type: TemplateType, row: str) -> str:
-    """The row as the labeller finds it: a fixed row's printed label, else its position."""
+LEADERS = re.compile(r"(\s*[.·…]){2,}\s*$")
+
+
+def printed(label: str | None) -> str:
+    """A row label as printed: leader dots and surrounding space dropped; "" if none was read."""
+    return LEADERS.sub("", label or "").strip()
+
+
+def heads(labels: list[str]) -> list[str]:
+    """Each row's heading: the nearest label above it ending in a colon; "" for a heading itself."""
+    found, current = [], ""
+    for label in labels:
+        if label.endswith(":"):
+            found.append("")
+            current = label
+        else:
+            found.append(current)
+    return found
+
+
+def names(doc_type: TemplateType, page: PageExtraction) -> dict[str, dict[str, str]]:
+    """How a person finds each row of a page: its label, its heading and a position as a hint."""
     rows = doc_type.layout.rows
+    if not isinstance(rows, ReadRows | Sections):
+        labels = [r.printed for r in rows]
+        return {
+            r.key: {"label": label, "heading": head, "hint": f"row {n} of the template"}
+            for n, (r, label, head) in enumerate(zip(rows, labels, heads(labels), strict=True), 1)
+        }
+    column = next(c.key for c in doc_type.layout.columns if c.kind == "text")
+    read = {parts(v.field_id)[2]: printed(v.value) for v in page.values if parts(v.field_id)[3] == column}
+    keys = doc_type.layout.row_keys
     if isinstance(rows, ReadRows):
-        return f"row {int(row)} from the top of the table"
-    if isinstance(rows, Sections):
-        key, number = row.rsplit("_", 1)
-        return f'row {int(number)} under the heading "{doc_type.layout.section(key).printed}"'
-    return next(label.printed for label in rows if label.key == row)
+        labels = [read.get(k, "") for k in keys]
+        return {
+            k: {"label": label, "heading": head, "hint": f"row {int(k)} from the top of the table"}
+            for k, label, head in zip(keys, labels, heads(labels), strict=True)
+        }
+    named = {}
+    for k in keys:
+        section, number = k.rsplit("_", 1)
+        heading = doc_type.layout.section(section).printed
+        named[k] = {"label": read.get(k, ""), "heading": heading, "hint": f"row {int(number)} under it"}
+    return named
+
+
+COUNTS = (
+    "rows",
+    "rows_not_returned",
+    "rows_left_empty",
+    "figure_cells",
+    "figure_cells_not_returned",
+    "figure_cells_left_empty",
+)
 
 
 def cells_of(
     pages: list[PageExtraction], doc_types: dict
-) -> tuple[dict[str, list[str]], dict[str, int]]:
-    """Each stratum's figure cells, sorted by id; and how many rows were not returned, by family."""
+) -> tuple[dict[str, list[str]], dict[str, dict[str, int]]]:
+    """Each stratum's figure cells, sorted by id; and, by page, how many rows and figure cells the
+    read did not return (every cell abstained) or left empty (no label and no figure), neither
+    of which is sampled."""
     stratum_of = {family: name for name, families in STRATA.items() for family in families}
     cells: dict[str, list[str]] = defaultdict(list)
-    dropped: Counter[str] = Counter()
+    coverage: dict[str, dict[str, int]] = {}
     for page in pages:
         doc_type = doc_types[page.doc_type]
+        label = next(c.key for c in doc_type.layout.columns if c.kind == "text")
         rows: dict[str, list] = defaultdict(list)
         for value in page.values:
             rows[parts(value.field_id)[2]].append(value)
-        for row, values in rows.items():
+        counts = dict.fromkeys(COUNTS, 0)
+        for values in rows.values():
+            figures = [v for v in values if parts(v.field_id)[3] in doc_type.money_fields]
+            counts["rows"] += 1
+            counts["figure_cells"] += len(figures)
             if all(v.abstained for v in values):
-                dropped[page.doc_type] += 1
+                counts["rows_not_returned"] += 1
+                counts["figure_cells_not_returned"] += len(figures)
                 continue
-            cells[stratum_of[page.doc_type]] += [
-                v.field_id for v in values if parts(v.field_id)[3] in doc_type.money_fields
-            ]
-    return {name: sorted(cells[name]) for name in STRATA}, dict(sorted(dropped.items()))
+            text = next(v.value for v in values if parts(v.field_id)[3] == label)
+            if not printed(text) and not any((v.value or "").strip() for v in figures):
+                counts["rows_left_empty"] += 1
+                counts["figure_cells_left_empty"] += len(figures)
+                continue
+            cells[stratum_of[page.doc_type]] += [v.field_id for v in figures]
+        coverage[page.page_id] = {"family": page.doc_type, **counts}
+    return {name: sorted(cells[name]) for name in STRATA}, dict(sorted(coverage.items()))
+
+
+def by_family(coverage: dict[str, dict]) -> dict[str, dict[str, int]]:
+    """The by-page counts summed by family, with the pages they come from."""
+    totals: dict[str, dict[str, int]] = {}
+    for counts in coverage.values():
+        total = totals.setdefault(counts["family"], {"pages": 0, **dict.fromkeys(COUNTS, 0)})
+        total["pages"] += 1
+        for key in COUNTS:
+            total[key] += counts[key]
+    return dict(sorted(totals.items()))
 
 
 def draw(out: Path) -> dict:
@@ -88,14 +167,15 @@ def draw(out: Path) -> dict:
             raise FileNotFoundError(f"no {name} in {out}: the labels are drawn after both runs")
     doc_types = real_test._types(real_test.CONFIG)
     pages = sorted(extract.load_predictions(out / "predictions.jsonl"), key=lambda p: p.page_id)
-    by_stratum, rows_not_returned = cells_of(pages, doc_types)
+    by_stratum, coverage = cells_of(pages, doc_types)
 
+    rows_named = {p.page_id: names(doc_types[p.doc_type], p) for p in pages}
     sample: list[dict] = []
     for name, cells in by_stratum.items():
         chosen = random.Random(real_test.SEED).sample(cells, min(SIZES[name], len(cells)))
         for cell in chosen:
             family, page, row, column = parts(cell)
-            doc_type = doc_types[family]
+            named = rows_named[page][row]
             sample.append(
                 {
                     "order": len(sample) + 1,
@@ -105,8 +185,10 @@ def draw(out: Path) -> dict:
                     "page": page,
                     "row": row,
                     "column": column,
-                    "row_named": row_named(doc_type, row),
-                    "column_named": doc_type.layout.column(column).printed,
+                    "row_label": named["label"],
+                    "row_heading": named["heading"],
+                    "row_hint": named["hint"],
+                    "column_heading": doc_types[family].layout.column(column).printed,
                 }
             )
     relabel = random.Random(real_test.SEED).sample(
@@ -138,7 +220,8 @@ def draw(out: Path) -> dict:
             }
             for name, cells in by_stratum.items()
         },
-        "rows_not_returned": rows_not_returned,
+        "coverage_by_family": by_family(coverage),
+        "coverage_by_page": coverage,
         "sample": sample,
         "relabel": relabel,
         "pages_checked": [{"page": p, "family": confirmed[p]} for p in checked],

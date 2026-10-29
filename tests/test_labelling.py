@@ -69,14 +69,44 @@ def test_cells_are_figure_cells_of_returned_rows_sorted_by_id(records: Path) -> 
     from archivist.pipeline import extract
 
     pages = extract.load_predictions(records / "predictions.jsonl")
-    cells, dropped = draw.cells_of(pages, TYPES)
+    cells, coverage = draw.cells_of(pages, TYPES)
     railroad_money = TYPES[RAILROAD].money_fields
     assert cells["1939_1942"] == sorted(cells["1939_1942"])
     assert {draw.parts(c)[3] for c in cells["1939_1942"]} == railroad_money
     assert len(cells["1939_1942"]) == 6 * len(TYPES[RAILROAD].layout.row_keys) * len(railroad_money)
     claims_rows = TYPES[CLAIMS].layout.row_keys
-    assert dropped == {CLAIMS: 45}
+    claims_money = len(TYPES[CLAIMS].money_fields)
+    assert coverage["1993-06_p097"] == {
+        "family": CLAIMS,
+        "rows": len(claims_rows),
+        "rows_not_returned": 45,
+        "rows_left_empty": 0,
+        "figure_cells": len(claims_rows) * claims_money,
+        "figure_cells_not_returned": 45 * claims_money,
+        "figure_cells_left_empty": 0,
+    }
     assert {draw.parts(c)[2] for c in cells["total_claims"]} == set(claims_rows[45:])
+
+
+def test_rows_the_read_left_empty_are_counted_not_sampled() -> None:
+    forward = "outstanding_forward_exchange_contracts"
+    money = TYPES[forward].money_fields
+    page = _labelled(forward, "1940-02_p062", {"total_purchase_01": "Sept. 6....", "total_purchase_02": "Sept. 13"})
+    for value in page.values:
+        _, _, row, column = draw.parts(value.field_id)
+        if column in money and row in ("total_purchase_02", "total_purchase_05", "total_sale_05"):
+            value.value = ""  # 02 keeps its label: a row of blanks, sampled
+        if column == "france" and row == "total_sale_05":
+            value.value = "5"  # a figure with no label: sampled
+    cells, coverage = draw.cells_of([page], TYPES)
+    rows = {draw.parts(c)[2] for c in cells["1939_1942"]}
+    assert {"total_purchase_01", "total_purchase_02", "total_sale_05"} <= rows
+    assert "total_purchase_05" not in rows
+    assert len(rows) == len(TYPES[forward].layout.row_keys) - 1  # unlabelled rows with figures stay
+    assert coverage["1940-02_p062"]["rows_left_empty"] == 1
+    assert coverage["1940-02_p062"]["figure_cells_left_empty"] == len(money)
+    family = draw.by_family(coverage)[forward]
+    assert family["pages"] == 1 and family["rows_left_empty"] == 1 and family["rows_not_returned"] == 0
 
 
 def test_the_draw_is_seeded_as_preregistered(records: Path) -> None:
@@ -97,16 +127,62 @@ def test_the_draw_is_seeded_as_preregistered(records: Path) -> None:
     assert record["families"][RAILROAD] == {"classified": 3, "confirmed": 2, "deep_pages": 6}
 
 
-def test_the_draw_names_no_value_and_names_rows_as_printed(records: Path) -> None:
+def test_the_draw_keeps_no_figure_and_records_coverage(records: Path) -> None:
     record = draw.draw(records)
     text = json.dumps(record)
     assert '"value"' not in text and "verdict" not in text and "ocr" not in text
+    assert record["coverage_by_page"]["1993-06_p097"]["rows_not_returned"] == 45
+    assert record["coverage_by_family"][CLAIMS]["rows_not_returned"] == 45
+    assert record["coverage_by_family"][RAILROAD]["pages"] == 6
     claims = next(s for s in record["sample"] if s["stratum"] == "total_claims")
     row = next(r for r in TYPES[CLAIMS].layout.rows if r.key == claims["row"])
-    assert claims["row_named"] == row.printed
-    assert draw.row_named(TYPES[RAILROAD], "07") == "row 7 from the top of the table"
-    forward = TYPES["outstanding_forward_exchange_contracts"]
-    assert draw.row_named(forward, "total_sale_03") == 'row 3 under the heading "TOTAL SALES CONTRACTS:"'
+    assert claims["row_label"] == row.printed
+    assert claims["column_heading"] == TYPES[CLAIMS].layout.column(claims["column"]).printed
+
+
+def _labelled(family: str, page_id: str, labels: dict[str, str]) -> PageExtraction:
+    column = next(c.key for c in TYPES[family].layout.columns if c.kind == "text")
+    page = _page(family, page_id)
+    for value in page.values:
+        _, _, row, col = draw.parts(value.field_id)
+        if col == column:
+            value.value = labels.get(row, "")
+    return page
+
+
+def test_read_rows_are_named_by_their_label_and_heading_as_read() -> None:
+    family = "short_term_foreign_liabilities_as"
+    read = {
+        "10": "Sept. 27................",
+        "11": "Deposits for foreign account:",
+        "12": "Sept. 6................",
+        "13": "  Sept. 13................  ",
+        "14": "Sept. 20 . . . . .",
+    }
+    named = draw.names(TYPES[family], _labelled(family, "1940-01_p051", read))
+    assert named["13"] == {
+        "label": "Sept. 13",
+        "heading": "Deposits for foreign account:",
+        "hint": "row 13 from the top of the table",
+    }
+    assert named["14"]["label"] == "Sept. 20"
+    assert named["11"]["heading"] == "" and named["10"]["heading"] == ""
+    assert named["20"] == {"label": "", "heading": "Deposits for foreign account:", "hint": "row 20 from the top of the table"}
+
+
+def test_section_and_fixed_rows_take_their_headings_from_the_template() -> None:
+    forward = "outstanding_forward_exchange_contracts"
+    named = draw.names(TYPES[forward], _labelled(forward, "1940-02_p062", {"total_sale_03": "Sept. 20....."}))
+    assert named["total_sale_03"] == {
+        "label": "Sept. 20",
+        "heading": "TOTAL SALES CONTRACTS:",
+        "hint": "row 3 under it",
+    }
+    fixed = draw.names(TYPES[CLAIMS], _page(CLAIMS, "1985-06_p058"))
+    assert fixed["austria"] == {"label": "Austria", "heading": "Europe:", "hint": "row 2 of the template"}
+    assert fixed["europe_hdr"]["heading"] == ""
+    assert draw.printed(None) == "" and draw.printed("1938-Nov......") == "1938-Nov"
+    assert draw.printed("Sept.") == "Sept."
 
 
 def test_the_draw_is_made_once(records: Path, tmp_path: Path, monkeypatch) -> None:
@@ -127,7 +203,9 @@ def test_the_page_is_never_sent_a_read(labels: serve.Labels) -> None:
     shown = labels.cells("first")
     assert len(shown["cells"]) == 400 and shown["answers"] == {}
     for cell in shown["cells"]:
-        assert set(cell) == {"n", "cell", "page", "title", "unit", "row", "column", "box"}
+        assert set(cell) == {
+            "n", "cell", "page", "title", "unit", "row_label", "row_heading", "row_hint", "column", "box"
+        }
     assert shown["cells"][0]["box"] == {"x0": 1.0, "y0": 2.0, "x1": 30.0, "y1": 12.0}
 
 
@@ -141,10 +219,14 @@ def test_answers_are_kept_as_given_and_the_last_stands(labels: serve.Labels) -> 
         labels.answer({"pass": "first", "cell": cell, "choice": "zero"})
     labels.answer({"pass": "first", "cell": cell, "choice": "value", "value": " 1,234 "})
     labels.answer({"pass": "first", "cell": cell, "choice": "blank"})
+    labels.answer({"pass": "first", "cell": cell, "choice": "not_on_page", "value": "9"})
+    labels.answer({"pass": "first", "cell": cell, "choice": "column_not_on_page"})
     lines = (labels.labels / "labels.jsonl").read_text().splitlines()
-    assert [json.loads(line)["choice"] for line in lines] == ["value", "blank"]
-    assert json.loads(lines[0])["value"] == "1,234"
-    assert labels.cells("first")["answers"] == {cell: {"choice": "blank", "value": None}}
+    assert [json.loads(line)["choice"] for line in lines] == [
+        "value", "blank", "not_on_page", "column_not_on_page"
+    ]
+    assert json.loads(lines[0])["value"] == "1,234" and json.loads(lines[2])["value"] is None
+    assert labels.cells("first")["answers"] == {cell: {"choice": "column_not_on_page", "value": None}}
 
 
 def test_the_relabel_pass_opens_24_hours_after_the_last_first_label(
@@ -181,3 +263,42 @@ def test_the_page_check_takes_right_or_wrong_for_drawn_pages(labels: serve.Label
 def test_only_drawn_pages_are_served(labels: serve.Labels) -> None:
     with pytest.raises(ValueError, match="not drawn"):
         labels.image("1940-01_p099")
+
+
+def _record(path: Path) -> Path:
+    pages = [
+        {"page": "1940-01_p051", "family": "short_term_foreign_liabilities_as", "ocr": "cannot be checked: 17 words", "check_by_eye": True},
+        {"page": "1940-04_p055", "family": "short_term_foreign_liabilities_as", "ocr": "changed", "check_by_eye": False},
+        {"page": "1985-06_p058", "family": CLAIMS, "ocr": "cannot be checked: 19 words", "check_by_eye": True},
+    ]
+    path.write_text(json.dumps({"pages": pages}))
+    return path
+
+
+def test_the_layout_check_needs_no_draw_and_shows_only_pages_left_to_the_eye(tmp_path: Path) -> None:
+    layouts = serve.Layouts("held_out", tmp_path / "labels", _record(tmp_path / "layout_check.json"))
+    shown = layouts.state()
+    assert [p["page"] for p in shown["pages"]] == ["1940-01_p051", "1985-06_p058"]
+    claims = shown["pages"][1]
+    assert claims["columns"] == [c.printed for c in TYPES[CLAIMS].layout.columns]
+    assert claims["title"] == TYPES[CLAIMS].template.identity.title
+    assert claims["ocr"] == "cannot be checked: 19 words" and shown["answers"] == {}
+    with pytest.raises(ValueError, match="not a page to check"):
+        layouts.image("1940-04_p055")
+
+
+def test_a_layout_is_marked_same_changed_or_different_with_a_note(tmp_path: Path) -> None:
+    layouts = serve.Layouts("held_out", tmp_path / "labels", _record(tmp_path / "layout_check.json"))
+    with pytest.raises(ValueError, match="layout must be"):
+        layouts.mark({"page": "1940-01_p051", "layout": "maybe"})
+    with pytest.raises(ValueError, match="not a page to check"):
+        layouts.mark({"page": "1940-04_p055", "layout": "same"})
+    with pytest.raises(ValueError, match="at most 2,000"):
+        layouts.mark({"page": "1940-01_p051", "layout": "same", "note": "x" * 2001})
+    layouts.mark({"page": "1940-01_p051", "layout": "changed", "note": " Grand total first "})
+    layouts.mark({"page": "1985-06_p058", "layout": "same"})
+    assert layouts.state()["answers"] == {
+        "1940-01_p051": {"layout": "changed", "note": "Grand total first"},
+        "1985-06_p058": {"layout": "same", "note": ""},
+    }
+    assert (tmp_path / "labels" / "layouts_checked.jsonl").read_text().count("\n") == 2
