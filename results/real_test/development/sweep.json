@@ -3,13 +3,34 @@
   "pages": 178,
   "classified": 178,
   "by_family": {
-    "short_term_foreign_liabilities_as": 1,
-    "security_transactions_as_reported_by": 3,
-    "outstanding_forward_exchange_contracts": 1,
-    "receipts_and_expenditures_under_railroad": 1,
-    "total_claims_by_country": 4
+    "short_term_foreign_liabilities_as": {
+      "classified": 1,
+      "confirmed": 1,
+      "type_unconfirmed": 0
+    },
+    "security_transactions_as_reported_by": {
+      "classified": 3,
+      "confirmed": 1,
+      "type_unconfirmed": 2
+    },
+    "outstanding_forward_exchange_contracts": {
+      "classified": 1,
+      "confirmed": 1,
+      "type_unconfirmed": 0
+    },
+    "receipts_and_expenditures_under_railroad": {
+      "classified": 1,
+      "confirmed": 1,
+      "type_unconfirmed": 0
+    },
+    "total_claims_by_country": {
+      "classified": 4,
+      "confirmed": 1,
+      "type_unconfirmed": 3
+    }
   },
-  "set_aside": 168,
+  "set_aside_by_classifier": 168,
+  "type_unconfirmed": 5,
   "by_era": {
     "1939-1942": {
       "outstanding_forward_exchange_contracts": 1,
@@ -21,6 +42,58 @@
     "1982-1994": {
       "total_claims_by_country": 4,
       "unsupported": 96
+    }
+  },
+  "assigned": {
+    "1939-12_p025": {
+      "classified_as": "receipts_and_expenditures_under_railroad",
+      "counts_for": "receipts_and_expenditures_under_railroad",
+      "set_aside_by": null
+    },
+    "1939-12_p053": {
+      "classified_as": "short_term_foreign_liabilities_as",
+      "counts_for": "short_term_foreign_liabilities_as",
+      "set_aside_by": null
+    },
+    "1939-12_p055": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": "security_transactions_as_reported_by",
+      "set_aside_by": null
+    },
+    "1939-12_p056": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1939-12_p057": {
+      "classified_as": "security_transactions_as_reported_by",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1939-12_p060": {
+      "classified_as": "outstanding_forward_exchange_contracts",
+      "counts_for": "outstanding_forward_exchange_contracts",
+      "set_aside_by": null
+    },
+    "1984-06_p058": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": "total_claims_by_country",
+      "set_aside_by": null
+    },
+    "1984-06_p059": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1984-06_p065": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
+    },
+    "1984-06_p066": {
+      "classified_as": "total_claims_by_country",
+      "counts_for": null,
+      "set_aside_by": "title"
     }
   },
   "failed": [],
@@ -51,11 +124,11 @@
     "allowance": 3.0,
     "recorded_at": "2026-10-29T08:09:27+00:00"
   },
-  "started_at": "2026-10-29T08:09:27+00:00",
+  "started_at": "2026-10-29T08:38:14+00:00",
   "issues": [
     "1939-12",
     "1984-06"
   ],
-  "cost_usd": 0.06692250000000044,
-  "finished_at": "2026-10-29T08:12:37+00:00"
+  "cost_usd": 0.0,
+  "finished_at": "2026-10-29T08:38:14+00:00"
 }

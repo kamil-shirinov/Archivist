@@ -21,7 +21,8 @@ from PIL import Image, ImageDraw
 
 from archivist.doctypes import UNSUPPORTED, recorded
 from archivist.models.mock import MockLLM, MockSegmenter
-from archivist.templates import pages, real_test
+from archivist.schema import BBox
+from archivist.templates import ocr, pages, real_test
 from archivist.templates.pages import Page, PageRefused
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -180,6 +181,14 @@ def drawn(tmp_path, monkeypatch) -> dict[str, Page]:
     return found
 
 
+RAILROAD_TITLE = "Receipts and Expenditures Under Railroad Retirement and Railroad Unemployment"
+RAILROAD_TITLE += " Insurance Acts (In millions of dollars)"
+
+
+def _layer(text: str) -> tuple[ocr.Word, ...]:
+    return tuple(ocr.Word(w, BBox(x0=0, y0=0, x1=1, y1=1)) for w in text.split())
+
+
 def test_the_sweep_asks_each_page_once_and_a_failed_page_again(tmp_path, drawn):
     doc_types = real_test._types(ROOT / real_test.CONFIG)
     refs = sorted(drawn)
@@ -193,18 +202,63 @@ def test_the_sweep_asks_each_page_once_and_a_failed_page_again(tmp_path, drawn):
             raise TimeoutError("slow")
         return json.dumps({"doc_type": RAILROAD if ref < refs[3] else UNSUPPORTED})
 
+    def layer_of(page):  # the third page assigned prints another table's title
+        if page.ref == refs[2]:
+            return _layer("Receipts and Expenditures under Social Security Act")
+        return _layer(RAILROAD_TITLE)
+
     llm = MockLLM(respond)
     out = tmp_path / "out"
-    first = real_test.sweep(refs, "development", out, llm, doc_types, workers=3)
+    first = real_test.sweep(refs, "development", out, llm, doc_types, workers=3, layer_of=layer_of)
     assert first["failed"] == [refs[1]] and len(llm.calls) == 6
     failing.clear()
-    second = real_test.sweep(refs, "development", out, llm, doc_types, workers=3)
+    second = real_test.sweep(refs, "development", out, llm, doc_types, workers=3, layer_of=layer_of)
     assert len(llm.calls) == 7  # only the failed page was asked again
-    assert second["failed"] == [] and second["by_family"][RAILROAD] == 3
-    assert second["set_aside"] == 3
+    assert second["failed"] == []
+    assert second["by_family"][RAILROAD] == {"classified": 3, "confirmed": 2, "type_unconfirmed": 1}
+    assert second["set_aside_by_classifier"] == 3 and second["type_unconfirmed"] == 1
+    assert second["assigned"][refs[2]] == {
+        "classified_as": RAILROAD,
+        "counts_for": None,
+        "set_aside_by": "title",
+    }
+    assert second["assigned"][refs[0]]["counts_for"] == RAILROAD
     assert second["by_era"] == {"1939-1942": {RAILROAD: 3, UNSUPPORTED: 3}}
+    assert real_test.confirmed(out) == {refs[0]: RAILROAD, refs[1]: RAILROAD}
     with pytest.raises(PageRefused):
         real_test.sweep(["1940-01_p001"], "development", out, llm, doc_types)
+
+
+@pytest.mark.parametrize(
+    ("family", "text", "passes"),
+    [
+        ("short_term_foreign_liabilities_as", "37 SHORT-TERM-FOREIGN LIABILITIES as  Reported by"
+         " Banks and Bankers in the United States", True),
+        ("short_term_foreign_liabilities_as", "Short-Term Foreign Liabilities as Reported by Banks"
+         " in the United States", False),  # another wording, not the OCR's noise
+        ("short_term_foreign_liabilities_as", "Short-Term Foreign Assets as Reported by Banks and"
+         " Bankers", False),
+        ("security_transactions_as_reported_by", "Security Transactions as Reported by Banks,"
+         " Bankers, Brokers and Dealers", True),
+        ("security_transactions_as_reported_by", "Security Transactions in Joint Foreign Arbitrage"
+         " Accounts as Reported by Brokers and Dealers", False),
+        ("total_claims_by_country", "46 CAPITAL MOVEMENTS Table CM-ll-2. - Total Claims by Country",
+         True),
+        ("total_claims_by_country", "Table CM-IV-4. - Total Claims by Country", False),
+        ("total_claims_by_country", "-11-3. - Total Claims on Foreigners by Type and Country",
+         False),
+        ("receipts_and_expenditures_under_railroad", RAILROAD_TITLE, True),
+    ],
+)
+def test_the_title_check_forgives_the_ocr_but_not_another_title(family, text, passes):
+    doc_type = real_test._types(ROOT / real_test.CONFIG)[family]
+    assert (real_test.title_match(doc_type, text) is not None) is passes
+
+
+def test_folding_keeps_a_patterns_escapes_and_matches_dashes_as_spacing():
+    folded = real_test.fold("Short-Term-Foreign  LIABILITIES 1|l")
+    assert folded == "short term foreign iiabiiities iii"
+    assert real_test.fold_pattern(r"table\s+cm-ii-2.*total") == r"tabie\s+cm\s+ii\s+2.*totai"
 
 
 def _railroad_answer(request) -> str:
@@ -227,8 +281,11 @@ def test_the_deep_check_reads_boxes_and_verifies_its_sample_and_resumes_without_
     doc_types = real_test._types(ROOT / real_test.CONFIG)
     out = tmp_path / "out"
     out.mkdir()
-    sweep = [{"page": ref, "classified_as": RAILROAD} for ref in sorted(drawn)[:3]]
-    (out / "sweep.jsonl").write_text("".join(json.dumps(line) + "\n" for line in sweep))
+    checked = [  # the fourth page was assigned, but its title was not confirmed
+        {"page": ref, "classified_as": RAILROAD, "pattern": None if n == 3 else "railroad"}
+        for n, ref in enumerate(sorted(drawn)[:4])
+    ]
+    (out / "titles.jsonl").write_text("".join(json.dumps(line) + "\n" for line in checked))
     extractor = MockLLM(_railroad_answer)
     rereader = MockLLM(lambda request: json.dumps({"value": "1.0"}))
     segmenter = MockSegmenter()
@@ -238,6 +295,7 @@ def test_the_deep_check_reads_boxes_and_verifies_its_sample_and_resumes_without_
         out, "development", roles, doc_types, per_family=2, workers=2, layer_of=lambda page: ()
     )
     chosen = record["sample"][RAILROAD]
+    assert sorted(drawn)[3] not in chosen
     assert len(chosen) == 2 and json.loads((out / "sample.json").read_text())["seed"] == 4004
     assert len(extractor.calls) == 2 and len(segmenter.calls) == 2 * 2  # stamp and stain
     assert record["calls"]["second_looks"] == 0
@@ -255,3 +313,9 @@ def test_the_deep_check_reads_boxes_and_verifies_its_sample_and_resumes_without_
     )
     assert len(extractor.calls) == 2  # every page read already: nothing read twice
     assert [v.model_dump() for v in again] == [v.model_dump() for v in verdicts]
+
+    drawn_before = json.loads((out / "sample.json").read_text())
+    del drawn_before["drawn_from"]
+    (out / "sample.json").write_text(json.dumps(drawn_before))
+    with pytest.raises(ValueError, match="before the title check"):
+        real_test.deep(out, "development", roles, doc_types, layer_of=lambda page: ())

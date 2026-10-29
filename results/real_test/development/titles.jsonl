@@ -1,0 +1,10 @@
+{"page": "1939-12_p025", "classified_as": "receipts_and_expenditures_under_railroad", "pattern": "receipts and expenditures under railroad retirement\\s+and railroad unemployment insurance acts"}
+{"page": "1939-12_p053", "classified_as": "short_term_foreign_liabilities_as", "pattern": "Short-Term Foreign Liabilities as Reported by Banks and Bankers"}
+{"page": "1939-12_p055", "classified_as": "security_transactions_as_reported_by", "pattern": "security\\s+transactions\\s+as\\s+reported\\s+by\\s+banks,?\\s+bankers,?\\s+brokers"}
+{"page": "1939-12_p056", "classified_as": "security_transactions_as_reported_by", "pattern": null}
+{"page": "1939-12_p057", "classified_as": "security_transactions_as_reported_by", "pattern": null}
+{"page": "1939-12_p060", "classified_as": "outstanding_forward_exchange_contracts", "pattern": "Outstanding\\s+Forward\\s+Exchange\\s+Contracts\\s+as\\s+Reported\\s+by\\s+Banks"}
+{"page": "1984-06_p058", "classified_as": "total_claims_by_country", "pattern": "table\\s+cm-ii-2.*total\\s+claims\\s+by\\s+country"}
+{"page": "1984-06_p059", "classified_as": "total_claims_by_country", "pattern": null}
+{"page": "1984-06_p065", "classified_as": "total_claims_by_country", "pattern": null}
+{"page": "1984-06_p066", "classified_as": "total_claims_by_country", "pattern": null}

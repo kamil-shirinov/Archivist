@@ -19,10 +19,20 @@ sweep: every page of the side's issues classified among the five types, one call
 (extract.classify). sweep.jsonl has a line a page as it is answered, {"page", "classified_as"} or
 {"page", "failed"}; a rerun asks only the pages without an answer, so a page that failed is asked
 again (a transport error is asked afresh; an answer that would not parse replays from the cache and
-fails the same way) and a page answered is never asked twice. sweep.json counts the pages of each
-family, those set aside (unsupported) by era, and those still failed.
+fails the same way) and a page answered is never asked twice.
 
-deep: in each family, PER_FAMILY of the pages the sweep classified into it, drawn with
+Then the title check (PREREGISTRATION_REAL.md, Deviations, 2026-10-29), plain code and no model: a
+page counts for a family only if the classifier names that family and the page's OCR text matches
+one of the family's approved title patterns (identity.title_patterns), both folded alike (fold():
+case, spacing, dashes and the spacing around them, and the OCR's common confusions of l, 1, I, |
+and !, and of 0 and o). titles.jsonl has a line for every page the classifier assigned, with the
+pattern that matched or none; it is recomputed from the OCR layer whenever the sweep is summed up,
+so it never depends on what was asked before. sweep.json counts, for each family, the pages the
+classifier assigned, those confirmed and those set aside as "type unconfirmed"; the pages the
+classifier set aside (unsupported) by era; and those still failed. Each page records which check
+set it aside: "classifier" or "title".
+
+deep: in each family, PER_FAMILY of the pages confirmed for it, drawn with
 random.Random(SEED).sample from their ids sorted, or all of them where it has no more; each page's
 class is the sweep's. Each page is read in context (extract.read_page with S0 and the arithmetic
 test's output allowance) and boxed by S0+grid (grid.assign over the page's OCR layer, with the
@@ -44,6 +54,7 @@ import hashlib
 import json
 import os
 import random
+import re
 import subprocess
 import threading
 from collections import Counter, defaultdict
@@ -79,6 +90,7 @@ PER_FAMILY = 12
 ALLOWANCE = 40.0  # USD on the Meta Model API, both stages together
 TAG = "run-real-treasury"
 FROZEN = ("src", "config", "templates", "pyproject.toml", "uv.lock")
+DRAWN_FROM = "pages the classifier names and the title check confirms"
 
 
 class NotFrozen(RuntimeError):
@@ -151,6 +163,38 @@ def words(page: Page, root: Path = DEFAULT_ROOT) -> tuple[ocr.Word, ...]:
     found = REAL.fullmatch(page.ref)
     with _PDFIUM:
         return ocr.layer(root / "pdf" / pdf_name(found["issue"]), int(found["page"]), page.path)
+
+
+# The OCR layer's common confusions, folded the same way in the text and in the patterns.
+_FOLD = str.maketrans(
+    {"l": "i", "1": "i", "|": "i", "!": "i", "0": "o", "—": "-", "–": "-", "‐": "-"}
+)
+
+
+def fold(text: str) -> str:
+    """Text as the title check compares it: lower case, each confusion folded, a dash as a space
+    (the layer prints "Short-Term-Foreign" for "Short-Term Foreign"), and any run of whitespace one
+    space."""
+    return " ".join(text.lower().translate(_FOLD).replace("-", " ").split())
+
+
+def fold_pattern(pattern: str) -> str:
+    """A title pattern folded as fold() folds text, leaving each escape (\\s, \\.) as it is; a
+    literal space or dash matches any run of spacing."""
+    out, escaped = [], False
+    for char in pattern:
+        out.append(char if escaped else char.lower().translate(_FOLD))
+        escaped = char == "\\" and not escaped
+    return re.sub(r"(?<!\\)[ -]+", r"\\s+", "".join(out))
+
+
+def title_match(doc_type: TemplateType, text: str) -> str | None:
+    """The first of the family's approved title patterns that the page's text matches, or None."""
+    folded = fold(text)
+    for pattern in doc_type.template.identity.title_patterns:
+        if re.search(fold_pattern(pattern), folded, re.IGNORECASE) is not None:
+            return pattern
+    return None
 
 
 def sample(classes: Mapping[str, str], per_family: int, seed: int = SEED) -> dict[str, list[str]]:
@@ -227,8 +271,10 @@ def sweep(
     *,
     workers: int = 4,
     root: Path = DEFAULT_ROOT,
+    layer_of: Callable[[Page], Sequence[ocr.Word]] | None = None,
 ) -> dict:
-    """Classify every page not yet answered; returns what goes in sweep.json."""
+    """Classify every page not yet answered, then check the titles of every page assigned to a
+    family; returns what goes in sweep.json."""
     out.mkdir(parents=True, exist_ok=True)
     done = classes(out)
     todo = [ref for ref in refs if ref not in done]
@@ -250,20 +296,73 @@ def sweep(
                 with lock:
                     log.write(json.dumps(line) + "\n")
                     log.flush()
-    answered = classes(out)
+    wanted = set(refs)
+    answered = {ref: name for ref, name in classes(out).items() if ref in wanted}
+    checked = titles(out, answered, doc_types, side, root=root, layer_of=layer_of)
     failed = sorted(ref for ref in refs if ref not in answered)
     era = defaultdict(Counter)
-    for ref in refs:
-        if ref in answered:
-            era["1939-1942" if ref < "1950" else "1982-1994"][answered[ref]] += 1
+    for ref, name in answered.items():
+        era["1939-1942" if ref < "1950" else "1982-1994"][name] += 1
+    by_family = {}
+    for family in FAMILIES:
+        assigned = [ref for ref, line in checked.items() if line["classified_as"] == family]
+        passed = sum(checked[ref]["pattern"] is not None for ref in assigned)
+        by_family[family] = {
+            "classified": len(assigned),
+            "confirmed": passed,
+            "type_unconfirmed": len(assigned) - passed,
+        }
     return {
         "side": side,
         "pages": len(refs),
         "classified": len(answered),
-        "by_family": {f: sum(answered.get(r) == f for r in refs) for f in FAMILIES},
-        "set_aside": sum(answered.get(r) == UNSUPPORTED for r in refs),
+        "by_family": by_family,
+        "set_aside_by_classifier": sum(name == UNSUPPORTED for name in answered.values()),
+        "type_unconfirmed": sum(f["type_unconfirmed"] for f in by_family.values()),
         "by_era": {e: dict(sorted(c.items())) for e, c in sorted(era.items())},
+        "assigned": {
+            ref: {
+                "classified_as": line["classified_as"],
+                "counts_for": line["classified_as"] if line["pattern"] is not None else None,
+                "set_aside_by": None if line["pattern"] is not None else "title",
+            }
+            for ref, line in sorted(checked.items())
+        },
         "failed": failed,
+    }
+
+
+def titles(
+    out: Path,
+    answered: Mapping[str, str],
+    doc_types: Mapping[str, DocType],
+    side: str,
+    *,
+    root: Path = DEFAULT_ROOT,
+    layer_of: Callable[[Page], Sequence[ocr.Word]] | None = None,
+) -> dict[str, dict]:
+    """The title check of every page the classifier assigned to a family, written to titles.jsonl
+    afresh; no model is called."""
+    layer_of = layer_of or (lambda page: words(page, root))
+    checked = {}
+    for ref, name in sorted(answered.items()):
+        if name == UNSUPPORTED:
+            continue
+        text = " ".join(word.text for word in layer_of(resolve(ref, side, root)))
+        pattern = title_match(doc_types[name], text)
+        checked[ref] = {"page": ref, "classified_as": name, "pattern": pattern}
+    lines = "".join(json.dumps(line) + "\n" for line in checked.values())
+    (out / "titles.jsonl").write_text(lines, encoding="utf-8")
+    return checked
+
+
+def confirmed(out: Path) -> dict[str, str]:
+    """Each page that counts for a family: the classifier names it and the title check agrees."""
+    path = out / "titles.jsonl"
+    if not path.exists():
+        raise FileNotFoundError(f"no title check in {out}: run the sweep first")
+    return {
+        line["page"]: line["classified_as"] for line in _lines(path) if line["pattern"] is not None
     }
 
 
@@ -309,13 +408,19 @@ def deep(
     layer_of = layer_of or (lambda page: words(page, root))
     path = out / "sample.json"
     if path.exists():
-        chosen = json.loads(path.read_text(encoding="utf-8"))["pages"]
+        drawn = json.loads(path.read_text(encoding="utf-8"))
+        if drawn.get("drawn_from") != DRAWN_FROM:
+            raise ValueError(f"{path} was drawn before the title check: move it aside to redraw")
+        chosen = drawn["pages"]
     else:
-        swept = classes(out)
-        if not swept:
-            raise FileNotFoundError(f"no sweep in {out}: run the sweep first")
-        chosen = sample(swept, per_family)
-        record = {"seed": SEED, "per_family": per_family, "pages": chosen, "drawn_at": _now()}
+        chosen = sample(confirmed(out), per_family)
+        record = {
+            "seed": SEED,
+            "per_family": per_family,
+            "drawn_from": DRAWN_FROM,
+            "pages": chosen,
+            "drawn_at": _now(),
+        }
         path.write_text(json.dumps(record, indent=2) + "\n", encoding="utf-8")
     family_of = {ref: family for family, refs in chosen.items() for ref in refs}
 
@@ -418,11 +523,13 @@ def main(argv: list[str] | None = None) -> None:
             "finished_at": _now(),
         }
         (out / "sweep.json").write_text(json.dumps(summary, indent=2) + "\n", encoding="utf-8")
+        print(f"{summary['classified']} of {summary['pages']} pages classified")
+        for family, counts in summary["by_family"].items():
+            print(f"  {family:<42} {counts}")
         print(
-            f"{summary['classified']} of {summary['pages']} pages classified: "
-            f"{summary['by_family']}, "
-            f"{summary['set_aside']} set aside, {len(summary['failed'])} failed; "
-            f"${summary['cost_usd']:.4f} spent"
+            f"{summary['set_aside_by_classifier']} set aside by the classifier, "
+            f"{summary['type_unconfirmed']} by the title check (type unconfirmed), "
+            f"{len(summary['failed'])} failed; ${summary['cost_usd']:.4f} spent"
         )
         return
     verdicts, summary = deep(
