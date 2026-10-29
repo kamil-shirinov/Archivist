@@ -1,0 +1,44 @@
+# The pre-registered real-pages test on the Treasury Bulletin (PREREGISTRATION_REAL.md, P29),
+# run by archivist.templates.real_test. The extractor and the rereader are config/templates.toml's,
+# unchanged (that file is frozen by its sha256 in the pre-registration and has no segmenter); the
+# segmenter is config/models.toml's SAM 3.1. All Muse Spark 1.3 in Contributor mode (D19): the
+# pages are a public-domain archive (D14). No Baseten role.
+
+# The five approved Treasury templates, and no others: the classifier is shown these alone.
+[doc_types]
+enabled = [
+  "short_term_foreign_liabilities_as",
+  "security_transactions_as_reported_by",
+  "outstanding_forward_exchange_contracts",
+  "receipts_and_expenditures_under_railroad",
+  "total_claims_by_country",
+]
+
+[roles.extractor]
+kind = "llm"
+backend = "meta"
+model_id = "muse-spark-1.3-contributor"
+settings = { reasoning_effort = "low", timeout_s = 1200.0 }  # a 570-cell table ran past 600
+
+# At "minimal" (D33), as in config/templates.toml.
+[roles.rereader]
+kind = "llm"
+backend = "meta"
+model_id = "muse-spark-1.3-contributor"
+settings = { reasoning_effort = "minimal" }
+
+[roles.segmenter]
+kind = "segmenter"
+backend = "meta"
+model_id = "sam-3.1"
+
+# As in config/models.toml (read 2026-10-26). Cached input is billed as ordinary input here: spend
+# is overstated, never understated. Reasoning tokens are billed as output.
+[prices."muse-spark-1.3-contributor"]
+input_per_mtok = 0.10
+output_per_mtok = 0.20
+
+[prices."sam-3.1"]
+input_per_mtok = 0.0
+output_per_mtok = 0.0
+per_image_usd = 0.0025

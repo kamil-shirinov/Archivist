@@ -510,6 +510,31 @@ def test_verify_rereads_what_the_policy_asks_and_never_shows_the_extracted_value
     assert len(segmenter.calls) == 2
 
 
+def test_without_second_looks_none_is_asked_and_v2_decides_as_before(tmp_path):
+    extracted = MEMO_VALUES | {"counterparty": "Eastmoon Electricity Board", "amount": "65.43"}
+    answers = MEMO_VALUES | {"amount": "65.48"}
+
+    def run(**options) -> tuple[list, dict, MockLLM]:
+        llm = _rereader(answers)
+        verdicts, calls = verify.verify(
+            [_memo_page(extracted)],
+            {"m1": _image(tmp_path)},
+            {"segmenter": _stamp_on(1), "rereader": llm},
+            correct_citations=False,
+            doc_types=TYPES,
+            **options,
+        )
+        return verdicts, calls, llm
+
+    looked, _, _ = run()
+    verdicts, calls, llm = run(second_looks=False)
+    assert calls["second_looks"] == 0 and len(llm.calls) == calls["rereads"]
+    assert [v.policies["v2"] for v in verdicts] == [v.policies["v2"] for v in looked]
+    assert [v.model_dump() for v in verdicts] != [v.model_dump() for v in looked]
+    assert all(v.policies["v3"] == v.policies["v2"] for v in verdicts)
+    assert all(v.evidence.second_look_status == "not_reread" for v in verdicts)
+
+
 def test_a_reread_that_fails_sends_its_field_to_review_without_stopping_the_run(tmp_path):
     def respond(request) -> str:
         if MEMO_REREAD["counterparty"] in request.prompt:

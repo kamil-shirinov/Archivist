@@ -405,11 +405,13 @@ def verify(
     doc_types: Mapping[str, DocType],
     workers: int = 1,
     policy: Policy = POLICY,
+    second_looks: bool = True,
 ) -> tuple[list[VerdictRecord], dict]:
     """Every value of every page through both policies, each page one of doc_types; returns the
     verdicts and the call counts. correct_citations corrects every page's boxes, none, or those of
     the types it names. Second looks are asked only for the fields whose first re-read calls for
-    one.
+    one, and none at all without second_looks, when v3 decides as v2 does (the real-pages test,
+    PREREGISTRATION_REAL.md, which pre-registered v2 alone).
     """
     strays = sorted({p.doc_type for p in pages} - {*doc_types, UNSUPPORTED})
     if strays:
@@ -459,7 +461,7 @@ def verify(
         wanted = [
             (job, value)
             for job, value in zip(jobs, keys, strict=True)
-            if _reread_status(value, readings[value.field_id]) in SECOND_LOOK
+            if second_looks and _reread_status(value, readings[value.field_id]) in SECOND_LOOK
         ]
         second_jobs = [
             (image, box, prompt, reread.SECOND_PAD_X, reread.SECOND_PAD_Y)

@@ -1,0 +1,61 @@
+{
+  "side": "development",
+  "pages": 178,
+  "classified": 178,
+  "by_family": {
+    "short_term_foreign_liabilities_as": 1,
+    "security_transactions_as_reported_by": 3,
+    "outstanding_forward_exchange_contracts": 1,
+    "receipts_and_expenditures_under_railroad": 1,
+    "total_claims_by_country": 4
+  },
+  "set_aside": 168,
+  "by_era": {
+    "1939-1942": {
+      "outstanding_forward_exchange_contracts": 1,
+      "receipts_and_expenditures_under_railroad": 1,
+      "security_transactions_as_reported_by": 3,
+      "short_term_foreign_liabilities_as": 1,
+      "unsupported": 72
+    },
+    "1982-1994": {
+      "total_claims_by_country": 4,
+      "unsupported": 96
+    }
+  },
+  "failed": [],
+  "config": {
+    "extractor": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "rereader": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "segmenter": {
+      "backend": "meta",
+      "model_id": "sam-3.1"
+    }
+  },
+  "doc_types": {
+    "short_term_foreign_liabilities_as": "156a9632a74690d8c7235a707f3ac5061b769940fc64f93f90b31f020ed97b21",
+    "security_transactions_as_reported_by": "7659ec40ef400a8c2dfca34ee32c2e3a71a74ef09fc14026fb95d1ed9e0597ee",
+    "outstanding_forward_exchange_contracts": "3bc2e5769f6d9a2973f9147d09a55f01dd48ca50a5f9f5e0b4cc693994e199c4",
+    "receipts_and_expenditures_under_railroad": "8b6d3cf7ed6f28921fa518017a5fb64be950ef60f3e51c8c3604d596d3193d86",
+    "total_claims_by_country": "aba101beccc5c9e12ae5eb0bcd9429160e94833148773fa446e8b681489e185e"
+  },
+  "caps": {
+    "meta": 7.302881,
+    "baseten": 21.952737,
+    "allowance": 3.0,
+    "recorded_at": "2026-10-29T08:09:27+00:00"
+  },
+  "started_at": "2026-10-29T08:09:27+00:00",
+  "issues": [
+    "1939-12",
+    "1984-06"
+  ],
+  "cost_usd": 0.06692250000000044,
+  "finished_at": "2026-10-29T08:12:37+00:00"
+}

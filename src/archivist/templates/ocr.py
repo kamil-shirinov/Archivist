@@ -91,10 +91,17 @@ def words(ref: str, root: Path = DEFAULT_ROOT) -> tuple[Word, ...]:
         path = occ.pdf_path(OCC_ROOT, found["issue"])
     else:
         return ()
-    width, height = Image.open(page_ref.path).size
+    return layer(path, int(found["page"]), page_ref.path)
+
+
+def layer(path: Path, number: int, image: Path) -> tuple[Word, ...]:
+    """Every word of page `number` of the PDF at path, boxed in the pixels of its stored image.
+    The caller has already decided the page may be read: words() for the template commands, the
+    real-pages test (real_test.py) for its own pages."""
+    width, height = Image.open(image).size
     pdf = pdfium.PdfDocument(path)
     try:
-        page = pdf[int(found["page"]) - 1]
+        page = pdf[number - 1]
         text = page.get_textpage()
 
         def pixel(x: float, y: float) -> tuple[int, int]:

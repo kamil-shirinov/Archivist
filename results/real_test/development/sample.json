@@ -1,0 +1,22 @@
+{
+  "seed": 4004,
+  "per_family": 1,
+  "pages": {
+    "short_term_foreign_liabilities_as": [
+      "1939-12_p053"
+    ],
+    "security_transactions_as_reported_by": [
+      "1939-12_p056"
+    ],
+    "outstanding_forward_exchange_contracts": [
+      "1939-12_p060"
+    ],
+    "receipts_and_expenditures_under_railroad": [
+      "1939-12_p025"
+    ],
+    "total_claims_by_country": [
+      "1984-06_p066"
+    ]
+  },
+  "drawn_at": "2026-10-29T08:13:15+00:00"
+}
