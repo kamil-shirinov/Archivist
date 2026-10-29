@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page check</title>
+<style>
+  :root {
+    --bg: #f4f2ee; --panel: #ffffff; --ink: #1f1d1a; --muted: #6b665e; --line: #ddd8cf;
+    --accent: #1d5fd1; --right: #2f7d4a; --wrong: #b3261e;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink);
+    font: 14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  body { display: grid; grid-template-columns: 1fr 360px; grid-template-rows: auto 1fr; height: 100vh; }
+  header { grid-column: 1 / -1; display: flex; align-items: center; gap: 16px; padding: 10px 16px;
+    border-bottom: 1px solid var(--line); background: var(--panel); }
+  header h1 { font-size: 15px; margin: 0; font-weight: 600; }
+  .progress { flex: 1; height: 6px; background: #ebe7e0; border-radius: 3px; overflow: hidden; }
+  .progress > div { height: 100%; background: var(--right); width: 0; transition: width .2s; }
+  .count { color: var(--muted); font-variant-numeric: tabular-nums; }
+  #view { overflow: auto; background: #e9e6e0; }
+  #view img { display: block; margin: 0 auto; }
+  aside { border-left: 1px solid var(--line); background: var(--panel); padding: 16px; overflow: auto;
+    display: flex; flex-direction: column; gap: 14px; }
+  .label { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 2px; }
+  .field { font-size: 15px; }
+  .field.big { font-size: 17px; font-weight: 600; }
+  .family { font: 13px ui-monospace, Menlo, monospace; color: var(--muted); }
+  .note { font-size: 12px; color: var(--muted); border-left: 3px solid var(--line); padding-left: 8px; }
+  .buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  button { font: inherit; padding: 10px; border-radius: 6px; border: 1px solid var(--line); background: #faf9f7; cursor: pointer; }
+  button:hover { border-color: #bdb6aa; }
+  button.right { background: var(--right); color: #fff; border-color: var(--right); }
+  button.wrong { background: var(--wrong); color: #fff; border-color: var(--wrong); }
+  kbd { font: 11px ui-monospace, Menlo, monospace; padding: 1px 5px; border: 1px solid rgba(255,255,255,.5);
+    border-bottom-width: 2px; border-radius: 4px; margin-left: 6px; }
+  .own { font-size: 13px; padding: 8px 10px; border-radius: 6px; background: #f3f1ed; color: var(--muted); }
+  .own.right { background: #eef6f0; color: var(--right); }
+  .own.wrong { background: #fbeeed; color: var(--wrong); }
+  .nav { display: flex; gap: 8px; }
+  .nav button { flex: 1; }
+  .keys { font-size: 12px; color: var(--muted); display: grid; grid-template-columns: auto 1fr; gap: 3px 10px; }
+  .keys kbd { border-color: var(--line); background: #fff; margin: 0; }
+  .error { color: var(--wrong); font-size: 13px; min-height: 1em; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Page check</h1>
+  <div class="progress"><div id="bar"></div></div>
+  <span class="count" id="count"></span>
+</header>
+<div id="view"><img id="page" alt="The printed page"></div>
+<aside>
+  <div>
+    <div class="label">Page</div>
+    <div class="field big" id="where"></div>
+  </div>
+  <div>
+    <div class="label">Assigned the table</div>
+    <div class="field" id="title"></div>
+    <div class="family" id="family"></div>
+  </div>
+  <div class="note">Right table: the page prints this table. Wrong table: it does not.</div>
+  <div class="buttons">
+    <button class="right" id="right">Right table <kbd>R</kbd></button>
+    <button class="wrong" id="wrong">Wrong table <kbd>W</kbd></button>
+  </div>
+  <div class="error" id="error"></div>
+  <div class="own" id="own">Not checked yet</div>
+  <div class="nav">
+    <button id="prev">◀ Previous</button>
+    <button id="next">Next ▶</button>
+  </div>
+  <div class="keys">
+    <kbd>R</kbd><span>right table, go on</span>
+    <kbd>W</kbd><span>wrong table, go on</span>
+    <kbd>← →</kbd><span>previous, next</span>
+    <kbd>N</kbd><span>next unchecked</span>
+    <kbd>= −</kbd><span>zoom in, out</span>
+  </div>
+</aside>
+<script>
+const $ = (id) => document.getElementById(id);
+let pages = [], answers = {}, at = 0, zoom = 0;
+
+async function load() {
+  const data = await (await fetch("/api/pages")).json();
+  if (data.error) { $("error").textContent = data.error; return; }
+  pages = data.pages; answers = data.answers;
+  const first = pages.findIndex((p) => !(p.page in answers));
+  go(first === -1 ? 0 : first);
+}
+
+function progress() {
+  const done = pages.filter((p) => p.page in answers).length;
+  $("bar").style.width = `${(100 * done) / pages.length}%`;
+  $("count").textContent = `${done} of ${pages.length} checked`;
+}
+
+function go(index) {
+  at = Math.max(0, Math.min(pages.length - 1, index));
+  const page = pages[at];
+  $("where").textContent = `${page.page} · ${page.n} of ${pages.length}`;
+  $("title").textContent = page.title;
+  $("family").textContent = page.family;
+  const own = answers[page.page];
+  $("own").className = `own ${own ? own.verdict : ""}`;
+  $("own").textContent = own ? `Your check: ${own.verdict} table` : "Not checked yet";
+  $("error").textContent = "";
+  progress();
+  const image = $("page");
+  image.onload = () => { fit(); $("view").scrollTo(0, 0); };
+  image.src = `/image/${encodeURIComponent(page.page)}`;
+}
+
+function fit() {
+  const image = $("page");
+  if (!image.naturalWidth) return;
+  const width = zoom || Math.min(1, ($("view").clientWidth - 24) / image.naturalWidth);
+  image.style.width = `${image.naturalWidth * width}px`;
+}
+
+function setZoom(factor) {
+  const image = $("page");
+  const current = zoom || image.clientWidth / image.naturalWidth;
+  zoom = Math.max(0.2, Math.min(3, current * factor));
+  fit();
+}
+
+async function mark(verdict) {
+  const page = pages[at];
+  const data = await (await fetch("/api/check", {
+    method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ page: page.page, verdict }),
+  })).json();
+  if (data.error) { $("error").textContent = data.error; return; }
+  answers[page.page] = { verdict: data.verdict };
+  const next = pages.findIndex((p, i) => i > at && !(p.page in answers));
+  if (next !== -1) go(next); else if (at < pages.length - 1) go(at + 1); else go(at);
+}
+
+$("right").onclick = () => mark("right");
+$("wrong").onclick = () => mark("wrong");
+$("prev").onclick = () => go(at - 1);
+$("next").onclick = () => go(at + 1);
+document.addEventListener("keydown", (event) => {
+  if (event.metaKey || event.ctrlKey || event.altKey) return;
+  const actions = {
+    KeyR: () => mark("right"), KeyW: () => mark("wrong"),
+    ArrowLeft: () => go(at - 1), ArrowRight: () => go(at + 1),
+    KeyN: () => { const i = pages.findIndex((p) => !(p.page in answers)); if (i !== -1) go(i); },
+    Equal: () => setZoom(1.25), Minus: () => setZoom(0.8),
+  };
+  const action = actions[event.code];
+  if (action) { event.preventDefault(); action(); }
+});
+window.addEventListener("resize", fit);
+load();
+</script>
+</body>
+</html>

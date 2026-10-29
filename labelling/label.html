@@ -1,0 +1,276 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Cell labels</title>
+<style>
+  :root {
+    --bg: #f4f2ee; --panel: #ffffff; --ink: #1f1d1a; --muted: #6b665e; --line: #ddd8cf;
+    --accent: #1d5fd1; --mark: rgba(214, 40, 40, 0.95); --band: rgba(29, 95, 209, 0.10);
+    --done: #2f7d4a; --warn: #a3520f;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink);
+    font: 14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  body { display: grid; grid-template-columns: 1fr 360px; grid-template-rows: auto 1fr; height: 100vh; }
+  header { grid-column: 1 / -1; display: flex; align-items: center; gap: 16px; padding: 10px 16px;
+    border-bottom: 1px solid var(--line); background: var(--panel); }
+  header h1 { font-size: 15px; margin: 0; font-weight: 600; }
+  .pass { font-size: 12px; padding: 2px 8px; border-radius: 10px; background: #e8eefb; color: var(--accent); }
+  .progress { flex: 1; height: 6px; background: #ebe7e0; border-radius: 3px; overflow: hidden; }
+  .progress > div { height: 100%; background: var(--done); width: 0; transition: width .2s; }
+  .count { color: var(--muted); font-variant-numeric: tabular-nums; }
+  #view { overflow: auto; position: relative; background: #e9e6e0; }
+  #stage { position: relative; margin: 0; transform-origin: 0 0; }
+  #stage img { display: block; user-select: none; }
+  .band { position: absolute; background: var(--band); pointer-events: none; }
+  .box { position: absolute; border: 2px solid var(--mark); border-radius: 2px; pointer-events: none;
+    box-shadow: 0 0 0 3px rgba(255,255,255,.7); }
+  aside { border-left: 1px solid var(--line); background: var(--panel); padding: 16px; overflow: auto;
+    display: flex; flex-direction: column; gap: 14px; }
+  .label { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 2px; }
+  .field { font-size: 15px; }
+  .field.big { font-size: 17px; font-weight: 600; }
+  .title { font-size: 13px; color: var(--muted); }
+  .note { font-size: 12px; color: var(--muted); border-left: 3px solid var(--line); padding-left: 8px; }
+  .notice { font-size: 13px; color: var(--warn); }
+  #lens { height: 120px; border: 1px solid var(--line); border-radius: 6px; background-color: #e9e6e0;
+    background-repeat: no-repeat; position: relative; overflow: hidden; }
+  #lens .box { position: absolute; }
+  input[type=text] { width: 100%; font: 20px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; padding: 10px 12px;
+    border: 1px solid var(--line); border-radius: 6px; }
+  input[type=text]:focus { outline: 2px solid var(--accent); border-color: transparent; }
+  .buttons { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  button { font: inherit; padding: 8px 10px; border-radius: 6px; border: 1px solid var(--line); background: #faf9f7;
+    cursor: pointer; text-align: left; }
+  button:hover { border-color: #bdb6aa; }
+  button.primary { grid-column: 1 / -1; background: var(--accent); color: #fff; border-color: var(--accent); }
+  kbd { font: 11px ui-monospace, Menlo, monospace; padding: 1px 5px; border: 1px solid var(--line); border-bottom-width: 2px;
+    border-radius: 4px; background: #fff; color: var(--muted); float: right; }
+  button.primary kbd { background: transparent; color: #dfe8fb; border-color: #6d97e3; }
+  .own { font-size: 13px; padding: 8px 10px; border-radius: 6px; background: #eef6f0; color: var(--done); }
+  .own.none { background: #f3f1ed; color: var(--muted); }
+  .nav { display: flex; gap: 8px; }
+  .nav button { flex: 1; text-align: center; }
+  .keys { font-size: 12px; color: var(--muted); display: grid; grid-template-columns: auto 1fr; gap: 3px 10px; }
+  .keys kbd { float: none; }
+  .error { color: #b3261e; font-size: 13px; min-height: 1em; }
+  .blocked { grid-column: 1 / -1; padding: 40px; font-size: 16px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Cell labels</h1>
+  <span class="pass" id="pass"></span>
+  <div class="progress"><div id="bar"></div></div>
+  <span class="count" id="count"></span>
+</header>
+<div id="view"><div id="stage"><img id="page" alt="The printed page"></div></div>
+<aside>
+  <div>
+    <div class="label">Cell</div>
+    <div class="field big" id="where"></div>
+    <div class="title" id="title"></div>
+  </div>
+  <div>
+    <div class="label">Row</div>
+    <div class="field" id="row"></div>
+  </div>
+  <div>
+    <div class="label">Column</div>
+    <div class="field" id="column"></div>
+  </div>
+  <div class="notice" id="nobox" hidden>No box for this cell: find it by its row and column.</div>
+  <div id="lens" title="The box's surroundings, enlarged"></div>
+  <div class="note">The red box is only a locator. The cell is the one at the named row and column; where the box disagrees, the row and column win.</div>
+  <div>
+    <div class="label">Printed value, typed as printed</div>
+    <input type="text" id="value" autocomplete="off" spellcheck="false">
+  </div>
+  <div class="buttons">
+    <button class="primary" id="save">Save value <kbd>Enter</kbd></button>
+    <button id="blank">Blank <kbd>⌥B</kbd></button>
+    <button id="cant">Can't read <kbd>⌥X</kbd></button>
+  </div>
+  <div class="error" id="error"></div>
+  <div class="own none" id="own">Not labelled yet</div>
+  <div class="nav">
+    <button id="prev">◀ Previous</button>
+    <button id="next">Next ▶</button>
+  </div>
+  <div class="keys">
+    <kbd>Enter</kbd><span>save the typed value, go on</span>
+    <kbd>⌥B</kbd><span>blank</span>
+    <kbd>⌥X</kbd><span>can't read</span>
+    <kbd>⌥← ⌥→</kbd><span>previous, next</span>
+    <kbd>⌥N</kbd><span>next unlabelled</span>
+    <kbd>⌥= ⌥−</kbd><span>zoom in, out</span>
+    <kbd>⌥L</kbd><span>row and column bands on or off</span>
+  </div>
+</aside>
+<script>
+const which = new URLSearchParams(location.search).get("pass") === "relabel" ? "relabel" : "first";
+const $ = (id) => document.getElementById(id);
+let cells = [], answers = {}, at = 0, zoom = 0, bands = true;  // zoom 0: the page's width fits
+
+function show(text) { $("error").textContent = text || ""; }
+
+async function load() {
+  const response = await fetch(`/api/cells?pass=${which}`);
+  const data = await response.json();
+  $("pass").textContent = which === "relabel" ? "Relabel pass" : "First pass";
+  if (data.error || data.blocked) {
+    document.body.innerHTML = `<div class="blocked">${data.error || data.blocked}</div>`;
+    return;
+  }
+  cells = data.cells; answers = data.answers;
+  const first = cells.findIndex((c) => !(c.cell in answers));
+  go(first === -1 ? 0 : first);
+}
+
+function progress() {
+  const done = cells.filter((c) => c.cell in answers).length;
+  $("bar").style.width = `${(100 * done) / cells.length}%`;
+  $("count").textContent = `${done} of ${cells.length} labelled`;
+}
+
+function describe(answer) {
+  if (!answer) return null;
+  if (answer.choice === "blank") return "blank";
+  if (answer.choice === "cant_read") return "can't read";
+  return answer.value;
+}
+
+function go(index) {
+  at = Math.max(0, Math.min(cells.length - 1, index));
+  const cell = cells[at];
+  $("where").textContent = `Cell ${cell.n} of ${cells.length} · page ${cell.page}`;
+  $("title").textContent = `${cell.title} (${cell.unit})`;
+  $("row").textContent = cell.row;
+  $("column").textContent = cell.column;
+  $("nobox").hidden = !!cell.box;
+  const own = describe(answers[cell.cell]);
+  $("own").textContent = own === null ? "Not labelled yet" : `Your label: ${own}`;
+  $("own").classList.toggle("none", own === null);
+  const answer = answers[cell.cell];
+  $("value").value = answer && answer.choice === "value" ? answer.value : "";
+  show("");
+  progress();
+  const image = $("page");
+  if (image.dataset.page !== cell.page) {
+    image.dataset.page = cell.page;
+    image.onload = () => place(true);
+    image.src = `/image/${encodeURIComponent(cell.page)}`;
+  } else {
+    place(true);
+  }
+  $("value").focus();
+  $("value").select();
+}
+
+function place(centre) {
+  const image = $("page"), stage = $("stage"), cell = cells[at];
+  if (!image.naturalWidth) return;
+  const s = scale(), pad = 3;
+  image.style.width = `${image.naturalWidth * s}px`;
+  stage.querySelectorAll(".band, .box").forEach((node) => node.remove());
+  const box = cell.box;
+  lens(box);
+  if (!box) { if (centre) $("view").scrollTo(0, 0); return; }
+  const add = (cls, left, top, width, height) => {
+    const node = document.createElement("div");
+    node.className = cls;
+    Object.assign(node.style, { left: `${left}px`, top: `${top}px`, width: `${width}px`, height: `${height}px` });
+    stage.appendChild(node);
+  };
+  if (bands) {
+    add("band", 0, box.y0 * s, image.naturalWidth * s, (box.y1 - box.y0) * s);
+    add("band", box.x0 * s, 0, (box.x1 - box.x0) * s, image.naturalHeight * s);
+  }
+  add("box", box.x0 * s - pad, box.y0 * s - pad, (box.x1 - box.x0) * s + 2 * pad, (box.y1 - box.y0) * s + 2 * pad);
+  if (centre) {
+    const view = $("view");
+    view.scrollTo(((box.x0 + box.x1) / 2) * s - view.clientWidth / 2, ((box.y0 + box.y1) / 2) * s - view.clientHeight / 2);
+  }
+}
+
+async function save(choice) {
+  const cell = cells[at];
+  const value = $("value").value;
+  if (choice === "value" && !value.trim()) { show("Type the value as printed, or choose blank or can't read."); return; }
+  const response = await fetch("/api/answer", {
+    method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ pass: which, cell: cell.cell, choice, value: choice === "value" ? value : null }),
+  });
+  const data = await response.json();
+  if (data.error) { show(data.error); return; }
+  answers[cell.cell] = { choice: data.choice, value: data.value };
+  const next = cells.findIndex((c, i) => i > at && !(c.cell in answers));
+  if (next !== -1) go(next);
+  else if (at < cells.length - 1) go(at + 1);
+  else { go(at); show(cells.every((c) => c.cell in answers) ? "Every cell has a label." : ""); }
+}
+
+function nextUnlabelled() {
+  const after = cells.findIndex((c, i) => i > at && !(c.cell in answers));
+  const any = cells.findIndex((c) => !(c.cell in answers));
+  if (after !== -1) go(after); else if (any !== -1) go(any); else show("Every cell has a label.");
+}
+
+function scale() {
+  const image = $("page");
+  return zoom || Math.min(1, ($("view").clientWidth - 2) / image.naturalWidth);
+}
+
+function lens(box) {
+  const node = $("lens"), image = $("page");
+  node.hidden = !box;
+  node.replaceChildren();
+  if (!box) return;
+  const width = node.clientWidth, height = node.clientHeight;
+  const spanX = (box.x1 - box.x0) * 4, spanY = (box.y1 - box.y0) * 4;
+  const s = Math.min(3, width / spanX, height / spanY);
+  const cx = ((box.x0 + box.x1) / 2) * s, cy = ((box.y0 + box.y1) / 2) * s;
+  const left = width / 2 - cx, top = height / 2 - cy;
+  node.style.backgroundImage = `url("${image.src}")`;
+  node.style.backgroundSize = `${image.naturalWidth * s}px ${image.naturalHeight * s}px`;
+  node.style.backgroundPosition = `${left}px ${top}px`;
+  const mark = document.createElement("div");
+  mark.className = "box";
+  Object.assign(mark.style, {
+    left: `${box.x0 * s + left - 3}px`, top: `${box.y0 * s + top - 3}px`,
+    width: `${(box.x1 - box.x0) * s + 6}px`, height: `${(box.y1 - box.y0) * s + 6}px`,
+  });
+  node.appendChild(mark);
+}
+
+function setZoom(factor) {
+  zoom = Math.max(0.3, Math.min(4, scale() * factor));
+  place(true);
+}
+window.addEventListener("resize", () => place(false));
+
+$("save").onclick = () => save("value");
+$("blank").onclick = () => save("blank");
+$("cant").onclick = () => save("cant_read");
+$("prev").onclick = () => go(at - 1);
+$("next").onclick = () => go(at + 1);
+$("value").addEventListener("keydown", (event) => {
+  if (event.key === "Enter" && !event.altKey) { event.preventDefault(); save("value"); }
+});
+document.addEventListener("keydown", (event) => {
+  if (!event.altKey) return;
+  const actions = {
+    KeyB: () => save("blank"), KeyX: () => save("cant_read"),
+    ArrowLeft: () => go(at - 1), ArrowRight: () => go(at + 1), KeyN: nextUnlabelled,
+    Equal: () => setZoom(1.25), Minus: () => setZoom(0.8),
+    KeyL: () => { bands = !bands; place(false); },
+  };
+  const action = actions[event.code];
+  if (action) { event.preventDefault(); action(); }
+});
+load();
+</script>
+</body>
+</html>
