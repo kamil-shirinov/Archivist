@@ -22,8 +22,11 @@ missing cache entry is an error, never a call.
 - Weights: a labelled cell's family pages over its family's deep-check pages, times its stratum's
   cells over its stratum's sampled cells; a deep-check cell's, the first factor alone. The
   family's pages are the pages that count (POPULATION): since the title check the deep check
-  draws from them (Deviations), so they make the weight the inverse of a cell's chance of being
-  labelled.
+  draws from them, so they make the weight the inverse of a cell's chance of being labelled
+  (Deviations, 2026-10-30). The headline is also given with the classified pages' weights, so
+  a reader can see whether the choice matters.
+- The labels are committed before the scorer runs: it refuses a label file that git does not
+  track or that differs from its commit, and records each one's sha256.
 - Every rate is a ratio of weighted sums. Intervals: 2,000 resamples, numpy.random.default_rng(0),
   pages resampled with replacement within each stratum (strata in name order, pages in id order,
   each page keeping its cells and weights); Wilson 95% for the relabelled cells and the checked
@@ -47,7 +50,7 @@ import math
 import subprocess
 from collections import Counter, defaultdict
 from collections.abc import Callable, Iterable, Mapping, Sequence
-from dataclasses import dataclass
+from dataclasses import dataclass, replace
 from pathlib import Path
 
 import numpy as np
@@ -111,6 +114,10 @@ class NotFrozen(RuntimeError):
     pass
 
 
+class NotCommitted(RuntimeError):
+    pass
+
+
 # --- Provenance ---------------------------------------------------------------------------------
 
 
@@ -144,6 +151,37 @@ def provenance(data: Path, git: Callable[..., subprocess.CompletedProcess] | Non
         "scorer_sha256": hashlib.sha256(Path(__file__).read_bytes()).hexdigest(),
         "records_commit": records,
     }
+
+
+def committed_labels(
+    data: Path, git: Callable[..., subprocess.CompletedProcess] | None = None
+) -> dict[str, str]:
+    """Each label file's sha256. Refuses one that git does not track, that differs from its
+    commit, or whose commit is not on origin/main: the labels are committed and pushed first."""
+
+    def run(*args: str) -> subprocess.CompletedProcess:
+        command = ["git", "-C", str(data), *args]
+        return subprocess.run(command, capture_output=True, text=True, check=False)
+
+    git = git or run
+    labels = data / real_test.OUT_DIR / SIDE / "labels"
+    hashes = {}
+    for name in (DRAW_FILE, LAYOUT_ANSWERS, *FILES.values()):
+        path = labels / name
+        if not path.exists():
+            continue
+        relative = path.relative_to(data).as_posix()
+        if git("ls-files", "--error-unmatch", relative).returncode != 0:
+            raise NotCommitted(f"{relative} is not committed: commit and push the labels first")
+        if git("diff", "--quiet", "HEAD", "--", relative).returncode != 0:
+            raise NotCommitted(f"{relative} differs from its commit")
+        last = git("log", "-1", "--format=%H", "--", relative).stdout.strip()
+        if git("merge-base", "--is-ancestor", last, "origin/main").returncode != 0:
+            raise NotCommitted(f"{relative} is committed but not pushed")
+        hashes[name] = hashlib.sha256(path.read_bytes()).hexdigest()
+    if FILES["first"] not in hashes:
+        raise NotCommitted(f"no {FILES['first']}: nothing is labelled")
+    return hashes
 
 
 # --- Statistics ---------------------------------------------------------------------------------
@@ -265,14 +303,17 @@ def label_parts(rereads: str) -> dict[str, Callable[[Scored], tuple[float, float
     }
 
 
-def family_weights(families: Mapping[str, Mapping[str, int]]) -> dict[str, float]:
-    """Each family's pages that count over its deep-check pages."""
-    return {f: c[POPULATION] / c["deep_pages"] for f, c in families.items() if c["deep_pages"]}
+def family_weights(
+    families: Mapping[str, Mapping[str, int]], population: str = POPULATION
+) -> dict[str, float]:
+    """Each family's pages that count (or, for the comparison, classified) over its deep-check
+    pages."""
+    return {f: c[population] / c["deep_pages"] for f, c in families.items() if c["deep_pages"]}
 
 
-def cell_weights(draw: Mapping) -> dict[str, float]:
+def cell_weights(draw: Mapping, population: str = POPULATION) -> dict[str, float]:
     """Each sampled cell's weight, the inverse of its chance of being labelled."""
-    family = family_weights(draw["families"])
+    family = family_weights(draw["families"], population)
     strata = {n: s["cells"] / s["sampled"] for n, s in draw["strata"].items() if s["sampled"]}
     return {s["cell"]: family[s["family"]] * strata[s["stratum"]] for s in draw["sample"]}
 
@@ -311,6 +352,18 @@ def label_results(cells: Sequence[Scored]) -> dict:
                 },
             }
     return out
+
+
+def headline(cells: Sequence[Scored]) -> dict:
+    """Both error rates and R1 in every variant: what the comparison weights are shown for."""
+    return {
+        name: {
+            "single_read_error": result["overall"]["single_read_error"],
+            "archivist_error": result["overall"]["archivist_error"],
+            "r1_met": result["r1"]["met"],
+        }
+        for name, result in label_results(cells).items()
+    }
 
 
 # --- Every deep-check cell ----------------------------------------------------------------------
@@ -663,6 +716,8 @@ def score(data: Path) -> dict:
                 both_ways=s["page"] in BOTH_WAYS,
             )
         )
+    classified = cell_weights(draw, "classified")
+    compared = [replace(c, weight=classified[c.cell]) for c in scored]
     family_weight = family_weights(draw["families"])
     sources = {
         field: source for line in _lines(records / "boxes.jsonl") for field, source in line["box_sources"].items()
@@ -697,6 +752,7 @@ def score(data: Path) -> dict:
         },
         "both_ways_pages": sorted(BOTH_WAYS),
         "labels": label_results(scored),
+        "headline_with_classified_weights": headline(compared),
         "every_cell": population_results(units),
         "unanswered_rereads": {
             "keys": {name: len(found) for name, found in lists.items()},
@@ -738,6 +794,9 @@ def render(record: Mapping) -> str:
         f"counts: {record['weights']['population']}. Intervals: 95%, page bootstrap within strata "
         "(rates) or Wilson (counts).",
         "",
+        "Label files (sha256): "
+        + ", ".join(f"`{n}` {h}" for n, h in record.get("label_files_sha256", {}).items()),
+        "",
         "## Labelled cells",
         "",
         "| Variant | Cells | Single read error | Archivist error (accepted) | Catch rate | R1 |",
@@ -750,6 +809,12 @@ def render(record: Mapping) -> str:
             f"{_pct(o['archivist_error'])} | {_pct(o['catch_rate'])} | "
             f"{'met' if result['r1']['met'] else 'not met'} |"
         )
+    compared = "; ".join(
+        f"{name}: single read {_pct(h['single_read_error'])}, Archivist "
+        f"{_pct(h['archivist_error'])}, R1 {'met' if h['r1_met'] else 'not met'}"
+        for name, h in record["headline_with_classified_weights"].items()
+    )
+    lines += ["", f"With classified-page weights instead (Deviations, 2026-10-30): {compared}."]
     lines += ["", "By stratum:", "", "| Variant | Stratum | Single read error | Archivist error | Catch rate |"]
     lines.append("|---|---|---|---|---|")
     for name, result in record["labels"].items():
@@ -832,10 +897,11 @@ def main(argv: list[str] | None = None) -> None:
     args = parser.parse_args(argv)
     data = args.data.resolve()
     origin = provenance(data)
+    label_files = committed_labels(data)
     out = data / real_test.OUT_DIR / SIDE / OUT
     if out.exists():
         parser.error(f"{out} exists: the held-out side is scored once")
-    record = {"provenance": origin, **score(data)}
+    record = {"provenance": origin, "label_files_sha256": label_files, **score(data)}
     out.mkdir(parents=True)
     (out / "score.json").write_text(json.dumps(record, indent=2) + "\n", encoding="utf-8")
     (out / "score.md").write_text(render(record), encoding="utf-8")

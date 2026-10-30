@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+import hashlib
 import subprocess
 import sys
 from dataclasses import dataclass, replace
@@ -121,6 +122,16 @@ def test_weights_follow_the_preregistration():
     }
     assert score.POPULATION == "confirmed"
     assert score.cell_weights(draw) == {"x": 2.0 * 10, "y": 1.0 * 10}
+    assert score.cell_weights(draw, "classified") == {"x": 2.5 * 10, "y": 1.0 * 10}
+
+
+def test_headline_gives_both_error_rates_and_r1_in_every_variant():
+    cells = [cell(1, page="p1", outcome="wrong", status="review"), cell(2, page="p2")]
+    found = score.headline(cells)
+    assert set(found) == {"left_out/as_run", "left_out/failed_to_review", "kept/as_run", "kept/failed_to_review"}
+    assert found["kept/as_run"]["single_read_error"]["value"] == pytest.approx(1 / 2)
+    assert found["kept/as_run"]["archivist_error"]["value"] == 0.0
+    assert found["kept/as_run"]["r1_met"] in (True, False)
 
 
 def test_r1_is_met_only_when_archivist_lies_wholly_below():
@@ -314,6 +325,39 @@ def test_provenance_passes_the_tags_frozen_check_through(tmp_path):
         score.provenance(tmp_path, git=git)
 
 
+def labels_git(*, tracked=True, clean=True, pushed=True):
+    def git(*args):
+        code, out = 0, ""
+        if args[0] == "ls-files":
+            code = 0 if tracked else 1
+        elif args[0] == "diff":
+            code = 0 if clean else 1
+        elif args[0] == "log":
+            out = "c" * 40
+        elif args[0] == "merge-base":
+            code = 0 if pushed else 1
+        return subprocess.CompletedProcess(args, code, stdout=out, stderr="")
+
+    return git
+
+
+def test_the_labels_must_be_committed_and_pushed_before_scoring(tmp_path):
+    from archivist.templates import real_test
+
+    labels = tmp_path / real_test.OUT_DIR / score.SIDE / "labels"
+    labels.mkdir(parents=True)
+    with pytest.raises(score.NotCommitted, match="nothing is labelled"):
+        score.committed_labels(tmp_path, git=labels_git())
+    (labels / "labels.jsonl").write_text('{"cell": "x"}\n')
+    (labels / "draw.json").write_text("{}\n")
+    for wrong, match in (({"tracked": False}, "not committed"), ({"clean": False}, "differs"), ({"pushed": False}, "not pushed")):
+        with pytest.raises(score.NotCommitted, match=match):
+            score.committed_labels(tmp_path, git=labels_git(**wrong))
+    found = score.committed_labels(tmp_path, git=labels_git())
+    assert set(found) == {"draw.json", "labels.jsonl"}
+    assert found["labels.jsonl"] == hashlib.sha256(b'{"cell": "x"}\n').hexdigest()
+
+
 def test_render_shows_every_variant():
     cells = [cell(1, page="p1", outcome="wrong"), cell(2, page="p2", stratum="total_claims")]
     coverage = {
@@ -328,7 +372,9 @@ def test_render_shows_every_variant():
     record = {
         "provenance": {"tag": "run-real-treasury", "commit": "b8ff15d9d8", "scorer_sha256": "0" * 64},
         "weights": {"population": "confirmed"},
+        "label_files_sha256": {"labels.jsonl": "f" * 64},
         "labels": score.label_results(cells),
+        "headline_with_classified_weights": score.headline(cells),
         "every_cell": score.population_results([judged_cell(1)]),
         "unanswered_rereads": {
             "keys": {"a": 1},
@@ -352,6 +398,9 @@ def test_render_shows_every_variant():
         assert variant in text
     assert "| p1 | short_term_foreign_liabilities_as | 1 | 1 | 1 | 1 | 1 | 1 |" in text
     assert "t.sum | 1 / 0 / 0 | 0 / 0 / 0" in text
+    assert "`labels.jsonl` " + "f" * 64 in text
+    shown = [line for line in text.splitlines() if line.startswith("With classified-page weights")]
+    assert len(shown) == 1 and "kept/failed_to_review: single read" in shown[0]
 
 
 def test_score_end_to_end_on_synthetic_records(tmp_path, monkeypatch):
@@ -403,7 +452,7 @@ def test_score_end_to_end_on_synthetic_records(tmp_path, monkeypatch):
     ]
     deep = {f: sum(p.doc_type == f for p in pages) for f in real_test.FAMILIES}
     draw = {
-        "families": {f: {"classified": 2 * n, "confirmed": 2 * n, "deep_pages": n} for f, n in deep.items()},
+        "families": {f: {"classified": 3 * n, "confirmed": 2 * n, "deep_pages": n} for f, n in deep.items()},
         "strata": {name: {"cells": len(cells), "sampled": 3} for name, cells in strata.items()},
         "coverage_by_page": coverage,
         "sample": sample,
@@ -441,6 +490,8 @@ def test_score_end_to_end_on_synthetic_records(tmp_path, monkeypatch):
     assert set(record["template_drift"]) == set(score.IRELAND)
     assert record["template_drift"]["1993-06_p097"]["prints_gdr_row"] is False
     assert record["coverage_by_page"] == coverage
+    assert record["weights"]["family_weights"][short] == 2.0
+    assert set(record["headline_with_classified_weights"]) == set(record["labels"])
     assert record["sam"]["pages_with_a_detection"] == len(pages)
     assert record["relabel"]["status"] == "pending" and record["classification_check"]["status"] == "pending"
     score.render({"provenance": {"tag": "t", "commit": "c" * 40, "scorer_sha256": "0" * 64}, **record})
