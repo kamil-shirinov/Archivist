@@ -1,0 +1,18 @@
+{
+  "stage": "development_batched_L4_benchmark",
+  "state": "cancelled_before_allocation",
+  "gpu": "L4",
+  "physical_cpu_cores": 4,
+  "memory_gib": 64,
+  "rate_per_second_usd": 0.00041648,
+  "maximum_usd": 0.8766904,
+  "timeout_seconds": 1800,
+  "startup_allowance_seconds": 300,
+  "prior_retained_ceiling_including_overhead_usd": 17.6296882,
+  "planned_phase2_gpu_ceiling_usd": 6.1243384,
+  "combined_retained_ceiling_usd": 24.630717,
+  "reserved_at": "2026-10-30T21:52:30.761413+00:00",
+  "error": "RemoteError",
+  "app_id": "ap-2z8tfSp0mw3AUEELYretjH",
+  "reason": "No containers running; cancelled the queued 64-GiB request before a model result. Retry uses 32 GiB. Original maximum retained."
+}

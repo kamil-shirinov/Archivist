@@ -1,0 +1,47 @@
+{
+  "status": "capacity_blocked_no_completed_L4_benchmark",
+  "point_estimate_available": false,
+  "reason": "Both development-only L4 requests remained queued with zero containers; stopped before any model output.",
+  "sample_drawn": false,
+  "held_out_frame_read": false,
+  "gpu": "L4",
+  "gpu_fit_status": "candidate based on phase-1 20.3-GB observed peak; batch-8 fit requires development verification",
+  "batch_size": 8,
+  "ocr_prefix_chars": 1024,
+  "physical_cpu_cores": 4,
+  "memory_gib": 32,
+  "rate_per_second_usd": 0.00034544,
+  "rate_per_hour_usd": 1.243584,
+  "phase1_reported_usd": 1.40809042,
+  "preparation_reported_usd": 0.0,
+  "sample_size_formula": "N = named-family census + min(500, classifier-set-aside pool)",
+  "sample_size_known": false,
+  "development_planning_example": {
+    "named_rate": "10/178",
+    "population_from_preregistration": 4569,
+    "projected_named_pages": 257,
+    "projected_sample_pages": 757
+  },
+  "cost_formula": "0.00034544 * (model_function_seconds + 300 startup seconds + 5 scale-down seconds)",
+  "conditional_scenarios": [
+    {
+      "function_hours": 1,
+      "ceiling_including_startup_usd": 1.3489432000000001
+    },
+    {
+      "function_hours": 2,
+      "ceiling_including_startup_usd": 2.5925272
+    },
+    {
+      "function_hours": 3,
+      "ceiling_including_startup_usd": 3.8361112000000004
+    },
+    {
+      "function_hours": 4,
+      "ceiling_including_startup_usd": 5.079695200000001
+    }
+  ],
+  "future_gpu_job_ceiling_usd": 5.079695200000001,
+  "project_retained_ceiling_usd": 24.313225000000003,
+  "required_before_held_out": "Complete a budgeted development-only L4 batch fit/timing check, then at go count sample metadata and apply the forecast/budget gate before any OCR or GPU inference."
+}

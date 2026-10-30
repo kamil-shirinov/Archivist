@@ -1,0 +1,7 @@
+[roles.benchmark]
+kind = "llm"
+backend = "modal_glimmer_batch"
+model_id = "meta-models/Muse-Glimmer-30B@a4e59da52a7bc87ae7251dd5545c0dd437c44b68/phase2-development/194a319969ed34dc6bee8418182835dbfc2f1267a338f2052b5d42ca424f435f"
+[prices."meta-models/Muse-Glimmer-30B@a4e59da52a7bc87ae7251dd5545c0dd437c44b68/phase2-development/194a319969ed34dc6bee8418182835dbfc2f1267a338f2052b5d42ca424f435f"]
+input_per_mtok = 0.0
+output_per_mtok = 0.0
