@@ -32,11 +32,11 @@ import pypdfium2 as pdfium
 import pypdfium2.raw as pdfium_c
 from PIL import Image
 
-from archivist.ingest import occ
+from archivist.ingest import frb, occ
 from archivist.ingest.fraser import DEFAULT_ROOT, pdf_name
 from archivist.pipeline.extract import ARCHIVE_OCR
 from archivist.schema import BBox, ExtractedValue
-from archivist.templates.pages import OCC, OCC_ROOT, REAL, resolve
+from archivist.templates.pages import FRB, FRB_ROOT, OCC, OCC_ROOT, REAL, resolve
 
 STRATEGY = ARCHIVE_OCR
 WINDOW = 100  # pixels above and below the model's box centre: about four printed lines
@@ -89,6 +89,8 @@ def words(ref: str, root: Path = DEFAULT_ROOT) -> tuple[Word, ...]:
         path = root / "pdf" / pdf_name(found["issue"])
     elif (found := OCC.fullmatch(ref)) is not None:  # a Comptroller's report: its own root
         path = occ.pdf_path(OCC_ROOT, found["issue"])
+    elif (found := FRB.fullmatch(ref)) is not None:  # the Federal Reserve Bulletin (P28)
+        path = frb.pdf_path(FRB_ROOT, found["issue"])
     else:
         return ()
     return layer(path, int(found["page"]), page_ref.path)

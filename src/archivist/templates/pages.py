@@ -5,10 +5,13 @@ on the development side of data/real/split.json is allowed, and its image must m
 manifest's sha256; a held-out page is refused before its file is opened. A page of the Comptroller
 of the Currency's annual reports is "<volume>_p<NNN>" (data/real_occ/pages/<volume>/p<NNN>.jpg, a
 volume being its year, plus -v1, -v2 where a year has two), allowed only in a development year of
-data/real_occ/split.json and on the same terms. A synthetic page is "dev/<stem>" or "val/<stem>"
-(data/<split>/images/<stem>.jpg: the dev split, seed 1001, or val, seed 2002); test, the frozen
-split, is never allowed. Anything else is refused. A page's id in its field ids is the real id, or
-the synthetic page's stem.
+data/real_occ/split.json and on the same terms. A page of the Federal Reserve Bulletin is
+"frb-<issue>_p<NNN>" (data/real_frb/pages/<issue>/p<NNN>.jpg; P28), allowed only in a development
+issue of data/real_frb/split.json and on the same terms; its prefix keeps it apart from the
+Treasury Bulletin's issues, some of which are June issues too. A synthetic page is "dev/<stem>" or
+"val/<stem>" (data/<split>/images/<stem>.jpg: the dev split, seed 1001, or val, seed 2002); test,
+the frozen split, is never allowed. Anything else is refused. A page's id in its field ids is the
+real id, or the synthetic page's stem.
 """
 
 from __future__ import annotations
@@ -19,14 +22,16 @@ from dataclasses import dataclass
 from functools import cache
 from pathlib import Path
 
-from archivist.ingest import occ
+from archivist.ingest import frb, occ
 from archivist.ingest.fraser import DEFAULT_ROOT, Manifest, Split
 
 REAL = re.compile(r"(?P<issue>\d{4}-\d{2})_p(?P<page>\d{3})")
 OCC = re.compile(r"(?P<issue>\d{4}(?:-v[1-9])?)_p(?P<page>\d{3})")
+FRB = re.compile(r"frb-(?P<issue>\d{4}-\d{2})_p(?P<page>\d{3})")
 SYNTHETIC = re.compile(r"(?P<split>dev|val)/(?P<stem>[A-Za-z0-9][A-Za-z0-9_-]*)")
 SYNTHETIC_ROOT = Path("data")
 OCC_ROOT = occ.DEFAULT_ROOT
+FRB_ROOT = frb.DEFAULT_ROOT
 
 
 class PageRefused(ValueError):
@@ -51,6 +56,11 @@ def _occ_split(root: Path) -> occ.Split:
 
 
 @cache
+def _frb_split(root: Path) -> frb.Split:
+    return frb.Split.model_validate_json((root / "split.json").read_text(encoding="utf-8"))
+
+
+@cache
 def _hashes(root: Path, kind: type[Manifest] = Manifest) -> dict[tuple[str, int], str]:
     manifest = kind.model_validate_json((root / "manifest.json").read_text(encoding="utf-8"))
     return {(p.issue, p.page): p.sha256 for p in manifest.pages}
@@ -70,8 +80,15 @@ def resolve(
     root: Path = DEFAULT_ROOT,
     synthetic: Path = SYNTHETIC_ROOT,
     occ_root: Path = OCC_ROOT,
+    frb_root: Path = FRB_ROOT,
 ) -> Page:
     """The page a reference names, if it may be sent to a model; raises PageRefused if not."""
+    if (found := FRB.fullmatch(ref)) is not None:
+        issue, number = found["issue"], int(found["page"])
+        if issue not in _frb_split(frb_root).development:
+            raise PageRefused(f"{ref}: issue {issue} is not a development issue")
+        expected = _hashes(frb_root, frb.Manifest).get((issue, number))
+        return _checked(ref, frb_root, issue, number, expected)
     if (real := REAL.fullmatch(ref)) is not None:
         issue, number = real["issue"], int(real["page"])
         if issue not in _split(root).development:
@@ -92,6 +109,7 @@ def resolve(
             )
         return Page(ref, stem, path)
     raise PageRefused(
-        f"{ref}: neither a development page (1939-07_p071, 1925_p341) nor a dev or val page "
+        f"{ref}: neither a development page (1939-07_p071, 1925_p341, frb-1990-06_p077) nor a dev "
+        "or val page "
         "(dev/x, val/x)"
     )
