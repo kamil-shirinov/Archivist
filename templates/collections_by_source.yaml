@@ -1,0 +1,421 @@
+# Drafted by muse-spark-1.3-contributor from 1939-03_p019, 1939-07_p023, 1939-12_p018 on 2026-10-30 (P21b).
+# A draft: validated, never registered. python -m archivist.templates.test checks its
+# identities; only a person, with python -m archivist.templates.approve, approves it.
+identity:
+  family: collections_by_source
+  title: Collections of Internal Revenue
+  description: Collections of Internal Revenue by source with monthly and fiscal-year figures in thousands
+    of dollars
+  title_patterns:
+  - collections\s+of\s+internal\s+revenue
+panels:
+- key: left
+  title: Sources of Revenue
+  repeats: 1
+  layout:
+    unit: thousands of dollars
+    precision: '1'
+    rows:
+    - key: corp_current
+      printed: Corporation - Current
+    - key: corp_back
+      printed: Corporation - Back
+    - key: indiv_current
+      printed: Individual - Current
+    - key: indiv_back
+      printed: Individual - Back
+    - key: excess_profits
+      printed: Excess-profits
+    - key: total_income
+      printed: Total income taxes
+    - key: unjust_enrichment
+      printed: Tax on unjust enrichment
+    - key: capital_stock_tax
+      printed: Capital stock tax
+    - key: estate_tax
+      printed: Estate tax
+    - key: gift_tax
+      printed: Gift tax
+    - key: distilled_imported
+      printed: Distilled spirits (imported, excise)
+    - key: distilled_domestic
+      printed: Distilled spirits (domestic, excise)
+    - key: distilled_rectification
+      printed: Distilled spirits rectification tax
+    - key: wines_imported
+      printed: Wines, cordials, etc., (imported, excise)
+    - key: wines_domestic
+      printed: Wines, cordials, etc., (domestic, excise)
+    - key: brandy
+      printed: Brandy used for fortifying sweet wines
+    - key: dealers_special
+      printed: Dealers in distilled spirits; rectifiers; manufacturers of stills (special taxes)
+    - key: stamps_export
+      printed: Stamps for distilled spirits intended for export
+    - key: case_stamps
+      printed: Case stamps for distilled spirits bottled in bond
+    - key: container_stamps
+      printed: Container stamps
+    - key: floor_taxes
+      printed: Floor taxes
+    - key: fermented_malt
+      printed: Fermented malt liquors
+    - key: brewers_malt
+      printed: Brewers; dealers in malt liquors (special taxes)
+    - key: total_alcoholic
+      printed: Total alcoholic beverage taxes
+    - key: cigars_large
+      printed: Cigars (large)
+    - key: cigars_small
+      printed: Cigars (small)
+    - key: cigarettes_large
+      printed: Cigarettes (large)
+    - key: cigarettes_small
+      printed: Cigarettes (small)
+    - key: snuff
+      printed: Snuff
+    - key: tobacco_chewing
+      printed: Tobacco (chewing and smoking)
+    - key: cigarette_papers
+      printed: Cigarette papers and tubes
+    - key: leaf_penalties
+      printed: Leaf dealer penalties, etc.
+    - key: total_tobacco
+      printed: Total tobacco taxes
+    - key: bonds_indebtedness
+      printed: Bonds of indebtedness, issues of capital stock, deeds of conveyance, etc.
+    - key: capital_stock_sales
+      printed: Capital stock and similar interest sales or transfers
+    - key: playing_cards
+      printed: Playing cards
+    - key: silver_bullion
+      printed: Silver bullion sales or transfers
+    - key: produce_future
+      printed: Sales of produce for future delivery (repealed as of 7/1/38)
+    - key: total_documentary
+      printed: Total documentary, etc., stamp taxes
+    columns:
+    - key: source
+      printed: Sources of Revenue
+      kind: text
+      blank_means: unknown
+    - key: month_cur
+      printed: '1939'
+      kind: money
+      blank_means: zero
+    - key: month_prev
+      printed: '1938'
+      kind: money
+      blank_means: zero
+    - key: fiscal_cur
+      printed: Fiscal year 1939
+      kind: money
+      blank_means: zero
+    - key: fiscal_prev
+      printed: Fiscal year 1938
+      kind: money
+      blank_means: zero
+  identities:
+  - id: total_income_taxes
+    description: Total income taxes equals corporation current plus corporation back plus individual current
+      plus individual back plus excess-profits
+    for_each: column
+    over:
+    - month_cur
+    - month_prev
+    - fiscal_cur
+    - fiscal_prev
+    left:
+      cell:
+        row: total_income
+    right:
+      sum:
+        rows:
+        - corp_current
+        - corp_back
+        - indiv_current
+        - indiv_back
+        - excess_profits
+  - id: total_alcoholic_taxes
+    description: Total alcoholic beverage taxes equals sum of all alcoholic beverage components
+    for_each: column
+    over:
+    - month_cur
+    - month_prev
+    - fiscal_cur
+    - fiscal_prev
+    left:
+      cell:
+        row: total_alcoholic
+    right:
+      sum:
+        rows:
+        - distilled_imported
+        - distilled_domestic
+        - distilled_rectification
+        - wines_imported
+        - wines_domestic
+        - brandy
+        - dealers_special
+        - stamps_export
+        - case_stamps
+        - container_stamps
+        - floor_taxes
+        - fermented_malt
+        - brewers_malt
+  - id: total_tobacco_taxes
+    description: Total tobacco taxes equals sum of all tobacco components
+    for_each: column
+    over:
+    - month_cur
+    - month_prev
+    - fiscal_cur
+    - fiscal_prev
+    left:
+      cell:
+        row: total_tobacco
+    right:
+      sum:
+        rows:
+        - cigars_large
+        - cigars_small
+        - cigarettes_large
+        - cigarettes_small
+        - snuff
+        - tobacco_chewing
+        - cigarette_papers
+        - leaf_penalties
+  - id: total_documentary_taxes
+    description: Total documentary stamp taxes equals sum of all documentary components
+    for_each: column
+    over:
+    - month_cur
+    - month_prev
+    - fiscal_cur
+    - fiscal_prev
+    left:
+      cell:
+        row: total_documentary
+    right:
+      sum:
+        rows:
+        - bonds_indebtedness
+        - capital_stock_sales
+        - playing_cards
+        - silver_bullion
+        - produce_future
+- key: right
+  title: Sources of Revenue
+  repeats: 1
+  layout:
+    unit: thousands of dollars
+    precision: '1'
+    rows:
+    - key: lubricating_oils
+      printed: Lubricating oils
+    - key: gasoline
+      printed: Gasoline
+    - key: tires_tubes
+      printed: Tires and inner tubes
+    - key: auto_trucks
+      printed: Automobile trucks
+    - key: other_autos
+      printed: Other automobiles and motorcycles
+    - key: parts_accessories
+      printed: Parts or accessories for automobiles
+    - key: electrical_energy
+      printed: Electrical energy
+    - key: radio_sets
+      printed: Radio sets, phonograph records, etc.
+    - key: mechanical_refrigerators
+      printed: Mechanical refrigerators
+    - key: firearms_shells
+      printed: Firearms, shells, and cartridges
+    - key: pistols_revolvers
+      printed: Pistols and revolvers
+    - key: toilet_preparations
+      printed: Toilet preparations, etc., (including repealed 5% tax)
+    - key: matches
+      printed: Matches (including repealed taxes)
+    - key: brewers_wort
+      printed: Brewers' wort and malt (repealed as of 7/1/38)
+    - key: fur_articles
+      printed: Articles made of fur (repealed as of 7/1/38)
+    - key: sporting_goods
+      printed: Sporting goods (repealed as of 7/1/38)
+    - key: cameras_lenses
+      printed: Cameras and lenses (repealed as of 7/1/38)
+    - key: chewing_gum
+      printed: Chewing gum (repealed as of 7/1/38)
+    - key: total_manufacturers
+      printed: Total manufacturers' excise taxes
+    - key: bituminous_coal
+      printed: Bituminous Coal Act of 1937
+    - key: sugar_act
+      printed: Sugar Act of 1937
+    - key: telephone_telegraph
+      printed: Telephone, telegraph, radio and cable facilities, leased wires, etc.
+    - key: transportation_oil
+      printed: Transportation of oil by pipe line
+    - key: safe_deposit
+      printed: Leases of safe-deposit boxes
+    - key: admission_theaters
+      printed: Admission to theaters, concerts, cabarets, etc.
+    - key: club_dues
+      printed: Club dues and initiation fees
+    - key: adulterated_butter
+      printed: Adulterated and process or renovated butter, mixed flour and filled cheese
+    - key: oleomargarine
+      printed: Oleomargarine, including special taxes
+    - key: narcotics
+      printed: Narcotics, including marihuana and special taxes
+    - key: coconut_oils
+      printed: Coconut and other vegetable oils processed
+    - key: national_firearms
+      printed: National Firearms Act
+    - key: all_other
+      printed: All other, including repealed taxes not listed above
+    - key: total_misc_taxes
+      printed: Total miscellaneous taxes
+    - key: total_misc_internal
+      printed: Total miscellaneous internal revenue
+    - key: employment_taxes
+      printed: Taxes with respect to employment (title VIII)
+    - key: employers_tax
+      printed: Tax on employers of 8 or more (title IX)
+    - key: total_social
+      printed: Total Social Security taxes
+    - key: carriers_tax
+      printed: Carriers Taxing Act of 1937
+    - key: total_payroll
+      printed: Total payroll taxes
+    - key: total_internal
+      printed: Total internal revenue
+    columns:
+    - key: source
+      printed: Sources of Revenue
+      kind: text
+      blank_means: unknown
+    - key: month_cur
+      printed: '1939'
+      kind: money
+      blank_means: zero
+    - key: month_prev
+      printed: '1938'
+      kind: money
+      blank_means: zero
+    - key: fiscal_cur
+      printed: Fiscal year 1939
+      kind: money
+      blank_means: zero
+    - key: fiscal_prev
+      printed: Fiscal year 1938
+      kind: money
+      blank_means: zero
+  identities:
+  - id: total_manufacturers_taxes
+    description: Total manufacturers excise taxes equals sum of all manufacturers excise components
+    for_each: column
+    over:
+    - month_cur
+    - month_prev
+    - fiscal_cur
+    - fiscal_prev
+    left:
+      cell:
+        row: total_manufacturers
+    right:
+      sum:
+        rows:
+        - lubricating_oils
+        - gasoline
+        - tires_tubes
+        - auto_trucks
+        - other_autos
+        - parts_accessories
+        - electrical_energy
+        - radio_sets
+        - mechanical_refrigerators
+        - firearms_shells
+        - pistols_revolvers
+        - toilet_preparations
+        - matches
+        - brewers_wort
+        - fur_articles
+        - sporting_goods
+        - cameras_lenses
+        - chewing_gum
+  - id: total_miscellaneous_taxes
+    description: Total miscellaneous taxes equals sum of all miscellaneous tax components
+    for_each: column
+    over:
+    - month_cur
+    - month_prev
+    - fiscal_cur
+    - fiscal_prev
+    left:
+      cell:
+        row: total_misc_taxes
+    right:
+      sum:
+        rows:
+        - bituminous_coal
+        - sugar_act
+        - telephone_telegraph
+        - transportation_oil
+        - safe_deposit
+        - admission_theaters
+        - club_dues
+        - adulterated_butter
+        - oleomargarine
+        - narcotics
+        - coconut_oils
+        - national_firearms
+        - all_other
+  - id: total_social_security
+    description: Total Social Security taxes equals employment taxes plus tax on employers of 8 or more
+    for_each: column
+    over:
+    - month_cur
+    - month_prev
+    - fiscal_cur
+    - fiscal_prev
+    left:
+      cell:
+        row: total_social
+    right:
+      sum:
+        rows:
+        - employment_taxes
+        - employers_tax
+  - id: total_payroll_taxes
+    description: Total payroll taxes equals Total Social Security taxes plus Carriers Taxing Act
+    for_each: column
+    over:
+    - month_cur
+    - month_prev
+    - fiscal_cur
+    - fiscal_prev
+    left:
+      cell:
+        row: total_payroll
+    right:
+      sum:
+        rows:
+        - total_social
+        - carriers_tax
+provenance:
+  status: draft
+  drafted_by:
+    kind: model
+    id: muse-spark-1.3-contributor
+  drafted_on: '2026-10-30'
+  drafted_from:
+  - 1939-03_p019
+  - 1939-07_p023
+  - 1939-12_p018
+  evidence:
+  - drafted by muse-spark-1.3-contributor from 1939-03_p019, 1939-07_p023, 1939-12_p018 (drafter role,
+    P21b)
+  - drafted as a table printed in panels (P21d)
+  dropped: []

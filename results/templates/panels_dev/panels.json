@@ -1,0 +1,482 @@
+{
+  "prompt": "table",
+  "pages": [
+    {
+      "page": "1939-02_p029",
+      "printed": 2,
+      "sam": 2,
+      "layout": 1,
+      "used": "sam",
+      "found": [
+        {
+          "method": "sam",
+          "box": [
+            185,
+            213,
+            1311,
+            966
+          ],
+          "score": 0.739
+        },
+        {
+          "method": "sam",
+          "box": [
+            197,
+            979,
+            1322,
+            1734
+          ],
+          "score": 0.742
+        }
+      ],
+      "before": {
+        "collections_of_internal_revenue": {
+          "needed": 432,
+          "agree": 184
+        }
+      },
+      "after": {
+        "collections_by_period": {
+          "needed": 360,
+          "agree": 178
+        }
+      }
+    },
+    {
+      "page": "1939-03_p019",
+      "printed": 2,
+      "sam": 1,
+      "layout": 1,
+      "used": "sam",
+      "found": [
+        {
+          "method": "sam",
+          "box": [
+            59,
+            169,
+            1472,
+            1928
+          ],
+          "score": 0.515
+        }
+      ],
+      "before": {},
+      "after": {
+        "collections_by_source": {
+          "needed": 292,
+          "agree": 231
+        }
+      }
+    },
+    {
+      "page": "1939-07_p023",
+      "printed": 2,
+      "sam": 1,
+      "layout": 1,
+      "used": "sam",
+      "found": [
+        {
+          "method": "sam",
+          "box": [
+            93,
+            186,
+            1519,
+            1927
+          ],
+          "score": 0.594
+        }
+      ],
+      "before": {
+        "collections_of_internal_revenue": {
+          "needed": 540,
+          "agree": 451
+        }
+      },
+      "after": {
+        "collections_by_source": {
+          "needed": 292,
+          "agree": 237
+        }
+      }
+    },
+    {
+      "page": "1939-07_p025",
+      "printed": 2,
+      "sam": 2,
+      "layout": 2,
+      "used": "sam",
+      "found": [
+        {
+          "method": "sam",
+          "box": [
+            126,
+            202,
+            1513,
+            932
+          ],
+          "score": 0.719
+        },
+        {
+          "method": "sam",
+          "box": [
+            128,
+            951,
+            1515,
+            1670
+          ],
+          "score": 0.726
+        }
+      ],
+      "before": {},
+      "after": {
+        "collections_by_period": {
+          "needed": 360,
+          "agree": 219
+        }
+      }
+    },
+    {
+      "page": "1939-12_p018",
+      "printed": 2,
+      "sam": 1,
+      "layout": 1,
+      "used": "sam",
+      "found": [
+        {
+          "method": "sam",
+          "box": [
+            73,
+            185,
+            1511,
+            1937
+          ],
+          "score": 0.519
+        }
+      ],
+      "before": {
+        "collections_of_internal_revenue": {
+          "needed": 540,
+          "agree": 165
+        }
+      },
+      "after": {
+        "collections_by_source": {
+          "needed": 292,
+          "agree": 210
+        }
+      }
+    },
+    {
+      "page": "1939-12_p019",
+      "printed": 2,
+      "sam": 2,
+      "layout": 2,
+      "used": "sam",
+      "found": [
+        {
+          "method": "sam",
+          "box": [
+            96,
+            228,
+            1468,
+            1016
+          ],
+          "score": 0.734
+        },
+        {
+          "method": "sam",
+          "box": [
+            98,
+            1049,
+            1471,
+            1823
+          ],
+          "score": 0.739
+        }
+      ],
+      "before": {},
+      "after": {
+        "collections_by_period": {
+          "needed": 360,
+          "agree": 290
+        }
+      }
+    },
+    {
+      "page": "1905_p186",
+      "printed": 1,
+      "sam": 1,
+      "layout": 1,
+      "used": "sam",
+      "found": [
+        {
+          "method": "sam",
+          "box": [
+            100,
+            192,
+            992,
+            1611
+          ],
+          "score": 0.508
+        }
+      ],
+      "before": {
+        "occ_earnings_and_dividends": {
+          "needed": 0,
+          "agree": 0
+        }
+      },
+      "after": {}
+    },
+    {
+      "page": "1905_p239",
+      "printed": 1,
+      "sam": 0,
+      "layout": 1,
+      "used": "layout",
+      "found": [
+        {
+          "method": "layout",
+          "box": [
+            2,
+            202,
+            1002,
+            1695
+          ]
+        }
+      ],
+      "before": {
+        "occ_banks_in_charge_of_receivers": {
+          "needed": 0,
+          "agree": 0
+        }
+      },
+      "after": {}
+    },
+    {
+      "page": "1905_p395",
+      "printed": 3,
+      "sam": 3,
+      "layout": 3,
+      "used": "sam",
+      "found": [
+        {
+          "method": "sam",
+          "box": [
+            101,
+            194,
+            995,
+            582
+          ],
+          "score": 0.785
+        },
+        {
+          "method": "sam",
+          "box": [
+            102,
+            644,
+            996,
+            1027
+          ],
+          "score": 0.785
+        },
+        {
+          "method": "sam",
+          "box": [
+            101,
+            1089,
+            996,
+            1516
+          ],
+          "score": 0.782
+        }
+      ],
+      "before": {
+        "occ_aggregate_resources_liabilities": {
+          "needed": 186,
+          "agree": 62
+        }
+      },
+      "after": {
+        "occ_aggregate_resources_liabilities": {
+          "needed": 162,
+          "agree": 0
+        }
+      }
+    },
+    {
+      "page": "1905_p398",
+      "printed": 3,
+      "sam": 3,
+      "layout": 3,
+      "used": "sam",
+      "found": [
+        {
+          "method": "sam",
+          "box": [
+            104,
+            200,
+            997,
+            587
+          ],
+          "score": 0.633
+        },
+        {
+          "method": "sam",
+          "box": [
+            104,
+            649,
+            997,
+            1081
+          ],
+          "score": 0.648
+        },
+        {
+          "method": "sam",
+          "box": [
+            102,
+            1109,
+            997,
+            1615
+          ],
+          "score": 0.633
+        }
+      ],
+      "before": {
+        "occ_aggregate_resources_liabilities": {
+          "needed": 186,
+          "agree": 0
+        }
+      },
+      "after": {
+        "occ_aggregate_resources_liabilities": {
+          "needed": 162,
+          "agree": 0
+        }
+      }
+    },
+    {
+      "page": "1905_p507",
+      "printed": 3,
+      "sam": 3,
+      "layout": 2,
+      "used": "sam",
+      "found": [
+        {
+          "method": "sam",
+          "box": [
+            97,
+            180,
+            997,
+            665
+          ],
+          "score": 0.836
+        },
+        {
+          "method": "sam",
+          "box": [
+            95,
+            705,
+            995,
+            1152
+          ],
+          "score": 0.832
+        },
+        {
+          "method": "sam",
+          "box": [
+            94,
+            1162,
+            993,
+            1641
+          ],
+          "score": 0.832
+        }
+      ],
+      "before": {
+        "occ_abstract_by_states": {
+          "needed": 120,
+          "agree": 0
+        }
+      },
+      "after": {
+        "occ_abstract_by_states": {
+          "needed": 120,
+          "agree": 0
+        }
+      }
+    },
+    {
+      "page": "1925_p326",
+      "printed": 2,
+      "sam": 2,
+      "layout": 1,
+      "used": "sam",
+      "found": [
+        {
+          "method": "sam",
+          "box": [
+            103,
+            230,
+            996,
+            951
+          ],
+          "score": 0.582
+        },
+        {
+          "method": "sam",
+          "box": [
+            103,
+            952,
+            994,
+            1585
+          ],
+          "score": 0.554
+        }
+      ],
+      "before": {
+        "occ_aggregate_resources_liabilities": {
+          "needed": 186,
+          "agree": 12
+        }
+      },
+      "after": {
+        "occ_aggregate_resources_liabilities": {
+          "needed": 162,
+          "agree": 59
+        }
+      }
+    },
+    {
+      "page": "1925_p342",
+      "printed": 1,
+      "sam": 1,
+      "layout": 1,
+      "used": "sam",
+      "found": [
+        {
+          "method": "sam",
+          "box": [
+            104,
+            281,
+            1000,
+            1104
+          ],
+          "score": 0.636
+        }
+      ],
+      "before": {
+        "occ_abstract_by_states": {
+          "needed": 120,
+          "agree": 37
+        }
+      },
+      "after": {
+        "occ_abstract_by_states": {
+          "needed": 120,
+          "agree": 81
+        }
+      }
+    }
+  ]
+}

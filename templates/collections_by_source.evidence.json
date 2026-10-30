@@ -1,0 +1,383 @@
+{
+  "family": "collections_by_source",
+  "template": "templates/collections_by_source.yaml",
+  "template_sha256": "fb57620de76e9d248676b521bdb48bd66df28655c1815ce49ec11f1c64325d7f",
+  "tested_on": "2026-10-30",
+  "config": {
+    "drafter": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "extractor": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "rereader": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "segmenter": {
+      "backend": "meta",
+      "model_id": "sam-3.1"
+    }
+  },
+  "citations": "S0+grid",
+  "rule": "every identity evaluated wherever it applies, on cells whose two reads agree; held within n half-units of the printed precision for n printed values",
+  "pages": [
+    {
+      "ref": "1939-03_p019",
+      "page_id": "1939-03_p019",
+      "classified_as": "collections_by_source",
+      "panels": {
+        "found": [
+          {
+            "method": "sam",
+            "box": [
+              59,
+              169,
+              1472,
+              1928
+            ],
+            "score": 0.515
+          }
+        ],
+        "copies": {
+          "left": {
+            "read_on": "the page",
+            "grid": {
+              "rows": 39,
+              "bands": 35,
+              "fixed": 38,
+              "order": null
+            },
+            "box_sources": {
+              "grid": 39,
+              "model": 39,
+              "ocr": 117
+            }
+          },
+          "right": {
+            "read_on": "the page",
+            "grid": {
+              "rows": 40,
+              "bands": 40,
+              "fixed": 39,
+              "order": null
+            },
+            "box_sources": {
+              "grid": 32,
+              "model": 39,
+              "ocr": 129
+            }
+          }
+        }
+      },
+      "read": "ok",
+      "needed": 292,
+      "cells": 395,
+      "read_first": 395,
+      "read_twice": 292,
+      "agree": 231,
+      "no_second_read": {}
+    },
+    {
+      "ref": "1939-07_p023",
+      "page_id": "1939-07_p023",
+      "classified_as": "collections_by_source",
+      "panels": {
+        "found": [
+          {
+            "method": "sam",
+            "box": [
+              93,
+              186,
+              1519,
+              1927
+            ],
+            "score": 0.594
+          }
+        ],
+        "copies": {
+          "left": {
+            "read_on": "the page",
+            "grid": {
+              "rows": 39,
+              "bands": 39,
+              "fixed": 36,
+              "order": null
+            },
+            "box_sources": {
+              "grid": 53,
+              "model": 39,
+              "ocr": 103
+            }
+          },
+          "right": {
+            "read_on": "the page",
+            "grid": {
+              "rows": 40,
+              "bands": 40,
+              "fixed": 39,
+              "order": null
+            },
+            "box_sources": {
+              "grid": 26,
+              "model": 39,
+              "ocr": 135
+            }
+          }
+        }
+      },
+      "read": "ok",
+      "needed": 292,
+      "cells": 395,
+      "read_first": 395,
+      "read_twice": 290,
+      "agree": 237,
+      "no_second_read": {
+        "illegible to the re-read": 2
+      }
+    },
+    {
+      "ref": "1939-12_p018",
+      "page_id": "1939-12_p018",
+      "classified_as": "collections_by_source",
+      "panels": {
+        "found": [
+          {
+            "method": "sam",
+            "box": [
+              73,
+              185,
+              1511,
+              1937
+            ],
+            "score": 0.519
+          }
+        ],
+        "copies": {
+          "left": {
+            "read_on": "the page",
+            "grid": {
+              "rows": 39,
+              "bands": 0,
+              "fixed": 0,
+              "order": null
+            },
+            "box_sources": {
+              "model": 75,
+              "ocr": 120
+            }
+          },
+          "right": {
+            "read_on": "the page",
+            "grid": {
+              "rows": 40,
+              "bands": 40,
+              "fixed": 19,
+              "order": null
+            },
+            "box_sources": {
+              "grid": 67,
+              "model": 72,
+              "ocr": 61
+            }
+          }
+        }
+      },
+      "read": "ok",
+      "needed": 292,
+      "cells": 395,
+      "read_first": 395,
+      "read_twice": 291,
+      "agree": 210,
+      "no_second_read": {
+        "the re-read failed: APITimeoutError: Request timed out.": 1
+      }
+    }
+  ],
+  "outcomes": {
+    "rejected": 0,
+    "sometimes fails": 0,
+    "holds": 5,
+    "untested": 3
+  },
+  "identities": [
+    {
+      "id": "left.total_income_taxes",
+      "description": "Total income taxes equals corporation current plus corporation back plus individual current plus individual back plus excess-profits",
+      "for_each": "column",
+      "over": [
+        "month_cur",
+        "month_prev",
+        "fiscal_cur",
+        "fiscal_prev"
+      ],
+      "equation": "total_income = corp_current + corp_back + indiv_current + indiv_back + excess_profits",
+      "applies": 12,
+      "evaluated": 3,
+      "held": 3,
+      "failed": 0,
+      "hold_rate": 1.0,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 9
+      },
+      "outcome": "holds",
+      "failures": []
+    },
+    {
+      "id": "left.total_alcoholic_taxes",
+      "description": "Total alcoholic beverage taxes equals sum of all alcoholic beverage components",
+      "for_each": "column",
+      "over": [
+        "month_cur",
+        "month_prev",
+        "fiscal_cur",
+        "fiscal_prev"
+      ],
+      "equation": "total_alcoholic = distilled_imported + distilled_domestic + distilled_rectification + wines_imported + wines_domestic + brandy + dealers_special + stamps_export + case_stamps + container_stamps + floor_taxes + fermented_malt + brewers_malt",
+      "applies": 12,
+      "evaluated": 0,
+      "held": 0,
+      "failed": 0,
+      "hold_rate": null,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 12
+      },
+      "outcome": "untested",
+      "failures": []
+    },
+    {
+      "id": "left.total_tobacco_taxes",
+      "description": "Total tobacco taxes equals sum of all tobacco components",
+      "for_each": "column",
+      "over": [
+        "month_cur",
+        "month_prev",
+        "fiscal_cur",
+        "fiscal_prev"
+      ],
+      "equation": "total_tobacco = cigars_large + cigars_small + cigarettes_large + cigarettes_small + snuff + tobacco_chewing + cigarette_papers + leaf_penalties",
+      "applies": 12,
+      "evaluated": 0,
+      "held": 0,
+      "failed": 0,
+      "hold_rate": null,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 12
+      },
+      "outcome": "untested",
+      "failures": []
+    },
+    {
+      "id": "left.total_documentary_taxes",
+      "description": "Total documentary stamp taxes equals sum of all documentary components",
+      "for_each": "column",
+      "over": [
+        "month_cur",
+        "month_prev",
+        "fiscal_cur",
+        "fiscal_prev"
+      ],
+      "equation": "total_documentary = bonds_indebtedness + capital_stock_sales + playing_cards + silver_bullion + produce_future",
+      "applies": 12,
+      "evaluated": 7,
+      "held": 7,
+      "failed": 0,
+      "hold_rate": 1.0,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 5
+      },
+      "outcome": "holds",
+      "failures": []
+    },
+    {
+      "id": "right.total_manufacturers_taxes",
+      "description": "Total manufacturers excise taxes equals sum of all manufacturers excise components",
+      "for_each": "column",
+      "over": [
+        "month_cur",
+        "month_prev",
+        "fiscal_cur",
+        "fiscal_prev"
+      ],
+      "equation": "total_manufacturers = lubricating_oils + gasoline + tires_tubes + auto_trucks + other_autos + parts_accessories + electrical_energy + radio_sets + mechanical_refrigerators + firearms_shells + pistols_revolvers + toilet_preparations + matches + brewers_wort + fur_articles + sporting_goods + cameras_lenses + chewing_gum",
+      "applies": 12,
+      "evaluated": 0,
+      "held": 0,
+      "failed": 0,
+      "hold_rate": null,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 12
+      },
+      "outcome": "untested",
+      "failures": []
+    },
+    {
+      "id": "right.total_miscellaneous_taxes",
+      "description": "Total miscellaneous taxes equals sum of all miscellaneous tax components",
+      "for_each": "column",
+      "over": [
+        "month_cur",
+        "month_prev",
+        "fiscal_cur",
+        "fiscal_prev"
+      ],
+      "equation": "total_misc_taxes = bituminous_coal + sugar_act + telephone_telegraph + transportation_oil + safe_deposit + admission_theaters + club_dues + adulterated_butter + oleomargarine + narcotics + coconut_oils + national_firearms + all_other",
+      "applies": 12,
+      "evaluated": 1,
+      "held": 1,
+      "failed": 0,
+      "hold_rate": 1.0,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 11
+      },
+      "outcome": "holds",
+      "failures": []
+    },
+    {
+      "id": "right.total_social_security",
+      "description": "Total Social Security taxes equals employment taxes plus tax on employers of 8 or more",
+      "for_each": "column",
+      "over": [
+        "month_cur",
+        "month_prev",
+        "fiscal_cur",
+        "fiscal_prev"
+      ],
+      "equation": "total_social = employment_taxes + employers_tax",
+      "applies": 12,
+      "evaluated": 6,
+      "held": 6,
+      "failed": 0,
+      "hold_rate": 1.0,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 6
+      },
+      "outcome": "holds",
+      "failures": []
+    },
+    {
+      "id": "right.total_payroll_taxes",
+      "description": "Total payroll taxes equals Total Social Security taxes plus Carriers Taxing Act",
+      "for_each": "column",
+      "over": [
+        "month_cur",
+        "month_prev",
+        "fiscal_cur",
+        "fiscal_prev"
+      ],
+      "equation": "total_payroll = total_social + carriers_tax",
+      "applies": 12,
+      "evaluated": 10,
+      "held": 10,
+      "failed": 0,
+      "hold_rate": 1.0,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 2
+      },
+      "outcome": "holds",
+      "failures": []
+    }
+  ]
+}

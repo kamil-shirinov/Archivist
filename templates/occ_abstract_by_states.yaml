@@ -1,175 +1,179 @@
-# Drafted by muse-spark-1.3-contributor from 1905_p507, 1925_p342 on 2026-10-28 (P21b).
+# Drafted by muse-spark-1.3-contributor from 1905_p507, 1925_p342 on 2026-10-30 (P21b).
 # A draft: validated, never registered. python -m archivist.templates.test checks its
 # identities; only a person, with python -m archivist.templates.approve, approves it.
 identity:
   family: occ_abstract_by_states
   title: Abstract of reports since October 10, 1924, arranged by States and reserve cities
-  description: State and reserve city table with Resources and Liabilities in thousands of dollars for
-    Dec 1924 to Sept 1925 call dates
+  description: Page headed Abstract of reports with Resources and Liabilities for a State or reserve city
+    in thousands of dollars
   title_patterns:
-  - abstract\s+of\s+reports\s+since.*arranged\s+by\s+states\s+and\s+reserve\s+cities
-layout:
-  unit: thousands of dollars
-  precision: '1'
-  rows:
-  - key: loans_discounts
-    printed: Loans and discounts (including rediscounts)
-  - key: overdrafts
-    printed: Overdrafts
-  - key: us_govt_securities
-    printed: United States Government securities
-  - key: other_bonds
-    printed: Other bonds, stocks, securities, etc.
-  - key: banking_house
-    printed: Banking house, furniture, and fixtures
-  - key: other_real_estate
-    printed: Other real estate owned
-  - key: lawful_reserve
-    printed: Lawful reserve with Federal reserve bank
-  - key: items_in_process
-    printed: Items with Federal reserve bank in process of collection
-  - key: cash_vault
-    printed: Cash in vault and amount due from national banks
-  - key: due_from_state
-    printed: Amount due from State banks, bankers, and trust companies
-  - key: exchanges_clearing
-    printed: Exchanges for clearing house
-  - key: outside_checks
-    printed: Outside checks and other cash items
-  - key: redemption_fund
-    printed: Redemption fund and due from United States Treasurer
-  - key: other_assets
-    printed: Other assets
-  - key: total_resources
-    printed: Total
-  - key: capital_stock
-    printed: Capital stock paid in
-  - key: surplus_fund
-    printed: Surplus fund
-  - key: undivided_profits
-    printed: All other undivided profits, less expenses and taxes paid
-  - key: reserved_taxes
-    printed: Reserved for taxes, interest, etc., accrued
-  - key: national_bank_notes
-    printed: National-bank notes outstanding
-  - key: due_to_national
-    printed: Amount due to national banks
-  - key: due_to_state
-    printed: Amount due to State banks, bankers, and trust companies
-  - key: certified_checks
-    printed: Certified checks outstanding
-  - key: cashiers_checks
-    printed: Cashier's checks outstanding
-  - key: demand_deposits
-    printed: Demand deposits
-  - key: time_deposits
-    printed: Time deposits (including postal savings deposits)
-  - key: us_deposits
-    printed: United States deposits
-  - key: bills_payable
-    printed: Bills payable (including all obligations representing money borrowed other than rediscounts)
-  - key: other_liabilities
-    printed: Liabilities other than those above stated
-  - key: total_liabilities
-    printed: Total
-  columns:
-  - key: item
-    printed: Item
-    kind: text
-    blank_means: unknown
-  - key: dec_31_1924
-    printed: Dec. 31, 1924
-    kind: money
-    blank_means: zero
-  - key: apr_6_1925
-    printed: April 6, 1925
-    kind: money
-    blank_means: zero
-  - key: jun_30_1925
-    printed: June 30, 1925
-    kind: money
-    blank_means: zero
-  - key: sep_28_1925
-    printed: Sept. 28, 1925
-    kind: money
-    blank_means: zero
-identities:
-- id: resources_total
-  description: Total resources equals sum of resource items
-  for_each: column
-  over:
-  - dec_31_1924
-  - apr_6_1925
-  - jun_30_1925
-  - sep_28_1925
-  left:
-    cell:
-      row: total_resources
-  right:
-    sum:
-      rows:
-      - loans_discounts
-      - overdrafts
-      - us_govt_securities
-      - other_bonds
-      - banking_house
-      - other_real_estate
-      - lawful_reserve
-      - items_in_process
-      - cash_vault
-      - due_from_state
-      - exchanges_clearing
-      - outside_checks
-      - redemption_fund
-      - other_assets
-- id: liabilities_total
-  description: Total liabilities equals sum of liability items
-  for_each: column
-  over:
-  - dec_31_1924
-  - apr_6_1925
-  - jun_30_1925
-  - sep_28_1925
-  left:
-    cell:
-      row: total_liabilities
-  right:
-    sum:
-      rows:
-      - capital_stock
-      - surplus_fund
-      - undivided_profits
-      - reserved_taxes
-      - national_bank_notes
-      - due_to_national
-      - due_to_state
-      - certified_checks
-      - cashiers_checks
-      - demand_deposits
-      - time_deposits
-      - us_deposits
-      - bills_payable
-      - other_liabilities
-- id: total_balance
-  description: Total resources equals total liabilities
-  for_each: column
-  over:
-  - dec_31_1924
-  - apr_6_1925
-  - jun_30_1925
-  - sep_28_1925
-  left:
-    cell:
-      row: total_resources
-  right:
-    cell:
-      row: total_liabilities
+  - abstract\s+of\s+reports\s+since\s+october\s+10,?\s+1924.*arranged\s+by\s+states\s+and\s+reserve\s+cities
+panels:
+- key: state_or_city
+  title: State or reserve city
+  repeats: 1
+  layout:
+    unit: thousands of dollars
+    precision: '1'
+    rows:
+    - key: loans_discounts
+      printed: Loans and discounts (including rediscounts)
+    - key: overdrafts
+      printed: Overdrafts
+    - key: us_govt_securities
+      printed: United States Government securities
+    - key: other_bonds
+      printed: Other bonds, stocks, securities, etc.
+    - key: banking_house
+      printed: Banking house, furniture, and fixtures
+    - key: other_real_estate
+      printed: Other real estate owned
+    - key: reserve_frb
+      printed: Lawful reserve with Federal reserve bank
+    - key: items_process
+      printed: Items with Federal reserve bank in process of collection
+    - key: cash_vault
+      printed: Cash in vault and amount due from national banks
+    - key: due_from_state
+      printed: Amount due from State banks, bankers, and trust companies
+    - key: exchanges_clearing
+      printed: Exchanges for clearing house
+    - key: outside_checks
+      printed: Outside checks and other cash items
+    - key: redemption_fund
+      printed: Redemption fund and due from United States Treasurer
+    - key: other_assets
+      printed: Other assets
+    - key: total_resources
+      printed: Total
+    - key: capital_stock
+      printed: Capital stock paid in
+    - key: surplus_fund
+      printed: Surplus fund
+    - key: undivided_profits
+      printed: All other undivided profits, less expenses and taxes paid
+    - key: reserved_taxes
+      printed: Reserved for taxes, interest, etc., accrued
+    - key: notes_outstanding
+      printed: National-bank notes outstanding
+    - key: due_to_national
+      printed: Amount due to national banks
+    - key: due_to_state
+      printed: Amount due to State banks, bankers, and trust companies
+    - key: certified_checks
+      printed: Certified checks outstanding
+    - key: cashiers_checks
+      printed: Cashier's checks outstanding
+    - key: demand_deposits
+      printed: Demand deposits
+    - key: time_deposits
+      printed: Time deposits (including postal savings deposits)
+    - key: us_deposits
+      printed: United States deposits
+    - key: bills_payable
+      printed: Bills payable (including all obligations representing money borrowed other than rediscounts)
+    - key: other_liabilities
+      printed: Liabilities other than those above stated
+    - key: total_liabilities
+      printed: Total
+    columns:
+    - key: label
+      printed: —
+      kind: text
+      blank_means: unknown
+    - key: dec31_1924
+      printed: Dec. 31, 1924
+      kind: money
+      blank_means: zero
+    - key: apr6_1925
+      printed: April 6, 1925
+      kind: money
+      blank_means: zero
+    - key: jun30_1925
+      printed: June 30, 1925
+      kind: money
+      blank_means: zero
+    - key: sep28_1925
+      printed: Sept. 28, 1925
+      kind: money
+      blank_means: zero
+  identities:
+  - id: resources_total
+    description: Total resources equals sum of resource items
+    for_each: column
+    over:
+    - dec31_1924
+    - apr6_1925
+    - jun30_1925
+    - sep28_1925
+    left:
+      cell:
+        row: total_resources
+    right:
+      sum:
+        rows:
+        - loans_discounts
+        - overdrafts
+        - us_govt_securities
+        - other_bonds
+        - banking_house
+        - other_real_estate
+        - reserve_frb
+        - items_process
+        - cash_vault
+        - due_from_state
+        - exchanges_clearing
+        - outside_checks
+        - redemption_fund
+        - other_assets
+  - id: liabilities_total
+    description: Total liabilities equals sum of liability items
+    for_each: column
+    over:
+    - dec31_1924
+    - apr6_1925
+    - jun30_1925
+    - sep28_1925
+    left:
+      cell:
+        row: total_liabilities
+    right:
+      sum:
+        rows:
+        - capital_stock
+        - surplus_fund
+        - undivided_profits
+        - reserved_taxes
+        - notes_outstanding
+        - due_to_national
+        - due_to_state
+        - certified_checks
+        - cashiers_checks
+        - demand_deposits
+        - time_deposits
+        - us_deposits
+        - bills_payable
+        - other_liabilities
+  - id: balance
+    description: Total resources equals total liabilities
+    for_each: column
+    over:
+    - dec31_1924
+    - apr6_1925
+    - jun30_1925
+    - sep28_1925
+    left:
+      cell:
+        row: total_resources
+    right:
+      cell:
+        row: total_liabilities
 provenance:
   status: draft
   drafted_by:
     kind: model
     id: muse-spark-1.3-contributor
-  drafted_on: '2026-10-28'
+  drafted_on: '2026-10-30'
   drafted_from:
   - 1905_p507
   - 1925_p342
@@ -177,4 +181,5 @@ provenance:
   - drafted by muse-spark-1.3-contributor from 1905_p507, 1925_p342 (drafter role, P21b)
   - told to describe only the table printed as 'Abstract of reports since October 10, 1924, arranged by
     States and reserve cities'
+  - drafted as a table printed in panels (P21d)
   dropped: []

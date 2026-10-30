@@ -16,7 +16,10 @@ of --config (default config/templates.toml), every call cached and budgeted:
    model (grid.py; the evidence records how many came from each, and for each page the rows,
    bands and fixed rows the grid found and, where it was tried, the order fallback's guard).
    A big table gets a larger output allowance: OUTPUT_PER_CELL tokens per cell beyond the
-   pipeline's own EXTRACT_TOKENS.
+   pipeline's own EXTRACT_TOKENS. A table printed in panels (P21d) has each copy of each panel
+   read on its own: on its crop where archivist.templates.panels finds it (SAM 3.1 through the
+   segmenter role, else plain code), the box strategy run inside the crop, else on the whole page;
+   the evidence records what was found, by which method, and where each copy was read.
 3. blind second read: every cell some identity needs, re-read from a crop of its corrected box
    with the draft's re-read prompt, which never shows the first reading (reread.py).
 
@@ -64,6 +67,7 @@ from archivist.doctypes import UNSUPPORTED
 from archivist.doctypes.template import (
     TEMPLATES_DIR,
     Instance,
+    PanelledType,
     TemplateType,
     evidence_path,
     figure,
@@ -80,7 +84,7 @@ from archivist.pipeline.extract import (
     ExtractionFailed,
 )
 from archivist.schema import ExtractedValue, PageExtraction
-from archivist.templates import grid, ocr
+from archivist.templates import grid, ocr, panels
 from archivist.templates.draft import CONFIG
 from archivist.templates.pages import Page, resolve
 
@@ -108,7 +112,7 @@ def output_tokens(doc_type: TemplateType) -> int:
     return max(EXTRACT_TOKENS, EXTRACT_TOKENS // 4 + OUTPUT_PER_CELL * cells)
 
 
-def needed(doc_type: TemplateType, page: PageExtraction) -> set[str]:
+def needed(doc_type: TemplateType | PanelledType, page: PageExtraction) -> set[str]:
     """The cells some identity needs on the page, as the checks would apply it."""
     return {field_id for i in doc_type.instances([page]) for field_id, *_ in i.fields}
 
@@ -117,7 +121,7 @@ def reread_cells(
     image: bytes,
     values: Sequence[ExtractedValue],
     wanted: set[str],
-    doc_type: TemplateType,
+    doc_type: TemplateType | PanelledType,
     llm: object,
     workers: int,
 ) -> dict[str, Reading]:
@@ -145,7 +149,7 @@ def reread_cells(
 
 
 def agreed(
-    doc_type: TemplateType, page: PageExtraction, second: Mapping[str, Reading]
+    doc_type: TemplateType | PanelledType, page: PageExtraction, second: Mapping[str, Reading]
 ) -> dict[str, str | None]:
     """Each cell's text where both reads agree, else None."""
     out: dict[str, str | None] = {}
@@ -169,7 +173,7 @@ def _cell(field_id: str) -> tuple[str, str]:
 
 
 def judge(
-    doc_type: TemplateType,
+    doc_type: TemplateType | PanelledType,
     instance: Instance,
     first: Mapping[str, str | None],
     second: Mapping[str, Reading],
@@ -228,8 +232,16 @@ def outcome(held: int, failed: int) -> str:
     return "holds" if failed == 0 else "sometimes fails"
 
 
+def identities_of(doc_type: TemplateType | PanelledType) -> list[tuple[str, object]]:
+    """Each identity with the name the evidence gives it: its id, or "<panel>.<id>" in a table
+    printed in panels, whichever copy of the panel it is applied on."""
+    if isinstance(doc_type, PanelledType):
+        return [(f"{p.key}.{i.id}", i) for p in doc_type.template.panels for i in p.identities]
+    return [(i.id, i) for i in doc_type.template.identities]
+
+
 def tally(
-    doc_type: TemplateType,
+    doc_type: TemplateType | PanelledType,
     pages: Sequence[PageExtraction],
     seconds: Mapping[str, Mapping[str, Reading]],
 ) -> list[dict]:
@@ -241,19 +253,22 @@ def tally(
         first = {v.field_id: None if v.abstained else v.value for v in page.values}
         both = agreed(doc_type, page, second)
         for instance in doc_type.instances([page]):
-            name = instance.rule.split(".", 1)[1]
+            if isinstance(doc_type, PanelledType):
+                name = doc_type.label(instance)
+            else:
+                name = instance.rule.split(".", 1)[1]
             verdict, failure = judge(doc_type, instance, first, second, both)
             counts[name]["applies"] += 1
             counts[name][verdict] += 1
             if failure is not None:
                 failures[name].append(failure)
     out = []
-    for identity in doc_type.template.identities:
-        c = counts[identity.id]
+    for name, identity in identities_of(doc_type):
+        c = counts[name]
         held, failed = c["held"], c["failed"]
         out.append(
             {
-                "id": identity.id,
+                "id": name,
                 "description": identity.description,
                 "for_each": identity.for_each,
                 "over": identity.over,
@@ -265,7 +280,7 @@ def tally(
                 "hold_rate": round(held / (held + failed), 4) if held + failed else None,
                 "not_evaluated": {r: c[r] for r in (DISAGREE, ONCE, BLANK, EMPTY) if c[r]},
                 "outcome": outcome(held, failed),
-                "failures": failures[identity.id],
+                "failures": failures[name],
             }
         )
     return out
@@ -287,20 +302,28 @@ def blind_check(
 
 
 def read_pages(
-    doc_type: TemplateType,
+    doc_type: TemplateType | PanelledType,
     pages: Sequence[Page],
     roles: Mapping[str, object],
     workers: int,
     citations: str | None = None,
 ) -> tuple[list[PageExtraction], dict[str, dict[str, Reading]], list[dict]]:
     """Classify, read and cite (citations, else the type's own strategy), and re-read each page;
-    a page that can't be read is recorded."""
+    a page that can't be read is recorded. A table printed in panels is read panel by panel."""
     extracted, seconds, records = [], {}, []
     llm, rereader = roles[extract.ROLE], roles[reread.ROLE]
     for page in pages:
         image = page.path.read_bytes()
         record: dict = {"ref": page.ref, "page_id": page.page_id}
         record["classified_as"] = extract.classify(image, llm, {doc_type.name: doc_type})
+        if isinstance(doc_type, PanelledType):
+            extraction, second = _read_panelled(
+                doc_type, page, image, roles, workers, citations, record
+            )
+            records.append(record)
+            extracted.append(extraction)
+            seconds[page.page_id] = second
+            continue
         try:
             strategy = "S0" if citations in (ocr.STRATEGY, grid.STRATEGY) else citations
             values = extract.read_page(
@@ -350,6 +373,56 @@ def read_pages(
     return extracted, seconds, records
 
 
+def _read_panelled(
+    doc_type: PanelledType,
+    page: Page,
+    image: bytes,
+    roles: Mapping[str, object],
+    workers: int,
+    citations: str | None,
+    record: dict,
+) -> tuple[PageExtraction, dict[str, Reading]]:
+    """A page of a table printed in panels, read panel by panel and re-read blind, recorded as
+    any page is, with what was found of its panels (panels.read_panels)."""
+    rereader = roles[reread.ROLE]
+
+    def guard(crop: bytes, plain: TemplateType) -> grid.Check:
+        return blind_check(crop, page.page_id, plain, rereader, workers)
+
+    values, found = panels.read_panels(
+        image,
+        page.page_id,
+        ocr.words(page.ref),
+        doc_type,
+        roles[extract.ROLE],
+        roles[panels.ROLE],
+        output_tokens,
+        citations or doc_type.citations,
+        guard,
+    )
+    extraction = PageExtraction(page_id=page.page_id, doc_type=doc_type.name, values=values)
+    wanted = needed(doc_type, extraction)
+    second = reread_cells(image, values, wanted, doc_type, rereader, workers)
+    both = agreed(doc_type, extraction, second)
+    record |= {
+        "panels": found,
+        "read": "ok",
+        "needed": len(wanted),
+        "cells": len(values),
+        "read_first": sum(not v.abstained and v.value is not None for v in values),
+        "read_twice": sum(r.text is not None for r in second.values()),
+        "agree": sum(both.get(f) is not None for f in second),
+        "no_second_read": dict(sorted(Counter(r.why for r in second.values() if r.why).items())),
+    }
+    print(
+        f"{page.ref}: classified {record['classified_as']}, {len(found['found'])} panels found, "
+        f"{record['cells']} cells, {record['read_twice']} of {len(second)} needed read twice, "
+        f"{record['agree']} agree",
+        flush=True,
+    )
+    return extraction, second
+
+
 def evidence_text(
     family: str,
     roles: Mapping[str, object],
@@ -366,7 +439,8 @@ def evidence_text(
     template = read_template(path)
     if template.provenance.approved:
         raise ValueError(f"{path} is approved: its evidence is what it was approved on")
-    doc_type = TemplateType(template, sha256=file_sha256(path))
+    kind = PanelledType if template.panels is not None else TemplateType
+    doc_type = kind(template, sha256=file_sha256(path))
     refs = list(refs or template.provenance.drafted_from)
     if not refs:
         raise ValueError(f"{path} names no pages it was drafted from: give --pages")
@@ -434,7 +508,11 @@ def main(argv: list[str] | None = None) -> None:
     parser = argparse.ArgumentParser(description=__doc__.split("\n", 1)[0])
     parser.add_argument("--family", required=True)
     parser.add_argument("--pages", nargs="+", help="default: the pages it was drafted from")
-    parser.add_argument("--config", type=Path, default=CONFIG)
+    parser.add_argument(
+        "--config",
+        type=Path,
+        help=f"default: {CONFIG}, or {panels.CONFIG} for a table printed in panels",
+    )
     parser.add_argument("--dir", type=Path, default=TEMPLATES_DIR)
     parser.add_argument("--workers", type=int, default=8)
     parser.add_argument(
@@ -448,6 +526,9 @@ def main(argv: list[str] | None = None) -> None:
         help=f"re-run the committed test from the cache alone into {REPLAY_DIR}/ and compare",
     )
     args = parser.parse_args(argv)
+    if args.config is None:
+        panelled = read_template(args.dir / f"{args.family}.yaml").panels is not None
+        args.config = panels.CONFIG if panelled else CONFIG
     if args.replay:
         for variable, _ in BACKEND_CAPS.values():
             os.environ[variable] = "0"  # any cache miss raises BudgetExceeded: nothing is spent

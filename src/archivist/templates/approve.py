@@ -16,7 +16,8 @@ Only then is the file rewritten: status "approved", approved_by, approved_on (to
 file's sha256, the identities dropped (by whom, and why), and a note for each column set back to
 unknown; the identities accepted stay as they were drafted. Nothing is written if the person
 stops. The template is registered from then on, but no run enables it until a run config names
-it ([doc_types] enabled).
+it ([doc_types] enabled). A table printed in panels (P21d) is approved panel by panel: each
+panel's columns, then its identities, named "<panel>.<id>" as its evidence names them.
 """
 
 from __future__ import annotations
@@ -29,7 +30,10 @@ from pathlib import Path
 
 from archivist.doctypes.template import (
     TEMPLATES_DIR,
+    Column,
     Dropped,
+    Identity,
+    Layout,
     Template,
     evidence_path,
     file_sha256,
@@ -65,17 +69,32 @@ def _identity_text(item: dict) -> list[str]:
     return lines
 
 
+def _tables(template: Template) -> list[tuple[str, Layout, list[Identity]]]:
+    """(how its identities are named, its layout, its identities): the table, or each panel."""
+    if template.panels is None:
+        return [("", template.layout, template.identities)]
+    return [(f"{p.key}.", p.layout, p.identities) for p in template.panels]
+
+
 def _summary(template: Template, evidence: dict) -> list[str]:
-    layout = template.layout
     lines = [
         f"{template.family}: {template.identity.title}",
         f"  description: {template.identity.description}",
         f"  title patterns: {template.identity.title_patterns}",
-        f"  {layout.unit}, printed to {layout.precision}; {len(layout.row_keys)} rows, columns "
-        + ", ".join(
-            f"{c.key} ({c.kind}{', a blank is zero' if c.blank_means == 'zero' else ''})"
-            for c in layout.columns
-        ),
+    ]
+    for panel in template.panels or ():
+        copies = f", printed up to {panel.repeats} times a page" if panel.repeats > 1 else ""
+        lines.append(f"  panel {panel.key}: {panel.title}{copies}")
+    for prefix, layout, _ in _tables(template):
+        lines.append(
+            f"  {prefix}{layout.unit}, printed to {layout.precision}; {len(layout.row_keys)} rows, "
+            "columns "
+            + ", ".join(
+                f"{c.key} ({c.kind}{', a blank is zero' if c.blank_means == 'zero' else ''})"
+                for c in layout.columns
+            )
+        )
+    lines += [
         f"  drafted by {template.provenance.drafted_by.id} on {template.provenance.drafted_on} "
         f"from {', '.join(template.provenance.drafted_from)}",
         f"  tested on {evidence['tested_on']} with {evidence['config']}",
@@ -118,42 +137,53 @@ def approve(
     evidence = json.loads(evidence_file.read_text(encoding="utf-8"))
     if evidence.get("template_sha256") != file_sha256(path):
         raise NotApproved(f"{evidence_file} is not this draft's: rerun archivist.templates.test")
+    tables = _tables(template)
     items = {item["id"]: item for item in evidence["identities"]}
-    if list(items) != [i.id for i in template.identities]:
+    if list(items) != [prefix + i.id for prefix, _, ids in tables for i in ids]:
         raise NotApproved(f"{evidence_file} does not cover this draft's identities")
 
     for line in _summary(template, evidence):
         say(line)
-    columns, unknown = [], []
-    for column in template.layout.columns:
-        if column.blank_means == "zero":
+    columns: list[list[Column]] = []
+    unknown: list[str] = []
+    for prefix, layout, _ in tables:
+        columns.append([])
+        for column in layout.columns:
+            if column.blank_means == "zero":
+                say("")
+                say(
+                    f"column {prefix}{column.key} ({column.printed!r}): a blank cell counts as 0 "
+                    "in identities"
+                )
+                question = "  [a]ccept, or [u]nknown (a blank leaves an identity unchecked)? "
+                if _choose(ask, question, {"a": "zero", "u": "unknown"}) == "unknown":
+                    column = column.model_copy(update={"blank_means": "unknown"})
+                    unknown.append(prefix + column.key)
+            columns[-1].append(column)
+    kept: list[list[Identity]] = []
+    dropped = []
+    for prefix, _, identities in tables:
+        kept.append([])
+        for identity in identities:
+            name = prefix + identity.id
+            item = items[name]
             say("")
-            say(f"column {column.key} ({column.printed!r}): a blank cell counts as 0 in identities")
-            question = "  [a]ccept, or [u]nknown (a blank leaves an identity unchecked)? "
-            if _choose(ask, question, {"a": "zero", "u": "unknown"}) == "unknown":
-                column = column.model_copy(update={"blank_means": "unknown"})
-                unknown.append(column.key)
-        columns.append(column)
-    kept, dropped = [], []
-    for identity in template.identities:
-        item = items[identity.id]
-        say("")
-        for line in _identity_text(item):
-            say(line)
-        if item["outcome"] == "rejected":
-            why = f"never held: failed all {item['failed']} times it was evaluated"
-            say(f"  dropped by the arithmetic test: {why}")
-            dropped.append(Dropped(id=identity.id, by="arithmetic test", why=why))
-            continue
-        choice = _choose(ask, "  [a]ccept or [d]rop? ", {"a": "accept", "d": "drop"})
-        if choice == "accept":
-            kept.append(identity)
-            continue
-        why = ask("  why? ").strip() or "dropped by the approver"
-        dropped.append(Dropped(id=identity.id, by="approver", why=why))
+            for line in _identity_text(item):
+                say(line)
+            if item["outcome"] == "rejected":
+                why = f"never held: failed all {item['failed']} times it was evaluated"
+                say(f"  dropped by the arithmetic test: {why}")
+                dropped.append(Dropped(id=name, by="arithmetic test", why=why))
+                continue
+            choice = _choose(ask, "  [a]ccept or [d]rop? ", {"a": "accept", "d": "drop"})
+            if choice == "accept":
+                kept[-1].append(identity)
+                continue
+            why = ask("  why? ").strip() or "dropped by the approver"
+            dropped.append(Dropped(id=name, by="approver", why=why))
 
     say("")
-    say(f"{len(kept)} identities accepted, {len(dropped)} dropped.")
+    say(f"{sum(map(len, kept))} identities accepted, {len(dropped)} dropped.")
     while True:
         who = ask("Approved by (as it will be published in a public repository; no email): ")
         who = " ".join(who.split())
@@ -184,16 +214,34 @@ def approve(
             "dropped": dropped,
         }
     )
-    approved = Template.model_validate(
-        {
-            **template.model_dump(exclude_none=True),
-            "layout": template.layout.model_copy(update={"columns": columns}).model_dump(
-                exclude_none=True
-            ),
-            "identities": [i.model_dump(exclude_none=True) for i in kept],
-            "provenance": provenance.model_dump(exclude_none=True),
-        }
-    )
+    if template.panels is None:
+        approved = Template.model_validate(
+            {
+                **template.model_dump(exclude_none=True),
+                "layout": template.layout.model_copy(update={"columns": columns[0]}).model_dump(
+                    exclude_none=True
+                ),
+                "identities": [i.model_dump(exclude_none=True) for i in kept[0]],
+                "provenance": provenance.model_dump(exclude_none=True),
+            }
+        )
+    else:
+        panels = [
+            panel.model_copy(
+                update={
+                    "layout": panel.layout.model_copy(update={"columns": own_columns}),
+                    "identities": own,
+                }
+            ).model_dump(exclude_none=True)
+            for panel, own_columns, own in zip(template.panels, columns, kept, strict=True)
+        ]
+        approved = Template.model_validate(
+            {
+                **template.model_dump(exclude_none=True, exclude={"identities"}),
+                "panels": panels,
+                "provenance": provenance.model_dump(exclude_none=True),
+            }
+        )
     drafted = template.provenance
     header = (
         f"Drafted by {drafted.drafted_by.id} from {', '.join(drafted.drafted_from)} on "

@@ -1,0 +1,165 @@
+# Drafted by muse-spark-1.3-contributor from 1939-02_p029, 1939-07_p025, 1939-12_p019 on 2026-10-30 (P21b).
+# A draft: validated, never registered. python -m archivist.templates.test checks its
+# identities; only a person, with python -m archivist.templates.approve, approves it.
+identity:
+  family: collections_by_period
+  title: Collections of Internal Revenue
+  description: Page with fiscal-year and monthly internal revenue collections split into income and profits,
+    payroll taxes and miscellaneous revenue
+  title_patterns:
+  - Collections\s+of\s+Internal\s+Revenue
+panels:
+- key: upper
+  title: Income and Profits and Payroll Taxes
+  repeats: 1
+  layout:
+    unit: thousands of dollars
+    precision: '1'
+    rows:
+      read: 24
+    columns:
+    - key: period
+      printed: Fiscal year or month
+      kind: text
+      blank_means: unknown
+    - key: total
+      printed: Total
+      kind: money
+      blank_means: zero
+    - key: income_total
+      printed: Total
+      kind: money
+      blank_means: zero
+    - key: individual
+      printed: Individual
+      kind: money
+      blank_means: zero
+    - key: corporation
+      printed: Corporation 1/
+      kind: money
+      blank_means: zero
+    - key: payroll_total
+      printed: Total
+      kind: money
+      blank_means: zero
+    - key: title_viii
+      printed: Title VIII
+      kind: money
+      blank_means: zero
+    - key: title_ix
+      printed: Title IX
+      kind: money
+      blank_means: zero
+    - key: carriers
+      printed: Carriers' Taxing Act of 1937
+      kind: money
+      blank_means: zero
+  identities:
+  - id: income_sum
+    description: Income total equals individual plus corporation
+    for_each: row
+    left:
+      cell:
+        column: income_total
+    right:
+      sum:
+        columns:
+        - individual
+        - corporation
+  - id: payroll_sum
+    description: Payroll total equals Title VIII plus Title IX plus Carriers Taxing Act
+    for_each: row
+    left:
+      cell:
+        column: payroll_total
+    right:
+      sum:
+        columns:
+        - title_viii
+        - title_ix
+        - carriers
+- key: lower
+  title: Miscellaneous Internal Revenue
+  repeats: 1
+  layout:
+    unit: thousands of dollars
+    precision: '1'
+    rows:
+      read: 24
+    columns:
+    - key: period
+      printed: Fiscal year or month
+      kind: text
+      blank_means: unknown
+    - key: misc_total
+      printed: Total
+      kind: money
+      blank_means: zero
+    - key: capital_stock
+      printed: Capital stock
+      kind: money
+      blank_means: zero
+    - key: estate_gift
+      printed: Estate and Gift
+      kind: money
+      blank_means: zero
+    - key: alcoholic
+      printed: Alcoholic beverages
+      kind: money
+      blank_means: zero
+    - key: tobacco
+      printed: Tobacco
+      kind: money
+      blank_means: zero
+    - key: stamp
+      printed: Stamp
+      kind: money
+      blank_means: zero
+    - key: manufacturers
+      printed: Manufacturers' excise
+      kind: money
+      blank_means: zero
+    - key: miscellaneous
+      printed: Miscellaneous 3/
+      kind: money
+      blank_means: zero
+    - key: unjust
+      printed: Unjust enrichment
+      kind: money
+      blank_means: zero
+    - key: agricultural
+      printed: Agricultural Adjustment
+      kind: money
+      blank_means: zero
+  identities:
+  - id: misc_sum
+    description: Miscellaneous total equals sum of its seven components
+    for_each: row
+    left:
+      cell:
+        column: misc_total
+    right:
+      sum:
+        columns:
+        - capital_stock
+        - estate_gift
+        - alcoholic
+        - tobacco
+        - stamp
+        - manufacturers
+        - miscellaneous
+provenance:
+  status: draft
+  drafted_by:
+    kind: model
+    id: muse-spark-1.3-contributor
+  drafted_on: '2026-10-30'
+  drafted_from:
+  - 1939-02_p029
+  - 1939-07_p025
+  - 1939-12_p019
+  evidence:
+  - drafted by muse-spark-1.3-contributor from 1939-02_p029, 1939-07_p025, 1939-12_p019 (drafter role,
+    P21b)
+  - drafted as a table printed in panels (P21d)
+  dropped: []

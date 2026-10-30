@@ -1,0 +1,1224 @@
+{
+  "family": "collections_of_internal_revenue",
+  "template": "results/templates/set_aside/collections_of_internal_revenue.yaml",
+  "template_sha256": "7c6b1e90bdf048353bbe38bf5b1183851fbe64cbb7603ecb146a4e409f116aca",
+  "tested_on": "2026-10-30",
+  "config": {
+    "drafter": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "extractor": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "rereader": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    }
+  },
+  "citations": "S0+grid",
+  "rule": "every identity evaluated wherever it applies, on cells whose two reads agree; held within n half-units of the printed precision for n printed values",
+  "pages": [
+    {
+      "ref": "1939-02_p029",
+      "page_id": "1939-02_p029",
+      "classified_as": "collections_of_internal_revenue",
+      "grid": {
+        "rows": 23,
+        "bands": 0,
+        "fixed": 0,
+        "order": null
+      },
+      "anchored": 213,
+      "box_sources": {
+        "model": 219,
+        "ocr": 213
+      },
+      "read": "ok",
+      "needed": 432,
+      "cells": 570,
+      "read_first": 570,
+      "read_twice": 413,
+      "agree": 184,
+      "no_second_read": {
+        "illegible to the re-read": 11,
+        "the re-read failed: APITimeoutError: Request timed out.": 8
+      }
+    },
+    {
+      "ref": "1939-07_p023",
+      "page_id": "1939-07_p023",
+      "classified_as": "collections_of_internal_revenue",
+      "grid": {
+        "rows": 30,
+        "bands": 31,
+        "fixed": 27,
+        "order": null
+      },
+      "anchored": 76,
+      "box_sources": {
+        "grid": 43,
+        "model": 421,
+        "ocr": 76
+      },
+      "read": "ok",
+      "needed": 540,
+      "cells": 570,
+      "read_first": 570,
+      "read_twice": 539,
+      "agree": 451,
+      "no_second_read": {
+        "illegible to the re-read": 1
+      }
+    },
+    {
+      "ref": "1939-12_p018",
+      "page_id": "1939-12_p018",
+      "classified_as": "collections_of_internal_revenue",
+      "grid": {
+        "rows": 30,
+        "bands": 55,
+        "fixed": 18,
+        "order": null
+      },
+      "anchored": 141,
+      "box_sources": {
+        "grid": 83,
+        "model": 316,
+        "ocr": 141
+      },
+      "read": "ok",
+      "needed": 540,
+      "cells": 570,
+      "read_first": 570,
+      "read_twice": 528,
+      "agree": 165,
+      "no_second_read": {
+        "illegible to the re-read": 12
+      }
+    }
+  ],
+  "outcomes": {
+    "rejected": 0,
+    "sometimes fails": 1,
+    "holds": 1,
+    "untested": 2
+  },
+  "identities": [
+    {
+      "id": "income_breakdown",
+      "description": "Income total equals individual plus corporation",
+      "for_each": "row",
+      "over": null,
+      "equation": "income_total = individual + corporation",
+      "applies": 84,
+      "evaluated": 27,
+      "held": 1,
+      "failed": 26,
+      "hold_rate": 0.037,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 54,
+        "a cell is blank or not a figure": 3
+      },
+      "outcome": "sometimes fails",
+      "failures": [
+        {
+          "page": "1939-07_p023",
+          "where": "row 03",
+          "left": "245266",
+          "right": "2126414",
+          "difference": "1881148",
+          "tolerance": "1.5",
+          "cells": [
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:03:income_total",
+              "row": "03",
+              "column": "income_total",
+              "side": "left",
+              "sign": "+",
+              "read": "245,266",
+              "reread": "245,266",
+              "value": "245266"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:03:individual",
+              "row": "03",
+              "column": "individual",
+              "side": "right",
+              "sign": "+",
+              "read": "937,380",
+              "reread": "937,380",
+              "value": "937380"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:03:corporation",
+              "row": "03",
+              "column": "corporation",
+              "side": "right",
+              "sign": "+",
+              "read": "1,189,034",
+              "reread": "1,189,034",
+              "value": "1189034"
+            }
+          ]
+        },
+        {
+          "page": "1939-07_p023",
+          "where": "row 09",
+          "left": "36636",
+          "right": "714455",
+          "difference": "677819",
+          "tolerance": "1.5",
+          "cells": [
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:09:income_total",
+              "row": "09",
+              "column": "income_total",
+              "side": "left",
+              "sign": "+",
+              "read": "36,636",
+              "reread": "36,636",
+              "value": "36636"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:09:individual",
+              "row": "09",
+              "column": "individual",
+              "side": "right",
+              "sign": "+",
+              "read": "332,280",
+              "reread": "332,280",
+              "value": "332280"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:09:corporation",
+              "row": "09",
+              "column": "corporation",
+              "side": "right",
+              "sign": "+",
+              "read": "382,175",
+              "reread": "382,175",
+              "value": "382175"
+            }
+          ]
+        },
+        {
+          "page": "1939-07_p023",
+          "where": "row 10",
+          "left": "1914",
+          "right": "63134",
+          "difference": "61220",
+          "tolerance": "1.5",
+          "cells": [
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:10:income_total",
+              "row": "10",
+              "column": "income_total",
+              "side": "left",
+              "sign": "+",
+              "read": "1,914",
+              "reread": "1,914",
+              "value": "1914"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:10:individual",
+              "row": "10",
+              "column": "individual",
+              "side": "right",
+              "sign": "+",
+              "read": "28,435",
+              "reread": "28,435",
+              "value": "28435"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:10:corporation",
+              "row": "10",
+              "column": "corporation",
+              "side": "right",
+              "sign": "+",
+              "read": "34,699",
+              "reread": "34,699",
+              "value": "34699"
+            }
+          ]
+        },
+        {
+          "page": "1939-07_p023",
+          "where": "row 11",
+          "left": "1868",
+          "right": "53265",
+          "difference": "51397",
+          "tolerance": "1.5",
+          "cells": [
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:11:income_total",
+              "row": "11",
+              "column": "income_total",
+              "side": "left",
+              "sign": "+",
+              "read": "1,868",
+              "reread": "1, 868",
+              "value": "1868"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:11:individual",
+              "row": "11",
+              "column": "individual",
+              "side": "right",
+              "sign": "+",
+              "read": "25,015",
+              "reread": "25,015",
+              "value": "25015"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:11:corporation",
+              "row": "11",
+              "column": "corporation",
+              "side": "right",
+              "sign": "+",
+              "read": "28,250",
+              "reread": "28,250",
+              "value": "28250"
+            }
+          ]
+        },
+        {
+          "page": "1939-07_p023",
+          "where": "row 13",
+          "left": "777",
+          "right": "21511",
+          "difference": "20734",
+          "tolerance": "1.5",
+          "cells": [
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:13:income_total",
+              "row": "13",
+              "column": "income_total",
+              "side": "left",
+              "sign": "+",
+              "read": "777",
+              "reread": "777",
+              "value": "777"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:13:individual",
+              "row": "13",
+              "column": "individual",
+              "side": "right",
+              "sign": "+",
+              "read": "10,677",
+              "reread": "10,677",
+              "value": "10677"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:13:corporation",
+              "row": "13",
+              "column": "corporation",
+              "side": "right",
+              "sign": "+",
+              "read": "10,834",
+              "reread": "10,834",
+              "value": "10834"
+            }
+          ]
+        },
+        {
+          "page": "1939-07_p023",
+          "where": "row 14",
+          "left": "30",
+          "right": "1009",
+          "difference": "979",
+          "tolerance": "1.5",
+          "cells": [
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:14:income_total",
+              "row": "14",
+              "column": "income_total",
+              "side": "left",
+              "sign": "+",
+              "read": "30",
+              "reread": "30",
+              "value": "30"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:14:individual",
+              "row": "14",
+              "column": "individual",
+              "side": "right",
+              "sign": "+",
+              "read": "503",
+              "reread": "503",
+              "value": "503"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:14:corporation",
+              "row": "14",
+              "column": "corporation",
+              "side": "right",
+              "sign": "+",
+              "read": "506",
+              "reread": "506",
+              "value": "506"
+            }
+          ]
+        },
+        {
+          "page": "1939-07_p023",
+          "where": "row 15",
+          "left": "364",
+          "right": "11278",
+          "difference": "10914",
+          "tolerance": "1.5",
+          "cells": [
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:15:income_total",
+              "row": "15",
+              "column": "income_total",
+              "side": "left",
+              "sign": "+",
+              "read": "364",
+              "reread": "364",
+              "value": "364"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:15:individual",
+              "row": "15",
+              "column": "individual",
+              "side": "right",
+              "sign": "+",
+              "read": "5,893",
+              "reread": "5,893",
+              "value": "5893"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:15:corporation",
+              "row": "15",
+              "column": "corporation",
+              "side": "right",
+              "sign": "+",
+              "read": "5,385",
+              "reread": "5,385",
+              "value": "5385"
+            }
+          ]
+        },
+        {
+          "page": "1939-07_p023",
+          "where": "row 16",
+          "left": "283",
+          "right": "2415",
+          "difference": "2132",
+          "tolerance": "1.5",
+          "cells": [
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:16:income_total",
+              "row": "16",
+              "column": "income_total",
+              "side": "left",
+              "sign": "+",
+              "read": "283",
+              "reread": "283",
+              "value": "283"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:16:individual",
+              "row": "16",
+              "column": "individual",
+              "side": "right",
+              "sign": "+",
+              "read": "1,359",
+              "reread": "1,359",
+              "value": "1359"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:16:corporation",
+              "row": "16",
+              "column": "corporation",
+              "side": "right",
+              "sign": "+",
+              "read": "1,056",
+              "reread": "1,056",
+              "value": "1056"
+            }
+          ]
+        },
+        {
+          "page": "1939-07_p023",
+          "where": "row 17",
+          "left": "2136",
+          "right": "14266",
+          "difference": "12130",
+          "tolerance": "1.5",
+          "cells": [
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:17:income_total",
+              "row": "17",
+              "column": "income_total",
+              "side": "left",
+              "sign": "+",
+              "read": "2,136",
+              "reread": "2,136",
+              "value": "2136"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:17:individual",
+              "row": "17",
+              "column": "individual",
+              "side": "right",
+              "sign": "+",
+              "read": "7,152",
+              "reread": "7,152",
+              "value": "7152"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:17:corporation",
+              "row": "17",
+              "column": "corporation",
+              "side": "right",
+              "sign": "+",
+              "read": "7,114",
+              "reread": "7,114",
+              "value": "7114"
+            }
+          ]
+        },
+        {
+          "page": "1939-07_p023",
+          "where": "row 19",
+          "left": "29",
+          "right": "782",
+          "difference": "753",
+          "tolerance": "1.5",
+          "cells": [
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:19:income_total",
+              "row": "19",
+              "column": "income_total",
+              "side": "left",
+              "sign": "+",
+              "read": "29",
+              "reread": "29",
+              "value": "29"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:19:individual",
+              "row": "19",
+              "column": "individual",
+              "side": "right",
+              "sign": "+",
+              "read": "473",
+              "reread": "473",
+              "value": "473"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:19:corporation",
+              "row": "19",
+              "column": "corporation",
+              "side": "right",
+              "sign": "+",
+              "read": "309",
+              "reread": "309",
+              "value": "309"
+            }
+          ]
+        },
+        {
+          "page": "1939-07_p023",
+          "where": "row 20",
+          "left": "681",
+          "right": "18903",
+          "difference": "18222",
+          "tolerance": "1.5",
+          "cells": [
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:20:income_total",
+              "row": "20",
+              "column": "income_total",
+              "side": "left",
+              "sign": "+",
+              "read": "681",
+              "reread": "681",
+              "value": "681"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:20:individual",
+              "row": "20",
+              "column": "individual",
+              "side": "right",
+              "sign": "+",
+              "read": "9,399",
+              "reread": "9,399",
+              "value": "9399"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:20:corporation",
+              "row": "20",
+              "column": "corporation",
+              "side": "right",
+              "sign": "+",
+              "read": "9,504",
+              "reread": "9,504",
+              "value": "9504"
+            }
+          ]
+        },
+        {
+          "page": "1939-07_p023",
+          "where": "row 27",
+          "left": "1",
+          "right": "40",
+          "difference": "39",
+          "tolerance": "1.5",
+          "cells": [
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:27:income_total",
+              "row": "27",
+              "column": "income_total",
+              "side": "left",
+              "sign": "+",
+              "read": "1",
+              "reread": "1",
+              "value": "1"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:27:individual",
+              "row": "27",
+              "column": "individual",
+              "side": "right",
+              "sign": "+",
+              "read": "19",
+              "reread": "19",
+              "value": "19"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:27:corporation",
+              "row": "27",
+              "column": "corporation",
+              "side": "right",
+              "sign": "+",
+              "read": "21",
+              "reread": "21",
+              "value": "21"
+            }
+          ]
+        },
+        {
+          "page": "1939-07_p023",
+          "where": "row 29",
+          "left": "561",
+          "right": "13611",
+          "difference": "13050",
+          "tolerance": "1.5",
+          "cells": [
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:29:income_total",
+              "row": "29",
+              "column": "income_total",
+              "side": "left",
+              "sign": "+",
+              "read": "561",
+              "reread": "561",
+              "value": "561"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:29:individual",
+              "row": "29",
+              "column": "individual",
+              "side": "right",
+              "sign": "+",
+              "read": "6,932",
+              "reread": "6,932",
+              "value": "6932"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:29:corporation",
+              "row": "29",
+              "column": "corporation",
+              "side": "right",
+              "sign": "+",
+              "read": "6,679",
+              "reread": "6,679",
+              "value": "6679"
+            }
+          ]
+        },
+        {
+          "page": "1939-07_p023",
+          "where": "row 30",
+          "left": "4872",
+          "right": "108739",
+          "difference": "103867",
+          "tolerance": "1.5",
+          "cells": [
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:30:income_total",
+              "row": "30",
+              "column": "income_total",
+              "side": "left",
+              "sign": "+",
+              "read": "4,872",
+              "reread": "4,872",
+              "value": "4872"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:30:individual",
+              "row": "30",
+              "column": "individual",
+              "side": "right",
+              "sign": "+",
+              "read": "54,757",
+              "reread": "54,757",
+              "value": "54757"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-07_p023:30:corporation",
+              "row": "30",
+              "column": "corporation",
+              "side": "right",
+              "sign": "+",
+              "read": "53,982",
+              "reread": "53,982",
+              "value": "53982"
+            }
+          ]
+        },
+        {
+          "page": "1939-12_p018",
+          "where": "row 01",
+          "left": "12428",
+          "right": "541027",
+          "difference": "528599",
+          "tolerance": "1.5",
+          "cells": [
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-12_p018:01:income_total",
+              "row": "01",
+              "column": "income_total",
+              "side": "left",
+              "sign": "+",
+              "read": "12,428",
+              "reread": "12,428",
+              "value": "12428"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-12_p018:01:individual",
+              "row": "01",
+              "column": "individual",
+              "side": "right",
+              "sign": "+",
+              "read": "223,107",
+              "reread": "223,107",
+              "value": "223107"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-12_p018:01:corporation",
+              "row": "01",
+              "column": "corporation",
+              "side": "right",
+              "sign": "+",
+              "read": "317,920",
+              "reread": "317,920",
+              "value": "317920"
+            }
+          ]
+        },
+        {
+          "page": "1939-12_p018",
+          "where": "row 02",
+          "left": "10971",
+          "right": "102796",
+          "difference": "91825",
+          "tolerance": "1.5",
+          "cells": [
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-12_p018:02:income_total",
+              "row": "02",
+              "column": "income_total",
+              "side": "left",
+              "sign": "+",
+              "read": "10,971",
+              "reread": "10,971",
+              "value": "10971"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-12_p018:02:individual",
+              "row": "02",
+              "column": "individual",
+              "side": "right",
+              "sign": "+",
+              "read": "55,327",
+              "reread": "55,327",
+              "value": "55327"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-12_p018:02:corporation",
+              "row": "02",
+              "column": "corporation",
+              "side": "right",
+              "sign": "+",
+              "read": "47,469",
+              "reread": "47,469",
+              "value": "47469"
+            }
+          ]
+        },
+        {
+          "page": "1939-12_p018",
+          "where": "row 05",
+          "left": "578",
+          "right": "17634",
+          "difference": "17056",
+          "tolerance": "1.5",
+          "cells": [
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-12_p018:05:income_total",
+              "row": "05",
+              "column": "income_total",
+              "side": "left",
+              "sign": "+",
+              "read": "578",
+              "reread": "578",
+              "value": "578"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-12_p018:05:individual",
+              "row": "05",
+              "column": "individual",
+              "side": "right",
+              "sign": "+",
+              "read": "5,608",
+              "reread": "5,608",
+              "value": "5608"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-12_p018:05:corporation",
+              "row": "05",
+              "column": "corporation",
+              "side": "right",
+              "sign": "+",
+              "read": "12,026",
+              "reread": "12,026",
+              "value": "12026"
+            }
+          ]
+        },
+        {
+          "page": "1939-12_p018",
+          "where": "row 06",
+          "left": "36491",
+          "right": "1130645",
+          "difference": "1094154",
+          "tolerance": "1.5",
+          "cells": [
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-12_p018:06:income_total",
+              "row": "06",
+              "column": "income_total",
+              "side": "left",
+              "sign": "+",
+              "read": "36,491",
+              "reread": "36,491",
+              "value": "36491"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-12_p018:06:individual",
+              "row": "06",
+              "column": "individual",
+              "side": "right",
+              "sign": "+",
+              "read": "478,912",
+              "reread": "478,912",
+              "value": "478912"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-12_p018:06:corporation",
+              "row": "06",
+              "column": "corporation",
+              "side": "right",
+              "sign": "+",
+              "read": "651,733",
+              "reread": "651,733",
+              "value": "651733"
+            }
+          ]
+        },
+        {
+          "page": "1939-12_p018",
+          "where": "row 07",
+          "left": "443",
+          "right": "5577",
+          "difference": "5134",
+          "tolerance": "1.5",
+          "cells": [
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-12_p018:07:income_total",
+              "row": "07",
+              "column": "income_total",
+              "side": "left",
+              "sign": "+",
+              "read": "443",
+              "reread": "443",
+              "value": "443"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-12_p018:07:individual",
+              "row": "07",
+              "column": "individual",
+              "side": "right",
+              "sign": "+",
+              "read": "2,856",
+              "reread": "2,856",
+              "value": "2856"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-12_p018:07:corporation",
+              "row": "07",
+              "column": "corporation",
+              "side": "right",
+              "sign": "+",
+              "read": "2,721",
+              "reread": "2,721",
+              "value": "2721"
+            }
+          ]
+        },
+        {
+          "page": "1939-12_p018",
+          "where": "row 09",
+          "left": "29058",
+          "right": "300811",
+          "difference": "271753",
+          "tolerance": "1.5",
+          "cells": [
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-12_p018:09:income_total",
+              "row": "09",
+              "column": "income_total",
+              "side": "left",
+              "sign": "+",
+              "read": "29,058",
+              "reread": "29,058",
+              "value": "29058"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-12_p018:09:individual",
+              "row": "09",
+              "column": "individual",
+              "side": "right",
+              "sign": "+",
+              "read": "161,128",
+              "reread": "161,128",
+              "value": "161128"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-12_p018:09:corporation",
+              "row": "09",
+              "column": "corporation",
+              "side": "right",
+              "sign": "+",
+              "read": "139,683",
+              "reread": "139,683",
+              "value": "139683"
+            }
+          ]
+        },
+        {
+          "page": "1939-12_p018",
+          "where": "row 10",
+          "left": "267",
+          "right": "6621",
+          "difference": "6354",
+          "tolerance": "1.5",
+          "cells": [
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-12_p018:10:income_total",
+              "row": "10",
+              "column": "income_total",
+              "side": "left",
+              "sign": "+",
+              "read": "267",
+              "reread": "267",
+              "value": "267"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-12_p018:10:individual",
+              "row": "10",
+              "column": "individual",
+              "side": "right",
+              "sign": "+",
+              "read": "3,975",
+              "reread": "3,975",
+              "value": "3975"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-12_p018:10:corporation",
+              "row": "10",
+              "column": "corporation",
+              "side": "right",
+              "sign": "+",
+              "read": "2,646",
+              "reread": "2,646",
+              "value": "2646"
+            }
+          ]
+        },
+        {
+          "page": "1939-12_p018",
+          "where": "row 11",
+          "left": "3061",
+          "right": "23120",
+          "difference": "20059",
+          "tolerance": "1.5",
+          "cells": [
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-12_p018:11:income_total",
+              "row": "11",
+              "column": "income_total",
+              "side": "left",
+              "sign": "+",
+              "read": "3,061",
+              "reread": "3,061",
+              "value": "3061"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-12_p018:11:individual",
+              "row": "11",
+              "column": "individual",
+              "side": "right",
+              "sign": "+",
+              "read": "12,191",
+              "reread": "12,191",
+              "value": "12191"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-12_p018:11:corporation",
+              "row": "11",
+              "column": "corporation",
+              "side": "right",
+              "sign": "+",
+              "read": "10,929",
+              "reread": "10,929",
+              "value": "10929"
+            }
+          ]
+        },
+        {
+          "page": "1939-12_p018",
+          "where": "row 12",
+          "left": "31617",
+          "right": "237926",
+          "difference": "206309",
+          "tolerance": "1.5",
+          "cells": [
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-12_p018:12:income_total",
+              "row": "12",
+              "column": "income_total",
+              "side": "left",
+              "sign": "+",
+              "read": "31,617",
+              "reread": "31,617",
+              "value": "31617"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-12_p018:12:individual",
+              "row": "12",
+              "column": "individual",
+              "side": "right",
+              "sign": "+",
+              "read": "125,074",
+              "reread": "125,074",
+              "value": "125074"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-12_p018:12:corporation",
+              "row": "12",
+              "column": "corporation",
+              "side": "right",
+              "sign": "+",
+              "read": "112,852",
+              "reread": "112,852",
+              "value": "112852"
+            }
+          ]
+        },
+        {
+          "page": "1939-12_p018",
+          "where": "row 14",
+          "left": "75",
+          "right": "462",
+          "difference": "387",
+          "tolerance": "1.5",
+          "cells": [
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-12_p018:14:income_total",
+              "row": "14",
+              "column": "income_total",
+              "side": "left",
+              "sign": "+",
+              "read": "75",
+              "reread": "75",
+              "value": "75"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-12_p018:14:individual",
+              "row": "14",
+              "column": "individual",
+              "side": "right",
+              "sign": "+",
+              "read": "257",
+              "reread": "257",
+              "value": "257"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-12_p018:14:corporation",
+              "row": "14",
+              "column": "corporation",
+              "side": "right",
+              "sign": "+",
+              "read": "205",
+              "reread": "205",
+              "value": "205"
+            }
+          ]
+        },
+        {
+          "page": "1939-12_p018",
+          "where": "row 16",
+          "left": "49",
+          "right": "973",
+          "difference": "924",
+          "tolerance": "1.5",
+          "cells": [
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-12_p018:16:income_total",
+              "row": "16",
+              "column": "income_total",
+              "side": "left",
+              "sign": "+",
+              "read": "49",
+              "reread": "49",
+              "value": "49"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-12_p018:16:individual",
+              "row": "16",
+              "column": "individual",
+              "side": "right",
+              "sign": "+",
+              "read": "677",
+              "reread": "677",
+              "value": "677"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-12_p018:16:corporation",
+              "row": "16",
+              "column": "corporation",
+              "side": "right",
+              "sign": "+",
+              "read": "296",
+              "reread": "296",
+              "value": "296"
+            }
+          ]
+        },
+        {
+          "page": "1939-12_p018",
+          "where": "row 17",
+          "left": "117",
+          "right": "8529",
+          "difference": "8412",
+          "tolerance": "1.5",
+          "cells": [
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-12_p018:17:income_total",
+              "row": "17",
+              "column": "income_total",
+              "side": "left",
+              "sign": "+",
+              "read": "117",
+              "reread": "117",
+              "value": "117"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-12_p018:17:individual",
+              "row": "17",
+              "column": "individual",
+              "side": "right",
+              "sign": "+",
+              "read": "4,161",
+              "reread": "4,161",
+              "value": "4161"
+            },
+            {
+              "field_id": "T.collections_of_internal_revenue:1939-12_p018:17:corporation",
+              "row": "17",
+              "column": "corporation",
+              "side": "right",
+              "sign": "+",
+              "read": "4,368",
+              "reread": "4,368",
+              "value": "4368"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "payroll_breakdown",
+      "description": "Payroll total equals Title VIII plus Title IX plus Carriers Taxing Act",
+      "for_each": "row",
+      "over": null,
+      "equation": "payroll_total = title_viii + title_ix + carriers",
+      "applies": 84,
+      "evaluated": 1,
+      "held": 1,
+      "failed": 0,
+      "hold_rate": 1.0,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 76,
+        "a cell was not read twice": 6,
+        "a cell is blank or not a figure": 1
+      },
+      "outcome": "holds",
+      "failures": []
+    },
+    {
+      "id": "misc_breakdown",
+      "description": "Miscellaneous total equals its seven components",
+      "for_each": "row",
+      "over": null,
+      "equation": "misc_total = capital_stock + estate_gift + alcoholic + tobacco + stamp + manuf_excise + misc_other",
+      "applies": 84,
+      "evaluated": 0,
+      "held": 0,
+      "failed": 0,
+      "hold_rate": null,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 83,
+        "a cell is blank or not a figure": 1
+      },
+      "outcome": "untested",
+      "failures": []
+    },
+    {
+      "id": "total_breakdown",
+      "description": "Grand total equals income plus payroll plus miscellaneous plus unjust plus agricultural",
+      "for_each": "row",
+      "over": null,
+      "equation": "total = income_total + payroll_total + misc_total + unjust + agri_adjust",
+      "applies": 84,
+      "evaluated": 0,
+      "held": 0,
+      "failed": 0,
+      "hold_rate": null,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 83,
+        "a cell was not read twice": 1
+      },
+      "outcome": "untested",
+      "failures": []
+    }
+  ]
+}

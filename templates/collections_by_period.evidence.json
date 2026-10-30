@@ -1,0 +1,390 @@
+{
+  "family": "collections_by_period",
+  "template": "templates/collections_by_period.yaml",
+  "template_sha256": "c3e3959803d265a7be9bc21ac0e6b33e9e3720633d9adfdb3958ea5c37931b3d",
+  "tested_on": "2026-10-30",
+  "config": {
+    "drafter": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "extractor": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "rereader": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "segmenter": {
+      "backend": "meta",
+      "model_id": "sam-3.1"
+    }
+  },
+  "citations": "S0+grid",
+  "rule": "every identity evaluated wherever it applies, on cells whose two reads agree; held within n half-units of the printed precision for n printed values",
+  "pages": [
+    {
+      "ref": "1939-02_p029",
+      "page_id": "1939-02_p029",
+      "classified_as": "collections_by_period",
+      "panels": {
+        "found": [
+          {
+            "method": "sam",
+            "box": [
+              185,
+              213,
+              1311,
+              966
+            ],
+            "score": 0.739
+          },
+          {
+            "method": "sam",
+            "box": [
+              197,
+              979,
+              1322,
+              1734
+            ],
+            "score": 0.742
+          }
+        ],
+        "copies": {
+          "upper": {
+            "read_on": "its panel",
+            "found_by": "sam",
+            "grid": {
+              "rows": 23,
+              "bands": 13,
+              "fixed": 16,
+              "order": null
+            },
+            "box_sources": {
+              "grid": 26,
+              "model": 98,
+              "ocr": 92
+            }
+          },
+          "lower": {
+            "read_on": "its panel",
+            "found_by": "sam",
+            "grid": {
+              "rows": 23,
+              "bands": 23,
+              "fixed": 23,
+              "order": null
+            },
+            "box_sources": {
+              "grid": 51,
+              "model": 73,
+              "ocr": 140
+            }
+          }
+        }
+      },
+      "read": "ok",
+      "needed": 360,
+      "cells": 480,
+      "read_first": 480,
+      "read_twice": 357,
+      "agree": 178,
+      "no_second_read": {
+        "illegible to the re-read": 3
+      }
+    },
+    {
+      "ref": "1939-07_p025",
+      "page_id": "1939-07_p025",
+      "classified_as": "collections_by_period",
+      "panels": {
+        "found": [
+          {
+            "method": "sam",
+            "box": [
+              126,
+              202,
+              1513,
+              932
+            ],
+            "score": 0.719
+          },
+          {
+            "method": "sam",
+            "box": [
+              128,
+              951,
+              1515,
+              1670
+            ],
+            "score": 0.726
+          }
+        ],
+        "copies": {
+          "upper": {
+            "read_on": "its panel",
+            "found_by": "sam",
+            "grid": {
+              "rows": 24,
+              "bands": 15,
+              "fixed": 24,
+              "order": null
+            },
+            "box_sources": {
+              "grid": 103,
+              "model": 15,
+              "ocr": 98
+            }
+          },
+          "lower": {
+            "read_on": "its panel",
+            "found_by": "sam",
+            "grid": {
+              "rows": 24,
+              "bands": 25,
+              "fixed": 23,
+              "order": null
+            },
+            "box_sources": {
+              "grid": 123,
+              "model": 22,
+              "ocr": 119
+            }
+          }
+        }
+      },
+      "read": "ok",
+      "needed": 360,
+      "cells": 480,
+      "read_first": 480,
+      "read_twice": 358,
+      "agree": 219,
+      "no_second_read": {
+        "illegible to the re-read": 2
+      }
+    },
+    {
+      "ref": "1939-12_p019",
+      "page_id": "1939-12_p019",
+      "classified_as": "collections_by_period",
+      "panels": {
+        "found": [
+          {
+            "method": "sam",
+            "box": [
+              96,
+              228,
+              1468,
+              1016
+            ],
+            "score": 0.734
+          },
+          {
+            "method": "sam",
+            "box": [
+              98,
+              1049,
+              1471,
+              1823
+            ],
+            "score": 0.739
+          }
+        ],
+        "copies": {
+          "upper": {
+            "read_on": "its panel",
+            "found_by": "sam",
+            "grid": {
+              "rows": 24,
+              "bands": 24,
+              "fixed": 24,
+              "order": null
+            },
+            "box_sources": {
+              "grid": 59,
+              "model": 13,
+              "ocr": 144
+            }
+          },
+          "lower": {
+            "read_on": "its panel",
+            "found_by": "sam",
+            "grid": {
+              "rows": 24,
+              "bands": 24,
+              "fixed": 24,
+              "order": null
+            },
+            "box_sources": {
+              "grid": 51,
+              "model": 36,
+              "ocr": 177
+            }
+          }
+        }
+      },
+      "read": "ok",
+      "needed": 360,
+      "cells": 480,
+      "read_first": 480,
+      "read_twice": 358,
+      "agree": 290,
+      "no_second_read": {
+        "illegible to the re-read": 2
+      }
+    }
+  ],
+  "outcomes": {
+    "rejected": 0,
+    "sometimes fails": 1,
+    "holds": 2,
+    "untested": 0
+  },
+  "identities": [
+    {
+      "id": "upper.income_sum",
+      "description": "Income total equals individual plus corporation",
+      "for_each": "row",
+      "over": null,
+      "equation": "income_total = individual + corporation",
+      "applies": 72,
+      "evaluated": 23,
+      "held": 23,
+      "failed": 0,
+      "hold_rate": 1.0,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 48,
+        "all blank": 1
+      },
+      "outcome": "holds",
+      "failures": []
+    },
+    {
+      "id": "upper.payroll_sum",
+      "description": "Payroll total equals Title VIII plus Title IX plus Carriers Taxing Act",
+      "for_each": "row",
+      "over": null,
+      "equation": "payroll_total = title_viii + title_ix + carriers",
+      "applies": 72,
+      "evaluated": 16,
+      "held": 16,
+      "failed": 0,
+      "hold_rate": 1.0,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 55,
+        "all blank": 1
+      },
+      "outcome": "holds",
+      "failures": []
+    },
+    {
+      "id": "lower.misc_sum",
+      "description": "Miscellaneous total equals sum of its seven components",
+      "for_each": "row",
+      "over": null,
+      "equation": "misc_total = capital_stock + estate_gift + alcoholic + tobacco + stamp + manufacturers + miscellaneous",
+      "applies": 72,
+      "evaluated": 12,
+      "held": 11,
+      "failed": 1,
+      "hold_rate": 0.9167,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 60
+      },
+      "outcome": "sometimes fails",
+      "failures": [
+        {
+          "page": "1939-12_p019",
+          "where": "row 22",
+          "left": "280095",
+          "right": "280089",
+          "difference": "6",
+          "tolerance": "4.0",
+          "cells": [
+            {
+              "field_id": "T.collections_by_period:1939-12_p019:lower.22:misc_total",
+              "row": "lower.22",
+              "column": "misc_total",
+              "side": "left",
+              "sign": "+",
+              "read": "280,095",
+              "reread": "280,095",
+              "value": "280095"
+            },
+            {
+              "field_id": "T.collections_by_period:1939-12_p019:lower.22:capital_stock",
+              "row": "lower.22",
+              "column": "capital_stock",
+              "side": "right",
+              "sign": "+",
+              "read": "52,041",
+              "reread": "52,041",
+              "value": "52041"
+            },
+            {
+              "field_id": "T.collections_by_period:1939-12_p019:lower.22:estate_gift",
+              "row": "lower.22",
+              "column": "estate_gift",
+              "side": "right",
+              "sign": "+",
+              "read": "56,154",
+              "reread": "56,154",
+              "value": "56154"
+            },
+            {
+              "field_id": "T.collections_by_period:1939-12_p019:lower.22:alcoholic",
+              "row": "lower.22",
+              "column": "alcoholic",
+              "side": "right",
+              "sign": "+",
+              "read": "56,513",
+              "reread": "56,513",
+              "value": "56513"
+            },
+            {
+              "field_id": "T.collections_by_period:1939-12_p019:lower.22:tobacco",
+              "row": "lower.22",
+              "column": "tobacco",
+              "side": "right",
+              "sign": "+",
+              "read": "51,128",
+              "reread": "51,128",
+              "value": "51128"
+            },
+            {
+              "field_id": "T.collections_by_period:1939-12_p019:lower.22:stamp",
+              "row": "lower.22",
+              "column": "stamp",
+              "side": "right",
+              "sign": "+",
+              "read": "3,194",
+              "reread": "3,194",
+              "value": "3194"
+            },
+            {
+              "field_id": "T.collections_by_period:1939-12_p019:lower.22:manufacturers",
+              "row": "lower.22",
+              "column": "manufacturers",
+              "side": "right",
+              "sign": "+",
+              "read": "44,548",
+              "reread": "44,548",
+              "value": "44548"
+            },
+            {
+              "field_id": "T.collections_by_period:1939-12_p019:lower.22:miscellaneous",
+              "row": "lower.22",
+              "column": "miscellaneous",
+              "side": "right",
+              "sign": "+",
+              "read": "16,511",
+              "reread": "16,511",
+              "value": "16511"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

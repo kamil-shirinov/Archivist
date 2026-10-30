@@ -47,6 +47,16 @@ A page's issue is its id up to the last "_" ("1939-09_p057" is issue "1939-09").
 needs another table is unresolvable (a note, as the ledger's are) when its page has no issue, or
 the issue has no page of that table in the batch, or more than one.
 
+A table printed in panels (P21d) is described panel by panel: in place of one layout and its
+identities, the template lists its panels, each a block with its own heading, rows, columns and
+identities, in order from the top (left to right where side by side). A panel printed once for each
+of several things on a page (a State, a year) is described once, with repeats the most a page
+prints; its copies are keyed "<key>_1", "<key>_2", ... from the top. A cell of a panel is named with
+its copy before its row ("T.<family>:<page>:<copy>.<row>:<column>"), and a panel's identities name
+only its own cells. The page is still classified as one type (PanelledType), and each panel is read
+on its own (archivist.templates.panels finds where). A template with one layout means what it
+always meant: nothing about it changed, so neither did its file or its sha256.
+
 load_templates validates every file in the directory, drafts included, and the references between
 them, so a malformed template is refused rather than ignored; only approved ones become types.
 """
@@ -278,9 +288,10 @@ class Drafter(_Strict):
 
 
 class Dropped(_Strict):
-    """An identity the draft proposed and the approved template leaves out, and why."""
+    """An identity the draft proposed and the approved template leaves out, and why; in a table
+    printed in panels, named "<panel>.<id>"."""
 
-    id: str = Field(pattern=KEY, max_length=40)
+    id: str = Field(pattern=r"^[a-z][a-z0-9_]*(\.[a-z][a-z0-9_]*)?$", max_length=65)
     by: Literal["arithmetic test", "approver"]
     why: str = Field(min_length=1)
 
@@ -314,30 +325,80 @@ class Provenance(_Strict):
         return self.status == "approved"
 
 
-class Template(_Strict):
-    identity: Family
+def _resolve(identities: Sequence[Identity], layout: Layout, family: str, own_only: bool) -> None:
+    """Every identity names cells the layout has (or another table's, unless own_only)."""
+    ids = [i.id for i in identities]
+    if len(set(ids)) != len(ids):
+        raise ValueError(f"identity ids repeat: {ids}")
+    for identity in identities:
+        try:
+            for place in _contexts(identity, layout):
+                terms = _linear(identity, place)
+                if not any(t.table is None for t in terms):
+                    raise ValueError("no cell of this table")
+                for term in terms:
+                    if term.table is not None and own_only:
+                        raise ValueError("a panel's identity names only its own cells")
+                    if term.table == family:
+                        raise ValueError("name another table, or leave the table out")
+                    if term.table is None:
+                        _check_cell(layout, term, "this table")
+        except ValueError as error:
+            raise ValueError(f"identity {identity.id!r}: {error}") from error
+
+
+class Panel(_Strict):
+    """One panel of a table printed in panels: a block with its own heading, rows, columns and
+    identities. One printed once for each of several things (a State, a year) is described once,
+    with repeats the most a page prints."""
+
+    key: str = Field(pattern=KEY, max_length=24)
+    title: str = Field(min_length=1)  # its heading as printed, or what the heading names
+    repeats: int = Field(default=1, ge=1, le=9)
     layout: Layout
     identities: list[Identity] = []
+
+    @field_validator("title")
+    @classmethod
+    def _one_line(cls, text: str) -> str:
+        if "\n" in text.strip():
+            raise ValueError("must be one line")
+        return text.strip()
+
+    @property
+    def copies(self) -> list[str]:
+        """The keys of its copies on a page, from the top."""
+        if self.repeats == 1:
+            return [self.key]
+        return [f"{self.key}_{n}" for n in range(1, self.repeats + 1)]
+
+
+class Template(_Strict):
+    identity: Family
+    layout: Layout | None = None  # one table; or, printed in panels, panels
+    identities: list[Identity] = []
+    panels: list[Panel] | None = None
     provenance: Provenance
 
     @model_validator(mode="after")
     def _identities_resolve(self) -> Template:
-        ids = [i.id for i in self.identities]
-        if len(set(ids)) != len(ids):
-            raise ValueError(f"identity ids repeat: {ids}")
-        for identity in self.identities:
+        if (self.layout is None) == (self.panels is None):
+            raise ValueError("a template has a layout, or panels, not both")
+        if self.panels is None:
+            _resolve(self.identities, self.layout, self.identity.family, own_only=False)
+            return self
+        if self.identities:
+            raise ValueError("a table printed in panels keeps its identities in its panels")
+        if not self.panels:
+            raise ValueError("a table printed in panels has at least one panel")
+        copies = [c for p in self.panels for c in p.copies]
+        if len(set(copies)) != len(copies):
+            raise ValueError(f"panel keys repeat: {copies}")
+        for panel in self.panels:
             try:
-                for place in _contexts(identity, self.layout):
-                    terms = _linear(identity, place)
-                    if not any(t.table is None for t in terms):
-                        raise ValueError("no cell of this table")
-                    for term in terms:
-                        if term.table == self.identity.family:
-                            raise ValueError("name another table, or leave the table out")
-                        if term.table is None:
-                            _check_cell(self.layout, term, "this table")
+                _resolve(panel.identities, panel.layout, self.identity.family, own_only=True)
             except ValueError as error:
-                raise ValueError(f"identity {identity.id!r}: {error}") from error
+                raise ValueError(f"panel {panel.key!r}: {error}") from error
         return self
 
     @property
@@ -505,6 +566,8 @@ def check_references(template: Template, tables: Mapping[str, Template]) -> None
                 try:
                     if other is None:
                         raise ValueError(f"{where} is not a known (approved) template")
+                    if other.layout is None:
+                        raise ValueError(f"{where} is printed in panels: its cells can't be named")
                     _check_cell(other.layout, term, where)
                 except ValueError as error:
                     raise TemplateError(
@@ -540,17 +603,21 @@ def read_template(path: Path) -> Template:
 
 def drafted_types(directory: Path = TEMPLATES_DIR) -> list[TemplateType]:
     """Every template in directory that a model drafted from pages, draft or approved, as a type
-    in family order; a hand-written example is left out."""
+    in family order; a hand-written example is left out, and so is a table printed in panels,
+    since what these types are used for measures the boxes of one table on a page."""
     out = []
     for path in sorted(directory.glob("*.yaml")):
         template = read_template(path)
-        if template.provenance.drafted_from:
+        if template.provenance.drafted_from and template.panels is None:
             out.append(TemplateType(template, sha256=file_sha256(path)))
     return out
 
 
-def load_templates(directory: Path, reserved: Collection[str] = ()) -> list[TemplateType]:
-    """The approved templates in directory as document types, in family order.
+def load_templates(
+    directory: Path, reserved: Collection[str] = ()
+) -> list[TemplateType | PanelledType]:
+    """The approved templates in directory as document types, in family order; one printed in
+    panels as a PanelledType.
 
     Every file must validate and every reference must resolve among the files, drafts included;
     an approved template may refer only to other approved ones, and no family may take a reserved
@@ -568,7 +635,12 @@ def load_templates(directory: Path, reserved: Collection[str] = ()) -> list[Temp
             raise TemplateError(f"{template.family}: the name is reserved or already registered")
         check_references(template, templates)
     approved = {k: t for k, t in templates.items() if t.provenance.approved}
-    return [TemplateType(t, approved, sha256=digests[k]) for k, t in approved.items()]
+    return [
+        PanelledType(t, sha256=digests[k])
+        if t.panels is not None
+        else TemplateType(t, approved, sha256=digests[k])
+        for k, t in approved.items()
+    ]
 
 
 # --- Reading figures ---------------------------------------------------------------------------
@@ -653,30 +725,51 @@ class TemplateType:
         tables: Mapping[str, Template] | None = None,
         *,
         sha256: str | None = None,  # the template file's, which a run records
+        panel: str | None = None,  # a copy of a panel (PanelledType): its key leads each row's
+        intro: str | None = None,  # a panel's: what the read is told it is looking at
     ) -> None:
+        if template.layout is None:
+            raise TemplateError(f"{template.family} is printed in panels: it is a PanelledType")
         self.template = template
         self.sha256 = sha256
         self.tables = dict(tables or {})
         check_references(template, self.tables)
         self.layout = template.layout
         self.name = template.family
+        self.panel = panel
+        self.intro = intro
+        self.rule_name = f"{self.name}.{panel}" if panel else self.name
         self.description = template.identity.description
         self.money_fields = frozenset(c.key for c in self.layout.columns if c.kind == "money")
         self.citations = CITATIONS
         self._patterns = [re.compile(p, re.IGNORECASE) for p in template.identity.title_patterns]
+
+    def _id(self, page_id: str, row: str, column: str) -> str:
+        """The field id of a cell of this table (of this copy of a panel)."""
+        return cell_id(self.name, page_id, f"{self.panel}.{row}" if self.panel else row, column)
 
     def matches_title(self, text: str) -> bool:
         return any(p.search(text) for p in self._patterns)
 
     def field_ids(self, page_id: str) -> list[str]:
         return [
-            cell_id(self.name, page_id, row, column.key)
+            self._id(page_id, row, column.key)
             for row in self.layout.row_keys
             for column in self.layout.columns
         ]
 
     def extraction_prompt(self, grounding: bool = False) -> str:
         layout, title = self.layout, self.template.identity.title
+        opening = self.intro or (
+            f'This is a scanned page with the table "{title}" ({layout.unit}). Read every cell '
+            "of that table, and nothing outside it."
+        )
+        dash = 'A dash printed in a cell is copied as "-".\n\n'
+        return _prompt(f"{opening}\n\n{self.rows_and_columns()}{dash}", grounding)
+
+    def rows_and_columns(self) -> str:
+        """The prompt's account of the rows to give and the columns each row has."""
+        layout = self.layout
         if isinstance(layout.rows, ReadRows):
             n = layout.rows.read
             rows = (
@@ -701,13 +794,7 @@ class TemplateType:
                 f'- "{row.key}": the row printed "{row.printed}"\n' for row in layout.rows
             )
         columns = "".join(f'- {c.key}: the "{c.printed}" column\n' for c in layout.columns)
-        body = (
-            f'This is a scanned page with the table "{title}" ({layout.unit}). Read every cell '
-            "of that table, and nothing outside it.\n\n"
-            f"{rows}Each row has:\n{columns}"
-            'A dash printed in a cell is copied as "-".\n\n'
-        )
-        return _prompt(body, grounding)
+        return f"{rows}Each row has:\n{columns}"
 
     def extraction_schema(self) -> dict:
         names = tuple(c.key for c in self.layout.columns)
@@ -721,7 +808,7 @@ class TemplateType:
             if not isinstance(line, dict) or set(line) != set(names):
                 raise ValueError(f"row {row}: expected the columns {list(names)}, got {line!r}")
             for column, cell in line.items():
-                cells[cell_id(self.name, page_id, row, column)] = cell
+                cells[self._id(page_id, row, column)] = cell
         return [_value(page_id, f, cells[f], width, height) for f in self.field_ids(page_id)]
 
     def reread_prompt(self, field_id: str) -> str:
@@ -754,7 +841,7 @@ class TemplateType:
     # --- Identities ----------------------------------------------------------------------------
 
     def _used(self, texts: Mapping[str, str | None], page_id: str, row: str) -> bool:
-        cells = [texts.get(cell_id(self.name, page_id, row, c.key)) for c in self.layout.columns]
+        cells = [texts.get(self._id(page_id, row, c.key)) for c in self.layout.columns]
         return not all(t is not None and not t.strip() for t in cells)
 
     def _instances(
@@ -788,12 +875,16 @@ class TemplateType:
                         else:
                             on = found[0]
                     column = layout.column(term.column)
-                    field_id = cell_id(table, on, term.row, term.column)
+                    field_id = (
+                        cell_id(table, on, term.row, term.column)
+                        if term.table
+                        else self._id(on, term.row, term.column)
+                    )
                     fields.append((field_id, term.coef, layout.step, column.kind))
                     if column.blank_means == "zero":
                         zero.add(field_id)
                 yield Instance(
-                    rule=f"{self.name}.{identity.id}",
+                    rule=f"{self.rule_name}.{identity.id}",
                     where=place.where,
                     identity=identity,
                     fields=tuple(fields),
@@ -868,7 +959,7 @@ class TemplateType:
             if not self._used(texts, page.page_id, row):
                 continue
             for column in self.layout.columns:
-                field_id = cell_id(self.name, page.page_id, row, column.key)
+                field_id = self._id(page.page_id, row, column.key)
                 text = texts.get(field_id)
                 if (
                     column.kind in NUMERIC
@@ -966,4 +1057,173 @@ class TemplateType:
                 ids = [field_id for field_id, *_ in instance.fields]
                 if (instance.rule, instance.where) == (rule, where) and flag.field_id in ids:
                     return list(dict.fromkeys(ids))
+        return []
+
+
+# --- A table printed in panels (P21d) ------------------------------------------------------------
+
+ORDINALS = ("first", "second", "third", "fourth", "fifth", "sixth", "seventh", "eighth", "ninth")
+
+
+def panel_template(template: Template, panel: Panel) -> Template:
+    """One panel as a table of its own: its title, layout and identities, under the family."""
+    identity = template.identity.model_copy(update={"title": panel.title})
+    return Template(
+        identity=identity,
+        layout=panel.layout,
+        identities=panel.identities,
+        provenance=template.provenance,
+    )
+
+
+def _which(template: Template, panel: Panel, n: int) -> str:
+    what = f'the panel "{panel.title}" ({panel.layout.unit})'
+    if panel.repeats > 1:
+        what += f", the {ORDINALS[n - 1]} such panel from the top"
+    return what
+
+
+def cropped_intro(template: Template, panel: Panel, n: int) -> str:
+    """What a read of a panel's crop is told: it sees one panel, cut from the page."""
+    return (
+        f'This image is cut from a scanned page. It shows one panel of the table '
+        f'"{template.identity.title}": {_which(template, panel, n)}. Read every cell of that '
+        "panel, and nothing outside it."
+    )
+
+
+def page_intro(template: Template, panel: Panel, n: int) -> str:
+    """What a read of a panel on the whole page is told, where the panel was not found."""
+    return (
+        f'This is a scanned page with the table "{template.identity.title}", printed in '
+        f"panels, each with its own heading, rows and columns. Read every cell of one panel: "
+        f"{_which(template, panel, n)}, and nothing outside it. If the page does not print that "
+        'panel, give "" for every cell.'
+    )
+
+
+class PanelledType:
+    """A DocType built from an approved template printed in panels (doctypes.DocType,
+    doctypes.RuleReader): one TemplateType for each copy of each panel, whose field ids lead each
+    row with the copy's key. The page is classified as this one type; each panel is read on its
+    own where archivist.templates.panels finds it, and the whole page is read at once only by the
+    pipeline, which knows nothing of panels (extraction_prompt)."""
+
+    def __init__(self, template: Template, *, sha256: str | None = None) -> None:
+        if template.panels is None:
+            raise TemplateError(f"{template.family} is one table: it is a TemplateType")
+        self.template = template
+        self.sha256 = sha256
+        self.name = template.family
+        self.description = template.identity.description
+        self.citations = CITATIONS
+        self.parts: dict[str, TemplateType] = {}
+        self.kinds: dict[str, Panel] = {}  # copy -> its panel
+        self.cropped: dict[str, TemplateType] = {}  # copy -> its read on a crop, plain field ids
+        self.whole: dict[str, TemplateType] = {}  # copy -> its read on the page, plain field ids
+        for panel in template.panels:
+            own = panel_template(template, panel)
+            for n, copy in enumerate(panel.copies, 1):
+                self.kinds[copy] = panel
+                self.parts[copy] = TemplateType(own, sha256=sha256, panel=copy)
+                self.cropped[copy] = TemplateType(own, intro=cropped_intro(template, panel, n))
+                self.whole[copy] = TemplateType(own, intro=page_intro(template, panel, n))
+        self.money_fields = frozenset().union(*(p.money_fields for p in self.parts.values()))
+        self._patterns = [re.compile(p, re.IGNORECASE) for p in template.identity.title_patterns]
+
+    @property
+    def copies(self) -> list[str]:
+        return list(self.parts)
+
+    def part(self, field_id: str) -> TemplateType:
+        """The copy of a panel a field belongs to."""
+        row = field_id.split(":")[2]
+        return self.parts[row.split(".", 1)[0]]
+
+    def matches_title(self, text: str) -> bool:
+        return any(p.search(text) for p in self._patterns)
+
+    def field_ids(self, page_id: str) -> list[str]:
+        return [f for part in self.parts.values() for f in part.field_ids(page_id)]
+
+    def extraction_prompt(self, grounding: bool = False) -> str:
+        """The whole page at once, every panel under its own key: what the pipeline asks."""
+        title = self.template.identity.title
+        parts = "".join(
+            f'\n"{copy}": {_which(self.template, panel, panel.copies.index(copy) + 1)}. '
+            f"{part.rows_and_columns()}"
+            for copy, part in self.parts.items()
+            for panel in [self.kinds[copy]]
+        )
+        body = (
+            f'This is a scanned page with the table "{title}", printed in panels, each with its '
+            'own heading, rows and columns. Read every cell of every panel. "panels" holds one '
+            "entry for each panel below, and each entry holds that panel's \"rows\". A panel the "
+            'page does not print has "" for every cell.\n'
+            f"{parts}\n"
+            'A dash printed in a cell is copied as "-".\n\n'
+        )
+        return _prompt(body, grounding)
+
+    def extraction_schema(self) -> dict:
+        return _object(
+            {"panels": _object({c: p.extraction_schema() for c, p in self.parts.items()})}
+        )
+
+    def parse(self, page_id: str, data: object, width: int, height: int) -> list[ExtractedValue]:
+        panels = _section(data, "panels", tuple(self.parts))
+        return [
+            v
+            for copy, part in self.parts.items()
+            for v in part.parse(page_id, panels[copy], width, height)
+        ]
+
+    def reread_prompt(self, field_id: str) -> str:
+        return self.part(field_id).reread_prompt(field_id)
+
+    def canonical(self, field_id: str, text: str) -> str:
+        return self.part(field_id).canonical(field_id, text)
+
+    def money(self, text: str) -> Decimal | None:
+        return number(text, "money")
+
+    def calendar_date(self, text: str) -> date | None:
+        return calendar_date(text)
+
+    def instances(self, pages: Sequence[PageExtraction]) -> Iterator[Instance]:
+        for part in self.parts.values():
+            yield from part.instances(pages)
+
+    def evaluate(
+        self, instance: Instance, texts: Mapping[str, str | None]
+    ) -> tuple[Decimal, Decimal, Decimal] | None:
+        return self.part(instance.own_field()).evaluate(instance, texts)
+
+    def empty(self, instance: Instance, texts: Mapping[str, str | None]) -> bool:
+        return self.part(instance.own_field()).empty(instance, texts)
+
+    def printed(self, instance: Instance, texts: Mapping[str, str | None]) -> int:
+        return self.part(instance.own_field()).printed(instance, texts)
+
+    def checks(self, pages: list[PageExtraction]) -> list[Flag]:
+        return [flag for part in self.parts.values() for flag in part.checks(pages)]
+
+    def balanced(self, pages: Sequence[PageExtraction]) -> set[str]:
+        return set().union(*(part.balanced(pages) for part in self.parts.values()))
+
+    def label(self, instance: Instance) -> str:
+        """The identity an instance applies, as "<panel>.<id>" whichever copy it is on."""
+        copy, identity = instance.rule.split(".", 1)[1].split(".", 1)
+        return f"{self.kinds[copy].key}.{identity}"
+
+    def rule(self, flag: Flag) -> str | None:
+        match = _DETAIL.match(flag.detail)
+        if match is None or match.group(1).split(".", 1)[0] != self.name:
+            return None
+        return match.group(1)
+
+    def equation(self, flag: Flag, pages: Sequence[PageExtraction]) -> list[str]:
+        for part in self.parts.values():
+            if found := part.equation(flag, pages):
+                return found
         return []

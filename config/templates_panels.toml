@@ -1,0 +1,48 @@
+# The roles of a table printed in panels (P21d): config/templates.toml's drafter, extractor and
+# rereader, unchanged, and SAM 3.1 to find the panels (archivist.templates.panels), prompted with
+# "table". A separate file because config/templates.toml is frozen by its sha256 in
+# PREREGISTRATION_REAL.md. Use it with --config for a template printed in panels.
+
+[roles.drafter]
+kind = "llm"
+backend = "meta"
+model_id = "muse-spark-1.3-contributor"
+settings = { reasoning_effort = "medium", timeout_s = 600.0 }
+
+[roles.extractor]
+kind = "llm"
+backend = "meta"
+model_id = "muse-spark-1.3-contributor"
+settings = { reasoning_effort = "low", timeout_s = 1200.0 }  # a 570-cell table ran past 600
+
+# The rereader reasons at "minimal" (templates only; the committed runs' configs keep "low"): at
+# "low" a re-read of one cell spent a median 758 output tokens reasoning, and about one answer in
+# six spent the whole allowance and came back empty (results/templates/citations_dev.md).
+[roles.rereader]
+kind = "llm"
+backend = "meta"
+model_id = "muse-spark-1.3-contributor"
+settings = { reasoning_effort = "minimal" }
+
+# SAM 3.1, as config/models.toml has it: billed per image, one image a prompt.
+[roles.segmenter]
+kind = "segmenter"
+backend = "meta"
+model_id = "sam-3.1"
+
+# USD per million tokens, keyed by model_id, as in config/models.toml (read 2026-10-26). Cached
+# input is billed as ordinary input here: spend is overstated, never understated. Reasoning
+# tokens are billed as output.
+[prices."muse-spark-1.3-contributor"]
+input_per_mtok = 0.10
+output_per_mtok = 0.20
+
+[prices.mock-llm]
+input_per_mtok = 0.0
+output_per_mtok = 0.0
+
+# SAM 3.1 from the same page as config/models.toml's: $2.50 per 1,000 images.
+[prices."sam-3.1"]
+input_per_mtok = 0.0
+output_per_mtok = 0.0
+per_image_usd = 0.0025

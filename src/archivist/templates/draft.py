@@ -18,6 +18,11 @@ one that doesn't validate against the layout is left out and noted in the proven
 that doesn't compile is dropped; with none left, the title itself, spacing loosened, is the
 pattern. The draft is written to <dir>/<family>.yaml with status "draft" and its provenance (the
 model, the pages, the date). An approved template is never overwritten.
+
+With --panels (P21d), for a table printed in panels, the prompt adds PANELS_NOTE and asks for the
+table's panels in place of one layout: each panel's key, its heading, how many times a page prints
+it at most, and its own layout and identities, checked as one table's are; an identity is left out
+on its own, named "<panel>.<id>".
 """
 
 from __future__ import annotations
@@ -39,6 +44,7 @@ from archivist.doctypes.template import (
     TEMPLATES_DIR,
     Family,
     Layout,
+    Panel,
     Template,
     TemplateError,
     read_template,
@@ -162,6 +168,24 @@ SCHEMA = _object(
     }
 )
 
+PANELS_SCHEMA = _object(
+    {
+        "identity": SCHEMA["properties"]["identity"],
+        "panels": {
+            "type": "array",
+            "items": _object(
+                {
+                    "key": _NAME,
+                    "title": _NAME,
+                    "repeats": _COUNT,
+                    "layout": SCHEMA["properties"]["layout"],
+                    "identities": SCHEMA["properties"]["identities"],
+                }
+            ),
+        },
+    }
+)
+
 PROMPT = """\
 These {n} images are scanned pages. Each shows the same kind of printed table, from a different \
 page or issue. Write a template for that kind of table: a description from which a program can \
@@ -219,6 +243,17 @@ printed, so a relation only has to hold to within that rounding.
 Every key is lower case, letters, digits and "_", starting with a letter; row and column keys \
 are unique, and a relation names only keys of this template. List only relations you believe \
 hold on every page of this kind."""
+
+PANELS_NOTE = """
+
+This table is printed in panels: blocks, each with its own heading, column headings and rows, set \
+one above another or side by side. Answer with "panels" in place of "layout" and "identities": a \
+list of the panels, in order from the top (from the left where they are side by side), each with \
+"key"; "title", the panel's heading as printed, or, for a panel printed once for each of several \
+things (a State, a year), what that heading names; "repeats", the most such panels any of these \
+pages prints (1 for a panel printed once); and "layout" and "identities" as above, for that panel \
+alone, its relations naming only its own rows and columns. identity.title is the title printed \
+over the whole table."""
 
 TITLE_NOTE = (
     '\n\nA page may print more than one table. Describe only the table whose printed title is '
@@ -318,28 +353,76 @@ def parse_draft(
     return template, left_out
 
 
+def parse_panelled(
+    data: object, family: str, provenance: dict
+) -> tuple[Template, list[tuple[str, str]]]:
+    """The template an answer in panels describes, and the identities left out with why ("<panel>.
+    <id>"); raises ValueError when the title, the patterns or a panel's layout don't validate."""
+    if not isinstance(data, dict) or not isinstance(data.get("panels"), list) or not data["panels"]:
+        raise ValueError(f"expected a JSON object with a list of panels, got {data!r}"[:1500])
+    panels: list[Panel] = []
+    left_out: list[tuple[str, str]] = []
+    keys: set[str] = set()
+    for n, raw in enumerate(data["panels"], 1):
+        if not isinstance(raw, dict):
+            raise ValueError(f"panel {n} is not an object: {raw!r}"[:1500])
+        key = _key(str(raw.get("key") or f"panel_{n}"))[:24].rstrip("_")
+        while key in keys:
+            key = f"{key[:21]}_{n}"
+        keys.add(key)
+        repeats = raw.get("repeats")
+        repeats = min(9, max(1, repeats)) if isinstance(repeats, int) else 1
+        single, out = parse_draft(
+            {"identity": data.get("identity"), "layout": raw.get("layout"),
+             "identities": raw.get("identities")},
+            family,
+            provenance,
+        )
+        try:
+            panels.append(
+                Panel(
+                    key=key,
+                    title=" ".join(str(raw.get("title") or key).split()),
+                    repeats=repeats,
+                    layout=single.layout,
+                    identities=single.identities,
+                )
+            )
+        except ValidationError as error:
+            raise ValueError(f"panel {key}: {error}"[:1500]) from error
+        left_out += [(f"{key}.{name}", why) for name, why in out]
+    try:
+        template = Template(identity=single.identity, panels=panels, provenance=provenance)
+    except ValidationError as error:
+        raise ValueError(f"{error}"[:1500]) from error
+    return template, left_out
+
+
 def ask(
     llm: VisionLLM,
     images: Sequence[bytes],
     family: str,
     provenance: dict,
     title: str | None = None,
+    panelled: bool = False,
 ):
-    """The drafter's template for the pages, of the table printed with title if given; asked
-    once more if it can't be used."""
-    prompt = PROMPT.format(n=len(images)) + (TITLE_NOTE.format(title=title) if title else "")
+    """The drafter's template for the pages, of the table printed with title if given, in panels
+    if panelled; asked once more if it can't be used."""
+    prompt = PROMPT.format(n=len(images)) + (PANELS_NOTE if panelled else "")
+    prompt += TITLE_NOTE.format(title=title) if title else ""
+    parse = parse_panelled if panelled else parse_draft
     errors: list[str] = []
     for retry in (False, True):
         request = LLMRequest(
             role=ROLE,
             prompt=prompt + RETRY_NOTE.format(error=errors[-1]) if retry else prompt,
             images=tuple(images),
-            json_schema=SCHEMA,
+            json_schema=PANELS_SCHEMA if panelled else SCHEMA,
             max_output_tokens=DRAFT_TOKENS,
         )
         text = llm.complete(request).text
         try:
-            return parse_draft(json.loads(text), family, provenance)
+            return parse(json.loads(text), family, provenance)
         except ValueError as error:  # bad JSON, or a template that doesn't validate
             errors.append(str(error)[:1500])
     raise DraftFailed(" | retry: ".join(e[:500] for e in errors))
@@ -347,6 +430,8 @@ def ask(
 
 def to_yaml(template: Template, header: str) -> str:
     data = template.model_dump(mode="json", exclude_none=True)
+    if template.panels is not None:
+        data.pop("identities")  # a table printed in panels keeps them in its panels
     comment = "".join(f"# {line}\n" for line in header.splitlines())
     return comment + yaml.safe_dump(data, sort_keys=False, allow_unicode=True, width=100)
 
@@ -359,9 +444,10 @@ def draft(
     directory: Path = TEMPLATES_DIR,
     today: date | None = None,
     title: str | None = None,
+    panelled: bool = False,
 ) -> Path:
     """Draft <directory>/<family>.yaml from the pages, of the table printed with title if given
-    (for pages that print more than one table); returns its path."""
+    (for pages that print more than one table), in panels if panelled; returns its path."""
     if re.fullmatch(KEY, family) is None or len(family) > 40:
         raise ValueError(f"{family!r} is not a family name: lower case, letters, digits and _")
     if family in REGISTRY or family == UNSUPPORTED:
@@ -384,10 +470,12 @@ def draft(
         "drafted_from": list(refs),
     }
     images = [p.path.read_bytes() for p in pages]
-    template, left_out = ask(llm, images, family, provenance, title)
+    template, left_out = ask(llm, images, family, provenance, title, panelled)
     notes = [f"drafted by {llm.model_id} from {', '.join(refs)} ({ROLE} role, P21b)"]
     if title:
         notes.append(f"told to describe only the table printed as {title!r}")
+    if panelled:
+        notes.append("drafted as a table printed in panels (P21d)")
     notes += [f"left out at drafting: identity {name!r}: {why}" for name, why in left_out]
     template = template.model_copy(
         update={"provenance": template.provenance.model_copy(update={"evidence": notes})}
@@ -410,6 +498,9 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument(
         "--title", help="the printed title of the table to describe, if a page prints several"
     )
+    parser.add_argument(
+        "--panels", action="store_true", help="the table is printed in panels (P21d)"
+    )
     parser.add_argument("--config", type=Path, default=CONFIG)
     parser.add_argument("--dir", type=Path, default=TEMPLATES_DIR)
     args = parser.parse_args(argv)
@@ -417,13 +508,19 @@ def main(argv: list[str] | None = None) -> None:
     llm = roles[ROLE]
     guard = llm.inner.guard  # Cache -> Budget -> the guard shared by every role
     before = guard.spent()
-    path = draft(args.family, args.pages, llm, directory=args.dir, title=args.title)
-    template = read_template(path)
-    print(
-        f"{path}: {template.identity.title!r}, {len(template.layout.row_keys)} rows x "
-        f"{len(template.layout.columns)} columns, {len(template.identities)} identities; "
-        f"${guard.spent() - before:.4f} spent"
+    path = draft(
+        args.family, args.pages, llm, directory=args.dir, title=args.title, panelled=args.panels
     )
+    template = read_template(path)
+    tables = [(f"{p.key}: ", p.layout, p.identities) for p in template.panels or ()] or [
+        ("", template.layout, template.identities)
+    ]
+    for name, layout, identities in tables:
+        print(
+            f"{path}: {name}{template.identity.title!r}, {len(layout.row_keys)} rows x "
+            f"{len(layout.columns)} columns, {len(identities)} identities"
+        )
+    print(f"${guard.spent() - before:.4f} spent")
 
 
 if __name__ == "__main__":
