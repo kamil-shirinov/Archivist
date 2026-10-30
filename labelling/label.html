@@ -155,9 +155,15 @@ function describe(answer) {
   return answer.value;
 }
 
+function ordinal(n) {
+  const teen = n % 100 >= 11 && n % 100 <= 13;
+  return `${n}${teen ? "th" : { 1: "st", 2: "nd", 3: "rd" }[n % 10] || "th"}`;
+}
+
 function named(cell) {
   // Section, row and column exactly as the draw stores them, built as text nodes: "Deposits for
   // foreign account:", "Sept. 13", "France". A cell the draw gives no section says so, never a blank.
+  // Where the row label repeats on the page, a Count line says which occurrence this row is.
   const bold = (text) => { const node = document.createElement("b"); node.textContent = text; return node; };
   const none = (text) => Object.assign(document.createElement("i"), { textContent: text });
   let section;
@@ -165,7 +171,14 @@ function named(cell) {
   else if (cell.row_label.endsWith(":")) section = none("none: this row is itself a heading");
   else section = none("none in the draw");
   const row = cell.row_label ? bold(cell.row_label) : none("no row label read");
-  return [["Section", section], ["Row", row], ["Column", bold(cell.column)]];
+  const parts = [["Section", section], ["Row", row]];
+  if (cell.occurrence) {  // the row label repeats on this page: which one, counted from the top
+    const count = document.createElement("span");
+    count.append("the ", bold(ordinal(cell.occurrence.n)), ` “${cell.row_label}” from the top, of ${cell.occurrence.of} on this page`);
+    parts.push(["Count", count]);
+  }
+  parts.push(["Column", bold(cell.column)]);
+  return parts;
 }
 
 function go(index) {

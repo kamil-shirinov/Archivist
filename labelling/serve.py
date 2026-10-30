@@ -11,9 +11,10 @@ layout record (results/real_test/<side>/layout_check.json).
   note. It needs no draw; the other two wait for one.
 
 What reaches the browser is the page image, the cell's box as a locator, its row's label and
-heading as the first read returned them (Deviations) with its position as a hint, its column's
-heading, and the person's own answers in the same pass: never a figure the model read, a verdict
-or the box's source. The answer is the printed value, blank, can't read, row not on the page, or
+heading as the first read returned them (Deviations) with its position as a hint, which occurrence
+of that label the row is on its page where the label repeats (counted in the draw's row order from
+the top), its column's heading, and the person's own answers in the same pass: never a figure the
+model read, a verdict or the box's source. The answer is the printed value, blank, can't read, row not on the page, or
 column not on this page. Each answer is appended to a file as it is given, so a session can
 stop and resume; the last answer for a cell stands.
 
@@ -26,6 +27,8 @@ import argparse
 import json
 import os
 import threading
+from collections import Counter
+from collections.abc import Mapping
 from datetime import UTC, datetime, timedelta
 from http import HTTPStatus
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
@@ -34,7 +37,7 @@ from urllib.parse import parse_qs, urlparse
 
 from archivist.pipeline import extract
 from archivist.templates import real_test
-from labelling.draw import DRAW_FILE
+from labelling.draw import DRAW_FILE, names
 
 HERE = Path(__file__).parent
 FILES = {"first": "labels.jsonl", "relabel": "relabels.jsonl", "check": "pages_checked.jsonl"}
@@ -48,6 +51,22 @@ WAIT = timedelta(hours=24)
 
 def _now() -> datetime:
     return datetime.now(UTC)
+
+
+def counted(rows: Mapping[str, Mapping[str, str]]) -> dict[str, tuple[int, int]]:
+    """For each row of a page whose printed label repeats on it: which occurrence of the label the
+    row is, counted in the draw's row order (labelling.draw.names) from the top, and how many rows
+    of the page have the label. Labels are compared with their spaces collapsed; a row the read
+    gave no label is not counted, and a label that occurs once is not listed."""
+    labels = {key: " ".join(row["label"].split()) for key, row in rows.items()}
+    totals = Counter(label for label in labels.values() if label)
+    seen: Counter[str] = Counter()
+    found = {}
+    for key, label in labels.items():
+        if label and totals[label] > 1:
+            seen[label] += 1
+            found[key] = (seen[label], totals[label])
+    return found
 
 
 def answers(path: Path, key: str) -> dict[str, dict]:
@@ -68,13 +87,19 @@ class Labels:
             raise ValueError(f"{labels / DRAW_FILE} is the {self.draw['side']} side's draw")
         records = real_test.OUT_DIR / side
         wanted = {s["cell"] for s in self.draw["sample"]}
+        read = {p.page_id: p for p in extract.load_predictions(records / "predictions.jsonl")}
         self.boxes = {
             v.field_id: None if v.citation is None else v.citation.bbox.model_dump()
-            for page in extract.load_predictions(records / "predictions.jsonl")
+            for page in read.values()
             for v in page.values
             if v.field_id in wanted
         }
         doc_types = real_test._types(real_test.CONFIG)
+        # only row labels come out of the read here, as in the draw: no figure, verdict or box
+        self.repeats = {
+            page: counted(names(doc_types[read[page].doc_type], read[page]))
+            for page in {s["page"] for s in self.draw["sample"]}
+        }
         self.titles = {f: doc_types[f].template.identity.title for f in real_test.FAMILIES}
         self.units = {f: doc_types[f].layout.unit for f in real_test.FAMILIES}
         self.pages = {s["page"] for s in self.draw["sample"]} | {
@@ -114,6 +139,7 @@ class Labels:
                 "row_label": by_cell[cell]["row_label"],
                 "row_heading": by_cell[cell]["row_heading"],
                 "row_hint": by_cell[cell]["row_hint"],
+                "occurrence": self._occurrence(by_cell[cell]),
                 "column": by_cell[cell]["column_heading"],
                 "box": self.boxes.get(cell),
             }
@@ -124,6 +150,11 @@ class Labels:
             for cell, a in answers(self.path(which), "cell").items()
         }
         return {"pass": which, "blocked": None, "cells": shown, "answers": own}
+
+    def _occurrence(self, drawn: dict) -> dict[str, int] | None:
+        """{"n": 8, "of": 10} where the cell's row label repeats on its page, else None."""
+        found = self.repeats[drawn["page"]].get(drawn["row"])
+        return None if found is None else {"n": found[0], "of": found[1]}
 
     def checks(self) -> dict:
         shown = [

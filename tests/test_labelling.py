@@ -204,9 +204,61 @@ def test_the_page_is_never_sent_a_read(labels: serve.Labels) -> None:
     assert len(shown["cells"]) == 400 and shown["answers"] == {}
     for cell in shown["cells"]:
         assert set(cell) == {
-            "n", "cell", "page", "title", "unit", "row_label", "row_heading", "row_hint", "column", "box"
-        }
+            "n", "cell", "page", "title", "unit", "row_label", "row_heading", "row_hint",
+            "occurrence", "column", "box",
+        }  # fmt: skip
     assert shown["cells"][0]["box"] == {"x0": 1.0, "y0": 2.0, "x1": 30.0, "y1": 12.0}
+
+
+def _rows(*labels: str) -> dict[str, dict[str, str]]:
+    return {f"{n:02d}": {"label": label, "heading": "", "hint": ""} for n, label in enumerate(labels, 1)}
+
+
+def test_a_repeated_row_label_is_counted_in_the_draws_row_order_from_the_top() -> None:
+    rows = _rows("Dec. 4", "Dec. 18", "Deposits:", "Dec. 4", "Dec. 18", "Dec. 18", "TOTAL", "Dec. 4")
+
+    assert serve.counted(rows) == {
+        "01": (1, 3), "04": (2, 3), "08": (3, 3),  # Dec. 4
+        "02": (1, 3), "05": (2, 3), "06": (3, 3),  # Dec. 18
+    }  # fmt: skip
+    # a label that occurs once is not listed, and neither is a row the read gave no label
+    assert "03" not in serve.counted(rows) and "07" not in serve.counted(rows)
+    assert serve.counted(_rows("", "", "A", "")) == {}
+
+
+def test_rows_without_a_label_are_not_counted_and_spaces_do_not_make_labels_differ() -> None:
+    rows = _rows("Jan. 8", "", "Jan.  8", " Jan. 8 ", "")
+
+    assert serve.counted(rows) == {"01": (1, 3), "03": (2, 3), "04": (3, 3)}
+    assert serve.counted({}) == {}
+
+
+def test_labels_differing_in_case_or_punctuation_are_different_labels() -> None:
+    assert serve.counted(_rows("Total", "TOTAL", "Total:", "Total")) == {"01": (1, 2), "04": (2, 2)}
+
+
+def test_each_cell_carries_which_occurrence_of_its_repeated_row_label_it_is(labels: serve.Labels) -> None:
+    shown = labels.cells("first")["cells"]
+    by_page: dict[str, list[dict]] = {}
+    for cell in shown:
+        by_page.setdefault(cell["page"], []).append(cell)
+
+    for cells in by_page.values():
+        for cell in cells:
+            row = draw.parts(cell["cell"])[2]
+            rows = labels.repeats[cell["page"]]
+            assert (cell["occurrence"] is None) == (row not in rows)
+            if cell["occurrence"]:
+                n, of = rows[row]
+                assert cell["occurrence"] == {"n": n, "of": of}
+                assert 1 <= n <= of and cell["row_label"]
+    # the fixture's pages read the label "1" in every row they returned, so those repeat
+    railroad = next(c for c in shown if c["page"].endswith("_p026"))
+    assert railroad["occurrence"]["of"] == len(TYPES[RAILROAD].layout.row_keys)
+    assert railroad["occurrence"]["n"] == int(draw.parts(railroad["cell"])[2])
+    # fixed rows take their labels from the template, which prints each country once
+    claims = [c for c in shown if c["page"] == "1993-06_p097"]
+    assert claims and all(c["occurrence"] is None for c in claims)
 
 
 def test_answers_are_kept_as_given_and_the_last_stands(labels: serve.Labels) -> None:
