@@ -233,11 +233,17 @@ class Tab:
     def wait_for(self, js: str, timeout: float = 30.0) -> None:
         """Wait until the JavaScript expression is truthy."""
         end = time.time() + timeout
+        last = None
         while time.time() < end:
-            if self.eval(js):
-                return
+            try:
+                if self.eval(js):
+                    return
+            except RuntimeError as error:  # the page is between two documents
+                last = error
             self.pump(0.1)
-        raise TimeoutError(f"still false after {timeout}s: {js}\nerrors so far: {self.errors}")
+        raise TimeoutError(
+            f"still false after {timeout}s: {js}\nlast error: {last}\nerrors so far: {self.errors}"
+        )
 
     def open(
         self,

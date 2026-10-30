@@ -11,16 +11,20 @@ import * as documents from "./views/documents.js";
 import * as doc from "./views/document.js";
 import * as replay from "./views/replay.js";
 import * as accuracy from "./views/accuracy.js";
+import * as types from "./views/types.js";
+import * as accounts from "./views/accounts.js";
+import * as acct from "./views/account.js";
+import * as transactions from "./views/transactions.js";
 
-const VIEWS = { overview, review, documents, doc, replay, accuracy };
-const NAV_OF = { doc: "documents" };
+const VIEWS = { overview, review, accounts, acct, transactions, documents, doc, replay, accuracy, types };
+const NAV_OF = { doc: "documents", acct: "accounts" };
 let current = null;
 
 function parse() {
   const raw = location.hash.slice(1) || "overview";
   const [path, qs] = raw.split("?");
   let view = path, arg = null;
-  for (const p of ["doc", "review", "replay"])
+  for (const p of ["doc", "review", "replay", "acct"])
     if (path.startsWith(`${p}-`)) {
       view = p;
       arg = decodeURIComponent(path.slice(p.length + 1));
@@ -54,7 +58,6 @@ async function start() {
   labelRun();
   refresh();
   palette.init();
-  $("coll").addEventListener("click", () => toast(`${S.bundle.run.collection} is the only collection here.`));
   $("add-doc").addEventListener("click", () =>
     toast("Reading new pages happens in the local app, where the models run. This hosted copy replays recorded runs only.")
   );

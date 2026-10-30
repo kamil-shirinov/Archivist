@@ -19,6 +19,8 @@ export const norm = (s) => String(s).replace(/[\s,£]/g, "").toLowerCase();
 
 export const MONS = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
+export const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+
 // Dates as the records print them, day/month/year with a two-digit year read as 19yy, like the checks.
 export function parseDate(text) {
   const m = /^(\d{1,2})\/(\d{1,2})\/(\d{2,4})$/.exec(String(text ?? "").trim());

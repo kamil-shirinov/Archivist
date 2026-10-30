@@ -47,8 +47,8 @@ function curve(points, single, arch) {
   g += `<text x="44" y="6">Wrong in 1,000 accepted</text>`;
   g += `<polyline points="${points.map((p) => `${X(p.x).toFixed(1)},${Y(p.y).toFixed(1)}`).join(" ")}" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 4"/>`;
   for (const p of points) g += `<circle class="pt" cx="${X(p.x).toFixed(1)}" cy="${Y(p.y).toFixed(1)}" r="4"/>`;
-  g += `<circle class="pt base" cx="${X(single.x)}" cy="${Y(single.y)}" r="5"/><text x="${X(single.x) + 12}" y="${Y(single.y) + 4}">Single read</text>`;
-  g += `<circle class="pt arch" cx="${X(arch.x)}" cy="${Y(arch.y)}" r="5.5"/><text x="${X(arch.x) - 8}" y="${Y(arch.y) - 12}" text-anchor="end">Archivist</text>`;
+  g += `<circle class="pt base" cx="${X(single.x)}" cy="${Y(single.y)}" r="5"/><text class="lbl" x="${X(single.x) + 10}" y="${Y(single.y) - 9}">Single read</text>`;
+  g += `<circle class="pt arch" cx="${X(arch.x)}" cy="${Y(arch.y)}" r="5.5"/><text class="lbl" x="${X(arch.x) + 9}" y="${Y(arch.y) - 14}">Archivist</text>`;
   return g;
 }
 
@@ -139,8 +139,20 @@ export function enter() {
   const run = S.bundle.run, acc = S.bundle.accuracy;
   $("ev-crumb").innerHTML = `<a href="#overview">${esc(run.collection)}</a>/<span>Accuracy report</span>`;
   if (!acc) {
-    $("ev-sub").textContent = "There is no pre-registered test report for this run.";
-    $("acc-test").innerHTML = `<div class="panel pending"><h2>No test report</h2><p>The accuracy report comes from the pre-registered test on the synthetic test pages. This run (${esc(run.run_id)}) was made on the ${esc(run.split)} pages, which have none.</p></div>`;
+    const dev = run.stage === "development", f = S.bundle.fields;
+    const read = f.filter((x) => x.value != null);
+    const agree = read.filter((x) => x.reread_status === "agrees").length;
+    const held = S.bundle.rule_results.filter((x) => x.ok).length, failed = S.bundle.rule_results.length - held;
+    $("ev-sub").textContent = dev ? "These are development pages, so there is nothing here to measure." : "There is no pre-registered test report for this run.";
+    $("acc-test").innerHTML = `<div class="panel pending"><h2>${dev ? "Development pages: no measured result" : "No test report"}</h2><p>${
+      dev
+        ? `The pages in this collection were used to draft the document types and test their rules, so what Archivist did on them says nothing about how often it is right: a measure needs pages that tuned nothing, with the right answers known. The measured results are the pre-registered test on the synthetic pages (the Box 14 collection) and, for real pages, the test whose results are pending.`
+        : `The accuracy report comes from the pre-registered test on the synthetic test pages. This run (${esc(run.run_id)}) was made on the ${esc(run.split)} pages, which have none.`
+    }</p>${
+      dev
+        ? `<p>What the run recorded, as it stands, is not an accuracy:</p><dl class="integrity" style="max-width:560px"><div><dt>Cells in the run</dt><dd>${int(f.length)}</dd></div><div><dt>Cells read</dt><dd>${int(read.length)}</dd></div><div><dt>Second read agreed</dt><dd>${int(agree)} of ${int(read.length)}</dd></div><div><dt>Sent to a person</dt><dd>${int(f.filter((x) => x.status === "review").length)}</dd></div><div><dt>Rules that held</dt><dd>${int(held)}</dd></div><div><dt>Rules that failed</dt><dd>${int(failed)}</dd></div></dl>`
+        : ""
+    }</div>`;
     return;
   }
   const r = acc.report;

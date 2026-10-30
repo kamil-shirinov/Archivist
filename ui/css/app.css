@@ -98,3 +98,48 @@
   .kpi:nth-child(3){border-left:0}
   .kpi:nth-child(n+3){border-top:1px solid var(--line)}
 }
+
+/* Which collection, which run */
+.coll-menu{position:fixed;z-index:35;width:min(420px,calc(100vw - 16px));padding:6px;box-shadow:var(--shadow-lg)}
+.coll-menu .cm-g{padding:8px 10px 4px;font-size:12px;color:var(--ink-3)}
+.coll-menu .cm-g b{color:var(--ink);font-weight:600;font-size:13px}
+.coll-menu .cm-i{display:grid;width:100%;text-align:left;gap:1px;border:0;box-shadow:none;border-radius:8px;padding:8px 10px;background:transparent}
+.coll-menu .cm-i:hover{background:var(--sunk)}
+.coll-menu .cm-i[aria-current="true"]{background:var(--accent-bg)}
+.coll-menu .cm-i span{font-size:13.5px;font-weight:500}
+.coll-menu .cm-i small{font-size:12px;color:var(--ink-3);font-weight:400}
+.runbar .runswitch{margin-left:auto}
+.runbar .runswitch button{padding:2px 10px;font-size:12.5px}
+@media (max-width:900px){
+  .coll{display:flex;max-width:150px;padding:4px 8px}
+  .coll span,.coll svg{display:none}
+  .coll b{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+  .sample{display:none}
+}
+
+/* A printed table as a record */
+.rwrap.tall{max-height:min(780px,calc(100vh - 220px));overflow:auto}
+.rec2 thead th{position:sticky;top:0;z-index:1}
+.rec2 td.pt{max-width:220px}
+
+/* Document types */
+.type-d{padding:0}
+.type-d>summary{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:16px;align-items:center;padding:14px 16px;cursor:pointer}
+.type-d>summary h2{font-size:15px}
+.type-d>summary p{margin:4px 0 0;font-size:13.5px;color:var(--ink-2);font-weight:400}
+.type-d>summary::after{display:none}
+.type-d .tys{display:flex;flex-direction:column;align-items:flex-end;gap:4px;font-size:12.5px}
+.type-d[open]>summary{border-bottom:1px solid var(--line)}
+.type-b{padding:14px 16px 16px}
+.type-b .tags{display:flex;flex-wrap:wrap;gap:6px}
+.type-b .ty-h{margin:18px 0 8px;font-size:13.5px;font-weight:600}
+.type-b .tbl{font-size:13px}
+.type-b .tbl td.w{white-space:normal;vertical-align:top;min-width:200px}
+.type-b .tbl .m{font-size:12px}
+.types{max-width:1100px}
+details.type-d{margin-top:0}
+
+/* The named points on the accuracy chart: a halo of the panel's colour keeps them clear of the line */
+.chartp text.lbl{fill:var(--ink);font-weight:600;paint-order:stroke;stroke:var(--surface);stroke-width:5px;stroke-linejoin:round}
+.types{grid-template-columns:minmax(0,1fr)}
+.integrity dd,.mono{overflow-wrap:anywhere}

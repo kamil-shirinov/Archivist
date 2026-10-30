@@ -37,11 +37,36 @@ VIEWS = {
         "#review",
         "!!document.querySelector('#stage img')?.complete && document.getElementById('p-field').textContent.length > 0",
     ),
+    "accounts": ("#accounts", "document.querySelectorAll('#acct-rows tr[data-acct]').length > 0"),
+    "account": (
+        "#acct-84608901",
+        "document.querySelectorAll('#chain .sheetbox').length === 3 && document.querySelectorAll('#balchart polyline').length === 1",
+    ),
+    "transactions": (
+        "#transactions",
+        "document.querySelectorAll('#tx-rows tr[data-i]').length > 0 && !!document.querySelector('#tstage img')?.complete",
+    ),
+    "types": ("#types", "document.querySelectorAll('#ty-list details').length === 7"),
     "replay": (
         f"#replay-{CARD}",
         "!!document.querySelector('#wstage img')?.complete && document.querySelectorAll('#w-steps li').length === 7",
     ),
     "accuracy": ("#accuracy", "!!document.querySelector('#acc-test .acc-lead')"),
+}
+
+
+DEV = "?run=treasury-development"
+TABLE = "1939-12_p053"
+# The development collection of real Treasury Bulletin pages, in the same views.
+VIEWS |= {
+    "development-overview": (f"{DEV}#overview", VIEWS["overview"][1]),
+    "development-documents": (f"{DEV}#documents", VIEWS["documents"][1]),
+    "development-document": (
+        f"{DEV}#doc-{TABLE}",
+        "!!document.querySelector('#dpaper img')?.complete && !!document.querySelector('#drecord table')",
+    ),
+    "development-review": (f"{DEV}#review", VIEWS["review"][1]),
+    "development-types": (f"{DEV}#types", VIEWS["types"][1]),
 }
 
 
@@ -321,4 +346,163 @@ def test_light_and_dark_and_compact_are_remembered(tab, site):
     assert tab.eval("document.documentElement.dataset.theme") == "dark"
     assert tab.eval("document.documentElement.dataset.density") == "compact"
     tab.eval("localStorage.clear()")
+    assert tab.errors == []
+
+
+def test_the_development_pages_are_marked_as_development_with_their_real_titles(tab, site):
+    load(tab, site, f"{DEV}#documents")
+    settle(tab, VIEWS["documents"][1])
+    bar = tab.eval("document.getElementById('runbar').textContent")
+    for words in (
+        "Real pages, development",
+        "not a measured result",
+        "Treasury Bulletin",
+        "No Copyright",
+    ):
+        assert words in bar, bar
+    assert tab.eval("document.getElementById('sample').textContent") == "Development pages"
+    assert tab.eval("document.getElementById('coll-name').textContent") == "US Treasury Bulletin"
+    rows = tab.eval("[...document.querySelectorAll('#doc-rows tr')].map(r => r.textContent)")
+    assert len(rows) == 5
+    assert any(
+        "December 1939, page 53" in r and "Short-Term Foreign Liabilities" in r for r in rows
+    )
+    assert any("June 1984, page 66" in r for r in rows)
+    assert tab.errors == []
+
+
+def test_a_printed_table_is_a_grid_of_its_cells_that_can_be_pointed_at(tab, site):
+    load(tab, site, f"{DEV}#doc-{TABLE}", still=False)
+    settle(tab, VIEWS["development-document"][1])
+    heads = tab.eval("[...document.querySelectorAll('#drecord thead th')].map(t => t.textContent)")
+    assert "United Kingdom" in heads and "Grand total" in heads
+    assert "Short-Term Foreign Liabilities" in tab.eval(
+        "document.getElementById('dd-t').textContent"
+    )
+    assert "December 1939, page 53" in tab.eval("document.getElementById('dd-sub').textContent")
+    assert "Rules" in tab.eval("document.getElementById('dd-links-h').textContent")
+    assert "Held in" in tab.eval("document.getElementById('dd-links').textContent")
+    cell = "document.querySelector('#drecord [data-field$=\":15:germany\"]')"
+    tab.eval(f"{cell}.dispatchEvent(new MouseEvent('mouseover', {{bubbles: true}}))")
+    tab.wait_for("document.querySelectorAll('#dpaper .ov .hl').length === 1")
+    assert tab.eval("document.querySelectorAll('#dpaper .ov .pen').length") >= 1
+    assert tab.errors == []
+
+
+def test_a_page_the_run_did_not_read_says_so(tab, site):
+    load(tab, site, f"{DEV}#doc-1984-06_p066")
+    tab.wait_for(
+        "document.getElementById('dd-crumb').textContent === 'June 1984, page 66'"
+        " && document.getElementById('drecord').textContent.includes('None of this page')"
+    )
+    assert tab.errors == []
+
+
+def test_the_run_switch_changes_the_arm_and_keeps_the_page(tab, site):
+    load(tab, site, f"#doc-{CARD}")
+    settle(tab, VIEWS["document"][1])
+    assert tab.eval(
+        "[...document.querySelectorAll('#runbar .runswitch button')].map(b => b.textContent)"
+    ) == [
+        "Hosted",
+        "Open weights",
+    ]
+    tab.eval("document.querySelector('#runbar [data-run=\"test-archivist-B\"]').click()")
+    tab.wait_for(
+        "location.search.includes('test-archivist-B') && document.documentElement.dataset.ready === '1'",
+        60,
+    )
+    settle(tab, VIEWS["document"][1])
+    assert tab.eval("location.hash") == f"#doc-{CARD}"
+    bar = tab.eval("document.getElementById('runbar').textContent")
+    assert "test-archivist-B" in bar and "Muse Spark Open" in bar and "open-weight" in bar
+    assert (
+        tab.eval(
+            "document.querySelector('#runbar [data-run=\"test-archivist-B\"]').getAttribute('aria-pressed')"
+        )
+        == "true"
+    )
+    assert tab.errors == []
+
+
+def test_the_collection_menu_lists_every_collection_and_run_and_switches(tab, site):
+    load(tab, site, "#overview")
+    settle(tab, VIEWS["overview"][1])
+    tab.eval("document.getElementById('coll').click()")
+    tab.wait_for("!document.getElementById('coll-menu').hidden")
+    items = tab.eval("[...document.querySelectorAll('#coll-menu .cm-i')].map(b => b.dataset.run)")
+    assert items == ["test-archivist-A", "test-archivist-B", "treasury-development"]
+    groups = tab.eval("[...document.querySelectorAll('#coll-menu .cm-g')].map(g => g.textContent)")
+    assert groups == ["Box 14", "US Treasury Bulletin"]
+    tab.eval("document.querySelector('#coll-menu [data-run=treasury-development]').click()")
+    tab.wait_for(
+        "location.search.includes('treasury-development') && document.documentElement.dataset.ready === '1'",
+        60,
+    )
+    assert "Real pages, development" in tab.eval("document.getElementById('runbar').textContent")
+    assert tab.errors == []
+
+
+def test_the_accuracy_report_of_development_pages_claims_no_measure(tab, site):
+    load(tab, site, f"{DEV}#accuracy")
+    settle(tab, "document.getElementById('acc-test').textContent.length > 0")
+    text = tab.eval("document.getElementById('acc-test').textContent")
+    assert "no measured result" in text and "not an accuracy" in text
+    assert "Twelve" not in text and "wrong in every 1,000" not in text
+    assert tab.errors == []
+
+
+def test_the_accounts_list_opens_an_account_with_its_chain_and_memos(tab, site):
+    data = json.loads((BUNDLES / "test-archivist-A" / "bundle.json").read_text("utf-8"))
+    load(tab, site, "#accounts")
+    settle(tab, VIEWS["accounts"][1])
+    assert tab.eval("document.querySelectorAll('#acct-rows tr').length") == len(data["accounts"])
+    tab.eval("document.querySelector('#acct-rows tr[data-acct=\"84608901\"]').click()")
+    tab.wait_for("location.hash === '#acct-84608901'")
+    settle(tab, VIEWS["account"][1])
+    assert tab.eval("document.getElementById('ad-t').textContent") == "Donald Briggs"
+    assert "£1,452.61" in tab.eval("document.getElementById('ad-kpis').textContent")
+    assert tab.eval("document.querySelectorAll('#ad-memos tr[data-page]').length") == 11
+    tab.eval("document.querySelector('#chain .sheetbox').click()")
+    tab.wait_for("location.hash.startsWith('#doc-card-')")
+    assert tab.errors == []
+
+
+def test_transactions_are_searched_in_plain_words_and_show_their_page(tab, site):
+    load(tab, site, "#transactions")
+    settle(tab, VIEWS["transactions"][1])
+    total = tab.eval("document.querySelectorAll('#tx-rows tr[data-i]').length")
+    tab.eval(
+        "(() => { const i = document.getElementById('q'); i.value = 'payments over 100'; i.dispatchEvent(new Event('input')); })()"
+    )
+    chips = tab.eval("document.getElementById('chips').textContent")
+    assert "money out" in chips and "over £100.00" in chips
+    debits = tab.eval(
+        "[...document.querySelectorAll('#tx-rows tr[data-i]')].map(r => parseFloat(r.children[3].textContent.replace(/,/g, '')))"
+    )
+    assert 0 < len(debits) < total and all(d > 100 for d in debits)
+    assert tab.eval("document.getElementById('tx-count').textContent").startswith(
+        f"{len(debits)} of"
+    )
+    assert "Sheet" in tab.eval("document.getElementById('d-sub').textContent")
+    assert tab.eval("document.querySelectorAll('#tstage .ov .hl').length") == 1
+    tab.eval("document.querySelector('#chips .clear').click()")
+    assert tab.eval("document.querySelectorAll('#tx-rows tr[data-i]').length") == total
+    assert tab.errors == []
+
+
+def test_document_types_list_each_rule_its_evidence_and_who_approved_it(tab, site):
+    data = json.loads((BUNDLES / "test-archivist-A" / "bundle.json").read_text("utf-8"))
+    load(tab, site, "#types")
+    settle(tab, VIEWS["types"][1])
+    names = tab.eval(
+        "[...document.querySelectorAll('#ty-list details h2')].map(h => h.textContent)"
+    )
+    assert names == [t["title"] for t in data["doc_types"]]
+    tab.eval("document.querySelectorAll('#ty-list details').forEach(d => d.open = true)")
+    text = tab.eval("document.getElementById('ty-list').textContent")
+    approvers = {t["approval"]["approved_by"] for t in data["doc_types"] if t["approval"]}
+    assert approvers and all(a in text for a in approvers)
+    assert "Held in" in text and "Evidence file" in text and "sha256" in text
+    assert text.count("Approved by") >= 5
     assert tab.errors == []

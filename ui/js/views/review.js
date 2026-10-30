@@ -2,7 +2,7 @@
 // value ringed, the cell cut from the scan beside what each read and each rule said, and the answer is
 // the visitor's own; it is kept in this browser and nowhere else.
 
-import { S, LBL, statusOf, isOpen, fieldLabel, fieldContext, reasonLabel, reasonSentence, rulesOf, setAnswer, totals } from "../store.js";
+import { S, LBL, statusOf, isOpen, heading, subtitle, fieldLabel, fieldContext, reasonLabel, reasonSentence, rulesOf, setAnswer, totals } from "../store.js";
 import { PageView } from "../pageview.js";
 import { wire, hideWire, follow, noAnim } from "../wire.js";
 import { refresh } from "../chrome.js";
@@ -177,9 +177,9 @@ function modelOf(role) {
 function header() {
   const d = S.docById.get(pageId), t = totals();
   $("rv-crumb").innerHTML = `<a href="#overview">${esc(S.bundle.run.collection)}</a>/<a href="#review">Review queue</a>/<span>${esc(d.title)}</span>`;
-  $("rv-t").textContent = d.kind === "ledger" ? `Ledger card, ${d.title.toLowerCase()}` : d.kind === "memo" ? `Payment memo ${d.memo_no || ""}`.trim() : d.page_id;
+  $("rv-t").textContent = heading(d);
   const open = items.filter((f) => isOpen(f)).length;
-  $("rv-sub").textContent = `${d.account_no ? `Account ${d.account_no}${d.holder ? ", " + d.holder : ""}. ` : ""}${open} open ${open === 1 ? "item" : "items"} on this page; ${int(t.open)} open in ${S.bundle.run.collection}.`;
+  $("rv-sub").textContent = `${subtitle(d)} ${open} open ${open === 1 ? "item" : "items"} on this page; ${int(t.open)} open in ${S.bundle.run.collection}.`;
   const list = pagesWithOpen();
   $("rv-prev-page").disabled = list.length < 2;
   $("rv-next-page").disabled = list.length < 2;

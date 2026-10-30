@@ -72,13 +72,17 @@ function log(html) {
   $("w-log").innerHTML = W.log.map((x) => `<li>${x}</li>`).join("");
 }
 
+// A document in a sentence: "sheet 35", "Memo 034146", "December 1939, page 53".
+const plain = (d) => (d.kind === "ledger" ? d.title.toLowerCase() : d.title);
+const noun = (d) => (d.kind === "ledger" ? "a ledger card" : d.kind === "memo" ? "a payment memo" : d.kind === "table" ? "a printed table" : "a page");
+
 function head() {
   const d = S.docById.get(pageId);
   $("w-crumb").innerHTML = `<a href="#overview">${esc(S.bundle.run.collection)}</a>/<span>Watch it work</span>`;
-  $("w-sub").textContent = `A replay of the recorded run on ${d.title.toLowerCase()}: every value read, snapped to the ink, read again blind, checked against the bookkeeping rules and decided. Nothing is called; this is the run’s own record.`;
-  $("w-src").innerHTML = S.docs.map((x) => `<option value="${esc(x.page_id)}"${x.page_id === pageId ? " selected" : ""}>${esc(x.title)}, ${esc(x.typeLabel.toLowerCase())}</option>`).join("");
+  $("w-sub").textContent = `A replay of the recorded run on ${plain(d)}: every value read, snapped to the ink, read again blind, checked against the bookkeeping rules and decided. Nothing is called; this is the run’s own record.`;
+  $("w-src").innerHTML = S.docs.map((x) => `<option value="${esc(x.page_id)}"${x.page_id === pageId ? " selected" : ""}>${esc(x.kind === "table" ? x.title : `${x.title}, ${x.typeLabel.toLowerCase()}`)}</option>`).join("");
   $("w-steps").innerHTML = STEPS.map(([k, t, role]) => `<li data-k="${k}" data-e="${eOf(role)}"><b>${t}</b><span>${esc(modelOf(role))}</span></li>`).join("");
-  $("wbadge").textContent = `${d.typeLabel}, ${d.title.toLowerCase()}`;
+  $("wbadge").textContent = d.kind === "table" ? `${d.typeLabel}, ${d.title}` : `${d.typeLabel}, ${d.title.toLowerCase()}`;
   $("w-ff").textContent = `Fast-forward the other ${S.docs.length - 1} pages`;
 }
 
@@ -153,7 +157,7 @@ function step() {
     W.ph = 0;
     setStage("recognise", "Recognising the page");
     $("wbadge").classList.add("on");
-    log(`<b>Page</b> recognised as ${S.docById.get(pageId).kind === "ledger" ? "a ledger card" : S.docById.get(pageId).kind === "memo" ? "a payment memo" : "a page"} <span class="st st-ok">${esc(modelOf("extractor"))}</span>`);
+    log(`<b>Page</b> recognised as ${noun(S.docById.get(pageId))} <span class="st st-ok">${esc(modelOf("extractor"))}</span>`);
     return next(1300);
   }
   if (W.i === -1 && W.ph === 0) {
@@ -279,7 +283,7 @@ function end() {
   setStage(null, "Done");
   cam(null);
   const s = W.s, d = S.docById.get(pageId);
-  const act = s.rev ? `<button class="primary" onclick="location.hash='review-${pageId}'">Review the ${s.rev} open ${s.rev === 1 ? "item" : "items"}</button>` : `<button class="primary" onclick="location.hash='doc-${pageId}'">Open ${esc(d.title.toLowerCase())}</button>`;
+  const act = s.rev ? `<button class="primary" onclick="location.hash='review-${pageId}'">Review the ${s.rev} open ${s.rev === 1 ? "item" : "items"}</button>` : `<button class="primary" onclick="location.hash='doc-${pageId}'">Open ${esc(plain(d))}</button>`;
   $("w-now").innerHTML = `<h3>${esc(d.title)} done</h3><p class="sub" style="margin:0">${s.n} values. Every value either passed two independent reads, and a rule where one applies, or went to a person.</p>
   <div class="wtiers"><div><b>${s.tier1}</b><span>Two reads and a rule agree</span></div><div><b>${s.tier2}</b><span>Two reads agree, no rule applies</span></div><div><b>${s.rev}</b><span>Sent to a person</span></div></div>${act}`;
   kpis();

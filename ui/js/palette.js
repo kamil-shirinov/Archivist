@@ -6,9 +6,12 @@ import { $, esc } from "./util.js";
 const NAV = [
   ["Overview", "overview"],
   ["Review queue", "review"],
+  ["Accounts", "accounts"],
+  ["Transactions", "transactions"],
   ["Documents", "documents"],
   ["Watch it work", "replay"],
   ["Accuracy report", "accuracy"],
+  ["Document types", "types"],
 ];
 let items = [], sel = 0;
 
@@ -20,7 +23,7 @@ function data(q) {
   });
   for (const a of accountRows()) {
     if (!q || `${a.account_no} ${a.holder || ""}`.toLowerCase().includes(q))
-      out.push({ g: "Accounts", t: a.holder || a.account_no, s: a.account_no, run: () => (location.hash = `documents?account=${a.account_no}`) });
+      out.push({ g: "Accounts", t: a.holder || a.account_no, s: a.account_no, run: () => (location.hash = `acct-${a.account_no}`) });
   }
   for (const d of S.docs) {
     const sub = d.kind === "memo" ? `Payment memo${d.holder ? ", " + d.holder : ""}` : `Ledger card${d.account_no ? ", " + d.account_no : ""}`;

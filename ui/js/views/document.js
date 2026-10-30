@@ -1,7 +1,7 @@
 // One document: its page beside the record read from it, with a thread from a value to where it sits
 // on the page, and, on the other tab, how it was read, step by step.
 
-import { S, LBL, statusOf, fieldLabel, rulesOf, reasonSentence, docStats } from "../store.js";
+import { S, LBL, statusOf, fieldLabel, rulesOf, reasonSentence, docStats, heading, subtitle } from "../store.js";
 import { PageView } from "../pageview.js";
 import { wire, hideWire, follow } from "../wire.js";
 import { $, esc, fmtDate } from "../util.js";
@@ -14,7 +14,7 @@ const cap = (s) => s.charAt(0).toUpperCase() + s.slice(1);
 const shown = (f) => (S.answers[f.field_id] ? S.answers[f.field_id].val : f.value);
 const title = (id) => S.docById.get(id)?.title || id;
 
-function checkedBy(f) {
+export function checkedBy(f) {
   const a = S.answers[f.field_id];
   if (a) return a.st === "you" ? "Reviewer, then the rules" : a.st === "docerr" ? "Reviewer; the page doesn’t add up" : "Reviewer; inferred, not read";
   if (f.status === "accepted") {
@@ -36,7 +36,27 @@ const hcell = (f) => {
   return `<span><span class="k">${esc(fieldLabel(f))}</span><span class="v vs-${st}" data-field="${esc(f.field_id)}" tabindex="0" title="${LBL[st]}">${esc(shown(f) || "—")}</span></span>`;
 };
 
+const NUMERIC = new Set(["money", "count", "percent"]);
+
+// A printed table as a grid of its cells: a row for each row the page holds, a column for each the
+// type names, every cell a value that can be pointed at.
+function tableHTML() {
+  const type = S.docTypes.get(doc.doc_type), by = new Map(fields.map((f) => [`${f.row}|${f.name}`, f]));
+  if (fields.every((f) => f.value == null))
+    return `<p class="why">None of this page’s ${fields.length} cells was read: the run recorded no value for any of them, so there is no record to show.</p>`;
+  const rows = [...new Set(fields.map((f) => f.row))].filter((r) => type.columns.some((c) => {
+    const f = by.get(`${r}|${c.key}`);
+    return f && (f.value || statusOf(f) !== "ok");
+  }));
+  const head = type.columns.map((c) => `<th class="${NUMERIC.has(c.kind) ? "r" : ""}" title="${esc(c.printed)}">${esc(c.printed)}</th>`).join("");
+  const body = rows
+    .map((r, i) => `<tr><td class="ln">${i + 1}</td>${type.columns.map((c) => vcell(by.get(`${r}|${c.key}`), NUMERIC.has(c.kind) ? "r" : "pt")).join("")}</tr>`)
+    .join("");
+  return `<p class="cap" style="margin:0 0 8px">${esc(type.rows)}; figures in ${esc(type.unit)}.</p><div class="rwrap tall"><table class="rec2"><thead><tr><th>#</th>${head}</tr></thead><tbody>${body}</tbody></table></div>`;
+}
+
 function recordHTML() {
+  if (doc.kind === "table") return tableHTML();
   const by = new Map(fields.map((f) => [`${f.line ?? ""}|${f.name}`, f]));
   const get = (line, name) => by.get(`${line ?? ""}|${name}`);
   if (doc.kind === "ledger") {
@@ -117,7 +137,31 @@ function info() {
 const lineOf = (id) => /^L:[^:]+:(\d+):/.exec(id || "")?.[1];
 const val = (id) => S.fieldById.get(id)?.value;
 
+// For a printed table there are no links to other pages: what it has is rules, each applied wherever
+// the page's cells allow, so the section lists them, how often each held and where one failed.
+function rulesSection() {
+  $("dd-links-h").textContent = "Rules";
+  const by = new Map();
+  for (const r of S.bundle.rule_results.filter((x) => x.page_id === pageId)) {
+    if (!by.has(r.rule)) by.set(r.rule, { label: r.label, held: 0, failed: [] });
+    const e = by.get(r.rule);
+    if (r.ok) e.held++;
+    else e.failed.push(r);
+  }
+  $("dd-links").innerHTML = by.size
+    ? [...by.values()]
+        .map((e) => {
+          const total = e.held + e.failed.length;
+          const chip = e.failed.length ? '<span class="bad">Failed</span>' : '<span class="ok">Holds</span>';
+          return `<div class="lnk ${e.failed.length ? "bad" : ""}"><span class="k">${esc(e.label)}</span>Held in ${e.held} of ${total} places where every cell was read. ${chip}${e.failed.map((f) => `<span class="t">${esc(f.equation || f.detail || "")}</span>`).join("")}</div>`;
+        })
+        .join("")
+    : `<div class="lnk mute"><span class="k">No rules applied</span>No rule could be applied to this page: too few of its cells were read.</div>`;
+}
+
 function connections() {
+  $("dd-links-h").textContent = "Connections";
+  if (doc.kind === "table") return rulesSection();
   const out = [];
   const add = (k, text, agrees, note) => out.push({ k, text, agrees, note });
   for (const l of S.bundle.links) {
@@ -236,10 +280,8 @@ function renderDoc() {
   hot = null;
   $("dd-home").textContent = S.bundle.run.collection;
   $("dd-crumb").textContent = doc.title;
-  const acct = doc.account_no ? `Account ${doc.account_no}${doc.holder ? ", " + doc.holder : ""}.` : "Account not read.";
-  $("dd-t").textContent = doc.kind === "ledger" ? `Ledger card, ${doc.title.toLowerCase()}` : doc.kind === "memo" ? `Payment memo ${doc.memo_no || ""}`.trim() : doc.page_id;
-  const ref = doc.kind === "memo" ? fields.find((x) => x.name === "ledger_ref")?.value : null;
-  $("dd-sub").textContent = `${acct} ${doc.kind === "memo" ? (ref ? `Pays ${ref.toLowerCase().replace(" / ", ", ")}.` : "") : doc.when === "—" ? "" : doc.when + "."}`.trim();
+  $("dd-t").textContent = heading(doc);
+  $("dd-sub").textContent = subtitle(doc);
   $("drecord").innerHTML = page.doc_type === "failed" ? `<p class="why">${esc(page.failure || "This page couldn’t be read.")}</p>` : recordHTML();
   pv = new PageView($("dpaper"), page);
   statusMarks();

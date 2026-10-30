@@ -1,7 +1,8 @@
 // Overview: how much of the run is verified, what is open and why, how the run went, and which accounts
 // have the most still to do.
 
-import { S, accountRows, reasonLabel, totals, runWords, isOpen, statusOf } from "../store.js";
+import { S, accountRows, docStats, reasonLabel, totals, runWords, isOpen, statusOf } from "../store.js";
+import { pagesWhat } from "../chrome.js";
 import { $, esc, int, toast } from "../util.js";
 
 const longDate = (iso) => new Date(iso).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric", timeZone: "UTC" });
@@ -9,14 +10,14 @@ const longDate = (iso) => new Date(iso).toLocaleDateString("en-GB", { day: "nume
 export function runFacts() {
   const r = S.bundle.run, v = r.verification, x = r.extraction;
   const pages = S.bundle.pages.length;
-  const cost = (v.cost_usd || 0) + (x.cost_usd || 0);
+  const cost = r.extraction_run === r.run_id ? v.cost_usd || 0 : (v.cost_usd || 0) + (x.cost_usd || 0); // one record, read and verified together
   const minutes = Math.round((new Date(v.finished_at) - new Date(v.started_at)) / 60000);
   const seconds = (new Date(v.finished_at) - new Date(v.started_at)) / 1000 / pages;
   return { pages, cost, minutes, seconds, perPage: cost / pages, read: longDate(v.finished_at) };
 }
 
 function counts() {
-  const n = { ledger: 0, memo: 0, other: 0 };
+  const n = { ledger: 0, memo: 0, table: 0, other: 0 };
   for (const d of S.docs) n[d.kind]++;
   return n;
 }
@@ -24,8 +25,9 @@ function counts() {
 function render() {
   const r = S.bundle.run, t = totals(), f = runFacts(), n = counts(), w = runWords();
   $("ov-crumb").textContent = r.collection;
-  const kinds = [n.ledger && `${n.ledger} ledger cards`, n.memo && `${n.memo} payment memos`, n.other && `${n.other} other pages`].filter(Boolean).join(", ");
-  $("ov-sub").textContent = `${f.pages} ${w.pages}, ${kinds}. Read on ${f.read} by ${w.models}.`;
+  const kinds = [n.ledger && `${n.ledger} ledger cards`, n.memo && `${n.memo} payment memos`, n.table && `${n.table} printed ${n.table === 1 ? "table" : "tables"}`, n.other && `${n.other} other pages`].filter(Boolean).join(", ");
+  const what = r.source === "synthetic" ? `${f.pages} ${pagesWhat(r).toLowerCase()}` : `${f.pages} pages of the ${r.publication ? r.publication.title : "archive"}, development pages`;
+  $("ov-sub").textContent = `${what}: ${kinds}. Read on ${f.read} by ${w.models}.`;
   const pct = (x) => `${(x / t.all * 100).toFixed(1)}%`;
   $("ov-kpis").innerHTML = [
     ["ok", "Values verified", pct(t.ok), `${int(t.ok)} of ${int(t.all)} values`],
@@ -54,7 +56,7 @@ function render() {
   $("runinfo").innerHTML = [
     ["Read", `${f.read}, ${f.pages} pages in ${f.minutes} minutes`],
     ["Models", w.models],
-    ["Rules applied", `${rules.size} ledger and memo rules, ${int(S.bundle.rule_results.length)} equations checked`],
+    ["Rules applied", `${rules.size} rules, ${int(S.bundle.rule_results.length)} equations checked`],
     ["Cost", `$${f.cost.toFixed(2)}, about $${f.perPage.toFixed(3)} a page`],
     ["Run", `${r.run_id}, policy ${r.policy}`],
   ]
@@ -62,14 +64,29 @@ function render() {
     .join("");
 
   const rows = accountRows().sort((a, b) => b.open - a.open || b.exc - a.exc);
-  $("ov-all").textContent = `All ${rows.length} accounts`;
-  $("ov-accts").innerHTML = rows
-    .slice(0, 6)
-    .map(
-      (a) =>
-        `<tr data-acct="${esc(a.account_no)}"><td class="id num">${esc(a.account_no)}</td><td>${esc(a.holder || "—")}</td><td class="m">${esc(a.period)}</td><td class="r">${Math.round(a.verified * 100)}%</td><td class="r">${a.open}</td><td class="r">${a.exc}</td></tr>`
-    )
-    .join("");
+  if (rows.length) {
+    $("ov-pt").textContent = "Accounts with the most open items";
+    $("ov-all").textContent = `All ${rows.length} accounts`;
+    $("ov-all").href = "#accounts";
+    $("ov-head").innerHTML = "<tr><th>Account</th><th>Holder</th><th>Period</th><th class=\"r\">Verified</th><th class=\"r\">Open items</th><th class=\"r\">Exceptions</th></tr>";
+    $("ov-accts").innerHTML = rows
+      .slice(0, 6)
+      .map(
+        (a) =>
+          `<tr data-acct="${esc(a.account_no)}"><td class="id num">${esc(a.account_no)}</td><td>${esc(a.holder || "—")}</td><td class="m">${esc(a.period)}</td><td class="r">${Math.round(a.verified * 100)}%</td><td class="r">${a.open}</td><td class="r">${a.exc}</td></tr>`
+      )
+      .join("");
+  } else {
+    // No accounts on printed tables: the pages with the most still to do instead.
+    const docs = S.docs.map((d) => ({ d, ...docStats(d.page_id) })).sort((a, b) => b.open - a.open).slice(0, 6);
+    $("ov-pt").textContent = "Pages with the most open items";
+    $("ov-all").textContent = `All ${S.docs.length} pages`;
+    $("ov-all").href = "#documents";
+    $("ov-head").innerHTML = "<tr><th>Page</th><th>Table</th><th class=\"r\">Values</th><th class=\"r\">Open items</th><th class=\"r\">Exceptions</th></tr>";
+    $("ov-accts").innerHTML = docs
+      .map(({ d, values, open, exc }) => `<tr data-page="${esc(d.page_id)}"><td class="id">${esc(d.title)}</td><td class="w">${esc(d.typeLabel)}</td><td class="r">${values}</td><td class="r">${open}</td><td class="r">${exc}</td></tr>`)
+      .join("");
+  }
 }
 
 async function exportCsv() {
@@ -89,8 +106,9 @@ async function exportCsv() {
 
 export function init() {
   $("ov-accts").addEventListener("click", (e) => {
-    const tr = e.target.closest("tr[data-acct]");
-    if (tr) location.hash = `documents?account=${tr.dataset.acct}`;
+    const tr = e.target.closest("tr[data-acct],tr[data-page]");
+    if (!tr) return;
+    location.hash = tr.dataset.acct ? `acct-${tr.dataset.acct}` : `doc-${tr.dataset.page}`;
   });
   $("ov-export").addEventListener("click", exportCsv);
 }
