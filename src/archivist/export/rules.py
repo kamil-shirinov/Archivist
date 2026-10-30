@@ -151,6 +151,12 @@ def page_of(field_id: str) -> str:
     return field_id.split(":")[1]
 
 
+def row_of(field_id: str) -> str | None:
+    """The row of a table cell, T.<family>:<page>:<row>:<column>; None for any other field."""
+    parts = field_id.split(":")
+    return parts[2] if field_id.startswith("T.") and len(parts) == 4 else None
+
+
 def line_of(field_id: str) -> int | None:
     part = field_id.split(":")[-2]
     return int(part) if part.isdigit() else None

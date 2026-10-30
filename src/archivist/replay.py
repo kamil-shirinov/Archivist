@@ -251,10 +251,11 @@ def check_exports() -> tuple[list[str], list[str]]:
     runs = sorted(p.name for p in bundle.BUNDLES_DIR.iterdir() if p.is_dir())
     problems = []
     for run_id in runs:
-        built = bundle.build(RUNS_DIR / run_id)
+        built = bundle.build(bundle.run_dir(run_id))
         problems += bundle.check(built, bundle.BUNDLES_DIR / run_id)
-        with tempfile.TemporaryDirectory() as fresh:
-            problems += database.check(built, database.EXPORTS_DIR / run_id, Path(fresh))
+        if (database.EXPORTS_DIR / run_id).exists():  # a development run on real pages has none
+            with tempfile.TemporaryDirectory() as fresh:
+                problems += database.check(built, database.EXPORTS_DIR / run_id, Path(fresh))
     return runs, problems
 
 

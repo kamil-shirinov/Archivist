@@ -10,6 +10,11 @@ Boxes are page pixels, origin top-left, of the page as scanned (Page.width, Page
 size its downsized image is. Every value is a string exactly as the extractor read it (or None when
 it didn't), never a number: the database adds parsed amounts beside the text.
 
+1.2 adds the second collection and the document types: what a run's pages are (the publication, each
+page's printed title, issue and page number, and whether the run is a pre-registered test or only
+development pages), the row of each cell of a table, and every registered document type with its
+rules, the evidence each rule held on and who approved it.
+
 1.1 adds what the static review UI draws from: each page's downsized image, its words of ink, SAM's
 detections and the steps it went through; each field's route and pen loop; every rule's result,
 passed or failed; what the run is (the collection, what kind of pages, which models, which arm);
@@ -27,7 +32,7 @@ from pydantic import BaseModel
 
 from archivist.schema import BBox
 
-SCHEMA_VERSION = "1.1"
+SCHEMA_VERSION = "1.2"
 SCHEMA_PATH = Path("ui/schema/bundle.schema.json")
 
 Status = Literal["accepted", "review", "abstained"]
@@ -49,6 +54,15 @@ class ModelUse(BaseModel):
     name: str  # as a person would say it: Muse Spark 1.3, SAM 3.1
 
 
+class Publication(BaseModel):
+    """Where real pages come from."""
+
+    title: str  # Treasury Bulletin
+    publisher: str
+    url: str
+    rights: str  # the statement the archive shows
+
+
 class RunInfo(BaseModel):
     run_id: str  # the verification run
     extraction_run: str
@@ -63,6 +77,10 @@ class RunInfo(BaseModel):
     # where the reading models run: Meta's API, open-weights hosts, one of each, or not recorded
     arm: Literal["hosted", "open-weights", "mixed", "unknown"]
     models: list[ModelUse]  # each role's model, from the run's config
+    stage: Literal[
+        "test", "development"
+    ]  # the pre-registered test, or pages used to build the rules
+    publication: Publication | None  # for real pages
 
 
 class PageImage(BaseModel):
@@ -98,6 +116,9 @@ class Page(BaseModel):
     doc_type: str  # a registered type, "unsupported", or "failed" when extraction failed
     failure: str | None = None  # why extraction failed
     field_ids: list[str]  # in the order the page is read
+    title: str | None  # the printed title of the table on it, for a table type
+    issue: str | None  # the issue a page of a periodical is in, "1939-12"
+    number: int | None  # its page in that issue's file
     image: PageImage
     text_height: float  # the page's own text height in pixels, which sizes its words and loops
     words: list[list[int]]  # every word of ink: x0, y0, x1, y1
@@ -141,6 +162,7 @@ class BundleField(BaseModel):
     doc_type: str
     name: str  # the column or header name, e.g. debit, holder, amount_words
     line: int | None  # the ledger line, for a line's field
+    row: str | None  # the row of a table cell, as its type keys it
     value: str | None
     status: Status
     confidence: float
@@ -233,6 +255,62 @@ class RuleResult(BaseModel):
     suggested: str | None  # the value it implies, when it failed and says so
 
 
+class DocColumn(BaseModel):
+    key: str
+    printed: str  # as the page prints it
+    kind: str  # money, count, percent, date, text
+
+
+class RuleEvidence(BaseModel):
+    """What the arithmetic test of a template found for one rule, as its evidence file records."""
+
+    applies: int  # where the rule applies on the tested pages
+    evaluated: int  # of those, where every cell was read twice and agreed
+    held: int
+    failed: int
+    hold_rate: float | None
+    outcome: str  # holds, sometimes fails, rejected, untested
+    not_evaluated: dict[str, int]  # why the rest were not evaluated, and how many
+
+
+class DocRule(BaseModel):
+    id: str  # the rule's name in a flag: <family>.<id> for a template
+    label: str  # in plain words
+    equation: str | None  # the identity, by cell keys
+    for_each: str | None  # table, row, column or position
+    evidence: RuleEvidence | None
+
+
+class Approval(BaseModel):
+    approved_by: str
+    approved_on: str
+    drafted_by: str  # the model that drafted it
+    drafted_on: str
+    drafted_from: list[str]  # the development pages it was drafted from
+    tested_on: str | None
+    tested_pages: list[str]  # the pages its arithmetic test read
+    evidence_file: str | None
+    evidence_sha256: str | None  # the evidence file's, recorded at approval
+    dropped: list[str]  # identities the draft proposed that were left out, and why
+
+
+class DocTypeInfo(BaseModel):
+    name: str
+    title: str  # the printed title for a template, a plain name for a built-in
+    description: str
+    kind: Literal["built-in", "template"]
+    unit: str | None
+    precision: str | None
+    columns: list[DocColumn]
+    rows: str  # how the rows are read, in words
+    rules: list[DocRule]
+    approval: (
+        Approval | None
+    )  # a template's; a built-in type is measured in the test report instead
+    enabled: bool  # whether this run reads pages of this type
+    pages: int  # how many pages of this type are in this run
+
+
 class Accuracy(BaseModel):
     """The pre-registered test report of the synthetic test split, as written (results/)."""
 
@@ -252,6 +330,7 @@ class Bundle(BaseModel):
     links: list[Link]
     rule_results: list[RuleResult]
     rule_labels: dict[str, str]  # every rule id a flag or result carries -> plain words
+    doc_types: list[DocTypeInfo]  # every registered document type: built-in, and approved templates
     accuracy: Accuracy | None  # the test report, for a run on the test split
 
 

@@ -17,7 +17,7 @@ from __future__ import annotations
 
 from collections.abc import Callable, Sequence
 
-from archivist.doctypes import Card, Posting, is_unresolvable
+from archivist.doctypes import REGISTRY, Card, Posting, is_unresolvable
 from archivist.doctypes.ledger import MEMO_LEAD, cheque_items, date_items, fmt
 from archivist.export import rules
 from archivist.export.schema import RuleResult
@@ -43,7 +43,15 @@ LABELS = {
 
 
 def label(rule: str) -> str:
-    return LABELS.get(rule, rule.replace("_", " ").capitalize())
+    """A rule in plain words: a built-in rule's name, a template identity's own description."""
+    if rule in LABELS:
+        return LABELS[rule]
+    family, _, identity = rule.partition(".")
+    doc_type = REGISTRY.get(family)
+    for candidate in getattr(getattr(doc_type, "template", None), "identities", []):
+        if candidate.id == identity:
+            return candidate.description
+    return rule.replace("_", " ").capitalize()
 
 
 def _failures(flags: Sequence[Flag]) -> dict[tuple[str, str], Flag]:
@@ -171,6 +179,26 @@ def _memo_rules(page_id: str, posting: Posting, add: Add) -> None:
         add("memo_date", page_id, [memo.ids["date"], line.ids["date"]], ok, sum_)
 
 
+def _template_rules(batch: Sequence, add: Add) -> None:
+    """Every identity of every template type, wherever it applies on the pages and every cell is a
+    figure that was read, the way the type's own checks apply it."""
+    texts = {v.field_id: None if v.abstained else v.value for page in batch for v in page.values}
+    for doc_type in REGISTRY.values():
+        if not hasattr(doc_type, "instances"):
+            continue
+        for instance in doc_type.instances(batch):
+            result = None if instance.unresolved is not None else doc_type.evaluate(instance, texts)
+            if result is None:
+                continue
+            left, right, tolerance = result
+            places = max(0, -instance.fields[0][2].as_tuple().exponent)
+            ok = abs(left - right) <= tolerance
+            fields = list(dict.fromkeys(f for f, *_ in instance.fields))
+            sign = "=" if ok else "≠"
+            equation = f"{instance.where}: {left:,.{places}f} {sign} {right:,.{places}f}"
+            add(instance.rule, rules.page_of(fields[0]), fields, ok, equation)
+
+
 def rule_results(reading: rules.Reading, flags: Sequence[Flag]) -> list[RuleResult]:
     """Every rule applied to the batch, in page order, then the failures no equation here took."""
     collected = _Collector(flags)
@@ -180,6 +208,7 @@ def rule_results(reading: rules.Reading, flags: Sequence[Flag]) -> list[RuleResu
     _sheet_rules(reading, add)
     for page_id, posting in sorted(reading.postings.items()):
         _memo_rules(page_id, posting, add)
+    _template_rules(reading.pages, add)
     collected.unmatched(reading)
     return collected.results
 

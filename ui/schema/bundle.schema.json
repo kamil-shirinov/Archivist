@@ -71,6 +71,94 @@
       "title": "Accuracy",
       "type": "object"
     },
+    "Approval": {
+      "properties": {
+        "approved_by": {
+          "title": "Approved By",
+          "type": "string"
+        },
+        "approved_on": {
+          "title": "Approved On",
+          "type": "string"
+        },
+        "drafted_by": {
+          "title": "Drafted By",
+          "type": "string"
+        },
+        "drafted_on": {
+          "title": "Drafted On",
+          "type": "string"
+        },
+        "drafted_from": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Drafted From",
+          "type": "array"
+        },
+        "tested_on": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Tested On"
+        },
+        "tested_pages": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Tested Pages",
+          "type": "array"
+        },
+        "evidence_file": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Evidence File"
+        },
+        "evidence_sha256": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Evidence Sha256"
+        },
+        "dropped": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Dropped",
+          "type": "array"
+        }
+      },
+      "required": [
+        "approved_by",
+        "approved_on",
+        "drafted_by",
+        "drafted_on",
+        "drafted_from",
+        "tested_on",
+        "tested_pages",
+        "evidence_file",
+        "evidence_sha256",
+        "dropped"
+      ],
+      "title": "Approval",
+      "type": "object"
+    },
     "BBox": {
       "description": "Axis-aligned box in page pixels, origin top-left.",
       "properties": {
@@ -128,6 +216,17 @@
             }
           ],
           "title": "Line"
+        },
+        "row": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Row"
         },
         "value": {
           "anyOf": [
@@ -301,6 +400,7 @@
         "doc_type",
         "name",
         "line",
+        "row",
         "value",
         "status",
         "confidence",
@@ -419,6 +519,180 @@
         "fields"
       ],
       "title": "Detection",
+      "type": "object"
+    },
+    "DocColumn": {
+      "properties": {
+        "key": {
+          "title": "Key",
+          "type": "string"
+        },
+        "printed": {
+          "title": "Printed",
+          "type": "string"
+        },
+        "kind": {
+          "title": "Kind",
+          "type": "string"
+        }
+      },
+      "required": [
+        "key",
+        "printed",
+        "kind"
+      ],
+      "title": "DocColumn",
+      "type": "object"
+    },
+    "DocRule": {
+      "properties": {
+        "id": {
+          "title": "Id",
+          "type": "string"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "equation": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Equation"
+        },
+        "for_each": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "For Each"
+        },
+        "evidence": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RuleEvidence"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        }
+      },
+      "required": [
+        "id",
+        "label",
+        "equation",
+        "for_each",
+        "evidence"
+      ],
+      "title": "DocRule",
+      "type": "object"
+    },
+    "DocTypeInfo": {
+      "properties": {
+        "name": {
+          "title": "Name",
+          "type": "string"
+        },
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "description": {
+          "title": "Description",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "built-in",
+            "template"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "unit": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Unit"
+        },
+        "precision": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Precision"
+        },
+        "columns": {
+          "items": {
+            "$ref": "#/$defs/DocColumn"
+          },
+          "title": "Columns",
+          "type": "array"
+        },
+        "rows": {
+          "title": "Rows",
+          "type": "string"
+        },
+        "rules": {
+          "items": {
+            "$ref": "#/$defs/DocRule"
+          },
+          "title": "Rules",
+          "type": "array"
+        },
+        "approval": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Approval"
+            },
+            {
+              "type": "null"
+            }
+          ]
+        },
+        "enabled": {
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "pages": {
+          "title": "Pages",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "name",
+        "title",
+        "description",
+        "kind",
+        "unit",
+        "precision",
+        "columns",
+        "rows",
+        "rules",
+        "approval",
+        "enabled",
+        "pages"
+      ],
+      "title": "DocTypeInfo",
       "type": "object"
     },
     "Document": {
@@ -688,6 +962,39 @@
           "title": "Field Ids",
           "type": "array"
         },
+        "title": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Title"
+        },
+        "issue": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Issue"
+        },
+        "number": {
+          "anyOf": [
+            {
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Number"
+        },
         "image": {
           "$ref": "#/$defs/PageImage"
         },
@@ -727,6 +1034,9 @@
         "height",
         "doc_type",
         "field_ids",
+        "title",
+        "issue",
+        "number",
         "image",
         "text_height",
         "words",
@@ -769,6 +1079,35 @@
       "title": "PageImage",
       "type": "object"
     },
+    "Publication": {
+      "description": "Where real pages come from.",
+      "properties": {
+        "title": {
+          "title": "Title",
+          "type": "string"
+        },
+        "publisher": {
+          "title": "Publisher",
+          "type": "string"
+        },
+        "url": {
+          "title": "Url",
+          "type": "string"
+        },
+        "rights": {
+          "title": "Rights",
+          "type": "string"
+        }
+      },
+      "required": [
+        "title",
+        "publisher",
+        "url",
+        "rights"
+      ],
+      "title": "Publication",
+      "type": "object"
+    },
     "Reason": {
       "properties": {
         "code": {
@@ -801,6 +1140,60 @@
         "code"
       ],
       "title": "Reason",
+      "type": "object"
+    },
+    "RuleEvidence": {
+      "description": "What the arithmetic test of a template found for one rule, as its evidence file records.",
+      "properties": {
+        "applies": {
+          "title": "Applies",
+          "type": "integer"
+        },
+        "evaluated": {
+          "title": "Evaluated",
+          "type": "integer"
+        },
+        "held": {
+          "title": "Held",
+          "type": "integer"
+        },
+        "failed": {
+          "title": "Failed",
+          "type": "integer"
+        },
+        "hold_rate": {
+          "anyOf": [
+            {
+              "type": "number"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Hold Rate"
+        },
+        "outcome": {
+          "title": "Outcome",
+          "type": "string"
+        },
+        "not_evaluated": {
+          "additionalProperties": {
+            "type": "integer"
+          },
+          "title": "Not Evaluated",
+          "type": "object"
+        }
+      },
+      "required": [
+        "applies",
+        "evaluated",
+        "held",
+        "failed",
+        "hold_rate",
+        "outcome",
+        "not_evaluated"
+      ],
+      "title": "RuleEvidence",
       "type": "object"
     },
     "RuleResult": {
@@ -945,6 +1338,24 @@
           },
           "title": "Models",
           "type": "array"
+        },
+        "stage": {
+          "enum": [
+            "test",
+            "development"
+          ],
+          "title": "Stage",
+          "type": "string"
+        },
+        "publication": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Publication"
+            },
+            {
+              "type": "null"
+            }
+          ]
         }
       },
       "required": [
@@ -959,7 +1370,9 @@
         "collection",
         "source",
         "arm",
-        "models"
+        "models",
+        "stage",
+        "publication"
       ],
       "title": "RunInfo",
       "type": "object"
@@ -1204,7 +1617,7 @@
   },
   "properties": {
     "schema_version": {
-      "default": "1.1",
+      "default": "1.2",
       "title": "Schema Version",
       "type": "string"
     },
@@ -1267,6 +1680,13 @@
       "title": "Rule Labels",
       "type": "object"
     },
+    "doc_types": {
+      "items": {
+        "$ref": "#/$defs/DocTypeInfo"
+      },
+      "title": "Doc Types",
+      "type": "array"
+    },
     "accuracy": {
       "anyOf": [
         {
@@ -1288,6 +1708,7 @@
     "links",
     "rule_results",
     "rule_labels",
+    "doc_types",
     "accuracy"
   ],
   "title": "Bundle",

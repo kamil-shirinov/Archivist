@@ -19,6 +19,7 @@ from PIL import Image
 
 PAGES_DIR = Path("data/pages")
 MAX_SIDE = 1280  # px, the longer side; a smaller scan keeps its size
+MAX_SIDE_REAL = 2200  # a page of print is read at its own size: its figures are a few pixels tall
 QUALITY = 70
 
 
@@ -30,10 +31,10 @@ class WebImage:
     sha256: str
 
 
-def _web_image(path: str, mtime_ns: int, size: int) -> WebImage:
+def _web_image(path: str, mtime_ns: int, size: int, max_side: int) -> WebImage:
     with Image.open(path) as scan:
         picture = scan.convert("RGB")
-    scale = min(1.0, MAX_SIDE / max(picture.size))
+    scale = min(1.0, max_side / max(picture.size))
     if scale < 1.0:
         picture = picture.resize(
             (round(picture.width * scale), round(picture.height * scale)), Image.Resampling.LANCZOS
@@ -47,7 +48,7 @@ def _web_image(path: str, mtime_ns: int, size: int) -> WebImage:
 _cached = lru_cache(maxsize=None)(_web_image)
 
 
-def web_image(scan: Path) -> WebImage:
+def web_image(scan: Path, max_side: int = MAX_SIDE) -> WebImage:
     """The downsized copy of a scan (computed once for a scan that hasn't changed)."""
     stat = scan.stat()
-    return _cached(str(scan), stat.st_mtime_ns, stat.st_size)
+    return _cached(str(scan), stat.st_mtime_ns, stat.st_size, max_side)

@@ -46,10 +46,11 @@ from pathlib import Path
 import numpy as np
 from PIL import Image
 
-from archivist.doctypes import Card, Posting
+from archivist.doctypes import REGISTRY, Card, Posting, recorded_by
 from archivist.doctypes.ledger import MEMO_LEAD, date_items
+from archivist.doctypes.template import issue_of
 from archivist.export import images as web
-from archivist.export import pen, rule_results, rules
+from archivist.export import pen, rule_results, rules, typeinfo
 from archivist.export.schema import (
     SCHEMA_VERSION,
     Account,
@@ -65,6 +66,7 @@ from archivist.export.schema import (
     ModelUse,
     Page,
     PageImage,
+    Publication,
     Reason,
     RuleResult,
     RunInfo,
@@ -85,9 +87,15 @@ TRUTH_FILE = "truth.json"
 STATUS_ORDER = ("abstained", "review", "accepted")  # worst first
 FAILED = "failed"
 REAL_SPLIT_PREFIX = "real"  # data/real, data/real_occ, data/real_frb: public-domain scans
-COLLECTIONS = {
-    "test": "Box 14"
-}  # what the app calls a split's pages; the design's name for the test set
+# What the app calls a split's pages: the design's name for the test set, and the archive's own title
+# for its real pages.
+COLLECTIONS = {"test": "Box 14", "real": "US Treasury Bulletin"}
+# Development runs on real pages keep their single read and their verdicts in one folder. Only the
+# development side is listed: a held-out result is never exported (build refuses one).
+DEVELOPMENT_RUNS = {"treasury-development": Path("results/real_test/development")}
+REAL_PAGES = Path("data/real/pages")  # <issue>/p<NNN>.jpg, named by the page id <issue>_p<NNN>
+REAL_SOURCES = Path("data/real/sources.json")
+HELD_OUT = "held_out"
 REPORT_FILE = "test_report.json"  # in results/, beside runs/
 REPORT_SOURCE = f"results/{REPORT_FILE}"  # how the bundle names it, whatever the working directory
 OPEN_WEIGHTS = frozenset({"baseten", "fireworks"})
@@ -130,6 +138,7 @@ def _field(
         doc_type=v.doc_type,
         name=field_kind(v.field_id),
         line=rules.line_of(v.field_id),
+        row=rules.row_of(v.field_id),
         value=v.value,
         status=v.status,
         confidence=v.confidence,
@@ -371,6 +380,36 @@ def _ink(path: Path) -> Ink:
     return text_height, list(found), size
 
 
+def run_dir(run_id: str) -> Path:
+    """Where a run's record is: results/runs/<run>, or a development run on real pages."""
+    return DEVELOPMENT_RUNS.get(run_id) or RUNS_DIR / run_id
+
+
+def _real_scans(page_ids: Sequence[str]) -> dict[str, Path]:
+    """The scans of the pages a development run read, <issue>/p<NNN>.jpg under data/real/pages."""
+    out = {}
+    for page_id in sorted(page_ids):
+        issue, _, number = page_id.rpartition("_")
+        out[page_id] = REAL_PAGES / issue / f"{number}.jpg"
+    return out
+
+
+def _publication() -> Publication | None:
+    if not REAL_SOURCES.exists():
+        return None
+    data = json.loads(REAL_SOURCES.read_text(encoding="utf-8"))
+    return Publication(
+        title=data["title"],
+        publisher=data["publisher"],
+        url=data["title_url"],
+        rights=data["rights"]["statement"],
+    )
+
+
+def _max_side(split: str) -> int:
+    return web.MAX_SIDE_REAL if split.startswith(REAL_SPLIT_PREFIX) else web.MAX_SIDE
+
+
 def _scans(images: Path) -> dict[str, Path]:
     return {p.stem: p for p in sorted(images.iterdir()) if p.suffix.lower() in IMAGE_SUFFIXES}
 
@@ -484,6 +523,7 @@ def _pages(
     pages_dir: Path,
     bundle_dir: Path,
     split: str,
+    real: bool,
 ) -> list[Page]:
     doc_types = {p.page_id: p.doc_type for p in extracted}
     by_page = {p.page_id: p for p in extracted}
@@ -496,7 +536,7 @@ def _pages(
         page_results.setdefault(r.page_id, []).append(r)
     out = []
     for page_id, path in scans.items():
-        copy = web.web_image(path)
+        copy = web.web_image(path, _max_side(split))
         text_height, words, (width, height) = ink[page_id]
         sam = _detections(page_fields.get(page_id, []))
         read = page_id in doc_types
@@ -509,6 +549,17 @@ def _pages(
                 doc_type=doc_types.get(page_id, FAILED),
                 failure=None if read else failed.get(page_id, "not extracted"),
                 field_ids=field_ids.get(page_id, []),
+                title=getattr(
+                    getattr(
+                        getattr(REGISTRY.get(doc_types.get(page_id, "")), "template", None),
+                        "identity",
+                        None,
+                    ),
+                    "title",
+                    None,
+                ),
+                issue=issue_of(page_id) if real else None,
+                number=int(page_id.rpartition("_p")[2]) if real else None,
                 image=PageImage(
                     url=Path(
                         os.path.relpath(pages_dir / split / f"{page_id}.jpg", bundle_dir)
@@ -588,15 +639,25 @@ def build(
     run_dir: Path, pages_dir: Path = web.PAGES_DIR, bundles_dir: Path = BUNDLES_DIR
 ) -> Bundle:
     """The bundle of one verification run; reads no ground truth."""
+    if HELD_OUT in run_dir.parts:
+        raise SystemExit(f"{run_dir}: held-out results are not exported until the owner says so")
     record = json.loads((run_dir / "run.json").read_text(encoding="utf-8"))
-    source_dir = run_dir.parent / record["source_run"]
-    source = json.loads((source_dir / "run.json").read_text(encoding="utf-8"))
-    images = Path(record["images"])
-    split = images.parent.name
+    if "source_run" in record:  # results/runs/<run>: a verification of an extraction run
+        source_dir = run_dir.parent / record["source_run"]
+        source = json.loads((source_dir / "run.json").read_text(encoding="utf-8"))
+        images = Path(record["images"])
+        split, run_id, extraction_run = images.parent.name, record["run_id"], record["source_run"]
+    else:  # a development run on real pages: the single read and its verdicts side by side
+        by_dir = {v: k for k, v in DEVELOPMENT_RUNS.items()}
+        if run_dir not in by_dir:
+            raise SystemExit(f"{run_dir} is not a run this exporter knows")
+        source_dir, source, images = run_dir, record, REAL_PAGES
+        split, run_id, extraction_run = REAL_SPLIT_PREFIX, by_dir[run_dir], by_dir[run_dir]
+    real = split.startswith(REAL_SPLIT_PREFIX)
     extracted = load_predictions(source_dir / "predictions.jsonl")
     verdicts = load_verdicts(run_dir / VERDICTS_FILE)
 
-    scans = _scans(images)
+    scans = _real_scans([p.page_id for p in extracted]) if real else _scans(images)
     ink = {page_id: _ink(path) for page_id, path in scans.items()}
     loops = _loops(verdicts, ink)
     reading = rules.Reading(extracted)
@@ -614,8 +675,9 @@ def build(
         results,
         {m.role: m.name for m in models},
         pages_dir,
-        bundles_dir / record["run_id"],
+        bundles_dir / run_id,
         split,
+        real,
     )
     text = {f.field_id: f.value for f in fields}
     status = {f.field_id: f.status for f in fields}
@@ -626,8 +688,8 @@ def build(
     by_id = {link.link_id: link for link in links}
     return Bundle(
         run=RunInfo(
-            run_id=record["run_id"],
-            extraction_run=record["source_run"],
+            run_id=run_id,
+            extraction_run=extraction_run,
             split=split,
             images=images.as_posix(),
             policy=record["policy"]["version"],
@@ -635,9 +697,11 @@ def build(
             verification=record,
             extraction=source,
             collection=COLLECTIONS.get(split, split),
-            source="public-domain scans" if split.startswith(REAL_SPLIT_PREFIX) else "synthetic",
+            source="public-domain scans" if real else "synthetic",
             arm=_arm(models),
             models=models,
+            stage="test" if split == "test" else "development",
+            publication=_publication() if real else None,
         ),
         pages=pages,
         fields=fields,
@@ -647,6 +711,7 @@ def build(
         links=links,
         rule_results=results,
         rule_labels=rule_results.labels(results, flags),
+        doc_types=typeinfo.doc_types(extracted, recorded_by(record)),
         accuracy=_accuracy(run_dir, split),
     )
 
@@ -684,7 +749,7 @@ def write_images(bundle: Bundle, out_dir: Path) -> int:
     count = 0
     for page in bundle.pages:
         dest = _image_path(page, out_dir)
-        data = web.web_image(Path(page.image_path)).data
+        data = web.web_image(Path(page.image_path), _max_side(bundle.run.split)).data
         if dest.exists() and dest.read_bytes() == data:
             continue
         dest.parent.mkdir(parents=True, exist_ok=True)
@@ -726,6 +791,7 @@ def index_entry(bundle: Bundle, bundles_dir: Path = BUNDLES_DIR) -> dict:
         "collection": run.collection,
         "split": run.split,
         "source": run.source,
+        "stage": run.stage,
         "arm": run.arm,
         "models": [m.name for m in run.models],
         "policy": run.policy,
@@ -756,7 +822,7 @@ def main(argv: list[str] | None = None) -> None:
     parser.add_argument("--check", action="store_true", help="verify the bundle on disk instead")
     args = parser.parse_args(argv)
 
-    bundle = build(RUNS_DIR / args.run)
+    bundle = build(run_dir(args.run))
     out_dir = BUNDLES_DIR / args.run
     if args.check:
         problems = check(bundle, out_dir)

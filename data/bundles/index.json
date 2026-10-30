@@ -1,5 +1,5 @@
 {
- "schema_version": "1.1",
+ "schema_version": "1.2",
  "runs": [
   {
    "run_id": "test-archivist-A",
@@ -7,6 +7,7 @@
    "collection": "Box 14",
    "split": "test",
    "source": "synthetic",
+   "stage": "test",
    "arm": "hosted",
    "models": [
     "Muse Spark 1.3",
@@ -24,6 +25,7 @@
    "collection": "Box 14",
    "split": "test",
    "source": "synthetic",
+   "stage": "test",
    "arm": "open-weights",
    "models": [
     "Muse Spark Open",
@@ -33,6 +35,24 @@
    "policy": "v2",
    "pages": 157,
    "fields": 4267,
+   "truth": false
+  },
+  {
+   "run_id": "treasury-development",
+   "path": "treasury-development/bundle.json",
+   "collection": "US Treasury Bulletin",
+   "split": "real",
+   "source": "public-domain scans",
+   "stage": "development",
+   "arm": "hosted",
+   "models": [
+    "Muse Spark 1.3",
+    "Muse Spark 1.3",
+    "SAM 3.1"
+   ],
+   "policy": "v2",
+   "pages": 5,
+   "fields": 2899,
    "truth": false
   }
  ]

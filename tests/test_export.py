@@ -51,6 +51,8 @@ ROOT = Path(__file__).resolve().parents[1]
 EXPORT_SRC = ROOT / "src" / "archivist" / "export"
 COMMITTED_RUNS = ROOT / "results" / "runs"
 COMMITTED = sorted(p.name for p in COMMITTED_RUNS.glob("test-archivist-*"))
+ALL_BUNDLES = sorted(p.parent.name for p in (ROOT / "data" / "bundles").glob("*/bundle.json"))
+DEVELOPMENT = "treasury-development"  # the development run on the Treasury Bulletin's pages
 
 
 def _page(page_id: str, doc_type: str, values: dict[str, str]) -> PageExtraction:
@@ -488,9 +490,7 @@ def test_committed_exports_are_current(run, tmp_path, monkeypatch):
     assert by_status == dict(Counter(v.status for v in verdicts))
 
 
-@pytest.mark.parametrize(
-    "run", [r for r in COMMITTED if (ROOT / bundle.BUNDLES_DIR / r / bundle.BUNDLE_FILE).exists()]
-)
+@pytest.mark.parametrize("run", ALL_BUNDLES)
 def test_committed_bundles_validate_against_the_ui_schema(run):
     """The committed bundles against ui/schema/bundle.schema.json, the file the UI's types come
     from, by a validator that is not pydantic."""
@@ -515,6 +515,7 @@ WITH_BUNDLE = [
 def test_a_run_says_what_it_is(built):
     run = built.run
     assert (run.collection, run.source, run.arm, run.models) == (SPLIT, "synthetic", "unknown", [])
+    assert (run.stage, run.publication) == ("development", None)  # only the test split is the test
     assert built.accuracy is None  # the test report belongs to the test split
 
 
@@ -656,12 +657,16 @@ def test_the_index_lists_each_exported_run_and_replaces_its_entry(world, built):
 
 def test_the_committed_index_matches_the_committed_bundles():
     index = json.loads((ROOT / bundle.BUNDLES_DIR / bundle.INDEX_FILE).read_text("utf-8"))
-    assert [r["run_id"] for r in index["runs"]] == WITH_BUNDLE
+    assert [r["run_id"] for r in index["runs"]] == ALL_BUNDLES
     for entry in index["runs"]:
         data = _committed(entry["run_id"])
         assert entry["path"] == f"{entry['run_id']}/{bundle.BUNDLE_FILE}"
         assert (entry["pages"], entry["fields"]) == (len(data["pages"]), len(data["fields"]))
         assert (entry["arm"], entry["split"]) == (data["run"]["arm"], data["run"]["split"])
+        assert (entry["stage"], entry["collection"]) == (
+            data["run"]["stage"],
+            data["run"]["collection"],
+        )
         assert entry["models"] == [m["name"] for m in data["run"]["models"]]
         truth = ROOT / bundle.BUNDLES_DIR / entry["run_id"] / bundle.TRUTH_FILE
         assert entry["truth"] == truth.exists()
@@ -718,3 +723,94 @@ def test_every_committed_failing_flag_is_a_failed_rule_result(run):
                 )
     passed = [r for r in data["rule_results"] if r["ok"]]
     assert len(passed) > 1000 and all(r["equation"] for r in passed)
+
+
+# --- the second collection: the development run on the Treasury Bulletin's pages -----------------
+
+
+def test_the_development_run_is_exported_from_its_own_folder_and_is_current(monkeypatch, tmp_path):
+    monkeypatch.chdir(ROOT)
+    built = bundle.build(bundle.run_dir(DEVELOPMENT))
+    assert bundle.check(built, bundle.BUNDLES_DIR / DEVELOPMENT) == []
+    run = built.run
+    assert (run.collection, run.stage, run.source) == (
+        "US Treasury Bulletin",
+        "development",
+        "public-domain scans",
+    )
+    assert run.publication is not None and run.publication.rights == "No Copyright - United States"
+    assert run.split == "real" and run.run_id == DEVELOPMENT
+
+
+def test_a_held_out_run_is_never_exported(tmp_path):
+    with pytest.raises(SystemExit, match="held-out"):
+        bundle.build(Path("results") / "real_test" / bundle.HELD_OUT)
+    assert bundle.DEVELOPMENT_RUNS == {DEVELOPMENT: Path("results/real_test/development")}
+    assert bundle.HELD_OUT not in "".join(str(p) for p in bundle.DEVELOPMENT_RUNS.values())
+
+
+def test_real_pages_carry_their_printed_title_issue_and_page_and_a_full_size_image():
+    data = _committed(DEVELOPMENT)
+    issues = {p["issue"] for p in data["pages"]}
+    assert issues <= {f"1939-{m:02d}" for m in range(1, 13)} | {"1982-06", "1983-06", "1984-06"}
+    for page in data["pages"]:
+        assert page["page_id"] == f"{page['issue']}_p{page['number']:03d}"
+        assert page["title"], page["page_id"]
+        assert page["image"]["url"] == f"../../pages/real/{page['page_id']}.jpg"
+        assert max(page["image"]["width"], page["image"]["height"]) > 1500, (
+            "a printed page stays legible"
+        )
+    assert not any("held" in p["image"]["url"] for p in data["pages"])
+
+
+def test_the_development_pages_hold_both_reads_the_rules_and_the_decisions():
+    data = _committed(DEVELOPMENT)
+    read = [f for f in data["fields"] if f["value"] is not None]
+    assert len(read) > 1000
+    assert all(f["reread_status"] != "not_reread" for f in read), "every read value was read again"
+    assert {f["status"] for f in data["fields"]} == {"accepted", "review", "abstained"}
+    held = [r for r in data["rule_results"] if r["ok"]]
+    assert held and all(r["equation"] and " = " in r["equation"] for r in held)
+    for f in data["fields"]:
+        for flag in f["flags"]:
+            if flag["check"] in rules.CHECKS and flag["rule"] != "unresolvable":
+                failed = [r for r in data["rule_results"] if not r["ok"]]
+                assert any(
+                    r["rule"] == flag["rule"] and f["field_id"] in r["fields"] for r in failed
+                )
+    assert all(f["row"] for f in data["fields"]) and all(
+        f["line"] is None or f["row"].isdigit() for f in data["fields"]
+    )
+
+
+@pytest.mark.parametrize("run", ALL_BUNDLES)
+def test_every_document_type_lists_its_rules_and_every_approval_its_evidence(run):
+    types = {t["name"]: t for t in _committed(run)["doc_types"]}
+    assert {"ledger_card", "payment_memo"} <= set(types)
+    templates = [t for t in types.values() if t["kind"] == "template"]
+    assert len(templates) == 5 and all(t["approval"] for t in templates)
+    for t in templates:
+        approval = t["approval"]
+        assert approval["approved_by"] and approval["approved_on"] and approval["drafted_from"]
+        evidence = ROOT / approval["evidence_file"]
+        assert hashlib.sha256(evidence.read_bytes()).hexdigest() == approval["evidence_sha256"]
+        for rule in t["rules"]:
+            e = rule["evidence"]
+            assert e is not None and e["held"] + e["failed"] == e["evaluated"] <= e["applies"], (
+                rule["id"]
+            )
+            assert rule["id"].startswith(t["name"] + ".") and rule["equation"]
+    assert all(
+        t["approval"] is None and t["rules"] for t in types.values() if t["kind"] == "built-in"
+    )
+
+
+def test_a_run_enables_the_types_its_config_named():
+    sy = {t["name"]: t["enabled"] for t in _committed("test-archivist-A")["doc_types"]}
+    de = {t["name"]: t["enabled"] for t in _committed(DEVELOPMENT)["doc_types"]}
+    assert (
+        sy["ledger_card"]
+        and sy["payment_memo"]
+        and not any(v for k, v in sy.items() if k not in ("ledger_card", "payment_memo"))
+    )
+    assert not de["ledger_card"] and sum(de.values()) == 5
