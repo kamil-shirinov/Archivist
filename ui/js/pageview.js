@@ -74,27 +74,17 @@ export class PageView {
 
   // --- marks ----------------------------------------------------------------------------------------
 
-  // A pen loop round a value, in a tone (red for flagged, gold for pointing, grey for unread); where the
-  // bundle has none for it, a rounded box round its citation instead.
+  // The mark the bundle holds for a value, in a tone (red for flagged, gold for pointing, grey for
+  // unread): a pen loop, an underline, or, where the page is too tight for either, the cited box as a
+  // thin outline inside its edge. A value with no mark gets none drawn: nothing is made up here.
   loop(field, tone, { draw = false, hot = false } = {}) {
-    let node = null;
-    const cls = `pen ${tone}${draw && !reduced ? " draw" : ""}`;
-    if (field.loop) {
-      node = el("path", { class: cls, d: field.loop.d, "stroke-width": field.loop.width, pathLength: 1 });
-    } else if (field.box) {
-      const b = field.box, pad = 4;
-      node = el("rect", {
-        class: `${cls} box`,
-        x: b.x0 - pad,
-        y: b.y0 - pad,
-        width: b.x1 - b.x0 + 2 * pad,
-        height: b.y1 - b.y0 + 2 * pad,
-        rx: 6,
-        "stroke-width": 3,
-        pathLength: 1,
-      });
-    }
-    if (!node) return null;
+    if (!field.loop) return null;
+    const node = el("path", {
+      class: `pen ${tone}${draw && !reduced ? " draw" : ""}${field.loop.kind === "box" ? " outline" : ""}`,
+      d: field.loop.d,
+      "stroke-width": field.loop.width,
+      pathLength: 1,
+    });
     node.dataset.field = field.field_id;
     this.ov.appendChild(node);
     const entry = this.marks.get(field.field_id) || {};
@@ -103,12 +93,16 @@ export class PageView {
     return node;
   }
 
+  // A wash of colour on the cited box, no bigger than the box.
   highlight(field, { still = false } = {}) {
     const b = field.box;
     if (!b) return null;
-    const r = el("rect", { class: `hl${still ? " still" : ""}`, x: b.x0 - 2, y: b.y0 - 2, width: b.x1 - b.x0 + 4, height: b.y1 - b.y0 + 4, rx: 3 });
+    const r = el("rect", { class: `hl${still ? " still" : ""}`, x: b.x0, y: b.y0, width: b.x1 - b.x0, height: b.y1 - b.y0, rx: 2 });
     r.dataset.hl = field.field_id;
     this.ov.insertBefore(r, this.ov.firstChild);
+    const entry = this.marks.get(field.field_id) || {};
+    entry.hl = r;
+    this.marks.set(field.field_id, entry);
     return r;
   }
 
@@ -153,18 +147,17 @@ export class PageView {
 
   clearOverlay(selector) {
     this.ov.querySelectorAll(selector).forEach((n) => {
-      if (n.dataset.field && this.marks.get(n.dataset.field)) {
-        const m = this.marks.get(n.dataset.field);
-        for (const k of ["stat", "hot"]) if (m[k] === n) delete m[k];
-      }
+      const id = n.dataset.field || n.dataset.hl, m = id && this.marks.get(id);
+      if (m) for (const k of ["stat", "hot", "hl"]) if (m[k] === n) delete m[k];
       n.remove();
     });
   }
 
-  // The element the thread should point at for a field: its hot loop, else its status loop.
+  // The element the thread should point at for a field: its hot mark, else its status mark, else
+  // its wash.
   target(fieldId) {
     const m = this.marks.get(fieldId);
-    return (m && (m.hot || m.stat)) || null;
+    return (m && (m.hot || m.stat || m.hl)) || null;
   }
 
   // The field whose ink or box holds a point of the scan (the smallest, where boxes overlap).

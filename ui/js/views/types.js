@@ -42,7 +42,7 @@ function approval(a) {
 function card(t, open) {
   const status =
     t.kind === "built-in" ? '<span class="st st-ok">Built in</span>' : `<span class="st st-ok">Approved</span>`;
-  const used = t.enabled ? `Read in this run: ${int(t.pages)} ${t.pages === 1 ? "page" : "pages"}` : "Not read in this run";
+  const used = !t.enabled ? "Not read in this run" : t.pages ? `Read in this run: ${int(t.pages)} ${t.pages === 1 ? "page" : "pages"}` : "Named in this run; no page of it was read";
   const who = t.approval ? ` Approved by ${esc(t.approval.approved_by)} on ${day(t.approval.approved_on)}.` : "";
   const cols = t.columns.map((c) => `<span class="tag" title="${esc(c.kind)}">${esc(c.printed)}</span>`).join(" ");
   return `<details class="panel type-d"${open ? " open" : ""}><summary><div><h2>${esc(t.title)}</h2><p>${esc(t.description.replace(/\.$/, ""))}.${who}</p></div><div class="tys">${status}<span class="m">${used}</span></div></summary>

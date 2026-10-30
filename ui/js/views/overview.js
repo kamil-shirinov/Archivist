@@ -10,10 +10,11 @@ const longDate = (iso) => new Date(iso).toLocaleDateString("en-GB", { day: "nume
 export function runFacts() {
   const r = S.bundle.run, v = r.verification, x = r.extraction;
   const pages = S.bundle.pages.length;
+  const attempted = v.counts?.pages ?? pages; // a page the run recorded nothing for is left out of the bundle
   const cost = r.extraction_run === r.run_id ? v.cost_usd || 0 : (v.cost_usd || 0) + (x.cost_usd || 0); // one record, read and verified together
   const minutes = Math.round((new Date(v.finished_at) - new Date(v.started_at)) / 60000);
-  const seconds = (new Date(v.finished_at) - new Date(v.started_at)) / 1000 / pages;
-  return { pages, cost, minutes, seconds, perPage: cost / pages, read: longDate(v.finished_at) };
+  const seconds = (new Date(v.finished_at) - new Date(v.started_at)) / 1000 / attempted;
+  return { pages, attempted, cost, minutes, seconds, perPage: cost / attempted, read: longDate(v.finished_at) };
 }
 
 function counts() {
@@ -27,7 +28,7 @@ function render() {
   $("ov-crumb").textContent = r.collection;
   const kinds = [n.ledger && `${n.ledger} ledger cards`, n.memo && `${n.memo} payment memos`, n.table && `${n.table} printed ${n.table === 1 ? "table" : "tables"}`, n.other && `${n.other} other pages`].filter(Boolean).join(", ");
   const what = r.source === "synthetic" ? `${f.pages} ${pagesWhat(r).toLowerCase()}` : `${f.pages} pages of the ${r.publication ? r.publication.title : "archive"}, development pages`;
-  $("ov-sub").textContent = `${what}: ${kinds}. Read on ${f.read} by ${w.models}.`;
+  $("ov-sub").textContent = `${what}: ${kinds}. Read on ${f.read} by ${w.models}.${r.description ? " " + r.description : ""}`;
   const pct = (x) => `${(x / t.all * 100).toFixed(1)}%`;
   $("ov-kpis").innerHTML = [
     ["ok", "Values verified", pct(t.ok), `${int(t.ok)} of ${int(t.all)} values`],
@@ -54,10 +55,10 @@ function render() {
 
   const rules = new Set(S.bundle.rule_results.map((x) => x.rule));
   $("runinfo").innerHTML = [
-    ["Read", `${f.read}, ${f.pages} pages in ${f.minutes} minutes`],
+    ["Read", `${f.read}, ${f.attempted === f.pages ? `${f.pages} pages` : `${f.attempted} pages, ${f.pages} kept,`} in ${f.minutes} minutes`],
     ["Models", w.models],
     ["Rules applied", `${rules.size} rules, ${int(S.bundle.rule_results.length)} equations checked`],
-    ["Cost", `$${f.cost.toFixed(2)}, about $${f.perPage.toFixed(3)} a page`],
+    ["Cost", `$${f.cost.toFixed(2)}, about $${f.perPage.toFixed(3)} a page${f.attempted === f.pages ? "" : " read"}`],
     ["Run", `${r.run_id}, policy ${r.policy}`],
   ]
     .map(([k, v]) => `<div class="runrow"><dt>${k}</dt><dd>${esc(v)}</dd></div>`)

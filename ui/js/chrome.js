@@ -86,7 +86,7 @@ function collMenu() {
   return [...by]
     .map(
       ([name, runs]) =>
-        `<div class="cm-g"><b>${esc(name)}</b></div>` +
+        `<div class="cm-g"><b>${esc(name)}</b>${runs.find((x) => x.description) ? `<p>${esc(runs.find((x) => x.description).description)}</p>` : ""}</div>` +
         runs
           .map(
             (x) =>

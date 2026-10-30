@@ -23,6 +23,7 @@ const hasAccounts = () => S.docs.some((d) => d.account_no);
 
 function render() {
   $("dc-crumb").innerHTML = `<a href="#overview">${esc(S.bundle.run.collection)}</a>/<span>Documents</span>`;
+  $("dc-sub").textContent = `Every page in ${S.bundle.run.collection}. Filter by type, account or status.${S.bundle.run.description ? " " + S.bundle.run.description : ""}`;
   const accounts = hasAccounts(), hasCondition = !!S.truth;
   $("f-acct-l").hidden = !accounts;
   $("doc-head").innerHTML = accounts

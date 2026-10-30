@@ -143,3 +143,4 @@ details.type-d{margin-top:0}
 .chartp text.lbl{fill:var(--ink);font-weight:600;paint-order:stroke;stroke:var(--surface);stroke-width:5px;stroke-linejoin:round}
 .types{grid-template-columns:minmax(0,1fr)}
 .integrity dd,.mono{overflow-wrap:anywhere}
+.coll-menu .cm-g p{margin:2px 0 0;font-size:12px;line-height:1.45;color:var(--ink-2);font-weight:400}

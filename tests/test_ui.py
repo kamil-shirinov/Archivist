@@ -56,6 +56,10 @@ VIEWS = {
 
 
 DEV = "?run=treasury-development"
+DESCRIPTION = (
+    "The development run read four pages and recorded no values for a fifth "
+    "(June 1984, page 66), which is left out of this collection."
+)
 TABLE = "1939-12_p053"
 # The development collection of real Treasury Bulletin pages, in the same views.
 VIEWS |= {
@@ -363,11 +367,12 @@ def test_the_development_pages_are_marked_as_development_with_their_real_titles(
     assert tab.eval("document.getElementById('sample').textContent") == "Development pages"
     assert tab.eval("document.getElementById('coll-name').textContent") == "US Treasury Bulletin"
     rows = tab.eval("[...document.querySelectorAll('#doc-rows tr')].map(r => r.textContent)")
-    assert len(rows) == 5
+    assert len(rows) == 4
     assert any(
         "December 1939, page 53" in r and "Short-Term Foreign Liabilities" in r for r in rows
     )
-    assert any("June 1984, page 66" in r for r in rows)
+    assert not any("1984" in r for r in rows), "the page the run recorded nothing for is left out"
+    assert DESCRIPTION in tab.eval("document.getElementById('dc-sub').textContent")
     assert tab.errors == []
 
 
@@ -389,12 +394,42 @@ def test_a_printed_table_is_a_grid_of_its_cells_that_can_be_pointed_at(tab, site
     assert tab.errors == []
 
 
-def test_a_page_the_run_did_not_read_says_so(tab, site):
-    load(tab, site, f"{DEV}#doc-1984-06_p066")
-    tab.wait_for(
-        "document.getElementById('dd-crumb').textContent === 'June 1984, page 66'"
-        " && document.getElementById('drecord').textContent.includes('None of this page')"
+def test_the_collection_says_it_read_four_pages_and_left_out_a_fifth(tab, site):
+    load(tab, site, f"{DEV}#overview")
+    settle(tab, VIEWS["overview"][1])
+    assert DESCRIPTION in tab.eval("document.getElementById('ov-sub').textContent")
+    assert "5 pages, 4 kept" in tab.eval("document.getElementById('runinfo').textContent")
+    tab.eval("document.getElementById('coll').click()")
+    tab.wait_for("!document.getElementById('coll-menu').hidden")
+    assert DESCRIPTION in tab.eval("document.getElementById('coll-menu').textContent")
+    tab.eval("document.dispatchEvent(new MouseEvent('click', {bubbles: true}))")
+    tab.eval("location.hash = '#doc-1984-06_p066'")  # a page that is not in the collection
+    tab.wait_for("location.hash === '#documents'")
+    assert tab.errors == []
+
+
+def test_nothing_is_drawn_on_a_page_that_the_bundle_does_not_hold(tab, site):
+    data = json.loads((BUNDLES / "treasury-development" / "bundle.json").read_text("utf-8"))
+    load(tab, site, f"{DEV}#doc-{TABLE}")
+    settle(tab, VIEWS["development-document"][1])
+    held = {f["loop"]["d"] for f in data["fields"] if f["page_id"] == TABLE and f["loop"]}
+    drawn = tab.eval(
+        "[...document.querySelectorAll('#dpaper .ov .pen')].map(p => p.getAttribute('d'))"
     )
+    assert drawn and set(drawn) <= held, "every mark on the page is a mark the bundle holds"
+    assert tab.eval("document.querySelectorAll('#dpaper .ov rect.pen').length") == 0, (
+        "no ring of its own"
+    )
+    # a wash is the cited box and no bigger
+    cell = "document.querySelector('#drecord [data-field$=\":15:germany\"]')"
+    tab.eval(f"{cell}.dispatchEvent(new MouseEvent('mouseover', {{bubbles: true}}))")
+    tab.wait_for("document.querySelectorAll('#dpaper .ov .hl').length === 1")
+    box = next(f for f in data["fields"] if f["field_id"].endswith(f"{TABLE}:15:germany"))["box"]
+    wash = tab.eval(
+        "(() => { const r = document.querySelector('#dpaper .ov .hl'); "
+        "return [+r.getAttribute('x'), +r.getAttribute('y'), +r.getAttribute('width'), +r.getAttribute('height')]; })()"
+    )
+    assert wash == [box["x0"], box["y0"], box["x1"] - box["x0"], box["y1"] - box["y0"]]
     assert tab.errors == []
 
 
@@ -432,7 +467,9 @@ def test_the_collection_menu_lists_every_collection_and_run_and_switches(tab, si
     tab.wait_for("!document.getElementById('coll-menu').hidden")
     items = tab.eval("[...document.querySelectorAll('#coll-menu .cm-i')].map(b => b.dataset.run)")
     assert items == ["test-archivist-A", "test-archivist-B", "treasury-development"]
-    groups = tab.eval("[...document.querySelectorAll('#coll-menu .cm-g')].map(g => g.textContent)")
+    groups = tab.eval(
+        "[...document.querySelectorAll('#coll-menu .cm-g b')].map(g => g.textContent)"
+    )
     assert groups == ["Box 14", "US Treasury Bulletin"]
     tab.eval("document.querySelector('#coll-menu [data-run=treasury-development]').click()")
     tab.wait_for(
