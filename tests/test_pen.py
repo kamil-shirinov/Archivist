@@ -64,8 +64,12 @@ def centre_in(word, box, slack: float = 1.0) -> bool:
     return box[0] - slack <= cx <= box[2] + slack and box[1] - slack <= cy <= box[3] + slack
 
 
-def problems(loop: dict, words: list[list[int]]) -> list[str]:
-    """Why a bundle's loop does not clear its own ink and every other word, if it doesn't."""
+BOX_SLACK = 0.15  # px: the path's coordinates are rounded to a tenth
+
+
+def problems(loop: dict, words: list[list[int]], box: dict | None = None) -> list[str]:
+    """Why a bundle's mark does not clear its own ink and every other word, if it doesn't. A box
+    outline has no ink to clear (it marks the cell): it must lie inside the cited box instead."""
     ink, half = loop["ink"], loop["width"] / 2
     points = path_points(loop["d"])
     found = []
@@ -75,12 +79,22 @@ def problems(loop: dict, words: list[list[int]]) -> list[str]:
         own = distance_to_box(points, ink) - half
         if own < OWN_CLEAR:
             found.append(f"{own:.2f}px from its own ink, wanted {OWN_CLEAR}")
-    else:
+    elif loop["kind"] == "underline":
         if points[:, 1].min() < ink[3]:
             found.append("an underline above the bottom of its ink")
         own = distance_to_box(points, ink) - half
         if own < UNDERLINE_CLEAR:
             found.append(f"{own:.2f}px under its own ink, wanted {UNDERLINE_CLEAR}")
+    else:
+        assert box is not None, "a box outline is measured against its box"
+        lo_, hi_ = points.min(axis=0) - half, points.max(axis=0) + half
+        if (
+            lo_[0] < box["x0"] - BOX_SLACK
+            or lo_[1] < box["y0"] - BOX_SLACK
+            or hi_[0] > box["x1"] + BOX_SLACK
+            or hi_[1] > box["y1"] + BOX_SLACK
+        ):
+            found.append(f"an outline bigger than its box {box}: {lo_.round(1)} to {hi_.round(1)}")
     lo, hi = points.min(axis=0) - 40, points.max(axis=0) + 40
     for word in words:
         if centre_in(word, ink):
@@ -213,7 +227,7 @@ def test_a_word_another_fields_box_holds_is_never_taken_into_a_value():
     assert near(loops["A"].ink, first, 1) and near(loops["B"].ink, second, 1)
 
 
-def test_a_crowded_value_gets_an_underline_and_one_with_no_room_gets_none():
+def test_a_crowded_value_gets_an_underline_and_one_with_no_room_its_box():
     image, draw = page()
     target = word_at(draw, 300, 150, 5)
     word_at(draw, 300 - 12 - 51, 150, 4)  # a word a space away on the left and on the right
@@ -229,7 +243,12 @@ def test_a_crowded_value_gets_an_underline_and_one_with_no_room_gets_none():
     word_at(draw, 300, target[3] + 6, 5)  # and now close below too: nowhere is clear
     text_height, found = found_words(image)
     assert len(found) == 5
-    assert pen.loops_for(fields, found, text_height) == {}
+    # no loop and no underline: the value is marked by its cited box, which here is its ink's own
+    boxed = pen.loops_for(fields, found, text_height)["A"]
+    assert boxed.kind == "box"
+    assert (
+        problems(as_bundle_loop(boxed), [list(w) for w in found], fields["A"][0].model_dump()) == []
+    )
 
 
 def test_a_loop_stays_on_the_page():
@@ -245,12 +264,65 @@ def test_a_loop_stays_on_the_page():
     assert path_points(pen.path_data(free.points))[:, 0].min() < 0
 
 
-def test_no_ink_in_the_box_no_loop():
+def packed_rows(draw: ImageDraw.ImageDraw, rows: int = 4, pitch: int = 21, gap: int = 14):
+    """Rows of figures a few pixels apart, as in a printed table: words 16px tall on a 21px pitch."""
+    cells = {}
+    for r in range(rows):
+        x = 40
+        for c in range(3):
+            cells[(r, c)] = word_at(draw, x, 40 + r * pitch, 4)
+            x += 4 * (GLYPH + GAP) + gap
+    return cells
+
+
+def test_a_value_in_a_packed_table_is_marked_by_its_cited_box_inside_its_edge():
+    image, draw = page()
+    cells = packed_rows(draw)
+    text_height, found = found_words(image)
+    assert len(found) == 12
+    target = cells[(1, 1)]
+    box = BBox(x0=target[0] - 5, y0=target[1] - 2, x1=target[2] + 5, y1=target[3] + 3)
+    marks = pen.loops_for({"A": (box, None)}, found, text_height, image.size)
+    mark = marks["A"]
+    assert mark.kind == "box"
+    bundle_mark = as_bundle_loop(mark)
+    words = [list(w) for w in found]
+    assert problems(bundle_mark, words, box.model_dump()) == []
+    points = path_points(bundle_mark["d"])
+    half = mark.width / 2
+    assert points.min(axis=0)[0] - half >= box.x0 - BOX_SLACK
+    assert points.max(axis=0)[1] + half <= box.y1 + BOX_SLACK
+    assert mark.width <= 2.0  # thin
+
+
+def test_a_box_a_word_straddles_gets_no_mark_rather_than_one_that_touches_it():
+    image, draw = page()
+    cells = packed_rows(draw)
+    text_height, found = found_words(image)
+    target = cells[(1, 1)]
+    # a box that runs 10px into the next column's figures, too little of them to be its own
+    box = BBox(x0=target[0] - 5, y0=target[1] - 2, x1=cells[(1, 2)][0] + 10, y1=target[3] + 3)
+    assert pen.loops_for({"A": (box, None)}, found, text_height, image.size) == {}
+
+
+def test_a_blank_cell_that_went_to_review_is_shown_by_its_box():
+    image, draw = page()
+    cells = packed_rows(draw)
+    text_height, found = found_words(image)
+    gap = cells[(2, 0)][2] + 3, cells[(2, 0)][1] - 2, cells[(2, 1)][0] - 3, cells[(2, 0)][3] + 3
+    blank = BBox(x0=gap[0], y0=gap[1], x1=gap[2], y1=gap[3])
+    marks = pen.loops_for({}, found, text_height, image.size, blanks={"B": blank})
+    assert marks["B"].kind == "box"
+    assert problems(as_bundle_loop(marks["B"]), [list(w) for w in found], blank.model_dump()) == []
+
+
+def test_no_ink_in_the_box_the_cell_is_marked_by_its_box():
     image, draw = page()
     word_at(draw, 100, 100, 3)
     text_height, found = found_words(image)
     empty = BBox(x0=500, y0=300, x1=600, y1=330)
-    assert pen.loops_for({"A": (empty, None)}, found, text_height) == {}
+    # nothing to ring and no ink: the cell itself is what there is to show
+    assert pen.loops_for({"A": (empty, None)}, found, text_height)["A"].kind == "box"
 
 
 def test_a_loop_depends_on_the_page_the_box_and_the_field_id_alone():
@@ -278,20 +350,22 @@ def test_path_data_is_a_path_the_ui_can_draw_and_this_module_reads_back():
 def test_every_loop_in_the_bundle_clears_its_own_word_and_its_neighbours(run):
     data = json.loads((ROOT / bundle.BUNDLES_DIR / run / bundle.BUNDLE_FILE).read_text("utf-8"))
     words = {p["page_id"]: p["words"] for p in data["pages"]}
-    kinds = {"loop": 0, "underline": 0}
+    kinds = {"loop": 0, "underline": 0, "box": 0}
     wrong = []
     for field in data["fields"]:
         loop = field["loop"]
         if loop is None:
             continue
         kinds[loop["kind"]] += 1
-        for why in problems(loop, words[field["page_id"]]):
+        for why in problems(loop, words[field["page_id"]], field["box"]):
             wrong.append(f"{field['field_id']}: {why}")
     assert not wrong, f"{len(wrong)} of {sum(kinds.values())} loops: " + "; ".join(wrong[:8])
     if data["run"]["source"] == "synthetic":
         # The loop is the rule and the underline the exception. A printed table is packed too tight
         # for that (a value there is mostly shown by its box instead): only clearance holds.
         assert kinds["loop"] > 10 * kinds["underline"] > 0
+    else:
+        assert kinds["box"] > 0  # a printed table is mostly marked by its cells
 
 
 @pytest.mark.parametrize("run", BUNDLES)
@@ -299,7 +373,8 @@ def test_a_value_with_a_loop_has_a_box_and_something_written_in_it(run):
     data = json.loads((ROOT / bundle.BUNDLES_DIR / run / bundle.BUNDLE_FILE).read_text("utf-8"))
     for field in data["fields"]:
         if field["loop"] is not None:
-            assert field["box"] is not None and field["value"], field["field_id"]
+            assert field["box"] is not None, field["field_id"]
+            assert field["value"] or field["loop"]["kind"] == "box", field["field_id"]
     flagged = [f for f in data["fields"] if f["status"] != "accepted"]
     if data["run"]["source"] == "synthetic":
         assert sum(f["loop"] is not None for f in flagged) > 0.7 * len(flagged)

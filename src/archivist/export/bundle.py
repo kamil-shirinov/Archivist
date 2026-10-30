@@ -34,6 +34,7 @@ the file on disk is byte-identical and valid.
 from __future__ import annotations
 
 import argparse
+import calendar
 import hashlib
 import json
 import os
@@ -78,7 +79,7 @@ from archivist.export.schema import (
 )
 from archivist.pipeline.extract import IMAGE_SUFFIXES, RUNS_DIR, load_predictions
 from archivist.pipeline.verify import VERDICTS_FILE, field_kind, load_verdicts
-from archivist.schema import Flag, PageExtraction, PageGT, VerdictRecord
+from archivist.schema import BBox, Flag, PageExtraction, PageGT, VerdictRecord
 
 BUNDLES_DIR = Path("data/bundles")
 BUNDLE_FILE = "bundle.json"
@@ -87,8 +88,8 @@ TRUTH_FILE = "truth.json"
 STATUS_ORDER = ("abstained", "review", "accepted")  # worst first
 FAILED = "failed"
 REAL_SPLIT_PREFIX = "real"  # data/real, data/real_occ, data/real_frb: public-domain scans
-# What the app calls a split's pages: the design's name for the test set, and the archive's own title
-# for its real pages.
+# What the app calls a split's pages: the design's name for the test set, and the archive's own
+# title for its real pages.
 COLLECTIONS = {"test": "Box 14", "real": "US Treasury Bulletin"}
 # Development runs on real pages keep their single read and their verdicts in one folder. Only the
 # development side is listed: a held-out result is never exported (build refuses one).
@@ -410,28 +411,81 @@ def _max_side(split: str) -> int:
     return web.MAX_SIDE_REAL if split.startswith(REAL_SPLIT_PREFIX) else web.MAX_SIDE
 
 
+NUMBERS = ("no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten")
+ORDINALS = (
+    "first",
+    "second",
+    "third",
+    "fourth",
+    "fifth",
+    "sixth",
+    "seventh",
+    "eighth",
+    "ninth",
+    "tenth",
+)
+
+
+def _in_words(n: int, words: Sequence[str]) -> str:
+    return words[n] if n < len(words) else str(n)
+
+
+def _issue_name(page_id: str) -> str:
+    issue, _, number = page_id.rpartition("_p")
+    year, _, month = issue.partition("-")
+    return f"{calendar.month_name[int(month)]} {year}, page {int(number)}"
+
+
+def _left_out(extracted: Sequence[PageExtraction]) -> list[str]:
+    """The pages of a development run on real pages that recorded no value at all."""
+    return [p.page_id for p in extracted if p.values and all(v.value is None for v in p.values)]
+
+
+def _description(read: Sequence[str], left_out: Sequence[str]) -> str | None:
+    """What a development run read and what it left out, for the collection it makes."""
+    if not left_out:
+        return None
+    n = len(read)
+    if len(left_out) == 1:
+        extra = f"a {ORDINALS[n] if n < len(ORDINALS) else 'further'}"
+    else:
+        extra = f"{_in_words(len(left_out), NUMBERS)} more"
+    named = ", ".join(_issue_name(p) for p in left_out)
+    return (
+        f"The development run read {_in_words(n, NUMBERS)} pages and recorded no values for "
+        f"{extra} ({named}), which is left out of this collection."
+    )
+
+
 def _scans(images: Path) -> dict[str, Path]:
     return {p.stem: p for p in sorted(images.iterdir()) if p.suffix.lower() in IMAGE_SUFFIXES}
 
 
 def _loops(verdicts: Sequence[VerdictRecord], ink: dict[str, Ink]) -> dict[str, Loop]:
-    """A pen loop for each value that has a box and something written in it."""
+    """A mark for each value that has a box: with something written in it, and a blank that went to
+    review (the cell is what a person is shown)."""
     boxes: dict[str, dict[str, tuple]] = {}
+    blanks: dict[str, dict[str, BBox]] = {}
     for v in verdicts:
-        if v.evidence.citation is not None and v.value:
+        if v.evidence.citation is None:
+            continue
+        if v.value:
             boxes.setdefault(v.page_id, {})[v.field_id] = (
                 v.evidence.citation.bbox,
                 v.evidence.crop,
             )
+        elif v.status != "accepted":
+            blanks.setdefault(v.page_id, {})[v.field_id] = v.evidence.citation.bbox
     out: dict[str, Loop] = {}
-    for page_id, fields in boxes.items():
+    for page_id in boxes.keys() | blanks.keys():
         text_height, found, size = ink[page_id]
-        for field_id, loop in pen.loops_for(fields, found, text_height, size).items():
+        marks = pen.loops_for(boxes.get(page_id, {}), found, text_height, size, blanks.get(page_id))
+        for field_id, mark in marks.items():
             out[field_id] = Loop(
-                kind=loop.kind,
-                d=pen.path_data(loop.points),
-                width=loop.width,
-                ink=[round(x) for x in loop.ink],
+                kind=mark.kind,
+                d=pen.path_data(mark.points),
+                width=mark.width,
+                ink=[round(x) for x in mark.ink],
             )
     return out
 
@@ -656,6 +710,12 @@ def build(
     real = split.startswith(REAL_SPLIT_PREFIX)
     extracted = load_predictions(source_dir / "predictions.jsonl")
     verdicts = load_verdicts(run_dir / VERDICTS_FILE)
+    description = None
+    if real:  # a page the run recorded no value for is not part of the collection
+        left_out = _left_out(extracted)
+        extracted = [p for p in extracted if p.page_id not in left_out]
+        verdicts = [v for v in verdicts if v.page_id not in left_out]
+        description = _description([p.page_id for p in extracted], left_out)
 
     scans = _real_scans([p.page_id for p in extracted]) if real else _scans(images)
     ink = {page_id: _ink(path) for page_id, path in scans.items()}
@@ -701,6 +761,7 @@ def build(
             arm=_arm(models),
             models=models,
             stage="test" if split == "test" else "development",
+            description=description,
             publication=_publication() if real else None,
         ),
         pages=pages,
@@ -792,6 +853,7 @@ def index_entry(bundle: Bundle, bundles_dir: Path = BUNDLES_DIR) -> dict:
         "split": run.split,
         "source": run.source,
         "stage": run.stage,
+        "description": run.description,
         "arm": run.arm,
         "models": [m.name for m in run.models],
         "policy": run.policy,

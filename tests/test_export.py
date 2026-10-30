@@ -751,16 +751,43 @@ def test_a_held_out_run_is_never_exported(tmp_path):
 
 def test_real_pages_carry_their_printed_title_issue_and_page_and_a_full_size_image():
     data = _committed(DEVELOPMENT)
-    issues = {p["issue"] for p in data["pages"]}
-    assert issues <= {f"1939-{m:02d}" for m in range(1, 13)} | {"1982-06", "1983-06", "1984-06"}
+    assert [p["page_id"] for p in data["pages"]] == [
+        "1939-12_p025",
+        "1939-12_p053",
+        "1939-12_p056",
+        "1939-12_p060",
+    ]
     for page in data["pages"]:
         assert page["page_id"] == f"{page['issue']}_p{page['number']:03d}"
         assert page["title"], page["page_id"]
         assert page["image"]["url"] == f"../../pages/real/{page['page_id']}.jpg"
-        assert max(page["image"]["width"], page["image"]["height"]) > 1500, (
-            "a printed page stays legible"
-        )
+        assert max(page["image"]["width"], page["image"]["height"]) > 1500, "a printed page stays legible"
     assert not any("held" in p["image"]["url"] for p in data["pages"])
+
+
+def test_a_page_the_run_recorded_no_value_for_is_left_out_and_the_description_says_so():
+    data = _committed(DEVELOPMENT)
+    run = data["run"]
+    assert run["description"] == (
+        "The development run read four pages and recorded no values for a fifth "
+        "(June 1984, page 66), which is left out of this collection."
+    )
+    assert not any(f["page_id"] == "1984-06_p066" for f in data["fields"])
+    assert not any(d["page_id"] == "1984-06_p066" for d in data["documents"])
+    assert not (ROOT / "data" / "pages" / "real" / "1984-06_p066.jpg").exists()
+    # what the run itself recorded is kept as written: five pages attempted
+    assert run["verification"]["counts"]["pages"] == 5
+    assert all(f["value"] is not None for f in data["fields"] if f["status"] == "accepted")
+    index = json.loads((ROOT / bundle.BUNDLES_DIR / bundle.INDEX_FILE).read_text("utf-8"))
+    assert {e["run_id"]: e["description"] for e in index["runs"]}[DEVELOPMENT] == run["description"]
+
+
+def test_only_a_real_page_with_no_value_is_left_out_and_a_synthetic_run_keeps_every_page(built):
+    assert built.run.description is None  # a hand-built run's blank and failed pages stay
+    assert {p.page_id for p in built.pages} >= {"blank", "lost"}
+    assert bundle._description(["a", "b", "c", "d"], []) is None
+    assert "four pages" in bundle._description(["a"] * 4, ["1984-06_p066"])
+    assert "two more" in bundle._description(["a"] * 4, ["1984-06_p066", "1983-06_p092"])
 
 
 def test_the_development_pages_hold_both_reads_the_rules_and_the_decisions():
@@ -768,7 +795,7 @@ def test_the_development_pages_hold_both_reads_the_rules_and_the_decisions():
     read = [f for f in data["fields"] if f["value"] is not None]
     assert len(read) > 1000
     assert all(f["reread_status"] != "not_reread" for f in read), "every read value was read again"
-    assert {f["status"] for f in data["fields"]} == {"accepted", "review", "abstained"}
+    assert {f["status"] for f in data["fields"]} == {"accepted", "review"}
     held = [r for r in data["rule_results"] if r["ok"]]
     assert held and all(r["equation"] and " = " in r["equation"] for r in held)
     for f in data["fields"]:
@@ -813,4 +840,4 @@ def test_a_run_enables_the_types_its_config_named():
         and sy["payment_memo"]
         and not any(v for k, v in sy.items() if k not in ("ledger_card", "payment_memo"))
     )
-    assert not de["ledger_card"] and sum(de.values()) == 5
+    assert not de["ledger_card"] and sum(de.values()) == 5  # all five named; one read no page

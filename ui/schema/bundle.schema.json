@@ -858,12 +858,13 @@
       "type": "object"
     },
     "Loop": {
-      "description": "A pen loop round a value's ink (export/pen.py): clear of its own ink by a margin and of every\nother word, round for a short value and flatter for a long one, or an underline where the page\nis too crowded for a loop. Absent where the value has no ink or nothing fits.",
+      "description": "The mark on a value (export/pen.py): a pen loop round its ink, clear of its own ink by a\nmargin and of every other word, round for a short value and flatter for a long one; or, where\nthe page is too crowded for a loop, an underline; or, where it is too crowded for that, the\ncited box as a thin rounded outline inside its edge, no bigger than the box (it marks the cell,\nso it may touch its own ink, never another word). Absent where nothing clears the neighbours.",
       "properties": {
         "kind": {
           "enum": [
             "loop",
-            "underline"
+            "underline",
+            "box"
           ],
           "title": "Kind",
           "type": "string"
@@ -1347,6 +1348,17 @@
           "title": "Stage",
           "type": "string"
         },
+        "description": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Description"
+        },
         "publication": {
           "anyOf": [
             {
@@ -1372,6 +1384,7 @@
         "arm",
         "models",
         "stage",
+        "description",
         "publication"
       ],
       "title": "RunInfo",
@@ -1617,7 +1630,7 @@
   },
   "properties": {
     "schema_version": {
-      "default": "1.2",
+      "default": "1.3",
       "title": "Schema Version",
       "type": "string"
     },

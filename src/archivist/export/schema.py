@@ -10,6 +10,10 @@ Boxes are page pixels, origin top-left, of the page as scanned (Page.width, Page
 size its downsized image is. Every value is a string exactly as the extractor read it (or None when
 it didn't), never a number: the database adds parsed amounts beside the text.
 
+1.3 adds the box outline to a value's marks (Loop.kind "box": where a table is packed too tight
+for a loop or an underline, the cited box itself, run inside its edge), and a description of the
+run for the collection menu, which says which pages the run read and which it left out.
+
 1.2 adds the second collection and the document types: what a run's pages are (the publication, each
 page's printed title, issue and page number, and whether the run is a pre-registered test or only
 development pages), the row of each cell of a table, and every registered document type with its
@@ -32,7 +36,7 @@ from pydantic import BaseModel
 
 from archivist.schema import BBox
 
-SCHEMA_VERSION = "1.2"
+SCHEMA_VERSION = "1.3"
 SCHEMA_PATH = Path("ui/schema/bundle.schema.json")
 
 Status = Literal["accepted", "review", "abstained"]
@@ -77,9 +81,11 @@ class RunInfo(BaseModel):
     # where the reading models run: Meta's API, open-weights hosts, one of each, or not recorded
     arm: Literal["hosted", "open-weights", "mixed", "unknown"]
     models: list[ModelUse]  # each role's model, from the run's config
-    stage: Literal[
-        "test", "development"
-    ]  # the pre-registered test, or pages used to build the rules
+    # the pre-registered test, or pages used to build the rules
+    stage: Literal["test", "development"]
+    description: (
+        str | None
+    )  # for a collection that needs it: what the run read, and what it left out
     publication: Publication | None  # for real pages
 
 
@@ -135,14 +141,16 @@ class BundleFlag(BaseModel):
 
 
 class Loop(BaseModel):
-    """A pen loop round a value's ink (export/pen.py): clear of its own ink by a margin and of every
-    other word, round for a short value and flatter for a long one, or an underline where the page
-    is too crowded for a loop. Absent where the value has no ink or nothing fits."""
+    """The mark on a value (export/pen.py): a pen loop round its ink, clear of its own ink by a
+    margin and of every other word, round for a short value and flatter for a long one; or, where
+    the page is too crowded for a loop, an underline; or, where it is too crowded for that, the
+    cited box as a thin rounded outline inside its edge, no bigger than the box (it marks the cell,
+    so it may touch its own ink, never another word). Absent where nothing clears the neighbours."""
 
-    kind: Literal["loop", "underline"]
+    kind: Literal["loop", "underline", "box"]
     d: str  # the path as SVG data, "M x y L x y ...", in page pixels
     width: float  # the stroke's width in page pixels, which the clearance allows for
-    ink: list[int]  # the value's own ink: x0, y0, x1, y1
+    ink: list[int]  # the value's own ink (the box, where none is known): x0, y0, x1, y1
 
 
 class Reason(BaseModel):

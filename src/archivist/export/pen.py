@@ -14,7 +14,12 @@ wherever the value is pointed at:
    overshoot). Its clearance from every other word is exact, not sampled: the shape is convex, so
    a word's box meets it only if the box's nearest corner to the centre does. On a crowded page
    the margin is tightened and the shape changed, and where no loop fits the value gets an
-   underline instead; where not even that clears its neighbours it gets no loop at all.
+   underline instead.
+4. box_outline(): where neither fits (a table packed too tight), the cited box itself as a thin
+   rounded outline, run inside its edge so that it is no bigger than the box (a little further
+   in where a neighbouring word comes right up to the edge). It marks the cell, not the ink, so
+   it may touch the value's own ink, but never another word's; where a word straddles the box it
+   is not drawn, and the value has no mark at all.
 
 Nothing here reads ground truth, calls a model or varies between runs: a loop depends on the page
 image, the field's box and its id.
@@ -55,6 +60,10 @@ STEPS = 72  # segments in a loop's path
 STROKE = 0.2  # × text height
 UNDERLINE_AT = (0.25, 0.4, 0.6)  # × the ink's height below it
 MAX_TALL = 3.0  # a loop is never taller than this × the ink with its margin
+BOX_STROKE, BOX_MIN_STROKE = 0.1, 1.5  # a box's outline: × text height, at least this many pixels
+BOX_RADIUS = 3.0  # px, at most; a quarter of the shorter side where the box is small
+NEIGHBOUR = 0.5  # px of clear space a stroke keeps from another word
+ROUNDING = 0.15  # px: the path's coordinates are given to a tenth, which can move a point this far
 
 
 @dataclass(frozen=True)
@@ -276,6 +285,70 @@ def _underline(
     return None
 
 
+def _rounded(x0: float, y0: float, x1: float, y1: float, r: float) -> list[float]:
+    """The outline of a rounded rectangle as points, clockwise from the top edge's left end."""
+    out: list[float] = []
+    for cx, cy, start in (
+        (x1 - r, y0 + r, -90),
+        (x1 - r, y1 - r, 0),
+        (x0 + r, y1 - r, 90),
+        (x0 + r, y0 + r, 180),
+    ):
+        for k in range(5):
+            a = math.radians(start + 90 * k / 4)
+            out += [cx + r * math.cos(a), cy + r * math.sin(a)]
+    return out + out[:2]
+
+
+def _band(points: Sequence[float], step: float = 1.0) -> np.ndarray:
+    """The points of a path of straight segments, a point every `step` pixels or so."""
+    corners = np.array(points, dtype=float).reshape(-1, 2)
+    parts = [corners[:1]]
+    for a, b in zip(corners, corners[1:], strict=False):
+        n = max(1, int(np.ceil(np.hypot(*(b - a)) / step)))
+        parts.append(a + (b - a) * (np.arange(1, n + 1)[:, None] / n))
+    return np.vstack(parts)
+
+
+BOX_INSETS = (0.0, 1.5, 3.0)  # px: how far inside its edge the outline may be drawn to keep clear
+
+
+def box_outline(box: BBox, ink: Box | None, obstacles: np.ndarray, text_h: float) -> PenLoop | None:
+    """The cited box as a thin rounded outline inside its edge (a little further in where a
+    neighbouring word comes right up to the edge), if it keeps clear of every obstacle (rows of x0,
+    y0, x1, y1); else None."""
+    width = round(max(BOX_MIN_STROKE, BOX_STROKE * text_h), 1)
+    if len(obstacles):
+        near = obstacles[
+            (obstacles[:, 0] < box.x1 + 4)
+            & (obstacles[:, 2] > box.x0 - 4)
+            & (obstacles[:, 1] < box.y1 + 4)
+            & (obstacles[:, 3] > box.y0 - 4)
+        ]
+    else:
+        near = obstacles
+    for inset in BOX_INSETS:
+        x0, y0 = box.x0 + width / 2 + inset, box.y0 + width / 2 + inset
+        x1, y1 = box.x1 - width / 2 - inset, box.y1 - width / 2 - inset
+        if x1 - x0 < 2 or y1 - y0 < 2:
+            break
+        points = _rounded(x0, y0, x1, y1, min(BOX_RADIUS, 0.25 * min(x1 - x0, y1 - y0)))
+        band = _band(points)
+        clear = True
+        for q in near:
+            dx = np.maximum(np.maximum(q[0] - band[:, 0], band[:, 0] - q[2]), 0)
+            dy = np.maximum(np.maximum(q[1] - band[:, 1], band[:, 1] - q[3]), 0)
+            if np.hypot(dx, dy).min() - width / 2 < NEIGHBOUR + ROUNDING:
+                clear = False
+                break
+        if clear:
+            rect: Box = (float(box.x0), float(box.y0), float(box.x1), float(box.y1))
+            return PenLoop(
+                kind="box", points=[round(p, 1) for p in points], width=width, ink=ink or rect
+            )
+    return None
+
+
 def path_data(points: Sequence[float]) -> str:
     """The points as an SVG path, "M x y L x y ...", coordinates to a tenth of a pixel."""
     nums = [format(round(p, 1), "g") for p in points]
@@ -310,21 +383,31 @@ def loops_for(
     words_: Sequence[Box],
     text_h: float,
     size: tuple[int, int] | None = None,
+    blanks: dict[str, BBox] | None = None,
 ) -> dict[str, PenLoop]:
-    """A loop for each field (id -> its corrected box and the blind re-read's crop) whose box holds
-    ink and for which one fits: its own ink ringed, every word that isn't its own an obstacle, the
-    page (its width and height, if given) the limit."""
+    """A mark for each field (id -> its corrected box and the blind re-read's crop) whose box holds
+    ink: a loop round its own ink, else an underline, else, where the page is too tight for either,
+    its box as an outline; every word that isn't its own an obstacle, the page (its width and
+    height, if given) the limit. `blanks` are fields with nothing written (a blank that went to
+    review): they get the box outline alone, against every word."""
     held = claims(words_, {field_id: box for field_id, (box, _) in fields.items()})
     boxes = np.array(words_, dtype=float).reshape(-1, 4)
     out: dict[str, PenLoop] = {}
     for field_id, (box, crop) in fields.items():
         found = own_ink(words_, field_id, box, crop, held)
         if found is None:
+            if (outline := box_outline(box, None, boxes, text_h)) is not None:
+                out[field_id] = outline
             continue
         indices, ink = found
         keep = np.ones(len(boxes), dtype=bool)
         keep[indices] = False
-        loop = fit_loop(field_id, ink, boxes[keep], text_h, size)
-        if loop is not None:
-            out[field_id] = loop
+        mark = fit_loop(field_id, ink, boxes[keep], text_h, size) or box_outline(
+            box, ink, boxes[keep], text_h
+        )
+        if mark is not None:
+            out[field_id] = mark
+    for field_id, box in (blanks or {}).items():
+        if (outline := box_outline(box, None, boxes, text_h)) is not None:
+            out[field_id] = outline
     return out
