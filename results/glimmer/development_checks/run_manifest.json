@@ -1,0 +1,220 @@
+{
+  "status": "completed_development_only",
+  "model": "meta-models/Muse-Glimmer-30B",
+  "revision": "a4e59da52a7bc87ae7251dd5545c0dd437c44b68",
+  "executed_code_id": "ff870180a2c639fdffc9c7a67f03c7eddef9dc4dac4dd9020294b9e84b3662d1",
+  "checksums": {
+    "src/archivist/glimmer/development_checks.py": "c8448dd52f0c1751c54612868a3b8bf39d917584c03cb8e39a50e881ffcd8790",
+    "src/archivist/models/glimmer_batch.py": "f2f8c73991e27fd1bcc301a207a4c5f00bfaabbc9dcf7bf7b7b48e30de9d2de2",
+    "src/archivist/models/glimmer_development_backend.py": "89413c236524cb5f52fc7b8885fff778e5f067637d204cafd6d85b67005cb498",
+    "src/archivist/models/glimmer_allocation.py": "a11fd6587b28ba90c7c7d3f75e23bf95fa211db683a0a35a488c5ba86c18e424",
+    "src/archivist/models/glimmer_development_modal.py": "1240b44c4bcf5ad6cbb2eab1a0dffff608fd30973c69fbb27a98ffdc06e58e35",
+    "src/archivist/models/glimmer_runtime.py": "aa60e2d9e5f2a51055c5fe72215916e24c3d812fd22c16d46f581437aedad53e",
+    "src/archivist/models/glimmer_image.py": "91cabfb5304fb566a34c41df42f022c5a6242d87f036583f5c0c6213a11b5e3b",
+    "src/archivist/glimmer/phase2.py": "6c0c2996cdeb2fad5e70d042ff52562f5bab8e5a69d8d3a86f8575ab2b0cd1a9",
+    "results/glimmer/adapter/adapter_model.safetensors": "7471260b80935821b07f19e1e0c35330abe08633498e4fd737cf1e18b29f58e1",
+    "results/glimmer/data_manifest.json": "39d941e87f1a429ed03f9efea2a17935ce5fc770c1ca791a304bd04778adea88"
+  },
+  "pages": [
+    {
+      "page": "1939-12_p003",
+      "ocr_prefix_sha256": "6d7f464de45816fa213d4c4324de14bd727d5a15bc2fb612785366df66eb4cae",
+      "full_prompt_sha256": "d3ec766fc27119bf86f5ef470907d25c0155a992400b3356c47bfdec0eef6702"
+    },
+    {
+      "page": "1939-12_p004",
+      "ocr_prefix_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "full_prompt_sha256": "3e4ad4a34305f1e2e8ff41d9646b1560fa61c44c91b92c60500066144e5c460d"
+    },
+    {
+      "page": "1939-12_p005",
+      "ocr_prefix_sha256": "2fce4a1008ccf58af3f812a1969aab6af31602480dc7c017883d1a8c4666c59c",
+      "full_prompt_sha256": "4c36dffa10c301c4059021dd54a86e27b531ab201c0717929d7230685d68f766"
+    },
+    {
+      "page": "1939-12_p006",
+      "ocr_prefix_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "full_prompt_sha256": "3e4ad4a34305f1e2e8ff41d9646b1560fa61c44c91b92c60500066144e5c460d"
+    },
+    {
+      "page": "1939-12_p009",
+      "ocr_prefix_sha256": "bbd4158f6cd2729a2f27df94fa8eaa63b23b04940f76b2d940d9ee9ddfa9c139",
+      "full_prompt_sha256": "83da61f529e795e14ae464cf73b368f0b94dba12977cd7d139d69d3540609304"
+    },
+    {
+      "page": "1939-12_p016",
+      "ocr_prefix_sha256": "4ec994e86b5c3876398fe8b3cf6688c2d62b4c343db4293a31089845c0e51104",
+      "full_prompt_sha256": "9f6156fc217d5b1eb0426e112755b002dd6b9b85206c3999ceb4d0512267534c"
+    },
+    {
+      "page": "1939-12_p022",
+      "ocr_prefix_sha256": "0ef7c3fb0fda038da8ee85bd709b093ec1a9ffaf411febaec200888f96245319",
+      "full_prompt_sha256": "72a361708e66c00e684eabe679f1b15a4fb4a8f2252664b28a37c2093350b46d"
+    },
+    {
+      "page": "1939-12_p025",
+      "ocr_prefix_sha256": "4890534ac76c9e467da27421d3fdcc61bbb24955464510142cd30b2a9f5a2e8a",
+      "full_prompt_sha256": "e2f091ffc713e9ac178c2ca77360142ea8e050e86664ba46642300221c7b8ee5"
+    },
+    {
+      "page": "1939-12_p034",
+      "ocr_prefix_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "full_prompt_sha256": "3e4ad4a34305f1e2e8ff41d9646b1560fa61c44c91b92c60500066144e5c460d"
+    },
+    {
+      "page": "1939-12_p037",
+      "ocr_prefix_sha256": "00e3c05098b3690dc94b6a5fe124e72e342c2baa6b3d830c5f6e6eeebb76bf48",
+      "full_prompt_sha256": "0913dd5918162da5fa6d37a1e15c3a265d220e30cf42bb17e939f2b91c360315"
+    },
+    {
+      "page": "1939-12_p048",
+      "ocr_prefix_sha256": "8b3f7e58171ef075c5e33714c4a623600ae32c76db2d462d8ec46bd6efaa4a0c",
+      "full_prompt_sha256": "4583a115e63f4ccdfc2d9936a7a42d4030f478c4bafeaff269eaa8ae5a6e23fb"
+    },
+    {
+      "page": "1939-12_p053",
+      "ocr_prefix_sha256": "ed7baf933d96aa0b0480bce0b92ce1f0486c61c7e62c738cf00a3010fea51ad1",
+      "full_prompt_sha256": "e8424467762157bc6c578d830b153ded07ab2afe04936bb3efb6ae5cc4084c5d"
+    },
+    {
+      "page": "1939-12_p055",
+      "ocr_prefix_sha256": "5be9d052f4b07f045d5ef341ee6c4f8a4aafe0027453c5d3741bce920d7332b9",
+      "full_prompt_sha256": "1e88279efeba201ea76b145b95a56280ad25f2487501d3a0ab6a7ae74e5e6ec9"
+    },
+    {
+      "page": "1939-12_p060",
+      "ocr_prefix_sha256": "8e2b2e6d86bc4d3efc7dfedb0cae3eae88c922c4ccbf2f23c8b6d5d5eb8cfe33",
+      "full_prompt_sha256": "d2266d76950c8727e93802fb291d9cd19f95b60e86bbb7abd52e61268d9d7d46"
+    },
+    {
+      "page": "1939-12_p066",
+      "ocr_prefix_sha256": "7353e2a7d1e0551a803f0fd633b4de5a8b10eb87e0b29f9538bb2b6402317813",
+      "full_prompt_sha256": "807f300426efafed6929311dedc9e42bb36a821395117a535fd1874f24262154"
+    },
+    {
+      "page": "1939-12_p068",
+      "ocr_prefix_sha256": "f7b87561e425a74faeae6974ec46055d4c0ad8dff7ccbd3226aa235bdbafbb8d",
+      "full_prompt_sha256": "50ba5326faace858528a270dd4b6cd15a1ba02906b481074d35fadc3703d7b43"
+    },
+    {
+      "page": "1939-12_p074",
+      "ocr_prefix_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "full_prompt_sha256": "3e4ad4a34305f1e2e8ff41d9646b1560fa61c44c91b92c60500066144e5c460d"
+    },
+    {
+      "page": "1939-12_p076",
+      "ocr_prefix_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "full_prompt_sha256": "3e4ad4a34305f1e2e8ff41d9646b1560fa61c44c91b92c60500066144e5c460d"
+    },
+    {
+      "page": "1984-06_p001",
+      "ocr_prefix_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "full_prompt_sha256": "3e4ad4a34305f1e2e8ff41d9646b1560fa61c44c91b92c60500066144e5c460d"
+    },
+    {
+      "page": "1984-06_p003",
+      "ocr_prefix_sha256": "7c9ef5481c552af7b2ff2f8e8daf5d4535c7cf7cfab2e680cde8d25d2c9d929f",
+      "full_prompt_sha256": "8e385c49fad891675cad3de2578931cafd6ace5d63dea174655acf693590db5d"
+    },
+    {
+      "page": "1984-06_p005",
+      "ocr_prefix_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "full_prompt_sha256": "3e4ad4a34305f1e2e8ff41d9646b1560fa61c44c91b92c60500066144e5c460d"
+    },
+    {
+      "page": "1984-06_p009",
+      "ocr_prefix_sha256": "d05c003917aa9583caec9322003121c98b7ed52971c20e1b84a163031785ce05",
+      "full_prompt_sha256": "06732cb61da8750ec192c04147559d9ad2240549e65907e38dca5ae367644e97"
+    },
+    {
+      "page": "1984-06_p013",
+      "ocr_prefix_sha256": "d9fb52099e37ae0f6b744e7f9e2caa59fdb626c9fdd8e660fb32c1c285b7dfdd",
+      "full_prompt_sha256": "6f559828a60591d231c59f41b0880150bf5aec9026cdec227bd18d5858e9de7b"
+    },
+    {
+      "page": "1984-06_p020",
+      "ocr_prefix_sha256": "0b30ad8942f05f04633cf59ec47ed5a2111d63c4558c928bfe4435a6fc0d90ce",
+      "full_prompt_sha256": "593ca73f588dd44b6ebcb9ca677c89f1a8c69cf5d050b0fad839b031eba90a63"
+    },
+    {
+      "page": "1984-06_p024",
+      "ocr_prefix_sha256": "c13674f535769937bee5f09ffcc1fb65776521718a93a71a5f66b5bdb4f5cfed",
+      "full_prompt_sha256": "37242657f990dac469d71bbff2ee13a4dcec7d4d9f424a43a295181a8ac8b2a2"
+    },
+    {
+      "page": "1984-06_p026",
+      "ocr_prefix_sha256": "320cf1e32193e12a1c3f464eea5e9eb3ea094e94d4a72c273b2612582faf81b4",
+      "full_prompt_sha256": "b0139e8b46ae88a7faaacac5e0d3bdaa08f76ca33d594fb2cd44b14138316b6f"
+    },
+    {
+      "page": "1984-06_p030",
+      "ocr_prefix_sha256": "b80845dc2c4972260d50b397c9bbd0cc49d2f2338037830d9c157ea7af855187",
+      "full_prompt_sha256": "e7a5d7071b41ccb4673fe5600d783dea908896d2f286a911e99dee9ba8e67ece"
+    },
+    {
+      "page": "1984-06_p048",
+      "ocr_prefix_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "full_prompt_sha256": "3e4ad4a34305f1e2e8ff41d9646b1560fa61c44c91b92c60500066144e5c460d"
+    },
+    {
+      "page": "1984-06_p056",
+      "ocr_prefix_sha256": "9d97f0e0a92e52b988226e2ad371cd6056996c1c773eb86aec6ecd33d822e47c",
+      "full_prompt_sha256": "3a8bcf644e08aeb674538e7fe594d5822657816e5fe426ce5ce723da5bc89382"
+    },
+    {
+      "page": "1984-06_p058",
+      "ocr_prefix_sha256": "85c4ee5308dcc1ba5107c949440fb9a1589346356b1a3c82d6aaa772e3a7ea33",
+      "full_prompt_sha256": "0f7508b461f68a853df1ac27eb988ace06920ce9c8f072035688aebd7f052e73"
+    },
+    {
+      "page": "1984-06_p059",
+      "ocr_prefix_sha256": "cee9747fce2e3b1b6b86c2dcf526fb01cba8ef665cc4bf6a80afaabc8ae233de",
+      "full_prompt_sha256": "7c80990ff15c466008b5861e8c24d400172c559af3530f194db9aecf4194b160"
+    },
+    {
+      "page": "1984-06_p061",
+      "ocr_prefix_sha256": "44053fb199057eca2f99f1a5fd95d9c6234a52013bc06a2d89b26dc7f9233a3b",
+      "full_prompt_sha256": "819ebbadbc8a4ddcfcafc6d2aeb1e6ce4831b84cd03fa442ed0cf73fb9975187"
+    },
+    {
+      "page": "1984-06_p064",
+      "ocr_prefix_sha256": "19814d1c332c30ecbd128a2fe4d048d1a97ad9fb0a4280c2351e6e231ba24964",
+      "full_prompt_sha256": "17ba38f3f383321664465052f19c72b3edb8109700e9da98370c7f225dd2e84a"
+    },
+    {
+      "page": "1984-06_p072",
+      "ocr_prefix_sha256": "de1a019daac78a760dfe7e3f4528feb208668115725ea1f5a893a1299f60ce52",
+      "full_prompt_sha256": "5a59dc5892407e8c7e9782ad510af30db03b3dc6afc9c092dc84b43aa766d2e3"
+    },
+    {
+      "page": "1984-06_p075",
+      "ocr_prefix_sha256": "f9d4cc70c2d561b404d3efe4cfa7c2bd6be90b101a77304a6c07f7c34dc3d156",
+      "full_prompt_sha256": "b75998cda2f75b653aee0923e41f6ae70b711473e0f119d7c9ec89d63aceeb96"
+    },
+    {
+      "page": "1984-06_p076",
+      "ocr_prefix_sha256": "e79e3331127ab62e3b1c012a0563374d4eb3801647765e020375b31df760de0a",
+      "full_prompt_sha256": "df471aeac5d99a7e5e6f8e17fa347d67ca6aba8ceb02caf8f2a8507eb46e168a"
+    },
+    {
+      "page": "1984-06_p079",
+      "ocr_prefix_sha256": "04c9b51976ddf123452f6533713a328810361b41cb8b2576ef284d8478c6c53e",
+      "full_prompt_sha256": "07dd7551f48ae730a1692f2e5e304294fca67552886dfb16511ed9835c2e380b"
+    },
+    {
+      "page": "1984-06_p082",
+      "ocr_prefix_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "full_prompt_sha256": "3e4ad4a34305f1e2e8ff41d9646b1560fa61c44c91b92c60500066144e5c460d"
+    },
+    {
+      "page": "1984-06_p092",
+      "ocr_prefix_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "full_prompt_sha256": "3e4ad4a34305f1e2e8ff41d9646b1560fa61c44c91b92c60500066144e5c460d"
+    },
+    {
+      "page": "1984-06_p096",
+      "ocr_prefix_sha256": "0ca23722443d46b1c3d2653d40cacf70947c0c816709a768893ade602dfec1cb",
+      "full_prompt_sha256": "e656f29f520883b6d23031fb357b80a28d95fb7b82fb31a1b48f1f95b3bc68d5"
+    }
+  ]
+}

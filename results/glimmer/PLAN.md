@@ -339,3 +339,52 @@ unmatched/ambiguous cases. Count all permitted development pages, not just 15 dr
 If late titles exist, propose a length covering the observed complete headings plus explicit
 context for the owner to approve. Do not silently adopt it; today's comparison stays at
 1,024 characters. No finite development maximum guarantees coverage on unseen pages.
+
+## Measured development-check outcome — 2026-10-30 (still before held-out access)
+
+The preregistered L4 request completed, so the L40S fallback was not submitted. Both arms
+fit batch 8 with the unchanged NF4/double-quant/bf16-compute-and-storage loader, entirely on
+CUDA. The trained peak allocation was 21.03 GB on the provider's 23.69-GB L4. Phase 1 used
+the same loader/precision, but up to 12,000 OCR characters and batch 1 on H100; the new
+1,024-character prefix changes 16/40 validation inputs. Both new development arms score
+39/40 with native-assistant-header-v1. Phase-1 strict 39/40 versus **0/40** and its
+**post hoc diagnostic** 39/40 versus **40/40** remain byte-for-byte unchanged.
+See development_checks/REPORT.md and benchmark.json for per-family metrics and live dtypes.
+
+The complete 1,596-page development OCR audit found 41 approved-title-pattern matches and
+zero target-family table headings starting after/crossing character 1,024. Broad-context
+review found three late CM-II-2 contents references, at starts 3,088, 3,166 and 4,235
+(2,064, 2,142 and 3,211 characters beyond the boundary); latest end 4,257. These are not
+printed-table pages. Missing/corrupt OCR titles remain a limitation. A **5,120-character**
+prefix is proposed only if the owner wants these references covered: latest end plus
+256 context characters, rounded up to 1,024. **Do not adopt without owner approval and a
+new development fit/timing check.** Current input remains 1,024; no held-out page is used.
+
+### Measured replacement for the old $5.08 future-run ceiling
+
+Paired generation took 300.97768209 seconds / 40 development pages = 7.52444205225 seconds
+per paired page; load/other overhead was 77.471113274 seconds. For the measured L4 rate
+$0.00034544/s, forecast dollars = (77.471113274 + 7.52444205225 × N + 315) × 0.00034544.
+For the declared conservative forecast, multiply the per-page term by 1.5. The 315 seconds
+are 300 cold-start plus 15 shutdown/transport. For planning-only N=757, expected cost is
+**$2.1032**, conservative **$3.0870**. N=500: $1.4352/$2.0850; N=1,000:
+$2.7348/$4.0344; N=4,569: $12.0115/$17.9495. These are extrapolations, not held-out timings.
+
+This supersedes the prior $5.0796952 placeholder and its 4-hour allowance. Retain all old
+maxima, both new GPU maxima (even the unused fallback) and overhead: **$20.461749** before
+the future run. Remaining budget is **$3.848251** under the owner's **$24.31** ceiling.
+The future L4 job must explicitly cap execution at **10,825 seconds**, startup at 300,
+shutdown/transport at 15, with four physical CPU cores, 32 GiB host RAM, and one container:
+maximum **$3.8482016**, combined retained bound **$24.3099506**. No retry/additional GPU
+is funded by that bound. At the measured 50%-margin forecast, at most **952** pages fit.
+After go, count the actual declared sample from metadata and check forecast/budget before
+opening OCR or requesting a GPU. If it exceeds either limit, stop; never silently shrink
+or redraw the sample. Use phase2_cost.require_budget_fit with development_checks/benchmark.json
+and retained_before_phase2_usd=20.461749. An alternate GPU or crop requires a new measured
+development estimate and reservation; the L4 estimate is not evidence of L40S speed.
+
+Reported new Modal charges are $0.14020297; cumulative reported Glimmer charges are
+$1.54829339 at the recorded billing query (billing may lag). Retained maxima remain distinct
+from billed charges. The app is stopped with zero tasks. Full artifacts, raw predictions,
+audit contexts, budget, forecasts and billing are in results/glimmer/development_checks/.
+This outcome does not authorise held-out access, a sample draw, or the owner's label export.

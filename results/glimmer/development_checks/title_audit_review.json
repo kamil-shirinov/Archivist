@@ -1,0 +1,212 @@
+{
+  "pages_examined": 1596,
+  "approved_title_pattern_occurrences": 41,
+  "late_approved_family_table_headings": 0,
+  "review_method": "Original joined development OCR contexts; full contents-page header OCR checked on the three contents pages. No labels or phase-1 scores changed.",
+  "late_family_title_contents_entries": [
+    {
+      "page": "1982-06_p011",
+      "candidate_family": "total_claims_by_country",
+      "start_char_1based": 4235,
+      "end_char_1based": 4257,
+      "starts_after_1024": true,
+      "start_chars_past_1024": 3211,
+      "full_title_not_retained_at_1024": true,
+      "context": " and country 78 CLAIMS ON FOREIGNERS REPORTED BY BANKS IN THE UNITED STATES CH-Il-1. Total claims by type 79 CM-II-2. - Total claims by country 80 CM-II-3. - Total claims on foreigners by type and country reported by banks In the U.S 81 SUPPLEMENTARY LIABILITIES AND CLAIMS DATA REPORTED BY BANKS - U.S. CM-m-l. - Dollar cl",
+      "category": "family_title_contents_entry",
+      "reason": "CM-II-2 entry on a contents page, not a printed table heading"
+    },
+    {
+      "page": "1983-06_p011",
+      "candidate_family": "total_claims_by_country",
+      "start_char_1based": 3166,
+      "end_char_1based": 3188,
+      "starts_after_1024": true,
+      "start_chars_past_1024": 2142,
+      "full_title_not_retained_at_1024": true,
+      "context": "nd country ^8 CLAIMS ON FOREIGNERS REPORTED BY BANKS IN THE UNITED STATES CM-II-1. - Total claims by type '9 CM-II-2. - Total claims by country 80 CM-II-3. - Total claims on foreigners by type and country reported by banks in the United States 81 111",
+      "category": "family_title_contents_entry",
+      "reason": "CM-II-2 entry on a contents page, not a printed table heading"
+    },
+    {
+      "page": "1984-06_p011",
+      "candidate_family": "total_claims_by_country",
+      "start_char_1based": 3088,
+      "end_char_1based": 3110,
+      "starts_after_1024": true,
+      "start_chars_past_1024": 2064,
+      "full_title_not_retained_at_1024": true,
+      "context": " and country 44 CLAIMS ON FOREIGNERS REPORTED BY BANKS IN THE UNITED STATES CM-II-1. - Total claims by type 45 CM-II-2. Total claims by country 46 CM-II-3, Total claims on foreigners by type and country reported by banks in the United States 47 III",
+      "category": "family_title_contents_entry",
+      "reason": "CM-II-2 entry on a contents page, not a printed table heading"
+    }
+  ],
+  "late_broad_candidate_adjudications": [
+    {
+      "page": "1939-02_p011",
+      "candidate_family": "receipts_and_expenditures_under_railroad",
+      "start_char_1based": 1895,
+      "end_char_1based": 1919,
+      "starts_after_1024": true,
+      "start_chars_past_1024": 871,
+      "full_title_not_retained_at_1024": true,
+      "context": " appear on the Dally Statement dated Wednesday although the transactions are dated Monday at San Francisco. Most of the receipts and expenditures, public debt, general fund and gold and silver asset tables in this Bulletin are compiled from the Dally Statements unrevlsed. Dall y Treasury Statements revised . If the report o",
+      "category": "narrative_phrase",
+      "reason": "generic discussion of receipts and expenditures; no railroad table title"
+    },
+    {
+      "page": "1939-02_p013",
+      "candidate_family": "receipts_and_expenditures_under_railroad",
+      "start_char_1based": 2447,
+      "end_char_1based": 2471,
+      "starts_after_1024": true,
+      "start_chars_past_1024": 1423,
+      "full_title_not_retained_at_1024": true,
+      "context": "in. The series Is still in an evolutionary stage. The removal of trust ac- counts from the Daily Statement summation of receipts and expenditures, the growth in importance of the social insurance reserve accounts and the removal from the Daily Statement summation of agencies financing themselves - all these changes, which h",
+      "category": "narrative_phrase",
+      "reason": "generic discussion of receipts and expenditures; no railroad table title"
+    },
+    {
+      "page": "1939-05_p015",
+      "candidate_family": "receipts_and_expenditures_under_railroad",
+      "start_char_1based": 1081,
+      "end_char_1based": 1105,
+      "starts_after_1024": true,
+      "start_chars_past_1024": 57,
+      "full_title_not_retained_at_1024": true,
+      "context": "1 336 172 296 70U 6I.7 637 728 680 870 262 203 211 -186 166 Votoi HogatlT* flgorot d\u00ab&ot\u00ab oxooos of roMlpts. Summary of Receipts and Expenditures (la mlllioua of dollar! - on basis of dally Treastiry stateaentt, unrevlaed) 1/ 71 seal year or month",
+      "category": "different_table_heading",
+      "reason": "Summary of Receipts and Expenditures, not the railroad family"
+    },
+    {
+      "page": "1939-06_p015",
+      "candidate_family": "receipts_and_expenditures_under_railroad",
+      "start_char_1based": 1145,
+      "end_char_1based": 1169,
+      "starts_after_1024": true,
+      "start_chars_past_1024": 121,
+      "full_title_not_retained_at_1024": true,
+      "context": "172 296 3 III 704 647 637 728 680 870 262 203 211 -186 166 Hotel negative figures denote excess of receipts. Summary of Receipts and Expenditures (In millions of dollars - on basis of dally Treasury statements, unrevlsed) 1/ fiscal year or month",
+      "category": "different_table_heading",
+      "reason": "Summary of Receipts and Expenditures, not the railroad family"
+    },
+    {
+      "page": "1939-07_p015",
+      "candidate_family": "receipts_and_expenditures_under_railroad",
+      "start_char_1based": 1209,
+      "end_char_1based": 1233,
+      "starts_after_1024": true,
+      "start_chars_past_1024": 185,
+      "full_title_not_retained_at_1024": true,
+      "context": "2 296 517 866 70U 6U7 637 728 680 870 262 203 211 -186 166 Hote: Negative figures denote excess of receipts. Summary of Receipts and Expenditures (In Billions of dollars - on basis of daily Treasury stateanents, unrevlsed) 1/ 71 seal year or month",
+      "category": "different_table_heading",
+      "reason": "Summary of Receipts and Expenditures, not the railroad family"
+    },
+    {
+      "page": "1939-09_p014",
+      "candidate_family": "receipts_and_expenditures_under_railroad",
+      "start_char_1based": 1290,
+      "end_char_1based": 1314,
+      "starts_after_1024": true,
+      "start_chars_past_1024": 266,
+      "full_title_not_retained_at_1024": true,
+      "context": "55 7.1*51 9.36ft 8.360 8.493 4,263 3.594 4.992 2,048 2.500 Note: Negative figures denote excess of recelpte. Summary of Receipts and Expenditures (In millions of dollars on basis of dally Treasury statements, unrevised) l/ Fiscal year or month",
+      "category": "different_table_heading",
+      "reason": "Summary of Receipts and Expenditures, not the railroad family"
+    },
+    {
+      "page": "1939-10_p014",
+      "candidate_family": "receipts_and_expenditures_under_railroad",
+      "start_char_1based": 1305,
+      "end_char_1based": 1329,
+      "starts_after_1024": true,
+      "start_chars_past_1024": 281,
+      "full_title_not_retained_at_1024": true,
+      "context": "55 7.1*51 9.36U 8.360 8,1*93 U.263 3.594 U.992 2.0U8 2.500 Note: He^tive figxires denote excess of receipts. Summary of Receipts and Expenditures (Xa Billions of dollars - on basis of dally Treasury statenents. unreTlsed) 1/ riecal year or month",
+      "category": "different_table_heading",
+      "reason": "Summary of Receipts and Expenditures, not the railroad family"
+    },
+    {
+      "page": "1939-12_p014",
+      "candidate_family": "receipts_and_expenditures_under_railroad",
+      "start_char_1based": 1301,
+      "end_char_1based": 1325,
+      "starts_after_1024": true,
+      "start_chars_past_1024": 277,
+      "full_title_not_retained_at_1024": true,
+      "context": "U51 9.36U 8,36160 8,i*9: l*,26j 3.59'i i\u00bb,992 2,oi*g 2.500 Note: Negative figures denote excess of receipts. Summary of Receipts and Expenditures (In millions of dollars - on basis of dally Treasury statements, unreTlsed) 1/ Kscal year or month",
+      "category": "different_table_heading",
+      "reason": "Summary of Receipts and Expenditures, not the railroad family"
+    },
+    {
+      "page": "1982-06_p011",
+      "candidate_family": "total_claims_by_country",
+      "start_char_1based": 4235,
+      "end_char_1based": 4257,
+      "starts_after_1024": true,
+      "start_chars_past_1024": 3211,
+      "full_title_not_retained_at_1024": true,
+      "context": " and country 78 CLAIMS ON FOREIGNERS REPORTED BY BANKS IN THE UNITED STATES CH-Il-1. Total claims by type 79 CM-II-2. - Total claims by country 80 CM-II-3. - Total claims on foreigners by type and country reported by banks In the U.S 81 SUPPLEMENTARY LIABILITIES AND CLAIMS DATA REPORTED BY BANKS - U.S. CM-m-l. - Dollar cl",
+      "category": "family_title_contents_entry",
+      "reason": "CM-II-2 entry on a contents page, not a printed table heading"
+    },
+    {
+      "page": "1982-06_p011",
+      "candidate_family": "total_claims_by_country",
+      "start_char_1based": 4730,
+      "end_char_1based": 4752,
+      "starts_after_1024": true,
+      "start_chars_past_1024": 3706,
+      "full_title_not_retained_at_1024": true,
+      "context": "aims by type 83 CM-IV-2. - Total liabilities by country 84 CM-IV-3. Total liabilities by type and country 85 CM-IV-4. - Total claims by country 86 CM-IV-5. - Total claims by type and country 87 TRANSACTIONS IN LONG-TERM SECURITIES BY FOREIGNERS CH-V-1. - Foreign purchases and sales of long-term domestic securities. \u2022 88 C",
+      "category": "different_family_contents_entry",
+      "reason": "CM-IV-4, not the approved CM-II-2 table"
+    },
+    {
+      "page": "1983-06_p011",
+      "candidate_family": "total_claims_by_country",
+      "start_char_1based": 3166,
+      "end_char_1based": 3188,
+      "starts_after_1024": true,
+      "start_chars_past_1024": 2142,
+      "full_title_not_retained_at_1024": true,
+      "context": "nd country ^8 CLAIMS ON FOREIGNERS REPORTED BY BANKS IN THE UNITED STATES CM-II-1. - Total claims by type '9 CM-II-2. - Total claims by country 80 CM-II-3. - Total claims on foreigners by type and country reported by banks in the United States 81 111",
+      "category": "family_title_contents_entry",
+      "reason": "CM-II-2 entry on a contents page, not a printed table heading"
+    },
+    {
+      "page": "1984-06_p011",
+      "candidate_family": "total_claims_by_country",
+      "start_char_1based": 3088,
+      "end_char_1based": 3110,
+      "starts_after_1024": true,
+      "start_chars_past_1024": 2064,
+      "full_title_not_retained_at_1024": true,
+      "context": " and country 44 CLAIMS ON FOREIGNERS REPORTED BY BANKS IN THE UNITED STATES CM-II-1. - Total claims by type 45 CM-II-2. Total claims by country 46 CM-II-3, Total claims on foreigners by type and country reported by banks in the United States 47 III",
+      "category": "family_title_contents_entry",
+      "reason": "CM-II-2 entry on a contents page, not a printed table heading"
+    }
+  ],
+  "additional_early_short_term_title_variants": [
+    {
+      "page": "1939-05_p075",
+      "start_char_1based": 8,
+      "reason": "OCR ae Reported instead of as Reported"
+    },
+    {
+      "page": "1939-11_p051",
+      "start_char_1based": 4,
+      "reason": "and Bankers appears later in the OCR reading order"
+    }
+  ],
+  "old_retirement_only_headings": "Five early March-July headings are a shorter, unapproved title variant; none starts after 1024.",
+  "maximum_approved_table_heading_start_char_1based": 41,
+  "maximum_late_family_reference_end_char_1based": 4257,
+  "proposal_if_owner_requires_late_reference_coverage": {
+    "ocr_prefix_chars": 5120,
+    "rationale": "Covers the latest observed family-title reference ending at 4257 plus at least 256 characters of context, rounded upward to 1024.",
+    "status": "proposal_only_requires_owner_approval_and_new_development_fit_check",
+    "current_development_check_ocr_chars": 1024
+  },
+  "limitation": "OCR matching cannot certify titles that OCR omits or badly corrupts; no unseen-page coverage guarantee."
+}

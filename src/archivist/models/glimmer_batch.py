@@ -53,12 +53,37 @@ def batch_generate(model, tokenizer, items):
     return sorted(outputs, key=lambda row: row['index'])
 
 
+def precision_record(model):
+    import bitsandbytes as bnb
+    quantised = [m for m in model.modules() if isinstance(m, bnb.nn.Linear4bit)]
+    record = {
+        'loaded_in_4bit': bool(getattr(model, 'is_loaded_in_4bit', False)),
+        'quantised_linear_modules': len(quantised),
+        'double_quantisation': all(m.weight.quant_state.nested for m in quantised),
+        'compute_dtypes': sorted({str(m.compute_dtype) for m in quantised}),
+        'quantisation_types': sorted({str(m.weight.quant_state.quant_type) for m in quantised}),
+        'quantised_storage_dtypes': sorted({str(m.weight.dtype) for m in quantised}),
+        'parameter_device_types': sorted({p.device.type for p in model.parameters()}),
+        'adapter_parameter_dtypes': sorted({str(p.dtype) for n,p in model.named_parameters() if 'lora_' in n}),
+    }
+    if (not quantised or record['compute_dtypes'] != ['torch.bfloat16']
+            or record['quantisation_types'] != ['nf4']
+            or record['parameter_device_types'] != ['cuda']):
+        raise ValueError('actual precision/device placement differs from the declared setup')
+    return record
+
+
 def benchmark(payload):
     """One load, both arms, development inputs only as attested by the checked local driver."""
     import torch
     from peft import PeftModel
     if payload.get('development_only') is not True:
         raise ValueError('this entrypoint accepts development benchmarking only')
+    import hashlib
+    adapter_path = REMOTE / 'adapters' / payload['dataset_id'] / 'adapter_model.safetensors'
+    if payload.get('expected_adapter_sha256') is not None:
+        if hashlib.sha256(adapter_path.read_bytes()).hexdigest() != payload['expected_adapter_sha256']:
+            raise ValueError('remote adapter differs from the frozen phase-1 artifact')
     start = time.monotonic()
     model, tokenizer = load_model()
     if next(model.parameters()).device.type != 'cuda':
@@ -68,6 +93,7 @@ def benchmark(payload):
         'model_footprint_bytes': model.get_memory_footprint(),
         'batch_size': BATCH_SIZE, 'max_new_tokens': MAX_NEW_TOKENS,
         'arm_results': {},
+        'precision': precision_record(model),
     }
     for arm in ('untrained', 'trained'):
         if arm == 'trained':
@@ -80,6 +106,8 @@ def benchmark(payload):
         outputs = batch_generate(model, tokenizer, payload['items'])
         result['arm_results'][arm] = {
             'outputs': outputs, 'runtime_seconds': time.monotonic() - begin,
+            'precision': precision_record(model),
+            'free_and_total_memory_bytes': list(torch.cuda.mem_get_info()),
             'peak_allocated_bytes': torch.cuda.max_memory_allocated(),
             'peak_reserved_bytes': torch.cuda.max_memory_reserved(),
         }

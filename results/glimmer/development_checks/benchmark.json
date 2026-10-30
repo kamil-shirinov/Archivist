@@ -1,0 +1,1043 @@
+{
+  "gpu": "NVIDIA L4",
+  "gpu_total_bytes": 23689363456,
+  "model_footprint_bytes": 18928972480,
+  "batch_size": 8,
+  "max_new_tokens": 512,
+  "arm_results": {
+    "untrained": {
+      "outputs": [
+        {
+          "index": 0,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: '^^Vno. i LIBRARY ROOM 5030 J UN 91 1972 TREASURY DEPARTMENT\n\nReturn exactly one family ID from list, or other.\n\nThis OCR is just library stamp. No match. So other.\n\n<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+          "input_tokens": 316,
+          "output_tokens": 111,
+          "at_token_limit": false,
+          "batch_seconds": 27.496960863000012,
+          "batch_size": 8
+        },
+        {
+          "index": 1,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: empty? The user gave OCR text: (blank). So we cannot match. Return other? Probably none of these tables. Return other.\n\nWe must return exactly one family ID from list, or other. No explanation.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+          "input_tokens": 292,
+          "output_tokens": 111,
+          "at_token_limit": false,
+          "batch_seconds": 21.358497721999996,
+          "batch_size": 8
+        },
+        {
+          "index": 2,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text is about Treasury Library Bulletin December 1939... Analysis of Receipts and Disbursements Composition of the Public Debt Capital Movements and Monetary Data Other Treasury Statistics\n\nNone match. So other.\n\nReturn exactly one family ID.\n\n<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+          "input_tokens": 368,
+          "output_tokens": 106,
+          "at_token_limit": false,
+          "batch_seconds": 60.940933395,
+          "batch_size": 8
+        },
+        {
+          "index": 3,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: empty? The user gave OCR text: (blank). So we cannot match. Return other? Probably none of these tables. Return other.\n\nWe must return exactly one family ID from list, or other. No explanation.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+          "input_tokens": 292,
+          "output_tokens": 111,
+          "at_token_limit": false,
+          "batch_seconds": 21.358497721999996,
+          "batch_size": 8
+        },
+        {
+          "index": 4,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as\n- security_transactions_as_reported_by\n- outstanding_forward_exchange_contracts\n- receipts_and_expenditures_under_railroad\n- total_claims_by_country\n- other\n\nOCR text mentions Table of Contents Page Receipts and Expenditures Fiscal Years 1935-'W 2 Expenditures by Classes... Social Insurance Accounts... Cash Income and Outgo... General Fund... Treasury Financing... International Capital Movements Summary Table 35 Short-term Foreign Assets and Liabilities 37-3^ Security Transactions and Brokerage Balances 39-*^ Transactions In U. S. Domestic Securities 'I Foreign Exchange Transactions 4-3-lrt Other Monetary Data...\n\nThe OCR text is table of contents. No specific table. The receipts and expenditures under railroad? The text mentions Receipts and Expenditures Fiscal Years 1935... Social Insurance Accounts... Could be receipts_and_expenditures_under_railroad? The family description: Receipts and Expenditures Under Railroad Retirement and Railroad Unemployment Insurance Acts. Page with receipts and expenditures under railroad retirement and unemployment insurance in millions of dollars\n\nThe OCR mentions Receipts and Expenditures Fiscal Years 1935-'W 2 Expenditures by Classes, Receipts by Sources 3-13 Social Insurance Accounts 14-15 Cash Income and Outgo 15\n\nNot clearly railroad.\n\nProbably none of these tables. The OCR is table of contents, not matching any specific family.\n\nThus return other.\n\n<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+          "input_tokens": 511,
+          "output_tokens": 309,
+          "at_token_limit": false,
+          "batch_seconds": 69.70616557199997,
+          "batch_size": 8
+        },
+        {
+          "index": 5,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text is about Expenditures - General ... Fiscal Year or month Total Departmental national defense Veterans' Administration Public Works... Interest on the public debt 1933-... etc.\n\nThat looks like receipts and expenditures under railroad? No. It mentions Railroad Retirement? The OCR mentions Social Security and Railroad Retirement Acts. The family receipts_and_expenditures_under_railroad is about receipts and expenditures under railroad retirement and unemployment insurance acts. The text mentions Social Security and Railroad Retirement Acts. Could be similar but not exact.\n\nThe OCR text is about Expenditures - General... Fiscal Year... Total Departmental national defense... Interest on public debt. That does not match any of the families listed. The families are about foreign liabilities, security transactions, forward exchange contracts, railroad receipts/expenditures, total claims by country.\n\nThis looks like general expenditures, not railroad specific. So likely \"other\".\n\nReturn exactly one family ID.\n\n<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+          "input_tokens": 817,
+          "output_tokens": 242,
+          "at_token_limit": false,
+          "batch_seconds": 84.620684461,
+          "batch_size": 8
+        },
+        {
+          "index": 6,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text mentions Estimated Receipts from Taxes Imposed by Various Revenue Acts on Imports into the United States Article 1938 Dec. 1939 Jaa. Feb. Mar. Apr. Hay June July Aug. Sept. Oct. Duty-free article... etc.\n\nThis is about receipts from taxes on imports. Not matching any family. None of the families is about import receipts taxes. So other.\n\nReturn exactly one family ID from list, or other.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+          "input_tokens": 634,
+          "output_tokens": 155,
+          "at_token_limit": false,
+          "batch_seconds": 69.70616557199997,
+          "batch_size": 8
+        },
+        {
+          "index": 7,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as\n- security_transactions_as_reported_by\n- outstanding_forward_exchange_contracts\n- receipts_and_expenditures_under_railroad\n- total_claims_by_country\n- other\n\nOCR text mentions Receipts and Expenditures Under Railroad Retirement and Railroad Unemployment Insurance Acts (In millions of dollars...). That matches receipts_and_expenditures_under_railroad family.\n\nReturn exactly one family ID.\n\n<|eom|><|start|>assistant to=user<|message|>receipts_and_expenditures_under_railroad<|eot|>",
+          "input_tokens": 700,
+          "output_tokens": 110,
+          "at_token_limit": false,
+          "batch_seconds": 84.620684461,
+          "batch_size": 8
+        },
+        {
+          "index": 8,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: empty? The user gave OCR text: (blank). So we cannot match. Return other? Probably none of these tables. Return other.\n\nWe must return exactly one family ID from list, or other. No explanation.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+          "input_tokens": 292,
+          "output_tokens": 111,
+          "at_token_limit": false,
+          "batch_seconds": 21.358497721999996,
+          "batch_size": 8
+        },
+        {
+          "index": 9,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text is about Amount of Interest-bearing Debt Outstanding, Computed Annual Interest Charge... Not matching any.\n\nSo return other.\n\n<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+          "input_tokens": 799,
+          "output_tokens": 83,
+          "at_token_limit": false,
+          "batch_seconds": 84.620684461,
+          "batch_size": 8
+        },
+        {
+          "index": 10,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text:\n33 Principal of Outstanding Obligations Guaranteed by the United States (In allllona of dollara - compiled from reports rocolTed Ijy the Treasury) Xnd of fiaeal year or month\n\nReturn exactly one family ID from list, or other.\n\nThis is about Principal of Outstanding Obligations Guaranteed by United States. Not matching any. So other.\n\n<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+          "input_tokens": 333,
+          "output_tokens": 136,
+          "at_token_limit": false,
+          "batch_seconds": 27.496960863000012,
+          "batch_size": 8
+        },
+        {
+          "index": 11,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text mentions \"Short-Term Foreign Liabilities as Reported by Banks and Bankers in the United States for September 1939\". That's exactly short_term_foreign_liabilities_as.\n\nReturn exactly one family ID.\n\n<|eom|><|start|>assistant to=user<|message|>short_term_foreign_liabilities_as<|eot|>",
+          "input_tokens": 610,
+          "output_tokens": 106,
+          "at_token_limit": false,
+          "batch_seconds": 69.70616557199997,
+          "batch_size": 8
+        },
+        {
+          "index": 12,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text mentions \"Security Transactions as Reported by Banks, Bankers, Brokers and Dealers in the United States for September 1939\". That's exactly security_transactions_as_reported_by family.\n\nReturn exactly one family ID.\n\n<|eom|><|start|>assistant to=user<|message|>security_transactions_as_reported_by<|eot|>",
+          "input_tokens": 622,
+          "output_tokens": 109,
+          "at_token_limit": false,
+          "batch_seconds": 69.70616557199997,
+          "batch_size": 8
+        },
+        {
+          "index": 13,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as\n- security_transactions_as_reported_by\n- outstanding_forward_exchange_contracts\n- receipts_and_expenditures_under_railroad\n- total_claims_by_country\n- other\n\nOCR text mentions \"Outstanding Forward Exchange Contracts as Reported by Banks and Bankers in the United States during September 1939\". That's exactly outstanding_forward_exchange_contracts.\n\nReturn exactly one family ID.\n\n<|eom|><|start|>assistant to=user<|message|>outstanding_forward_exchange_contracts<|eot|>",
+          "input_tokens": 669,
+          "output_tokens": 103,
+          "at_token_limit": false,
+          "batch_seconds": 84.620684461,
+          "batch_size": 8
+        },
+        {
+          "index": 14,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as\n- security_transactions_as_reported_by\n- outstanding_forward_exchange_contracts\n- receipts_and_expenditures_under_railroad\n- total_claims_by_country\n- other\n\nOCR text mentions Net Movement of Silver to and from the United States... Calendar year and month... Imports from or net exports... United Kingdom Other Europe Mexico...\n\nThis is not matching any of the families. None of those are about silver movement. So other.\n\nReturn exactly one family ID from list, or other.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+          "input_tokens": 814,
+          "output_tokens": 126,
+          "at_token_limit": false,
+          "batch_seconds": 84.620684461,
+          "batch_size": 8
+        },
+        {
+          "index": 15,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text:\n51 Ratios of Index of Wholesale Prices in 39 Countries to Index of Wholesale Prices In the United States 1935 100\n\nReturn exactly one family ID from list, or other.\n\nThis is about wholesale prices index ratios. None of families match. So other.\n\n<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+          "input_tokens": 317,
+          "output_tokens": 115,
+          "at_token_limit": false,
+          "batch_seconds": 27.496960863000012,
+          "batch_size": 8
+        },
+        {
+          "index": 16,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: empty? The user gave OCR text: (blank). So we cannot match. Return other? Probably none of these tables. Return other.\n\nWe must return exactly one family ID from list, or other. No explanation.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+          "input_tokens": 292,
+          "output_tokens": 111,
+          "at_token_limit": false,
+          "batch_seconds": 21.358497721999996,
+          "batch_size": 8
+        },
+        {
+          "index": 17,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: empty? The user gave OCR text: (blank). So we cannot match. Return other? Probably none of these tables. Return other.\n\nWe must return exactly one family ID from list, or other. No explanation.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+          "input_tokens": 292,
+          "output_tokens": 111,
+          "at_token_limit": false,
+          "batch_seconds": 21.358497721999996,
+          "batch_size": 8
+        },
+        {
+          "index": 18,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: empty? The user gave OCR text: (blank). So we cannot match. Return other? Probably none of these tables. Return other.\n\nWe must return exactly one family ID from list, or other. No explanation.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+          "input_tokens": 292,
+          "output_tokens": 111,
+          "at_token_limit": false,
+          "batch_seconds": 21.358497721999996,
+          "batch_size": 8
+        },
+        {
+          "index": 19,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text:\nJO r I'pr^.c^r^v JUM 2 19B5\n\nReturn exactly one family ID from list, or other.\n\nOCR is garbled. No match. Probably other.\n\nReturn other.<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+          "input_tokens": 311,
+          "output_tokens": 107,
+          "at_token_limit": false,
+          "batch_seconds": 27.496960863000012,
+          "batch_size": 8
+        },
+        {
+          "index": 20,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: empty? The user gave OCR text: (blank). So we cannot match. Return other? Probably none of these tables. Return other.\n\nWe must return exactly one family ID from list, or other. No explanation.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+          "input_tokens": 292,
+          "output_tokens": 111,
+          "at_token_limit": false,
+          "batch_seconds": 21.358497721999996,
+          "batch_size": 8
+        },
+        {
+          "index": 21,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text is about Treasury Bulletin sale info. Not matching any. So other.\n\nReturn exactly one family ID from list, or other.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+          "input_tokens": 341,
+          "output_tokens": 91,
+          "at_token_limit": false,
+          "batch_seconds": 27.496960863000012,
+          "batch_size": 8
+        },
+        {
+          "index": 22,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: DODDl\n\nReturn exactly one family ID from list, or other.\n\nOCR text is \"DODDl\". That seems not matching. Probably other.\n\nReturn other.<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+          "input_tokens": 295,
+          "output_tokens": 96,
+          "at_token_limit": false,
+          "batch_seconds": 27.496960863000012,
+          "batch_size": 8
+        },
+        {
+          "index": 23,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text is about FEDERAL FISCAL OPERATIONS Table FFO\u20143. - Budget Outlays by Agency... Not matching any.\n\nSo return other.\n\nReturn exactly one family ID from list, or other.\n\n<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+          "input_tokens": 605,
+          "output_tokens": 100,
+          "at_token_limit": false,
+          "batch_seconds": 69.70616557199997,
+          "batch_size": 8
+        },
+        {
+          "index": 24,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as\n- security_transactions_as_reported_by\n- outstanding_forward_exchange_contracts\n- receipts_and_expenditures_under_railroad\n- total_claims_by_country\n- other\n\nOCR text is about Federal Obligations - Gross Obligations Incurred Outside Federal Government by Department or Agency as of Dec 31 1983. That's not matching any of the families. So return other.\n\nReturn exactly one family ID from list, or other. So output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+          "input_tokens": 554,
+          "output_tokens": 117,
+          "at_token_limit": false,
+          "batch_seconds": 69.70616557199997,
+          "batch_size": 8
+        },
+        {
+          "index": 25,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text is about Federal Debt Table FD-1. Summary of Federal Debt Source: Monthly Treasury Statement...\n\nNone of the allowed families match. So return other.\n\nReturn exactly one family ID from list, or other.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+          "input_tokens": 742,
+          "output_tokens": 107,
+          "at_token_limit": false,
+          "batch_seconds": 84.620684461,
+          "batch_size": 8
+        },
+        {
+          "index": 26,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text:\n18 FEDERAL DEBT Table FD-7. - Treasury Holdings of Securities Issued by Government Corporations and Other Agencies [In millions of dollars. Source: Monthly Treasury Statement...] End of fiscal year or month Agriculture Department Cormodity\n\nThis is Federal Debt table FD-7. Not matching any families. So other.\n\nReturn exactly one family ID from list, or other.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+          "input_tokens": 349,
+          "output_tokens": 143,
+          "at_token_limit": false,
+          "batch_seconds": 60.940933395,
+          "batch_size": 8
+        },
+        {
+          "index": 27,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: empty? The user gave OCR text: (blank). So we cannot match. Return other? Probably none of these tables. Return other.\n\nWe must return exactly one family ID from list, or other. No explanation.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+          "input_tokens": 292,
+          "output_tokens": 111,
+          "at_token_limit": false,
+          "batch_seconds": 21.358497721999996,
+          "batch_size": 8
+        },
+        {
+          "index": 28,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: \"44 CAPITAL MOVEMENTS Total Liabilities by Type and Country, as of Mar. 31, 1984, Preliminary [PosUion in millions or dollars] Total Payable Payable dollars foreign To foreign official unaffiliated foreign I Demand Time 2/ Tr. (1) (g) Europe: Austria 872 861...\"\n\nThis looks like Total Liabilities by Type and Country. That matches short_term_foreign_liabilities_as? Short-Term Foreign Liabilities as Reported by Banks... Weekly short-term foreign liabilities by country with Total Europe and Grand total columns in thousands of dollars.\n\nThe OCR shows millions of dollars, Total Liabilities by Type and Country, as of Mar 31 1984. Could be short term foreign liabilities.\n\nAlso total_claims_by_country is Table CM-II-2 - Total Claims by Country.\n\nThe OCR mentions \"Total Liabilities by Type and Country\". That is likely short_term_foreign_liabilities_as.\n\nThe family short_term_foreign_liabilities_as: Short-Term Foreign Liabilities as Reported by Banks and Bankers in the United States. Weekly short-term foreign liabilities by country with Total Europe and Grand total columns in thousands of dollars\n\nThe OCR shows millions, but maybe same.\n\nAlternative: total_claims_by_country is Total Claims by Country. This is Total Liabilities by Type and Country. Different.\n\nI think short_term_foreign_liabilities_as fits.\n\nReturn exactly one family ID.\n\n<|eom|><|start|>assistant to=user<|message|>short_term_foreign_liabilities_as<|eot|>",
+          "input_tokens": 635,
+          "output_tokens": 349,
+          "at_token_limit": false,
+          "batch_seconds": 84.620684461,
+          "batch_size": 8
+        },
+        {
+          "index": 29,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as\n- security_transactions_as_reported_by\n- outstanding_forward_exchange_contracts\n- receipts_and_expenditures_under_railroad\n- total_claims_by_country\n- other\n\nOCR text mentions Table CM-II-2. - Total Claims by Country Europe: Austria... Total Europe Canada Latin America... Total Latin America... Asia... Africa... Other countries...\n\nThat matches total_claims_by_country.\n\nReturn exactly one family ID.\n\n<|eom|><|start|>assistant to=user<|message|>total_claims_by_country<|eot|>",
+          "input_tokens": 484,
+          "output_tokens": 112,
+          "at_token_limit": false,
+          "batch_seconds": 60.940933395,
+          "batch_size": 8
+        },
+        {
+          "index": 30,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text:\nCAPITAL MOVEMENTS -11-3. - Total Claims on Foreigners by Type and Country Reported by Banks in the United States, as of Dec. 31, 1983 47 Payable dol lars 1,333...\n\nThis looks like Total Claims by Country? The family total_claims_by_country: Table CM-II-2. - Total Claims by Country.\n\nThe OCR says CAPITAL MOVEMENTS -11-3. - Total Claims on Foreigners by Type and Country Reported by Banks in the United States, as of Dec. 31, 1983\n\nThat is not exactly Table CM-II-2. Might be different table. Could be total_claims_by_country? The description: Regional breakdown of total claims by country with Europe Latin America Asia Africa totals and foreign and grand totals\n\nThe OCR mentions Payable dollars... Might be claims by type.\n\nProbably not match. Could be other.\n\nThe family total_claims_by_country is Table CM-II-2. - Total Claims by Country.\n\nOCR says CAPITAL MOVEMENTS -11-3. - Total Claims on Foreigners by Type and Country...\n\nDifferent.\n\nSo return other.\n\n<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+          "input_tokens": 363,
+          "output_tokens": 291,
+          "at_token_limit": false,
+          "batch_seconds": 60.940933395,
+          "batch_size": 8
+        },
+        {
+          "index": 31,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: CAPITAL MOVEMENTS Table CM-III\u2014 2. \u2014 Dollar Liabilities to, and Dollar Claims on, Foreigners in Countries and Areas Not Regularly Reported Separately [Position at end of period in millions of dollars] 49 Total liabilitl Total banks' 0th Eur Cyprus...\n\nThis looks like Dollar Liabilities to, and Dollar Claims on, Foreigners... Not matching listed families. The families listed are specific. This table is CM-III-2. Not in list. The list includes total_claims_by_country: Table CM-II-2. - Total Claims by Country.\n\nSo this is different. So return other.\n\nReturn exactly one family ID from list, or other.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+          "input_tokens": 544,
+          "output_tokens": 204,
+          "at_token_limit": false,
+          "batch_seconds": 69.70616557199997,
+          "batch_size": 8
+        },
+        {
+          "index": 32,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as\n- security_transactions_as_reported_by\n- outstanding_forward_exchange_contracts\n- receipts_and_expenditures_under_railroad\n- total_claims_by_country\n- other\n\nOCR text mentions Table CM-IV-3. - Total Liabilities by Type and Country, as of Dec. 31, 1983, Preliminary [Position at end of period In millions of dollars] Financial liabilities Payable in foreign...\n\nThis is about Total Liabilities by Type and Country. Not matching listed families. The families are about short-term foreign liabilities, security transactions, outstanding forward exchange contracts, receipts and expenditures under railroad, total claims by country.\n\nTable CM-IV-3 is Total Liabilities by Type and Country. Could be short_term_foreign_liabilities_as? That is short-term foreign liabilities as reported by banks... Weekly short-term foreign liabilities by country with Total Europe and Grand total columns in thousands of dollars.\n\nThe OCR mentions millions of dollars, Dec 31 1983, Financial liabilities Payable in foreign... Might be short term foreign liabilities? Could be total claims by country? No.\n\nProbably none of these tables. The family list does not include Total Liabilities by Type and Country. So return other.\n\nReturn exactly one family ID from list, or other.\n\nSo output: other<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+          "input_tokens": 415,
+          "output_tokens": 275,
+          "at_token_limit": false,
+          "batch_seconds": 60.940933395,
+          "batch_size": 8
+        },
+        {
+          "index": 33,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as\n- security_transactions_as_reported_by\n- outstanding_forward_exchange_contracts\n- receipts_and_expenditures_under_railroad\n- total_claims_by_country\n- other\n\nOCR text mentions FOREIGN CURRENCY POSITIONS Section I. - Summary Positions Table FCP-l-1. - Nonbanking Firms' Positions ... Table FCP-l-2. - Weekly Bank Positions\n\nThis is about foreign currency positions, not matching any listed families. The families are about short-term foreign liabilities, security transactions, outstanding forward exchange contracts, railroad receipts, total claims by country.\n\nThe OCR text is about foreign currency positions, weekly bank positions. That sounds like outstanding forward exchange contracts? No.\n\nOutstanding forward exchange contracts table of outstanding forward exchange contracts by currency with purchase and sale totals split into foreign and domestic customers.\n\nThe OCR mentions German marks yen, weekly bank positions. Could be foreign currency positions, not forward exchange contracts.\n\nProbably none of these tables. So return other.\n\nReturn exactly one family ID from list, or other.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+          "input_tokens": 784,
+          "output_tokens": 233,
+          "at_token_limit": false,
+          "batch_seconds": 84.620684461,
+          "batch_size": 8
+        },
+        {
+          "index": 34,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as\n- security_transactions_as_reported_by\n- outstanding_forward_exchange_contracts\n- receipts_and_expenditures_under_railroad\n- total_claims_by_country\n- other\n\nOCR text mentions FOREIGN CURRENCY POSITIONS Section IV. - Japanese Yen Positions Table FCP-IV-1. - Nonbanking Firms' Positions! [In bi 1 lions of yen] ... Table FCP-IV-2. - Weekly Bank Positions [In billions of yen]\n\nNone of allowed families match. So other.\n\nReturn exactly one family ID from list, or other.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+          "input_tokens": 419,
+          "output_tokens": 141,
+          "at_token_limit": false,
+          "batch_seconds": 60.940933395,
+          "batch_size": 8
+        },
+        {
+          "index": 35,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as\n- security_transactions_as_reported_by\n- outstanding_forward_exchange_contracts\n- receipts_and_expenditures_under_railroad\n- total_claims_by_country\n- other\n\nOCR text mentions FOREIGN CURRENCY POSITIONS Section V. \u2014 Swiss Franc Positions Table FCP-V-1. - Nonbanking Firms' Positions [In millions of francs] Net Assets Liabilities V Exchange bought... Table FCP-V-2. - Weekly Bank Positions\n\nNone of the allowed families match. This is foreign currency positions Swiss Franc. Not matching.\n\nSo return other.\n\nReturn exactly one family ID from list, or other.\n\nOutput \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+          "input_tokens": 396,
+          "output_tokens": 150,
+          "at_token_limit": false,
+          "batch_seconds": 60.940933395,
+          "batch_size": 8
+        },
+        {
+          "index": 36,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text mentions FOREIGN CURRENCY POSITIONS Footnotes to Tables FCP-I through FCP-VII ... Worldwide net positions... nonbanking business concerns...\n\nThat is not matching any of the allowed families. The families are about short-term foreign liabilities, security transactions, forward exchange contracts, railroad receipts, total claims by country.\n\nThis text is about foreign currency positions. So none.\n\nReturn exactly one family ID from list, or other.\n\nSo output \"other\".\n\n<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+          "input_tokens": 484,
+          "output_tokens": 151,
+          "at_token_limit": false,
+          "batch_seconds": 60.940933395,
+          "batch_size": 8
+        },
+        {
+          "index": 37,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: empty? The user gave OCR text: (blank). So we cannot match. Return other? Probably none of these tables. Return other.\n\nWe must return exactly one family ID from list, or other. No explanation.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+          "input_tokens": 292,
+          "output_tokens": 111,
+          "at_token_limit": false,
+          "batch_seconds": 27.496960863000012,
+          "batch_size": 8
+        },
+        {
+          "index": 38,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: empty? The user gave OCR text: (blank). So we cannot match. Return other? Probably none of these tables. Return other.\n\nWe must return exactly one family ID from list, or other. No explanation.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+          "input_tokens": 292,
+          "output_tokens": 111,
+          "at_token_limit": false,
+          "batch_seconds": 27.496960863000012,
+          "batch_size": 8
+        },
+        {
+          "index": 39,
+          "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text is about U.S. Currency and Com Outstanding and In Circulation AMOUNTS OUTSTANDING AND IN CIRCULATION Mar. 31, 1984... CURRENCY IN CIRCULATION BY DENOMINATION\n\nNone of the families match. So return other.\n\nReturn exactly one family ID from list, or other.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+          "input_tokens": 519,
+          "output_tokens": 128,
+          "at_token_limit": false,
+          "batch_seconds": 69.70616557199997,
+          "batch_size": 8
+        }
+      ],
+      "runtime_seconds": 264.335489701,
+      "precision": {
+        "loaded_in_4bit": true,
+        "quantised_linear_modules": 720,
+        "double_quantisation": true,
+        "compute_dtypes": [
+          "torch.bfloat16"
+        ],
+        "quantisation_types": [
+          "nf4"
+        ],
+        "quantised_storage_dtypes": [
+          "torch.bfloat16"
+        ],
+        "parameter_device_types": [
+          "cuda"
+        ],
+        "adapter_parameter_dtypes": []
+      },
+      "free_and_total_memory_bytes": [
+        2249654272,
+        23689363456
+      ],
+      "peak_allocated_bytes": 20914915840,
+      "peak_reserved_bytes": 21183332352,
+      "metrics": {
+        "pages": 40,
+        "accuracy": 0.975,
+        "invalid": 0,
+        "missing": 0,
+        "per_family": {
+          "short_term_foreign_liabilities_as": {
+            "tp": 1,
+            "fp": 1,
+            "fn": 0,
+            "support": 1,
+            "precision": 0.5,
+            "recall": 1.0
+          },
+          "security_transactions_as_reported_by": {
+            "tp": 1,
+            "fp": 0,
+            "fn": 0,
+            "support": 1,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "outstanding_forward_exchange_contracts": {
+            "tp": 1,
+            "fp": 0,
+            "fn": 0,
+            "support": 1,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "receipts_and_expenditures_under_railroad": {
+            "tp": 1,
+            "fp": 0,
+            "fn": 0,
+            "support": 1,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "total_claims_by_country": {
+            "tp": 1,
+            "fp": 0,
+            "fn": 0,
+            "support": 1,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "other": {
+            "tp": 34,
+            "fp": 0,
+            "fn": 1,
+            "support": 35,
+            "precision": 1.0,
+            "recall": 0.9714285714285714
+          }
+        },
+        "macro_precision_defined_labels": 0.9166666666666666,
+        "macro_recall_defined_labels": 0.9952380952380953,
+        "confusion": [
+          {
+            "expected": "other",
+            "predicted": "other",
+            "count": 34
+          },
+          {
+            "expected": "other",
+            "predicted": "short_term_foreign_liabilities_as",
+            "count": 1
+          },
+          {
+            "expected": "outstanding_forward_exchange_contracts",
+            "predicted": "outstanding_forward_exchange_contracts",
+            "count": 1
+          },
+          {
+            "expected": "receipts_and_expenditures_under_railroad",
+            "predicted": "receipts_and_expenditures_under_railroad",
+            "count": 1
+          },
+          {
+            "expected": "security_transactions_as_reported_by",
+            "predicted": "security_transactions_as_reported_by",
+            "count": 1
+          },
+          {
+            "expected": "short_term_foreign_liabilities_as",
+            "predicted": "short_term_foreign_liabilities_as",
+            "count": 1
+          },
+          {
+            "expected": "total_claims_by_country",
+            "predicted": "total_claims_by_country",
+            "count": 1
+          }
+        ]
+      }
+    },
+    "trained": {
+      "outputs": [
+        {
+          "index": 0,
+          "text": " to=user<|message|>other<|eot|>",
+          "input_tokens": 316,
+          "output_tokens": 5,
+          "at_token_limit": false,
+          "batch_seconds": 4.8266580339999905,
+          "batch_size": 8
+        },
+        {
+          "index": 1,
+          "text": " to=user<|message|>other<|eot|>",
+          "input_tokens": 292,
+          "output_tokens": 5,
+          "at_token_limit": false,
+          "batch_seconds": 4.438233276999995,
+          "batch_size": 8
+        },
+        {
+          "index": 2,
+          "text": " to=user<|message|>other<|eot|>",
+          "input_tokens": 368,
+          "output_tokens": 5,
+          "at_token_limit": false,
+          "batch_seconds": 6.278310676000046,
+          "batch_size": 8
+        },
+        {
+          "index": 3,
+          "text": " to=user<|message|>other<|eot|>",
+          "input_tokens": 292,
+          "output_tokens": 5,
+          "at_token_limit": false,
+          "batch_seconds": 4.438233276999995,
+          "batch_size": 8
+        },
+        {
+          "index": 4,
+          "text": " to=user<|message|>other<|eot|>",
+          "input_tokens": 511,
+          "output_tokens": 5,
+          "at_token_limit": false,
+          "batch_seconds": 9.174348296000005,
+          "batch_size": 8
+        },
+        {
+          "index": 5,
+          "text": " to=user<|message|>other<|eot|>",
+          "input_tokens": 817,
+          "output_tokens": 5,
+          "at_token_limit": false,
+          "batch_seconds": 11.759541740999964,
+          "batch_size": 8
+        },
+        {
+          "index": 6,
+          "text": " to=user<|message|>other<|eot|>",
+          "input_tokens": 634,
+          "output_tokens": 5,
+          "at_token_limit": false,
+          "batch_seconds": 9.174348296000005,
+          "batch_size": 8
+        },
+        {
+          "index": 7,
+          "text": " to=user<|message|>receipts_and_expenditures_under_railroad<|eot|>",
+          "input_tokens": 700,
+          "output_tokens": 14,
+          "at_token_limit": false,
+          "batch_seconds": 11.759541740999964,
+          "batch_size": 8
+        },
+        {
+          "index": 8,
+          "text": " to=user<|message|>other<|eot|>",
+          "input_tokens": 292,
+          "output_tokens": 5,
+          "at_token_limit": false,
+          "batch_seconds": 4.438233276999995,
+          "batch_size": 8
+        },
+        {
+          "index": 9,
+          "text": " to=user<|message|>other<|eot|>",
+          "input_tokens": 799,
+          "output_tokens": 5,
+          "at_token_limit": false,
+          "batch_seconds": 11.759541740999964,
+          "batch_size": 8
+        },
+        {
+          "index": 10,
+          "text": " to=user<|message|>other<|eot|>",
+          "input_tokens": 333,
+          "output_tokens": 5,
+          "at_token_limit": false,
+          "batch_seconds": 4.8266580339999905,
+          "batch_size": 8
+        },
+        {
+          "index": 11,
+          "text": " to=user<|message|>short_term_foreign_liabilities_as<|eot|>",
+          "input_tokens": 610,
+          "output_tokens": 11,
+          "at_token_limit": false,
+          "batch_seconds": 9.174348296000005,
+          "batch_size": 8
+        },
+        {
+          "index": 12,
+          "text": " to=user<|message|>security_transactions_as_reported_by<|eot|>",
+          "input_tokens": 622,
+          "output_tokens": 10,
+          "at_token_limit": false,
+          "batch_seconds": 9.174348296000005,
+          "batch_size": 8
+        },
+        {
+          "index": 13,
+          "text": " to=user<|message|>outstanding_forward_exchange_contracts<|eot|>",
+          "input_tokens": 669,
+          "output_tokens": 10,
+          "at_token_limit": false,
+          "batch_seconds": 11.759541740999964,
+          "batch_size": 8
+        },
+        {
+          "index": 14,
+          "text": " to=user<|message|>other<|eot|>",
+          "input_tokens": 814,
+          "output_tokens": 5,
+          "at_token_limit": false,
+          "batch_seconds": 11.759541740999964,
+          "batch_size": 8
+        },
+        {
+          "index": 15,
+          "text": " to=user<|message|>other<|eot|>",
+          "input_tokens": 317,
+          "output_tokens": 5,
+          "at_token_limit": false,
+          "batch_seconds": 4.8266580339999905,
+          "batch_size": 8
+        },
+        {
+          "index": 16,
+          "text": " to=user<|message|>other<|eot|>",
+          "input_tokens": 292,
+          "output_tokens": 5,
+          "at_token_limit": false,
+          "batch_seconds": 4.438233276999995,
+          "batch_size": 8
+        },
+        {
+          "index": 17,
+          "text": " to=user<|message|>other<|eot|>",
+          "input_tokens": 292,
+          "output_tokens": 5,
+          "at_token_limit": false,
+          "batch_seconds": 4.438233276999995,
+          "batch_size": 8
+        },
+        {
+          "index": 18,
+          "text": " to=user<|message|>other<|eot|>",
+          "input_tokens": 292,
+          "output_tokens": 5,
+          "at_token_limit": false,
+          "batch_seconds": 4.438233276999995,
+          "batch_size": 8
+        },
+        {
+          "index": 19,
+          "text": " to=user<|message|>other<|eot|>",
+          "input_tokens": 311,
+          "output_tokens": 5,
+          "at_token_limit": false,
+          "batch_seconds": 4.8266580339999905,
+          "batch_size": 8
+        },
+        {
+          "index": 20,
+          "text": " to=user<|message|>other<|eot|>",
+          "input_tokens": 292,
+          "output_tokens": 5,
+          "at_token_limit": false,
+          "batch_seconds": 4.438233276999995,
+          "batch_size": 8
+        },
+        {
+          "index": 21,
+          "text": " to=user<|message|>other<|eot|>",
+          "input_tokens": 341,
+          "output_tokens": 5,
+          "at_token_limit": false,
+          "batch_seconds": 4.8266580339999905,
+          "batch_size": 8
+        },
+        {
+          "index": 22,
+          "text": " to=user<|message|>other<|eot|>",
+          "input_tokens": 295,
+          "output_tokens": 5,
+          "at_token_limit": false,
+          "batch_seconds": 4.8266580339999905,
+          "batch_size": 8
+        },
+        {
+          "index": 23,
+          "text": " to=user<|message|>other<|eot|>",
+          "input_tokens": 605,
+          "output_tokens": 5,
+          "at_token_limit": false,
+          "batch_seconds": 9.174348296000005,
+          "batch_size": 8
+        },
+        {
+          "index": 24,
+          "text": " to=user<|message|>other<|eot|>",
+          "input_tokens": 554,
+          "output_tokens": 5,
+          "at_token_limit": false,
+          "batch_seconds": 9.174348296000005,
+          "batch_size": 8
+        },
+        {
+          "index": 25,
+          "text": " to=user<|message|>other<|eot|>",
+          "input_tokens": 742,
+          "output_tokens": 5,
+          "at_token_limit": false,
+          "batch_seconds": 11.759541740999964,
+          "batch_size": 8
+        },
+        {
+          "index": 26,
+          "text": " to=user<|message|>other<|eot|>",
+          "input_tokens": 349,
+          "output_tokens": 5,
+          "at_token_limit": false,
+          "batch_seconds": 6.278310676000046,
+          "batch_size": 8
+        },
+        {
+          "index": 27,
+          "text": " to=user<|message|>other<|eot|>",
+          "input_tokens": 292,
+          "output_tokens": 5,
+          "at_token_limit": false,
+          "batch_seconds": 4.438233276999995,
+          "batch_size": 8
+        },
+        {
+          "index": 28,
+          "text": " to=user<|message|>other<|eot|>",
+          "input_tokens": 635,
+          "output_tokens": 5,
+          "at_token_limit": false,
+          "batch_seconds": 11.759541740999964,
+          "batch_size": 8
+        },
+        {
+          "index": 29,
+          "text": " to=user<|message|>other<|eot|>",
+          "input_tokens": 484,
+          "output_tokens": 5,
+          "at_token_limit": false,
+          "batch_seconds": 6.278310676000046,
+          "batch_size": 8
+        },
+        {
+          "index": 30,
+          "text": " to=user<|message|>other<|eot|>",
+          "input_tokens": 363,
+          "output_tokens": 5,
+          "at_token_limit": false,
+          "batch_seconds": 6.278310676000046,
+          "batch_size": 8
+        },
+        {
+          "index": 31,
+          "text": " to=user<|message|>other<|eot|>",
+          "input_tokens": 544,
+          "output_tokens": 5,
+          "at_token_limit": false,
+          "batch_seconds": 9.174348296000005,
+          "batch_size": 8
+        },
+        {
+          "index": 32,
+          "text": " to=user<|message|>other<|eot|>",
+          "input_tokens": 415,
+          "output_tokens": 5,
+          "at_token_limit": false,
+          "batch_seconds": 6.278310676000046,
+          "batch_size": 8
+        },
+        {
+          "index": 33,
+          "text": " to=user<|message|>other<|eot|>",
+          "input_tokens": 784,
+          "output_tokens": 5,
+          "at_token_limit": false,
+          "batch_seconds": 11.759541740999964,
+          "batch_size": 8
+        },
+        {
+          "index": 34,
+          "text": " to=user<|message|>other<|eot|>",
+          "input_tokens": 419,
+          "output_tokens": 5,
+          "at_token_limit": false,
+          "batch_seconds": 6.278310676000046,
+          "batch_size": 8
+        },
+        {
+          "index": 35,
+          "text": " to=user<|message|>other<|eot|>",
+          "input_tokens": 396,
+          "output_tokens": 5,
+          "at_token_limit": false,
+          "batch_seconds": 6.278310676000046,
+          "batch_size": 8
+        },
+        {
+          "index": 36,
+          "text": " to=user<|message|>other<|eot|>",
+          "input_tokens": 484,
+          "output_tokens": 5,
+          "at_token_limit": false,
+          "batch_seconds": 6.278310676000046,
+          "batch_size": 8
+        },
+        {
+          "index": 37,
+          "text": " to=user<|message|>other<|eot|>",
+          "input_tokens": 292,
+          "output_tokens": 5,
+          "at_token_limit": false,
+          "batch_seconds": 4.8266580339999905,
+          "batch_size": 8
+        },
+        {
+          "index": 38,
+          "text": " to=user<|message|>other<|eot|>",
+          "input_tokens": 292,
+          "output_tokens": 5,
+          "at_token_limit": false,
+          "batch_seconds": 4.8266580339999905,
+          "batch_size": 8
+        },
+        {
+          "index": 39,
+          "text": " to=user<|message|>other<|eot|>",
+          "input_tokens": 519,
+          "output_tokens": 5,
+          "at_token_limit": false,
+          "batch_seconds": 9.174348296000005,
+          "batch_size": 8
+        }
+      ],
+      "runtime_seconds": 36.642192389,
+      "precision": {
+        "loaded_in_4bit": true,
+        "quantised_linear_modules": 720,
+        "double_quantisation": true,
+        "compute_dtypes": [
+          "torch.bfloat16"
+        ],
+        "quantisation_types": [
+          "nf4"
+        ],
+        "quantised_storage_dtypes": [
+          "torch.bfloat16"
+        ],
+        "parameter_device_types": [
+          "cuda"
+        ],
+        "adapter_parameter_dtypes": [
+          "torch.float32"
+        ]
+      },
+      "free_and_total_memory_bytes": [
+        1828126720,
+        23689363456
+      ],
+      "peak_allocated_bytes": 21031301120,
+      "peak_reserved_bytes": 21604859904,
+      "metrics": {
+        "pages": 40,
+        "accuracy": 0.975,
+        "invalid": 0,
+        "missing": 0,
+        "per_family": {
+          "short_term_foreign_liabilities_as": {
+            "tp": 1,
+            "fp": 0,
+            "fn": 0,
+            "support": 1,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "security_transactions_as_reported_by": {
+            "tp": 1,
+            "fp": 0,
+            "fn": 0,
+            "support": 1,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "outstanding_forward_exchange_contracts": {
+            "tp": 1,
+            "fp": 0,
+            "fn": 0,
+            "support": 1,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "receipts_and_expenditures_under_railroad": {
+            "tp": 1,
+            "fp": 0,
+            "fn": 0,
+            "support": 1,
+            "precision": 1.0,
+            "recall": 1.0
+          },
+          "total_claims_by_country": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 1,
+            "support": 1,
+            "precision": null,
+            "recall": 0.0
+          },
+          "other": {
+            "tp": 35,
+            "fp": 1,
+            "fn": 0,
+            "support": 35,
+            "precision": 0.9722222222222222,
+            "recall": 1.0
+          }
+        },
+        "macro_precision_defined_labels": 0.9944444444444445,
+        "macro_recall_defined_labels": 0.8333333333333334,
+        "confusion": [
+          {
+            "expected": "other",
+            "predicted": "other",
+            "count": 35
+          },
+          {
+            "expected": "outstanding_forward_exchange_contracts",
+            "predicted": "outstanding_forward_exchange_contracts",
+            "count": 1
+          },
+          {
+            "expected": "receipts_and_expenditures_under_railroad",
+            "predicted": "receipts_and_expenditures_under_railroad",
+            "count": 1
+          },
+          {
+            "expected": "security_transactions_as_reported_by",
+            "predicted": "security_transactions_as_reported_by",
+            "count": 1
+          },
+          {
+            "expected": "short_term_foreign_liabilities_as",
+            "predicted": "short_term_foreign_liabilities_as",
+            "count": 1
+          },
+          {
+            "expected": "total_claims_by_country",
+            "predicted": "other",
+            "count": 1
+          }
+        ]
+      }
+    }
+  },
+  "precision": {
+    "loaded_in_4bit": true,
+    "quantised_linear_modules": 720,
+    "double_quantisation": true,
+    "compute_dtypes": [
+      "torch.bfloat16"
+    ],
+    "quantisation_types": [
+      "nf4"
+    ],
+    "quantised_storage_dtypes": [
+      "torch.bfloat16"
+    ],
+    "parameter_device_types": [
+      "cuda"
+    ],
+    "adapter_parameter_dtypes": []
+  },
+  "runtime_seconds": 378.448795364,
+  "selected_gpu": "L4",
+  "rate_per_second_usd": 0.00034544,
+  "pages": 40,
+  "input_page_ids": [
+    "1939-12_p003",
+    "1939-12_p004",
+    "1939-12_p005",
+    "1939-12_p006",
+    "1939-12_p009",
+    "1939-12_p016",
+    "1939-12_p022",
+    "1939-12_p025",
+    "1939-12_p034",
+    "1939-12_p037",
+    "1939-12_p048",
+    "1939-12_p053",
+    "1939-12_p055",
+    "1939-12_p060",
+    "1939-12_p066",
+    "1939-12_p068",
+    "1939-12_p074",
+    "1939-12_p076",
+    "1984-06_p001",
+    "1984-06_p003",
+    "1984-06_p005",
+    "1984-06_p009",
+    "1984-06_p013",
+    "1984-06_p020",
+    "1984-06_p024",
+    "1984-06_p026",
+    "1984-06_p030",
+    "1984-06_p048",
+    "1984-06_p056",
+    "1984-06_p058",
+    "1984-06_p059",
+    "1984-06_p061",
+    "1984-06_p064",
+    "1984-06_p072",
+    "1984-06_p075",
+    "1984-06_p076",
+    "1984-06_p079",
+    "1984-06_p082",
+    "1984-06_p092",
+    "1984-06_p096"
+  ],
+  "ocr_prefix_chars": 1024,
+  "status": "development_check_not_phase1_replacement_or_heldout_result",
+  "prospective_function_limit_seconds": 10825,
+  "startup_allowance_seconds": 300,
+  "idle_allowance_seconds": 15
+}

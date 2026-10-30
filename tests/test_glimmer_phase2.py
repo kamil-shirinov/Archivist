@@ -107,7 +107,7 @@ def test_cost_projection_is_paired_margin_adjusted_and_stops_before_an_oversized
     assert estimate['conservative_function_seconds'] == 3790
     assert estimate['expected_cost_usd'] < estimate['conservative_cost_usd']
     assert require_budget_fit(benchmark,500,18)['fits_runtime_limit']
-    with pytest.raises(ValueError,match='four hours'):
+    with pytest.raises(ValueError,match='runtime limit'):
         require_budget_fit(benchmark,4569,18)
     with pytest.raises(ValueError,match='cap'):
         require_budget_fit(benchmark,500,24)

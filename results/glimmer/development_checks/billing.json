@@ -1,0 +1,42 @@
+{
+  "queried_at": "2026-10-30T22:42:25.388664+00:00",
+  "source": "modal billing report --for today --show-resources --json",
+  "app_id": "ap-w6UzJuaAqihgb5BCNUxjS1",
+  "new_reported_cost_usd": 0.14020297,
+  "cumulative_with_preserved_phase1_reported_cost_usd": 1.54829339,
+  "billing_may_lag": true,
+  "rows": [
+    {
+      "object_id": "ap-w6UzJuaAqihgb5BCNUxjS1",
+      "description": "archivist-glimmer-development-checks",
+      "environment": "main",
+      "interval_start": "2026-10-30T00:00:00",
+      "resource": "CPU",
+      "cost": "0.02130272"
+    },
+    {
+      "object_id": "ap-w6UzJuaAqihgb5BCNUxjS1",
+      "description": "archivist-glimmer-development-checks",
+      "environment": "main",
+      "interval_start": "2026-10-30T00:00:00",
+      "resource": "L4",
+      "cost": "0.09007491"
+    },
+    {
+      "object_id": "ap-w6UzJuaAqihgb5BCNUxjS1",
+      "description": "archivist-glimmer-development-checks",
+      "environment": "main",
+      "interval_start": "2026-10-30T00:00:00",
+      "resource": "Network Egress",
+      "cost": "0.00000137"
+    },
+    {
+      "object_id": "ap-w6UzJuaAqihgb5BCNUxjS1",
+      "description": "archivist-glimmer-development-checks",
+      "environment": "main",
+      "interval_start": "2026-10-30T00:00:00",
+      "resource": "Memory",
+      "cost": "0.02882397"
+    }
+  ]
+}
