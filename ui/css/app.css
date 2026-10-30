@@ -144,3 +144,32 @@ details.type-d{margin-top:0}
 .types{grid-template-columns:minmax(0,1fr)}
 .integrity dd,.mono{overflow-wrap:anywhere}
 .coll-menu .cm-g p{margin:2px 0 0;font-size:12px;line-height:1.45;color:var(--ink-2);font-weight:400}
+
+/* Moving between views (js/transition.js). Only the main content moves: the new view's children rise
+   6px and fade in over 220ms, its header first and then each panel 30ms after the one before, in at most
+   six steps; the top bar, the run bar and the sidebar are never animated. */
+@keyframes view-in{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+@keyframes view-fade{from{opacity:0}to{opacity:1}}
+@keyframes view-out{to{opacity:0}}
+.view.enter>*{animation:view-in 220ms cubic-bezier(.2,.8,.2,1) both;animation-delay:calc(var(--step,0) * 30ms)}
+.view.enter>:nth-child(-n+2){--step:0}
+.view.enter>:nth-child(3){--step:1}
+.view.enter>:nth-child(4){--step:2}
+.view.enter>:nth-child(5){--step:3}
+.view.enter>:nth-child(6){--step:4}
+.view.enter>:nth-child(n+7){--step:5}
+/* Reduced motion: a plain 120ms fade, nothing moves. (base.css switches every animation off for it, so
+   this says so with more weight.) */
+@media (prefers-reduced-motion:reduce){
+  .view.enter>*{animation:view-fade 120ms linear both!important;animation-delay:0ms!important}
+}
+/* Where the browser has view transitions, the visible view is the only thing named, and the page
+   around it is held exactly as it is: the old view fades out in 100ms under the new one, which comes in
+   by the animation above. */
+html[data-vt] .view:not([hidden]){view-transition-name:main-view}
+::view-transition-group(root){animation:none}
+::view-transition-old(root){display:none}
+::view-transition-new(root){animation:none;mix-blend-mode:normal}
+::view-transition-group(main-view){animation:none}
+::view-transition-old(main-view){animation:view-out 100ms ease-out both;mix-blend-mode:normal}
+::view-transition-new(main-view){animation:none;mix-blend-mode:normal}

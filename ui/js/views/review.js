@@ -6,7 +6,7 @@ import { S, LBL, statusOf, isOpen, heading, subtitle, fieldLabel, fieldContext, 
 import { PageView } from "../pageview.js";
 import { wire, hideWire, follow, noAnim } from "../wire.js";
 import { refresh } from "../chrome.js";
-import { $, esc, norm, reduced, toast, int } from "../util.js";
+import { $, esc, norm, reduced, toast, int, frame } from "../util.js";
 
 let pageId = null, items = [], cur = 0, fitMode = false, intro = false, advance = null, pv = null;
 
@@ -84,7 +84,7 @@ const cam = () => pv.camera({ box: fitMode ? null : items[cur].box, fit: fitMode
 function rWire() {
   const f = items[cur];
   if (fitMode || !f || doneAnswer(f) || $("v-review").hidden) return hideWire($("thread"));
-  wire($("thread"), $("review"), $("p-crop"), pv.target(f.field_id), $("stage"), "l");
+  wire($("thread"), $("rv-main"), $("p-crop"), pv.target(f.field_id), $("stage"), "l");
 }
 
 // --- the panel --------------------------------------------------------------------------------------
@@ -269,7 +269,7 @@ function load(pid) {
   pv = new PageView(stage, S.pageById.get(pid));
   header();
   intro = false;
-  requestAnimationFrame(() => {
+  frame(() => {
     fitMode = true;
     noAnim(pv.sheet, cam);
     marks();
@@ -286,7 +286,7 @@ function nothingOpen() {
   $("rv-crumb").innerHTML = `<a href="#overview">${esc(S.bundle.run.collection)}</a>/<span>Review queue</span>`;
   $("rv-t").textContent = "Nothing is open";
   $("rv-sub").textContent = "Every value that went to a person has been answered in this browser.";
-  $("review").hidden = true;
+  $("rv-main").hidden = true;
 }
 
 export function init() {
@@ -336,10 +336,10 @@ export function enter(arg) {
     if (!list.length) return nothingOpen();
     pid = list[0].page_id;
     if (arg !== pid) {
-      history.replaceState(null, "", `#review-${pid}`);
+      history.replaceState(history.state, "", `#review-${pid}`); // keep the entry's scroll tag
     }
   }
-  $("review").hidden = false;
+  $("rv-main").hidden = false;
   load(pid);
 }
 
@@ -349,6 +349,7 @@ export function resize() {
   rWire();
 }
 export const scroll = () => items.length && rWire();
+export const entered = () => items.length && rWire(); // the entrance is over: the thread can point at content that is no longer moving
 export function leave() {
   hideWire($("thread"));
   clearTimeout(advance);

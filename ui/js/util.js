@@ -1,6 +1,13 @@
 // Small helpers shared by every view.
 
 export const $ = (id) => document.getElementById(id);
+
+// Run fn once layout is up to date. Normally that is the next frame; while a view transition is
+// swapping the content (rendering is paused then, so no frame would come) the layout is forced
+// at once, which every caller can bear: they only read sizes and draw.
+let sync = false;
+export const setSync = (on) => (sync = on);
+export const frame = (fn) => (sync ? fn() : requestAnimationFrame(fn));
 export const reduced = matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 export const esc = (s) =>

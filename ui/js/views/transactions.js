@@ -5,7 +5,7 @@ import { S, LBL, stc, statusOf, shown } from "../store.js";
 import { PageView } from "../pageview.js";
 import { wire, hideWire, follow } from "../wire.js";
 import { checkedBy } from "./document.js";
-import { $, esc, num, money, fmtDate, parseDate, MONS, MONTHS, toast, reduced } from "../util.js";
+import { $, esc, num, money, fmtDate, parseDate, MONS, MONTHS, toast, reduced, frame } from "../util.js";
 
 const RANK = { docerr: 4, review: 3, unread: 2, you: 1, ok: 0 };
 const STOP = new Set("in on to from the of for all every show find me any with and values value records record amounts amount what which where was were is are by at than made transactions transaction lines line".split(" "));
@@ -183,7 +183,7 @@ function showTx(t) {
     pv.highlight(a);
     if (!pv.marks.get(a.field_id)?.stat) pv.loop(a, "gold", { draw: true, hot: true });
   }
-  requestAnimationFrame(() => {
+  frame(() => {
     pv.camera({ box: a?.box, zoomCap: 1.7 });
     follow(tWire, reduced ? 0 : 950);
   });
@@ -245,7 +245,7 @@ export function enter(arg, query) {
   accountFilter = query.get("account") || "";
   if (query.has("q")) qState = query.get("q");
   $("tx-crumb").innerHTML = `<a href="#overview">${esc(S.bundle.run.collection)}</a>/<span>Transactions</span>`;
-  requestAnimationFrame(() => {
+  frame(() => {
     $("q").value = qState;
     srcPage = null;
     pv = null;
@@ -260,6 +260,7 @@ export function resize() {
   }
 }
 export const scroll = tWire;
+export const entered = tWire; // the entrance is over: the thread can point at content that is no longer moving
 export function leave() {
   hideWire($("tthread"));
 }

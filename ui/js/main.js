@@ -4,6 +4,7 @@
 import { boot, S } from "./store.js";
 import { $, esc, toast } from "./util.js";
 import { initTheme, labelRun, refresh } from "./chrome.js";
+import { navigate } from "./transition.js";
 import * as palette from "./palette.js";
 import * as overview from "./views/overview.js";
 import * as review from "./views/review.js";
@@ -33,14 +34,20 @@ function parse() {
   return { view, arg, query: new URLSearchParams(qs || "") };
 }
 
-function show() {
+function show(first = false) {
   const { view, arg, query } = parse();
-  if (current && current !== view) VIEWS[current].leave?.();
-  current = view;
-  for (const n of Object.keys(VIEWS)) $(`v-${n}`).hidden = n !== view;
-  document.querySelectorAll(".side a[data-v]").forEach((a) => a.setAttribute("aria-current", a.dataset.v === (NAV_OF[view] || view) ? "page" : "false"));
-  scrollTo(0, 0);
-  VIEWS[view].enter(arg, query);
+  navigate(
+    () => {
+      if (current && current !== view) VIEWS[current].leave?.();
+      current = view;
+      for (const n of Object.keys(VIEWS)) $(`v-${n}`).hidden = n !== view;
+      document.querySelectorAll(".side a[data-v]").forEach((a) => a.setAttribute("aria-current", a.dataset.v === (NAV_OF[view] || view) ? "page" : "false"));
+      VIEWS[view].enter(arg, query);
+      return $(`v-${view}`);
+    },
+    () => VIEWS[current]?.entered?.(),
+    { first }
+  );
 }
 
 async function start() {
@@ -62,7 +69,7 @@ async function start() {
     toast("Reading new pages happens in the local app, where the models run. This hosted copy replays recorded runs only.")
   );
   for (const v of Object.values(VIEWS)) v.init?.();
-  addEventListener("hashchange", show);
+  addEventListener("hashchange", () => show());
   addEventListener("resize", () => VIEWS[current]?.resize?.());
   addEventListener("scroll", () => VIEWS[current]?.scroll?.(), { passive: true });
   addEventListener("keydown", (e) => {
@@ -83,7 +90,7 @@ async function start() {
     }
     VIEWS[current]?.key?.(e);
   });
-  show();
+  show(true);
   document.documentElement.dataset.ready = "1"; // for the browser test: the run is loaded and a view is up
 }
 

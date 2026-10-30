@@ -8,6 +8,9 @@ export function hideWire(svg) {
 // Draw it from `from` to `to` inside `host`, clipped to the `clip` box (the page); `dir` is "l" when
 // the page is to the left of the thing it is drawn from, "r" when to the right.
 export function wire(svg, host, from, to, clip, dir) {
+  // While a view is still coming in its content moves: the thread waits, and each view draws it again
+  // when the entrance is over (its `entered` hook).
+  if (document.documentElement.dataset.entering) return hideWire(svg);
   if (!from || !to || getComputedStyle(svg).display === "none") return hideWire(svg);
   const h = host.getBoundingClientRect(), a = from.getBoundingClientRect(), b = to.getBoundingClientRect(), c = clip.getBoundingClientRect();
   const inside = (r, k, m) => r.bottom > k.top + m && r.top < k.bottom - m && r.right > k.left + m && r.left < k.right - m;

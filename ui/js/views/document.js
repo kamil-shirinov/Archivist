@@ -3,8 +3,8 @@
 
 import { S, LBL, statusOf, fieldLabel, rulesOf, reasonSentence, docStats, heading, subtitle } from "../store.js";
 import { PageView } from "../pageview.js";
-import { wire, hideWire, follow } from "../wire.js";
-import { $, esc, fmtDate } from "../util.js";
+import { wire, hideWire, follow, noAnim } from "../wire.js";
+import { $, esc, fmtDate, frame } from "../util.js";
 import { runFacts } from "./overview.js";
 
 let pageId = null, doc = null, page = null, fields = [], pv = null;
@@ -269,7 +269,7 @@ function setTab(t) {
     hideWire($("dthread"));
     renderHist();
   } else
-    requestAnimationFrame(() => {
+    frame(() => {
       pv.fitWidth();
       if (pinned) setHot(pinned);
       dWire();
@@ -290,8 +290,8 @@ function renderDoc() {
   const i = S.docs.findIndex((d) => d.page_id === pageId);
   $("dd-prev").disabled = i <= 0;
   $("dd-next").disabled = i >= S.docs.length - 1;
-  requestAnimationFrame(() => {
-    pv.fitWidth();
+  frame(() => {
+    noAnim(pv.sheet, () => pv.fitWidth()); // a page opens where it belongs, not zooming in under the entrance
     if (pinned) setHot(pinned);
     else hideWire($("dthread"));
     if (tab === "hist") renderHist();
@@ -367,7 +367,7 @@ export function enter(arg, query) {
   page = S.pageById.get(arg);
   fields = S.fieldsByPage.get(arg) || [];
   pinned = query.get("pin") && S.fieldById.has(query.get("pin")) ? query.get("pin") : null;
-  requestAnimationFrame(renderDoc);
+  frame(renderDoc);
 }
 
 export function resize() {
@@ -376,6 +376,7 @@ export function resize() {
   dWire();
 }
 export const scroll = dWire;
+export const entered = dWire; // the entrance is over: the thread can point at content that is no longer moving
 export function leave() {
   hideWire($("dthread"));
 }

@@ -86,8 +86,9 @@ def tab(site):
         yield browser.tab()
 
 
-def load(tab, base, hash_, size="desktop", theme="light", still=True):
-    width, height = SIZES[size]
+def load(tab, base, hash_, size="desktop", theme="light", still=True, height=None):
+    width, high = SIZES[size]
+    height = height or high
     tab.errors.clear()
     tab.requests.clear()
     tab.open(f"{base}/ui/{hash_}", width=width, height=height, dark=THEMES[theme], still=still)
@@ -542,4 +543,303 @@ def test_document_types_list_each_rule_its_evidence_and_who_approved_it(tab, sit
     assert approvers and all(a in text for a in approvers)
     assert "Held in" in text and "Evidence file" in text and "sha256" in text
     assert text.count("Approved by") >= 5
+    assert tab.errors == []
+
+
+# --- moving between views (js/transition.js) -------------------------------------------------------------
+
+MOTION = {"normal": False, "reduced": True}
+# Set up in the page once it has settled, to see what a change of view does: how many view
+# transitions it starts, which elements the page names for them, every entrance animation as it starts
+# (with its timing), whether anything in the top bar, the run bar or the side bar was animated or moved,
+# and how many entrances have ended.
+RECORD = """(() => {
+  const root = document.documentElement;
+  const log = (window.__nav = { vt: 0, named: [], started: [], rects: [], entered: 0 });
+  const rects = () => ['.top', '.side', '#runbar'].map((s) => {
+    const r = document.querySelector(s).getBoundingClientRect();
+    return [r.x, r.y, r.width, r.height].map(Math.round).join(',');
+  }).join(' | ');
+  const named = () => [...document.querySelectorAll('.top, .side, #runbar, main, .view')]
+    .filter((e) => getComputedStyle(e).viewTransitionName !== 'none').map((e) => e.id || e.className);
+  log.rects.push(rects());
+  const start = document.startViewTransition && document.startViewTransition.bind(document);
+  if (start) document.startViewTransition = (update) => {
+    log.vt++;
+    log.named.push(named());
+    return start(() => {
+      const result = update();
+      log.named.push(named());
+      log.rects.push(rects());
+      return result;
+    });
+  };
+  document.addEventListener('animationstart', (e) => {
+    const s = getComputedStyle(e.target);
+    log.started.push({
+      name: e.animationName,
+      inView: !!e.target.parentElement && e.target.parentElement.classList.contains('view'),
+      chrome: !!e.target.closest('.top, .side, #runbar'),
+      delay: s.animationDelay, duration: s.animationDuration, ease: s.animationTimingFunction,
+      transform: s.transform,
+    });
+    log.rects.push(rects());
+  }, true);
+  let was = false;
+  new MutationObserver(() => {
+    const now = !!root.dataset.entering;
+    if (was && !now) log.entered++;
+    was = now;
+  }).observe(root, { attributes: true, attributeFilter: ['data-entering'] });
+})()"""
+
+
+def watch(tab):
+    tab.eval(RECORD)
+
+
+def go(tab, hash_, timeout=20):
+    """Change the view by the hash, as a visitor's click does, and wait until its entrance is over."""
+    before = tab.eval("window.__nav.entered")
+    tab.eval(f"location.hash = {json.dumps(hash_)}")
+    tab.wait_for(f"window.__nav.entered > {before} && !document.documentElement.dataset.vt", timeout)
+
+
+@pytest.mark.parametrize("motion", MOTION)
+@pytest.mark.parametrize("view", VIEWS)
+def test_every_view_opens_without_a_console_error_in_normal_and_reduced_motion(tab, site, view, motion):
+    hash_, ready = VIEWS[view]
+    load(tab, site, hash_, still=MOTION[motion])
+    settle(tab, ready)
+    tab.wait_for("!document.documentElement.dataset.entering", 5)
+    shown = tab.eval("[...document.querySelectorAll('main .view')].filter(v => !v.hidden).map(v => v.id)")
+    assert len(shown) == 1, shown
+    assert tab.eval("document.querySelector('main .view:not([hidden]) h1').textContent.length > 0")
+    assert tab.eval("getComputedStyle(document.querySelector('main .view:not([hidden])')).opacity") == "1"
+    assert tab.errors == []
+    assert local(tab, site) == []
+
+
+@pytest.mark.parametrize("motion", MOTION)
+@pytest.mark.parametrize("collection", ["synthetic", "development"])
+def test_every_view_opens_when_reached_from_another_view_in_normal_and_reduced_motion(tab, site, collection, motion):
+    mine = [k for k in VIEWS if k.startswith("development-") == (collection == "development")]
+    first, rest = mine[0], mine[1:]
+    load(tab, site, VIEWS[first][0], still=MOTION[motion])
+    settle(tab, VIEWS[first][1])
+    watch(tab)
+    for k in rest + [first]:  # every other view, then back to the first
+        go(tab, "#" + VIEWS[k][0].split("#")[-1])
+        tab.wait_for(VIEWS[k][1], 30)
+        shown = tab.eval("[...document.querySelectorAll('main .view')].filter(v => !v.hidden).map(v => v.id)")
+        assert len(shown) == 1, (k, shown)
+        assert tab.eval("document.querySelector('main .view:not([hidden]) h1').textContent.length > 0"), k
+        assert tab.eval("scrollY") == 0, f"{k} starts at the top"
+        assert tab.eval("getComputedStyle(document.querySelector('main .view:not([hidden])')).opacity") == "1", k
+        assert tab.eval("document.documentElement.scrollWidth <= window.innerWidth + 1"), k
+    assert tab.errors == []
+    assert local(tab, site) == []
+    log = tab.eval("window.__nav")
+    moves = len(rest) + 1
+    if MOTION[motion]:
+        assert log["vt"] == 0, "reduced motion: no view transition"
+        assert {a["name"] for a in log["started"] if a["inView"]} == {"view-fade"}
+    else:
+        assert log["vt"] == moves, "one view transition for each change of view, none for the first load"
+        assert {a["name"] for a in log["started"] if a["inView"]} == {"view-in"}
+
+
+def test_the_entrance_is_a_6px_rise_over_220ms_header_first_then_the_panels_30ms_apart(tab, site):
+    load(tab, site, "#documents", still=False)
+    settle(tab, VIEWS["documents"][1])
+    watch(tab)
+    go(tab, "#overview")
+    started = [a for a in tab.eval("window.__nav.started") if a["inView"]]
+    assert started, "the new view's content animated"
+    assert {a["name"] for a in started} == {"view-in"}
+    assert {a["duration"] for a in started} == {"0.22s"}
+    assert {a["ease"] for a in started} == {"cubic-bezier(0.2, 0.8, 0.2, 1)"}
+    delays = [round(float(a["delay"][:-1]) * 1000) for a in started]
+    # the crumbs and the header together, then each panel 30ms after the one before
+    assert delays == [0, 0, 30, 60, 90, 120], delays
+    # the keyframes: from opacity 0, 6px down, to rest
+    frames = tab.eval(
+        """(() => { const k = [...document.styleSheets].flatMap((s) => [...s.cssRules])
+             .find((r) => r.name === 'view-in'); return [...k.cssRules].map((r) => r.cssText); })()"""
+    )
+    assert any("opacity: 0" in f and "translateY(6px)" in f for f in frames), frames
+    assert any("opacity: 1" in f and "transform: none" in f for f in frames), frames
+
+
+def test_a_view_with_many_panels_still_takes_six_steps_at_most(tab, site):
+    load(tab, site, "#overview", still=False)
+    settle(tab, VIEWS["overview"][1])
+    delays = tab.eval(
+        """(() => {
+          const v = document.querySelector('main .view:not([hidden])');
+          for (let i = 0; i < 6; i++) v.append(document.createElement('div'));
+          v.classList.remove('enter'); void v.offsetWidth; v.classList.add('enter');
+          return [...v.children].map((e) => getComputedStyle(e).animationDelay);
+        })()"""
+    )
+    ms = [round(float(d[:-1]) * 1000) for d in delays]
+    assert len(ms) == 12 and ms[:6] == [0, 0, 30, 60, 90, 120] and set(ms[6:]) == {150}, ms
+    assert max(ms) + 220 <= 370, "the last panel is in by 370ms"
+
+
+def test_only_the_main_content_moves_the_top_bar_and_the_side_bar_stay_perfectly_still(tab, site):
+    load(tab, site, "#documents", still=False)
+    settle(tab, VIEWS["documents"][1])
+    watch(tab)
+    for hash_ in ["#overview", f"#doc-{CARD}", "#review", "#accuracy", "#transactions", "#documents"]:
+        go(tab, hash_)
+    log = tab.eval("window.__nav")
+    assert log["vt"] == 6
+    assert [a for a in log["started"] if a["chrome"]] == [], "nothing in the top bar, run bar or side bar animated"
+    assert len(set(log["rects"])) == 1, "the top bar, run bar and side bar never moved or changed size"
+    # only the view being shown is named for a transition, and only while it runs
+    for named in log["named"]:
+        assert len(named) == 1 and named[0].startswith("v-"), named
+    assert tab.eval(
+        "[...document.querySelectorAll('.top, .side, #runbar, main, .view')]"
+        ".filter((e) => getComputedStyle(e).viewTransitionName !== 'none').length"
+    ) == 0
+    assert tab.eval("document.documentElement.dataset.vt") is None
+    assert tab.errors == []
+
+
+def test_the_old_content_fades_out_in_100ms_under_the_new(tab, site):
+    load(tab, site, "#documents", still=False)
+    settle(tab, VIEWS["documents"][1])
+    running = tab.eval(
+        """new Promise((done) => {
+          const start = document.startViewTransition.bind(document);
+          document.startViewTransition = (update) => {
+            const t = start(update);
+            t.ready.then(
+              () => done(document.getAnimations().filter((a) => a.effect && a.effect.pseudoElement)
+                .map((a) => [a.effect.pseudoElement, a.animationName, a.effect.getComputedTiming().duration])),
+              () => done(null));
+            return t;
+          };
+          location.hash = '#overview';
+          setTimeout(() => done(null), 5000);
+        })"""
+    )
+    assert running, "a view transition ran"
+    assert ["::view-transition-old(main-view)", "view-out", 100] in running, running
+    assert not [r for r in running if r[0] == "::view-transition-new(main-view)"], "the new view is not faded again"
+    assert not [r for r in running if r[0].endswith("(root)") and r[0].startswith("::view-transition-group")], (
+        "the page around the content is held, not animated"
+    )
+
+
+def test_stepping_to_the_next_and_previous_document_animates_only_the_document(tab, site):
+    load(tab, site, f"#doc-{CARD}", still=False, height=560)
+    settle(tab, VIEWS["document"][1])
+    watch(tab)
+    title = tab.eval("document.getElementById('dd-t').textContent")
+    assert tab.eval("document.getElementById('dd-next').disabled") is False
+    tab.eval("scrollTo(0, 80)")
+    assert tab.eval("scrollY") > 0, "the page can be scrolled, so starting at the top is a real check"
+    for button, differs in [("dd-next", True), ("dd-prev", False)]:
+        before = tab.eval("window.__nav.entered")
+        tab.eval(f"document.getElementById('{button}').click()")
+        tab.wait_for(f"window.__nav.entered > {before} && !document.documentElement.dataset.vt", 20)
+        tab.wait_for("!!document.querySelector('#dpaper img')?.complete", 20)
+        now = tab.eval("document.getElementById('dd-t').textContent")
+        assert (now != title) == differs, (button, title, now)
+        assert tab.eval("scrollY") == 0
+        tab.eval("scrollTo(0, 80)")
+    log = tab.eval("window.__nav")
+    assert log["vt"] == 2
+    assert [a["name"] for a in log["started"] if a["inView"]].count("view-in") >= 6
+    assert [a for a in log["started"] if a["chrome"]] == []
+    assert len(set(log["rects"])) == 1
+    assert tab.errors == []
+
+
+def test_reduced_motion_is_a_plain_120ms_fade_with_no_movement_and_no_view_transition(tab, site):
+    load(tab, site, "#documents", still=True)
+    settle(tab, VIEWS["documents"][1])
+    watch(tab)
+    for hash_ in ["#overview", f"#doc-{CARD}", "#accuracy"]:
+        go(tab, hash_)
+    log = tab.eval("window.__nav")
+    started = [a for a in log["started"] if a["inView"]]
+    assert started and {a["name"] for a in started} == {"view-fade"}
+    assert {a["duration"] for a in started} == {"0.12s"}
+    assert {a["ease"] for a in started} == {"linear"}
+    assert {a["delay"] for a in started} == {"0s"}, "no stagger"
+    assert {a["transform"] for a in started} == {"none"}, "nothing moves"
+    assert log["vt"] == 0
+    assert tab.eval("document.getAnimations().filter((a) => a.animationName === 'view-in').length") == 0
+    assert tab.errors == []
+
+
+def test_without_view_transitions_the_new_content_still_comes_in_and_the_old_is_replaced(tab, site):
+    load(tab, site, "#documents", still=False)
+    settle(tab, VIEWS["documents"][1])
+    tab.eval("document.startViewTransition = undefined")  # as in a browser that has none
+    watch(tab)
+    for hash_ in ["#overview", f"#doc-{CARD}", "#accuracy", "#documents"]:
+        go(tab, hash_)
+        shown = tab.eval("[...document.querySelectorAll('main .view')].filter(v => !v.hidden).map(v => v.id)")
+        assert len(shown) == 1, shown
+    log = tab.eval("window.__nav")
+    assert log["vt"] == 0
+    started = [a for a in log["started"] if a["inView"]]
+    assert started and {a["name"] for a in started} == {"view-in"}
+    assert {a["duration"] for a in started} == {"0.22s"}
+    assert [a for a in log["started"] if a["chrome"]] == []
+    assert len(set(log["rects"])) == 1
+    assert tab.eval("document.documentElement.dataset.vt") is None
+    assert tab.errors == []
+
+
+def test_the_thread_waits_for_the_entrance_to_end_and_is_then_drawn_where_the_content_rests(tab, site):
+    pin = f"L:{CARD}:05:balance"
+    load(tab, site, "#documents", still=False)
+    settle(tab, VIEWS["documents"][1])
+    watch(tab)
+    tab.eval(
+        f"""(() => {{
+          window.__seen = [];
+          const path = document.querySelector('#dthread path');
+          new MutationObserver(() => window.__seen.push([
+            !!document.documentElement.dataset.entering, parseFloat(path.style.opacity || 0)])
+          ).observe(path, {{ attributes: true, attributeFilter: ['style'] }});
+          location.hash = '#doc-{CARD}?pin=' + encodeURIComponent('{pin}');
+        }})()"""
+    )
+    tab.wait_for("window.__nav.entered > 0 && !document.documentElement.dataset.vt", 20)
+    settle(tab, VIEWS["document"][1])
+    seen = tab.eval("window.__seen")
+    assert [o for e, o in seen if e and o > 0] == [], "the line is never drawn while the content moves"
+    assert seen and seen[-1] == [False, 0.9], seen
+    assert tab.eval("parseFloat(document.querySelector('#dthread path').style.opacity)") > 0, "drawn once it is over"
+    drawn = tab.eval("document.querySelector('#dthread path').getAttribute('d')")
+    tab.eval("window.dispatchEvent(new Event('scroll'))")  # draw it again from where everything now is
+    assert tab.eval("document.querySelector('#dthread path').getAttribute('d')") == drawn
+    assert tab.errors == []
+
+
+@pytest.mark.parametrize("motion", MOTION)
+def test_a_new_view_starts_at_the_top_and_going_back_restores_the_scroll(tab, site, motion):
+    load(tab, site, "#documents", still=MOTION[motion], height=600)
+    settle(tab, VIEWS["documents"][1])
+    watch(tab)
+    tab.eval("scrollTo(0, 150)")
+    tab.pump(0.2)
+    assert tab.eval("scrollY") == 150
+    go(tab, "#accuracy")
+    tab.wait_for(VIEWS["accuracy"][1], 20)
+    assert tab.eval("scrollY") == 0
+    tab.eval("scrollTo(0, 60)")
+    before = tab.eval("window.__nav.entered")
+    tab.eval("history.back()")
+    tab.wait_for(f"window.__nav.entered > {before} && location.hash === '#documents'", 20)
+    tab.wait_for("scrollY === 150", 5)
+    go(tab, "#overview")
+    assert tab.eval("scrollY") == 0
     assert tab.errors == []

@@ -5,7 +5,7 @@
 import { S, stc, statusOf, fieldLabel, rulesOf, reasonSentence, docStats } from "../store.js";
 import { PageView } from "../pageview.js";
 import { noAnim } from "../wire.js";
-import { $, esc, int, reduced } from "../util.js";
+import { $, esc, int, reduced, frame } from "../util.js";
 import { runFacts } from "./overview.js";
 
 const WDUR = { read: 420, snap: 300, sam: 170, blind: 420, rules: 360, decide: 320 };
@@ -108,7 +108,7 @@ function setup(pid) {
   $("w-play").textContent = "Play";
   kpis();
   cellsDraw();
-  requestAnimationFrame(() => {
+  frame(() => {
     if (!hidden()) noAnim(pv.sheet, () => pv.camera({ fit: true }));
   });
 }
@@ -374,7 +374,7 @@ export function enter(arg) {
   if (pid !== pageId || !W) {
     pause();
     setup(pid);
-  } else requestAnimationFrame(() => cam(W.i >= 0 && W.i < W.fields.length ? W.fields[W.i] : null));
+  } else frame(() => cam(W.i >= 0 && W.i < W.fields.length ? W.fields[W.i] : null));
 }
 export function resize() {
   if (pv && W) cam(W.i >= 0 && W.i < W.fields.length ? W.fields[W.i] : null);
