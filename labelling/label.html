@@ -46,9 +46,11 @@
   button { font: inherit; padding: 8px 10px; border-radius: 6px; border: 1px solid var(--line); background: #faf9f7;
     cursor: pointer; text-align: left; }
   button:hover { border-color: #bdb6aa; }
-  .find { font-size: 16px; line-height: 1.4; }
+  .find { font-size: 16px; line-height: 1.4; display: grid; grid-template-columns: auto 1fr; gap: 2px 12px;
+    align-items: baseline; }
   .find b { font-weight: 600; }
   .find i { color: var(--muted); }
+  .find .part { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
   .hint { font-size: 12px; color: var(--muted); margin-top: 3px; }
   button.wide { grid-column: 1 / -1; }
   button.primary { grid-column: 1 / -1; background: var(--accent); color: #fff; border-color: var(--accent); }
@@ -85,6 +87,7 @@
     <div class="hint" id="hint"></div>
   </div>
   <div class="notice" id="nobox" hidden>No box for this cell: find it by its row and column.</div>
+  <div class="notice" id="marksoff" hidden>Red box and bands hidden: ⌥H shows them.</div>
   <div id="lens" title="The box's surroundings, enlarged"></div>
   <div class="note">Each cell is named by its row's printed label and the heading it sits under, as the first read returned them, and by its column heading. The row number is only a hint, and the red box only a locator: where either disagrees, the named row and column win.<br><br>Choose <b>Row not on the page</b> when that label can't be found under that heading. It counts as a wrong value for the single read, and for Archivist wherever it accepted the cell.<br><br>Choose <b>Column not on this page</b> when the page doesn't print that column heading. Results are given both ways for cells on pages whose layout differs from the template: with those cells left out, and with this choice counted as a wrong value.</div>
   <div>
@@ -114,12 +117,13 @@
     <kbd>⌥N</kbd><span>next unlabelled</span>
     <kbd>⌥= ⌥−</kbd><span>zoom in, out</span>
     <kbd>⌥L</kbd><span>row and column bands on or off</span>
+    <kbd>⌥H</kbd><span>hide or show the red box and the bands</span>
   </div>
 </aside>
 <script>
 const which = new URLSearchParams(location.search).get("pass") === "relabel" ? "relabel" : "first";
 const $ = (id) => document.getElementById(id);
-let cells = [], answers = {}, at = 0, zoom = 0, bands = true;  // zoom 0: the page's width fits
+let cells = [], answers = {}, at = 0, zoom = 0, bands = true, marks = true;  // zoom 0: the page's width fits
 
 function show(text) { $("error").textContent = text || ""; }
 
@@ -152,15 +156,16 @@ function describe(answer) {
 }
 
 function named(cell) {
-  // "Sept. 13, under Deposits for foreign account:, column France", built as text nodes
+  // Section, row and column exactly as the draw stores them, built as text nodes: "Deposits for
+  // foreign account:", "Sept. 13", "France". A cell the draw gives no section says so, never a blank.
   const bold = (text) => { const node = document.createElement("b"); node.textContent = text; return node; };
-  const label = cell.row_label
-    ? bold(cell.row_label)
-    : Object.assign(document.createElement("i"), { textContent: "no row label read" });
-  const parts = [label];
-  if (cell.row_heading) parts.push(", under ", bold(cell.row_heading.replace(/:\s*$/, "")));
-  parts.push(", column ", bold(cell.column));
-  return parts;
+  const none = (text) => Object.assign(document.createElement("i"), { textContent: text });
+  let section;
+  if (cell.row_heading) section = bold(cell.row_heading);
+  else if (cell.row_label.endsWith(":")) section = none("none: this row is itself a heading");
+  else section = none("none in the draw");
+  const row = cell.row_label ? bold(cell.row_label) : none("no row label read");
+  return [["Section", section], ["Row", row], ["Column", bold(cell.column)]];
 }
 
 function go(index) {
@@ -168,7 +173,10 @@ function go(index) {
   const cell = cells[at];
   $("where").textContent = `Cell ${cell.n} of ${cells.length} · page ${cell.page}`;
   $("title").textContent = `${cell.title} (${cell.unit})`;
-  $("find").replaceChildren(...named(cell));
+  $("find").replaceChildren(...named(cell).flatMap(([name, value]) => {
+    const part = Object.assign(document.createElement("span"), { className: "part", textContent: name });
+    return [part, value];
+  }));
   $("hint").textContent = `Hint: ${cell.row_hint}`;
   $("nobox").hidden = !!cell.box;
   const own = describe(answers[cell.cell]);
@@ -205,11 +213,13 @@ function place(centre) {
     Object.assign(node.style, { left: `${left}px`, top: `${top}px`, width: `${width}px`, height: `${height}px` });
     stage.appendChild(node);
   };
-  if (bands) {
-    add("band", 0, box.y0 * s, image.naturalWidth * s, (box.y1 - box.y0) * s);
-    add("band", box.x0 * s, 0, (box.x1 - box.x0) * s, image.naturalHeight * s);
+  if (marks) {
+    if (bands) {
+      add("band", 0, box.y0 * s, image.naturalWidth * s, (box.y1 - box.y0) * s);
+      add("band", box.x0 * s, 0, (box.x1 - box.x0) * s, image.naturalHeight * s);
+    }
+    add("box", box.x0 * s - pad, box.y0 * s - pad, (box.x1 - box.x0) * s + 2 * pad, (box.y1 - box.y0) * s + 2 * pad);
   }
-  add("box", box.x0 * s - pad, box.y0 * s - pad, (box.x1 - box.x0) * s + 2 * pad, (box.y1 - box.y0) * s + 2 * pad);
   if (centre) {
     const view = $("view");
     view.scrollTo(((box.x0 + box.x1) / 2) * s - view.clientWidth / 2, ((box.y0 + box.y1) / 2) * s - view.clientHeight / 2);
@@ -257,6 +267,7 @@ function lens(box) {
   node.style.backgroundImage = `url("${image.src}")`;
   node.style.backgroundSize = `${image.naturalWidth * s}px ${image.naturalHeight * s}px`;
   node.style.backgroundPosition = `${left}px ${top}px`;
+  if (!marks) return;
   const mark = document.createElement("div");
   mark.className = "box";
   Object.assign(mark.style, {
@@ -264,6 +275,12 @@ function lens(box) {
     width: `${(box.x1 - box.x0) * s + 6}px`, height: `${(box.y1 - box.y0) * s + 6}px`,
   });
   node.appendChild(mark);
+}
+
+function toggleMarks() {
+  marks = !marks;
+  $("marksoff").hidden = marks;
+  place(false);
 }
 
 function setZoom(factor) {
@@ -290,6 +307,7 @@ document.addEventListener("keydown", (event) => {
     ArrowLeft: () => go(at - 1), ArrowRight: () => go(at + 1), KeyN: nextUnlabelled,
     Equal: () => setZoom(1.25), Minus: () => setZoom(0.8),
     KeyL: () => { bands = !bands; place(false); },
+    KeyH: toggleMarks,
   };
   const action = actions[event.code];
   if (action) { event.preventDefault(); action(); }
