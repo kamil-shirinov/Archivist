@@ -17,6 +17,14 @@ sheet to the next sheet) that say whether they agree. Accounts and postings are 
 checks found them (rules.Reading), from the extracted values; the extracted value is the one in
 the database, whatever its status.
 
+The static review UI draws from the bundle alone (D12), so it also holds, for each page, a
+downsized copy of its image (images.py, in data/pages/<split>/, shared by the runs on that split),
+the page's words of ink and a pen loop for each value (pen.py), SAM's detections that cover a value
+and the steps the page went through; for the run, every rule's result, passed or failed
+(rule_results.py), what the run is (its collection, kind of pages, arm and models) and, on the test
+split, the pre-registered test report as written. All of it is worked out from the committed runs
+and the images; none of it needs the model cache, a model call or ground truth.
+
 --truth also writes data/bundles/<run>/truth.json for the demo: each page's damage level and the
 values as printed, from data/<split>/gt/. It is the only thing here that reads ground truth, and
 it never goes into the bundle. --check writes nothing: it rebuilds the bundle and fails unless
@@ -26,28 +34,42 @@ the file on disk is byte-identical and valid.
 from __future__ import annotations
 
 import argparse
+import hashlib
 import json
+import os
+import re
 from collections import Counter
 from collections.abc import Sequence
+from functools import lru_cache
 from pathlib import Path
 
+import numpy as np
 from PIL import Image
 
 from archivist.doctypes import Card, Posting
 from archivist.doctypes.ledger import MEMO_LEAD, date_items
-from archivist.export import rules
+from archivist.export import images as web
+from archivist.export import pen, rule_results, rules
 from archivist.export.schema import (
+    SCHEMA_VERSION,
     Account,
+    Accuracy,
     Bundle,
     BundleField,
     BundleFlag,
     BundleOccluder,
+    Detection,
     Document,
     Link,
+    Loop,
+    ModelUse,
     Page,
+    PageImage,
     Reason,
+    RuleResult,
     RunInfo,
     Sheet,
+    Step,
     Transaction,
     Truth,
     TruthPage,
@@ -58,9 +80,17 @@ from archivist.schema import Flag, PageExtraction, PageGT, VerdictRecord
 
 BUNDLES_DIR = Path("data/bundles")
 BUNDLE_FILE = "bundle.json"
+INDEX_FILE = "index.json"  # in data/bundles/: the runs there, which the UI opens first
 TRUTH_FILE = "truth.json"
 STATUS_ORDER = ("abstained", "review", "accepted")  # worst first
 FAILED = "failed"
+REAL_SPLIT_PREFIX = "real"  # data/real, data/real_occ, data/real_frb: public-domain scans
+COLLECTIONS = {
+    "test": "Box 14"
+}  # what the app calls a split's pages; the design's name for the test set
+REPORT_FILE = "test_report.json"  # in results/, beside runs/
+REPORT_SOURCE = f"results/{REPORT_FILE}"  # how the bundle names it, whatever the working directory
+OPEN_WEIGHTS = frozenset({"baseten", "fireworks"})
 
 
 def _json(model: Bundle | Truth) -> str:
@@ -89,7 +119,9 @@ def _flags(flags: Sequence[Flag], reading: rules.Reading) -> list[BundleFlag]:
     ]
 
 
-def _field(v: VerdictRecord, extracted: rules.Reading, reread: rules.Reading) -> BundleField:
+def _field(
+    v: VerdictRecord, extracted: rules.Reading, reread: rules.Reading, loop: Loop | None
+) -> BundleField:
     e = v.evidence
     citation = e.citation
     return BundleField(
@@ -104,11 +136,13 @@ def _field(v: VerdictRecord, extracted: rules.Reading, reread: rules.Reading) ->
         box=citation.bbox if citation else None,
         original_box=(citation.raw_bbox or citation.bbox) if citation else None,
         crop=e.crop,
+        route=e.route,
         reread=e.reread,
         reread_status=e.reread_status,
         second_look=e.second_look,
         flags=_flags(v.flags, extracted),
         reread_flags=_flags(e.reread_flags, reread),
+        reread_balances=e.reread_balances,
         proposal=e.proposed,
         proposed_by=e.proposed_by,
         occluders=[BundleOccluder(label=o.label, box=o.bbox, cover=o.cover) for o in e.occluded_by],
@@ -116,6 +150,7 @@ def _field(v: VerdictRecord, extracted: rules.Reading, reread: rules.Reading) ->
             Reason(code=code, rule=rule)
             for code, rule in rules.reasons(v.status, e.reread_status, v.flags, bool(e.occluded_by))
         ],
+        loop=loop,
     )
 
 
@@ -318,14 +353,153 @@ def _documents(
     return out
 
 
-def _pages(images: Path, extracted: Sequence[PageExtraction], failed: dict[str, str]) -> list[Page]:
+Ink = tuple[float, list[tuple[int, int, int, int]], tuple[int, int]]  # text height, words, size
+
+
+@lru_cache(maxsize=None)
+def _ink_of(path: str, mtime_ns: int, size: int) -> tuple[float, tuple, tuple[int, int]]:
+    with Image.open(path) as scan:
+        gray = np.asarray(scan.convert("L"))
+    text_height, found = pen.words(gray)
+    return text_height, tuple(found), (gray.shape[1], gray.shape[0])
+
+
+def _ink(path: Path) -> Ink:
+    """A page's text height, words of ink and size (once, for a scan that hasn't changed)."""
+    stat = path.stat()
+    text_height, found, size = _ink_of(str(path), stat.st_mtime_ns, stat.st_size)
+    return text_height, list(found), size
+
+
+def _scans(images: Path) -> dict[str, Path]:
+    return {p.stem: p for p in sorted(images.iterdir()) if p.suffix.lower() in IMAGE_SUFFIXES}
+
+
+def _loops(verdicts: Sequence[VerdictRecord], ink: dict[str, Ink]) -> dict[str, Loop]:
+    """A pen loop for each value that has a box and something written in it."""
+    boxes: dict[str, dict[str, tuple]] = {}
+    for v in verdicts:
+        if v.evidence.citation is not None and v.value:
+            boxes.setdefault(v.page_id, {})[v.field_id] = (
+                v.evidence.citation.bbox,
+                v.evidence.crop,
+            )
+    out: dict[str, Loop] = {}
+    for page_id, fields in boxes.items():
+        text_height, found, size = ink[page_id]
+        for field_id, loop in pen.loops_for(fields, found, text_height, size).items():
+            out[field_id] = Loop(
+                kind=loop.kind,
+                d=pen.path_data(loop.points),
+                width=loop.width,
+                ink=[round(x) for x in loop.ink],
+            )
+    return out
+
+
+def _detections(fields: Sequence[BundleField]) -> list[Detection]:
+    """The stamps and stains that cover values, each once, with the values they cover."""
+    found: dict[tuple, Detection] = {}
+    for f in fields:
+        for o in f.occluders:
+            key = (o.label, o.box.x0, o.box.y0, o.box.x1, o.box.y1)
+            found.setdefault(key, Detection(label=o.label, box=o.box, fields=[])).fields.append(
+                f.field_id
+            )
+    return sorted(found.values(), key=lambda d: (d.box.y0, d.box.x0, d.label))
+
+
+def _steps(
+    page: PageExtraction,
+    fields: Sequence[BundleField],
+    results: Sequence[RuleResult],
+    sam: Sequence[Detection],
+    models: dict[str, str],
+) -> list[Step]:
+    """What each step of the pipeline did on this page, from what the run recorded of it."""
+    reread = Counter(f.reread_status for f in fields)
+    status = Counter(f.status for f in fields)
+    failed = [r for r in results if not r.ok]
+    return [
+        Step(key="recognise", model=models.get("extractor"), facts={"doc_type": page.doc_type}),
+        Step(
+            key="read",
+            model=models.get("extractor"),
+            facts={"values": len(fields), "not_read": sum(f.value is None for f in fields)},
+        ),
+        Step(
+            key="snap",
+            model=None,
+            facts={
+                "boxes": sum(f.box is not None for f in fields),
+                "moved": sum(f.box is not None and f.box != f.original_box for f in fields),
+            },
+        ),
+        Step(
+            key="sam",
+            model=models.get("segmenter"),
+            facts={
+                "detections": len(sam),
+                "stamps": sum(d.label == "stamp" for d in sam),
+                "stains": sum(d.label == "stain" for d in sam),
+                "values_covered": sum(bool(f.occluders) for f in fields),
+            },
+        ),
+        Step(
+            key="blind",
+            model=models.get("rereader"),
+            facts={
+                "agree": reread["agrees"],
+                "disagree": reread["disagrees"],
+                "illegible": reread["illegible"],
+                "failed": reread["failed"] + reread["no_citation"],
+                "not_reread": reread["not_reread"],
+            },
+        ),
+        Step(
+            key="rules",
+            model=None,
+            facts={
+                "applied": len(results),
+                "failed": len(failed),
+                "failed_rules": ", ".join(sorted({r.label for r in failed})) or None,
+            },
+        ),
+        Step(
+            key="decide",
+            model=None,
+            facts={k: status[k] for k in ("accepted", "review", "abstained")},
+        ),
+    ]
+
+
+def _pages(
+    scans: dict[str, Path],
+    extracted: Sequence[PageExtraction],
+    failed: dict[str, str],
+    ink: dict[str, Ink],
+    fields: Sequence[BundleField],
+    results: Sequence[RuleResult],
+    models: dict[str, str],
+    pages_dir: Path,
+    bundle_dir: Path,
+    split: str,
+) -> list[Page]:
     doc_types = {p.page_id: p.doc_type for p in extracted}
+    by_page = {p.page_id: p for p in extracted}
     field_ids = {p.page_id: [v.field_id for v in p.values] for p in extracted}
+    page_fields: dict[str, list[BundleField]] = {}
+    for f in fields:
+        page_fields.setdefault(f.page_id, []).append(f)
+    page_results: dict[str, list[RuleResult]] = {}
+    for r in results:
+        page_results.setdefault(r.page_id, []).append(r)
     out = []
-    for path in sorted(p for p in images.iterdir() if p.suffix.lower() in IMAGE_SUFFIXES):
-        with Image.open(path) as image:
-            width, height = image.size
-        page_id = path.stem
+    for page_id, path in scans.items():
+        copy = web.web_image(path)
+        text_height, words, (width, height) = ink[page_id]
+        sam = _detections(page_fields.get(page_id, []))
+        read = page_id in doc_types
         out.append(
             Page(
                 page_id=page_id,
@@ -333,26 +507,116 @@ def _pages(images: Path, extracted: Sequence[PageExtraction], failed: dict[str, 
                 width=width,
                 height=height,
                 doc_type=doc_types.get(page_id, FAILED),
-                failure=None if page_id in doc_types else failed.get(page_id, "not extracted"),
+                failure=None if read else failed.get(page_id, "not extracted"),
                 field_ids=field_ids.get(page_id, []),
+                image=PageImage(
+                    url=Path(
+                        os.path.relpath(pages_dir / split / f"{page_id}.jpg", bundle_dir)
+                    ).as_posix(),
+                    width=copy.width,
+                    height=copy.height,
+                    bytes=len(copy.data),
+                    sha256=copy.sha256,
+                ),
+                text_height=text_height,
+                words=[list(w) for w in words],
+                sam=sam,
+                steps=_steps(
+                    by_page[page_id],
+                    page_fields.get(page_id, []),
+                    page_results.get(page_id, []),
+                    sam,
+                    models,
+                )
+                if read
+                else [],
             )
         )
     return out
 
 
-def build(run_dir: Path) -> Bundle:
+_VERSION = re.compile(r"muse-spark-(\d+(?:\.\d+)*)")
+
+
+def model_name(model_id: str) -> str:
+    """A model as a person says it: muse-spark-1.3-contributor is Muse Spark 1.3."""
+    low = model_id.lower()
+    if low.startswith("sam-"):
+        return f"SAM {low[4:]}"
+    if "muse-spark-open" in low:
+        return "Muse Spark Open"
+    if (match := _VERSION.search(low)) is not None:
+        return f"Muse Spark {match.group(1)}"
+    return model_id
+
+
+def _models(config: dict) -> list[ModelUse]:
+    return [
+        ModelUse(
+            role=role,
+            backend=config[role]["backend"],
+            model_id=config[role]["model_id"],
+            name=model_name(config[role]["model_id"]),
+        )
+        for role in ("extractor", "rereader", "segmenter")
+        if role in config
+    ]
+
+
+def _arm(models: Sequence[ModelUse]) -> str:
+    """Where the models that read run: Meta's API (hosted), open-weights hosts, or one of each. The
+    segmenter is SAM 3.1 on Meta's API in every arm, so it does not decide."""
+    backends = {m.backend for m in models if m.role in ("extractor", "rereader")}
+    if not backends:
+        return "unknown"
+    if backends <= OPEN_WEIGHTS:
+        return "open-weights"
+    return "hosted" if backends.isdisjoint(OPEN_WEIGHTS) else "mixed"
+
+
+def _accuracy(run_dir: Path, split: str) -> Accuracy | None:
+    path = run_dir.parent.parent / REPORT_FILE
+    if split != "test" or not path.exists():
+        return None
+    raw = path.read_bytes()
+    return Accuracy(
+        source=REPORT_SOURCE, sha256=hashlib.sha256(raw).hexdigest(), report=json.loads(raw)
+    )
+
+
+def build(
+    run_dir: Path, pages_dir: Path = web.PAGES_DIR, bundles_dir: Path = BUNDLES_DIR
+) -> Bundle:
     """The bundle of one verification run; reads no ground truth."""
     record = json.loads((run_dir / "run.json").read_text(encoding="utf-8"))
     source_dir = run_dir.parent / record["source_run"]
     source = json.loads((source_dir / "run.json").read_text(encoding="utf-8"))
     images = Path(record["images"])
+    split = images.parent.name
     extracted = load_predictions(source_dir / "predictions.jsonl")
     verdicts = load_verdicts(run_dir / VERDICTS_FILE)
 
+    scans = _scans(images)
+    ink = {page_id: _ink(path) for page_id, path in scans.items()}
+    loops = _loops(verdicts, ink)
     reading = rules.Reading(extracted)
     reread = rules.Reading(reread_pages(extracted, verdicts))
-    fields = [_field(v, reading, reread) for v in verdicts]
-    pages = _pages(images, extracted, source.get("failed_pages", {}))
+    fields = [_field(v, reading, reread, loops.get(v.field_id)) for v in verdicts]
+    flags = [flag for v in verdicts for flag in v.flags]
+    results = rule_results.rule_results(reading, flags)
+    models = _models(record.get("config", {}))
+    pages = _pages(
+        scans,
+        extracted,
+        source.get("failed_pages", {}),
+        ink,
+        fields,
+        results,
+        {m.role: m.name for m in models},
+        pages_dir,
+        bundles_dir / record["run_id"],
+        split,
+    )
     text = {f.field_id: f.value for f in fields}
     status = {f.field_id: f.status for f in fields}
 
@@ -364,12 +628,16 @@ def build(run_dir: Path) -> Bundle:
         run=RunInfo(
             run_id=record["run_id"],
             extraction_run=record["source_run"],
-            split=images.parent.name,
+            split=split,
             images=images.as_posix(),
             policy=record["policy"]["version"],
             citations=record["citations"],
             verification=record,
             extraction=source,
+            collection=COLLECTIONS.get(split, split),
+            source="public-domain scans" if split.startswith(REAL_SPLIT_PREFIX) else "synthetic",
+            arm=_arm(models),
+            models=models,
         ),
         pages=pages,
         fields=fields,
@@ -377,6 +645,9 @@ def build(run_dir: Path) -> Bundle:
         accounts=_accounts(reading, text),
         transactions=_transactions(reading, status, text, by_id),
         links=links,
+        rule_results=results,
+        rule_labels=rule_results.labels(results, flags),
+        accuracy=_accuracy(run_dir, split),
     )
 
 
@@ -392,17 +663,39 @@ def truth(bundle: Bundle) -> Truth:
 
 
 def write(bundle: Bundle, out_dir: Path, with_truth: bool = False) -> list[Path]:
+    """The bundle (and truth.json) in out_dir, and the page images it names where its URLs say."""
     out_dir.mkdir(parents=True, exist_ok=True)
     written = [out_dir / BUNDLE_FILE]
     written[0].write_text(_json(bundle), encoding="utf-8")
     if with_truth:
         written.append(out_dir / TRUTH_FILE)
         written[1].write_text(_json(truth(bundle)), encoding="utf-8")
+    write_images(bundle, out_dir)
     return written
 
 
+def _image_path(page: Page, out_dir: Path) -> Path:
+    return out_dir / page.image.url
+
+
+def write_images(bundle: Bundle, out_dir: Path) -> int:
+    """The downsized page images the bundle names, beside it as its URLs say; those already on
+    disk with the right bytes are left alone. Returns how many were written."""
+    count = 0
+    for page in bundle.pages:
+        dest = _image_path(page, out_dir)
+        data = web.web_image(Path(page.image_path)).data
+        if dest.exists() and dest.read_bytes() == data:
+            continue
+        dest.parent.mkdir(parents=True, exist_ok=True)
+        dest.write_bytes(data)
+        count += 1
+    return count
+
+
 def check(bundle: Bundle, out_dir: Path) -> list[str]:
-    """What is wrong with the bundle on disk: empty when it is this bundle, byte for byte."""
+    """What is wrong with the bundle on disk: empty when it is this bundle, byte for byte, and
+    every page image it names is there with the bytes it records."""
     path = out_dir / BUNDLE_FILE
     if not path.exists():
         return [f"{path} is missing"]
@@ -414,7 +707,42 @@ def check(bundle: Bundle, out_dir: Path) -> list[str]:
         problems.append(f"{path} does not validate: {str(error)[:300]}")
     if on_disk != _json(bundle):
         problems.append(f"{path} differs from a fresh export of {bundle.run.run_id}")
+    for page in bundle.pages:
+        image = _image_path(page, out_dir)
+        if not image.exists():
+            problems.append(f"{image} is missing")
+        elif hashlib.sha256(image.read_bytes()).hexdigest() != page.image.sha256:
+            problems.append(f"{image} is not the image the bundle records")
     return problems
+
+
+def index_entry(bundle: Bundle) -> dict:
+    """What the UI needs to list a run and open its bundle: nothing that is in the bundle's body."""
+    run = bundle.run
+    return {
+        "run_id": run.run_id,
+        "path": f"{run.run_id}/{BUNDLE_FILE}",
+        "collection": run.collection,
+        "split": run.split,
+        "source": run.source,
+        "arm": run.arm,
+        "models": [m.name for m in run.models],
+        "policy": run.policy,
+        "pages": len(bundle.pages),
+        "fields": len(bundle.fields),
+    }
+
+
+def update_index(bundle: Bundle, bundles_dir: Path = BUNDLES_DIR) -> Path:
+    """Record this run in bundles_dir/index.json, replacing its earlier entry; entries by run id."""
+    bundles_dir.mkdir(parents=True, exist_ok=True)
+    path = bundles_dir / INDEX_FILE
+    runs = json.loads(path.read_text(encoding="utf-8"))["runs"] if path.exists() else []
+    runs = [r for r in runs if r["run_id"] != bundle.run.run_id] + [index_entry(bundle)]
+    runs.sort(key=lambda r: r["run_id"])
+    payload = {"schema_version": SCHEMA_VERSION, "runs": runs}
+    path.write_text(json.dumps(payload, indent=1) + "\n", encoding="utf-8")
+    return path
 
 
 def main(argv: list[str] | None = None) -> None:
@@ -434,6 +762,8 @@ def main(argv: list[str] | None = None) -> None:
         return
     for path in write(bundle, out_dir, args.truth):
         print(f"-> {path} ({path.stat().st_size:,} bytes)")
+    print(f"{len(bundle.pages)} page images -> {out_dir / bundle.pages[0].image.url}, ...")
+    print(f"-> {update_index(bundle)}")
     counts = Counter(f.status for f in bundle.fields)
     print(
         f"{len(bundle.pages)} pages, {len(bundle.fields)} fields {dict(sorted(counts.items()))}, "

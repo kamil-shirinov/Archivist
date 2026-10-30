@@ -1,0 +1,37 @@
+{
+ "schema_version": "1.1",
+ "runs": [
+  {
+   "run_id": "test-archivist-A",
+   "path": "test-archivist-A/bundle.json",
+   "collection": "Box 14",
+   "split": "test",
+   "source": "synthetic",
+   "arm": "hosted",
+   "models": [
+    "Muse Spark 1.3",
+    "Muse Spark 1.3",
+    "SAM 3.1"
+   ],
+   "policy": "v2",
+   "pages": 157,
+   "fields": 4267
+  },
+  {
+   "run_id": "test-archivist-B",
+   "path": "test-archivist-B/bundle.json",
+   "collection": "Box 14",
+   "split": "test",
+   "source": "synthetic",
+   "arm": "open-weights",
+   "models": [
+    "Muse Spark Open",
+    "Muse Spark Open",
+    "SAM 3.1"
+   ],
+   "policy": "v2",
+   "pages": 157,
+   "fields": 4267
+  }
+ ]
+}

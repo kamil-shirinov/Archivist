@@ -5,12 +5,14 @@ to eval.run_eval.check_rule.
 """
 
 import ast
+import hashlib
 import json
 import os
 import sqlite3
 import subprocess
 import sys
 from collections import Counter
+from functools import cache
 from pathlib import Path
 
 import jsonschema
@@ -19,7 +21,15 @@ from PIL import Image
 
 from archivist.doctypes import REGISTRY
 from archivist.export import bundle, database, rules
-from archivist.export.schema import SCHEMA_PATH, SCHEMA_VERSION, Bundle, Truth, json_schema
+from archivist.export import images as web
+from archivist.export.schema import (
+    SCHEMA_PATH,
+    SCHEMA_VERSION,
+    Bundle,
+    ModelUse,
+    Truth,
+    json_schema,
+)
 from archivist.pipeline.checks import run_checks
 from archivist.pipeline.extract import PageExtraction
 from archivist.pipeline.verify import ReRead, decide, load_verdicts
@@ -487,3 +497,221 @@ def test_committed_bundles_validate_against_the_ui_schema(run):
     schema = json.loads((ROOT / SCHEMA_PATH).read_text())
     data = json.loads((ROOT / bundle.BUNDLES_DIR / run / bundle.BUNDLE_FILE).read_text())
     jsonschema.validate(data, schema, cls=jsonschema.Draft202012Validator)
+
+
+# --- what the static UI draws from ------------------------------------------------------------
+
+
+@cache
+def _committed(run: str) -> dict:
+    return json.loads((ROOT / bundle.BUNDLES_DIR / run / bundle.BUNDLE_FILE).read_text("utf-8"))
+
+
+WITH_BUNDLE = [
+    r for r in COMMITTED if (ROOT / bundle.BUNDLES_DIR / r / bundle.BUNDLE_FILE).exists()
+]
+
+
+def test_a_run_says_what_it_is(built):
+    run = built.run
+    assert (run.collection, run.source, run.arm, run.models) == (SPLIT, "synthetic", "unknown", [])
+    assert built.accuracy is None  # the test report belongs to the test split
+
+
+@pytest.mark.parametrize(
+    ("model_id", "name"),
+    [
+        ("muse-spark-1.3-contributor", "Muse Spark 1.3"),
+        ("sam-3.1", "SAM 3.1"),
+        ("meta-models/muse-spark-open-1026", "Muse Spark Open"),
+        ("accounts/fireworks/models/muse-spark-open", "Muse Spark Open"),
+        ("some-other-model", "some-other-model"),
+    ],
+)
+def test_models_are_named_as_a_person_says_them(model_id, name):
+    assert bundle.model_name(model_id) == name
+
+
+def test_the_arm_is_where_the_models_that_read_run():
+    def use(role, backend):
+        return ModelUse(role=role, backend=backend, model_id="m", name="M")
+
+    sam = use("segmenter", "meta")
+    assert bundle._arm([use("extractor", "meta"), use("rereader", "meta"), sam]) == "hosted"
+    assert bundle._arm([use("extractor", "baseten"), use("rereader", "baseten"), sam]) == (
+        "open-weights"
+    )
+    assert bundle._arm([use("extractor", "meta"), use("rereader", "baseten"), sam]) == "mixed"
+    assert bundle._arm([]) == "unknown"
+
+
+def test_a_scan_is_downsized_once_and_its_boxes_stay_in_scan_pixels(tmp_path):
+    big, small = tmp_path / "big.jpg", tmp_path / "small.jpg"
+    Image.new("RGB", (2400, 1600), "white").save(big)
+    Image.new("RGB", (800, 600), "white").save(small)
+    a, b = web.web_image(big), web.web_image(small)
+    assert (a.width, a.height) == (web.MAX_SIDE, round(1600 * web.MAX_SIDE / 2400))
+    assert (b.width, b.height) == (800, 600)  # a smaller scan keeps its size
+    assert web.web_image(big) is a  # a scan that hasn't changed is not rendered twice
+    assert hashlib.sha256(a.data).hexdigest() == a.sha256
+
+
+def test_the_bundle_names_a_page_image_for_every_page_and_writes_it_beside_it(world, built):
+    out = Path("data/bundles") / RUN
+    bundle.write(built, out)
+    for page in built.pages:
+        assert page.image.url == f"../../pages/{SPLIT}/{page.page_id}.jpg"
+        file = out / page.image.url
+        assert hashlib.sha256(file.read_bytes()).hexdigest() == page.image.sha256
+        assert (page.image.width, page.image.height) == (40, 30)
+        assert page.image.bytes == file.stat().st_size
+    (out / built.pages[0].image.url).write_bytes(b"not the image")
+    assert any("is not the image the bundle records" in p for p in bundle.check(built, out))
+    (out / built.pages[0].image.url).unlink()
+    assert any("is missing" in p for p in bundle.check(built, out))
+
+
+def test_every_rule_is_applied_and_its_result_says_what_held(built):
+    results = {r.rule_id: r for r in built.rule_results}
+    first = results["running_balance:card-1:L:card-1:01:balance"]
+    assert (
+        first.ok and first.equation == "100.00 − 20.00 = 80.00" and first.label == "Running balance"
+    )
+    assert first.fields == [
+        ledger_header_id("card-1", "brought_forward"),
+        ledger_line_id("card-1", 1, "debit"),
+        ledger_line_id("card-1", 1, "credit"),
+        ledger_line_id("card-1", 1, "balance"),
+    ]
+    income = results["running_balance:card-2:L:card-2:01:balance"]
+    assert income.ok and income.equation == "50.00 + 200.00 = 250.00"
+    assert results["carried_forward:card-1:L:card-1:hdr:carried_forward"].equation == (
+        "50.00 = 50.00"
+    )
+    assert results["carry_across_sheets:card-2:L:card-2:hdr:brought_forward"].ok
+    assert results["date_order:card-1:L:card-1:02:date"].equation == "01/01/86 ≤ 05/01/86"
+    assert results["words_figures:memo-001:M:memo-001:amount_words"].ok
+    assert results["memo_date:memo-001:L:card-1:02:date"].equation == "03/01/86 ≤ 05/01/86"
+    short = results["memo_amount:memo-002:L:card-2:02:debit"]
+    assert not short.ok and short.equation == "45.00 = 40.00" and short.page_id == "memo-002"
+    assert short.fields == [
+        memo_field_id("memo-002", "amount"),
+        ledger_line_id("card-2", 2, "debit"),
+    ]
+    assert short.detail is not None and "the memo pays 45.00" in short.detail
+    assert results["memo_amount:memo-001:L:card-1:02:debit"].ok
+
+
+def test_every_failing_flag_is_a_failed_rule_result_and_a_failed_result_has_a_flag(built):
+    failed = [r for r in built.rule_results if not r.ok]
+    assert failed
+    for f in built.fields:
+        for flag in f.flags:
+            if flag.check in rules.CHECKS and flag.rule != "unresolvable":
+                assert any(r.rule == flag.rule and f.field_id in r.fields for r in failed), (
+                    f.field_id,
+                    flag,
+                )
+    flagged = {(flag.rule, f.field_id) for f in built.fields for flag in f.flags}
+    for r in failed:
+        assert any((r.rule, field_id) in flagged for field_id in r.fields), r.rule_id
+    assert set(built.rule_labels) >= {r.rule for r in built.rule_results}
+
+
+def test_a_page_records_the_steps_it_went_through(built):
+    pages = {p.page_id: p for p in built.pages}
+    assert [s.key for s in pages["card-1"].steps] == [
+        "recognise",
+        "read",
+        "snap",
+        "sam",
+        "blind",
+        "rules",
+        "decide",
+    ]
+    steps = {s.key: s for s in pages["memo-002"].steps}
+    assert steps["recognise"].facts == {"doc_type": "payment_memo"}
+    assert steps["read"].facts == {"values": 7, "not_read": 0}
+    assert steps["blind"].facts["agree"] == 7 and steps["blind"].facts["disagree"] == 0
+    decided = steps["decide"].facts
+    memo = [f for f in built.fields if f.page_id == "memo-002"]
+    assert decided == {
+        "accepted": sum(f.status == "accepted" for f in memo),
+        "review": sum(f.status == "review" for f in memo),
+        "abstained": 0,
+    }
+    assert steps["rules"].facts["failed"] >= 1 and "Memo against ledger" in str(
+        steps["rules"].facts["failed_rules"]
+    )
+    assert pages["lost"].steps == [] and pages["blank"].words == []
+
+
+def test_the_index_lists_each_exported_run_and_replaces_its_entry(world, built):
+    index = bundle.update_index(built, Path("data/bundles"))
+    assert json.loads(index.read_text())["runs"][0] == bundle.index_entry(built)
+    again = bundle.update_index(built, Path("data/bundles"))
+    assert len(json.loads(again.read_text())["runs"]) == 1
+
+
+def test_the_committed_index_matches_the_committed_bundles():
+    index = json.loads((ROOT / bundle.BUNDLES_DIR / bundle.INDEX_FILE).read_text("utf-8"))
+    assert [r["run_id"] for r in index["runs"]] == WITH_BUNDLE
+    for entry in index["runs"]:
+        data = _committed(entry["run_id"])
+        assert entry["path"] == f"{entry['run_id']}/{bundle.BUNDLE_FILE}"
+        assert (entry["pages"], entry["fields"]) == (len(data["pages"]), len(data["fields"]))
+        assert (entry["arm"], entry["split"]) == (data["run"]["arm"], data["run"]["split"])
+        assert entry["models"] == [m["name"] for m in data["run"]["models"]]
+
+
+@pytest.mark.parametrize("run", WITH_BUNDLE)
+def test_the_committed_runs_say_which_models_and_which_pages(run):
+    data = _committed(run)["run"]
+    assert (data["collection"], data["source"], data["split"]) == ("Box 14", "synthetic", "test")
+    expected = {"test-archivist-A": "hosted", "test-archivist-B": "open-weights"}
+    assert data["arm"] == expected[run]
+    roles = {m["role"]: m["name"] for m in data["models"]}
+    assert roles["segmenter"] == "SAM 3.1"
+    assert roles["extractor"] == ("Muse Spark 1.3" if run.endswith("A") else "Muse Spark Open")
+
+
+@pytest.mark.parametrize("run", WITH_BUNDLE)
+def test_the_committed_bundles_carry_the_test_report_as_written(run):
+    accuracy = _committed(run)["accuracy"]
+    raw = (ROOT / "results" / "test_report.json").read_bytes()
+    assert accuracy["source"] == "results/test_report.json"
+    assert accuracy["sha256"] == hashlib.sha256(raw).hexdigest()
+    assert accuracy["report"] == json.loads(raw)
+
+
+@pytest.mark.parametrize("run", WITH_BUNDLE)
+def test_sam_detections_are_the_regions_the_verdicts_say_cover_a_value(run):
+    data = _committed(run)
+    by_id = {f["field_id"]: f for f in data["fields"]}
+    for page in data["pages"]:
+        covered = {f["field_id"] for f in data["fields"] if f["page_id"] == page["page_id"]}
+        listed = set()
+        for d in page["sam"]:
+            assert d["label"] in ("stamp", "stain") and set(d["fields"]) <= covered
+            for field_id in d["fields"]:
+                assert any(
+                    o["box"] == d["box"] and o["label"] == d["label"]
+                    for o in by_id[field_id]["occluders"]
+                )
+                listed.add(field_id)
+        assert listed == {f for f in covered if by_id[f]["occluders"]}
+    assert sum(len(p["sam"]) for p in data["pages"]) > 0
+
+
+@pytest.mark.parametrize("run", WITH_BUNDLE)
+def test_every_committed_failing_flag_is_a_failed_rule_result(run):
+    data = _committed(run)
+    failed = [r for r in data["rule_results"] if not r["ok"]]
+    for f in data["fields"]:
+        for flag in f["flags"]:
+            if flag["check"] in rules.CHECKS and flag["rule"] != "unresolvable":
+                assert any(
+                    r["rule"] == flag["rule"] and f["field_id"] in r["fields"] for r in failed
+                )
+    passed = [r for r in data["rule_results"] if r["ok"]]
+    assert len(passed) > 1000 and all(r["equation"] for r in passed)

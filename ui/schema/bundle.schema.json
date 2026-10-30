@@ -46,6 +46,31 @@
       "title": "Account",
       "type": "object"
     },
+    "Accuracy": {
+      "description": "The pre-registered test report of the synthetic test split, as written (results/).",
+      "properties": {
+        "source": {
+          "title": "Source",
+          "type": "string"
+        },
+        "sha256": {
+          "title": "Sha256",
+          "type": "string"
+        },
+        "report": {
+          "additionalProperties": true,
+          "title": "Report",
+          "type": "object"
+        }
+      },
+      "required": [
+        "source",
+        "sha256",
+        "report"
+      ],
+      "title": "Accuracy",
+      "type": "object"
+    },
     "BBox": {
       "description": "Axis-aligned box in page pixels, origin top-left.",
       "properties": {
@@ -158,6 +183,14 @@
             }
           ]
         },
+        "route": {
+          "enum": [
+            "arithmetic",
+            "reread"
+          ],
+          "title": "Route",
+          "type": "string"
+        },
         "reread": {
           "anyOf": [
             {
@@ -206,6 +239,10 @@
           "title": "Reread Flags",
           "type": "array"
         },
+        "reread_balances": {
+          "title": "Reread Balances",
+          "type": "boolean"
+        },
         "proposal": {
           "anyOf": [
             {
@@ -246,6 +283,16 @@
           },
           "title": "Reasons",
           "type": "array"
+        },
+        "loop": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/Loop"
+            },
+            {
+              "type": "null"
+            }
+          ]
         }
       },
       "required": [
@@ -260,15 +307,18 @@
         "box",
         "original_box",
         "crop",
+        "route",
         "reread",
         "reread_status",
         "second_look",
         "flags",
         "reread_flags",
+        "reread_balances",
         "proposal",
         "proposed_by",
         "occluders",
-        "reasons"
+        "reasons",
+        "loop"
       ],
       "title": "BundleField",
       "type": "object"
@@ -343,6 +393,32 @@
         "cover"
       ],
       "title": "BundleOccluder",
+      "type": "object"
+    },
+    "Detection": {
+      "description": "A stamp or a stain SAM 3.1 found that covers a value: the regions are known only through the\nverdicts, which record those covering at least a tenth of a value's box.",
+      "properties": {
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "box": {
+          "$ref": "#/$defs/BBox"
+        },
+        "fields": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Fields",
+          "type": "array"
+        }
+      },
+      "required": [
+        "label",
+        "box",
+        "fields"
+      ],
+      "title": "Detection",
       "type": "object"
     },
     "Document": {
@@ -507,6 +583,70 @@
       "title": "Link",
       "type": "object"
     },
+    "Loop": {
+      "description": "A pen loop round a value's ink (export/pen.py): clear of its own ink by a margin and of every\nother word, round for a short value and flatter for a long one, or an underline where the page\nis too crowded for a loop. Absent where the value has no ink or nothing fits.",
+      "properties": {
+        "kind": {
+          "enum": [
+            "loop",
+            "underline"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "d": {
+          "title": "D",
+          "type": "string"
+        },
+        "width": {
+          "title": "Width",
+          "type": "number"
+        },
+        "ink": {
+          "items": {
+            "type": "integer"
+          },
+          "title": "Ink",
+          "type": "array"
+        }
+      },
+      "required": [
+        "kind",
+        "d",
+        "width",
+        "ink"
+      ],
+      "title": "Loop",
+      "type": "object"
+    },
+    "ModelUse": {
+      "properties": {
+        "role": {
+          "title": "Role",
+          "type": "string"
+        },
+        "backend": {
+          "title": "Backend",
+          "type": "string"
+        },
+        "model_id": {
+          "title": "Model Id",
+          "type": "string"
+        },
+        "name": {
+          "title": "Name",
+          "type": "string"
+        }
+      },
+      "required": [
+        "role",
+        "backend",
+        "model_id",
+        "name"
+      ],
+      "title": "ModelUse",
+      "type": "object"
+    },
     "Page": {
       "properties": {
         "page_id": {
@@ -547,6 +687,37 @@
           },
           "title": "Field Ids",
           "type": "array"
+        },
+        "image": {
+          "$ref": "#/$defs/PageImage"
+        },
+        "text_height": {
+          "title": "Text Height",
+          "type": "number"
+        },
+        "words": {
+          "items": {
+            "items": {
+              "type": "integer"
+            },
+            "type": "array"
+          },
+          "title": "Words",
+          "type": "array"
+        },
+        "sam": {
+          "items": {
+            "$ref": "#/$defs/Detection"
+          },
+          "title": "Sam",
+          "type": "array"
+        },
+        "steps": {
+          "items": {
+            "$ref": "#/$defs/Step"
+          },
+          "title": "Steps",
+          "type": "array"
         }
       },
       "required": [
@@ -555,9 +726,47 @@
         "width",
         "height",
         "doc_type",
-        "field_ids"
+        "field_ids",
+        "image",
+        "text_height",
+        "words",
+        "sam",
+        "steps"
       ],
       "title": "Page",
+      "type": "object"
+    },
+    "PageImage": {
+      "properties": {
+        "url": {
+          "title": "Url",
+          "type": "string"
+        },
+        "width": {
+          "title": "Width",
+          "type": "integer"
+        },
+        "height": {
+          "title": "Height",
+          "type": "integer"
+        },
+        "bytes": {
+          "title": "Bytes",
+          "type": "integer"
+        },
+        "sha256": {
+          "title": "Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "url",
+        "width",
+        "height",
+        "bytes",
+        "sha256"
+      ],
+      "title": "PageImage",
       "type": "object"
     },
     "Reason": {
@@ -592,6 +801,84 @@
         "code"
       ],
       "title": "Reason",
+      "type": "object"
+    },
+    "RuleResult": {
+      "description": "One rule applied to the values as the extractor read them, passed or failed.",
+      "properties": {
+        "rule_id": {
+          "title": "Rule Id",
+          "type": "string"
+        },
+        "rule": {
+          "title": "Rule",
+          "type": "string"
+        },
+        "label": {
+          "title": "Label",
+          "type": "string"
+        },
+        "page_id": {
+          "title": "Page Id",
+          "type": "string"
+        },
+        "fields": {
+          "items": {
+            "type": "string"
+          },
+          "title": "Fields",
+          "type": "array"
+        },
+        "ok": {
+          "title": "Ok",
+          "type": "boolean"
+        },
+        "equation": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Equation"
+        },
+        "detail": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Detail"
+        },
+        "suggested": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Suggested"
+        }
+      },
+      "required": [
+        "rule_id",
+        "rule",
+        "label",
+        "page_id",
+        "fields",
+        "ok",
+        "equation",
+        "detail",
+        "suggested"
+      ],
+      "title": "RuleResult",
       "type": "object"
     },
     "RunInfo": {
@@ -629,6 +916,35 @@
           "additionalProperties": true,
           "title": "Extraction",
           "type": "object"
+        },
+        "collection": {
+          "title": "Collection",
+          "type": "string"
+        },
+        "source": {
+          "enum": [
+            "synthetic",
+            "public-domain scans"
+          ],
+          "title": "Source",
+          "type": "string"
+        },
+        "arm": {
+          "enum": [
+            "hosted",
+            "open-weights",
+            "mixed",
+            "unknown"
+          ],
+          "title": "Arm",
+          "type": "string"
+        },
+        "models": {
+          "items": {
+            "$ref": "#/$defs/ModelUse"
+          },
+          "title": "Models",
+          "type": "array"
         }
       },
       "required": [
@@ -639,7 +955,11 @@
         "policy",
         "citations",
         "verification",
-        "extraction"
+        "extraction",
+        "collection",
+        "source",
+        "arm",
+        "models"
       ],
       "title": "RunInfo",
       "type": "object"
@@ -677,6 +997,62 @@
         "agrees"
       ],
       "title": "Sheet",
+      "type": "object"
+    },
+    "Step": {
+      "description": "One step the page went through, and what it found, as numbers the UI words.",
+      "properties": {
+        "key": {
+          "enum": [
+            "recognise",
+            "read",
+            "snap",
+            "sam",
+            "blind",
+            "rules",
+            "decide"
+          ],
+          "title": "Key",
+          "type": "string"
+        },
+        "model": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Model"
+        },
+        "facts": {
+          "additionalProperties": {
+            "anyOf": [
+              {
+                "type": "integer"
+              },
+              {
+                "type": "number"
+              },
+              {
+                "type": "string"
+              },
+              {
+                "type": "null"
+              }
+            ]
+          },
+          "title": "Facts",
+          "type": "object"
+        }
+      },
+      "required": [
+        "key",
+        "model",
+        "facts"
+      ],
+      "title": "Step",
       "type": "object"
     },
     "Transaction": {
@@ -828,7 +1204,7 @@
   },
   "properties": {
     "schema_version": {
-      "default": "1.0",
+      "default": "1.1",
       "title": "Schema Version",
       "type": "string"
     },
@@ -876,6 +1252,30 @@
       },
       "title": "Links",
       "type": "array"
+    },
+    "rule_results": {
+      "items": {
+        "$ref": "#/$defs/RuleResult"
+      },
+      "title": "Rule Results",
+      "type": "array"
+    },
+    "rule_labels": {
+      "additionalProperties": {
+        "type": "string"
+      },
+      "title": "Rule Labels",
+      "type": "object"
+    },
+    "accuracy": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/Accuracy"
+        },
+        {
+          "type": "null"
+        }
+      ]
     }
   },
   "required": [
@@ -885,7 +1285,10 @@
     "documents",
     "accounts",
     "transactions",
-    "links"
+    "links",
+    "rule_results",
+    "rule_labels",
+    "accuracy"
   ],
   "title": "Bundle",
   "type": "object"

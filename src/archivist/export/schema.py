@@ -6,8 +6,14 @@ generated from.
 writes ui/schema/bundle.schema.json. SCHEMA_VERSION changes whenever a model here does: the major
 number when a field is removed, renamed or changes meaning, the minor when one is added.
 
-Boxes are page pixels, origin top-left. Every value is a string exactly as the extractor read it
-(or None when it didn't), never a number: the database adds parsed amounts beside the text.
+Boxes are page pixels, origin top-left, of the page as scanned (Page.width, Page.height), whatever
+size its downsized image is. Every value is a string exactly as the extractor read it (or None when
+it didn't), never a number: the database adds parsed amounts beside the text.
+
+1.1 adds what the static review UI draws from: each page's downsized image, its words of ink, SAM's
+detections and the steps it went through; each field's route and pen loop; every rule's result,
+passed or failed; what the run is (the collection, what kind of pages, which models, which arm);
+and, for the test split, the pre-registered test report.
 """
 
 from __future__ import annotations
@@ -21,7 +27,7 @@ from pydantic import BaseModel
 
 from archivist.schema import BBox
 
-SCHEMA_VERSION = "1.0"
+SCHEMA_VERSION = "1.1"
 SCHEMA_PATH = Path("ui/schema/bundle.schema.json")
 
 Status = Literal["accepted", "review", "abstained"]
@@ -36,6 +42,13 @@ ReasonCode = Literal[
 ]
 
 
+class ModelUse(BaseModel):
+    role: str  # extractor, rereader or segmenter
+    backend: str  # meta, baseten, fireworks
+    model_id: str  # as the run's config names it
+    name: str  # as a person would say it: Muse Spark 1.3, SAM 3.1
+
+
 class RunInfo(BaseModel):
     run_id: str  # the verification run
     extraction_run: str
@@ -45,6 +58,36 @@ class RunInfo(BaseModel):
     citations: str
     verification: dict[str, Any]  # the verification run's run.json, as written
     extraction: dict[str, Any]  # the extraction run's run.json, as written
+    collection: str  # what the pages are called in the app: "Box 14" for the synthetic test set
+    source: Literal["synthetic", "public-domain scans"]  # what the pages are
+    # where the reading models run: Meta's API, open-weights hosts, one of each, or not recorded
+    arm: Literal["hosted", "open-weights", "mixed", "unknown"]
+    models: list[ModelUse]  # each role's model, from the run's config
+
+
+class PageImage(BaseModel):
+    url: str  # relative to this bundle file, in the folder of downsized page images
+    width: int  # the downsized image's size; boxes are in the scan's pixels (Page.width, height)
+    height: int
+    bytes: int
+    sha256: str
+
+
+class Detection(BaseModel):
+    """A stamp or a stain SAM 3.1 found that covers a value: the regions are known only through the
+    verdicts, which record those covering at least a tenth of a value's box."""
+
+    label: str
+    box: BBox
+    fields: list[str]  # the values it covers
+
+
+class Step(BaseModel):
+    """One step the page went through, and what it found, as numbers the UI words."""
+
+    key: Literal["recognise", "read", "snap", "sam", "blind", "rules", "decide"]
+    model: str | None  # the model that did it; None for plain code
+    facts: dict[str, int | float | str | None]
 
 
 class Page(BaseModel):
@@ -55,6 +98,11 @@ class Page(BaseModel):
     doc_type: str  # a registered type, "unsupported", or "failed" when extraction failed
     failure: str | None = None  # why extraction failed
     field_ids: list[str]  # in the order the page is read
+    image: PageImage
+    text_height: float  # the page's own text height in pixels, which sizes its words and loops
+    words: list[list[int]]  # every word of ink: x0, y0, x1, y1
+    sam: list[Detection]
+    steps: list[Step]  # in order; empty for a page that failed extraction
 
 
 class BundleFlag(BaseModel):
@@ -63,6 +111,17 @@ class BundleFlag(BaseModel):
     detail: str
     suggested: str | None  # the value the check implies, as it would be printed
     related: list[str]  # the other fields in its equation
+
+
+class Loop(BaseModel):
+    """A pen loop round a value's ink (export/pen.py): clear of its own ink by a margin and of every
+    other word, round for a short value and flatter for a long one, or an underline where the page
+    is too crowded for a loop. Absent where the value has no ink or nothing fits."""
+
+    kind: Literal["loop", "underline"]
+    d: str  # the path as SVG data, "M x y L x y ...", in page pixels
+    width: float  # the stroke's width in page pixels, which the clearance allows for
+    ink: list[int]  # the value's own ink: x0, y0, x1, y1
 
 
 class Reason(BaseModel):
@@ -88,6 +147,7 @@ class BundleField(BaseModel):
     box: BBox | None  # the corrected citation box
     original_box: BBox | None  # the extractor's own box (the same box when it was not corrected)
     crop: BBox | None  # the region the blind re-read saw
+    route: Literal["arithmetic", "reread"]  # arithmetic: a money field, checked by sums as well
     reread: str | None  # None when illegible, failed or not re-read
     reread_status: Literal[
         "agrees", "disagrees", "illegible", "failed", "no_citation", "not_reread"
@@ -95,10 +155,12 @@ class BundleField(BaseModel):
     second_look: str | None  # policy v3's second look, kept as evidence
     flags: list[BundleFlag]  # checks on the extracted values, then the verification's notes
     reread_flags: list[BundleFlag]  # checks on the re-read values
+    reread_balances: bool  # an equation holds for the re-read value
     proposal: str | None
     proposed_by: Literal["reread_chain", "check", "second_look"] | None
     occluders: list[BundleOccluder]
     reasons: list[Reason]  # why it is not accepted; empty when accepted
+    loop: Loop | None  # the pen loop round its ink
 
 
 class Document(BaseModel):
@@ -157,6 +219,28 @@ class Link(BaseModel):
     note: str | None = None  # why it was not found or not compared
 
 
+class RuleResult(BaseModel):
+    """One rule applied to the values as the extractor read them, passed or failed."""
+
+    rule_id: str  # <rule>:<page>:<the last cell of its equation>
+    rule: str  # rules.RULES: running_balance, carried_forward, date_order, ...
+    label: str  # plain words for the rule
+    page_id: str  # the page of its target, the field it is about
+    fields: list[str]  # the cells in its equation, in the order its equation is written
+    ok: bool
+    equation: str | None  # the sum with the values as read, e.g. "2,434.75 − 41.58 = 2,393.17"
+    detail: str | None  # the check's own wording, when it failed
+    suggested: str | None  # the value it implies, when it failed and says so
+
+
+class Accuracy(BaseModel):
+    """The pre-registered test report of the synthetic test split, as written (results/)."""
+
+    source: str  # the report's path in the repository
+    sha256: str
+    report: dict[str, Any]
+
+
 class Bundle(BaseModel):
     schema_version: str = SCHEMA_VERSION
     run: RunInfo
@@ -166,6 +250,9 @@ class Bundle(BaseModel):
     accounts: list[Account]
     transactions: list[Transaction]
     links: list[Link]
+    rule_results: list[RuleResult]
+    rule_labels: dict[str, str]  # every rule id a flag or result carries -> plain words
+    accuracy: Accuracy | None  # the test report, for a run on the test split
 
 
 class TruthPage(BaseModel):
