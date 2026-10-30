@@ -649,6 +649,7 @@ def test_a_page_records_the_steps_it_went_through(built):
 def test_the_index_lists_each_exported_run_and_replaces_its_entry(world, built):
     index = bundle.update_index(built, Path("data/bundles"))
     assert json.loads(index.read_text())["runs"][0] == bundle.index_entry(built)
+    assert bundle.index_entry(built)["truth"] is False  # no truth.json beside it
     again = bundle.update_index(built, Path("data/bundles"))
     assert len(json.loads(again.read_text())["runs"]) == 1
 
@@ -662,6 +663,8 @@ def test_the_committed_index_matches_the_committed_bundles():
         assert (entry["pages"], entry["fields"]) == (len(data["pages"]), len(data["fields"]))
         assert (entry["arm"], entry["split"]) == (data["run"]["arm"], data["run"]["split"])
         assert entry["models"] == [m["name"] for m in data["run"]["models"]]
+        truth = ROOT / bundle.BUNDLES_DIR / entry["run_id"] / bundle.TRUTH_FILE
+        assert entry["truth"] == truth.exists()
 
 
 @pytest.mark.parametrize("run", WITH_BUNDLE)

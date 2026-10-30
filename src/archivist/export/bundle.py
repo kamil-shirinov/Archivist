@@ -716,8 +716,9 @@ def check(bundle: Bundle, out_dir: Path) -> list[str]:
     return problems
 
 
-def index_entry(bundle: Bundle) -> dict:
-    """What the UI needs to list a run and open its bundle: nothing that is in the bundle's body."""
+def index_entry(bundle: Bundle, bundles_dir: Path = BUNDLES_DIR) -> dict:
+    """What the UI needs to list a run and open its bundle: nothing that is in the bundle's body,
+    and whether truth.json is beside it (so the UI never asks for a file that isn't there)."""
     run = bundle.run
     return {
         "run_id": run.run_id,
@@ -730,6 +731,7 @@ def index_entry(bundle: Bundle) -> dict:
         "policy": run.policy,
         "pages": len(bundle.pages),
         "fields": len(bundle.fields),
+        "truth": (bundles_dir / run.run_id / TRUTH_FILE).exists(),
     }
 
 
@@ -738,7 +740,9 @@ def update_index(bundle: Bundle, bundles_dir: Path = BUNDLES_DIR) -> Path:
     bundles_dir.mkdir(parents=True, exist_ok=True)
     path = bundles_dir / INDEX_FILE
     runs = json.loads(path.read_text(encoding="utf-8"))["runs"] if path.exists() else []
-    runs = [r for r in runs if r["run_id"] != bundle.run.run_id] + [index_entry(bundle)]
+    runs = [r for r in runs if r["run_id"] != bundle.run.run_id] + [
+        index_entry(bundle, bundles_dir)
+    ]
     runs.sort(key=lambda r: r["run_id"])
     payload = {"schema_version": SCHEMA_VERSION, "runs": runs}
     path.write_text(json.dumps(payload, indent=1) + "\n", encoding="utf-8")

@@ -15,7 +15,8 @@
    ],
    "policy": "v2",
    "pages": 157,
-   "fields": 4267
+   "fields": 4267,
+   "truth": true
   },
   {
    "run_id": "test-archivist-B",
@@ -31,7 +32,8 @@
    ],
    "policy": "v2",
    "pages": 157,
-   "fields": 4267
+   "fields": 4267,
+   "truth": false
   }
  ]
 }
