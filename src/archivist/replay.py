@@ -8,7 +8,7 @@ Run from the repository root. In order:
    into results/scratch/replay/splits/; every image must match its manifest's sha256, as must the
    images the runs read (data/<split>/images/, put there from the rebuild when missing, and the
    committed test images).
-2. Both spend caps are set to zero (BUDGET_CAP_USD, BASETEN_CAP_USD), so any cache miss raises
+2. Every backend's spend cap is set to zero (budget.BACKEND_CAPS), so any cache miss raises
    BudgetExceeded and aborts the replay, and the spend ledger's line count is recorded.
 3. Every current run is replayed into results/scratch/replay/<run>, through its own config and
    the document types it enables: the extraction runs (REPLAYED_EXTRACTIONS) with their recorded
@@ -47,7 +47,7 @@ from archivist.doctypes import from_config, recorded_by
 from archivist.eval import compare_arms, compare_extractors, test_report
 from archivist.export import bundle, database
 from archivist.models import describe_config, load_roles
-from archivist.models.budget import LEDGER_PATH
+from archivist.models.budget import BACKEND_CAPS, LEDGER_PATH
 from archivist.models.cache import CACHE_DIR
 from archivist.pipeline import extract, reread, verify
 from archivist.pipeline.extract import RUNS_DIR
@@ -57,7 +57,7 @@ DATA_ROOT = Path("data")
 SCRATCH = Path("results/scratch/replay")
 REBUILT_SPLITS = ("dev", "val")
 CHECKED_SPLITS = ("dev", "val", "test")
-CAPS = ("BUDGET_CAP_USD", "BASETEN_CAP_USD")
+CAPS = tuple(variable for variable, _ in BACKEND_CAPS.values())
 # Run id -> the config it was run with.
 REPLAYED_EXTRACTIONS = {
     "test-baseline": "config/models.toml",

@@ -2,8 +2,9 @@
 
 BudgetGuard owns the ledger and the caps; Budget wraps a backend and consults the guard before
 each call, so the caps hold for every role that shares a guard. Each backend has its own cap,
-checked against that backend's lines in the ledger: Meta's from env BUDGET_CAP_USD (default 120)
-and Baseten's from env BASETEN_CAP_USD (default 80), so spending on one never uses up the other.
+checked against that backend's lines in the ledger: Meta's from env BUDGET_CAP_USD (default 120),
+Baseten's from env BASETEN_CAP_USD (default 80) and Fireworks' from env FIREWORKS_CAP_USD (default
+40), so spending on one never uses up another.
 The ledger is committed (D18): cost per page is part of the evidence, and the caps survive
 restarts because they are read from the same file.
 """
@@ -31,7 +32,11 @@ from archivist.models.base import (
 
 LEDGER_PATH = Path("results/spend_ledger.jsonl")
 # Backend name -> (env variable holding its cap in USD, the cap when the variable is unset).
-BACKEND_CAPS = {"meta": ("BUDGET_CAP_USD", 120.0), "baseten": ("BASETEN_CAP_USD", 80.0)}
+BACKEND_CAPS = {
+    "meta": ("BUDGET_CAP_USD", 120.0),
+    "baseten": ("BASETEN_CAP_USD", 80.0),
+    "fireworks": ("FIREWORKS_CAP_USD", 40.0),
+}
 IMAGE_TOKENS = 2_000  # projected input tokens per image, on the high side
 # A SegmentRequest has no output limit; project the LLM default. SAM 3.1 is billed per image, not
 # per token, so its token prices are zero and this only matters to a token-priced segmenter.

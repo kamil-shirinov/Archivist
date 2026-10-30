@@ -240,7 +240,7 @@ def caps(out: Path, allowance: float, ledger: Path = LEDGER_PATH) -> dict[str, f
 
 def set_caps(record: Mapping[str, float]) -> None:
     for backend, (variable, _) in BACKEND_CAPS.items():
-        os.environ[variable] = str(record[backend])
+        os.environ[variable] = str(record.get(backend, 0.0))  # a backend not recorded: no spend
 
 
 def _types(config: Path) -> dict[str, DocType]:

@@ -1,0 +1,330 @@
+{
+  "what": "Muse Spark Open on Baseten and on Fireworks, single-pass extraction of the same development pages, same prompts, same effort, read live (scratch cache) and timed. 95% intervals are page-bootstrap.",
+  "split": "dev",
+  "pages": [
+    "card-01-1",
+    "card-02-1",
+    "card-03-1",
+    "card-04-1",
+    "memo-0001",
+    "memo-0004",
+    "memo-0007",
+    "memo-0010",
+    "memo-0013",
+    "memo-0016",
+    "memo-0019",
+    "memo-0022",
+    "memo-0025",
+    "memo-0028",
+    "memo-0031",
+    "memo-0034"
+  ],
+  "hosts": {
+    "baseten": {
+      "config": "config/models_open.toml",
+      "calls": 32,
+      "calls_failed": {},
+      "second_asks": 0,
+      "retries": 0,
+      "closing_repairs": 2,
+      "call_seconds": {
+        "n": 32,
+        "median": 7.044,
+        "p90": 12.403,
+        "max": 13.752,
+        "total": 244.281
+      },
+      "classify_call_seconds": {
+        "n": 16,
+        "median": 6.291,
+        "p90": 9.846,
+        "max": 13.752,
+        "total": 111.85
+      },
+      "read_call_seconds": {
+        "n": 16,
+        "median": 7.436,
+        "p90": 12.508,
+        "max": 12.909,
+        "total": 132.431
+      },
+      "page_seconds": {
+        "n": 16,
+        "median": 13.293,
+        "p90": 21.747,
+        "max": 22.354,
+        "total": 244.281
+      },
+      "input_tokens": 104732,
+      "output_tokens": 16511,
+      "wall_seconds": 64.2,
+      "pages_read_per_minute": 14.96,
+      "cost_usd": 0.201087,
+      "cost_usd_per_page": 0.012568,
+      "pages_asked": 16,
+      "by_doc_type": {
+        "ledger": {
+          "read_call_seconds": {
+            "n": 4,
+            "median": 12.456,
+            "p90": 12.909,
+            "max": 12.909,
+            "total": 46.161
+          },
+          "read_output_tokens_median": 2465.0,
+          "read_tokens_per_second_median": 198.1
+        },
+        "memo": {
+          "read_call_seconds": {
+            "n": 12,
+            "median": 7.001,
+            "p90": 8.077,
+            "max": 8.874,
+            "total": 86.27
+          },
+          "read_output_tokens_median": 447.5,
+          "read_tokens_per_second_median": 64.4
+        }
+      },
+      "accuracy": {
+        "pages": 16,
+        "pages_read": 16,
+        "fields": 464,
+        "counts": {
+          "correct": 457,
+          "misread": 6,
+          "hallucinated": 0,
+          "omitted": 0,
+          "abstained": 1
+        },
+        "field_accuracy": 0.9849137931034483,
+        "error_rate_accepted": 0.012958963282937365
+      }
+    },
+    "fireworks": {
+      "config": "config/models_fireworks.toml",
+      "calls": 32,
+      "calls_failed": {},
+      "second_asks": 0,
+      "retries": 0,
+      "closing_repairs": 2,
+      "call_seconds": {
+        "n": 32,
+        "median": 4.262,
+        "p90": 32.763,
+        "max": 39.513,
+        "total": 257.008
+      },
+      "classify_call_seconds": {
+        "n": 16,
+        "median": 2.027,
+        "p90": 3.595,
+        "max": 3.839,
+        "total": 38.225
+      },
+      "read_call_seconds": {
+        "n": 16,
+        "median": 6.841,
+        "p90": 35.41,
+        "max": 39.513,
+        "total": 218.783
+      },
+      "page_seconds": {
+        "n": 16,
+        "median": 9.167,
+        "p90": 39.005,
+        "max": 43.352,
+        "total": 257.008
+      },
+      "input_tokens": 104636,
+      "output_tokens": 16801,
+      "wall_seconds": 67.7,
+      "pages_read_per_minute": 14.18,
+      "cost_usd": 0.202199,
+      "cost_usd_per_page": 0.012637,
+      "pages_asked": 16,
+      "by_doc_type": {
+        "ledger": {
+          "read_call_seconds": {
+            "n": 4,
+            "median": 34.828,
+            "p90": 39.513,
+            "max": 39.513,
+            "total": 141.932
+          },
+          "read_output_tokens_median": 2444.0,
+          "read_tokens_per_second_median": 70.0
+        },
+        "memo": {
+          "read_call_seconds": {
+            "n": 12,
+            "median": 6.383,
+            "p90": 7.349,
+            "max": 8.946,
+            "total": 76.851
+          },
+          "read_output_tokens_median": 439.5,
+          "read_tokens_per_second_median": 72.6
+        }
+      },
+      "accuracy": {
+        "pages": 16,
+        "pages_read": 16,
+        "fields": 464,
+        "counts": {
+          "correct": 459,
+          "misread": 4,
+          "hallucinated": 0,
+          "omitted": 0,
+          "abstained": 1
+        },
+        "field_accuracy": 0.9892241379310345,
+        "error_rate_accepted": 0.008639308855291577
+      }
+    }
+  },
+  "agreement": {
+    "pages_in_both": 16,
+    "same_doc_type": 16,
+    "fields": 464,
+    "same_value": 460,
+    "same_value_rate": 0.9913793103448276,
+    "same_value_rate_ci95": [
+      0.975,
+      0.9981884057971014
+    ],
+    "same_and_right": 456,
+    "same_and_wrong": 4,
+    "differ": 4,
+    "differ_only_first_right": 1,
+    "differ_only_second_right": 3,
+    "differ_neither_right": 0,
+    "by_doc_type": {
+      "ledger": {
+        "fields": 380,
+        "same_value": 379,
+        "same_value_rate": 0.9973684210526316,
+        "same_value_rate_ci95": [
+          0.9921052631578947,
+          1.0
+        ],
+        "same_and_right": 378,
+        "same_and_wrong": 1,
+        "differ": 1,
+        "differ_only_first_right": 0,
+        "differ_only_second_right": 1,
+        "differ_neither_right": 0
+      },
+      "memo": {
+        "fields": 84,
+        "same_value": 81,
+        "same_value_rate": 0.9642857142857143,
+        "same_value_rate_ci95": [
+          0.9285714285714286,
+          1.0
+        ],
+        "same_and_right": 78,
+        "same_and_wrong": 3,
+        "differ": 3,
+        "differ_only_first_right": 1,
+        "differ_only_second_right": 2,
+        "differ_neither_right": 0
+      }
+    }
+  },
+  "disagreements": [
+    {
+      "page_id": "card-03-1",
+      "field_id": "L:card-03-1:hdr:holder",
+      "printed": "Mr Dennis Atkinson",
+      "baseten": "Mr Dennis Atkkinson",
+      "fireworks": "Mr Dennis Atkinson",
+      "baseten_outcome": "misread",
+      "fireworks_outcome": "correct"
+    },
+    {
+      "page_id": "memo-0007",
+      "field_id": "M:memo-0007:counterparty",
+      "printed": "Williams-Johnston",
+      "baseten": "Willliams-Johnston",
+      "fireworks": "Williams-Johnston",
+      "baseten_outcome": "misread",
+      "fireworks_outcome": "correct"
+    },
+    {
+      "page_id": "memo-0016",
+      "field_id": "M:memo-0016:ledger_ref",
+      "printed": "Sheet 30 / Line 07",
+      "baseten": "Sheet 30 / Line 07",
+      "fireworks": "Sheet 20 / Line 07",
+      "baseten_outcome": "correct",
+      "fireworks_outcome": "misread"
+    },
+    {
+      "page_id": "memo-0034",
+      "field_id": "M:memo-0034:counterparty",
+      "printed": "Sinclair, Day and Hall",
+      "baseten": "Sincllair, Day and Hall",
+      "fireworks": "Sinclair, Day and Hall",
+      "baseten_outcome": "misread",
+      "fireworks_outcome": "correct"
+    }
+  ],
+  "caveats": [
+    "Development data only: synthetic ledger cards and payment memos from data/dev, every third page. Nothing here was scored on the frozen test set or on a held-out real page.",
+    "The two hosts are not known to serve the same checkpoint: Baseten's slug ends in -1026, Fireworks lists one id with no revision suffix.",
+    "Hosts ran one after the other, not at the same time, so speed carries whatever load each had in its few minutes; four pages were read at once on each.",
+    "Cost is tokens times the price in the config (both $1.25 input, $4.25 output per 1M, cached input billed as ordinary input), not either host's invoice.",
+    "Cards and memos are pooled in the agreement figures; a card has 95 values and a memo about ten, so cards weigh most. 'by_doc_type' separates them."
+  ],
+  "noise_floor": {
+    "what": "baseten against its own earlier reads, results/runs/baseline-dev-open",
+    "pages_in_both": 16,
+    "same_doc_type": 16,
+    "fields": 464,
+    "same_value": 464,
+    "same_value_rate": 1.0,
+    "same_value_rate_ci95": [
+      1.0,
+      1.0
+    ],
+    "same_and_right": 457,
+    "same_and_wrong": 7,
+    "differ": 0,
+    "differ_only_first_right": 0,
+    "differ_only_second_right": 0,
+    "differ_neither_right": 0,
+    "by_doc_type": {
+      "ledger": {
+        "fields": 380,
+        "same_value": 380,
+        "same_value_rate": 1.0,
+        "same_value_rate_ci95": [
+          1.0,
+          1.0
+        ],
+        "same_and_right": 378,
+        "same_and_wrong": 2,
+        "differ": 0,
+        "differ_only_first_right": 0,
+        "differ_only_second_right": 0,
+        "differ_neither_right": 0
+      },
+      "memo": {
+        "fields": 84,
+        "same_value": 84,
+        "same_value_rate": 1.0,
+        "same_value_rate_ci95": [
+          1.0,
+          1.0
+        ],
+        "same_and_right": 79,
+        "same_and_wrong": 5,
+        "differ": 0,
+        "differ_only_first_right": 0,
+        "differ_only_second_right": 0,
+        "differ_neither_right": 0
+      }
+    }
+  }
+}

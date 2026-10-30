@@ -1,12 +1,13 @@
 """One real call through the extractor role: python -m archivist.models.smoke [--backend baseten]
 
---backend picks the extractor's backend: meta (Muse Spark 1.3, config/arms/a.toml) or
-baseten (Muse Spark Open, config/arms/b.toml); without it the extractor is the one
-config/models.toml names. Takes the first severity-0 ledger card of the dev set and asks for
-three values, each with a box on Muse Spark's 0–1000 grid, then prints the answer, the boxes in
-pixels, the usage, the cost and the ledger's total spend. The page's severity is re-derived from
-the manifest's seed, as the builder assigned it, so ground truth (data/dev/gt/) is never read.
-The call goes through load_roles(), so a second run is a cache hit and spends nothing.
+--backend picks the extractor's backend: meta (Muse Spark 1.3, config/arms/a.toml), baseten
+(Muse Spark Open, config/arms/b.toml) or fireworks (Muse Spark Open, config/models_fireworks.toml);
+without it the extractor is the one config/models.toml names. Takes the first severity-0 ledger
+card of the dev set and asks for three values, each with a box on Muse Spark's 0–1000 grid, then
+prints the answer, the boxes in pixels, the usage, the cost and the ledger's total spend. The
+page's severity is re-derived from the manifest's seed, as the builder assigned it, so ground
+truth (data/dev/gt/) is never read. The call goes through load_roles(), so a second run is a
+cache hit and spends nothing.
 """
 
 from __future__ import annotations
@@ -32,7 +33,11 @@ DEV_BUILD = [
 ]  # fmt: skip
 
 # backend -> a config whose extractor runs on it
-BACKEND_CONFIGS = {"meta": Path("config/arms/a.toml"), "baseten": Path("config/arms/b.toml")}
+BACKEND_CONFIGS = {
+    "meta": Path("config/arms/a.toml"),
+    "baseten": Path("config/arms/b.toml"),
+    "fireworks": Path("config/models_fireworks.toml"),
+}
 
 FIELDS = {
     "account_no": "the account number",

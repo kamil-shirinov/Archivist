@@ -302,11 +302,12 @@ def test_effort_and_backend_are_part_of_the_cache_key():
 def test_caps_come_from_the_environment_with_defaults(monkeypatch):
     monkeypatch.delenv("BUDGET_CAP_USD", raising=False)
     monkeypatch.delenv("BASETEN_CAP_USD", raising=False)
-    assert caps_from_env() == {"meta": 120.0, "baseten": 80.0}
+    monkeypatch.delenv("FIREWORKS_CAP_USD", raising=False)
+    assert caps_from_env() == {"meta": 120.0, "baseten": 80.0, "fireworks": 40.0}
 
     monkeypatch.setenv("BUDGET_CAP_USD", "7.5")
     monkeypatch.setenv("BASETEN_CAP_USD", "3")
-    assert caps_from_env() == {"meta": 7.5, "baseten": 3.0}
+    assert caps_from_env() == {"meta": 7.5, "baseten": 3.0, "fireworks": 40.0}
 
 
 def test_each_backends_cap_is_summed_from_its_own_ledger_lines(tmp_path):

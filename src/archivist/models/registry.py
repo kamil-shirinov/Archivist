@@ -18,6 +18,7 @@ from archivist.models.base import Segmenter, VisionLLM
 from archivist.models.baseten_api import BasetenLLM
 from archivist.models.budget import LEDGER_PATH, Budget, BudgetGuard, Price, caps_from_env
 from archivist.models.cache import CACHE_DIR, Cache
+from archivist.models.fireworks_api import FireworksLLM
 from archivist.models.meta_api import MetaLLM, MetaSAM
 from archivist.models.mock import MockLLM, MockSegmenter
 
@@ -44,6 +45,7 @@ register_backend("mock", "segmenter", lambda model_id: MockSegmenter(model_id=mo
 register_backend("meta", "llm", MetaLLM, priced=True)
 register_backend("meta", "segmenter", MetaSAM, priced=True)
 register_backend("baseten", "llm", BasetenLLM, priced=True)
+register_backend("fireworks", "llm", FireworksLLM, priced=True)
 
 
 def _read(config_path: Path) -> tuple[dict[str, dict], dict[str, dict]]:
@@ -82,7 +84,8 @@ def load_roles(
     ledger_path: Path = LEDGER_PATH,
 ) -> dict[str, VisionLLM | Segmenter]:
     """Every role as Cache(Budget(Backend)). Caps per backend: Meta's is env BUDGET_CAP_USD
-    (default 120), Baseten's env BASETEN_CAP_USD (default 80).
+    (default 120), Baseten's env BASETEN_CAP_USD (default 80), Fireworks' env FIREWORKS_CAP_USD
+    (default 40).
     """
     roles, prices = _read(config_path)
     caps = caps_from_env()
