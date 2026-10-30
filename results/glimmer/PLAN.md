@@ -278,3 +278,64 @@ function-hours. These are resource-cost scenarios, **not measured completion-tim
 A completed development-only L4 batch-fit/timing check remains mandatory before held-out access.
 No actual held-out count, sampled page ID, OCR text or hand-check label has been read here.
 The original phase-1 0/40 and post hoc 40/40 records remain byte-for-byte unchanged.
+
+## Development-check amendment — 2026-10-30, before further GPU requests
+
+The owner authorises development checks only. No held-out page, result/frame, OCR or
+50-page label is opened; no held-out sample is drawn. Held-out execution still requires
+explicit go after the owner's 50-page check. Preserve all phase-1 numbers and artifacts.
+
+### Allocation fallback declared before GPU use
+
+Submit one development-only L4 request and start a monotonic 900-second allocation timer
+at submission. Poll the public Function current statistics and completion handle. If no
+runner/input has ever been observed by 900 seconds, check current statistics once more,
+cancel that call with container termination, confirm it is no longer running/queued, and
+only then allow the declared fallback: **one L40S with 48 GB VRAM**, at least the L4's 24 GB.
+The fallback is not allowed before 15 minutes, for a slow already-allocated L4, for an OOM,
+or for an invalid answer. Once allocated, allow the selected job to complete within its
+execution timeout. An unknown allocation state is not proof of unavailability: abort
+rather than launch a second GPU. If the fallback also remains unallocated for 15 minutes,
+cancel it and report the failure; no undeclared GPU or automatic retry is allowed.
+
+Both GPUs use the exact pinned phase-1 loader: frozen 4-bit NF4 base, double quantisation,
+bf16 compute, bf16 quantised storage and bf16 unquantised load dtype, the same pinned
+revision/libraries and saved LoRA adapter. No bf16 full-base load, lower-bit substitute,
+CPU offload, retraining, or changed generation settings. The development run records actual
+quantised-module compute types, base/adapter dtypes, device placement and memory usage.
+Both arms use the same 1,024-character OCR prefix, native parser, batch eight, low reasoning,
+greedy decoding and maximum 512 new tokens. Label their results as a development check
+beside phase 1; never replace its strict 0/40 or post hoc diagnostic 40/40.
+
+### Budget allocation for these checks
+
+The owner's new **$24.31 retained ceiling** is binding. Retain the old paid/failed GPU maxima
+and both previously cancelled request maxima, plus the existing $2.50 overhead reserve:
+$19.2335298 before these new checks. The earlier $5.08 future-run placeholder is superseded
+by a measured estimate after this check; do not count that placeholder as spend.
+
+Each new GPU job has a 900-second execution limit, 300-second startup allowance and
+15-second shutdown/transport allowance, one container, four physical CPU cores and
+32 GiB hard-capped host RAM. At the checked Modal rates:
+
+- L4: $0.00034544/s including CPU/RAM; maximum $0.4197096.
+- L40S: $0.00066544/s including CPU/RAM; maximum $0.8085096, reserved only for the declared fallback.
+
+Reserve both maxima before the first submission: total retained ceiling $20.461749,
+leaving $3.848251 under $24.31 for the future run. Keep reservations even for a failed or
+cancelled check. Record estimates before each GPU request, allocation observations,
+wall/execution time, actual reported charges and all failures. No held-out work is funded
+or started by this development reservation. Stop if any new reservation would exceed $24.31.
+
+### Full-development title audit
+
+Before changing the crop, audit the complete OCR of all Treasury development pages, gated
+against split.json before image/PDF access. Locate approved title patterns using the same
+folding as the existing title check, but map match positions back to the original joined OCR.
+Report per family the number of pages/occurrences whose title starts after character 1,024,
+1-based start/end positions and how far beyond the boundary, plus titles crossing the
+boundary. Distinguish title-pattern matches from confirmed printed-table headings and report
+unmatched/ambiguous cases. Count all permitted development pages, not just 15 drafting pages.
+If late titles exist, propose a length covering the observed complete headings plus explicit
+context for the owner to approve. Do not silently adopt it; today's comparison stays at
+1,024 characters. No finite development maximum guarantees coverage on unseen pages.
