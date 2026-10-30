@@ -1,0 +1,11 @@
+[extend]
+useDefault = true
+
+# These two files list model-cache keys: sha256 hashes of a request, not secrets.
+# Their "key" field trips the generic-api-key rule. The exemption covers these two paths only.
+[[allowlists]]
+description = "model-cache keys (sha256 of a request), not secrets"
+paths = [
+  '''^results/real_test/held_out/unanswered_rereads\.jsonl$''',
+  '''^results/real_test/held_out/unanswered_rereads_2\.jsonl$''',
+]
