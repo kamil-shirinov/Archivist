@@ -1,0 +1,196 @@
+{
+  "family": "frb_3_19_banks_own_and_domestic",
+  "template": "templates/frb_3_19_banks_own_and_domestic.yaml",
+  "template_sha256": "2fcde078de02483f46fbd18b441e22aa684f684c5cae7f2ce39c2161129b0d3e",
+  "tested_on": "2026-10-30",
+  "config": {
+    "drafter": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "extractor": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "rereader": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    }
+  },
+  "citations": "S0+grid",
+  "rule": "every identity evaluated wherever it applies, on cells whose two reads agree; held within n half-units of the printed precision for n printed values",
+  "pages": [
+    {
+      "ref": "frb-1990-06_p130",
+      "page_id": "frb-1990-06_p130",
+      "classified_as": "frb_3_19_banks_own_and_domestic",
+      "grid": {
+        "rows": 14,
+        "bands": 14,
+        "fixed": 9,
+        "order": null
+      },
+      "anchored": 35,
+      "box_sources": {
+        "grid": 58,
+        "model": 27,
+        "ocr": 35
+      },
+      "read": "ok",
+      "needed": 120,
+      "cells": 154,
+      "read_first": 154,
+      "read_twice": 120,
+      "agree": 90,
+      "no_second_read": {}
+    },
+    {
+      "ref": "frb-2000-06_p134",
+      "page_id": "frb-2000-06_p134",
+      "classified_as": "frb_3_19_banks_own_and_domestic",
+      "grid": {
+        "rows": 14,
+        "bands": 14,
+        "fixed": 12,
+        "order": null
+      },
+      "anchored": 94,
+      "box_sources": {
+        "grid": 16,
+        "model": 10,
+        "ocr": 94
+      },
+      "read": "ok",
+      "needed": 120,
+      "cells": 154,
+      "read_first": 154,
+      "read_twice": 119,
+      "agree": 76,
+      "no_second_read": {
+        "illegible to the re-read": 1
+      }
+    }
+  ],
+  "outcomes": {
+    "rejected": 0,
+    "sometimes fails": 0,
+    "holds": 4,
+    "untested": 0
+  },
+  "identities": [
+    {
+      "id": "total",
+      "description": "Total equals banks' claims plus claims of banks' domestic customers",
+      "for_each": "column",
+      "over": [
+        "y1",
+        "y2",
+        "y3",
+        "aug",
+        "sep",
+        "oct",
+        "nov",
+        "dec",
+        "jan",
+        "feb"
+      ],
+      "equation": "total = banks_claims + domestic_claims",
+      "applies": 20,
+      "evaluated": 4,
+      "held": 4,
+      "failed": 0,
+      "hold_rate": 1.0,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 14,
+        "a cell is blank or not a figure": 2
+      },
+      "outcome": "holds",
+      "failures": []
+    },
+    {
+      "id": "banks_breakdown",
+      "description": "Banks' claims equals foreign public borrowers plus own foreign offices plus unaffiliated foreign banks plus all other foreigners",
+      "for_each": "column",
+      "over": [
+        "y1",
+        "y2",
+        "y3",
+        "aug",
+        "sep",
+        "oct",
+        "nov",
+        "dec",
+        "jan",
+        "feb"
+      ],
+      "equation": "banks_claims = foreign_public + own_offices + unaffiliated + all_other",
+      "applies": 20,
+      "evaluated": 5,
+      "held": 5,
+      "failed": 0,
+      "hold_rate": 1.0,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 15
+      },
+      "outcome": "holds",
+      "failures": []
+    },
+    {
+      "id": "unaffiliated_breakdown",
+      "description": "Unaffiliated foreign banks equals deposits plus other",
+      "for_each": "column",
+      "over": [
+        "y1",
+        "y2",
+        "y3",
+        "aug",
+        "sep",
+        "oct",
+        "nov",
+        "dec",
+        "jan",
+        "feb"
+      ],
+      "equation": "unaffiliated = deposits_banks + other_banks",
+      "applies": 20,
+      "evaluated": 8,
+      "held": 8,
+      "failed": 0,
+      "hold_rate": 1.0,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 12
+      },
+      "outcome": "holds",
+      "failures": []
+    },
+    {
+      "id": "domestic_breakdown",
+      "description": "Claims of banks' domestic customers equals deposits plus negotiable instruments plus outstanding collections and other claims",
+      "for_each": "column",
+      "over": [
+        "y1",
+        "y2",
+        "y3",
+        "aug",
+        "sep",
+        "oct",
+        "nov",
+        "dec",
+        "jan",
+        "feb"
+      ],
+      "equation": "domestic_claims = deposits_customers + negotiable + outstanding",
+      "applies": 20,
+      "evaluated": 8,
+      "held": 8,
+      "failed": 0,
+      "hold_rate": 1.0,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 10,
+        "a cell is blank or not a figure": 2
+      },
+      "outcome": "holds",
+      "failures": []
+    }
+  ]
+}

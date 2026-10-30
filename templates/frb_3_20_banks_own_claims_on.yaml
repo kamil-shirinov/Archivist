@@ -1,0 +1,204 @@
+# Drafted by muse-spark-1.3-contributor from frb-1990-06_p130, frb-2000-06_p134 on 2026-10-30 (P21b).
+# A draft: validated, never registered. python -m archivist.templates.test checks its
+# identities; only a person, with python -m archivist.templates.approve, approves it.
+identity:
+  family: frb_3_20_banks_own_claims_on
+  title: 3.20 BANKS' OWN CLAIMS ON UNAFFILIATED FOREIGNERS Reported by Banks in the United States
+  description: Quarterly maturity breakdown of banks own claims on unaffiliated foreigners by borrower
+    and area
+  title_patterns:
+  - 3\.20.*BANKS.*OWN.*CLAIMS.*UNAFFILIATED.*FOREIGNERS
+  - BANKS'\s+OWN\s+CLAIMS\s+ON\s+UNAFFILIATED\s+FOREIGNERS
+layout:
+  unit: millions of dollars
+  precision: '1'
+  rows:
+  - key: total
+    printed: Total
+  - key: mat_short
+    printed: Maturity of one year or less
+  - key: pub_short
+    printed: Foreign public borrowers
+  - key: other_short
+    printed: All other foreigners
+  - key: mat_long
+    printed: Maturity of more than one year
+  - key: pub_long
+    printed: Foreign public borrowers
+  - key: other_long
+    printed: All other foreigners
+  - key: eur_short
+    printed: Europe
+  - key: can_short
+    printed: Canada
+  - key: lat_short
+    printed: Latin America and Caribbean
+  - key: asia_short
+    printed: Asia
+  - key: afr_short
+    printed: Africa
+  - key: other_short_area
+    printed: All other
+  - key: eur_long
+    printed: Europe
+  - key: can_long
+    printed: Canada
+  - key: lat_long
+    printed: Latin America and Caribbean
+  - key: asia_long
+    printed: Asia
+  - key: afr_long
+    printed: Africa
+  - key: other_long_area
+    printed: All other
+  columns:
+  - key: label
+    printed: Maturity, by borrower and area
+    kind: text
+    blank_means: unknown
+  - key: annual1
+    printed: '1996'
+    kind: money
+    blank_means: unknown
+  - key: annual2
+    printed: '1997'
+    kind: money
+    blank_means: unknown
+  - key: annual3
+    printed: '1998'
+    kind: money
+    blank_means: unknown
+  - key: mar
+    printed: Mar.
+    kind: money
+    blank_means: unknown
+  - key: june
+    printed: June
+    kind: money
+    blank_means: unknown
+  - key: sept
+    printed: Sept.
+    kind: money
+    blank_means: unknown
+  - key: dec
+    printed: Dec.
+    kind: money
+    blank_means: unknown
+identities:
+- id: total_eq_maturities
+  description: Total equals short plus long maturity
+  for_each: column
+  over:
+  - annual1
+  - annual2
+  - annual3
+  - mar
+  - june
+  - sept
+  - dec
+  left:
+    cell:
+      row: total
+  right:
+    sum:
+      rows:
+      - mat_short
+      - mat_long
+- id: short_eq_borrowers
+  description: Short maturity equals its borrower parts
+  for_each: column
+  over:
+  - annual1
+  - annual2
+  - annual3
+  - mar
+  - june
+  - sept
+  - dec
+  left:
+    cell:
+      row: mat_short
+  right:
+    sum:
+      rows:
+      - pub_short
+      - other_short
+- id: long_eq_borrowers
+  description: Long maturity equals its borrower parts
+  for_each: column
+  over:
+  - annual1
+  - annual2
+  - annual3
+  - mar
+  - june
+  - sept
+  - dec
+  left:
+    cell:
+      row: mat_long
+  right:
+    sum:
+      rows:
+      - pub_long
+      - other_long
+- id: short_eq_areas
+  description: Short maturity equals sum of short areas
+  for_each: column
+  over:
+  - annual1
+  - annual2
+  - annual3
+  - mar
+  - june
+  - sept
+  - dec
+  left:
+    cell:
+      row: mat_short
+  right:
+    sum:
+      rows:
+      - eur_short
+      - can_short
+      - lat_short
+      - asia_short
+      - afr_short
+      - other_short_area
+- id: long_eq_areas
+  description: Long maturity equals sum of long areas
+  for_each: column
+  over:
+  - annual1
+  - annual2
+  - annual3
+  - mar
+  - june
+  - sept
+  - dec
+  left:
+    cell:
+      row: mat_long
+  right:
+    sum:
+      rows:
+      - eur_long
+      - can_long
+      - lat_long
+      - asia_long
+      - afr_long
+      - other_long_area
+provenance:
+  status: draft
+  drafted_by:
+    kind: model
+    id: muse-spark-1.3-contributor
+  drafted_on: '2026-10-30'
+  drafted_from:
+  - frb-1990-06_p130
+  - frb-2000-06_p134
+  evidence:
+  - drafted by muse-spark-1.3-contributor from frb-1990-06_p130, frb-2000-06_p134 (drafter role, P21b)
+  - told to describe only the table printed as "3.20 BANKS' OWN CLAIMS ON UNAFFILIATED FOREIGNERS Reported
+    by Banks in the United States"
+  dropped: []

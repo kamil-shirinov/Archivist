@@ -1,0 +1,134 @@
+{
+  "family": "frb_1_18_federal_reserve_banks_condition",
+  "template": "templates/frb_1_18_federal_reserve_banks_condition.yaml",
+  "template_sha256": "0775bd382c93e01a334fbd1b364871f3a5d98b348e7fb63e1a0a372b50b02836",
+  "tested_on": "2026-10-30",
+  "config": {
+    "drafter": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "extractor": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    },
+    "rereader": {
+      "backend": "meta",
+      "model_id": "muse-spark-1.3-contributor"
+    }
+  },
+  "citations": "S0+grid",
+  "rule": "every identity evaluated wherever it applies, on cells whose two reads agree; held within n half-units of the printed precision for n printed values",
+  "pages": [
+    {
+      "ref": "frb-1980-06_p109",
+      "page_id": "frb-1980-06_p109",
+      "classified_as": "frb_1_18_federal_reserve_banks_condition",
+      "grid": {
+        "rows": 46,
+        "bands": 47,
+        "fixed": 45,
+        "order": null
+      },
+      "anchored": 24,
+      "box_sources": {
+        "grid": 16,
+        "ocr": 24
+      },
+      "read": "ok",
+      "needed": 40,
+      "cells": 432,
+      "read_first": 432,
+      "read_twice": 39,
+      "agree": 38,
+      "no_second_read": {
+        "the re-read failed: APITimeoutError: Request timed out.": 1
+      }
+    },
+    {
+      "ref": "frb-1990-06_p077",
+      "page_id": "frb-1990-06_p077",
+      "classified_as": "frb_1_18_federal_reserve_banks_condition",
+      "grid": {
+        "rows": 42,
+        "bands": 42,
+        "fixed": 40,
+        "order": null
+      },
+      "anchored": 18,
+      "box_sources": {
+        "grid": 14,
+        "model": 8,
+        "ocr": 18
+      },
+      "read": "ok",
+      "needed": 40,
+      "cells": 432,
+      "read_first": 432,
+      "read_twice": 40,
+      "agree": 32,
+      "no_second_read": {}
+    },
+    {
+      "ref": "frb-2000-06_p088",
+      "page_id": "frb-2000-06_p088",
+      "classified_as": "frb_1_18_federal_reserve_banks_condition",
+      "grid": {
+        "rows": 44,
+        "bands": 42,
+        "fixed": 38,
+        "order": null
+      },
+      "anchored": 17,
+      "box_sources": {
+        "grid": 15,
+        "model": 8,
+        "ocr": 17
+      },
+      "read": "ok",
+      "needed": 40,
+      "cells": 432,
+      "read_first": 432,
+      "read_twice": 39,
+      "agree": 31,
+      "no_second_read": {
+        "illegible to the re-read": 1
+      }
+    }
+  ],
+  "outcomes": {
+    "rejected": 0,
+    "sometimes fails": 0,
+    "holds": 1,
+    "untested": 0
+  },
+  "identities": [
+    {
+      "id": "collateral_total",
+      "description": "Total collateral equals sum of gold, SDR, eligible and securities collateral",
+      "for_each": "column",
+      "over": [
+        "wed_1",
+        "wed_2",
+        "wed_3",
+        "wed_4",
+        "wed_5",
+        "end_1",
+        "end_2",
+        "end_3"
+      ],
+      "equation": "collateral_01 + collateral_02 + collateral_03 + collateral_04 = collateral_05",
+      "applies": 24,
+      "evaluated": 6,
+      "held": 6,
+      "failed": 0,
+      "hold_rate": 1.0,
+      "not_evaluated": {
+        "the two reads of a cell disagree": 16,
+        "a cell was not read twice": 2
+      },
+      "outcome": "holds",
+      "failures": []
+    }
+  ]
+}

@@ -1,0 +1,198 @@
+# Drafted by muse-spark-1.3-contributor from frb-1990-06_p130, frb-2000-06_p134 on 2026-10-30 (P21b).
+# A draft: validated, never registered. python -m archivist.templates.test checks its
+# identities; only a person, with python -m archivist.templates.approve, approves it.
+identity:
+  family: frb_3_19_banks_own_and_domestic
+  title: 3.19 BANKS' OWN AND DOMESTIC CUSTOMERS' CLAIMS ON FOREIGNERS Reported by Banks in the United
+    States
+  description: Table 3.19 of banks' own and domestic customers' claims on foreigners payable in U.S. dollars,
+    millions of dollars end of period
+  title_patterns:
+  - 3\.19.*BANKS.*OWN.*DOMESTIC CUSTOMERS.*CLAIMS ON FOREIGNERS
+  - BANKS' OWN AND DOMESTIC CUSTOMERS.*CLAIMS ON FOREIGNERS.*Reported by Banks in the United States
+layout:
+  unit: millions of dollars
+  precision: '1'
+  rows:
+  - key: total
+    printed: Total
+  - key: banks_claims
+    printed: Banks' claims
+  - key: foreign_public
+    printed: Foreign public borrowers
+  - key: own_offices
+    printed: Own foreign offices
+  - key: unaffiliated
+    printed: Unaffiliated foreign banks
+  - key: deposits_banks
+    printed: Deposits
+  - key: other_banks
+    printed: Other
+  - key: all_other
+    printed: All other foreigners
+  - key: domestic_claims
+    printed: Claims of banks' domestic customers
+  - key: deposits_customers
+    printed: Deposits
+  - key: negotiable
+    printed: Negotiable and readily transferable instruments
+  - key: outstanding
+    printed: Outstanding collections and other claims
+  - key: liability
+    printed: Customer liability on acceptances
+  - key: dollar_deposits
+    printed: Dollar deposits in banks abroad, reported by nonbanking business enterprises in the United
+      States
+  columns:
+  - key: type
+    printed: Type of claim
+    kind: text
+    blank_means: unknown
+  - key: y1
+    printed: '1997'
+    kind: money
+    blank_means: unknown
+  - key: y2
+    printed: '1998'
+    kind: money
+    blank_means: unknown
+  - key: y3
+    printed: 1999r
+    kind: money
+    blank_means: unknown
+  - key: aug
+    printed: Aug.
+    kind: money
+    blank_means: unknown
+  - key: sep
+    printed: Sept.
+    kind: money
+    blank_means: unknown
+  - key: oct
+    printed: Oct.r
+    kind: money
+    blank_means: unknown
+  - key: nov
+    printed: Nov.r
+    kind: money
+    blank_means: unknown
+  - key: dec
+    printed: Dec.r
+    kind: money
+    blank_means: unknown
+  - key: jan
+    printed: Jan.
+    kind: money
+    blank_means: unknown
+  - key: feb
+    printed: Feb.p
+    kind: money
+    blank_means: unknown
+identities:
+- id: total
+  description: Total equals banks' claims plus claims of banks' domestic customers
+  for_each: column
+  over:
+  - y1
+  - y2
+  - y3
+  - aug
+  - sep
+  - oct
+  - nov
+  - dec
+  - jan
+  - feb
+  left:
+    cell:
+      row: total
+  right:
+    sum:
+      rows:
+      - banks_claims
+      - domestic_claims
+- id: banks_breakdown
+  description: Banks' claims equals foreign public borrowers plus own foreign offices plus unaffiliated
+    foreign banks plus all other foreigners
+  for_each: column
+  over:
+  - y1
+  - y2
+  - y3
+  - aug
+  - sep
+  - oct
+  - nov
+  - dec
+  - jan
+  - feb
+  left:
+    cell:
+      row: banks_claims
+  right:
+    sum:
+      rows:
+      - foreign_public
+      - own_offices
+      - unaffiliated
+      - all_other
+- id: unaffiliated_breakdown
+  description: Unaffiliated foreign banks equals deposits plus other
+  for_each: column
+  over:
+  - y1
+  - y2
+  - y3
+  - aug
+  - sep
+  - oct
+  - nov
+  - dec
+  - jan
+  - feb
+  left:
+    cell:
+      row: unaffiliated
+  right:
+    sum:
+      rows:
+      - deposits_banks
+      - other_banks
+- id: domestic_breakdown
+  description: Claims of banks' domestic customers equals deposits plus negotiable instruments plus outstanding
+    collections and other claims
+  for_each: column
+  over:
+  - y1
+  - y2
+  - y3
+  - aug
+  - sep
+  - oct
+  - nov
+  - dec
+  - jan
+  - feb
+  left:
+    cell:
+      row: domestic_claims
+  right:
+    sum:
+      rows:
+      - deposits_customers
+      - negotiable
+      - outstanding
+provenance:
+  status: draft
+  drafted_by:
+    kind: model
+    id: muse-spark-1.3-contributor
+  drafted_on: '2026-10-30'
+  drafted_from:
+  - frb-1990-06_p130
+  - frb-2000-06_p134
+  evidence:
+  - drafted by muse-spark-1.3-contributor from frb-1990-06_p130, frb-2000-06_p134 (drafter role, P21b)
+  - told to describe only the table printed as "3.19 BANKS' OWN AND DOMESTIC CUSTOMERS' CLAIMS ON FOREIGNERS
+    Reported by Banks in the United States"
+  dropped: []

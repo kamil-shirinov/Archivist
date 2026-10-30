@@ -1,0 +1,771 @@
+# Drafted by muse-spark-1.3-contributor from frb-1990-06_p127, frb-2000-06_p131 on 2026-10-30 (P21b).
+# A draft: validated, never registered. python -m archivist.templates.test checks its
+# identities; only a person, with python -m archivist.templates.approve, approves it.
+identity:
+  family: frb_3_17_liabilities_to_foreigners
+  title: 3.17 LIABILITIES TO FOREIGNERS Reported by Banks in the United States
+  description: Liabilities to foreigners reported by banks payable in U.S. dollars millions end of period
+  title_patterns:
+  - 3\.17\s+LIABILITIES\s+TO\s+FOREIGNERS
+  - LIABILITIES\s+TO\s+FOREIGNERS\s+Reported\s+by\s+Banks\s+in\s+the\s+United\s+States
+layout:
+  unit: millions of dollars
+  precision: '1'
+  rows:
+  - key: r01
+    printed: Total, all foreigners
+  - key: r02
+    printed: Banks' own liabilities
+  - key: r03
+    printed: Demand deposits
+  - key: r04
+    printed: Time deposits
+  - key: r05
+    printed: Other
+  - key: r06
+    printed: Own foreign offices
+  - key: r07
+    printed: Banks' custodial liabilities
+  - key: r08
+    printed: U.S. Treasury bills and certificates
+  - key: r09
+    printed: Other negotiable and readily transferable instruments
+  - key: r10
+    printed: Other
+  - key: r11
+    printed: Nonmonetary international and regional organizations
+  - key: r12
+    printed: Banks' own liabilities
+  - key: r13
+    printed: Demand deposits
+  - key: r14
+    printed: Time deposits
+  - key: r15
+    printed: Other
+  - key: r16
+    printed: Banks' custodial liabilities
+  - key: r17
+    printed: U.S. Treasury bills and certificates
+  - key: r18
+    printed: Other negotiable and readily transferable instruments
+  - key: r19
+    printed: Other
+  - key: r20
+    printed: Official institutions
+  - key: r21
+    printed: Banks' own liabilities
+  - key: r22
+    printed: Demand deposits
+  - key: r23
+    printed: Time deposits
+  - key: r24
+    printed: Other
+  - key: r25
+    printed: Banks' custodial liabilities
+  - key: r26
+    printed: U.S. Treasury bills and certificates
+  - key: r27
+    printed: Other negotiable and readily transferable instruments
+  - key: r28
+    printed: Other
+  - key: r29
+    printed: Banks
+  - key: r30
+    printed: Banks' own liabilities
+  - key: r31
+    printed: Unaffiliated foreign banks
+  - key: r32
+    printed: Demand deposits
+  - key: r33
+    printed: Time deposits
+  - key: r34
+    printed: Other
+  - key: r35
+    printed: Own foreign offices
+  - key: r36
+    printed: Banks' custodial liabilities
+  - key: r37
+    printed: U.S. Treasury bills and certificates
+  - key: r38
+    printed: Other negotiable and readily transferable instruments
+  - key: r39
+    printed: Other
+  - key: r40
+    printed: Other foreigners
+  - key: r41
+    printed: Banks' own liabilities
+  - key: r42
+    printed: Demand deposits
+  - key: r43
+    printed: Time deposits
+  - key: r44
+    printed: Other
+  - key: r45
+    printed: Banks' custodial liabilities
+  - key: r46
+    printed: U.S. Treasury bills and certificates
+  - key: r47
+    printed: Other negotiable and readily transferable instruments
+  - key: r48
+    printed: Other
+  - key: r49
+    printed: Negotiable time certificates of deposit in custody for foreigners
+  columns:
+  - key: item
+    printed: Item
+    kind: text
+    blank_means: unknown
+  - key: yr1
+    printed: '1997'
+    kind: money
+    blank_means: unknown
+  - key: yr2
+    printed: '1998'
+    kind: money
+    blank_means: unknown
+  - key: yr3
+    printed: '1999'
+    kind: money
+    blank_means: unknown
+  - key: aug
+    printed: Aug.
+    kind: money
+    blank_means: unknown
+  - key: sept
+    printed: Sept.
+    kind: money
+    blank_means: unknown
+  - key: oct
+    printed: Oct.
+    kind: money
+    blank_means: unknown
+  - key: nov
+    printed: Nov.
+    kind: money
+    blank_means: unknown
+  - key: dec
+    printed: Dec.
+    kind: money
+    blank_means: unknown
+  - key: jan
+    printed: Jan.
+    kind: money
+    blank_means: unknown
+  - key: feb
+    printed: Feb.
+    kind: money
+    blank_means: unknown
+identities:
+- id: all_eq_own_custodial
+  description: All foreigners equals own plus custodial liabilities
+  for_each: column
+  over:
+  - aug
+  - dec
+  - feb
+  - jan
+  - nov
+  - oct
+  - sept
+  - yr1
+  - yr2
+  - yr3
+  left:
+    cell:
+      row: r01
+  right:
+    sum:
+      rows:
+      - r02
+      - r07
+- id: own_eq_components
+  description: Banks own liabilities equals demand plus time plus other plus own foreign offices
+  for_each: column
+  over:
+  - aug
+  - dec
+  - feb
+  - jan
+  - nov
+  - oct
+  - sept
+  - yr1
+  - yr2
+  - yr3
+  left:
+    cell:
+      row: r02
+  right:
+    sum:
+      rows:
+      - r03
+      - r04
+      - r05
+      - r06
+- id: custodial_eq_components
+  description: Custodial liabilities equals Treasury bills plus negotiable plus other
+  for_each: column
+  over:
+  - aug
+  - dec
+  - feb
+  - jan
+  - nov
+  - oct
+  - sept
+  - yr1
+  - yr2
+  - yr3
+  left:
+    cell:
+      row: r07
+  right:
+    sum:
+      rows:
+      - r08
+      - r09
+      - r10
+- id: nonmonetary_eq_own_custodial
+  description: Nonmonetary organizations total equals own plus custodial
+  for_each: column
+  over:
+  - aug
+  - dec
+  - feb
+  - jan
+  - nov
+  - oct
+  - sept
+  - yr1
+  - yr2
+  - yr3
+  left:
+    cell:
+      row: r11
+  right:
+    sum:
+      rows:
+      - r12
+      - r16
+- id: nonmonetary_own_eq
+  description: Nonmonetary own liabilities equals demand plus time plus other
+  for_each: column
+  over:
+  - aug
+  - dec
+  - feb
+  - jan
+  - nov
+  - oct
+  - sept
+  - yr1
+  - yr2
+  - yr3
+  left:
+    cell:
+      row: r12
+  right:
+    sum:
+      rows:
+      - r13
+      - r14
+      - r15
+- id: nonmonetary_custodial_eq
+  description: Nonmonetary custodial equals bills plus negotiable plus other
+  for_each: column
+  over:
+  - aug
+  - dec
+  - feb
+  - jan
+  - nov
+  - oct
+  - sept
+  - yr1
+  - yr2
+  - yr3
+  left:
+    cell:
+      row: r16
+  right:
+    sum:
+      rows:
+      - r17
+      - r18
+      - r19
+- id: official_eq_own_custodial
+  description: Official institutions total equals own plus custodial
+  for_each: column
+  over:
+  - aug
+  - dec
+  - feb
+  - jan
+  - nov
+  - oct
+  - sept
+  - yr1
+  - yr2
+  - yr3
+  left:
+    cell:
+      row: r20
+  right:
+    sum:
+      rows:
+      - r21
+      - r25
+- id: official_own_eq
+  description: Official own liabilities equals demand plus time plus other
+  for_each: column
+  over:
+  - aug
+  - dec
+  - feb
+  - jan
+  - nov
+  - oct
+  - sept
+  - yr1
+  - yr2
+  - yr3
+  left:
+    cell:
+      row: r21
+  right:
+    sum:
+      rows:
+      - r22
+      - r23
+      - r24
+- id: official_custodial_eq
+  description: Official custodial equals bills plus negotiable plus other
+  for_each: column
+  over:
+  - aug
+  - dec
+  - feb
+  - jan
+  - nov
+  - oct
+  - sept
+  - yr1
+  - yr2
+  - yr3
+  left:
+    cell:
+      row: r25
+  right:
+    sum:
+      rows:
+      - r26
+      - r27
+      - r28
+- id: banks_eq_own_custodial
+  description: Banks total equals own plus custodial
+  for_each: column
+  over:
+  - aug
+  - dec
+  - feb
+  - jan
+  - nov
+  - oct
+  - sept
+  - yr1
+  - yr2
+  - yr3
+  left:
+    cell:
+      row: r29
+  right:
+    sum:
+      rows:
+      - r30
+      - r36
+- id: banks_own_eq
+  description: Banks own equals unaffiliated plus own foreign offices
+  for_each: column
+  over:
+  - aug
+  - dec
+  - feb
+  - jan
+  - nov
+  - oct
+  - sept
+  - yr1
+  - yr2
+  - yr3
+  left:
+    cell:
+      row: r30
+  right:
+    sum:
+      rows:
+      - r31
+      - r35
+- id: unaffiliated_eq
+  description: Unaffiliated foreign banks equals demand plus time plus other
+  for_each: column
+  over:
+  - aug
+  - dec
+  - feb
+  - jan
+  - nov
+  - oct
+  - sept
+  - yr1
+  - yr2
+  - yr3
+  left:
+    cell:
+      row: r31
+  right:
+    sum:
+      rows:
+      - r32
+      - r33
+      - r34
+- id: banks_custodial_eq
+  description: Banks custodial equals bills plus negotiable plus other
+  for_each: column
+  over:
+  - aug
+  - dec
+  - feb
+  - jan
+  - nov
+  - oct
+  - sept
+  - yr1
+  - yr2
+  - yr3
+  left:
+    cell:
+      row: r36
+  right:
+    sum:
+      rows:
+      - r37
+      - r38
+      - r39
+- id: otherfor_eq_own_custodial
+  description: Other foreigners total equals own plus custodial
+  for_each: column
+  over:
+  - aug
+  - dec
+  - feb
+  - jan
+  - nov
+  - oct
+  - sept
+  - yr1
+  - yr2
+  - yr3
+  left:
+    cell:
+      row: r40
+  right:
+    sum:
+      rows:
+      - r41
+      - r45
+- id: otherfor_own_eq
+  description: Other foreigners own equals demand plus time plus other
+  for_each: column
+  over:
+  - aug
+  - dec
+  - feb
+  - jan
+  - nov
+  - oct
+  - sept
+  - yr1
+  - yr2
+  - yr3
+  left:
+    cell:
+      row: r41
+  right:
+    sum:
+      rows:
+      - r42
+      - r43
+      - r44
+- id: otherfor_custodial_eq
+  description: Other foreigners custodial equals bills plus negotiable plus other
+  for_each: column
+  over:
+  - aug
+  - dec
+  - feb
+  - jan
+  - nov
+  - oct
+  - sept
+  - yr1
+  - yr2
+  - yr3
+  left:
+    cell:
+      row: r45
+  right:
+    sum:
+      rows:
+      - r46
+      - r47
+      - r48
+- id: total_eq_holders
+  description: Total all foreigners equals holder groups
+  for_each: column
+  over:
+  - aug
+  - dec
+  - feb
+  - jan
+  - nov
+  - oct
+  - sept
+  - yr1
+  - yr2
+  - yr3
+  left:
+    cell:
+      row: r01
+  right:
+    sum:
+      rows:
+      - r11
+      - r20
+      - r29
+      - r40
+- id: own_eq_holders
+  description: Own liabilities total equals holder own liabilities
+  for_each: column
+  over:
+  - aug
+  - dec
+  - feb
+  - jan
+  - nov
+  - oct
+  - sept
+  - yr1
+  - yr2
+  - yr3
+  left:
+    cell:
+      row: r02
+  right:
+    sum:
+      rows:
+      - r12
+      - r21
+      - r30
+      - r41
+- id: custodial_eq_holders
+  description: Custodial total equals holder custodial liabilities
+  for_each: column
+  over:
+  - aug
+  - dec
+  - feb
+  - jan
+  - nov
+  - oct
+  - sept
+  - yr1
+  - yr2
+  - yr3
+  left:
+    cell:
+      row: r07
+  right:
+    sum:
+      rows:
+      - r16
+      - r25
+      - r36
+      - r45
+- id: demand_eq_holders
+  description: Demand deposits total equals holder demand deposits
+  for_each: column
+  over:
+  - aug
+  - dec
+  - feb
+  - jan
+  - nov
+  - oct
+  - sept
+  - yr1
+  - yr2
+  - yr3
+  left:
+    cell:
+      row: r03
+  right:
+    sum:
+      rows:
+      - r13
+      - r22
+      - r32
+      - r42
+- id: time_eq_holders
+  description: Time deposits total equals holder time deposits
+  for_each: column
+  over:
+  - aug
+  - dec
+  - feb
+  - jan
+  - nov
+  - oct
+  - sept
+  - yr1
+  - yr2
+  - yr3
+  left:
+    cell:
+      row: r04
+  right:
+    sum:
+      rows:
+      - r14
+      - r23
+      - r33
+      - r43
+- id: other_own_eq_holders
+  description: Other own total equals holder other
+  for_each: column
+  over:
+  - aug
+  - dec
+  - feb
+  - jan
+  - nov
+  - oct
+  - sept
+  - yr1
+  - yr2
+  - yr3
+  left:
+    cell:
+      row: r05
+  right:
+    sum:
+      rows:
+      - r15
+      - r24
+      - r34
+      - r44
+- id: ownforeign_eq_banks
+  description: Own foreign offices total equals banks own foreign offices
+  for_each: column
+  over:
+  - aug
+  - dec
+  - feb
+  - jan
+  - nov
+  - oct
+  - sept
+  - yr1
+  - yr2
+  - yr3
+  left:
+    cell:
+      row: r06
+  right:
+    cell:
+      row: r35
+- id: bills_eq_holders
+  description: Treasury bills total equals holder Treasury bills
+  for_each: column
+  over:
+  - aug
+  - dec
+  - feb
+  - jan
+  - nov
+  - oct
+  - sept
+  - yr1
+  - yr2
+  - yr3
+  left:
+    cell:
+      row: r08
+  right:
+    sum:
+      rows:
+      - r17
+      - r26
+      - r37
+      - r46
+- id: negotiable_eq_holders
+  description: Negotiable instruments total equals holder negotiable
+  for_each: column
+  over:
+  - aug
+  - dec
+  - feb
+  - jan
+  - nov
+  - oct
+  - sept
+  - yr1
+  - yr2
+  - yr3
+  left:
+    cell:
+      row: r09
+  right:
+    sum:
+      rows:
+      - r18
+      - r27
+      - r38
+      - r47
+- id: other_custodial_eq_holders
+  description: Other custodial total equals holder other custodial
+  for_each: column
+  over:
+  - aug
+  - dec
+  - feb
+  - jan
+  - nov
+  - oct
+  - sept
+  - yr1
+  - yr2
+  - yr3
+  left:
+    cell:
+      row: r10
+  right:
+    sum:
+      rows:
+      - r19
+      - r28
+      - r39
+      - r48
+provenance:
+  status: draft
+  drafted_by:
+    kind: model
+    id: muse-spark-1.3-contributor
+  drafted_on: '2026-10-30'
+  drafted_from:
+  - frb-1990-06_p127
+  - frb-2000-06_p131
+  evidence:
+  - drafted by muse-spark-1.3-contributor from frb-1990-06_p127, frb-2000-06_p131 (drafter role, P21b)
+  - told to describe only the table printed as '3.17 LIABILITIES TO FOREIGNERS Reported by Banks in the
+    United States'
+  dropped: []
