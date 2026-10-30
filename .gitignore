@@ -19,3 +19,7 @@ data/real_occ/.ingest.lock
 data/real_frb/pdf/
 data/real_frb/pages/
 data/real_frb/.ingest.lock
+
+# Local Glimmer tooling and temporary files
+.cache/
+.tmp/
