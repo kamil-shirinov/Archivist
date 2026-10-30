@@ -1,0 +1,7 @@
+[roles.glimmer_job]
+kind = "llm"
+backend = "modal_glimmer"
+model_id = "meta-models/Muse-Glimmer-30B@a4e59da52a7bc87ae7251dd5545c0dd437c44b68/baseline/39d941e87f1a429ed03f9efea2a17935ce5fc770c1ca791a304bd04778adea88"
+[prices."meta-models/Muse-Glimmer-30B@a4e59da52a7bc87ae7251dd5545c0dd437c44b68/baseline/39d941e87f1a429ed03f9efea2a17935ce5fc770c1ca791a304bd04778adea88"]
+input_per_mtok = 0.0
+output_per_mtok = 0.0

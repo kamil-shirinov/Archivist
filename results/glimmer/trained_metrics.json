@@ -1,0 +1,90 @@
+{
+  "pages": 40,
+  "accuracy": 0.0,
+  "invalid": 40,
+  "missing": 0,
+  "per_family": {
+    "short_term_foreign_liabilities_as": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1,
+      "support": 1,
+      "precision": null,
+      "recall": 0.0
+    },
+    "security_transactions_as_reported_by": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1,
+      "support": 1,
+      "precision": null,
+      "recall": 0.0
+    },
+    "outstanding_forward_exchange_contracts": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1,
+      "support": 1,
+      "precision": null,
+      "recall": 0.0
+    },
+    "receipts_and_expenditures_under_railroad": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1,
+      "support": 1,
+      "precision": null,
+      "recall": 0.0
+    },
+    "total_claims_by_country": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 1,
+      "support": 1,
+      "precision": null,
+      "recall": 0.0
+    },
+    "other": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 35,
+      "support": 35,
+      "precision": null,
+      "recall": 0.0
+    }
+  },
+  "macro_precision_defined_labels": null,
+  "macro_recall_defined_labels": 0.0,
+  "confusion": [
+    {
+      "expected": "other",
+      "predicted": "invalid",
+      "count": 35
+    },
+    {
+      "expected": "outstanding_forward_exchange_contracts",
+      "predicted": "invalid",
+      "count": 1
+    },
+    {
+      "expected": "receipts_and_expenditures_under_railroad",
+      "predicted": "invalid",
+      "count": 1
+    },
+    {
+      "expected": "security_transactions_as_reported_by",
+      "predicted": "invalid",
+      "count": 1
+    },
+    {
+      "expected": "short_term_foreign_liabilities_as",
+      "predicted": "invalid",
+      "count": 1
+    },
+    {
+      "expected": "total_claims_by_country",
+      "predicted": "invalid",
+      "count": 1
+    }
+  ]
+}

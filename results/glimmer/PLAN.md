@@ -108,3 +108,26 @@ metrics, cost reservations and the final report under results/glimmer/.
 Sources: https://dev.meta.ai/docs/muse-glimmer/get-the-model ;
 https://dev.meta.ai/docs/muse-glimmer/post-training ;
 https://dev.meta.ai/docs/muse-glimmer/prompting ; https://modal.com/pricing
+
+## Deviations recorded during phase 1
+
+2026-10-30: The single training run completed all 57 optimizer steps (three epochs) and
+saved its adapter, then a NameError in the Modal return wrapper prevented the response from
+reaching the client. An accidental CPU-preflight block was removed from that return wrapper.
+The existing adapter and training metrics were recovered on CPU, without retraining.
+Baseline and trained inference functions were compared as Python ASTs and are identical;
+the model runtime, prompt, tokenizer settings, scorer and training settings are unchanged.
+The old/new code fingerprints and the failed job are retained in recovery.json and cost.json.
+The failed job keeps its entire worst-case reservation. A CPU recovery helper was added,
+and that CPU module's trailing blank line was normalised for pre-commit.
+
+2026-10-30, after trained validation: the frozen parser marked all 40 trained responses invalid
+because they directly continue the open assistant header with `to=user`. The original strict
+scores (0/40 trained) and raw answers are retained without change. A separately tested,
+post hoc protocol-framing diagnostic reattaches only the fixed open assistant header and
+reuses the original strict label parser and scoring formulas. It gives 39/40 untrained and
+40/40 trained. It is explicitly a diagnostic, not a pre-registered gain. No model was called
+again, no training was repeated, and no label, prompt, training setting or primary scorer
+was changed. The report renderer was extended to show both results. Adapter config/model-card
+whitespace was normalised for pre-commit; original and committed hashes are recorded, with
+adapter tensors unchanged. Phase 2 must settle response framing before any measurement.

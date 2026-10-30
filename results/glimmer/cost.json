@@ -1,0 +1,50 @@
+[
+  {
+    "stage": "baseline",
+    "maximum_usd": 2.7185654,
+    "gpu": "H100!",
+    "rate_per_second_usd": 0.00129148,
+    "timeout_seconds": 1800,
+    "startup_allowance_seconds": 300,
+    "state": "completed",
+    "reserved_at": "2026-10-30T21:09:22.451562+00:00",
+    "note": "Includes GPU, 4 physical cores, 64 GiB; measured cost is not an invoice.",
+    "finished_at": "2026-10-30T21:16:51.862423+00:00",
+    "runtime_seconds": 432.209266624,
+    "estimated_compute_usd": 0.5581896236595635,
+    "app_id": "ap-1Q1kN2L3XOMluTqX7iDBEi",
+    "reported_cost_usd": 0.56848018
+  },
+  {
+    "stage": "train",
+    "maximum_usd": 9.6925574,
+    "gpu": "H100!",
+    "rate_per_second_usd": 0.00129148,
+    "timeout_seconds": 7200,
+    "startup_allowance_seconds": 300,
+    "state": "failed",
+    "reserved_at": "2026-10-30T21:17:00.153863+00:00",
+    "note": "Includes GPU, 4 physical cores, 64 GiB; measured cost is not an invoice.",
+    "finished_at": "2026-10-30T21:24:31.136850+00:00",
+    "error": "NameError",
+    "app_id": "ap-8xfjGKV2Sw61RZPsraOYji",
+    "reported_cost_usd": 0.57218305,
+    "recovery": "adapter saved after 57 steps, recovered on CPU; no retraining"
+  },
+  {
+    "stage": "trained",
+    "maximum_usd": 2.7185654,
+    "gpu": "H100!",
+    "rate_per_second_usd": 0.00129148,
+    "timeout_seconds": 1800,
+    "startup_allowance_seconds": 300,
+    "state": "completed",
+    "reserved_at": "2026-10-30T21:26:56.342165+00:00",
+    "note": "Includes GPU, 4 physical cores, 64 GiB; measured cost is not an invoice.",
+    "finished_at": "2026-10-30T21:28:35.086524+00:00",
+    "runtime_seconds": 85.58886944,
+    "estimated_compute_usd": 0.1105363131043712,
+    "app_id": "ap-W4e2OKninfiDyNoiQ5UiZh",
+    "reported_cost_usd": 0.1178919
+  }
+]

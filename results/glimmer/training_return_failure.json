@@ -1,0 +1,13 @@
+{
+  "stage": "train",
+  "app_id": "ap-8xfjGKV2Sw61RZPsraOYji",
+  "exception": "NameError",
+  "message": "name 'tokenizer' is not defined",
+  "after_training_completed": true,
+  "optimizer_steps_completed": 57,
+  "epochs_completed": 3,
+  "adapter_saved_before_failure": true,
+  "training_repeated": false,
+  "recovery": "CPU download of the saved adapter and training metrics; SHA256 verification",
+  "worst_case_reservation_retained_usd": 9.6925574
+}

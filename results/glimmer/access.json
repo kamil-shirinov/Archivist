@@ -1,0 +1,19 @@
+{
+  "model": "meta-models/Muse-Glimmer-30B",
+  "revision": "a4e59da52a7bc87ae7251dd5545c0dd437c44b68",
+  "anonymous_access": true,
+  "files": {
+    "config.json": {
+      "sha256": "5a9df2d8a385b3d361ab6ae68d73586f4e775033933bd0cd863fb7f3820e6a14",
+      "bytes": 5109
+    },
+    "tokenizer_config.json": {
+      "sha256": "781e6c74f571642c71202167b67d9255b28cc439bdda1582ff31346182f5a9c5",
+      "bytes": 79936
+    },
+    "model.safetensors.index.json": {
+      "sha256": "7d817b4dccb1b123fc6c1939356c65cee3a0ad462a5b821ac88280990a27d1ba",
+      "bytes": 132674
+    }
+  }
+}
