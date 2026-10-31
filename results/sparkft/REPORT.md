@@ -135,6 +135,6 @@ licence/policy obligations, and Meta API output restrictions. No closed Meta API
 output enters training. Treasury Bulletin provenance records FRASER's public-domain
 rights. All page accesses are gated against development before file reads.
 
-Latest pre-training Check: **1,184 tests passed**, all **11 replay runs identical**,
+Latest pre-training Check: **1,185 tests passed**, all **11 replay runs identical**,
 spend ledger unchanged at 81,155 lines during replay; pre-commit clean. All work is
 inside sparkft; push is plain `git push origin sparkft`, without merging.

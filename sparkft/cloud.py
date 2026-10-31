@@ -61,10 +61,10 @@ def cpu_wall_seconds(stage):
     return 1860
 
 
-def wait(call,stage,*,app_id,wall_seconds):
+def wait(call,stage,*,app_id,wall_seconds,call_id=None):
     require_owned(app_id)
     try:
-        deadline=submitted_epoch(call.object_id)+wall_seconds-15
+        deadline=submitted_epoch(call_id or call.object_id)+wall_seconds-15
     except ValueError:
         stop_owned(app_id)
         raise

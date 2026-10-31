@@ -32,7 +32,7 @@ def main():
                 if record.exists():
                     saved=json.loads(record.read_text());require_owned(saved['app_id'])
                     result=wait(modal.FunctionCall.from_id(saved['call_id']),'recorded '+stage,
-                                app_id=saved['app_id'],wall_seconds=cpu_wall_seconds(stage))
+                                app_id=saved['app_id'],wall_seconds=cpu_wall_seconds(stage),call_id=saved['call_id'])
                 else:
                     result=cpu(stage,download=True)
                 break

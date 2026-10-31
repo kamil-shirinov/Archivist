@@ -2,7 +2,7 @@
 kind = "llm"
 backend = "modal_sparkft"
 model_id = "sparkft-bf16-v2"
-settings = { settings_id = "cc67f21be0c04b8fcee6e147661d607a1e396c55f00fca24824cec8dffd25be8" }
+settings = { settings_id = "c178de7f195c3dcc249a3dcf3b412b967c1cfe3af2b45b599d80a3110771233a" }
 
 [prices.sparkft-bf16-v2]
 input_per_mtok = 0.0

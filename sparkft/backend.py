@@ -30,8 +30,9 @@ class SparkftBackend:
             saved=json.loads(submission.read_text())
             require_owned(saved['app_id'])
             if saved['request_sha256']!=identity:raise ValueError('Frozen remote request changed')
-            call=modal.FunctionCall.from_id(saved['call_id'])
-            result=wait(call,'reconnected experiment',app_id=saved['app_id'],wall_seconds=4950)
+            call_id=saved['call_id']
+            call=modal.FunctionCall.from_id(call_id)
+            result=wait(call,'reconnected experiment',app_id=saved['app_id'],wall_seconds=4950,call_id=call_id)
         else:
             if budget['gpu_attempts']:
                 raise ValueError('GPU attempt already reserved; no automatic retry')
@@ -45,13 +46,14 @@ class SparkftBackend:
                 append_event({'event':'started','app_id':app.app_id,'stage':'experiment'})
                 payload['budget_deadline_epoch']=time.time()+4920
                 call=self.remote.spawn(payload,request.images)
+                call_id=call.object_id
                 submission.write_text(json.dumps({'app_id':app.app_id,'call_id':call.object_id,
                     'request_sha256':identity,'detached':True,'dataset_sha256':payload['dataset_sha256'],
                     'checkpoint_path':'/sparkft-store/experiment-v1/latest.json'},indent=2)+'\n')
                 print('Detached submission saved:',call.object_id,flush=True)
                 result=wait(call,'experiment',app_id=app.app_id,wall_seconds=4950)
         budget['gpu_attempts'][-1]['status']='completed'
-        wall=time.time()-submitted_epoch(call.object_id)
+        wall=time.time()-submitted_epoch(call_id)
         cost=(wall+15)*RATE
         result['dispatch_wall_seconds']=wall
         result['cost_basis']='Upper bound from submission to result plus shutdown; includes restarts'

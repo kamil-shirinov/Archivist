@@ -177,3 +177,13 @@ def test_server_deadline_rejects_work_after_budget(monkeypatch):
     monkeypatch.setattr(runtime.time,'time',lambda:100)
     with pytest.raises(RuntimeError,match='budget deadline'):
         runtime.check_deadline(99)
+
+
+def test_saved_call_id_is_used_before_reconnected_object_hydrates(monkeypatch):
+    class Call:
+        @property
+        def object_id(self):raise AttributeError('Unhydrated object')
+        def get(self,timeout):return {'finished':True}
+    monkeypatch.setattr(cloud,'require_owned',lambda app:None)
+    assert cloud.wait(Call(),'reconnected',app_id='ap-owned',wall_seconds=100,
+                      call_id='fc-01M6A3T6DZFQPM6236QBY1K46V')=={'finished':True}
