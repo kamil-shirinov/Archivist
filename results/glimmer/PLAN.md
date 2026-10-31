@@ -388,3 +388,36 @@ $1.54829339 at the recorded billing query (billing may lag). Retained maxima rem
 from billed charges. The app is stopped with zero tasks. Full artifacts, raw predictions,
 audit contexts, budget, forecasts and billing are in results/glimmer/development_checks/.
 This outcome does not authorise held-out access, a sample draw, or the owner's label export.
+
+## Owner-authorised phase-2 start — 2026-10-31
+
+The owner explicitly says go after completing the 50-page check. Input remains exactly
+1,024 characters; the 5,120 proposal is not approved. Before any draw, validate all sweep
+classifications and title-check records against split.json and require exactly 291 named
+pages, 136 confirmed, 155 title-rejected, and a resulting sample of 791 including the
+seed-4005 draw of 500 classifier-set-aside pages. Stop before drawing if any count differs.
+Recompute the existing development-based budget forecast at N=791 before OCR or GPU.
+
+Read only sweep.json, sweep.jsonl and titles.jsonl from the held-out result directory,
+read-only. Never list or open any other file there. Read only the sampled pages' PDF OCR;
+use manifest page dimensions to preserve the original positive-box word filter without
+opening/rendering a held-out image. No labels, cell draw, deep records, original scorer
+or git tag may be read. The original pre-registration's separate Glimmer departure is
+recorded in its Deviations section, leaving its original experiment unchanged.
+
+Freeze code/base/adapter/configuration, frame/source hashes and the one sample manifest
+before OCR/inference. Both arms use the same ordered 791 inputs, native declared parser,
+batch 8 and NF4/bf16 setup. A single L4 job uses 10,825-second execution and 300-second
+startup hard timeouts, one container, 4 physical CPU cores and 32 GiB RAM. Retain its
+$3.8482016 maximum; combined bound $24.3099506. No GPU retry, crop change or fallback is
+funded. Only this task's own Modal app/call may be cancelled or stopped; other training
+apps must be left alone. An unallocated L4 is cancelled after the declared 900-second wait.
+
+Save both raw arms, input/order hashes, failures, runtime/memory/precision and spend, then
+run the exact Check, commit and push those raw artifacts **before any output/reference
+comparison**. Only afterward compare against confirmed types, title rejections and
+set-aside proxy references, including the existing Spark comparator and design weights.
+Write aggregate summaries only, without page-level error analysis or model-guided tuning.
+The 50-page human comparison is expressly deferred until its file is committed on main;
+no label export is authorised in this task. Run the exact Check again, commit and push
+summary results, and stop. Phase-1 artifacts and numbers remain unchanged.

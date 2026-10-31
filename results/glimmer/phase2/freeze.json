@@ -1,0 +1,45 @@
+{
+  "created_at": "2026-10-31T12:30:12.963725+00:00",
+  "model": "meta-models/Muse-Glimmer-30B",
+  "revision": "a4e59da52a7bc87ae7251dd5545c0dd437c44b68",
+  "sample_sha256": "04074f6339a4b2833fe790abff7aaae79f1b1bee15fc7374b8c2a8b4a891e773",
+  "code": {
+    "src/archivist/glimmer/run_phase2.py": "1a67d3282194c6a4e8c3525be9e90566b20285fd91d2398e7cade8a247537b43",
+    "src/archivist/glimmer/heldout_frame.py": "2f9209196abe30c086c7f98fc3aab695bfa1deb5334dd07b87d6e2584baab813",
+    "src/archivist/glimmer/heldout_ocr.py": "cbe54c215c14d8b5383d9545dd54c527d06e364483779546b88165f974c11d70",
+    "src/archivist/glimmer/phase2.py": "6c0c2996cdeb2fad5e70d042ff52562f5bab8e5a69d8d3a86f8575ab2b0cd1a9",
+    "src/archivist/glimmer/phase2_cost.py": "492a047b2ef30086369b1e0b6d22606bec2c0b3df60bc338ad363a4cbae40788",
+    "src/archivist/glimmer/data.py": "5f3383b73241266c84eaed9bccc1c2ef14acf920b4433b01a996c69b2f7c5807",
+    "src/archivist/glimmer/compare_phase2.py": "45ba57d14df133d6df82b7ac04cfd7734b8813560038c885b29c6ae8509a3c31",
+    "src/archivist/glimmer/metrics.py": "dc223eef7172d4e680871d7b505e75f5b1627e2a7be9fb1113061d709bb91947",
+    "src/archivist/models/glimmer_phase2_runtime.py": "432ed5256fba35051b7d5124a54f0dd46ec30e8aae76cdadc1e59174662ffc98",
+    "src/archivist/models/glimmer_phase2_modal.py": "22637945bea3f67cf3ba40a45f697c62471658c5c70873804a5239050f35b98a",
+    "src/archivist/models/glimmer_phase2_backend.py": "cd685145c37118a43e68afb013e6043c4700bdb9932aea3979dfc0f4b1d4e382",
+    "src/archivist/models/glimmer_batch.py": "f2f8c73991e27fd1bcc301a207a4c5f00bfaabbc9dcf7bf7b7b48e30de9d2de2",
+    "src/archivist/models/glimmer_runtime.py": "aa60e2d9e5f2a51055c5fe72215916e24c3d812fd22c16d46f581437aedad53e",
+    "src/archivist/models/glimmer_image.py": "91cabfb5304fb566a34c41df42f022c5a6242d87f036583f5c0c6213a11b5e3b",
+    "src/archivist/models/glimmer_allocation.py": "a11fd6587b28ba90c7c7d3f75e23bf95fa211db683a0a35a488c5ba86c18e424"
+  },
+  "artifacts": {
+    "results/glimmer/adapter/adapter_model.safetensors": "7471260b80935821b07f19e1e0c35330abe08633498e4fd737cf1e18b29f58e1",
+    "results/glimmer/adapter/adapter_config.json": "3edc8627a600a90bcc9b994f8f36148dab01cb0ebd1ff8a6bb58164403a4676c",
+    "results/glimmer/families.json": "41c0ed0067f8bf651bb76d92410424c95d861ebce9be3a7edbd1f3392707821e",
+    "results/glimmer/data_manifest.json": "39d941e87f1a429ed03f9efea2a17935ce5fc770c1ca791a304bd04778adea88",
+    "config/real_test.toml": "b148f46f00ab4839e013c328dcae5c332e7d886242466a4744c22740ca0e0909",
+    "data/real/split.json": "812520b7999ddbc3b8ac6add2e5362ffa3256c75cbbe12b6a7f21cf7da6d8de2",
+    "pyproject.toml": "f65818c0007d746451f7930d5293046b255781c72c467ce85eaffb6696e8c5c1",
+    "uv.lock": "60eb89661332043b493e19fea0d7a9ad9cb7e6b26172ef2acae927e61ad848b2"
+  },
+  "settings": {
+    "ocr_chars": 1024,
+    "batch_size": 8,
+    "max_new_tokens": 512,
+    "reasoning": "low",
+    "greedy": true,
+    "parser": "native-assistant-header-v1",
+    "gpu": "L4",
+    "execution_timeout": 10825,
+    "startup_timeout": 300,
+    "retries": 0
+  }
+}
