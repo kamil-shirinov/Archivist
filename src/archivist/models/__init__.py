@@ -9,6 +9,7 @@ from archivist.models.base import (
     SegmentResponse,
     Usage,
     VisionLLM,
+    SortFamily, SortRequest, SortAnswer, SortResponse, TextSorter,
 )
 from archivist.models.budget import BudgetExceeded
 from archivist.models.registry import describe_config, load_roles
@@ -23,6 +24,7 @@ __all__ = [
     "Segmenter",
     "Usage",
     "VisionLLM",
+    "SortFamily", "SortRequest", "SortAnswer", "SortResponse", "TextSorter",
     "describe_config",
     "load_roles",
 ]

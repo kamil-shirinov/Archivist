@@ -14,18 +14,18 @@ from collections.abc import Callable
 from pathlib import Path
 from typing import Literal
 
-from archivist.models.base import Segmenter, VisionLLM
+from archivist.models.base import Segmenter, VisionLLM, TextSorter
 from archivist.models.baseten_api import BasetenLLM
 from archivist.models.budget import LEDGER_PATH, Budget, BudgetGuard, Price, caps_from_env
 from archivist.models.cache import CACHE_DIR, Cache
 from archivist.models.fireworks_api import FireworksLLM
 from archivist.models.meta_api import MetaLLM, MetaSAM
-from archivist.models.mock import MockLLM, MockSegmenter
+from archivist.models.mock import MockLLM, MockSegmenter, MockTextSorter
 
 CONFIG_PATH = Path("config/models.toml")
 
-Kind = Literal["llm", "segmenter"]
-Factory = Callable[..., VisionLLM | Segmenter]
+Kind = Literal["llm", "segmenter", "text_sorter"]
+Factory = Callable[..., VisionLLM | Segmenter | TextSorter]
 _BACKENDS: dict[tuple[str, Kind], tuple[Factory, bool]] = {}
 
 
@@ -48,6 +48,18 @@ register_backend("baseten", "llm", BasetenLLM, priced=True)
 register_backend("fireworks", "llm", FireworksLLM, priced=True)
 
 
+register_backend("mock", "text_sorter", lambda model_id: MockTextSorter(model_id=model_id))
+
+
+def _glimmer_sorter(model_id, **settings):
+    # Loading/replaying a config never looks up an endpoint or allocates a GPU.
+    from archivist.models.glimmer_sorter_backend import GlimmerSorter
+    return GlimmerSorter(model_id, **settings)
+
+
+register_backend("modal_glimmer_sorter", "text_sorter", _glimmer_sorter, priced=True)
+
+
 def _read(config_path: Path) -> tuple[dict[str, dict], dict[str, dict]]:
     with config_path.open("rb") as config_file:
         config = tomllib.load(config_file)
@@ -65,7 +77,8 @@ def _build(
         raise ValueError(f"role {role!r}: no [prices.{model_id}] entry in the config")
     entry = prices[model_id]
     price = Price(
-        entry["input_per_mtok"], entry["output_per_mtok"], entry.get("per_image_usd", 0.0)
+        entry["input_per_mtok"], entry["output_per_mtok"], entry.get("per_image_usd", 0.0),
+        entry.get("per_request_usd", 0.0)
     )
     factory, priced = _BACKENDS[(name, kind)]
     options = dict(spec.get("settings", {}))
@@ -82,10 +95,10 @@ def load_roles(
     *,
     cache_dir: Path = CACHE_DIR,
     ledger_path: Path = LEDGER_PATH,
-) -> dict[str, VisionLLM | Segmenter]:
+) -> dict[str, VisionLLM | Segmenter | TextSorter]:
     """Every role as Cache(Budget(Backend)). Caps per backend: Meta's is env BUDGET_CAP_USD
     (default 120), Baseten's env BASETEN_CAP_USD (default 80), Fireworks' env FIREWORKS_CAP_USD
-    (default 40).
+    (default 40), and Glimmer's env GLIMMER_CAP_USD (default 10).
     """
     roles, prices = _read(config_path)
     caps = caps_from_env()

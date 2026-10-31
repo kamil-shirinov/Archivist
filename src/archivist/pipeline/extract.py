@@ -97,8 +97,22 @@ def _ask[T](
     raise ExtractionFailed(f"{what}: " + " | retry: ".join(errors))
 
 
-def classify(image: bytes, llm: VisionLLM, doc_types: Mapping[str, DocType]) -> str:
+def classify(image: bytes, llm: VisionLLM, doc_types: Mapping[str, DocType], *,
+             sorter=None, text: str | None = None, source_ref: str | None = None) -> str:
     """Which of the run's document types this page is, or "unsupported"."""
+    if sorter is not None and text is not None:
+        from archivist.models import SortRequest
+        from archivist.models.text_sorting import families_of
+        answer = sorter.sort(SortRequest("sorter", (text,), families_of(doc_types),
+                                         (source_ref or "",)))
+        if len(answer.answers) != 1:
+            raise ExtractionFailed("sorter returned the wrong number of answers")
+        family = answer.answers[0].family
+        if family == "other":
+            return UNSUPPORTED
+        if family not in doc_types:
+            raise ExtractionFailed(f"invalid text-sort answer: {family}")
+        return family
     names = [*doc_types, UNSUPPORTED]
     kinds = "\n".join(f"- {name}: {doc_type.description}" for name, doc_type in doc_types.items())
     prompt = (
@@ -178,6 +192,8 @@ def extract_page(
     citation_strategy: str | None = None,
     *,
     doc_types: Mapping[str, DocType],
+    text: str | None = None,
+    text_source_ref: str | None = None,
 ) -> PageExtraction:
     """Classify the page among doc_types, then read every field of its type, its boxes made as
     citation_strategy says or else as the type's own; raises ExtractionFailed."""
@@ -185,7 +201,13 @@ def extract_page(
     llm = roles[ROLE]
     image = image_path.read_bytes()
     page_id = image_path.stem
-    doc_type = classify(image, llm, doc_types)
+    sorter = roles.get("sorter")
+    doc_type = classify(image, llm, doc_types, sorter=sorter, text=text,
+                        source_ref=text_source_ref)
+    if sorter is not None and text is not None and doc_type != UNSUPPORTED:
+        from archivist.doctypes.titles import title_match
+        if title_match(doc_types[doc_type], text) is None:
+            doc_type = UNSUPPORTED
     if doc_type == UNSUPPORTED:
         return PageExtraction(page_id=page_id, doc_type=doc_type, values=[])
     values = read_page(image, page_id, llm, doc_types[doc_type], citation_strategy)
@@ -216,6 +238,7 @@ def run(
     doc_types: Mapping[str, DocType],
     workers: int = 1,
     citation_strategy: str | None = None,
+    text_of: Callable[[Path], tuple[str, str | None]] | None = None,
 ) -> dict:
     """Extract every page not yet in run_dir/predictions.jsonl as one of doc_types, each type's
     boxes made its own way unless citation_strategy names one; returns what goes in run.json."""
@@ -234,6 +257,16 @@ def run(
             f"{run_dir.name} enabled {recorded_by(previous)}, not {enabled}: start a new run"
         )
 
+    if previous and previous.get("config", {}).get("sorter") != dict(config).get("sorter"):
+        raise ValueError("sorter configuration changed: start a new run")
+
+    def one(page):
+        # A caller may supply public development OCR. This module never opens a PDF,
+        # sidecar text, manifest or ground truth; image-only callers keep their classifier.
+        ref, text = text_of(page) if text_of is not None and roles.get("sorter") is not None else (None, None)
+        return extract_page(page, roles, citation_strategy, doc_types=doc_types,
+                            text=text, text_source_ref=ref)
+
     started, spent_before = _now(), guard.spent()
     failed: dict[str, str] = {}
     extracted, aborted = 0, None
@@ -242,7 +275,7 @@ def run(
         predictions_path.open("a", encoding="utf-8") as out,
     ):
         futures = {
-            pool.submit(extract_page, page, roles, citation_strategy, doc_types=doc_types): page
+            pool.submit(one, page): page
             for page in todo
         }
         try:

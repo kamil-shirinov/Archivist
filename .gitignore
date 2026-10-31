@@ -24,3 +24,6 @@ data/real_frb/.ingest.lock
 .cache/
 .tmp/
 results/glimmer/*.lock
+
+# Cross-process text-sort spend lock (the ledger itself is committed)
+results/*.sort.lock

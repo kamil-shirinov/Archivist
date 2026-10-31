@@ -1,0 +1,106 @@
+--- a/src/archivist/live/reader.py
++++ b/src/archivist/live/reader.py
+@@ -217,20 +217,27 @@
+     steps, llm = rec.steps, roles[extract.ROLE]
+     image = page.path.read_bytes()
+
+-    steps.route({"extractor": "recognise"})
++    # New archive configs provide a text sorter; image-only configs keep their flow.
++    sorter = roles.get("sorter")
++    layer = tuple(layer_of(page)) if sorter is not None else ()
++    text = " ".join(word.text for word in layer) if layer else None
++    recognise_role = "sorter" if sorter is not None and text is not None else "extractor"
++    steps.route({recognise_role: "recognise"})
+     steps.start("recognise")
+-    kind = extract.classify(image, llm, doc_types)
+-    layer = layer_of(page) if kind != UNSUPPORTED else ()
++    kind = extract.classify(image, llm, doc_types, sorter=sorter, text=text,
++                            source_ref=page.ref)
++    if sorter is None and kind != UNSUPPORTED:
++        layer = layer_of(page)
+     # The pre-registered title check: the page counts for the table only if its own OCR text
+-    # matches one of the table's approved title patterns. The app reads the page either way.
++    # matches one of the table's approved title patterns. New sorter runs stop on rejection.
+     confirmed = None
+     if kind != UNSUPPORTED:
+         text = " ".join(word.text for word in layer)
+         confirmed = real_test.title_match(doc_types[kind], text) is not None
+     steps.finish("recognise", doc_type=kind, title_confirmed=confirmed)
+-    if kind == UNSUPPORTED:
++    if kind == UNSUPPORTED or (sorter is not None and confirmed is False):
+         steps.close()
+-        return Outcome(page, kind)
++        return Outcome(page, kind, title_confirmed=confirmed)
+     doc_type = doc_types[kind]
+
+     steps.route({"extractor": "read"})
+--- a/src/archivist/live/events.py
++++ b/src/archivist/live/events.py
+@@ -51,7 +51,7 @@
+ }
+ # Seconds a replayed call is played for when its original was never timed: stand-ins for a
+ # rehearsal, marked as such in the call's event ("pace": "nominal").
+-NOMINAL_S = {"extractor": 4.0, "rereader": 1.2, "segmenter": 1.5}
++NOMINAL_S = {"extractor": 4.0, "rereader": 1.2, "segmenter": 1.5, "sorter": 2.0}
+ KEY_VARIABLES = ("META_API_KEY", "BASETEN_API_KEY", "FIREWORKS_API_KEY")
+
+
+@@ -162,6 +162,7 @@
+         self._log = log
+         self._names = dict(names)  # role -> the model's name
+         self._route: dict[str, str] = {}
++        self._recognise_role = "extractor"
+         self._open: list[str] = []
+         self._finished: set[str] = set()
+         self._lock = threading.Lock()
+@@ -169,6 +170,9 @@
+     def route(self, mapping: Mapping[str, str]) -> None:
+         """From now on, a call by this role belongs to this step."""
+         self._route = dict(mapping)
++        for role, step in mapping.items():
++            if step == "recognise":
++                self._recognise_role = role
+
+     def on_call(self, role: str) -> str | None:
+         step = self._route.get(role)
+@@ -211,7 +215,7 @@
+             self._emit(other, "done", {})
+
+     def _emit(self, step: str, state: str, facts: Mapping[str, object]) -> None:
+-        role = STEP_ROLE[step]
++        role = self._recognise_role if step == "recognise" else STEP_ROLE[step]
+         self._log.emit(
+             "step",
+             step=step,
+@@ -276,6 +280,9 @@
+
+     def complete(self, request: object) -> object:
+         return self._call(request, self.inner.complete, "llm")
++
++    def sort(self, request: object) -> object:
++        return self._call(request, self.inner.sort, "text_sorter")
+
+     def segment(self, request: object) -> object:
+         return self._call(request, self.inner.segment, "segmenter")
+--- a/src/archivist/live/session.py
++++ b/src/archivist/live/session.py
+@@ -53,7 +53,7 @@
+     "b": "Open-weight models",
+     "c": "Hosted reader, open-weight checker",
+ }
+-TREASURY_CONFIG = Path("config/real_test.toml")
++TREASURY_CONFIG = Path("config/archive_glimmer.toml")
+ MODES = ("live", "replay")
+ KEY_ENV = {
+     "meta": "META_API_KEY",
+--- a/src/archivist/export/bundle.py
++++ b/src/archivist/export/bundle.py
+@@ -644,6 +644,8 @@
+
+
+ def model_name(model_id: str) -> str:
+     """A model as a person says it: muse-spark-1.3-contributor is Muse Spark 1.3."""
++    if "Muse-Glimmer-30B" in model_id:
++        return "Muse Glimmer (untrained)"
+     low = model_id.lower()
+     if low.startswith("sam-"):

@@ -64,3 +64,19 @@ class MockSegmenter:
         return SegmentResponse(
             regions=regions, usage=usage, backend=self.name, model_id=self.model_id
         )
+
+
+class MockTextSorter:
+    name = "mock"
+    def __init__(self, respond=None, cost_usd=0.0, model_id="mock-sorter"):
+        self.model_id, self.respond, self.cost_usd = model_id, respond, cost_usd
+        self.calls = []
+
+    def sort(self, request):
+        from archivist.models.base import SortAnswer, SortResponse
+        self.calls.append(request)
+        families = self.respond(request) if self.respond else ["other"] * len(request.texts)
+        answers = tuple(SortAnswer(f, f, _tokens(text), _tokens(f), False)
+                        for f, text in zip(families, request.texts, strict=True))
+        return SortResponse(answers, Usage(sum(a.input_tokens for a in answers),
+            sum(a.output_tokens for a in answers), self.cost_usd), self.name, self.model_id)
