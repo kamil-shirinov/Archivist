@@ -9,10 +9,17 @@ OWNER = OUT/'owned_apps.json'
 
 
 def append_event(event):
+    import fcntl
     OUT.mkdir(parents=True, exist_ok=True)
-    data = json.loads(OWNER.read_text()) if OWNER.exists() else []
-    data.append(event)
-    OWNER.write_text(json.dumps(data,indent=2)+'\n')
+    lock=Path('results/scratch/sparkft/owned-apps.lock')
+    lock.parent.mkdir(parents=True,exist_ok=True)
+    with lock.open('a') as handle:
+        fcntl.flock(handle,fcntl.LOCK_EX)
+        data=json.loads(OWNER.read_text()) if OWNER.exists() else []
+        data.append(event)
+        pending=OWNER.with_suffix('.pending.json')
+        pending.write_text(json.dumps(data,indent=2)+'\n')
+        pending.replace(OWNER)
 
 
 def owned_ids():
@@ -23,6 +30,14 @@ def owned_ids():
 def require_owned(app_id):
     if app_id not in owned_ids():
         raise ValueError('Refusing to stop an app not started by sparkft')
+
+
+def stop_owned(app_id):
+    import subprocess
+    import sys
+    require_owned(app_id)
+    subprocess.run([sys.executable,'-m','modal','app','stop','--yes',app_id],check=True)
+    append_event({'event':'stopped','app_id':app_id})
 
 
 def wait(call, stage):
@@ -46,7 +61,10 @@ def reserve_cpu(stage):
         'gpu_reservation_usd':'85.92259680', 'preparation_reserve_usd':'5',
         'retained_training_validation_ceiling_usd':'90.92259680',
         'cpu_attempts':[], 'gpu_attempts':[]}
-    amount=Decimal('0.00342030') if stage in ('cleanup','kernel_transport') else Decimal('0.46290000')
+    if stage=='download_bf16_resume' and any(x['stage']==stage for x in data['cpu_attempts']):
+        raise ValueError('Only one declared BF16 continuation is permitted')
+    amount=(Decimal('0.90728400') if stage=='download_bf16_resume' else
+            Decimal('0.00342030') if stage in ('cleanup','kernel_transport') else Decimal('0.46290000'))
     if sum((Decimal(x['ceiling_usd']) for x in data['cpu_attempts']),Decimal(0))+amount>Decimal('4'):
         raise ValueError('CPU attempts exhausted the declared preparation sub-budget')
     data['cpu_attempts'].append({'stage':stage,'ceiling_usd':str(amount),'retained':True})
@@ -71,7 +89,7 @@ def reserve_probe():
 
 
 def cpu(stage, download=False):
-    from sparkft.modal_app import app, prepare, cleanup_base, tokenize, gradient_probe, kernel_transport
+    from sparkft.modal_app import app, prepare, cleanup_base, tokenize, gradient_probe, kernel_transport, prepare_resume
     reserve_probe() if stage=='gradient' else reserve_cpu(stage)
     OUT.mkdir(parents=True,exist_ok=True)
     with app.run(name='archivist-sparkft-p34-'+stage,detach=True):
@@ -87,8 +105,9 @@ def cpu(stage, download=False):
                 payload,images,_=frozen_payload()
                 call=tokenize.spawn(payload,tuple(images))
             else:
-                function=cleanup_base if stage=='cleanup' else prepare
-                call=function.spawn() if stage=='cleanup' else function.spawn(download)
+                function=(cleanup_base if stage=='cleanup' else
+                          prepare_resume if stage=='download_bf16_resume' else prepare)
+                call=function.spawn() if stage in ('cleanup','download_bf16_resume') else function.spawn(download)
             (OUT/(stage+'_call.json')).write_text(json.dumps(
                 {'app_id':app.app_id,'call_id':call.object_id,'stage':stage},indent=2)+'\n')
             result=wait(call,stage)

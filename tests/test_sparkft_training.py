@@ -124,3 +124,20 @@ def test_detached_handoff_refuses_incomplete_or_different_weights():
         verify_preparation({'model':MODEL,'revision':REVISION,'weight_shards':64})
     with pytest.raises(ValueError):
         verify_preparation({'model':MODEL,'revision':'different','weight_shards':65})
+
+
+def test_bf16_continuation_is_reserved_once_inside_existing_subcap(tmp_path,monkeypatch):
+    monkeypatch.setattr(cloud,'OUT',tmp_path)
+    cloud.reserve_cpu('download_bf16_resume')
+    data=json.loads((tmp_path/'budget.json').read_text())
+    assert data['cpu_attempts'][0]['ceiling_usd']=='0.90728400'
+    with pytest.raises(ValueError,match='Only one'):
+        cloud.reserve_cpu('download_bf16_resume')
+
+
+def test_stop_helper_never_invokes_cli_for_an_unowned_app(tmp_path,monkeypatch):
+    import subprocess
+    monkeypatch.setattr(cloud,'OWNER',tmp_path/'owned.json')
+    monkeypatch.setattr(subprocess,'run',lambda *args,**kwargs:pytest.fail('Stop must not run'))
+    with pytest.raises(ValueError,match='not started'):
+        cloud.stop_owned('ap-glimmer-concurrent')

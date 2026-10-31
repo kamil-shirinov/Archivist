@@ -101,7 +101,11 @@ Run `.venv/bin/python -m sparkft.launch_when_ready` under `nohup` to preserve th
 handoff if the interactive client disconnects during CPU staging. This launcher
 waits on the already recorded task-owned preparation call, requires the exact
 BF16 revision and all 65 shards, then invokes the frozen registry backend. A file
-lock prevents duplicate controllers. A failed preparation exits without GPUs.
+lock prevents duplicate controllers. If the initial preparation reaches its hard timeout, stop only its recorded owned
+app (to exclude concurrent writers), retain its cost ceiling, and permit exactly
+one declared continuation on the same cache. Any other failure, or failure of
+that continuation, exits without GPUs. A restart reconnects to the recorded
+continuation instead of starting another download.
 
 Launch the archive experiment with `app.run(detach=True)`, `.spawn()`, and persist
 the owned app ID, call ID, frozen request/dataset hash and checkpoint location in
@@ -148,8 +152,13 @@ Six failed probes retain 6 × $0.77247; the seventh retains $1.390446.
 Preparation reserve is $5, including a $4 cumulative CPU-attempt sub-cap, model
 storage, image building and cleanup. CPU preparation jobs are bounded at 1,800 s
 (or 900 s for tokenization), 60 s startup; each retains $0.4629 even on failure.
-One BF16 download and at most one manual bounded resume are allowed, reusing
-completed files. No concurrent model-cache writers. The initial compressed cache
+One BF16 download and at most one bounded continuation are allowed, reusing
+completed files. Progress shows roughly eight 25-GB shards per eight minutes, so
+the continuation has a **3,600 s hard timeout**, 60 s startup and 15 s shutdown:
+**$0.907284** at .00024688/s for eight CPU cores and 64 GiB. Its entire retained
+ceiling stays inside the existing $4 CPU sub-cap: all declared CPU attempts,
+including cleanup, total $3.6915246. The remaining $1.3084754 of the $5 preparation
+reserve covers storage/image overhead. The $94.0431748 total does not increase. No concurrent model-cache writers. The initial compressed cache
 is removed before/alongside cleanup to avoid indefinite storage charges.
 
 Total retained training/validation maximum:

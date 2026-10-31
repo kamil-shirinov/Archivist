@@ -62,6 +62,12 @@ def prepare(download_weights=False):
     return result
 
 
+@app.function(**COMMON, cpu=(8,8), memory=(65536,65536), timeout=3600, startup_timeout=60)
+def prepare_resume():
+    # Same pinned cache; only the continuation's hard time bound differs.
+    return prepare.local(download_weights=True)
+
+
 @app.function(**COMMON, gpu='B300:8', cpu=(16,16), memory=(262144,262144),
               timeout=4700, startup_timeout=300)
 def experiment(payload, images):
