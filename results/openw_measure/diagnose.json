@@ -1,0 +1,248 @@
+{
+  "what": "diagnostic, not version 1's crops: Fireworks null cells re-sent enlarged",
+  "upscale": 3,
+  "candidates": 48,
+  "cells": [
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1939-08_p043:09:to_unemployment",
+      "crop_px": [
+        167,
+        24
+      ],
+      "baseten": "-",
+      "fireworks_original": "null",
+      "fireworks_upscaled": {
+        "kind": "ok",
+        "value": "-",
+        "wall_s": 10.469,
+        "cached": false
+      }
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1939-08_p043:10:admin",
+      "crop_px": [
+        94,
+        24
+      ],
+      "baseten": ".3",
+      "fireworks_original": "null",
+      "fireworks_upscaled": {
+        "kind": "ok",
+        "value": ".3",
+        "wall_s": 6.017,
+        "cached": false
+      }
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1939-08_p043:12:admin",
+      "crop_px": [
+        94,
+        27
+      ],
+      "baseten": ".3",
+      "fireworks_original": "null",
+      "fireworks_upscaled": {
+        "kind": "ok",
+        "value": ".3",
+        "wall_s": 9.823,
+        "cached": false
+      }
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1939-08_p043:16:total_exp",
+      "crop_px": [
+        82,
+        24
+      ],
+      "baseten": "4",
+      "fireworks_original": "null",
+      "fireworks_upscaled": {
+        "kind": "ok",
+        "value": ".4",
+        "wall_s": 8.501,
+        "cached": false
+      }
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1939-08_p043:17:admin",
+      "crop_px": [
+        94,
+        28
+      ],
+      "baseten": ".5",
+      "fireworks_original": "null",
+      "fireworks_upscaled": {
+        "kind": "ok",
+        "value": ".5",
+        "wall_s": 7.456,
+        "cached": false
+      }
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1939-01_p055:21:latin_america",
+      "crop_px": [
+        112,
+        64
+      ],
+      "baseten": "2.65",
+      "fireworks_original": "null",
+      "fireworks_upscaled": {
+        "kind": "ok",
+        "value": "",
+        "wall_s": 34.12,
+        "cached": false
+      }
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1939-01_p055:48:netherlands",
+      "crop_px": [
+        75,
+        24
+      ],
+      "baseten": "14",
+      "fireworks_original": "null",
+      "fireworks_upscaled": {
+        "kind": "ok",
+        "value": "4",
+        "wall_s": 6.895,
+        "cached": false
+      }
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1939-01_p055:50:label",
+      "crop_px": [
+        21,
+        20
+      ],
+      "baseten": "26",
+      "fireworks_original": "null",
+      "fireworks_upscaled": {
+        "kind": "ok",
+        "value": "26",
+        "wall_s": 10.976,
+        "cached": false
+      }
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1939-01_p051:31:france",
+      "crop_px": [
+        98,
+        31
+      ],
+      "baseten": "922",
+      "fireworks_original": "null",
+      "fireworks_upscaled": {
+        "kind": "ok",
+        "value": "198",
+        "wall_s": 21.838,
+        "cached": false
+      }
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1939-01_p051:32:far_east",
+      "crop_px": [
+        90,
+        56
+      ],
+      "baseten": "24",
+      "fireworks_original": "null",
+      "fireworks_upscaled": {
+        "kind": "ok",
+        "value": "24",
+        "wall_s": 7.309,
+        "cached": false
+      }
+    },
+    {
+      "cell": "T.total_claims_by_country:1982-06_p094:austria:country",
+      "crop_px": [
+        117,
+        47
+      ],
+      "baseten": "Belgium-Lu",
+      "fireworks_original": "null",
+      "fireworks_upscaled": {
+        "kind": "ok",
+        "value": "Belgium-Lu",
+        "wall_s": 33.571,
+        "cached": false
+      }
+    },
+    {
+      "cell": "T.total_claims_by_country:1982-06_p094:german_democratic_republic:c3",
+      "crop_px": [
+        28,
+        16
+      ],
+      "baseten": "149",
+      "fireworks_original": "null",
+      "fireworks_upscaled": {
+        "kind": "ok",
+        "value": "149",
+        "wall_s": 6.018,
+        "cached": false
+      }
+    },
+    {
+      "cell": "T.total_claims_by_country:1982-06_p094:jamaica:c2",
+      "crop_px": [
+        38,
+        47
+      ],
+      "baseten": "101,",
+      "fireworks_original": "null",
+      "fireworks_upscaled": {
+        "kind": "ok",
+        "value": "101,",
+        "wall_s": 18.021,
+        "cached": false
+      }
+    },
+    {
+      "cell": "T.total_claims_by_country:1982-06_p094:norway:c1",
+      "crop_px": [
+        31,
+        16
+      ],
+      "baseten": "419",
+      "fireworks_original": "null",
+      "fireworks_upscaled": {
+        "kind": "ok",
+        "value": "419",
+        "wall_s": 6.124,
+        "cached": false
+      }
+    },
+    {
+      "cell": "T.total_claims_by_country:1982-06_p094:other_latin_america_caribbean:c5",
+      "crop_px": [
+        83,
+        48
+      ],
+      "baseten": "1,1",
+      "fireworks_original": "null",
+      "fireworks_upscaled": {
+        "kind": "null",
+        "value": null,
+        "wall_s": 34.299,
+        "cached": false
+      }
+    },
+    {
+      "cell": "T.total_claims_by_country:1982-06_p094:panama:c5",
+      "crop_px": [
+        95,
+        47
+      ],
+      "baseten": "3,89",
+      "fireworks_original": "null",
+      "fireworks_upscaled": {
+        "kind": "ok",
+        "value": "3,89",
+        "wall_s": 14.733,
+        "cached": false
+      }
+    }
+  ],
+  "finished_at": "2026-10-30T23:47:39+00:00"
+}

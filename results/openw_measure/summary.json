@@ -1,0 +1,1912 @@
+{
+  "probe": {
+    "baseten": {
+      "efforts": {
+        "none": {
+          "answered": 4,
+          "refused": 0,
+          "refused_statuses": [],
+          "other_errors": [],
+          "accepted": true,
+          "reasoning_tokens_median": 267.5,
+          "output_tokens_median": 285.5,
+          "reasoning_reported": true,
+          "empty": 0,
+          "finish_length": 0,
+          "paired_with_low": 4,
+          "fewer_than_low": 1,
+          "median_ratio_to_low": 1.136612551202771,
+          "honoured": false
+        },
+        "minimal": {
+          "answered": 4,
+          "refused": 0,
+          "refused_statuses": [],
+          "other_errors": [],
+          "accepted": true,
+          "reasoning_tokens_median": 219.5,
+          "output_tokens_median": 237.5,
+          "reasoning_reported": true,
+          "empty": 0,
+          "finish_length": 0,
+          "paired_with_low": 4,
+          "fewer_than_low": 2,
+          "median_ratio_to_low": 1.0087359336661308,
+          "honoured": false
+        },
+        "low": {
+          "answered": 4,
+          "refused": 0,
+          "refused_statuses": [],
+          "other_errors": [],
+          "accepted": true,
+          "reasoning_tokens_median": 248.0,
+          "output_tokens_median": 266.0,
+          "reasoning_reported": true,
+          "empty": 0,
+          "finish_length": 0,
+          "paired_with_low": 4,
+          "fewer_than_low": 0,
+          "median_ratio_to_low": 1.0,
+          "honoured": true
+        },
+        "medium": {
+          "answered": 4,
+          "refused": 0,
+          "refused_statuses": [],
+          "other_errors": [],
+          "accepted": true,
+          "reasoning_tokens_median": 554.0,
+          "output_tokens_median": 572.0,
+          "reasoning_reported": true,
+          "empty": 1,
+          "finish_length": 1,
+          "paired_with_low": 4,
+          "fewer_than_low": 0,
+          "median_ratio_to_low": 2.083540383176903,
+          "honoured": false
+        },
+        "high": {
+          "answered": 4,
+          "refused": 0,
+          "refused_statuses": [],
+          "other_errors": [],
+          "accepted": true,
+          "reasoning_tokens_median": 666.0,
+          "output_tokens_median": 683.0,
+          "reasoning_reported": true,
+          "empty": 1,
+          "finish_length": 1,
+          "paired_with_low": 4,
+          "fewer_than_low": 0,
+          "median_ratio_to_low": 1.7508558778466574,
+          "honoured": false
+        },
+        "xhigh": {
+          "answered": 4,
+          "refused": 0,
+          "refused_statuses": [],
+          "other_errors": [],
+          "accepted": true,
+          "reasoning_tokens_median": 1252.5,
+          "output_tokens_median": 1262.5,
+          "reasoning_reported": true,
+          "empty": 2,
+          "finish_length": 2,
+          "paired_with_low": 4,
+          "fewer_than_low": 0,
+          "median_ratio_to_low": 1.7584282755535843,
+          "honoured": false
+        },
+        "bogus": {
+          "answered": 0,
+          "refused": 1,
+          "refused_statuses": [
+            "400"
+          ],
+          "other_errors": [],
+          "accepted": false,
+          "reasoning_tokens_median": null,
+          "output_tokens_median": null,
+          "reasoning_reported": null,
+          "empty": 0,
+          "finish_length": 0,
+          "paired_with_low": 0,
+          "fewer_than_low": 0,
+          "median_ratio_to_low": null,
+          "honoured": false
+        },
+        "max": {
+          "answered": 4,
+          "refused": 0,
+          "refused_statuses": [],
+          "other_errors": [],
+          "accepted": true,
+          "reasoning_tokens_median": 1029.0,
+          "output_tokens_median": 1047.0,
+          "reasoning_reported": true,
+          "empty": 1,
+          "finish_length": 1,
+          "paired_with_low": 4,
+          "fewer_than_low": 0,
+          "median_ratio_to_low": 2.7023744638943916,
+          "honoured": false
+        }
+      },
+      "reread_effort": "low"
+    },
+    "fireworks": {
+      "efforts": {
+        "none": {
+          "answered": 0,
+          "refused": 4,
+          "refused_statuses": [
+            "400"
+          ],
+          "other_errors": [],
+          "accepted": false,
+          "reasoning_tokens_median": null,
+          "output_tokens_median": null,
+          "reasoning_reported": null,
+          "empty": 0,
+          "finish_length": 0,
+          "paired_with_low": 0,
+          "fewer_than_low": 0,
+          "median_ratio_to_low": null,
+          "honoured": false
+        },
+        "minimal": {
+          "answered": 4,
+          "refused": 0,
+          "refused_statuses": [],
+          "other_errors": [],
+          "accepted": true,
+          "reasoning_tokens_median": 330.5,
+          "output_tokens_median": 347.5,
+          "reasoning_reported": true,
+          "empty": 0,
+          "finish_length": 0,
+          "paired_with_low": 4,
+          "fewer_than_low": 1,
+          "median_ratio_to_low": 1.5039251336898396,
+          "honoured": false
+        },
+        "low": {
+          "answered": 4,
+          "refused": 0,
+          "refused_statuses": [],
+          "other_errors": [],
+          "accepted": true,
+          "reasoning_tokens_median": 226.5,
+          "output_tokens_median": 243.5,
+          "reasoning_reported": true,
+          "empty": 0,
+          "finish_length": 0,
+          "paired_with_low": 4,
+          "fewer_than_low": 0,
+          "median_ratio_to_low": 1.0,
+          "honoured": true
+        },
+        "medium": {
+          "answered": 4,
+          "refused": 0,
+          "refused_statuses": [],
+          "other_errors": [],
+          "accepted": true,
+          "reasoning_tokens_median": 553.0,
+          "output_tokens_median": 570.0,
+          "reasoning_reported": true,
+          "empty": 0,
+          "finish_length": 0,
+          "paired_with_low": 4,
+          "fewer_than_low": 0,
+          "median_ratio_to_low": 2.5733891625615763,
+          "honoured": false
+        },
+        "high": {
+          "answered": 3,
+          "refused": 0,
+          "refused_statuses": [],
+          "other_errors": [
+            "APITimeoutError"
+          ],
+          "accepted": true,
+          "reasoning_tokens_median": 1265,
+          "output_tokens_median": 1282,
+          "reasoning_reported": true,
+          "empty": 0,
+          "finish_length": 0,
+          "paired_with_low": 3,
+          "fewer_than_low": 0,
+          "median_ratio_to_low": 5.3,
+          "honoured": false
+        },
+        "xhigh": {
+          "answered": 4,
+          "refused": 0,
+          "refused_statuses": [],
+          "other_errors": [],
+          "accepted": true,
+          "reasoning_tokens_median": 988.0,
+          "output_tokens_median": 1006.0,
+          "reasoning_reported": true,
+          "empty": 0,
+          "finish_length": 0,
+          "paired_with_low": 4,
+          "fewer_than_low": 0,
+          "median_ratio_to_low": 4.71903743315508,
+          "honoured": false
+        },
+        "bogus": {
+          "answered": 0,
+          "refused": 1,
+          "refused_statuses": [
+            "400"
+          ],
+          "other_errors": [],
+          "accepted": false,
+          "reasoning_tokens_median": null,
+          "output_tokens_median": null,
+          "reasoning_reported": null,
+          "empty": 0,
+          "finish_length": 0,
+          "paired_with_low": 0,
+          "fewer_than_low": 0,
+          "median_ratio_to_low": null,
+          "honoured": false
+        },
+        "int64": {
+          "answered": 0,
+          "refused": 4,
+          "refused_statuses": [
+            "400"
+          ],
+          "other_errors": [],
+          "accepted": false,
+          "reasoning_tokens_median": null,
+          "output_tokens_median": null,
+          "reasoning_reported": null,
+          "empty": 0,
+          "finish_length": 0,
+          "paired_with_low": 0,
+          "fewer_than_low": 0,
+          "median_ratio_to_low": null,
+          "honoured": false
+        },
+        "max": {
+          "answered": 2,
+          "refused": 0,
+          "refused_statuses": [],
+          "other_errors": [
+            "APITimeoutError",
+            "APITimeoutError"
+          ],
+          "accepted": true,
+          "reasoning_tokens_median": 502.0,
+          "output_tokens_median": 519.0,
+          "reasoning_reported": true,
+          "empty": 0,
+          "finish_length": 0,
+          "paired_with_low": 2,
+          "fewer_than_low": 0,
+          "median_ratio_to_low": 2.5856536972155633,
+          "honoured": false
+        },
+        "false": {
+          "answered": 0,
+          "refused": 4,
+          "refused_statuses": [
+            "400"
+          ],
+          "other_errors": [],
+          "accepted": false,
+          "reasoning_tokens_median": null,
+          "output_tokens_median": null,
+          "reasoning_reported": null,
+          "empty": 0,
+          "finish_length": 0,
+          "paired_with_low": 0,
+          "fewer_than_low": 0,
+          "median_ratio_to_low": null,
+          "honoured": false
+        },
+        "adaptive": {
+          "answered": 0,
+          "refused": 4,
+          "refused_statuses": [
+            "400"
+          ],
+          "other_errors": [],
+          "accepted": false,
+          "reasoning_tokens_median": null,
+          "output_tokens_median": null,
+          "reasoning_reported": null,
+          "empty": 0,
+          "finish_length": 0,
+          "paired_with_low": 0,
+          "fewer_than_low": 0,
+          "median_ratio_to_low": null,
+          "honoured": false
+        }
+      },
+      "reread_effort": "low"
+    }
+  },
+  "page_reads": [
+    {
+      "host": "baseten",
+      "page": "1939-01_p051",
+      "family": "short_term_foreign_liabilities_as",
+      "ok": true,
+      "seconds": 36.0,
+      "allowance": 32000,
+      "asks": 1,
+      "failed_asks": 0,
+      "unparseable_asks": 0,
+      "http_retries": 0,
+      "input_tokens": 44794,
+      "cached_input_tokens": 128,
+      "output_tokens": 14224,
+      "reasoning_tokens": 474,
+      "cost_usd": 0.11644,
+      "first_ask_cost_usd": 0.11644,
+      "finish_reasons": [
+        "stop"
+      ],
+      "brackets_closed": 0,
+      "response_models": [
+        "meta-models/muse-spark-open-1026"
+      ],
+      "http_s": [
+        35.617
+      ],
+      "error": null,
+      "errors": [],
+      "cells": 700,
+      "abstained": 0,
+      "blank": 140,
+      "boxed": 700
+    },
+    {
+      "host": "baseten",
+      "page": "1939-01_p055",
+      "family": "security_transactions_as_reported_by",
+      "ok": true,
+      "seconds": 39.6,
+      "allowance": 37600,
+      "asks": 1,
+      "failed_asks": 0,
+      "unparseable_asks": 0,
+      "http_retries": 0,
+      "input_tokens": 52816,
+      "cached_input_tokens": 128,
+      "output_tokens": 17261,
+      "reasoning_tokens": 1098,
+      "cost_usd": 0.13938,
+      "first_ask_cost_usd": 0.13938,
+      "finish_reasons": [
+        "stop"
+      ],
+      "brackets_closed": 0,
+      "response_models": [
+        "meta-models/muse-spark-open-1026"
+      ],
+      "http_s": [
+        39.234
+      ],
+      "error": null,
+      "errors": [],
+      "cells": 840,
+      "abstained": 0,
+      "blank": 156,
+      "boxed": 798
+    },
+    {
+      "host": "baseten",
+      "page": "1939-01_p061",
+      "family": "outstanding_forward_exchange_contracts",
+      "ok": true,
+      "seconds": 33.4,
+      "allowance": 20800,
+      "asks": 1,
+      "failed_asks": 0,
+      "unparseable_asks": 0,
+      "http_retries": 0,
+      "input_tokens": 29073,
+      "cached_input_tokens": 128,
+      "output_tokens": 9698,
+      "reasoning_tokens": 1353,
+      "cost_usd": 0.07756,
+      "first_ask_cost_usd": 0.07756,
+      "finish_reasons": [
+        "stop"
+      ],
+      "brackets_closed": 1,
+      "response_models": [
+        "meta-models/muse-spark-open-1026"
+      ],
+      "http_s": [
+        32.962
+      ],
+      "error": null,
+      "errors": [],
+      "cells": 420,
+      "abstained": 0,
+      "blank": 84,
+      "boxed": 420
+    },
+    {
+      "host": "baseten",
+      "page": "1939-08_p043",
+      "family": "receipts_and_expenditures_under_railroad",
+      "ok": true,
+      "seconds": 16.5,
+      "allowance": 16000,
+      "asks": 1,
+      "failed_asks": 0,
+      "unparseable_asks": 0,
+      "http_retries": 0,
+      "input_tokens": 10481,
+      "cached_input_tokens": 128,
+      "output_tokens": 3377,
+      "reasoning_tokens": 695,
+      "cost_usd": 0.02745,
+      "first_ask_cost_usd": 0.02745,
+      "finish_reasons": [
+        "stop"
+      ],
+      "brackets_closed": 0,
+      "response_models": [
+        "meta-models/muse-spark-open-1026"
+      ],
+      "http_s": [
+        15.94
+      ],
+      "error": null,
+      "errors": [],
+      "cells": 102,
+      "abstained": 0,
+      "blank": 0,
+      "boxed": 102
+    },
+    {
+      "host": "baseten",
+      "page": "1982-06_p094",
+      "family": "total_claims_by_country",
+      "ok": true,
+      "seconds": 42.1,
+      "allowance": 37480,
+      "asks": 1,
+      "failed_asks": 0,
+      "unparseable_asks": 0,
+      "http_retries": 0,
+      "input_tokens": 53668,
+      "cached_input_tokens": 128,
+      "output_tokens": 16434,
+      "reasoning_tokens": 437,
+      "cost_usd": 0.13693,
+      "first_ask_cost_usd": 0.13693,
+      "finish_reasons": [
+        "stop"
+      ],
+      "brackets_closed": 0,
+      "response_models": [
+        "meta-models/muse-spark-open-1026"
+      ],
+      "http_s": [
+        41.022
+      ],
+      "error": null,
+      "errors": [],
+      "cells": 837,
+      "abstained": 0,
+      "blank": 142,
+      "boxed": 756
+    },
+    {
+      "host": "fireworks",
+      "page": "1939-01_p051",
+      "family": "short_term_foreign_liabilities_as",
+      "ok": false,
+      "seconds": 1800.0,
+      "allowance": 32000,
+      "asks": 0,
+      "failed_asks": 0,
+      "unparseable_asks": 0,
+      "http_retries": 0,
+      "input_tokens": 0,
+      "cached_input_tokens": 0,
+      "output_tokens": 0,
+      "reasoning_tokens": 0,
+      "cost_usd": 0,
+      "first_ask_cost_usd": null,
+      "finish_reasons": [],
+      "brackets_closed": 0,
+      "response_models": [],
+      "http_s": [],
+      "error": "no answer in 1800 s (the call's own timeout was 1200 s and never fired: the connection stayed open); the run was stopped by hand at 23:10:13 UTC and the read is not asked again",
+      "errors": [],
+      "cells": 0,
+      "abstained": 0,
+      "blank": 0,
+      "boxed": 0
+    },
+    {
+      "host": "fireworks",
+      "page": "1939-01_p055",
+      "family": "security_transactions_as_reported_by",
+      "ok": true,
+      "seconds": 579.5,
+      "allowance": 37600,
+      "asks": 1,
+      "failed_asks": 0,
+      "unparseable_asks": 0,
+      "http_retries": 0,
+      "input_tokens": 52813,
+      "cached_input_tokens": 0,
+      "output_tokens": 18517,
+      "reasoning_tokens": 2464,
+      "cost_usd": 0.14471,
+      "first_ask_cost_usd": 0.14471,
+      "finish_reasons": [
+        "stop"
+      ],
+      "brackets_closed": 0,
+      "response_models": [
+        "accounts/fireworks/models/muse-spark-open"
+      ],
+      "http_s": [
+        578.52
+      ],
+      "error": null,
+      "errors": [],
+      "cells": 840,
+      "abstained": 0,
+      "blank": 156,
+      "boxed": 840
+    },
+    {
+      "host": "fireworks",
+      "page": "1939-01_p061",
+      "family": "outstanding_forward_exchange_contracts",
+      "ok": true,
+      "seconds": 257.1,
+      "allowance": 20800,
+      "asks": 1,
+      "failed_asks": 0,
+      "unparseable_asks": 0,
+      "http_retries": 0,
+      "input_tokens": 29070,
+      "cached_input_tokens": 0,
+      "output_tokens": 9799,
+      "reasoning_tokens": 1454,
+      "cost_usd": 0.07798,
+      "first_ask_cost_usd": 0.07798,
+      "finish_reasons": [
+        "stop"
+      ],
+      "brackets_closed": 1,
+      "response_models": [
+        "accounts/fireworks/models/muse-spark-open"
+      ],
+      "http_s": [
+        256.212
+      ],
+      "error": null,
+      "errors": [],
+      "cells": 420,
+      "abstained": 0,
+      "blank": 84,
+      "boxed": 420
+    },
+    {
+      "host": "fireworks",
+      "page": "1939-08_p043",
+      "family": "receipts_and_expenditures_under_railroad",
+      "ok": true,
+      "seconds": 73.9,
+      "allowance": 16000,
+      "asks": 1,
+      "failed_asks": 0,
+      "unparseable_asks": 0,
+      "http_retries": 0,
+      "input_tokens": 10478,
+      "cached_input_tokens": 0,
+      "output_tokens": 2628,
+      "reasoning_tokens": 642,
+      "cost_usd": 0.02427,
+      "first_ask_cost_usd": 0.02427,
+      "finish_reasons": [
+        "stop"
+      ],
+      "brackets_closed": 0,
+      "response_models": [
+        "accounts/fireworks/models/muse-spark-open"
+      ],
+      "http_s": [
+        72.52
+      ],
+      "error": null,
+      "errors": [],
+      "cells": 102,
+      "abstained": 0,
+      "blank": 0,
+      "boxed": 102
+    },
+    {
+      "host": "fireworks",
+      "page": "1982-06_p094",
+      "family": "total_claims_by_country",
+      "ok": true,
+      "seconds": 449.2,
+      "allowance": 37480,
+      "asks": 1,
+      "failed_asks": 0,
+      "unparseable_asks": 0,
+      "http_retries": 0,
+      "input_tokens": 53665,
+      "cached_input_tokens": 0,
+      "output_tokens": 17000,
+      "reasoning_tokens": 517,
+      "cost_usd": 0.13933,
+      "first_ask_cost_usd": 0.13933,
+      "finish_reasons": [
+        "stop"
+      ],
+      "brackets_closed": 0,
+      "response_models": [
+        "accounts/fireworks/models/muse-spark-open"
+      ],
+      "http_s": [
+        448.009
+      ],
+      "error": null,
+      "errors": [],
+      "cells": 837,
+      "abstained": 0,
+      "blank": 142,
+      "boxed": 513
+    }
+  ],
+  "page_read_agreement": [
+    {
+      "page": "1939-01_p055",
+      "cells_in_both": 840,
+      "compared": 840,
+      "same": 829,
+      "agreement": 0.9869,
+      "ci95": [
+        0.9767,
+        0.9927
+      ],
+      "abstain_mismatch": 0,
+      "by_kind": {
+        "money": [
+          780,
+          780
+        ],
+        "text": [
+          49,
+          60
+        ]
+      },
+      "examples": [
+        {
+          "cell": "T.security_transactions_as_reported_by:1939-01_p055:06:label",
+          "baseten": "Purchases of domestic securities:",
+          "fireworks": "Purchases of"
+        },
+        {
+          "cell": "T.security_transactions_as_reported_by:1939-01_p055:11:label",
+          "baseten": "Purchases of foreign securities:",
+          "fireworks": "Purchases of"
+        },
+        {
+          "cell": "T.security_transactions_as_reported_by:1939-01_p055:16:label",
+          "baseten": "TOTAL SALES IN THE UNITED STATES FOR FOREIGN ACCOUNT:",
+          "fireworks": "TOTAL SALES"
+        },
+        {
+          "cell": "T.security_transactions_as_reported_by:1939-01_p055:21:label",
+          "baseten": "Sales of domestic securities:",
+          "fireworks": "Sales of"
+        },
+        {
+          "cell": "T.security_transactions_as_reported_by:1939-01_p055:26:label",
+          "baseten": "Sales of foreign securities:",
+          "fireworks": "Sales of"
+        },
+        {
+          "cell": "T.security_transactions_as_reported_by:1939-01_p055:31:label",
+          "baseten": "TOTAL PURCHASES EXECUTED ABROAD FOR DOMESTIC ACCOUNT:",
+          "fireworks": "TOTAL PURCHASES"
+        }
+      ]
+    },
+    {
+      "page": "1939-01_p061",
+      "cells_in_both": 420,
+      "compared": 420,
+      "same": 420,
+      "agreement": 1.0,
+      "ci95": [
+        0.9909,
+        1.0
+      ],
+      "abstain_mismatch": 0,
+      "by_kind": {
+        "money": [
+          390,
+          390
+        ],
+        "text": [
+          30,
+          30
+        ]
+      },
+      "examples": []
+    },
+    {
+      "page": "1939-08_p043",
+      "cells_in_both": 102,
+      "compared": 102,
+      "same": 85,
+      "agreement": 0.8333,
+      "ci95": [
+        0.7492,
+        0.8933
+      ],
+      "abstain_mismatch": 0,
+      "by_kind": {
+        "money": [
+          85,
+          85
+        ],
+        "text": [
+          0,
+          17
+        ]
+      },
+      "examples": [
+        {
+          "cell": "T.receipts_and_expenditures_under_railroad:1939-08_p043:01:period",
+          "baseten": "1936............................",
+          "fireworks": "1936"
+        },
+        {
+          "cell": "T.receipts_and_expenditures_under_railroad:1939-08_p043:02:period",
+          "baseten": "1937............................",
+          "fireworks": "1937"
+        },
+        {
+          "cell": "T.receipts_and_expenditures_under_railroad:1939-08_p043:03:period",
+          "baseten": "1938............................",
+          "fireworks": "1938"
+        },
+        {
+          "cell": "T.receipts_and_expenditures_under_railroad:1939-08_p043:04:period",
+          "baseten": "1939............................",
+          "fireworks": "1939"
+        },
+        {
+          "cell": "T.receipts_and_expenditures_under_railroad:1939-08_p043:05:period",
+          "baseten": "1938-July........................",
+          "fireworks": "1938-July"
+        },
+        {
+          "cell": "T.receipts_and_expenditures_under_railroad:1939-08_p043:06:period",
+          "baseten": "Aug...........................",
+          "fireworks": "Aug."
+        }
+      ]
+    },
+    {
+      "page": "1982-06_p094",
+      "cells_in_both": 837,
+      "compared": 837,
+      "same": 834,
+      "agreement": 0.9964,
+      "ci95": [
+        0.9895,
+        0.9988
+      ],
+      "abstain_mismatch": 0,
+      "by_kind": {
+        "money": [
+          741,
+          744
+        ],
+        "text": [
+          93,
+          93
+        ]
+      },
+      "examples": [
+        {
+          "cell": "T.total_claims_by_country:1982-06_p094:guatemala:c4",
+          "baseten": "r167",
+          "fireworks": "r147"
+        },
+        {
+          "cell": "T.total_claims_by_country:1982-06_p094:indonesia:c5",
+          "baseten": "r443",
+          "fireworks": "443"
+        },
+        {
+          "cell": "T.total_claims_by_country:1982-06_p094:turkey:c4",
+          "baseten": "r182",
+          "fireworks": "182"
+        }
+      ]
+    }
+  ],
+  "rereads": {
+    "baseten.low": {
+      "cells": 200,
+      "kinds": {
+        "ok": 187,
+        "empty": 5,
+        "null": 8
+      },
+      "empty": 5,
+      "empty_rate": 0.025,
+      "empty_ci95": [
+        0.0107,
+        0.0572
+      ],
+      "unparseable": 0,
+      "errors": 0,
+      "null_illegible": 8,
+      "retried_double": 5,
+      "fixed_by_double": 4,
+      "still_bad_after_double": 1,
+      "final_bad_rate": 0.005,
+      "bad_first_rate": 0.025,
+      "output_tokens_median": 303,
+      "output_tokens_mean": 509.0,
+      "output_tokens_p90": 1212,
+      "reasoning_tokens_median": 289,
+      "input_tokens_median": 337,
+      "cached_input_median": 256,
+      "finish_reasons": {
+        "stop": 194,
+        "length": 5
+      },
+      "cost_first_mean": 0.002587,
+      "cost_first_total": 0.51483,
+      "cost_double_total": 0.05244,
+      "cost_per_cell_incl_retry": 0.002836,
+      "http_s_median": 2.539,
+      "http_s_p90": 6.244,
+      "http_s_max": 10.84,
+      "http_retries": 0,
+      "d28_repairs": 0,
+      "fences_removed": 0,
+      "error_types": {},
+      "response_models": [
+        "meta-models/muse-spark-open-1026"
+      ]
+    },
+    "baseten.minimal": {
+      "cells": 200,
+      "kinds": {
+        "ok": 182,
+        "empty": 8,
+        "null": 10
+      },
+      "empty": 8,
+      "empty_rate": 0.04,
+      "empty_ci95": [
+        0.0204,
+        0.0769
+      ],
+      "unparseable": 0,
+      "errors": 0,
+      "null_illegible": 10,
+      "retried_double": 8,
+      "fixed_by_double": 8,
+      "still_bad_after_double": 0,
+      "final_bad_rate": 0.0,
+      "bad_first_rate": 0.04,
+      "output_tokens_median": 334,
+      "output_tokens_mean": 531.8,
+      "output_tokens_p90": 1242,
+      "reasoning_tokens_median": 320,
+      "input_tokens_median": 337,
+      "cached_input_median": 256,
+      "finish_reasons": {
+        "stop": 191,
+        "length": 8
+      },
+      "cost_first_mean": 0.002684,
+      "cost_first_total": 0.53407,
+      "cost_double_total": 0.04504,
+      "cost_per_cell_incl_retry": 0.002896,
+      "http_s_median": 2.56,
+      "http_s_p90": 6.52,
+      "http_s_max": 10.407,
+      "http_retries": 0,
+      "d28_repairs": 0,
+      "fences_removed": 0,
+      "error_types": {},
+      "response_models": [
+        "meta-models/muse-spark-open-1026"
+      ]
+    },
+    "fireworks.low": {
+      "cells": 200,
+      "kinds": {
+        "ok": 93,
+        "null": 103,
+        "empty": 3,
+        "error": 1
+      },
+      "empty": 3,
+      "empty_rate": 0.015,
+      "empty_ci95": [
+        0.0051,
+        0.0432
+      ],
+      "unparseable": 0,
+      "errors": 1,
+      "null_illegible": 103,
+      "retried_double": 3,
+      "fixed_by_double": 3,
+      "still_bad_after_double": 0,
+      "final_bad_rate": 0.005,
+      "bad_first_rate": 0.02,
+      "output_tokens_median": 264.5,
+      "output_tokens_mean": 443.6,
+      "output_tokens_p90": 998,
+      "reasoning_tokens_median": 249.5,
+      "input_tokens_median": 334.0,
+      "cached_input_median": 320.0,
+      "finish_reasons": {
+        "stop": 195,
+        "length": 3
+      },
+      "cost_first_mean": 0.002305,
+      "cost_first_total": 0.45642,
+      "cost_double_total": 0.01784,
+      "cost_per_cell_incl_retry": 0.002371,
+      "http_s_median": 8.088999999999999,
+      "http_s_p90": 26.057,
+      "http_s_max": 55.771,
+      "http_retries": 0,
+      "d28_repairs": 0,
+      "fences_removed": 0,
+      "error_types": {
+        "APITimeoutError": 1
+      },
+      "response_models": [
+        "accounts/fireworks/models/muse-spark-open"
+      ]
+    },
+    "fireworks.minimal": {
+      "cells": 200,
+      "kinds": {
+        "ok": 95,
+        "null": 103,
+        "empty": 2
+      },
+      "empty": 2,
+      "empty_rate": 0.01,
+      "empty_ci95": [
+        0.0027,
+        0.0357
+      ],
+      "unparseable": 0,
+      "errors": 0,
+      "null_illegible": 103,
+      "retried_double": 2,
+      "fixed_by_double": 2,
+      "still_bad_after_double": 0,
+      "final_bad_rate": 0.0,
+      "bad_first_rate": 0.01,
+      "output_tokens_median": 264,
+      "output_tokens_mean": 463.9,
+      "output_tokens_p90": 1136,
+      "reasoning_tokens_median": 249,
+      "input_tokens_median": 334,
+      "cached_input_median": 320,
+      "finish_reasons": {
+        "stop": 197,
+        "length": 2
+      },
+      "cost_first_mean": 0.002391,
+      "cost_first_total": 0.47588,
+      "cost_double_total": 0.01451,
+      "cost_per_cell_incl_retry": 0.002452,
+      "http_s_median": 7.978,
+      "http_s_p90": 29.477,
+      "http_s_max": 53.195,
+      "http_retries": 0,
+      "d28_repairs": 0,
+      "fences_removed": 0,
+      "error_types": {},
+      "response_models": [
+        "accounts/fireworks/models/muse-spark-open"
+      ]
+    }
+  },
+  "reread_agreement": {
+    "hosts@low": {
+      "both_gave_a_value": 92,
+      "same": 57,
+      "differ": 35,
+      "agreement": 0.6196,
+      "ci95": [
+        0.5175,
+        0.7121
+      ],
+      "at_least_one_gave_none": 108,
+      "examples": [
+        {
+          "cell": "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_02:canada",
+          "baseten": "10.323",
+          "fireworks": "10.488"
+        },
+        {
+          "cell": "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_02:switzerland",
+          "baseten": "",
+          "fireworks": "117"
+        },
+        {
+          "cell": "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_04:label",
+          "baseten": "241,",
+          "fireworks": "24,"
+        },
+        {
+          "cell": "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_03:france",
+          "baseten": "7,929",
+          "fireworks": "7.29"
+        },
+        {
+          "cell": "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_04:france",
+          "baseten": "8,599",
+          "fireworks": "8.595"
+        },
+        {
+          "cell": "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_04:switzerland",
+          "baseten": "",
+          "fireworks": "581"
+        },
+        {
+          "cell": "T.receipts_and_expenditures_under_railroad:1939-08_p043:02:to_retirement",
+          "baseten": "",
+          "fireworks": "-"
+        },
+        {
+          "cell": "T.receipts_and_expenditures_under_railroad:1939-08_p043:04:total_exp",
+          "baseten": "110.4",
+          "fireworks": "110,4"
+        }
+      ]
+    },
+    "baseten.low re-read vs baseten's page read": {
+      "compared": 190,
+      "same": 55,
+      "agreement": 0.2895,
+      "ci95": [
+        0.2297,
+        0.3576
+      ]
+    },
+    "baseten.low re-read vs fireworks's page read": {
+      "compared": 153,
+      "same": 46,
+      "agreement": 0.3007,
+      "ci95": [
+        0.2336,
+        0.3775
+      ]
+    },
+    "fireworks.low re-read vs baseten's page read": {
+      "compared": 96,
+      "same": 20,
+      "agreement": 0.2083,
+      "ci95": [
+        0.1391,
+        0.3
+      ]
+    },
+    "fireworks.low re-read vs fireworks's page read": {
+      "compared": 78,
+      "same": 23,
+      "agreement": 0.2949,
+      "ci95": [
+        0.2052,
+        0.4038
+      ]
+    },
+    "hosts@minimal": {
+      "both_gave_a_value": 95,
+      "same": 63,
+      "differ": 32,
+      "agreement": 0.6632,
+      "ci95": [
+        0.5634,
+        0.7502
+      ],
+      "at_least_one_gave_none": 105,
+      "examples": [
+        {
+          "cell": "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_02:switzerland",
+          "baseten": "",
+          "fireworks": "761"
+        },
+        {
+          "cell": "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_03:france",
+          "baseten": "7,929",
+          "fireworks": "7.29"
+        },
+        {
+          "cell": "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_04:france",
+          "baseten": "8,599",
+          "fireworks": "8.595"
+        },
+        {
+          "cell": "T.receipts_and_expenditures_under_railroad:1939-08_p043:02:to_retirement",
+          "baseten": "",
+          "fireworks": "-"
+        },
+        {
+          "cell": "T.receipts_and_expenditures_under_railroad:1939-08_p043:04:total_exp",
+          "baseten": "110.4",
+          "fireworks": "110,4"
+        },
+        {
+          "cell": "T.receipts_and_expenditures_under_railroad:1939-08_p043:11:period",
+          "baseten": "1939-Jan...",
+          "fireworks": "1939-Jan.."
+        },
+        {
+          "cell": "T.receipts_and_expenditures_under_railroad:1939-08_p043:12:period",
+          "baseten": "Mar...........................",
+          "fireworks": "Feb............................"
+        },
+        {
+          "cell": "T.receipts_and_expenditures_under_railroad:1939-08_p043:12:total_exp",
+          "baseten": "3",
+          "fireworks": ".3"
+        }
+      ]
+    },
+    "baseten.minimal re-read vs baseten's page read": {
+      "compared": 190,
+      "same": 55,
+      "agreement": 0.2895,
+      "ci95": [
+        0.2297,
+        0.3576
+      ]
+    },
+    "baseten.minimal re-read vs fireworks's page read": {
+      "compared": 153,
+      "same": 47,
+      "agreement": 0.3072,
+      "ci95": [
+        0.2396,
+        0.3843
+      ]
+    },
+    "fireworks.minimal re-read vs baseten's page read": {
+      "compared": 96,
+      "same": 20,
+      "agreement": 0.2083,
+      "ci95": [
+        0.1391,
+        0.3
+      ]
+    },
+    "fireworks.minimal re-read vs fireworks's page read": {
+      "compared": 79,
+      "same": 22,
+      "agreement": 0.2785,
+      "ci95": [
+        0.1917,
+        0.3858
+      ]
+    }
+  },
+  "speed": [
+    {
+      "host": "baseten",
+      "effort": "low",
+      "at_once": 1,
+      "cells": 40,
+      "live_calls": 39,
+      "cache_hits": 1,
+      "wall_s": 129.85,
+      "calls_per_s": 0.3,
+      "call_s_median": 2.971,
+      "call_s_p90": 5.278,
+      "call_s_max": 8.107,
+      "kinds": {
+        "ok": 33,
+        "null": 6,
+        "empty": 1,
+        "unparseable": 0,
+        "error": 0
+      },
+      "http_retries": 0,
+      "errors": {},
+      "layer_overhead_s_mean": 0.128,
+      "layer_overhead_s_max": 0.155,
+      "ledger_parse_s": 0.129,
+      "output_tokens_mean": 564.5,
+      "cost_per_call": 0.002821,
+      "valid": true
+    },
+    {
+      "host": "baseten",
+      "effort": "low",
+      "at_once": 4,
+      "cells": 40,
+      "live_calls": 40,
+      "cache_hits": 0,
+      "wall_s": 41.41,
+      "calls_per_s": 0.966,
+      "call_s_median": 2.776,
+      "call_s_p90": 7.765,
+      "call_s_max": 9.281,
+      "kinds": {
+        "ok": 39,
+        "null": 1,
+        "empty": 0,
+        "unparseable": 0,
+        "error": 0
+      },
+      "http_retries": 0,
+      "errors": {},
+      "layer_overhead_s_mean": 0.147,
+      "layer_overhead_s_max": 0.503,
+      "ledger_parse_s": 0.126,
+      "output_tokens_mean": 616.5,
+      "cost_per_call": 0.003044,
+      "valid": true
+    },
+    {
+      "host": "baseten",
+      "effort": "low",
+      "at_once": 8,
+      "cells": 40,
+      "live_calls": 38,
+      "cache_hits": 2,
+      "wall_s": 17.95,
+      "calls_per_s": 2.117,
+      "call_s_median": 2.73,
+      "call_s_p90": 5.44,
+      "call_s_max": 6.815,
+      "kinds": {
+        "ok": 37,
+        "null": 3,
+        "empty": 0,
+        "unparseable": 0,
+        "error": 0
+      },
+      "http_retries": 0,
+      "errors": {},
+      "layer_overhead_s_mean": 0.23,
+      "layer_overhead_s_max": 0.902,
+      "ledger_parse_s": 0.126,
+      "output_tokens_mean": 469.9,
+      "cost_per_call": 0.002422,
+      "valid": true
+    },
+    {
+      "host": "fireworks",
+      "effort": "low",
+      "at_once": 1,
+      "cells": 40,
+      "live_calls": 39,
+      "cache_hits": 1,
+      "wall_s": 559.33,
+      "calls_per_s": 0.07,
+      "call_s_median": 10.707,
+      "call_s_p90": 31.132,
+      "call_s_max": 41.675,
+      "kinds": {
+        "ok": 22,
+        "null": 18,
+        "empty": 0,
+        "unparseable": 0,
+        "error": 0
+      },
+      "http_retries": 0,
+      "errors": {},
+      "layer_overhead_s_mean": 0.129,
+      "layer_overhead_s_max": 0.141,
+      "ledger_parse_s": 0.126,
+      "output_tokens_mean": 477.2,
+      "cost_per_call": 0.002446,
+      "valid": true
+    },
+    {
+      "host": "fireworks",
+      "effort": "low",
+      "at_once": 4,
+      "cells": 40,
+      "live_calls": 40,
+      "cache_hits": 0,
+      "wall_s": 142.29,
+      "calls_per_s": 0.281,
+      "call_s_median": 8.856,
+      "call_s_p90": 29.219,
+      "call_s_max": 45.932,
+      "kinds": {
+        "ok": 17,
+        "null": 22,
+        "empty": 1,
+        "unparseable": 0,
+        "error": 0
+      },
+      "http_retries": 0,
+      "errors": {},
+      "layer_overhead_s_mean": 0.154,
+      "layer_overhead_s_max": 0.509,
+      "ledger_parse_s": 0.123,
+      "output_tokens_mean": 474.0,
+      "cost_per_call": 0.002435,
+      "valid": true
+    },
+    {
+      "host": "fireworks",
+      "effort": "low",
+      "at_once": 8,
+      "cells": 40,
+      "live_calls": 38,
+      "cache_hits": 2,
+      "wall_s": 98.01,
+      "calls_per_s": 0.388,
+      "call_s_median": 9.805,
+      "call_s_p90": 28.483,
+      "call_s_max": 48.438,
+      "kinds": {
+        "ok": 26,
+        "null": 14,
+        "empty": 0,
+        "unparseable": 0,
+        "error": 0
+      },
+      "http_retries": 0,
+      "errors": {},
+      "layer_overhead_s_mean": 0.206,
+      "layer_overhead_s_max": 0.893,
+      "ledger_parse_s": 0.127,
+      "output_tokens_mean": 487.4,
+      "cost_per_call": 0.002492,
+      "valid": true
+    }
+  ],
+  "box_offsets": [
+    {
+      "host": "baseten",
+      "page": "1939-01_p051",
+      "page_px": [
+        1575,
+        2120
+      ],
+      "matched_cells": 323,
+      "dx_median": -39,
+      "dx_iqr": [
+        -46,
+        -30
+      ],
+      "dy_median": 198,
+      "dy_iqr": [
+        182,
+        221
+      ],
+      "dy_median_share_of_page_height": 0.093,
+      "within_25px_in_y": 0,
+      "box_sources_of_eligible_cells": {
+        "model": 636,
+        "ocr": 7,
+        "grid": 57
+      },
+      "committed_evidence_anchored": {
+        "anchored": 353,
+        "cells": 700,
+        "strategy": "S0+ocr"
+      }
+    },
+    {
+      "host": "baseten",
+      "page": "1939-01_p055",
+      "page_px": [
+        1575,
+        2120
+      ],
+      "matched_cells": 268,
+      "dx_median": -119,
+      "dx_iqr": [
+        -137,
+        -72
+      ],
+      "dy_median": 102,
+      "dy_iqr": [
+        45,
+        186
+      ],
+      "dy_median_share_of_page_height": 0.048,
+      "within_25px_in_y": 45,
+      "box_sources_of_eligible_cells": {
+        "model": 453,
+        "ocr": 98,
+        "grid": 247
+      },
+      "committed_evidence_anchored": {
+        "anchored": 318,
+        "cells": 840,
+        "strategy": "S0+ocr"
+      }
+    },
+    {
+      "host": "baseten",
+      "page": "1939-01_p061",
+      "page_px": [
+        1548,
+        2120
+      ],
+      "matched_cells": 216,
+      "dx_median": -56,
+      "dx_iqr": [
+        -88,
+        -30
+      ],
+      "dy_median": 107,
+      "dy_iqr": [
+        43,
+        167
+      ],
+      "dy_median_share_of_page_height": 0.05,
+      "within_25px_in_y": 42,
+      "box_sources_of_eligible_cells": {
+        "model": 213,
+        "ocr": 116,
+        "grid": 91
+      },
+      "committed_evidence_anchored": {
+        "anchored": 221,
+        "cells": 420,
+        "strategy": "S0+ocr"
+      }
+    },
+    {
+      "host": "baseten",
+      "page": "1939-08_p043",
+      "page_px": [
+        1606,
+        2142
+      ],
+      "matched_cells": 15,
+      "dx_median": -18,
+      "dx_iqr": [
+        -20,
+        -14
+      ],
+      "dy_median": 16,
+      "dy_iqr": [
+        6,
+        18
+      ],
+      "dy_median_share_of_page_height": 0.008,
+      "within_25px_in_y": 13,
+      "box_sources_of_eligible_cells": {
+        "ocr": 26,
+        "model": 23,
+        "grid": 53
+      },
+      "committed_evidence_anchored": {
+        "anchored": 18,
+        "cells": 102,
+        "strategy": "S0+ocr"
+      }
+    },
+    {
+      "host": "baseten",
+      "page": "1982-06_p094",
+      "page_px": [
+        1650,
+        2237
+      ],
+      "matched_cells": 209,
+      "dx_median": -31,
+      "dx_iqr": [
+        -40,
+        -22
+      ],
+      "dy_median": 169,
+      "dy_iqr": [
+        92,
+        295
+      ],
+      "dy_median_share_of_page_height": 0.076,
+      "within_25px_in_y": 8,
+      "box_sources_of_eligible_cells": {
+        "model": 609,
+        "ocr": 101,
+        "grid": 46
+      },
+      "committed_evidence_anchored": {
+        "anchored": 461,
+        "cells": 837,
+        "strategy": "S0+grid"
+      }
+    },
+    {
+      "host": "fireworks",
+      "page": "1939-01_p055",
+      "page_px": [
+        1575,
+        2120
+      ],
+      "matched_cells": 279,
+      "dx_median": 26,
+      "dx_iqr": [
+        14,
+        32
+      ],
+      "dy_median": 113,
+      "dy_iqr": [
+        46,
+        199
+      ],
+      "dy_median_share_of_page_height": 0.053,
+      "within_25px_in_y": 45
+    },
+    {
+      "host": "fireworks",
+      "page": "1939-01_p061",
+      "page_px": [
+        1548,
+        2120
+      ],
+      "matched_cells": 216,
+      "dx_median": 52,
+      "dx_iqr": [
+        31,
+        59
+      ],
+      "dy_median": 16,
+      "dy_iqr": [
+        -18,
+        37
+      ],
+      "dy_median_share_of_page_height": 0.008,
+      "within_25px_in_y": 76
+    },
+    {
+      "host": "fireworks",
+      "page": "1939-08_p043",
+      "page_px": [
+        1606,
+        2142
+      ],
+      "matched_cells": 15,
+      "dx_median": -6,
+      "dx_iqr": [
+        -14,
+        -4
+      ],
+      "dy_median": 78,
+      "dy_iqr": [
+        42,
+        136
+      ],
+      "dy_median_share_of_page_height": 0.037,
+      "within_25px_in_y": 0
+    },
+    {
+      "host": "fireworks",
+      "page": "1982-06_p094",
+      "page_px": [
+        1650,
+        2237
+      ],
+      "matched_cells": 159,
+      "dx_median": -102,
+      "dx_iqr": [
+        -141,
+        -74
+      ],
+      "dy_median": 394,
+      "dy_iqr": [
+        224,
+        630
+      ],
+      "dy_median_share_of_page_height": 0.176,
+      "within_25px_in_y": 3
+    }
+  ],
+  "spend_since_start": {
+    "baseten": 2.0773,
+    "fireworks": 1.7487
+  },
+  "recorded_cost_by_host": {
+    "baseten": 2.0773,
+    "fireworks": 1.7487
+  },
+  "calls": {
+    "total_records": 1155,
+    "cache_hits": 10,
+    "errors": {
+      "('baseten', 'BadRequestError')": 2,
+      "('fireworks', 'BadRequestError')": 18,
+      "('fireworks', 'APITimeoutError')": 4
+    }
+  },
+  "remaining_caps": {
+    "baseten": 55.77,
+    "fireworks": 38.03
+  },
+  "estimate": {
+    "page_reads": {
+      "baseten": {
+        "cost_low": 5.7,
+        "cost_mid": 5.7,
+        "cost_high": 11.4,
+        "hours_low": 0.07,
+        "hours_high": 0.13,
+        "substituted_families": [],
+        "time_is_a_floor": false
+      },
+      "fireworks": {
+        "cost_low": 5.75,
+        "cost_mid": 5.75,
+        "cost_high": 11.51,
+        "hours_low": 1.29,
+        "hours_high": 2.57,
+        "substituted_families": [
+          "short_term_foreign_liabilities_as"
+        ],
+        "time_is_a_floor": true
+      }
+    },
+    "rereads": {
+      "baseten": {
+        "usd_per_reread_weighted": 0.003158,
+        "usd_per_reread_pooled_200": 0.002836,
+        "usd_per_reread_ci95": [
+          0.002613,
+          0.003769
+        ],
+        "cost_low": 75.82,
+        "cost_mid": 91.64,
+        "cost_high": 109.36,
+        "calls_per_s": {
+          "1": 0.3,
+          "4": 0.966,
+          "8": 2.117
+        },
+        "hours_low": 3.81,
+        "hours_high": 8.34
+      },
+      "fireworks": {
+        "usd_per_reread_weighted": 0.002464,
+        "usd_per_reread_pooled_200": 0.002371,
+        "usd_per_reread_ci95": [
+          0.002134,
+          0.002832
+        ],
+        "cost_low": 61.93,
+        "cost_mid": 71.51,
+        "cost_high": 82.18,
+        "calls_per_s": {
+          "1": 0.07,
+          "4": 0.281,
+          "8": 0.388
+        },
+        "hours_low": 20.77,
+        "hours_high": 28.69
+      }
+    },
+    "scenarios": {
+      "all Baseten": {
+        "cost": [
+          81.52,
+          97.34,
+          120.76
+        ],
+        "hours": [
+          3.88,
+          8.47
+        ],
+        "page_reads": {
+          "host": "baseten",
+          "cost": [
+            5.7,
+            5.7,
+            11.4
+          ],
+          "hours": [
+            0.07,
+            0.13
+          ],
+          "time_is_a_floor": false
+        },
+        "rereads": {
+          "host": "baseten",
+          "cost": [
+            75.82,
+            91.64,
+            109.36
+          ],
+          "hours": [
+            3.81,
+            8.34
+          ]
+        },
+        "needs_by_host": {
+          "baseten": {
+            "low": 81.52,
+            "mid": 97.34,
+            "high": 120.76,
+            "remaining_cap": 55.77
+          }
+        },
+        "fits_at_low": false,
+        "fits_at_mid": false,
+        "fits_at_high": false
+      },
+      "all Fireworks": {
+        "cost": [
+          67.68,
+          77.26,
+          93.69
+        ],
+        "hours": [
+          22.06,
+          31.26
+        ],
+        "page_reads": {
+          "host": "fireworks",
+          "cost": [
+            5.75,
+            5.75,
+            11.51
+          ],
+          "hours": [
+            1.29,
+            2.57
+          ],
+          "time_is_a_floor": true
+        },
+        "rereads": {
+          "host": "fireworks",
+          "cost": [
+            61.93,
+            71.51,
+            82.18
+          ],
+          "hours": [
+            20.77,
+            28.69
+          ]
+        },
+        "needs_by_host": {
+          "fireworks": {
+            "low": 67.68,
+            "mid": 77.26,
+            "high": 93.69,
+            "remaining_cap": 38.03
+          }
+        },
+        "fits_at_low": false,
+        "fits_at_mid": false,
+        "fits_at_high": false
+      },
+      "page reads Baseten, re-reads Fireworks": {
+        "cost": [
+          67.63,
+          77.21,
+          93.58
+        ],
+        "hours": [
+          20.84,
+          28.82
+        ],
+        "page_reads": {
+          "host": "baseten",
+          "cost": [
+            5.7,
+            5.7,
+            11.4
+          ],
+          "hours": [
+            0.07,
+            0.13
+          ],
+          "time_is_a_floor": false
+        },
+        "rereads": {
+          "host": "fireworks",
+          "cost": [
+            61.93,
+            71.51,
+            82.18
+          ],
+          "hours": [
+            20.77,
+            28.69
+          ]
+        },
+        "needs_by_host": {
+          "baseten": {
+            "low": 5.7,
+            "mid": 5.7,
+            "high": 11.4,
+            "remaining_cap": 55.77
+          },
+          "fireworks": {
+            "low": 61.93,
+            "mid": 71.51,
+            "high": 82.18,
+            "remaining_cap": 38.03
+          }
+        },
+        "fits_at_low": false,
+        "fits_at_mid": false,
+        "fits_at_high": false
+      },
+      "page reads Fireworks, re-reads Baseten": {
+        "cost": [
+          81.57,
+          97.39,
+          120.87
+        ],
+        "hours": [
+          5.1,
+          10.91
+        ],
+        "page_reads": {
+          "host": "fireworks",
+          "cost": [
+            5.75,
+            5.75,
+            11.51
+          ],
+          "hours": [
+            1.29,
+            2.57
+          ],
+          "time_is_a_floor": true
+        },
+        "rereads": {
+          "host": "baseten",
+          "cost": [
+            75.82,
+            91.64,
+            109.36
+          ],
+          "hours": [
+            3.81,
+            8.34
+          ]
+        },
+        "needs_by_host": {
+          "baseten": {
+            "low": 75.82,
+            "mid": 91.64,
+            "high": 109.36,
+            "remaining_cap": 55.77
+          },
+          "fireworks": {
+            "low": 5.75,
+            "mid": 5.75,
+            "high": 11.51,
+            "remaining_cap": 38.03
+          }
+        },
+        "fits_at_low": false,
+        "fits_at_mid": false,
+        "fits_at_high": false
+      }
+    },
+    "remaining": {
+      "baseten": 55.77,
+      "fireworks": 38.03
+    }
+  }
+}

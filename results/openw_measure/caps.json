@@ -1,0 +1,12 @@
+{
+  "baseten": 25.953824,
+  "fireworks": 4.023035,
+  "meta": 0.0,
+  "allowance_per_host": 3.8,
+  "spent_at_start": {
+    "baseten": 22.153824,
+    "fireworks": 0.223035
+  },
+  "ledger_lines_at_start": 81148,
+  "recorded_at": "2026-10-30T22:35:21+00:00"
+}

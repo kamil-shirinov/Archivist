@@ -1,0 +1,159 @@
+# The roles of the P33 measurement (openw/): Muse Spark Open on Baseten and on Fireworks, asked
+# exactly as the committed backends ask it, at every reasoning setting a probe may name.
+#
+# A role is "<host>.<effort>", with the committed backends' 60 s timeout, or "<host>.<effort>.long"
+# with the 1200 s that version 1's extractor had (config/real_test.toml: a 570-cell table ran past
+# 600). The backends are the committed ones behind a shim (openw/spy.py): it lets "none" and
+# "minimal" through, which BasetenLLM and FireworksLLM refuse in their constructors, and it records
+# every HTTP attempt. Prompts, schema, payload and repairs are the committed code's.
+#
+# Prices are config/models_open.toml's and config/models_fireworks.toml's (both $1.25 input and
+# $4.25 output per 1M tokens; cached input billed as ordinary input; reasoning tokens as output).
+
+# The five Treasury families of version 1 (config/real_test.toml), in its order.
+[doc_types]
+enabled = [
+  "short_term_foreign_liabilities_as",
+  "security_transactions_as_reported_by",
+  "outstanding_forward_exchange_contracts",
+  "receipts_and_expenditures_under_railroad",
+  "total_claims_by_country",
+]
+
+[roles."baseten.none"]
+kind = "llm"
+backend = "openw_baseten"
+model_id = "meta-models/muse-spark-open-1026"
+settings = { reasoning_effort = "none" }
+
+[roles."baseten.minimal"]
+kind = "llm"
+backend = "openw_baseten"
+model_id = "meta-models/muse-spark-open-1026"
+settings = { reasoning_effort = "minimal" }
+
+[roles."baseten.low"]
+kind = "llm"
+backend = "openw_baseten"
+model_id = "meta-models/muse-spark-open-1026"
+settings = { reasoning_effort = "low" }
+
+[roles."baseten.medium"]
+kind = "llm"
+backend = "openw_baseten"
+model_id = "meta-models/muse-spark-open-1026"
+settings = { reasoning_effort = "medium" }
+
+[roles."baseten.high"]
+kind = "llm"
+backend = "openw_baseten"
+model_id = "meta-models/muse-spark-open-1026"
+settings = { reasoning_effort = "high" }
+
+[roles."baseten.xhigh"]
+kind = "llm"
+backend = "openw_baseten"
+model_id = "meta-models/muse-spark-open-1026"
+settings = { reasoning_effort = "xhigh" }
+
+[roles."baseten.low.long"]
+kind = "llm"
+backend = "openw_baseten"
+model_id = "meta-models/muse-spark-open-1026"
+settings = { reasoning_effort = "low", timeout_s = 1200.0 }
+
+[roles."fireworks.none"]
+kind = "llm"
+backend = "openw_fireworks"
+model_id = "accounts/fireworks/models/muse-spark-open"
+settings = { reasoning_effort = "none" }
+
+[roles."fireworks.minimal"]
+kind = "llm"
+backend = "openw_fireworks"
+model_id = "accounts/fireworks/models/muse-spark-open"
+settings = { reasoning_effort = "minimal" }
+
+[roles."fireworks.low"]
+kind = "llm"
+backend = "openw_fireworks"
+model_id = "accounts/fireworks/models/muse-spark-open"
+settings = { reasoning_effort = "low" }
+
+[roles."fireworks.medium"]
+kind = "llm"
+backend = "openw_fireworks"
+model_id = "accounts/fireworks/models/muse-spark-open"
+settings = { reasoning_effort = "medium" }
+
+[roles."fireworks.high"]
+kind = "llm"
+backend = "openw_fireworks"
+model_id = "accounts/fireworks/models/muse-spark-open"
+settings = { reasoning_effort = "high" }
+
+[roles."fireworks.xhigh"]
+kind = "llm"
+backend = "openw_fireworks"
+model_id = "accounts/fireworks/models/muse-spark-open"
+settings = { reasoning_effort = "xhigh" }
+
+[roles."fireworks.low.long"]
+kind = "llm"
+backend = "openw_fireworks"
+model_id = "accounts/fireworks/models/muse-spark-open"
+settings = { reasoning_effort = "low", timeout_s = 1200.0 }
+
+# A value no API should accept: the error it answers with names the values it does.
+[roles."baseten.bogus"]
+kind = "llm"
+backend = "openw_baseten"
+model_id = "meta-models/muse-spark-open-1026"
+settings = { reasoning_effort = "bogus" }
+
+[roles."fireworks.bogus"]
+kind = "llm"
+backend = "openw_fireworks"
+model_id = "accounts/fireworks/models/muse-spark-open"
+settings = { reasoning_effort = "bogus" }
+
+# The rest of what the APIs' own error texts say they accept for reasoning_effort (probed after the
+# first six, once those texts had been read): "max" on both hosts; on Fireworks also "adaptive", an
+# integer (a number of tokens, presumably) and a boolean.
+[roles."baseten.max"]
+kind = "llm"
+backend = "openw_baseten"
+model_id = "meta-models/muse-spark-open-1026"
+settings = { reasoning_effort = "max" }
+
+[roles."fireworks.max"]
+kind = "llm"
+backend = "openw_fireworks"
+model_id = "accounts/fireworks/models/muse-spark-open"
+settings = { reasoning_effort = "max" }
+
+[roles."fireworks.adaptive"]
+kind = "llm"
+backend = "openw_fireworks"
+model_id = "accounts/fireworks/models/muse-spark-open"
+settings = { reasoning_effort = "adaptive" }
+
+[roles."fireworks.int64"]
+kind = "llm"
+backend = "openw_fireworks"
+model_id = "accounts/fireworks/models/muse-spark-open"
+settings = { reasoning_effort = 64 }
+
+[roles."fireworks.false"]
+kind = "llm"
+backend = "openw_fireworks"
+model_id = "accounts/fireworks/models/muse-spark-open"
+settings = { reasoning_effort = false }
+
+[prices."meta-models/muse-spark-open-1026"]
+input_per_mtok = 1.25
+output_per_mtok = 4.25
+
+[prices."accounts/fireworks/models/muse-spark-open"]
+input_per_mtok = 1.25
+output_per_mtok = 4.25

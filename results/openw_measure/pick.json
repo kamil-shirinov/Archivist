@@ -1,0 +1,51 @@
+{
+  "rule": "For each of version 1's five families (config/real_test.toml), the lowest page id among the pages its committed evidence file (templates/<family>.evidence.json) lists as tested, which is also the first page it was drafted from; each checked to be a page of an issue in the development list of data/real/split.json before any call.",
+  "picked_at": "2026-10-30T22:34:47+00:00",
+  "pages": {
+    "short_term_foreign_liabilities_as": {
+      "ref": "1939-01_p051",
+      "issue": "1939-01",
+      "evidence_pages": [
+        "1939-01_p051",
+        "1939-07_p071",
+        "1939-12_p053"
+      ]
+    },
+    "security_transactions_as_reported_by": {
+      "ref": "1939-01_p055",
+      "issue": "1939-01",
+      "evidence_pages": [
+        "1939-01_p055",
+        "1939-07_p075",
+        "1939-12_p055"
+      ]
+    },
+    "outstanding_forward_exchange_contracts": {
+      "ref": "1939-01_p061",
+      "issue": "1939-01",
+      "evidence_pages": [
+        "1939-01_p061",
+        "1939-07_p085",
+        "1939-12_p060"
+      ]
+    },
+    "receipts_and_expenditures_under_railroad": {
+      "ref": "1939-08_p043",
+      "issue": "1939-08",
+      "evidence_pages": [
+        "1939-08_p043",
+        "1939-10_p024",
+        "1939-12_p025"
+      ]
+    },
+    "total_claims_by_country": {
+      "ref": "1982-06_p094",
+      "issue": "1982-06",
+      "evidence_pages": [
+        "1982-06_p094",
+        "1983-06_p092",
+        "1984-06_p058"
+      ]
+    }
+  }
+}
