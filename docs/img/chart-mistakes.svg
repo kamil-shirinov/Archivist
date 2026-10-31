@@ -1,0 +1,73 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 262" width="720" height="262" role="img" aria-labelledby="title desc">
+  <title id="title">Wrong values that reach the database, per 1,000 accepted</title>
+  <desc id="desc">Bar chart on the pre-registered synthetic test. Read once, no checks: 44.5 wrong per 1,000 accepted values, 95% interval 22.8 to 71.4; Archivist: 3.6 wrong per 1,000 accepted values, 95% interval 1.4 to 6.7.</desc>
+  <style>
+  text { font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
+  .card { fill: #ffffff; stroke: #d0d7de; }
+  .t { fill: #1f2328; }
+  .m { fill: #59636e; }
+  .grid { stroke: #e3e7eb; stroke-width: 1; }
+  .axis { stroke: #8c959f; stroke-width: 1; }
+  .whisk { stroke: #1f2328; stroke-width: 1.5; fill: none; }
+  .purple { fill: #6d3fd0; }
+  .teal { fill: #00907f; }
+  .pline { stroke: #6d3fd0; }
+  .tline { stroke: #00907f; }
+  .pstroke { stroke: #6d3fd0; stroke-width: 1.5; }
+  .tstroke { stroke: #00907f; stroke-width: 1.5; }
+  .surface { fill: #ffffff; }
+  @media (prefers-color-scheme: dark) {
+    .card { fill: #0d1117; stroke: #30363d; }
+    .t { fill: #e6edf3; }
+    .m { fill: #9aa4b0; }
+    .grid { stroke: #21262d; }
+    .axis { stroke: #6e7681; }
+    .whisk { stroke: #e6edf3; }
+    .purple { fill: #9575ec; }
+    .teal { fill: #22a595; }
+    .pline { stroke: #9575ec; }
+    .tline { stroke: #22a595; }
+    .pstroke { stroke: #9575ec; }
+    .tstroke { stroke: #22a595; }
+    .surface { fill: #0d1117; }
+  }
+</style>
+  <defs>
+    <pattern id="hatch-purple" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="6" height="6" class="surface"/>
+      <line x1="0" y1="0" x2="0" y2="6" class="pline" stroke-width="3"/>
+    </pattern>
+    <pattern id="hatch-teal" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="6" height="6" class="surface"/>
+      <line x1="0" y1="0" x2="0" y2="6" class="tline" stroke-width="3"/>
+    </pattern>
+  </defs>
+  <rect x="0.5" y="0.5" width="719" height="261" rx="8" class="card"/>
+  <text x="24" y="34" class="t" font-size="16" font-weight="600" text-anchor="start">Wrong values that reach the database, per 1,000 accepted</text>
+  <text x="24" y="54" class="m" font-size="12" font-weight="400" text-anchor="start">157 synthetic test pages, 4,267 fields. Lines are 95% intervals (pages resampled 2,000 times).</text>
+  <line x1="200" y1="76" x2="200" y2="190" class="axis"/>
+  <text x="200" y="208" class="m" font-size="11" font-weight="400" text-anchor="middle">0</text>
+  <line x1="280" y1="76" x2="280" y2="190" class="grid"/>
+  <text x="280" y="208" class="m" font-size="11" font-weight="400" text-anchor="middle">20</text>
+  <line x1="360" y1="76" x2="360" y2="190" class="grid"/>
+  <text x="360" y="208" class="m" font-size="11" font-weight="400" text-anchor="middle">40</text>
+  <line x1="440" y1="76" x2="440" y2="190" class="grid"/>
+  <text x="440" y="208" class="m" font-size="11" font-weight="400" text-anchor="middle">60</text>
+  <line x1="520" y1="76" x2="520" y2="190" class="grid"/>
+  <text x="520" y="208" class="m" font-size="11" font-weight="400" text-anchor="middle">80</text>
+  <text x="186" y="104" class="t" font-size="13" font-weight="600" text-anchor="end">Read once, no checks</text>
+  <text x="186" y="120" class="m" font-size="11" font-weight="400" text-anchor="end">Muse Spark 1.3</text>
+  <path d="M200 96H373.8A4 4 0 0 1 377.8 100V112A4 4 0 0 1 373.8 116H200Z" class="purple"/>
+  <path d="M291 102V110M291 106H485.6M485.6 102V110" class="whisk"/>
+  <text x="548" y="104" class="t" font-size="15" font-weight="600" text-anchor="start">44.5</text>
+  <text x="548" y="120" class="m" font-size="11" font-weight="400" text-anchor="start">interval 22.8 to 71.4</text>
+  <text x="548" y="134" class="m" font-size="11" font-weight="400" text-anchor="start">189 of 4,251 accepted</text>
+  <text x="186" y="156" class="t" font-size="13" font-weight="600" text-anchor="end">Archivist</text>
+  <text x="186" y="172" class="m" font-size="11" font-weight="400" text-anchor="end">hosted, Muse Spark 1.3</text>
+  <path d="M200 148H210.4A4 4 0 0 1 214.4 152V164A4 4 0 0 1 210.4 168H200Z" class="teal"/>
+  <path d="M205.6 154V162M205.6 158H226.6M226.6 154V162" class="whisk"/>
+  <text x="548" y="156" class="t" font-size="15" font-weight="600" text-anchor="start">3.6</text>
+  <text x="548" y="172" class="m" font-size="11" font-weight="400" text-anchor="start">interval 1.4 to 6.7</text>
+  <text x="548" y="186" class="m" font-size="11" font-weight="400" text-anchor="start">12 of 3,330 accepted</text>
+  <text x="24" y="248" class="m" font-size="11" font-weight="400" text-anchor="start">Source: results/test_report.json (pre-registered in PREREGISTRATION.md). Rate of wrong values among accepted fields, times 1,000.</text>
+</svg>

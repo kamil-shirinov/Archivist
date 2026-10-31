@@ -1,0 +1,122 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 534" width="720" height="534" role="img" aria-labelledby="title desc">
+  <title id="title">Hosted against open weights on the same synthetic test</title>
+  <desc id="desc">Three small bar charts, hosted (arm A) against open weights (arm B). Wrong values among those accepted, per 1,000, Hosted: 3.6 (95% interval 1.4 to 6.7); Wrong values among those accepted, per 1,000, Open weights: 3.0 (95% interval 1.2 to 5.4); Share of the wrong values that were caught and sent to a person, Hosted: 93.7% (95% interval 88.3% to 97.3%); Share of the wrong values that were caught and sent to a person, Open weights: 95.0% (95% interval 88.9% to 98.0%); Share of all values sent to a person, Hosted: 21.6% (95% interval 15.4% to 27.9%); Share of all values sent to a person, Open weights: 22.4% (95% interval 17.0% to 28.3%).</desc>
+  <style>
+  text { font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
+  .card { fill: #ffffff; stroke: #d0d7de; }
+  .t { fill: #1f2328; }
+  .m { fill: #59636e; }
+  .grid { stroke: #e3e7eb; stroke-width: 1; }
+  .axis { stroke: #8c959f; stroke-width: 1; }
+  .whisk { stroke: #1f2328; stroke-width: 1.5; fill: none; }
+  .purple { fill: #6d3fd0; }
+  .teal { fill: #00907f; }
+  .pline { stroke: #6d3fd0; }
+  .tline { stroke: #00907f; }
+  .pstroke { stroke: #6d3fd0; stroke-width: 1.5; }
+  .tstroke { stroke: #00907f; stroke-width: 1.5; }
+  .surface { fill: #ffffff; }
+  @media (prefers-color-scheme: dark) {
+    .card { fill: #0d1117; stroke: #30363d; }
+    .t { fill: #e6edf3; }
+    .m { fill: #9aa4b0; }
+    .grid { stroke: #21262d; }
+    .axis { stroke: #6e7681; }
+    .whisk { stroke: #e6edf3; }
+    .purple { fill: #9575ec; }
+    .teal { fill: #22a595; }
+    .pline { stroke: #9575ec; }
+    .tline { stroke: #22a595; }
+    .pstroke { stroke: #9575ec; }
+    .tstroke { stroke: #22a595; }
+    .surface { fill: #0d1117; }
+  }
+</style>
+  <defs>
+    <pattern id="hatch-purple" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="6" height="6" class="surface"/>
+      <line x1="0" y1="0" x2="0" y2="6" class="pline" stroke-width="3"/>
+    </pattern>
+    <pattern id="hatch-teal" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <rect width="6" height="6" class="surface"/>
+      <line x1="0" y1="0" x2="0" y2="6" class="tline" stroke-width="3"/>
+    </pattern>
+  </defs>
+  <rect x="0.5" y="0.5" width="719" height="533" rx="8" class="card"/>
+  <text x="24" y="34" class="t" font-size="16" font-weight="600" text-anchor="start">Hosted against open weights, same test pages</text>
+  <text x="24" y="54" class="m" font-size="12" font-weight="400" text-anchor="start">Hosted: Muse Spark 1.3 on Meta&#x27;s API. Open weights: Muse Spark Open, served by Baseten.</text>
+  <path d="M24 70H42A4 4 0 0 1 46 74V78A4 4 0 0 1 42 82H24Z" class="purple"/>
+  <text x="54" y="80" class="t" font-size="12" font-weight="400" text-anchor="start">Hosted (arm A)</text>
+  <path d="M176.8 70H194.8A4 4 0 0 1 198.8 74V78A4 4 0 0 1 194.8 82H176.8Z" fill="url(#hatch-purple)" class="pstroke"/>
+  <text x="206.8" y="80" class="t" font-size="12" font-weight="400" text-anchor="start">Open weights (arm B)</text>
+  <text x="24" y="112" class="t" font-size="12" font-weight="600" text-anchor="start">Wrong values among those accepted, per 1,000 (lower is better)</text>
+  <line x1="150" y1="124" x2="150" y2="194" class="axis"/>
+  <text x="150" y="210" class="m" font-size="11" font-weight="400" text-anchor="middle">0</text>
+  <line x1="220" y1="124" x2="220" y2="194" class="grid"/>
+  <text x="220" y="210" class="m" font-size="11" font-weight="400" text-anchor="middle">2</text>
+  <line x1="290" y1="124" x2="290" y2="194" class="grid"/>
+  <text x="290" y="210" class="m" font-size="11" font-weight="400" text-anchor="middle">4</text>
+  <line x1="360" y1="124" x2="360" y2="194" class="grid"/>
+  <text x="360" y="210" class="m" font-size="11" font-weight="400" text-anchor="middle">6</text>
+  <line x1="430" y1="124" x2="430" y2="194" class="grid"/>
+  <text x="430" y="210" class="m" font-size="11" font-weight="400" text-anchor="middle">8</text>
+  <line x1="500" y1="124" x2="500" y2="194" class="grid"/>
+  <text x="500" y="210" class="m" font-size="11" font-weight="400" text-anchor="middle">10</text>
+  <text x="138" y="148" class="t" font-size="12" font-weight="400" text-anchor="end">Hosted</text>
+  <path d="M150 135H272.1A4 4 0 0 1 276.1 139V149A4 4 0 0 1 272.1 153H150Z" class="purple"/>
+  <path d="M198.8 140V148M198.8 144H383M383 140V148" class="whisk"/>
+  <text x="522" y="143" class="t" font-size="13" font-weight="600" text-anchor="start">3.6</text>
+  <text x="522" y="157" class="m" font-size="11" font-weight="400" text-anchor="start">interval 1.4 to 6.7</text>
+  <text x="138" y="182" class="t" font-size="12" font-weight="400" text-anchor="end">Open weights</text>
+  <path d="M150 169H252.2A4 4 0 0 1 256.2 173V183A4 4 0 0 1 252.2 187H150Z" fill="url(#hatch-purple)" class="pstroke"/>
+  <path d="M193.3 174V182M193.3 178H339.4M339.4 174V182" class="whisk"/>
+  <text x="522" y="177" class="t" font-size="13" font-weight="600" text-anchor="start">3.0</text>
+  <text x="522" y="191" class="m" font-size="11" font-weight="400" text-anchor="start">interval 1.2 to 5.4</text>
+  <text x="24" y="240" class="t" font-size="12" font-weight="600" text-anchor="start">Share of the wrong values that were caught and sent to a person (higher is better)</text>
+  <line x1="150" y1="252" x2="150" y2="322" class="axis"/>
+  <text x="150" y="338" class="m" font-size="11" font-weight="400" text-anchor="middle">0</text>
+  <line x1="220" y1="252" x2="220" y2="322" class="grid"/>
+  <text x="220" y="338" class="m" font-size="11" font-weight="400" text-anchor="middle">20</text>
+  <line x1="290" y1="252" x2="290" y2="322" class="grid"/>
+  <text x="290" y="338" class="m" font-size="11" font-weight="400" text-anchor="middle">40</text>
+  <line x1="360" y1="252" x2="360" y2="322" class="grid"/>
+  <text x="360" y="338" class="m" font-size="11" font-weight="400" text-anchor="middle">60</text>
+  <line x1="430" y1="252" x2="430" y2="322" class="grid"/>
+  <text x="430" y="338" class="m" font-size="11" font-weight="400" text-anchor="middle">80</text>
+  <line x1="500" y1="252" x2="500" y2="322" class="grid"/>
+  <text x="500" y="338" class="m" font-size="11" font-weight="400" text-anchor="middle">100</text>
+  <text x="138" y="276" class="t" font-size="12" font-weight="400" text-anchor="end">Hosted</text>
+  <path d="M150 263H473.8A4 4 0 0 1 477.8 267V277A4 4 0 0 1 473.8 281H150Z" class="purple"/>
+  <path d="M459.1 268V276M459.1 272H490.5M490.5 268V276" class="whisk"/>
+  <text x="522" y="271" class="t" font-size="13" font-weight="600" text-anchor="start">93.7%</text>
+  <text x="522" y="285" class="m" font-size="11" font-weight="400" text-anchor="start">interval 88.3% to 97.3%</text>
+  <text x="138" y="310" class="t" font-size="12" font-weight="400" text-anchor="end">Open weights</text>
+  <path d="M150 297H478.7A4 4 0 0 1 482.7 301V311A4 4 0 0 1 478.7 315H150Z" fill="url(#hatch-purple)" class="pstroke"/>
+  <path d="M461.1 302V310M461.1 306H492.9M492.9 302V310" class="whisk"/>
+  <text x="522" y="305" class="t" font-size="13" font-weight="600" text-anchor="start">95.0%</text>
+  <text x="522" y="319" class="m" font-size="11" font-weight="400" text-anchor="start">interval 88.9% to 98.0%</text>
+  <text x="24" y="368" class="t" font-size="12" font-weight="600" text-anchor="start">Share of all values sent to a person (lower is better; target 20% or less)</text>
+  <line x1="150" y1="380" x2="150" y2="450" class="axis"/>
+  <text x="150" y="466" class="m" font-size="11" font-weight="400" text-anchor="middle">0</text>
+  <line x1="237.5" y1="380" x2="237.5" y2="450" class="grid"/>
+  <text x="237.5" y="466" class="m" font-size="11" font-weight="400" text-anchor="middle">10</text>
+  <line x1="325" y1="380" x2="325" y2="450" class="grid"/>
+  <text x="325" y="466" class="m" font-size="11" font-weight="400" text-anchor="middle">20</text>
+  <line x1="412.5" y1="380" x2="412.5" y2="450" class="grid"/>
+  <text x="412.5" y="466" class="m" font-size="11" font-weight="400" text-anchor="middle">30</text>
+  <line x1="500" y1="380" x2="500" y2="450" class="grid"/>
+  <text x="500" y="466" class="m" font-size="11" font-weight="400" text-anchor="middle">40</text>
+  <text x="138" y="404" class="t" font-size="12" font-weight="400" text-anchor="end">Hosted</text>
+  <path d="M150 391H334.9A4 4 0 0 1 338.9 395V405A4 4 0 0 1 334.9 409H150Z" class="purple"/>
+  <path d="M285.1 396V404M285.1 400H393.8M393.8 396V404" class="whisk"/>
+  <text x="522" y="399" class="t" font-size="13" font-weight="600" text-anchor="start">21.6%</text>
+  <text x="522" y="413" class="m" font-size="11" font-weight="400" text-anchor="start">interval 15.4% to 27.9%</text>
+  <text x="138" y="438" class="t" font-size="12" font-weight="400" text-anchor="end">Open weights</text>
+  <path d="M150 425H342.2A4 4 0 0 1 346.2 429V439A4 4 0 0 1 342.2 443H150Z" fill="url(#hatch-purple)" class="pstroke"/>
+  <path d="M298.8 430V438M298.8 434H397.9M397.9 430V438" class="whisk"/>
+  <text x="522" y="433" class="t" font-size="13" font-weight="600" text-anchor="start">22.4%</text>
+  <text x="522" y="447" class="m" font-size="11" font-weight="400" text-anchor="start">interval 17.0% to 28.3%</text>
+  <text x="24" y="496" class="m" font-size="11" font-weight="400" text-anchor="start">Source: results/test_report.json, arms A and B. Wrong values caught = sent to review.</text>
+  <text x="24" y="510" class="m" font-size="11" font-weight="400" text-anchor="start">Arm B also used Muse Spark Open to extract the values, so this compares whole set-ups,</text>
+  <text x="24" y="524" class="m" font-size="11" font-weight="400" text-anchor="start">not the second read alone.</text>
+</svg>
