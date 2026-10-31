@@ -1,0 +1,18 @@
+{
+  "original_freeze_sha256": "69108acee4fdd60a830f6fcc9c15f5f39e2f4e997d253f4eabacb8e993837ee3",
+  "sample_sha256": "04074f6339a4b2833fe790abff7aaae79f1b1bee15fc7374b8c2a8b4a891e773",
+  "input_sha256": "a5137c611f840601438968b993c798c4af8f75685164e45cb7a1f33b48bf2467",
+  "code": {
+    "src/archivist/glimmer/recover_phase2.py": "79b30cdfdd54ef5c46163139c280286c8147d976b8a044fa1a9f3e1f1601cb30",
+    "src/archivist/models/glimmer_checkpoints.py": "3e4eea340f0683e3bdb2beb986e8ba4ef39841942e2225ffd5e4d4789c07fb8e",
+    "src/archivist/models/glimmer_phase2_recovery_runtime.py": "0aee766d7dc9469d48ede7c90fda013fc05435195362a061749f2b06ac09b362",
+    "src/archivist/models/glimmer_phase2_recovery_modal.py": "6fc316b439057d19fc8177c1d5373a189dcd4fff7ff1825ec5cece725aa9fefc",
+    "src/archivist/models/glimmer_phase2_recovery_backend.py": "82b4658aaea78fdd40446299f9afd2a374ad5fde179282a471ca342396a7059e"
+  },
+  "code_id": "f08e4463a10cdfd43430a4f94a0aec172017e94263d24929a745259abb450b6f",
+  "generation_change": false,
+  "original_batch_membership_preserved": true,
+  "checkpoint_scope": "one atomic full original batch; no outputs parsed or scored",
+  "client_lifetime": "detached app; existing call may be collected without another GPU",
+  "status": "prepared_only_pending_retained_budget_approval"
+}

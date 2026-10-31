@@ -421,3 +421,52 @@ Write aggregate summaries only, without page-level error analysis or model-guide
 The 50-page human comparison is expressly deferred until its file is committed on main;
 no label export is authorised in this task. Run the exact Check again, commit and push
 summary results, and stop. Phase-1 artifacts and numbers remain unchanged.
+
+## Interruption and proposed recovery — 2026-10-31
+
+The first phase-2 app (`ap-90heG0Xt09CZ8lLTAhSns9`) stopped with Modal's message
+"Stopping app - local client disconnected". Its last observed complete untrained batch
+was 79/99 (632 pages). The original wrapper saved only at full-arm completion: its run
+directory is empty, its function result is a terminal RemoteError, and neither local nor
+remote raw answers survive. The trained arm did not start. No output/reference comparison
+was run. This checkpoint granularity was an implementation mistake, not a model result.
+The same original function now reports zero runners, running inputs and backlog. Only
+this task's app was affected; this task has not stopped another training app.
+
+The owner now authorises reuse of saved answers and rerunning only missing batches with
+identical settings, recording the interruption. Inspection found **zero saved batches**:
+all 99 untrained raw batches and all 99 trained batches are missing, even though 79 of the
+untrained computations had completed. Do not pretend that resuming at batch 80 can recover
+their lost answers; do not evaluate a smaller sample or fabricate missing predictions.
+The original 791-page sample and OCR prefixes remain frozen. No new draw or OCR access is
+needed, and no prompt/precision/weights/parser/generation change or held-out tuning is allowed.
+
+Prepared recovery wraps the unchanged batch generator at its original batch boundaries.
+Validate checkpoint identities/token counts before generation; skip every complete saved
+batch, otherwise generate that original group only. Save atomically and commit the volume
+after each full batch. A partial in-flight batch can be regenerated, but a complete saved
+batch cannot be overwritten or silently discarded. Detach the app from the client so that
+a client disconnect does not itself end the GPU job. A recorded existing call can be
+collected without submitting another job. Both arms still use one L4, NF4/bf16, batch 8,
+low reasoning, greedy decoding, 512 new tokens and the first 1,024 OCR characters. The
+original inference code and freeze are unchanged; new recovery source is separately hashed
+before any retry. Offline tests verify missing-only recovery and original tensor ordering.
+
+**Budget approval is still required before any new GPU.** The owner's $24.31 retained
+ceiling has not been raised. The first job keeps its entire $3.8482016 reservation, so the
+combined retained amount is $24.3099506, leaving only $0.0000494. This is why the earlier
+rule "No retry/additional GPU is funded by that bound" still prevents a new submission,
+despite the newly authorised recovery action. Actual reported charges for the interrupted
+job are $1.21407010 (cumulative Glimmer $2.76236349 at the query; billing may lag), distinct
+from retained worst-case reservations. Token usage was not recovered and is labelled unknown.
+
+A concrete proposal is prepared, **not launched**: another L4 with the identical hard
+10,825-second execution/300-second startup timeouts and 15-second shutdown allowance,
+maximum $3.8482016. With the failed-job maximum retained, the required combined retained
+bound is **$28.1581522**, rounded to **$28.16** for approval. The development extrapolation
+plus 300 seconds for checkpoint I/O is $2.2952 expected / $3.3232 conservative. The hard
+maximum remains authoritative; no further automatic retry is funded. See
+phase2/recovery_proposal.json, recovery_freeze.json and REPORT.md. The CLI refuses submission
+under the current $24.31 approval before creating a Modal app/call. No new GPU has been
+started in this recovery turn. Raw outputs must still pass Check, be committed and pushed
+before any aggregate comparison. The 50-page human comparison stays deferred.

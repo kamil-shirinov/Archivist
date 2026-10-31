@@ -1,0 +1,17 @@
+{
+  "status": "PREPARED_ONLY_NO_NEW_GPU_SUBMITTED_REQUIRES_OWNER_BUDGET_APPROVAL",
+  "owner_authorises_missing_batch_recovery": true,
+  "original_saved_batches": 0,
+  "missing_raw_untrained_batches": 99,
+  "missing_raw_trained_batches": 99,
+  "expected_gpu_cost_usd": 2.2952086420299995,
+  "conservative_gpu_cost_usd": 3.323209352360314,
+  "checkpoint_io_allowance_seconds": 300,
+  "new_job_maximum_usd": 3.8482016,
+  "prior_maxima_still_retained_usd": 24.3099506,
+  "required_combined_retained_usd": 28.1581522,
+  "proposed_rounded_retained_cap_usd": 28.16,
+  "current_approved_retained_cap_usd": 24.31,
+  "setup_changes": "No input, weights, precision, prompt, generation or batch-membership change; atomic batch persistence and detached app only.",
+  "existing_call_collection": "No GPU job is required to collect a saved completed call; the original call has no result."
+}

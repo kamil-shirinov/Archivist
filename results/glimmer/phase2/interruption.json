@@ -1,0 +1,26 @@
+{
+  "queried_at": "2026-10-31T17:19:20.136335+00:00",
+  "app_id": "ap-90heG0Xt09CZ8lLTAhSns9",
+  "function_id": "fu-BuLO3l8y2nmtNIW6znm3ot",
+  "call_id": "fc-01M68Z9GEC7XSC5KHXWW28CG1J",
+  "observed_terminal_reason": "Modal logged: Stopping app - local client disconnected",
+  "last_observed_complete_untrained_batches": 79,
+  "last_observed_complete_untrained_pages": 632,
+  "persisted_raw_batches": 0,
+  "recoverable_original_call_result": false,
+  "original_call_terminal_error_type": "RemoteError",
+  "trained_arm_started": false,
+  "remote_run_directory_entries": [],
+  "own_function_status": {
+    "runners": 0,
+    "running_inputs": 0,
+    "backlog": 0
+  },
+  "interrupted_job_reported_cost_usd": 1.2140701,
+  "original_maximum_retained_usd": 3.8482016,
+  "combined_retained_usd": 24.3099506,
+  "remaining_under_current_cap_usd": 4.94e-05,
+  "new_gpu_jobs_started_on_resume": 0,
+  "model_output_comparisons_run": false,
+  "checkpoint_failure": "Original wrapper persisted only after each full arm, so completed batch answers were not retained."
+}
