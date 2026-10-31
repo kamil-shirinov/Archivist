@@ -65,8 +65,23 @@ async function start() {
   labelRun();
   refresh();
   palette.init();
+  // The local app (python -m archivist.live) marks the page it serves, and only that page, with
+  // <meta name="archivist-live">; the published site never carries it, so none of this runs there (D12, D13).
+  let local = null;
+  if (document.querySelector('meta[name="archivist-live"]')) {
+    try {
+      local = await import("./live/live.js");
+      Object.assign(VIEWS, local.views());
+      local.install();
+    } catch (e) {
+      console.error("the live reading code could not be loaded", e);
+      local = null;
+    }
+  }
   $("add-doc").addEventListener("click", () =>
-    toast("Reading new pages happens in the local app, where the models run. This hosted copy replays recorded runs only.")
+    local
+      ? (location.hash = "live")
+      : toast("Reading new pages happens in the local app, where the models run. This hosted copy replays recorded runs only.")
   );
   for (const v of Object.values(VIEWS)) v.init?.();
   addEventListener("hashchange", () => show());

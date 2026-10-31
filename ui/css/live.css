@@ -1,0 +1,81 @@
+/* The local app's additions (P35): the mode pill and the Read a page view. Loaded only when the page is
+   served by archivist.live (ui/js/live/live.js); the published site never loads this file. It builds on
+   the replay view's classes in base.css (the step bar, the stage, the boxes, the side panels). */
+
+/* The mode, on every view: two words, "Live calls" or "Replay". */
+.modepill{display:inline-flex;align-items:center;gap:7px;font:600 12.5px/1 var(--ui);padding:6px 11px;border-radius:999px;border:1px solid;white-space:nowrap;letter-spacing:0}
+.modepill::before{content:"";width:8px;height:8px;border-radius:50%;background:currentColor;flex:none}
+.modepill[data-mode="live"]{color:var(--bad);background:var(--bad-bg);border-color:color-mix(in srgb,var(--bad) 40%,transparent)}
+.modepill[data-mode="replay"]{color:var(--accent-2);background:var(--accent-bg);border-color:color-mix(in srgb,var(--accent) 35%,transparent)}
+.modepill[data-mode="live"][data-busy]::before{animation:lpulse 1s ease-in-out infinite}
+@keyframes lpulse{50%{opacity:.25}}
+
+/* While the Read a page view is up, the chrome that describes the committed run loaded behind it (its
+   collection, its run bar, the side bar's note) is out of the way: it says nothing about the page being read, and next to
+   "Live calls" it could be taken to. */
+:root:has(#v-live:not([hidden])) .runbar{display:none}
+:root:has(#v-live:not([hidden])) #sample,
+:root:has(#v-live:not([hidden])) #coll,
+:root:has(#v-live:not([hidden])) .side-foot{visibility:hidden}
+
+/* The picker */
+.lpick{display:flex;gap:10px;flex-wrap:wrap;align-items:end;margin:0 0 6px}
+.lpick label{display:flex;flex-direction:column;gap:3px;font-size:12px;color:var(--ink-3)}
+.lpick select{max-width:560px;min-width:260px}
+.lpick .lfilter{align-self:end}
+.lpick input{font:400 13px var(--ui);color:var(--ink);background:var(--surface);border:1px solid var(--line-2);border-radius:8px;padding:6px 9px;width:150px}
+.lnote{margin:0 0 12px;font-size:12.5px;color:var(--ink-2);min-height:19px}
+.lnote[data-mode="live"]{color:var(--bad)}
+.lnote[data-mode="error"]{color:var(--bad);font-weight:600}
+
+/* The steps: a step that has finished stays lit, a little quieter than the one under way */
+.wsteps li.done{border-color:color-mix(in srgb,var(--ok) 45%,var(--line))}
+.wsteps li.done b::after{content:" ✓";color:var(--ok);font-weight:700}
+.wsteps li.on b::after{content:""}
+
+#lstage{height:clamp(480px,calc(100vh - 360px),760px)}
+
+/* Boxes arriving on the page */
+.ov .wbx.raw{stroke:#6B6F7A}
+.ov .wbx.new{animation:lbox .45s var(--ease) backwards}
+@keyframes lbox{from{opacity:0}}
+.ov .wbx.v-none{stroke:transparent;fill:rgba(107,111,122,.12)}
+.ov .sam.wsam.hit{opacity:1}
+
+/* The side: what is happening now, and every call below it, in the height of the window */
+.lside{max-height:calc(100vh - 86px)}
+.lside .wnow{min-height:0}
+.lside .lcalls{display:flex;flex-direction:column;flex:1 1 auto;min-height:180px}
+
+/* The model calls, as they happen */
+.lcall-list{list-style:none;margin:0;padding:6px;display:flex;flex-direction:column;gap:5px;flex:1 1 auto;min-height:0;overflow-y:auto}
+.lcall{display:grid;grid-template-columns:auto minmax(0,1fr) auto;gap:2px 10px;align-items:center;border:1px solid var(--line);border-left-width:3px;border-radius:8px;padding:6px 9px;font-size:12.5px;background:var(--surface-2);animation:wfade .25s var(--ease)}
+.lcall[data-e="sam"]{border-left-color:var(--gold)}
+.lcall[data-e="spark"]{border-left-color:var(--accent)}
+.lcall .lc-src{font:600 11px/1 var(--ui);padding:3px 7px;border-radius:5px;text-transform:uppercase;letter-spacing:.04em;background:var(--sunk);color:var(--ink-2)}
+.lcall.live .lc-src{background:var(--bad-bg);color:var(--bad)}
+.lcall.cache .lc-src{background:var(--accent-bg);color:var(--accent-2)}
+.lcall.failed{border-color:var(--bad)}
+.lcall.failed .lc-src{background:var(--bad);color:#fff}
+.lcall.run .lc-src{background:var(--warn-bg);color:var(--warn)}
+.lcall .lc-main{min-width:0;display:flex;flex-direction:column}
+.lcall .lc-main b{font-weight:600}
+.lcall .lc-main span{color:var(--ink-3);font-size:11.5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lcall .lc-t{font:500 12.5px var(--mono);font-variant-numeric:tabular-nums;color:var(--ink-2);text-align:right}
+.lcall .lc-t.was{color:var(--ink-3);font-weight:400}
+.lcall .lc-meta{grid-column:1/-1;font-size:11.5px;color:var(--ink-3);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lcall.run .lc-meta{display:none}
+
+.lactions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.lauto{display:flex;align-items:center;gap:7px;margin-top:10px;font-size:12.5px;color:var(--ink-2)}
+
+@media (max-width:900px){
+  .modepill{padding:5px 9px;font-size:12px}
+  .lpick select{min-width:0;width:100%;max-width:none}
+  .lpick label{width:100%}
+  .lpick .lfilter{display:none}
+  #lstage{height:360px}
+  .lside{max-height:none}
+  .lcall-list{max-height:320px}
+}
+@media (prefers-reduced-motion:reduce){.modepill[data-mode="live"][data-busy]::before,.ov .wbx.new,.lcall{animation:none}}
