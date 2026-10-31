@@ -133,5 +133,29 @@
     "event": "run_context_exiting",
     "app_id": "ap-BASlIljT6TDebuTD8Cz63y",
     "stage": "tokenize"
+  },
+  {
+    "event": "run_context_exiting",
+    "app_id": "ap-ERT62w9D2VysscMcJPlmkf",
+    "stage": "download_bf16"
+  },
+  {
+    "event": "stopped",
+    "app_id": "ap-ERT62w9D2VysscMcJPlmkf"
+  },
+  {
+    "event": "started",
+    "app_id": "ap-cZ2vA5NeXIu0YudYrTcDma",
+    "stage": "download_bf16_resume"
+  },
+  {
+    "event": "started",
+    "app_id": "ap-ZACASeCehkolT9nZRGUL8q",
+    "stage": "cache_integrity"
+  },
+  {
+    "event": "run_context_exiting",
+    "app_id": "ap-ZACASeCehkolT9nZRGUL8q",
+    "stage": "cache_integrity"
   }
 ]

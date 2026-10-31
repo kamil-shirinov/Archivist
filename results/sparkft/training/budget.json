@@ -39,6 +39,16 @@
       "stage": "tokenize",
       "ceiling_usd": "0.46290000",
       "retained": true
+    },
+    {
+      "stage": "download_bf16_resume",
+      "ceiling_usd": "0.90728400",
+      "retained": true
+    },
+    {
+      "stage": "cache_integrity",
+      "ceiling_usd": "0.00342030",
+      "retained": true
     }
   ],
   "gpu_attempts": [],

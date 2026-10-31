@@ -1,7 +1,9 @@
-# P34 — Spark Open archive-reader feasibility (development only)
+# P34 — Spark Open development fine-tune
 
-**Stopped before training: the conservative Modal reservation is $106.78, above the $40 cap.**
-New spend: Modal $0, Baseten $0, Fireworks $0, Meta $0. No adapter or deployment exists.
+**Status: BF16 weight staging; no archive inference or optimizer update yet.**
+The operative plan was committed before training (fc79eaf; bounded detached
+handoff amendments 0b8ba01 and d8f2de2). No adapter qualifies for use at this stage.
+The initial $40 feasibility stop is superseded by the owner's $95 authorization.
 
 ## Cached boxes: no reusable conversion found
 
@@ -50,101 +52,85 @@ limitations, not human-scored correctness. Both hosts read the same pages, so 1,
 count of box observations, not independent examples. Fireworks failed on 1939-01_p051;
 that missing read remains missing. Nearest-box matching was never used.
 
-## Prepared training data and fixed validation
+## Frozen training and validation
 
-PLAN.md fixes the page rule, targets, method, budget and adoption gate before any training.
-Four development training candidates produce **401** unsigned integer/decimal answers:
-156 security, 114 forward exchange, 13 railroad, 118 claims. Each agrees between the two
-independently issued P33 hosted reads and a unique OCR word; its target box comes solely
-from OCR. No whole-table target is fabricated from omitted cells. training_answers.jsonl
-stores the answers; data_manifest.json stores source hashes, exclusions and page IDs.
+The coverage rule preceded the full development OCR census. Three pages for every
+approved Treasury family/layout were frozen before reference reads. All three
+claims pages are validation-only, removing 118 previously prepared training answers.
+Training now has **283 two-host-plus-OCR-agreed answers on three development pages**,
+37 conversations, one fixed epoch (five accumulated optimizer steps). Training
+contains security, forward exchange and railroad examples; no short-term or claims
+examples. Both teachers are the same open model on independent hosts, so agreement
+is correlated pseudo-supervision. Every target box is from OCR.
 
-The two teachers are the same model on different hosts, with unidentified checkpoints.
-Agreement is correlated pseudo-supervision. There is no short-term-liabilities training
-page because its second read failed. No new teacher call was made.
+Validation has **15 pages / 270 uniquely OCR-supported figures**, three pages for
+each of the five approved portrait single-panel family/layout combinations. This
+covers the supported template layouts; it is not a census of unknown/unapproved
+archive layouts. One claims page has only one supported figure; that denominator
+is retained rather than replacing the frozen page. OCR references are imperfect
+proxies, not human labels. No held-out scan/result or owner label is accessed.
 
-Validation is one lexicographically last evidence page per family (five development pages),
-selected by page ID alone. Their images, OCR and answers were not opened here. Reference
-construction must be independent of the two evaluated arms; filtering validation to
-base-correct/teacher-agreed answers would make a claimed gain circular.
+| Family | Pages | Figures | Base value / containment | Adapter value / containment |
+| --- | ---: | ---: | --- | --- |
+| outstanding_forward_exchange_contracts | 3 | 60 | Pending | Pending |
+| receipts_and_expenditures_under_railroad | 3 | 49 | Pending | Pending |
+| security_transactions_as_reported_by | 3 | 60 | Pending | Pending |
+| short_term_foreign_liabilities_as | 3 | 60 | Pending | Pending |
+| total_claims_by_country | 3 | 41 | Pending | Pending |
+| Pooled | 15 | 270 | Pending | Pending |
 
-| Arm | Validation value accuracy | Validation full-figure containment | Adoption |
-| --- | --- | --- | --- |
-| Matching compressed base | Not run: budget stop | Not run | Keep existing base pending a valid comparison |
-| Fine-tuned model | Not trained | Not trained | Rejected: no qualifying comparison |
+Adoption requires strict pooled gains in both value accuracy and full-figure
+containment, **no family/layout decreases in either**, identical references and
+at least three scorable pages per layout. Missing or incomplete evaluation rejects
+adoption. Area ratios and invalid outputs are reported separately. Baseline and
+adapter receive the same prompts/images/decoding and no reference answer.
 
-The P33 diagnostic above is not the frozen validation comparison. No fine-tuning gain,
-validation baseline or held-out result is claimed.
+## Runtime, costs and recovery
 
-## Feasibility and options
+Seven synthetic NVFP4 preflights failed before any archive inference/training:
+version/trust/transport issues, then a tiny-shape backward division by zero and
+two actual-width timeouts. These failures do not establish that every NVFP4
+training implementation is unusable. This task's compressed route was not validated.
+All failed-attempt ceilings remain charged against the plan.
 
-At [Modal list prices](https://modal.com/pricing), the proposed four-B300 allocation with
-16 physical CPU cores and 256 GiB RAM costs $31.197312/hour. Reserving 30 minutes for
-base inference, two hours for training, 30 minutes for tuned inference, startup/shutdown
-and $5 overhead gives **$106.7812304**. This is an unbenchmarked planning envelope, not
-a minimum possible price or reconciled invoice. No paid attempt is justified under $40.
+The fallback is exact original BF16 Muse Spark Open weights, mirrored by Unsloth:
+65/65 shard hashes match Meta's release (training/bf16_provenance.json). One
+8-B300 allocation, native grouped_mm experts, frozen base, attention-only rank-16
+LoRA, 4,700-second execution timeout and no GPU retry. A detached controller
+waits for the exact recorded preparation; one bounded continuation is permitted.
+The GPU app itself is detached and records call/app IDs before waiting. Every
+optimizer update commits adapter, optimizer and RNG state to the task-owned Modal
+volume. Base/adapter validation predictions are committed after every page.
 
-The [published checkpoints](https://dev.meta.ai/docs/muse-spark-open/get-the-model)
-are far larger than Glimmer. Its single-H100 recipe cannot fit this base. A four-GPU
-NVFP4 serving recipe is not proof that image LoRA training works at that footprint.
-The [NeMo image-LoRA reference](https://github.com/NVIDIA-NeMo/Automodel/blob/main/docs/model-coverage/vlm/meta-models/muse_spark_open.mdx)
-uses 32 GB200 GPUs. No local compressed image-training implementation was validated here.
+Retained training/validation ceiling is **$94.0431748 < $95**:
+$83.0179088 full GPU allocation + $6.025266 seven probes + $5 preparation/storage.
+These are conservative reservations, not reconciled invoices. **$20 serving is
+separate and untouched.** Seven new Baseten validation-reference reads cost
+**$0.7237565 < $5**; no new Meta or Fireworks request. Training teachers use cached
+P33 reads only. Preparation and all other jobs have hard timeouts; owned app IDs
+are recorded. Only apps started by this task may be stopped. Glimmer is untouched.
 
-Options requiring a separate decision:
+Reconnection: `.venv/bin/python -m sparkft.backend` retrieves the recorded detached
+experiment call; it does not allocate another job. Checkpoints and final adapter
+are under `archivist-sparkft-p34-v1:/experiment-v1/`. Preserve adapters/checkpoints
+and remove the task's large base cache after bounded work finishes.
 
-1. Keep the hosted base and investigate OCR-anchored per-page calibration as its own
-   development experiment; the saved diagnostic identifies promising pages and failures.
-2. Obtain a tested compressed image-LoRA recipe and a measured startup/throughput forecast
-   whose entire base/train/evaluation reservation fits $40. Shorter timeouts alone do not
-   demonstrate that the experiment will finish. Do not substitute Glimmer for Spark Open.
-3. Investigate Fireworks pooled NVFP4 LoRA with a separately authorised dollar cap and
-   verified image-input support. No unbudgeted Fireworks job is launched by this task.
-4. Increase the compute allowance for a validated larger-GPU training route, after
-   reviewing its concrete reservation. No increased allowance is assumed.
+## Serving and terms
 
-## Terms, serving and isolation
+If and only if the full adoption gate passes, reload the exact BF16 base and saved
+PEFT adapter on Modal, through the model registry/cache/budget layer. No permanent
+endpoint or open-weights run is launched here. An 800-second later serving batch
+plus 300-second startup/15-second shutdown reserves $18.4576208 of the $20; actual
+measured throughput and all staging/storage overhead must fit before launch.
+Otherwise retain the hosted base or seek a new serving budget. No arbitrary run
+is promised to fit $20. Fireworks private per-token serverless adapters are not
+assumed to support this model/image path.
 
-TERMS.md records the [weight licence](https://huggingface.co/meta-models/Muse-Spark-Open-816B-A42B/blob/main/LICENSE.md)
-and [Meta API terms](https://dev.meta.ai/legal/terms-of-service). Fine-tuning the licensed
-open weights is permitted subject to its conditions; closed API outputs do not thereby
-become unrestricted training data. No closed Muse Spark output is used for training.
+[TERMS.md](TERMS.md) records the model licence's fine-tuning grant and attribution,
+licence/policy obligations, and Meta API output restrictions. No closed Meta API
+output enters training. Treasury Bulletin provenance records FRASER's public-domain
+rights. All page accesses are gated against development before file reads.
 
-If a later adapter passes both validation gates, serve the same pinned base+adapter on
-Modal through archivist.models with bounded lifetime, or use a Fireworks promoted sampler
-checkpoint on a dedicated deployment after checking image support and deployment pricing.
-The [post-training guide](https://dev.meta.ai/docs/muse-spark-open/post-training) says
-private adapters are not served on Fireworks per-token serverless inference. No endpoint
-or adapter is created here.
-
-All commands after worktree creation ran inside `.worktrees/sparkft`. Only that worktree
-registration and one `.git/info/exclude` line changed the main checkout. Main data links
-are used for reading only: real ignored pages/pdf directories contain links to the 15
-development issues only. No link is staged. Validation page hashes come from metadata,
-not opened validation files. No held-out scan/result or owner label was opened.
-
-The replay cache was staged by exact keys requested by the existing synthetic replay,
-never by scanning/opening unrelated shared-cache entries. The initial preparation
-reproduced all 11 runs with no spend; it then reported the new, as-yet-unstaged results
-as untracked. Final verification stages the task artifacts before the exact Check.
-An earlier pytest setup attempt found third-party tests inside the non-hidden uv cache;
-moving that cache to `cache/.uv` fixes discovery without excluding repository tests.
-No pre-existing test suite is omitted.
-
-Reproduce preparation without paid calls:
-
-```sh
-uv run python -m sparkft.boxes
-uv run python -m sparkft.prepare
-```
-
-The code pins P33 to a commit and records input hashes in the saved artifacts. Review any change to
-the source branch before regenerating. No command here launches training.
-
-## Completed verification
-
-The exact unpiped Check passed: **1,169 tests passed**, and all **11** replayed runs
-were identical. The spend ledger stayed at 81,148 lines; both committed exports
-passed their checks. No repository test suite was excluded. All configured
-pre-commit hooks passed. checks.json records the command and counts.
-No production file, original result, label, pre-registration or data link is staged.
-The provider's final app inventory is empty (modal_apps.json); no Modal job was launched.
+Latest pre-training Check: **1,180 tests passed**, all **11 replay runs identical**,
+spend ledger unchanged at 81,155 lines during replay; pre-commit clean. All work is
+inside sparkft; push is plain `git push origin sparkft`, without merging.

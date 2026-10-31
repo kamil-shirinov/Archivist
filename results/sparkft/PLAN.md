@@ -157,7 +157,8 @@ completed files. Progress shows roughly eight 25-GB shards per eight minutes, so
 the continuation has a **3,600 s hard timeout**, 60 s startup and 15 s shutdown:
 **$0.907284** at .00024688/s for eight CPU cores and 64 GiB. Its entire retained
 ceiling stays inside the existing $4 CPU sub-cap: all declared CPU attempts,
-including cleanup, total $3.6915246. The remaining $1.3084754 of the $5 preparation
+including cleanup, plus one read-only cache-integrity diagnostic ($0.0034203), total
+$3.6949449. The remaining $1.3050551 of the $5 preparation
 reserve covers storage/image overhead. The $94.0431748 total does not increase. No concurrent model-cache writers. The initial compressed cache
 is removed before/alongside cleanup to avoid indefinite storage charges.
 
