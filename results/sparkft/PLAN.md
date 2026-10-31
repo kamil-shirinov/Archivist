@@ -2,8 +2,8 @@
 
 Written 2026-10-31 before any training, new hosted inference or validation scoring.
 The earlier cached geometry diagnostic is governed separately by BOX_PLAN.md.
-**Decision: do not allocate a GPU. The conservative Modal experiment estimate
-exceeds the owner's $40 cap. No fine-tuned model is eligible for use.**
+**Original decision (superseded by the owner-approved amendment below): stop
+under the original $40 cap. No model had been trained at that decision.**
 
 ## Page rule, before applying it
 
@@ -120,8 +120,8 @@ preflight, model download, training or fresh validation is launched. Modal new
 spend $0; Baseten new spend $0 of $5. No Fireworks or Meta spend is authorised by
 this plan. Any future job must reserve its entire worst-case cost before launch,
 set a hard execution/startup timeout, one-container cap, no automatic retry and
-short scale-down, and be explicitly stopped on success or failure. All Modal apps
-must be stopped before this task ends.
+short scale-down, and be explicitly stopped on success or failure. Only Modal apps started by this task may be stopped. Never stop the concurrent
+Glimmer task or any other app.
 
 ## Terms and serving
 
@@ -149,4 +149,108 @@ Run the owner's Check unpiped:
 Stage only sparkft/, results/sparkft/ and its offline tests; never stage a data link,
 cache, environment or existing result. Run pre-commit cleanly, commit as P34, and
 push with exactly `git push origin sparkft`. Never merge. This plan is committed
-before any training; the cost stop means no training follows in this task.
+before any training. The amendment below authorises the bounded training attempt.
+
+
+## Owner-approved training amendment — 2026-10-31, before training
+
+The owner now authorises **$95 total Modal credits for preparation, training and
+validation**, with **$20 kept separately for serving** an accepted adapter in the
+later open-weights run. Baseten remains capped at $5; no new hosted call is
+planned. No Fireworks/Meta spend is authorised. The previous $40 stop and its
+three separately loaded GPU jobs are superseded. Preserve the original diagnostic,
+401 training answers, four training pages and five fixed validation pages.
+The serving reserve cannot fund training, retries, validation or debugging.
+
+### Allocation and cost limits
+
+Combine matching-base validation, training, adapter save/reload and tuned validation
+in one four-B300 allocation so the large frozen base loads only once. Use one
+container, 16 physical CPU cores, 256 GiB hard-capped RAM, execution timeout 9,600 s,
+startup timeout 300 s, shutdown/transport allowance 15 s, no automatic retries,
+no warm containers, and five-second scale-down. The checked resource rate remains
+$.00866592/s. Reserve **(9,600 + 300 + 15) × .00866592 = $85.9225968** before launch.
+Retain that whole reservation for any failed/aborted attempt; a failure does not
+silently release money for a retry. Add **$5** for CPU preparation, builds and
+storage: retained maximum **$90.9225968**, leaving **$4.0774032** under $95.
+This is a hard experiment ceiling, not evidence that the run will finish on time.
+
+CPU metadata/download preparation uses task-owned resources with hard timeouts:
+at most 1,800 s execution, 60 s startup, 15 s shutdown, eight physical cores and
+64 GiB hard-capped RAM, one container, no retries, at $.00024688/s: at most
+$0.4629, charged inside the $5 preparation reserve. Stop before any allocation
+whose full reservation would exceed its envelope. Do not replace a failed compressed
+runtime with an unbudgeted BF16 cluster. Persist stage progress and any completed
+base results/adapter before shutdown. A partial run cannot pass the adoption gate.
+
+Official BF16/NVFP4 repositories currently require gated access; no Hugging Face
+token is configured. Public Unsloth mirrors are available without credentials.
+Pin the NVFP4 candidate `unsloth/Muse-Spark-Open-816B-A42B-NVFP4` to
+`fc6908f53c6882d4ec48fca5ba144e41d21e1f92`. Pin its official Transformers
+integration candidate to `585946e8dbfc114a5f45e62b41e35a468e9e85b9`.
+Check licence/processor parity and kernel gradient support on CPU first. This
+candidate is not presumed trainable merely because it can serve. If its kernels
+cannot backpropagate into language attention adapters, establish a documented
+trainable compressed path and commit that loader amendment before training;
+do not misreport an inference-only run as training. Do not substitute a smaller
+model. Keep the original LoRA settings unless an explicit prospective amendment
+is committed before a run, with its reason and cost impact.
+
+### Validation references and framing, before either arm
+
+Prepare and freeze validation references before running the compressed base.
+Reuse only existing development Muse Spark 1.3 page reads through the zero-cap
+registry/cache/budget path, where available, to assign semantic row/column IDs;
+match those figures to unique, exact canonical numbers in the PDF OCR layer.
+These closed-model outputs are used for evaluation only, never as training data.
+They are independent of both evaluated Spark Open arms, although still model-assisted
+OCR proxy references rather than human truth. Record provenance and coverage;
+do not select by the evaluated base's answers or boxes. Any absent cache entry
+aborts rather than making a paid teacher call.
+
+Use at most 20 scorable figures per validation page, sorted by SHA256 of
+`sparkft-validation-3401:<field_id>`, taking the first 20; retain a page with fewer
+figures and report its support. This limits inference time while preserving the
+fixed page slice. Freeze field IDs, OCR boxes, reference values, prompts, processor
+settings and image hashes before base inference. Retain missing/unscorable coverage.
+Decode the final native assistant-to-user channel only, handling an already-open
+assistant header prospectively for both arms. Reasoning alone, malformed JSON,
+truncation and missing cells are failures. No parser repair after seeing results.
+Both value accuracy and complete OCR-box containment must strictly beat the base;
+otherwise the adapter is not used. Report every page, failures and joint correctness.
+
+### Serving the accepted adapter: separate $20 reserve
+
+Use **Modal**, with the same pinned compressed base, image processor, adapter,
+prompt, strict parser and native precision that pass validation. Save adapter
+safetensors, configuration and hashes to task-owned storage; preserve licence,
+usage policy and attribution. Reload that exact adapter during validation.
+Serve via a task-specific ephemeral Modal function registered in archivist.models,
+wrapped by the normal cache and budget layer. Model requests contain only the
+permitted image and prompt, never local paths or reference answers. No Fireworks
+adapter deployment or extra provider bill is assumed.
+
+The future serving reservation is one four-B300 container with the same CPU/RAM
+caps, at most **1,800 s execution + 300 s startup + 15 s shutdown**, compute ceiling
+**$18.3284208**, plus **$1.6715792** reserved for storage/CPU overhead, total **$20**.
+Keep min_containers=0, max_containers=1, automatic retries=0 and short scale-down;
+enforce the aggregate lifetime as well as each call's timeout. This is about 30
+execution minutes, not a claim the complete open-weights run fits. Measure throughput
+on development requests, forecast the later run and refuse a run exceeding the
+reserve before opening any newly authorised data. The current task remains
+**development only** and does not launch the later open-weights run or a standing
+endpoint. If validation fails, preserve the reserve and serve the existing base.
+
+### Task ownership and cleanup
+
+Use app names prefixed `archivist-sparkft-p34-` and unique run IDs. Record each
+server-returned app ID in this task's ledger immediately at creation. Cancellation
+and stop code must accept only IDs in that ledger; never stop by an app-name search
+or by enumerating and stopping the workspace. The concurrent Glimmer app is outside
+this task's ownership and must remain untouched. Record owned-app termination on
+success, failure, timeout or allocation cancellation; do not require an empty
+workspace app list. All model calls continue through archivist.models.
+
+Commit this amendment after the exact Check and clean pre-commit, **before training**.
+Commit and push completed artifacts on sparkft without merging. Runtime, allocation,
+billing estimates, actual reported usage and retained ceilings must be distinguishable.
