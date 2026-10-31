@@ -97,14 +97,18 @@ The fallback is exact original BF16 Muse Spark Open weights, mirrored by Unsloth
 65/65 shard hashes match Meta's release (training/bf16_provenance.json). One
 8-B300 allocation, native grouped_mm experts, frozen base, attention-only rank-16
 LoRA, 4,650-second execution timeout and no GPU retry. A detached controller
-waits for the exact recorded preparation; two bounded continuations are permitted.
+waits for the exact recorded preparation; two bounded continuations are permitted (the final one uses a smaller
+non-preemptible CPU allocation).
 The GPU app itself is detached and records call/app IDs before waiting. Every
 optimizer update commits adapter, optimizer and RNG state to the task-owned Modal
 volume. Base/adapter validation predictions are committed after every page.
 
 Retained training/validation ceiling is **$94.2154788 < $95**:
 $82.1902128 full GPU allocation + $6.025266 seven probes + $6 preparation/storage.
-These are conservative reservations, not reconciled invoices. **$20 serving is
+These are conservative reservations, not reconciled invoices. Modal replaced a
+CPU worker during download. Absolute submission-time deadlines now bound all
+infrastructure restarts; per-attempt function timeouts alone would reset. The final
+CPU stage is non-preemptible, two cores/16 GiB, within the same preparation reserve. **$20 serving is
 separate and untouched.** Seven new Baseten validation-reference reads cost
 **$0.7237565 < $5**; no new Meta or Fireworks request. Training teachers use cached
 P33 reads only. Preparation and all other jobs have hard timeouts; owned app IDs
@@ -131,6 +135,6 @@ licence/policy obligations, and Meta API output restrictions. No closed Meta API
 output enters training. Treasury Bulletin provenance records FRASER's public-domain
 rights. All page accesses are gated against development before file reads.
 
-Latest pre-training Check: **1,181 tests passed**, all **11 replay runs identical**,
+Latest pre-training Check: **1,184 tests passed**, all **11 replay runs identical**,
 spend ledger unchanged at 81,155 lines during replay; pre-commit clean. All work is
 inside sparkft; push is plain `git push origin sparkft`, without merging.

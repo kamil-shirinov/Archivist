@@ -40,16 +40,47 @@ def stop_owned(app_id):
     append_event({'event':'stopped','app_id':app_id})
 
 
-def wait(call, stage):
-    started=time.monotonic()
+class WallBudgetTimeout(RuntimeError):
+    """A remote call's original budget window expired, including infrastructure restarts."""
+
+
+def submitted_epoch(call_id):
+    # Modal 1.6.3 call IDs contain a ULID, whose first 48 bits are UTC milliseconds.
+    body=call_id.removeprefix('fc-')
+    if len(body)!=26:raise ValueError('Unknown call ID format; cannot establish budget deadline')
+    value=0
+    for char in body:value=(value<<5)+'0123456789ABCDEFGHJKMNPQRSTVWXYZ'.index(char)
+    return (value>>80)/1000
+
+
+def cpu_wall_seconds(stage):
+    if stage in ('download_bf16_resume','download_bf16_resume2'):return 3660
+    if stage in ('cleanup','kernel_transport','cache_integrity'):return 180
+    if stage=='gradient':return 660
+    if stage=='tokenize':return 960
+    return 1860
+
+
+def wait(call,stage,*,app_id,wall_seconds):
+    require_owned(app_id)
+    try:
+        deadline=submitted_epoch(call.object_id)+wall_seconds-15
+    except ValueError:
+        stop_owned(app_id)
+        raise
     while True:
+        # Nonblocking retrieval permits collection after a finished app's deadline.
+        try:return call.get(timeout=0)
+        except TimeoutError:pass
+        remaining=deadline-time.time()
+        if remaining<=0:
+            try:call.cancel(terminate_containers=True)
+            finally:stop_owned(app_id)
+            raise WallBudgetTimeout('Original budget window expired: '+stage)
         try:
-            return call.get(timeout=30)
+            return call.get(timeout=min(15,remaining))
         except TimeoutError:
-            print(stage + ': waiting for owned Modal call',flush=True)
-            if time.monotonic()-started > 12600:
-                call.cancel(terminate_containers=True)
-                raise TimeoutError('Owned call exceeded outer wall-clock deadline')
+            print(stage+': waiting within original budget window',flush=True)
 
 
 def reserve_cpu(stage):
@@ -63,7 +94,8 @@ def reserve_cpu(stage):
         'cpu_attempts':[], 'gpu_attempts':[]}
     if stage.startswith('download_bf16_resume') and any(x['stage']==stage for x in data['cpu_attempts']):
         raise ValueError('Only one attempt for each declared BF16 continuation is permitted')
-    amount=(Decimal('0.90728400') if stage=='download_bf16_resume' else
+    amount=(Decimal('0.68046300') if stage=='download_bf16_resume2' else
+            Decimal('0.90728400') if stage=='download_bf16_resume' else
             Decimal('0.00342030') if stage in ('cleanup','kernel_transport') else Decimal('0.46290000'))
     if sum((Decimal(x['ceiling_usd']) for x in data['cpu_attempts']),Decimal(0))+amount>Decimal('4.5'):
         raise ValueError('CPU attempts exhausted the declared preparation sub-budget')
@@ -89,7 +121,7 @@ def reserve_probe():
 
 
 def cpu(stage, download=False):
-    from sparkft.modal_app import app, prepare, cleanup_base, tokenize, gradient_probe, kernel_transport, prepare_resume
+    from sparkft.modal_app import app, prepare, cleanup_base, tokenize, gradient_probe, kernel_transport, prepare_resume, prepare_final
     reserve_probe() if stage=='gradient' else reserve_cpu(stage)
     OUT.mkdir(parents=True,exist_ok=True)
     with app.run(name='archivist-sparkft-p34-'+stage,detach=True):
@@ -106,11 +138,12 @@ def cpu(stage, download=False):
                 call=tokenize.spawn(payload,tuple(images))
             else:
                 function=(cleanup_base if stage=='cleanup' else
-                          prepare_resume if stage=='download_bf16_resume' else prepare)
-                call=function.spawn() if stage in ('cleanup','download_bf16_resume') else function.spawn(download)
+                          prepare_resume if stage=='download_bf16_resume' else
+                          prepare_final if stage=='download_bf16_resume2' else prepare)
+                call=function.spawn() if stage in ('cleanup','download_bf16_resume','download_bf16_resume2') else function.spawn(download)
             (OUT/(stage+'_call.json')).write_text(json.dumps(
                 {'app_id':app.app_id,'call_id':call.object_id,'stage':stage},indent=2)+'\n')
-            result=wait(call,stage)
+            result=wait(call,stage,app_id=app.app_id,wall_seconds=cpu_wall_seconds(stage))
             (OUT/(stage+'.json')).write_text(json.dumps(result,indent=2)+'\n')
             return result
         except Exception as error:

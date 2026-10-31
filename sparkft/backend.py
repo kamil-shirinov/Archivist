@@ -1,9 +1,10 @@
 """Modal experiment backend, built by the standard registry/cache/budget layer."""
 from __future__ import annotations
 import json
+import time
 from pathlib import Path
 from archivist.models.base import LLMResponse,Usage
-from sparkft.cloud import OUT,append_event,require_owned,wait
+from sparkft.cloud import OUT,append_event,require_owned,submitted_epoch,wait
 
 RATE=.01655392
 
@@ -30,7 +31,7 @@ class SparkftBackend:
             require_owned(saved['app_id'])
             if saved['request_sha256']!=identity:raise ValueError('Frozen remote request changed')
             call=modal.FunctionCall.from_id(saved['call_id'])
-            result=wait(call,'reconnected experiment')
+            result=wait(call,'reconnected experiment',app_id=saved['app_id'],wall_seconds=4950)
         else:
             if budget['gpu_attempts']:
                 raise ValueError('GPU attempt already reserved; no automatic retry')
@@ -42,14 +43,19 @@ class SparkftBackend:
             # Detached app outlives this client. Never cancel it on client exit.
             with app.run(name='archivist-sparkft-p34-train-validate',detach=True):
                 append_event({'event':'started','app_id':app.app_id,'stage':'experiment'})
+                payload['budget_deadline_epoch']=time.time()+4920
                 call=self.remote.spawn(payload,request.images)
                 submission.write_text(json.dumps({'app_id':app.app_id,'call_id':call.object_id,
                     'request_sha256':identity,'detached':True,'dataset_sha256':payload['dataset_sha256'],
                     'checkpoint_path':'/sparkft-store/experiment-v1/latest.json'},indent=2)+'\n')
                 print('Detached submission saved:',call.object_id,flush=True)
-                result=wait(call,'experiment')
+                result=wait(call,'experiment',app_id=app.app_id,wall_seconds=4950)
         budget['gpu_attempts'][-1]['status']='completed'
-        cost=result['runtime_seconds']*RATE
+        wall=time.time()-submitted_epoch(call.object_id)
+        cost=(wall+15)*RATE
+        result['dispatch_wall_seconds']=wall
+        result['cost_basis']='Upper bound from submission to result plus shutdown; includes restarts'
+        result['cost_upper_bound_usd']=cost
         budget['gpu_attempts'][-1]['reported_runtime_estimate_usd']=cost
         budget_path.write_text(json.dumps(budget,indent=2)+'\n')
         (OUT/'raw_result.json').write_text(json.dumps(result,indent=2)+'\n')

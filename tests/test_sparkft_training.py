@@ -148,3 +148,32 @@ def test_weight_staging_has_only_two_bounded_continuations():
     assert next_stage(0)==1 and next_stage(1)==2
     with pytest.raises(ValueError,match='No further'):
         next_stage(2)
+
+
+def test_original_call_timestamp_does_not_reset_on_reconnect():
+    from datetime import datetime,timezone
+    expected=datetime(2026,10,31,23,13,14,687000,tzinfo=timezone.utc).timestamp()
+    assert cloud.submitted_epoch('fc-01M6A3T6DZFQPM6236QBY1K46V')==expected
+    with pytest.raises(ValueError):cloud.submitted_epoch('unknown-format')
+
+
+def test_expired_wall_budget_cancels_only_recorded_owned_call(monkeypatch):
+    events=[]
+    class Call:
+        object_id='fc-01M6A3T6DZFQPM6236QBY1K46V'
+        def get(self,timeout):raise TimeoutError()
+        def cancel(self,**kwargs):events.append(('cancel',kwargs))
+    monkeypatch.setattr(cloud,'require_owned',lambda app:events.append(('verify',app)))
+    monkeypatch.setattr(cloud,'stop_owned',lambda app:events.append(('stop',app)))
+    original=cloud.submitted_epoch(Call.object_id)
+    monkeypatch.setattr(cloud.time,'time',lambda:original+1000)
+    with pytest.raises(cloud.WallBudgetTimeout):
+        cloud.wait(Call(),'reconnect',app_id='ap-owned',wall_seconds=100)
+    assert events==[('verify','ap-owned'),('cancel',{'terminate_containers':True}),('stop','ap-owned')]
+
+
+def test_server_deadline_rejects_work_after_budget(monkeypatch):
+    from sparkft import runtime
+    monkeypatch.setattr(runtime.time,'time',lambda:100)
+    with pytest.raises(RuntimeError,match='budget deadline'):
+        runtime.check_deadline(99)

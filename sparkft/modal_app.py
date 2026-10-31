@@ -26,7 +26,7 @@ COMMON = dict(image=image, volumes={ROOT: volume}, retries=0, max_containers=1,
 
 
 @app.function(**COMMON, cpu=(8,8), memory=(65536,65536), timeout=1800, startup_timeout=60)
-def prepare(download_weights=False):
+def prepare(download_weights=False,download_workers=8):
     import hashlib
     import importlib.metadata
     import json
@@ -54,7 +54,7 @@ def prepare(download_weights=False):
               'download_weights':download_weights}
     if download_weights:
         path = snapshot_download(MODEL, revision=REVISION, token=False,
-                                 headers={'User-Agent': UA}, max_workers=8)
+                                 headers={'User-Agent': UA}, max_workers=download_workers)
         result['weight_shards'] = len(list(Path(path).glob('*.safetensors')))
     result['runtime_seconds'] = time.monotonic()-start
     Path(ROOT,'preparation.json').write_text(json.dumps(result,indent=2)+'\n')
@@ -66,6 +66,12 @@ def prepare(download_weights=False):
 def prepare_resume():
     # Same pinned cache; only the continuation's hard time bound differs.
     return prepare.local(download_weights=True)
+
+
+@app.function(**COMMON,cpu=(2,2),memory=(16384,16384),nonpreemptible=True,
+              timeout=3600,startup_timeout=60)
+def prepare_final():
+    return prepare.local(download_weights=True,download_workers=4)
 
 
 @app.function(**COMMON, gpu='B300:8', cpu=(16,16), memory=(262144,262144),

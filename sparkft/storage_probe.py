@@ -32,7 +32,7 @@ def main():
     with app.run(name='archivist-sparkft-p34-cache-integrity',detach=True):
         append_event({'event':'started','app_id':app.app_id,'stage':'cache_integrity'})
         call=probe.spawn()
-        result=wait(call,'cache integrity')
+        result=wait(call,'cache integrity',app_id=app.app_id,wall_seconds=180)
         (OUT/'cache_integrity.json').write_text(json.dumps(result,indent=2)+'\n')
         require_owned(app.app_id)
         append_event({'event':'run_context_exiting','app_id':app.app_id,'stage':'cache_integrity'})

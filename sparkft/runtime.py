@@ -120,11 +120,17 @@ def bf16_gradient(config):
             'max_input_gradient':float(x.grad.abs().max())}
 
 
-def generate(model,processor,items,images,path=None,commit=lambda:None):
+def check_deadline(deadline):
+    if deadline is not None and time.time()>=deadline:
+        raise RuntimeError('Original experiment budget deadline reached; preserve committed checkpoints')
+
+
+def generate(model,processor,items,images,path=None,commit=lambda:None,deadline=None):
     import torch
     model.eval();model.config.use_cache=True
     results=json.loads(path.read_text()) if path is not None and path.exists() else []
     for item in items[len(results) :]:
+        check_deadline(deadline)
         batch=inputs(processor,item,images[item['image_index']])
         count=batch['input_ids'].shape[-1]
         if count+MAX_NEW>MAX_CONTEXT:
@@ -147,6 +153,7 @@ def run(payload,images,PathRoot,commit=lambda:None):
     from transformers import AutoConfig,AutoModelForMultimodalLM,AutoProcessor
     from peft import LoraConfig,PeftModel,get_peft_model
     from huggingface_hub import snapshot_download
+    deadline=payload['budget_deadline_epoch'];check_deadline(deadline)
     started=time.monotonic();root=Path(PathRoot);directory=root/'experiment-v1'
     directory.mkdir(exist_ok=True)
     identity=hashlib.sha256(json.dumps(payload,sort_keys=True).encode()).hexdigest()
@@ -177,7 +184,7 @@ def run(payload,images,PathRoot,commit=lambda:None):
          'model':MODEL,'revision':REVISION,'device_map':device_map,
          'gpu_names':[torch.cuda.get_device_name(i) for i in range(8)],
          'memory_allocated':[torch.cuda.memory_allocated(i) for i in range(8)]})
-    base=generate(model,processor,payload['validation'],images,directory/'base_predictions.json',commit)
+    base=generate(model,processor,payload['validation'],images,directory/'base_predictions.json',commit,deadline)
     save(directory/'base_predictions.json',base)
     train=[];excluded=[]
     for index,item in enumerate(payload['train']):
@@ -222,6 +229,7 @@ def run(payload,images,PathRoot,commit=lambda:None):
             if position<=completed:continue
             group=order[start:start+8];optimizer.zero_grad(set_to_none=True);losses=[]
             for index in group:
+                check_deadline(deadline)
                 batch={k:(v.to('cuda:0',dtype=torch.bfloat16) if v.is_floating_point() else v.to('cuda:0'))
                        for k,v in train[index].items()}
                 loss=model(**batch,use_cache=False).loss
@@ -254,7 +262,7 @@ def run(payload,images,PathRoot,commit=lambda:None):
     del optimizer
     model=model.unload()
     model=PeftModel.from_pretrained(model,directory/'adapter',is_trainable=False)
-    tuned=generate(model,processor,payload['validation'],images,directory/'trained_predictions.json',commit)
+    tuned=generate(model,processor,payload['validation'],images,directory/'trained_predictions.json',commit,deadline)
     save(directory/'trained_predictions.json',tuned)
     artifacts={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in (directory/'adapter').iterdir() if p.is_file()}
     result={'base':base,'trained':tuned,'adapter_files':artifacts,'gradient_preflight':diagnostic,

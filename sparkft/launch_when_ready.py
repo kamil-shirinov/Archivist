@@ -3,7 +3,7 @@ import fcntl
 import json
 from pathlib import Path
 
-from sparkft.cloud import OUT,cpu,require_owned,stop_owned,wait
+from sparkft.cloud import OUT,WallBudgetTimeout,cpu,cpu_wall_seconds,require_owned,stop_owned,wait
 from sparkft.runtime import MODEL,REVISION
 
 
@@ -31,12 +31,14 @@ def main():
             try:
                 if record.exists():
                     saved=json.loads(record.read_text());require_owned(saved['app_id'])
-                    result=wait(modal.FunctionCall.from_id(saved['call_id']),'recorded '+stage)
+                    result=wait(modal.FunctionCall.from_id(saved['call_id']),'recorded '+stage,
+                                app_id=saved['app_id'],wall_seconds=cpu_wall_seconds(stage))
                 else:
                     result=cpu(stage,download=True)
                 break
-            except modal.exception.FunctionTimeoutError:
-                saved=json.loads(record.read_text());stop_owned(saved['app_id'])
+            except (modal.exception.FunctionTimeoutError,WallBudgetTimeout) as error:
+                saved=json.loads(record.read_text())
+                if not isinstance(error,WallBudgetTimeout):stop_owned(saved['app_id'])
                 index=next_stage(index)
                 print('Download hit its hard bound; declared continuation',stages[index],flush=True)
         verify_preparation(result)

@@ -104,7 +104,7 @@ BF16 revision and all 65 shards, then invokes the frozen registry backend. A fil
 lock prevents duplicate controllers. If the initial preparation reaches its hard timeout, stop only its recorded owned
 app (to exclude concurrent writers), retain its cost ceiling, and permit exactly
 two declared continuations on the same cache. The first continuation has a 3,600-second bound; a final continuation has a
-1,800-second bound. Any other failure, or failure after the final continuation,
+3,600-second bound on a non-preemptible CPU allocation. Any other failure, or failure after the final continuation,
 exits without GPUs. A restart reconnects to the recorded
 continuation instead of starting another download.
 
@@ -157,14 +157,34 @@ One BF16 download and at most two bounded continuations are allowed, reusing
 completed files. Progress shows roughly eight 25-GB shards per eight minutes, so
 the continuation has a **3,600 s hard timeout**, 60 s startup and 15 s shutdown:
 **$0.907284** at .00024688/s for eight CPU cores and 64 GiB. Measured transfer of about 181 GB over thirteen minutes projects a possible
-unfinished tail at that bound. Fund one final **1,800-second continuation** at
-**$0.4629**, with eight parallel file downloads to favor complete, persistent
+unfinished tail at that bound. Fund one final **3,600-second non-preemptible continuation** at
+**$0.680463**, with four parallel file downloads to favor complete, persistent
 shards. All declared CPU attempts, including cleanup and the read-only integrity
-check, total **$4.1578449**, below the $4.50 sub-cap. The remaining **$1.8421551** of
+check, total **$4.3754079**, below the $4.50 sub-cap. The remaining **$1.6245921** of
 the **$6 preparation reserve** covers storage/image overhead. Shortening the full
 GPU bound by fifty seconds to 4,650 s offsets this larger preparation allowance.
+The final download uses two CPU cores and 16 GiB, no GPU. Modal's 3×
+non-preemptible CPU/memory multiplier gives **.00018516/s**, still below the
+original eight-core/64-GiB allocation; (3600+60+15) × .00018516 = $0.680463.
 This amendment precedes all archive inference/training; comparison data, epoch,
-decoding and adoption criteria are unchanged. No concurrent model-cache writers. The initial compressed cache
+decoding and adoption criteria are unchanged. No concurrent model-cache writers.
+
+A CPU worker was replaced during staging. [Modal preemption documentation](https://modal.com/docs/guide/preemption)
+and [timeout documentation](https://modal.com/docs/guide/timeouts) confirm that
+infrastructure restarts are automatic and execution timeouts apply per attempt.
+`retries=0` alone does not enforce the total resource budget. The detached local
+controller now enforces an **absolute wall deadline from the original call ULID's
+submission timestamp**, including every infrastructure restart. This deadline is
+unchanged on reconnect: CPU jobs have their declared execution+startup window;
+the GPU call has 4,950 seconds. Poll at most fifteen seconds, cancel the input and
+stop only its recorded owned app fifteen seconds before the wall deadline, leaving
+shutdown margin inside the reserved cost. Unknown call-ID formats stop the owned
+app rather than continue without a budget deadline. Server training also checks
+the original deadline before loading, each training microbatch and each validation
+page. The detached controller survives the AI client's usage limit. Report a
+conservative submission-to-result resource-cost upper bound, including restarts,
+rather than only the last worker's runtime. The CPU-only non-preemptible final
+stage avoids repeating long partial downloads after another preemption. The initial compressed cache
 is removed before/alongside cleanup to avoid indefinite storage charges.
 
 Total retained training/validation maximum:
