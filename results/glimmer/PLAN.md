@@ -488,3 +488,31 @@ The app is detached, and full batches are committed atomically before continuing
 The old source/phase-1 artifacts remain unchanged. Commit and push both raw arms after
 Check before any aggregate comparison. Read no human labels or other held-out records;
 the 50-page comparison remains deferred. Stop only this task's own recorded Modal apps.
+
+## Phase-2 comparison completed — 2026-10-31
+
+Both 791-answer raw arms were checked, committed and pushed in
+**a33ace9bb020e2701769c86c2a8a89a66f22b345** before the comparison guard allowed parsing or
+output/reference comparison. The original sample, 1,024-character input, native parser,
+weights, precision, batch groups and metric definitions were unchanged. All 34 preserved
+phase-1 artifacts remain unchanged. The first attempt's 79/99 complete but unsaved
+untrained batches, its $1.21407010 charge and its full maximum remain in the report.
+One approved checkpointed recovery completed both arms and retained all 198 batch files.
+
+Against the pipeline proxy, untrained agreed on 708/791 (89.50695%) and trained on 744/791
+(94.05815%); design-weighted proxy agreement was 97.35653% / 98.97133%. Both had zero
+invalid or missing answers. Trained matched more title rejections as other (127/155 versus
+77/155), but confirmed-family recall fell from 136/136 to 117/136, including 0/10 total-
+claims positives. Report this tradeoff, not an unqualified improvement or a deployment
+selection. Spark raw was 636/791; Spark plus title check equals the reference by construction.
+Per-family sample/weighted precision/recall, supports, confusion counts and strata summaries
+are in phase2/summary.json and REPORT.md. No page-level error analysis or tuning occurred.
+
+Reported recovery charges $1.98611708; phase 2 including interruption $3.20018718;
+cumulative Glimmer reported charges $4.74848057 at the saved query (billing may lag).
+The combined retained maximum remains **$28.1581522** under the approved **$28.16**.
+Only the recorded recovery app was checked/stopped; it was already stopped, with zero
+runners, running inputs and backlog. No other Modal app was stopped by this task.
+The final exact Check precedes the summary commit/push. Stop after aggregate reporting;
+the 50-page human comparison remains deferred to a separately authorised committed file
+on main. No human labels, cell draw, deep records, original scorer or git tag were read.
