@@ -46,8 +46,8 @@ def reserve_cpu(stage):
         'gpu_reservation_usd':'85.92259680', 'preparation_reserve_usd':'5',
         'retained_training_validation_ceiling_usd':'90.92259680',
         'cpu_attempts':[], 'gpu_attempts':[]}
-    amount=Decimal('0.00342030') if stage=='cleanup' else Decimal('0.46290000')
-    if sum((Decimal(x['ceiling_usd']) for x in data['cpu_attempts']),Decimal(0))+amount>Decimal('2'):
+    amount=Decimal('0.00342030') if stage in ('cleanup','kernel_transport') else Decimal('0.46290000')
+    if sum((Decimal(x['ceiling_usd']) for x in data['cpu_attempts']),Decimal(0))+amount>Decimal('4'):
         raise ValueError('CPU attempts exhausted the declared preparation sub-budget')
     data['cpu_attempts'].append({'stage':stage,'ceiling_usd':str(amount),'retained':True})
     path.write_text(json.dumps(data,indent=2)+'\n')
@@ -56,24 +56,30 @@ def reserve_cpu(stage):
 def reserve_probe():
     path=OUT/'budget.json'
     data=json.loads(path.read_text())
-    if data.get('gradient_probe'):
-        raise ValueError('Gradient probe already reserved; no automatic retry')
-    data['gradient_probe']={'gpu':'B300','execution_timeout_s':300,'startup_timeout_s':60,
-                            'ceiling_usd':'0.77247000','retained':True}
-    data['retained_training_validation_ceiling_usd']='91.69506680'
+    if 'gradient_probe' in data:
+        data['gradient_probe_attempts']=[data.pop('gradient_probe')]
+    attempts=data.setdefault('gradient_probe_attempts',[])
+    if len(attempts)>=7:
+        raise ValueError('Only seven explicitly declared gradient attempts are allowed')
+    attempts.append({'gpu':'B300','execution_timeout_s':600,'startup_timeout_s':60,
+                     'ceiling_usd':'1.39044600','retained':True})
+    from decimal import Decimal
+    data['retained_training_validation_ceiling_usd']=str(Decimal('85.72304480') + sum((Decimal(x['ceiling_usd']) for x in attempts),Decimal(0)))
     if float(data['retained_training_validation_ceiling_usd'])>95:
         raise ValueError('Probe exceeds training allowance')
     path.write_text(json.dumps(data,indent=2)+'\n')
 
 
 def cpu(stage, download=False):
-    from sparkft.modal_app import app, prepare, cleanup_base, tokenize, gradient_probe
+    from sparkft.modal_app import app, prepare, cleanup_base, tokenize, gradient_probe, kernel_transport
     reserve_probe() if stage=='gradient' else reserve_cpu(stage)
     OUT.mkdir(parents=True,exist_ok=True)
-    with app.run(name='archivist-sparkft-p34-'+stage):
+    with app.run(name='archivist-sparkft-p34-'+stage,detach=True):
         append_event({'event':'started','app_id':app.app_id,'stage':stage})
         try:
-            if stage=='gradient':
+            if stage=='kernel_transport':
+                call=kernel_transport.spawn()
+            elif stage=='gradient':
                 config=json.loads(Path('results/scratch/sparkft/runtime_preflight/unsloth_nvfp4_config.json').read_text())
                 call=gradient_probe.spawn(config)
             elif stage=='tokenize':
@@ -83,6 +89,8 @@ def cpu(stage, download=False):
             else:
                 function=cleanup_base if stage=='cleanup' else prepare
                 call=function.spawn() if stage=='cleanup' else function.spawn(download)
+            (OUT/(stage+'_call.json')).write_text(json.dumps(
+                {'app_id':app.app_id,'call_id':call.object_id,'stage':stage},indent=2)+'\n')
             result=wait(call,stage)
             (OUT/(stage+'.json')).write_text(json.dumps(result,indent=2)+'\n')
             return result
@@ -99,6 +107,6 @@ def cpu(stage, download=False):
 if __name__=='__main__':
     import argparse
     parser=argparse.ArgumentParser()
-    parser.add_argument('stage',choices=['inspect','download','tokenize','gradient','cleanup'])
+    parser.add_argument('stage',choices=['inspect','download','download_resume','download_bf16','download_bf16_resume','kernel_transport','tokenize','gradient','cleanup'])
     args=parser.parse_args()
-    cpu(args.stage,download=args.stage=='download')
+    cpu(args.stage,download=args.stage.startswith('download'))

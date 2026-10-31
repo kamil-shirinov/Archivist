@@ -1,8 +1,8 @@
 """Task-owned, bounded Modal resources. Import never launches a job."""
 import modal
 
-MODEL = 'unsloth/Muse-Spark-Open-816B-A42B-NVFP4'
-REVISION = 'fc6908f53c6882d4ec48fca5ba144e41d21e1f92'
+MODEL = 'unsloth/Muse-Spark-Open-816B-A42B'
+REVISION = '49cade7b0c6ed297f0434229ac67eea5f9ae1220'
 TRANSFORMERS = '585946e8dbfc114a5f45e62b41e35a468e9e85b9'
 VOLUME_NAME = 'archivist-sparkft-p34-v1'
 UA = 'archivist-hackathon/0.1 (+https://github.com/kamil-shirinov/Archivist)'
@@ -13,7 +13,7 @@ volume = modal.Volume.from_name(VOLUME_NAME, create_if_missing=True)
 image = (modal.Image.debian_slim(python_version='3.12')
     .apt_install('git')
     .pip_install('torch==2.15.0', 'torchvision==0.29.2', 'peft==0.21.2', 'accelerate==1.15.0',
-                 'safetensors==0.8.0', 'pillow==13.0.0', 'kernels==0.18.0',
+                 'safetensors==0.8.0', 'pillow==13.0.0', 'kernels==0.17.2',
                  'huggingface_hub==2.4.0',
                  'git+https://github.com/huggingface/transformers.git@' + TRANSFORMERS)
     .env({'HF_HOME': ROOT + '/hf', 'HF_HUB_DISABLE_TELEMETRY': '1',
@@ -62,12 +62,12 @@ def prepare(download_weights=False):
     return result
 
 
-@app.function(**COMMON, gpu='B300:4', cpu=(16,16), memory=(262144,262144),
-              timeout=9600, startup_timeout=300)
+@app.function(**COMMON, gpu='B300:8', cpu=(16,16), memory=(262144,262144),
+              timeout=4700, startup_timeout=300)
 def experiment(payload, images):
     from sparkft.runtime import run
     try:
-        return run(payload, images, PathRoot=ROOT)
+        return run(payload, images, PathRoot=ROOT, commit=volume.commit)
     finally:
         volume.commit()
 
@@ -97,12 +97,13 @@ def tokenize(payload, images):
         if length+MAX_NEW>MAX_CONTEXT:
             raise ValueError('Validation exceeds prospective context; no silent truncation')
         val.append(length)
-    return {'training_lengths':train,'validation_lengths':val,
+    result={'training_lengths':train,'validation_lengths':val,
             'processor':type(processor).__name__,'max_context':MAX_CONTEXT,'max_new_tokens':MAX_NEW}
+    return result
 
 
 @app.function(**COMMON, gpu='B300', cpu=(4,4), memory=(16384,16384),
-              timeout=300, startup_timeout=60)
+              timeout=600, startup_timeout=60)
 def gradient_probe(config_dict):
     from transformers import AutoConfig
     from sparkft.runtime import kernel_gradient
@@ -110,3 +111,18 @@ def gradient_probe(config_dict):
     model_type=config_dict.pop('model_type')
     config=AutoConfig.for_model(model_type,**config_dict)
     return kernel_gradient(config)
+
+
+
+@app.function(**COMMON, cpu=(1,1), memory=(2048,2048), timeout=120, startup_timeout=60)
+def kernel_transport():
+    from sparkft.runtime import configure_hub_requests,PROJECT_AGENT
+    from kernels import get_kernel
+    configure_hub_requests()
+    try:
+        module=get_kernel('kernels-community/finegrained-kernels',version=0,backend='cpu',
+                          check_arch=False,trust_remote_code=['kernels-community/finegrained-kernels'],
+                          user_agent=PROJECT_AGENT)
+        return {'status':'loaded','module':module.__name__}
+    except Exception as error:
+        return {'status':'exception','type':type(error).__name__,'message':str(error)}

@@ -29,7 +29,7 @@ rights; DATA_SOURCES.md and D14 describe the permitted use. Only aggregate publi
 Treasury figures, never a person's labels or private financial data, are prepared.
 All page references are checked against the development issue list before access.
 
-The licence permits the proposed fine-tune; it does not supply compute, a training
-implementation, or clearance for unrelated closed API output. The binding stop
-in this task is the compute estimate above $40, not a claim that fine-tuning these
-public-domain pages is categorically forbidden.
+The licence permits the proposed fine-tune. The initial $40 feasibility stop is
+superseded by the owner's $95 training/validation authorization plus a separate
+$20 serving reserve. No closed Meta API output enters training. Additional Baseten
+reads of public development pages are validation references only, capped at $5.

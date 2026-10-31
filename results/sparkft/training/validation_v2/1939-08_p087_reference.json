@@ -1,0 +1,253 @@
+{
+  "page": "1939-08_p087",
+  "family": "security_transactions_as_reported_by",
+  "layout": "17f41ebdd51b",
+  "reference": [
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-08_p087:47:total_europe",
+      "value": "360",
+      "canonical_value": "360",
+      "ocr_box": {
+        "x0": 984,
+        "y0": 1612,
+        "x1": 1008,
+        "y1": 1621
+      },
+      "ocr_text": "360"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-08_p087:30:other_europe",
+      "value": "151",
+      "canonical_value": "151",
+      "ocr_box": {
+        "x0": 879,
+        "y0": 1117,
+        "x1": 903,
+        "y1": 1127
+      },
+      "ocr_text": "151"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-08_p087:08:all_other",
+      "value": "179",
+      "canonical_value": "179",
+      "ocr_box": {
+        "x0": 1315,
+        "y0": 553,
+        "x1": 1338,
+        "y1": 563
+      },
+      "ocr_text": "179"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-08_p087:47:united_kingdom",
+      "value": "241",
+      "canonical_value": "241",
+      "ocr_box": {
+        "x0": 377,
+        "y0": 1612,
+        "x1": 401,
+        "y1": 1621
+      },
+      "ocr_text": "241"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-08_p087:23:netherlands",
+      "value": "656",
+      "canonical_value": "656",
+      "ocr_box": {
+        "x0": 710,
+        "y0": 953,
+        "x1": 733,
+        "y1": 963
+      },
+      "ocr_text": "656"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-08_p087:07:netherlands",
+      "value": "2,082",
+      "canonical_value": "2082",
+      "ocr_box": {
+        "x0": 690,
+        "y0": 531,
+        "x1": 733,
+        "y1": 543
+      },
+      "ocr_text": "2,082"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-08_p087:18:latin_america",
+      "value": "429",
+      "canonical_value": "429",
+      "ocr_box": {
+        "x0": 1154,
+        "y0": 828,
+        "x1": 1178,
+        "y1": 838
+      },
+      "ocr_text": "429"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-08_p087:27:latin_america",
+      "value": "146",
+      "canonical_value": "146",
+      "ocr_box": {
+        "x0": 1154,
+        "y0": 1060,
+        "x1": 1179,
+        "y1": 1067
+      },
+      "ocr_text": "llt6"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-08_p087:12:netherlands",
+      "value": "189",
+      "canonical_value": "189",
+      "ocr_box": {
+        "x0": 709,
+        "y0": 655,
+        "x1": 733,
+        "y1": 665
+      },
+      "ocr_text": "189"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-08_p087:04:other_europe",
+      "value": "618",
+      "canonical_value": "618",
+      "ocr_box": {
+        "x0": 879,
+        "y0": 444,
+        "x1": 903,
+        "y1": 454
+      },
+      "ocr_text": "6I8"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-08_p087:34:grand_total",
+      "value": "2,180",
+      "canonical_value": "2180",
+      "ocr_box": {
+        "x0": 1400,
+        "y0": 1249,
+        "x1": 1443,
+        "y1": 1261
+      },
+      "ocr_text": "2,180"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-08_p087:05:all_other",
+      "value": "136",
+      "canonical_value": "136",
+      "ocr_box": {
+        "x0": 1315,
+        "y0": 465,
+        "x1": 1338,
+        "y1": 475
+      },
+      "ocr_text": "136"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-08_p087:30:latin_america",
+      "value": "265",
+      "canonical_value": "265",
+      "ocr_box": {
+        "x0": 1154,
+        "y0": 1117,
+        "x1": 1178,
+        "y1": 1127
+      },
+      "ocr_text": "265"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-08_p087:22:netherlands",
+      "value": "749",
+      "canonical_value": "749",
+      "ocr_box": {
+        "x0": 709,
+        "y0": 935,
+        "x1": 733,
+        "y1": 944
+      },
+      "ocr_text": "749"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-08_p087:05:united_kingdom",
+      "value": "4,012",
+      "canonical_value": "4012",
+      "ocr_box": {
+        "x0": 357,
+        "y0": 460,
+        "x1": 402,
+        "y1": 472
+      },
+      "ocr_text": "U,012"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-08_p087:29:grand_total",
+      "value": "2,993",
+      "canonical_value": "2993",
+      "ocr_box": {
+        "x0": 1400,
+        "y0": 1099,
+        "x1": 1443,
+        "y1": 1111
+      },
+      "ocr_text": "2,993"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-08_p087:30:switzerland",
+      "value": "202",
+      "canonical_value": "202",
+      "ocr_box": {
+        "x0": 794,
+        "y0": 1116,
+        "x1": 818,
+        "y1": 1126
+      },
+      "ocr_text": "202"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-08_p087:07:switzerland",
+      "value": "1,419",
+      "canonical_value": "1419",
+      "ocr_box": {
+        "x0": 775,
+        "y0": 530,
+        "x1": 818,
+        "y1": 542
+      },
+      "ocr_text": "1,U19"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-08_p087:29:united_kingdom",
+      "value": "539",
+      "canonical_value": "539",
+      "ocr_box": {
+        "x0": 378,
+        "y0": 1100,
+        "x1": 402,
+        "y1": 1109
+      },
+      "ocr_text": "539"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-08_p087:05:germany",
+      "value": "103",
+      "canonical_value": "103",
+      "ocr_box": {
+        "x0": 549,
+        "y0": 463,
+        "x1": 573,
+        "y1": 473
+      },
+      "ocr_text": "103"
+    }
+  ],
+  "support": 20,
+  "source": "baseten_muse_spark_open",
+  "source_hashes": {
+    "response_sha256": "18188626d736c90385c6349b4d2f009c9903d759ea5d84c75a06dd41900c43cd"
+  },
+  "returned_figure_fields": 780
+}

@@ -62,16 +62,41 @@ def score(records, references):
             correct+=good;boxed+=contains;joint+=good and contains
             details.append({'field':ref['fields'][i],'value_correct':good,
                             'figure_contained':contains,'area_ratio':area_ratio})
-        per_page.append({'page':ref['page'],'n':len(expected),'value_correct':correct,
+        per_page.append({'page':ref['page'],'family':ref.get('family'),'layout':ref.get('layout'),
+                         'n':len(expected),'value_correct':correct,
                          'figure_contained':boxed,'joint_correct':joint,'error':error,'cells':details})
     n=sum(p['n'] for p in per_page)
     def rate(key):return sum(p[key] for p in per_page)/n if n else None
+    def grouped(key):
+        groups={}
+        for page in per_page:
+            label=page[key]
+            if label is None:continue
+            group=groups.setdefault(label,{'pages':0,'n':0,'value_correct':0,'figure_contained':0})
+            group['pages']+=bool(page['n'])
+            for count in ('n','value_correct','figure_contained'):group[count]+=page[count]
+        for group in groups.values():
+            group['value_accuracy']=group['value_correct']/group['n'] if group['n'] else None
+            group['box_containment']=group['figure_contained']/group['n'] if group['n'] else None
+        return groups
     return {'n':n,'value_accuracy':rate('value_correct'),'box_containment':rate('figure_contained'),
             'joint_accuracy':rate('joint_correct'),'invalid_pages':sum(p['error'] is not None for p in per_page),
-            'per_page':per_page}
+            'per_page':per_page,'per_family':grouped('family'),'per_layout':grouped('layout')}
 
 
-def adoption(base,trained):
-    return bool(base['n']>0 and base['n']==trained['n'] and
+def adoption(base,trained,required_families=None,minimum_pages=3):
+    pooled=bool(base['n']>0 and base['n']==trained['n'] and
                 trained['value_accuracy']>base['value_accuracy'] and
                 trained['box_containment']>base['box_containment'])
+    if not pooled:return False
+    for grouping in ('per_family','per_layout'):
+        before=base.get(grouping,{});after=trained.get(grouping,{})
+        if set(before)!=set(after):return False
+        if required_families is not None and (not before or
+            grouping=='per_family' and set(before)!=set(required_families)):return False
+        for key,b in before.items():
+            t=after[key]
+            if b['pages']<minimum_pages or t['pages']!=b['pages'] or t['n']!=b['n']:return False
+            if any(b[m] is None or t[m] is None or t[m]<b[m]
+                   for m in ('value_accuracy','box_containment')):return False
+    return True

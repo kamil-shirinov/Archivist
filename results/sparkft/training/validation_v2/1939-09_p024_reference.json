@@ -1,0 +1,217 @@
+{
+  "page": "1939-09_p024",
+  "family": "receipts_and_expenditures_under_railroad",
+  "layout": "be687f3defad",
+  "reference": [
+    {
+      "field_id": "T.receipts_and_expenditures_under_railroad:1939-09_p024:08:total_exp",
+      "value": "16.7",
+      "canonical_value": "16.7",
+      "ocr_box": {
+        "x0": 1393,
+        "y0": 584,
+        "x1": 1427,
+        "y1": 594
+      },
+      "ocr_text": "16.7"
+    },
+    {
+      "field_id": "T.receipts_and_expenditures_under_railroad:1939-09_p024:17:to_retirement",
+      "value": "18.1",
+      "canonical_value": "18.1",
+      "ocr_box": {
+        "x0": 1061,
+        "y0": 813,
+        "x1": 1094,
+        "y1": 823
+      },
+      "ocr_text": "18.1"
+    },
+    {
+      "field_id": "T.receipts_and_expenditures_under_railroad:1939-09_p024:16:total_exp",
+      "value": "37.4",
+      "canonical_value": "37.4",
+      "ocr_box": {
+        "x0": 1394,
+        "y0": 795,
+        "x1": 1427,
+        "y1": 804
+      },
+      "ocr_text": "37.4"
+    },
+    {
+      "field_id": "T.receipts_and_expenditures_under_railroad:1939-09_p024:04:taxes",
+      "value": "109.3",
+      "canonical_value": "109.3",
+      "ocr_box": {
+        "x0": 710,
+        "y0": 462,
+        "x1": 753,
+        "y1": 472
+      },
+      "ocr_text": "109.3"
+    },
+    {
+      "field_id": "T.receipts_and_expenditures_under_railroad:1939-09_p024:16:to_unemployment",
+      "value": "15.0",
+      "canonical_value": "15",
+      "ocr_box": {
+        "x0": 1232,
+        "y0": 794,
+        "x1": 1266,
+        "y1": 804
+      },
+      "ocr_text": "15.0"
+    },
+    {
+      "field_id": "T.receipts_and_expenditures_under_railroad:1939-09_p024:12:total_exp",
+      "value": "18.3",
+      "canonical_value": "18.3",
+      "ocr_box": {
+        "x0": 1393,
+        "y0": 679,
+        "x1": 1427,
+        "y1": 689
+      },
+      "ocr_text": "18.3"
+    },
+    {
+      "field_id": "T.receipts_and_expenditures_under_railroad:1939-09_p024:12:to_retirement",
+      "value": "18.0",
+      "canonical_value": "18",
+      "ocr_box": {
+        "x0": 1061,
+        "y0": 680,
+        "x1": 1094,
+        "y1": 690
+      },
+      "ocr_text": "18.0"
+    },
+    {
+      "field_id": "T.receipts_and_expenditures_under_railroad:1939-09_p024:07:total_exp",
+      "value": "11.7",
+      "canonical_value": "11.7",
+      "ocr_box": {
+        "x0": 1393,
+        "y0": 565,
+        "x1": 1427,
+        "y1": 575
+      },
+      "ocr_text": "11.7"
+    },
+    {
+      "field_id": "T.receipts_and_expenditures_under_railroad:1939-09_p024:08:taxes",
+      "value": "26.5",
+      "canonical_value": "26.5",
+      "ocr_box": {
+        "x0": 718,
+        "y0": 586,
+        "x1": 753,
+        "y1": 596
+      },
+      "ocr_text": "26.5"
+    },
+    {
+      "field_id": "T.receipts_and_expenditures_under_railroad:1939-09_p024:15:taxes",
+      "value": "21.1",
+      "canonical_value": "21.1",
+      "ocr_box": {
+        "x0": 719,
+        "y0": 757,
+        "x1": 752,
+        "y1": 767
+      },
+      "ocr_text": "21.1"
+    },
+    {
+      "field_id": "T.receipts_and_expenditures_under_railroad:1939-09_p024:17:total_exp",
+      "value": "18.7",
+      "canonical_value": "18.7",
+      "ocr_box": {
+        "x0": 1393,
+        "y0": 813,
+        "x1": 1426,
+        "y1": 823
+      },
+      "ocr_text": "18.7"
+    },
+    {
+      "field_id": "T.receipts_and_expenditures_under_railroad:1939-09_p024:03:taxes",
+      "value": "150.1",
+      "canonical_value": "150.1",
+      "ocr_box": {
+        "x0": 710,
+        "y0": 443,
+        "x1": 752,
+        "y1": 452
+      },
+      "ocr_text": "150.1"
+    },
+    {
+      "field_id": "T.receipts_and_expenditures_under_railroad:1939-09_p024:04:total_exp",
+      "value": "110.4",
+      "canonical_value": "110.4",
+      "ocr_box": {
+        "x0": 1384,
+        "y0": 458,
+        "x1": 1428,
+        "y1": 468
+      },
+      "ocr_text": "110.4"
+    },
+    {
+      "field_id": "T.receipts_and_expenditures_under_railroad:1939-09_p024:16:to_retirement",
+      "value": "21.9",
+      "canonical_value": "21.9",
+      "ocr_box": {
+        "x0": 1060,
+        "y0": 795,
+        "x1": 1094,
+        "y1": 805
+      },
+      "ocr_text": "21.9"
+    },
+    {
+      "field_id": "T.receipts_and_expenditures_under_railroad:1939-09_p024:05:taxes",
+      "value": "25.5",
+      "canonical_value": "25.5",
+      "ocr_box": {
+        "x0": 718,
+        "y0": 510,
+        "x1": 753,
+        "y1": 520
+      },
+      "ocr_text": "25.5"
+    },
+    {
+      "field_id": "T.receipts_and_expenditures_under_railroad:1939-09_p024:04:to_retirement",
+      "value": "107.1",
+      "canonical_value": "107.1",
+      "ocr_box": {
+        "x0": 1051,
+        "y0": 461,
+        "x1": 1093,
+        "y1": 470
+      },
+      "ocr_text": "107.1"
+    },
+    {
+      "field_id": "T.receipts_and_expenditures_under_railroad:1939-09_p024:11:taxes",
+      "value": "27.5",
+      "canonical_value": "27.5",
+      "ocr_box": {
+        "x0": 719,
+        "y0": 663,
+        "x1": 753,
+        "y1": 673
+      },
+      "ocr_text": "27.5"
+    }
+  ],
+  "support": 17,
+  "source": "baseten_muse_spark_open",
+  "source_hashes": {
+    "response_sha256": "5021d0f40134ef90e1ba7ea495727efc9cfe593bbbae16f70d4de9eacf195267"
+  },
+  "returned_figure_fields": 85
+}

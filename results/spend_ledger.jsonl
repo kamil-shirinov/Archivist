@@ -81146,3 +81146,10 @@
 {"timestamp": "2026-10-30T07:57:16.306+00:00", "role": "extractor", "backend": "fireworks", "model_id": "accounts/fireworks/models/muse-spark-open", "input_tokens": 2786, "output_tokens": 402, "cost_usd": 0.005191}
 {"timestamp": "2026-10-30T07:57:20.308+00:00", "role": "extractor", "backend": "fireworks", "model_id": "accounts/fireworks/models/muse-spark-open", "input_tokens": 2786, "output_tokens": 458, "cost_usd": 0.005429}
 {"timestamp": "2026-10-30T07:57:20.930+00:00", "role": "extractor", "backend": "fireworks", "model_id": "accounts/fireworks/models/muse-spark-open", "input_tokens": 2786, "output_tokens": 419, "cost_usd": 0.00526325}
+{"timestamp": "2026-10-31T22:40:49.715+00:00", "role": "extractor", "backend": "baseten", "model_id": "meta-models/muse-spark-open-1026", "input_tokens": 29073, "output_tokens": 10266, "cost_usd": 0.07997175}
+{"timestamp": "2026-10-31T22:41:16.985+00:00", "role": "extractor", "backend": "baseten", "model_id": "meta-models/muse-spark-open-1026", "input_tokens": 29147, "output_tokens": 9938, "cost_usd": 0.07867025}
+{"timestamp": "2026-10-31T22:41:31.696+00:00", "role": "extractor", "backend": "baseten", "model_id": "meta-models/muse-spark-open-1026", "input_tokens": 10536, "output_tokens": 2829, "cost_usd": 0.02519325}
+{"timestamp": "2026-10-31T22:42:08.304+00:00", "role": "extractor", "backend": "baseten", "model_id": "meta-models/muse-spark-open-1026", "input_tokens": 52816, "output_tokens": 16703, "cost_usd": 0.13700775}
+{"timestamp": "2026-10-31T22:42:49.801+00:00", "role": "extractor", "backend": "baseten", "model_id": "meta-models/muse-spark-open-1026", "input_tokens": 52816, "output_tokens": 18687, "cost_usd": 0.14543975}
+{"timestamp": "2026-10-31T22:43:27.255+00:00", "role": "extractor", "backend": "baseten", "model_id": "meta-models/muse-spark-open-1026", "input_tokens": 44739, "output_tokens": 16678, "cost_usd": 0.12680525}
+{"timestamp": "2026-10-31T22:44:10.464+00:00", "role": "extractor", "backend": "baseten", "model_id": "meta-models/muse-spark-open-1026", "input_tokens": 44739, "output_tokens": 17587, "cost_usd": 0.1306685}

@@ -1,0 +1,253 @@
+{
+  "page": "1939-08_p097",
+  "family": "outstanding_forward_exchange_contracts",
+  "layout": "49015cd4f4fa",
+  "reference": [
+    {
+      "field_id": "T.outstanding_forward_exchange_contracts:1939-08_p097:total_purchase_04:italy",
+      "value": "368",
+      "canonical_value": "368",
+      "ocr_box": {
+        "x0": 637,
+        "y0": 453,
+        "x1": 660,
+        "y1": 462
+      },
+      "ocr_text": "368"
+    },
+    {
+      "field_id": "T.outstanding_forward_exchange_contracts:1939-08_p097:purchase_domestic_02:latin_america",
+      "value": "768",
+      "canonical_value": "768",
+      "ocr_box": {
+        "x0": 1166,
+        "y0": 700,
+        "x1": 1190,
+        "y1": 710
+      },
+      "ocr_text": "768"
+    },
+    {
+      "field_id": "T.outstanding_forward_exchange_contracts:1939-08_p097:purchase_domestic_02:germany",
+      "value": "107",
+      "canonical_value": "107",
+      "ocr_box": {
+        "x0": 562,
+        "y0": 700,
+        "x1": 585,
+        "y1": 710
+      },
+      "ocr_text": "107"
+    },
+    {
+      "field_id": "T.outstanding_forward_exchange_contracts:1939-08_p097:sale_domestic_03:netherlands",
+      "value": "10,409",
+      "canonical_value": "10409",
+      "ocr_box": {
+        "x0": 694,
+        "y0": 1128,
+        "x1": 746,
+        "y1": 1138
+      },
+      "ocr_text": "10,1*09"
+    },
+    {
+      "field_id": "T.outstanding_forward_exchange_contracts:1939-08_p097:sale_foreign_04:netherlands",
+      "value": "8,189",
+      "canonical_value": "8189",
+      "ocr_box": {
+        "x0": 703,
+        "y0": 1005,
+        "x1": 746,
+        "y1": 1017
+      },
+      "ocr_text": "8,189"
+    },
+    {
+      "field_id": "T.outstanding_forward_exchange_contracts:1939-08_p097:sale_domestic_04:grand_total",
+      "value": "276,290",
+      "canonical_value": "276290",
+      "ocr_box": {
+        "x0": 1393,
+        "y0": 1146,
+        "x1": 1455,
+        "y1": 1158
+      },
+      "ocr_text": "276,290"
+    },
+    {
+      "field_id": "T.outstanding_forward_exchange_contracts:1939-08_p097:purchase_domestic_01:total_europe",
+      "value": "233,913",
+      "canonical_value": "233913",
+      "ocr_box": {
+        "x0": 957,
+        "y0": 682,
+        "x1": 1019,
+        "y1": 694
+      },
+      "ocr_text": "233,913"
+    },
+    {
+      "field_id": "T.outstanding_forward_exchange_contracts:1939-08_p097:purchase_domestic_01:latin_america",
+      "value": "675",
+      "canonical_value": "675",
+      "ocr_box": {
+        "x0": 1166,
+        "y0": 682,
+        "x1": 1190,
+        "y1": 692
+      },
+      "ocr_text": "675"
+    },
+    {
+      "field_id": "T.outstanding_forward_exchange_contracts:1939-08_p097:sale_domestic_04:italy",
+      "value": "388",
+      "canonical_value": "388",
+      "ocr_box": {
+        "x0": 637,
+        "y0": 1148,
+        "x1": 661,
+        "y1": 1158
+      },
+      "ocr_text": "388"
+    },
+    {
+      "field_id": "T.outstanding_forward_exchange_contracts:1939-08_p097:sale_domestic_03:far_east",
+      "value": "6,651",
+      "canonical_value": "6651",
+      "ocr_box": {
+        "x0": 1232,
+        "y0": 1127,
+        "x1": 1274,
+        "y1": 1139
+      },
+      "ocr_text": "6,651"
+    },
+    {
+      "field_id": "T.outstanding_forward_exchange_contracts:1939-08_p097:purchase_domestic_04:france",
+      "value": "2,004",
+      "canonical_value": "2004",
+      "ocr_box": {
+        "x0": 457,
+        "y0": 737,
+        "x1": 501,
+        "y1": 749
+      },
+      "ocr_text": "2,00U"
+    },
+    {
+      "field_id": "T.outstanding_forward_exchange_contracts:1939-08_p097:sale_foreign_02:other_europe",
+      "value": "12,080",
+      "canonical_value": "12080",
+      "ocr_box": {
+        "x0": 865,
+        "y0": 966,
+        "x1": 916,
+        "y1": 978
+      },
+      "ocr_text": "12,080"
+    },
+    {
+      "field_id": "T.outstanding_forward_exchange_contracts:1939-08_p097:sale_domestic_02:grand_total",
+      "value": "298,570",
+      "canonical_value": "298570",
+      "ocr_box": {
+        "x0": 1394,
+        "y0": 1108,
+        "x1": 1455,
+        "y1": 1119
+      },
+      "ocr_text": "298,570"
+    },
+    {
+      "field_id": "T.outstanding_forward_exchange_contracts:1939-08_p097:sale_domestic_03:italy",
+      "value": "390",
+      "canonical_value": "390",
+      "ocr_box": {
+        "x0": 638,
+        "y0": 1129,
+        "x1": 662,
+        "y1": 1139
+      },
+      "ocr_text": "390"
+    },
+    {
+      "field_id": "T.outstanding_forward_exchange_contracts:1939-08_p097:purchase_domestic_04:latin_america",
+      "value": "759",
+      "canonical_value": "759",
+      "ocr_box": {
+        "x0": 1166,
+        "y0": 741,
+        "x1": 1189,
+        "y1": 750
+      },
+      "ocr_text": "759"
+    },
+    {
+      "field_id": "T.outstanding_forward_exchange_contracts:1939-08_p097:purchase_domestic_04:netherlands",
+      "value": "7,268",
+      "canonical_value": "7268",
+      "ocr_box": {
+        "x0": 703,
+        "y0": 738,
+        "x1": 745,
+        "y1": 750
+      },
+      "ocr_text": "7,268"
+    },
+    {
+      "field_id": "T.outstanding_forward_exchange_contracts:1939-08_p097:total_sale_01:france",
+      "value": "6,712",
+      "canonical_value": "6712",
+      "ocr_box": {
+        "x0": 458,
+        "y0": 804,
+        "x1": 500,
+        "y1": 816
+      },
+      "ocr_text": "6,712"
+    },
+    {
+      "field_id": "T.outstanding_forward_exchange_contracts:1939-08_p097:purchase_domestic_03:other_europe",
+      "value": "10,186",
+      "canonical_value": "10186",
+      "ocr_box": {
+        "x0": 864,
+        "y0": 719,
+        "x1": 916,
+        "y1": 730
+      },
+      "ocr_text": "10,186"
+    },
+    {
+      "field_id": "T.outstanding_forward_exchange_contracts:1939-08_p097:purchase_domestic_04:total_europe",
+      "value": "204,304",
+      "canonical_value": "204304",
+      "ocr_box": {
+        "x0": 957,
+        "y0": 736,
+        "x1": 1021,
+        "y1": 747
+      },
+      "ocr_text": "20l\u00bb,30U"
+    },
+    {
+      "field_id": "T.outstanding_forward_exchange_contracts:1939-08_p097:total_purchase_01:all_other",
+      "value": "187",
+      "canonical_value": "187",
+      "ocr_box": {
+        "x0": 1325,
+        "y0": 396,
+        "x1": 1349,
+        "y1": 406
+      },
+      "ocr_text": "187"
+    }
+  ],
+  "support": 20,
+  "source": "baseten_muse_spark_open",
+  "source_hashes": {
+    "response_sha256": "c7f31f3474df60aa736c212e33cb7c620d5b7de47700c7d24e2657e6e5b5842e"
+  },
+  "returned_figure_fields": 390
+}

@@ -13,5 +13,125 @@
     "event": "started",
     "app_id": "ap-i9MXRDl5BCuu5glE0fJRFB",
     "stage": "download"
+  },
+  {
+    "event": "started",
+    "app_id": "ap-ZUTBhenZ9TQHxaddJB8inG",
+    "stage": "gradient"
+  },
+  {
+    "event": "run_context_exiting",
+    "app_id": "ap-ZUTBhenZ9TQHxaddJB8inG",
+    "stage": "gradient"
+  },
+  {
+    "event": "started",
+    "app_id": "ap-twA1qWXmDYtQwtJw9fYwKx",
+    "stage": "gradient"
+  },
+  {
+    "event": "run_context_exiting",
+    "app_id": "ap-twA1qWXmDYtQwtJw9fYwKx",
+    "stage": "gradient"
+  },
+  {
+    "event": "started",
+    "app_id": "ap-Z92sBqJG69CnKG3YJ2vik8",
+    "stage": "gradient"
+  },
+  {
+    "event": "run_context_exiting",
+    "app_id": "ap-Z92sBqJG69CnKG3YJ2vik8",
+    "stage": "gradient"
+  },
+  {
+    "event": "started",
+    "app_id": "ap-QjKH72a38MXa9tAw2YfK0C",
+    "stage": "gradient"
+  },
+  {
+    "event": "run_context_exiting",
+    "app_id": "ap-QjKH72a38MXa9tAw2YfK0C",
+    "stage": "gradient"
+  },
+  {
+    "event": "started",
+    "app_id": "ap-f1BfcpCaWq7rGZRmoPT8CJ",
+    "stage": "kernel_transport"
+  },
+  {
+    "event": "run_context_exiting",
+    "app_id": "ap-i9MXRDl5BCuu5glE0fJRFB",
+    "stage": "download"
+  },
+  {
+    "event": "run_context_exiting",
+    "app_id": "ap-f1BfcpCaWq7rGZRmoPT8CJ",
+    "stage": "kernel_transport"
+  },
+  {
+    "event": "started",
+    "app_id": "ap-DqMhHuVefUsH3SMAw80HDe",
+    "stage": "download_resume"
+  },
+  {
+    "event": "started",
+    "app_id": "ap-Rgdj0XzT5iiuZVzgkYAijJ",
+    "stage": "gradient"
+  },
+  {
+    "event": "run_context_exiting",
+    "app_id": "ap-Rgdj0XzT5iiuZVzgkYAijJ",
+    "stage": "gradient"
+  },
+  {
+    "event": "started",
+    "app_id": "ap-zGITyYWpPKIqs7EqdmgNqq",
+    "stage": "gradient"
+  },
+  {
+    "event": "run_context_exiting",
+    "app_id": "ap-DqMhHuVefUsH3SMAw80HDe",
+    "stage": "download_resume"
+  },
+  {
+    "event": "started",
+    "app_id": "ap-OutIOWYC0P4iVs1ta5XSmK",
+    "stage": "tokenize"
+  },
+  {
+    "event": "run_context_exiting",
+    "app_id": "ap-zGITyYWpPKIqs7EqdmgNqq",
+    "stage": "gradient"
+  },
+  {
+    "event": "run_context_exiting",
+    "app_id": "ap-OutIOWYC0P4iVs1ta5XSmK",
+    "stage": "tokenize"
+  },
+  {
+    "event": "started",
+    "app_id": "ap-sOlnVEAPUmEClFySDEp6Iw",
+    "stage": "gradient"
+  },
+  {
+    "event": "run_context_exiting",
+    "app_id": "ap-sOlnVEAPUmEClFySDEp6Iw",
+    "stage": "gradient"
+  },
+  {
+    "event": "started",
+    "app_id": "ap-ERT62w9D2VysscMcJPlmkf",
+    "stage": "download_bf16"
+  },
+  {
+    "event": "started",
+    "app_id": "ap-BASlIljT6TDebuTD8Cz63y",
+    "stage": "tokenize"
+  },
+  {
+    "event": "run_context_exiting",
+    "app_id": "ap-BASlIljT6TDebuTD8Cz63y",
+    "stage": "tokenize"
   }
 ]

@@ -1,0 +1,25 @@
+{
+  "page": "1984-06_p058",
+  "family": "total_claims_by_country",
+  "layout": "a2f2732dc10b",
+  "reference": [
+    {
+      "field_id": "T.total_claims_by_country:1984-06_p058:austria:c1",
+      "value": "206",
+      "canonical_value": "206",
+      "ocr_box": {
+        "x0": 441,
+        "y0": 197,
+        "x1": 459,
+        "y1": 204
+      },
+      "ocr_text": "206"
+    }
+  ],
+  "support": 1,
+  "source": "cached_meta_1.3",
+  "source_hashes": {
+    "e39dc4fafd5333b93eb0ebeaddd990d7cdde07c4764d953cc425be60b0c5eae4": "9f11f51335e508a52073addf42ee936d7fa5fd5cd384285f5ee591701b55f40f"
+  },
+  "returned_figure_fields": 744
+}

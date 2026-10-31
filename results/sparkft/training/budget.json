@@ -1,9 +1,9 @@
 {
   "training_validation_cap_usd": 95,
   "serving_reserve_usd": 20,
-  "gpu_reservation_usd": "85.92259680",
+  "gpu_reservation_usd": "83.01790880",
   "preparation_reserve_usd": "5",
-  "retained_training_validation_ceiling_usd": "90.92259680",
+  "retained_training_validation_ceiling_usd": "94.04317480",
   "cpu_attempts": [
     {
       "stage": "inspect",
@@ -14,7 +14,92 @@
       "stage": "download",
       "ceiling_usd": "0.46290000",
       "retained": true
+    },
+    {
+      "stage": "kernel_transport",
+      "ceiling_usd": "0.00342030",
+      "retained": true
+    },
+    {
+      "stage": "download_resume",
+      "ceiling_usd": "0.46290000",
+      "retained": true
+    },
+    {
+      "stage": "tokenize",
+      "ceiling_usd": "0.46290000",
+      "retained": true
+    },
+    {
+      "stage": "download_bf16",
+      "ceiling_usd": "0.46290000",
+      "retained": true
+    },
+    {
+      "stage": "tokenize",
+      "ceiling_usd": "0.46290000",
+      "retained": true
     }
   ],
-  "gpu_attempts": []
+  "gpu_attempts": [],
+  "gradient_probe_attempts": [
+    {
+      "gpu": "B300",
+      "execution_timeout_s": 300,
+      "startup_timeout_s": 60,
+      "ceiling_usd": "0.77247000",
+      "retained": true
+    },
+    {
+      "gpu": "B300",
+      "execution_timeout_s": 300,
+      "startup_timeout_s": 60,
+      "ceiling_usd": "0.77247000",
+      "retained": true
+    },
+    {
+      "gpu": "B300",
+      "execution_timeout_s": 300,
+      "startup_timeout_s": 60,
+      "ceiling_usd": "0.77247000",
+      "retained": true
+    },
+    {
+      "gpu": "B300",
+      "execution_timeout_s": 300,
+      "startup_timeout_s": 60,
+      "ceiling_usd": "0.77247000",
+      "retained": true
+    },
+    {
+      "gpu": "B300",
+      "execution_timeout_s": 300,
+      "startup_timeout_s": 60,
+      "ceiling_usd": "0.77247000",
+      "retained": true
+    },
+    {
+      "gpu": "B300",
+      "execution_timeout_s": 300,
+      "startup_timeout_s": 60,
+      "ceiling_usd": "0.77247000",
+      "retained": true
+    },
+    {
+      "gpu": "B300",
+      "execution_timeout_s": 600,
+      "startup_timeout_s": 60,
+      "ceiling_usd": "1.39044600",
+      "retained": true
+    }
+  ],
+  "cpu_subcap_usd": 4,
+  "gpu_plan": {
+    "gpu": "B300:8",
+    "execution_timeout_s": 4700,
+    "startup_timeout_s": 300,
+    "shutdown_allowance_s": 15,
+    "rate_per_s": 0.01655392,
+    "epochs": 1
+  }
 }

@@ -32,7 +32,7 @@ def test_cpu_reservations_survive_failure_and_cannot_use_serving_money(tmp_path,
     budget=json.loads((tmp_path/'budget.json').read_text())
     assert budget['serving_reserve_usd']==20
     assert budget['cpu_attempts'][0]['retained']
-    for _ in range(2):cloud.reserve_cpu('inspect')
+    for _ in range(6):cloud.reserve_cpu('inspect')
     with pytest.raises(ValueError,match='sub-budget'):
         cloud.reserve_cpu('inspect')
 
@@ -80,3 +80,37 @@ def test_inference_processor_never_receives_validation_answers():
             return turns
     item={'system':'Read numbers','prompt':'row 01 column m','target':{'secret_reference_937421':'123'}}
     inputs(Processor(),item,buffer.getvalue(),answer=False)
+
+
+def test_pooled_gain_cannot_hide_a_family_or_layout_regression():
+    def metrics(value,boxes):
+        return {'pages':3,'n':30,'value_accuracy':value,'box_containment':boxes}
+    base={'n':90,'value_accuracy':.5,'box_containment':.5,
+          'per_family':{'a':metrics(.9,.5),'b':metrics(.3,.5),'c':metrics(.3,.5)},
+          'per_layout':{'a1':metrics(.9,.5),'b1':metrics(.3,.5),'c1':metrics(.3,.5)}}
+    tuned=json.loads(json.dumps(base));tuned.update(value_accuracy=.6,box_containment=.6)
+    assert adoption(base,tuned,['a','b','c'])
+    tuned['per_family']['a']['value_accuracy']=.8
+    assert not adoption(base,tuned,['a','b','c'])
+    tuned['per_family']['a']['value_accuracy']=.9
+    tuned['per_layout']['a1']['box_containment']=.4
+    assert not adoption(base,tuned,['a','b','c'])
+    tuned['per_layout']['a1']['box_containment']=.5
+    assert not adoption(base,tuned,['a','b','c','missing'])
+    tuned['per_layout']['c1']['pages']=2
+    assert not adoption(base,tuned,['a','b','c'])
+
+
+def test_fixed_coverage_draw_has_no_training_overlap_or_missing_approved_family():
+    root=Path(__file__).resolve().parents[1]/'results/sparkft/training/validation_v2'
+    data=json.loads((root/'dataset.json').read_text())
+    draw=json.loads((root/'draw.json').read_text())
+    train={row['page'] for row in data['train']}
+    val={row['page'] for row in data['validation']}
+    assert not train & val
+    assert len(val)==15
+    assert train==set(draw['training_pages'])
+    assert '1982-06_p094' not in train
+    assert {r['family'] for r in data['validation']}==set(data['required_families'])
+    for layout in {r['layout'] for r in data['validation']}:
+        assert sum(r['layout']==layout and bool(r['fields']) for r in data['validation'])>=3

@@ -1,0 +1,4 @@
+{
+  "type": "ImportError",
+  "message": "finegrained-fp8 kernel unavailable: `kernels` is either not installed or uses an incompatible version. Please install a compatible version (0.17.2 <= version < 0.18.0), e.g. `pip install kernels==0.17.2`"
+}

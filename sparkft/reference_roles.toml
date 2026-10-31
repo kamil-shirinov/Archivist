@@ -1,0 +1,9 @@
+[roles.extractor]
+kind = "llm"
+backend = "baseten"
+model_id = "meta-models/muse-spark-open-1026"
+settings = { reasoning_effort = "low" }
+
+[prices."meta-models/muse-spark-open-1026"]
+input_per_mtok = 1.25
+output_per_mtok = 4.25
