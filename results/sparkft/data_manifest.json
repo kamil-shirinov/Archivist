@@ -1,0 +1,101 @@
+{
+  "status": "prepared_only_budget_stop_no_training",
+  "page_rule": "PLAN.md",
+  "source_revision": "633cdffc7797fecc1f8a9adf5ac38ef1d6b28fc9",
+  "source_hashes": {
+    "templates/short_term_foreign_liabilities_as.evidence.json": "41017b7a751417836b5133a23f2fa717d37e6f32e9d62474092a8e8a4458e464",
+    "templates/security_transactions_as_reported_by.evidence.json": "501fb1b0088dc0b9b9a4aab3a46e701828f7d0f82ea829acc6ee8e8e4d5e2583",
+    "templates/outstanding_forward_exchange_contracts.evidence.json": "afe03066edf93c97e091fb60f6a48c92f1d187f5c26ea66a746c36599bb60494",
+    "templates/receipts_and_expenditures_under_railroad.evidence.json": "b4177b0b109b66a843a31820ceaf9c34331739d47c4a9d904ea973adaa56a778",
+    "templates/total_claims_by_country.evidence.json": "6f6892fb6161cdf6056c59820195130a67d4501c90f9b8049a623ed01370ca40",
+    "results/openw_measure/reads/baseten/1939-01_p051.json": "c943c8e4cf17b32ea82332b33ac93f71dbf16a7c38ddc869264c2da4bc83c869",
+    "results/openw_measure/reads/fireworks/1939-01_p051.json": "2ba2ac0bd1db401a96ebb6daa4d5f65a44f9203d8070f75088ad99d9ad599e0e",
+    "results/openw_measure/reads/baseten/1939-01_p055.json": "44d2ab4264f9f81e6956595e519b5083314b48dbe1dbdfd8fc19c43de826c630",
+    "results/openw_measure/reads/fireworks/1939-01_p055.json": "b5f7ce9148172d58ef4601046df2e4864dd53056fd7802286c8f3413a6481644",
+    "results/openw_measure/reads/baseten/1939-01_p061.json": "5cb970b6348905b7e118a6e6f86a9f2011502eb38e3a0502cc36be583505cf82",
+    "results/openw_measure/reads/fireworks/1939-01_p061.json": "7378933501b07d2ec9604d45c259d3bfa6e7fe0fd5ece28c918668cca0aa0e02",
+    "results/openw_measure/reads/baseten/1939-08_p043.json": "74beff2c7517a05cb55a424a1fd4e98cabf52b0fdc2f18deffaa131abd35349c",
+    "results/openw_measure/reads/fireworks/1939-08_p043.json": "b0517d17ca8f75d3445381fd99b05bf948d8edebbb96f04be6299e40c9f38d8b",
+    "results/openw_measure/reads/baseten/1982-06_p094.json": "79751c79193e9241a38110594e357f08a532d70fc85bc4cf68afd04f57dc3496",
+    "results/openw_measure/reads/fireworks/1982-06_p094.json": "774c188752a466349d5605b5f284d7a99b376f409e77db5c426a9ad4a56b8029"
+  },
+  "split_sha256": "812520b7999ddbc3b8ac6add2e5362ffa3256c75cbbe12b6a7f21cf7da6d8de2",
+  "manifest_sha256": "76f14cbd0d271807833113406be999901756d9602e0d91fb1cdb4bc2bc56c83b",
+  "training": [
+    {
+      "page": "1939-01_p055",
+      "family": "security_transactions_as_reported_by",
+      "answers": 156,
+      "image_sha256": "4da1500999d2e02e056b5d0db3aa8934981b16caddb04428df0396cf261864a9",
+      "image_opened": true
+    },
+    {
+      "page": "1939-01_p061",
+      "family": "outstanding_forward_exchange_contracts",
+      "answers": 114,
+      "image_sha256": "9f3ecbba908248e9870e84e68eceb6e00c428413c32401403ee9c4219f719694",
+      "image_opened": true
+    },
+    {
+      "page": "1939-08_p043",
+      "family": "receipts_and_expenditures_under_railroad",
+      "answers": 13,
+      "image_sha256": "7cd7e74dbd677d95d8b633d4982b93dcc02fc62416ae3e973b099b10a631bfeb",
+      "image_opened": true
+    },
+    {
+      "page": "1982-06_p094",
+      "family": "total_claims_by_country",
+      "answers": 118,
+      "image_sha256": "1bcba2f47aed8f524599dba064a4b4b27c9aac772cd7f7a32a9568aa4fb211e2",
+      "image_opened": true
+    }
+  ],
+  "validation": [
+    {
+      "page": "1939-12_p060",
+      "family": "outstanding_forward_exchange_contracts",
+      "image_sha256": "935aa0e24b73267da2ba5d0c54b74dafcc590967e643545b07f0b3f205d7c8d6",
+      "image_opened": false,
+      "ocr_opened": false
+    },
+    {
+      "page": "1939-12_p025",
+      "family": "receipts_and_expenditures_under_railroad",
+      "image_sha256": "5c4fed4f98b349fb1bca3f7a87c34d4fa44e01338d080e19c4972032a714176c",
+      "image_opened": false,
+      "ocr_opened": false
+    },
+    {
+      "page": "1939-12_p055",
+      "family": "security_transactions_as_reported_by",
+      "image_sha256": "c4fbf32afdf145da19365e16d0c9e0c3c41dd99055db65779aae28d85d6f278e",
+      "image_opened": false,
+      "ocr_opened": false
+    },
+    {
+      "page": "1939-12_p053",
+      "family": "short_term_foreign_liabilities_as",
+      "image_sha256": "bfc394faa44b067a7c997b852a2eaf8368a6d2bc72291d9a0d05926e651e277e",
+      "image_opened": false,
+      "ocr_opened": false
+    },
+    {
+      "page": "1984-06_p058",
+      "family": "total_claims_by_country",
+      "image_sha256": "ae00d994bd818929440000113df70c6a8c314a9b4f48a489f347883fbd2d4770",
+      "image_opened": false,
+      "ocr_opened": false
+    }
+  ],
+  "excluded": [
+    {
+      "page": "1939-01_p051",
+      "reason": "No successful pair of P33 page reads"
+    }
+  ],
+  "training_answers": 401,
+  "training_answers_sha256": "ecd937d83b9fce48b2d2637005892faa80496fbb0e4a60929e6750daea787005",
+  "new_model_calls": 0,
+  "teacher_independence": "Separate hosted reads of the same model; correlated pseudo-labels"
+}

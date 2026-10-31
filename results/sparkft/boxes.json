@@ -1,0 +1,1447 @@
+{
+  "source_revision": "633cdffc7797fecc1f8a9adf5ac38ef1d6b28fc9",
+  "source_hashes": {
+    "results/openw_measure/reads/baseten/1939-01_p051.json": "c943c8e4cf17b32ea82332b33ac93f71dbf16a7c38ddc869264c2da4bc83c869",
+    "results/openw_measure/reads/fireworks/1939-01_p051.json": "2ba2ac0bd1db401a96ebb6daa4d5f65a44f9203d8070f75088ad99d9ad599e0e",
+    "results/openw_measure/reads/baseten/1939-01_p055.json": "44d2ab4264f9f81e6956595e519b5083314b48dbe1dbdfd8fc19c43de826c630",
+    "results/openw_measure/reads/fireworks/1939-01_p055.json": "b5f7ce9148172d58ef4601046df2e4864dd53056fd7802286c8f3413a6481644",
+    "results/openw_measure/reads/baseten/1939-01_p061.json": "5cb970b6348905b7e118a6e6f86a9f2011502eb38e3a0502cc36be583505cf82",
+    "results/openw_measure/reads/fireworks/1939-01_p061.json": "7378933501b07d2ec9604d45c259d3bfa6e7fe0fd5ece28c918668cca0aa0e02",
+    "results/openw_measure/reads/baseten/1939-08_p043.json": "74beff2c7517a05cb55a424a1fd4e98cabf52b0fdc2f18deffaa131abd35349c",
+    "results/openw_measure/reads/fireworks/1939-08_p043.json": "b0517d17ca8f75d3445381fd99b05bf948d8edebbb96f04be6299e40c9f38d8b",
+    "results/openw_measure/reads/baseten/1982-06_p094.json": "79751c79193e9241a38110594e357f08a532d70fc85bc4cf68afd04f57dc3496",
+    "results/openw_measure/reads/fireworks/1982-06_p094.json": "774c188752a466349d5605b5f284d7a99b376f409e77db5c426a9ad4a56b8029"
+  },
+  "split_sha256": "812520b7999ddbc3b8ac6add2e5362ffa3256c75cbbe12b6a7f21cf7da6d8de2",
+  "rule": "BOX_PLAN.md",
+  "missing_reads": [
+    {
+      "host": "fireworks",
+      "page": "1939-01_p051",
+      "reason": "P33 read failed"
+    }
+  ],
+  "scores": [
+    {
+      "host": "baseten",
+      "page": "1939-01_p051",
+      "size": [
+        1575,
+        2120
+      ],
+      "figure_values": 520,
+      "anchors": 317,
+      "transforms": {
+        "other_pages_shift": [
+          1.0,
+          1.0,
+          0.030361757105943188,
+          -0.05589622641509434
+        ],
+        "other_pages_affine": [
+          1.0540771279313828,
+          0.7665201109569244,
+          0.008655778589961817,
+          0.045280405750141126
+        ],
+        "within_page_affine": [
+          1.0159634074940425,
+          0.9404766213311796,
+          0.015384740171635429,
+          -0.06184584225097464
+        ]
+      },
+      "metrics": {
+        "identity": {
+          "n": 317,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 201.07523467597892,
+          "median_offset_xy_px": [
+            -39.0,
+            197.5
+          ]
+        },
+        "undo_grid_conversion": {
+          "n": 317,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 563.0951078464437,
+          "median_offset_xy_px": [
+            -333.92063492063494,
+            -353.08490566037733
+          ]
+        },
+        "extra_grid_conversion": {
+          "n": 317,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 1486.3402072204062,
+          "median_offset_xy_px": [
+            435.0250000000001,
+            1397.06
+          ]
+        },
+        "pdf_points_to_pixels": {
+          "n": 317,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 2765.6994516378895,
+          "median_offset_xy_px": [
+            1429.7222222222222,
+            2096.2777777777774
+          ]
+        },
+        "vertical_reflection": {
+          "n": 317,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 759.573070876002,
+          "median_offset_xy_px": [
+            -39.0,
+            202.5
+          ]
+        },
+        "swapped_axes": {
+          "n": 317,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 500.65713080659964,
+          "median_offset_xy_px": [
+            -10.896226415094361,
+            153.79523809523812
+          ]
+        },
+        "other_pages_shift": {
+          "n": 317,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 80.16699819785002,
+          "median_offset_xy_px": [
+            8.819767441860677,
+            79.0
+          ]
+        },
+        "other_pages_affine": {
+          "n": 317,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 1,
+          "centre_containment": 0.0031545741324921135,
+          "median_error_px": 76.42957581788657,
+          "median_offset_xy_px": [
+            21.464997647928612,
+            50.56742898356356
+          ]
+        },
+        "within_page_affine": {
+          "n": 64,
+          "contains": 16,
+          "containment": 0.25,
+          "centre_contains": 55,
+          "centre_containment": 0.859375,
+          "median_error_px": 12.332567519164815,
+          "median_offset_xy_px": [
+            0.43270376789882903,
+            0.0448626310503073
+          ]
+        },
+        "within_page_identity": {
+          "n": 64,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 198.04824791683714,
+          "median_offset_xy_px": [
+            -36.5,
+            192.25
+          ]
+        }
+      }
+    },
+    {
+      "host": "baseten",
+      "page": "1939-01_p055",
+      "size": [
+        1575,
+        2120
+      ],
+      "figure_values": 624,
+      "anchors": 258,
+      "transforms": {
+        "other_pages_shift": [
+          1.0,
+          1.0,
+          0.023492063492063453,
+          -0.08466981132075471
+        ],
+        "other_pages_affine": [
+          1.0180037622173492,
+          0.8305794345747531,
+          0.013091258078464944,
+          0.007154316224609127
+        ],
+        "within_page_affine": [
+          1.155978747481013,
+          0.7676321093961458,
+          -0.016342436781691644,
+          0.05068875615075266
+        ]
+      },
+      "metrics": {
+        "identity": {
+          "n": 258,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 4,
+          "centre_containment": 0.015503875968992248,
+          "median_error_px": 160.03512494073033,
+          "median_offset_xy_px": [
+            -119.0,
+            103.25
+          ]
+        },
+        "undo_grid_conversion": {
+          "n": 258,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 582.1124679735394,
+          "median_offset_xy_px": [
+            -431.46031746031747,
+            -378.65566037735846
+          ]
+        },
+        "extra_grid_conversion": {
+          "n": 258,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 1218.4600023628677,
+          "median_offset_xy_px": [
+            383.3375000000001,
+            1118.5300000000002
+          ]
+        },
+        "pdf_points_to_pixels": {
+          "n": 258,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 2278.7722188726266,
+          "median_offset_xy_px": [
+            1411.1111111111113,
+            1714.8055555555557
+          ]
+        },
+        "vertical_reflection": {
+          "n": 258,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 719.8150770967883,
+          "median_offset_xy_px": [
+            -119.0,
+            407.25
+          ]
+        },
+        "swapped_axes": {
+          "n": 258,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 4,
+          "centre_containment": 0.015503875968992248,
+          "median_error_px": 545.9099859005962,
+          "median_offset_xy_px": [
+            -230.33785377358487,
+            277.60793650793653
+          ]
+        },
+        "other_pages_shift": {
+          "n": 258,
+          "contains": 3,
+          "containment": 0.011627906976744186,
+          "centre_contains": 3,
+          "centre_containment": 0.011627906976744186,
+          "median_error_px": 135.24418937787541,
+          "median_offset_xy_px": [
+            -82.0,
+            -76.25
+          ]
+        },
+        "other_pages_affine": {
+          "n": 258,
+          "contains": 7,
+          "containment": 0.027131782945736434,
+          "centre_contains": 9,
+          "centre_containment": 0.03488372093023256,
+          "median_error_px": 85.06724731930356,
+          "median_offset_xy_px": [
+            -82.40577342650033,
+            -33.97472225920069
+          ]
+        },
+        "within_page_affine": {
+          "n": 52,
+          "contains": 27,
+          "containment": 0.5192307692307693,
+          "centre_contains": 47,
+          "centre_containment": 0.9038461538461539,
+          "median_error_px": 11.219935878473953,
+          "median_offset_xy_px": [
+            -2.6452898649711187,
+            -2.4420518994876375
+          ]
+        },
+        "within_page_identity": {
+          "n": 52,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 2,
+          "centre_containment": 0.038461538461538464,
+          "median_error_px": 171.0822342058063,
+          "median_offset_xy_px": [
+            -103.25,
+            131.5
+          ]
+        }
+      }
+    },
+    {
+      "host": "fireworks",
+      "page": "1939-01_p055",
+      "size": [
+        1575,
+        2120
+      ],
+      "figure_values": 624,
+      "anchors": 269,
+      "transforms": {
+        "other_pages_shift": [
+          1.0,
+          1.0,
+          -0.0071059431524547745,
+          -0.02051886792452834
+        ],
+        "other_pages_affine": [
+          0.9406249619665581,
+          0.49413042760576575,
+          0.04297018182315371,
+          0.13582962914520585
+        ],
+        "within_page_affine": [
+          0.9686157856897225,
+          0.7756533183549333,
+          0.0037923919289841,
+          0.04766404838127477
+        ]
+      },
+      "metrics": {
+        "identity": {
+          "n": 269,
+          "contains": 5,
+          "containment": 0.01858736059479554,
+          "centre_contains": 19,
+          "centre_containment": 0.07063197026022305,
+          "median_error_px": 116.62010975813735,
+          "median_offset_xy_px": [
+            26.0,
+            113.0
+          ]
+        },
+        "undo_grid_conversion": {
+          "n": 269,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 524.3256643449031,
+          "median_offset_xy_px": [
+            -348.92063492063494,
+            -382.5471698113207
+          ]
+        },
+        "extra_grid_conversion": {
+          "n": 269,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 1331.6018715160326,
+          "median_offset_xy_px": [
+            588.0875000000001,
+            1163.5600000000002
+          ]
+        },
+        "pdf_points_to_pixels": {
+          "n": 269,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 2635.6616055111153,
+          "median_offset_xy_px": [
+            1772.2222222222217,
+            1780.5555555555557
+          ]
+        },
+        "vertical_reflection": {
+          "n": 269,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 753.5373248884225,
+          "median_offset_xy_px": [
+            26.0,
+            357.0
+          ]
+        },
+        "swapped_axes": {
+          "n": 269,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 1,
+          "centre_containment": 0.0037174721189591076,
+          "median_error_px": 621.4092860202558,
+          "median_offset_xy_px": [
+            -192.4610849056603,
+            412.86825396825407
+          ]
+        },
+        "other_pages_shift": {
+          "n": 269,
+          "contains": 17,
+          "containment": 0.06319702602230483,
+          "centre_contains": 28,
+          "centre_containment": 0.10408921933085502,
+          "median_error_px": 76.15869796388547,
+          "median_offset_xy_px": [
+            14.808139534883594,
+            69.5
+          ]
+        },
+        "other_pages_affine": {
+          "n": 269,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 6,
+          "centre_containment": 0.022304832713754646,
+          "median_error_px": 86.67630582596448,
+          "median_offset_xy_px": [
+            34.94519361586413,
+            -73.54684511795529
+          ]
+        },
+        "within_page_affine": {
+          "n": 54,
+          "contains": 28,
+          "containment": 0.5185185185185185,
+          "centre_contains": 46,
+          "centre_containment": 0.8518518518518519,
+          "median_error_px": 11.579119309973926,
+          "median_offset_xy_px": [
+            -1.504522444902051,
+            -0.04317433610049193
+          ]
+        },
+        "within_page_identity": {
+          "n": 54,
+          "contains": 2,
+          "containment": 0.037037037037037035,
+          "centre_contains": 4,
+          "centre_containment": 0.07407407407407407,
+          "median_error_px": 147.3005286884268,
+          "median_offset_xy_px": [
+            22.0,
+            143.0
+          ]
+        }
+      }
+    },
+    {
+      "host": "baseten",
+      "page": "1939-01_p061",
+      "size": [
+        1548,
+        2120
+      ],
+      "figure_values": 312,
+      "anchors": 214,
+      "transforms": {
+        "other_pages_shift": [
+          1.0,
+          1.0,
+          0.026031746031746072,
+          -0.0856132075471698
+        ],
+        "other_pages_affine": [
+          1.0248076864643378,
+          0.8213276202835256,
+          0.02038122755930458,
+          0.013472057526725362
+        ],
+        "within_page_affine": [
+          1.1131941784480388,
+          0.7644000453431741,
+          -0.024254499341151096,
+          0.043951352614931244
+        ]
+      },
+      "metrics": {
+        "identity": {
+          "n": 214,
+          "contains": 2,
+          "containment": 0.009345794392523364,
+          "centre_contains": 2,
+          "centre_containment": 0.009345794392523364,
+          "median_error_px": 123.7788975483932,
+          "median_offset_xy_px": [
+            -56.0,
+            107.0
+          ]
+        },
+        "undo_grid_conversion": {
+          "n": 214,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 489.72019222922665,
+          "median_offset_xy_px": [
+            -340.97416020671835,
+            -341.15566037735846
+          ]
+        },
+        "extra_grid_conversion": {
+          "n": 214,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 1109.9610740021317,
+          "median_offset_xy_px": [
+            384.1399999999999,
+            1062.92
+          ]
+        },
+        "pdf_points_to_pixels": {
+          "n": 214,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 2187.1076189296177,
+          "median_offset_xy_px": [
+            1374.1111111111113,
+            1624.333333333333
+          ]
+        },
+        "vertical_reflection": {
+          "n": 214,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 528.7972100537743,
+          "median_offset_xy_px": [
+            -56.0,
+            522.75
+          ]
+        },
+        "swapped_axes": {
+          "n": 214,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 1,
+          "centre_containment": 0.004672897196261682,
+          "median_error_px": 526.9824001987283,
+          "median_offset_xy_px": [
+            -239.26650943396228,
+            338.11434108527123
+          ]
+        },
+        "other_pages_shift": {
+          "n": 214,
+          "contains": 8,
+          "containment": 0.037383177570093455,
+          "centre_contains": 20,
+          "centre_containment": 0.09345794392523364,
+          "median_error_px": 88.85859055069898,
+          "median_offset_xy_px": [
+            -15.702857142857056,
+            -74.49999999999989
+          ]
+        },
+        "other_pages_affine": {
+          "n": 214,
+          "contains": 16,
+          "containment": 0.07476635514018691,
+          "centre_contains": 70,
+          "centre_containment": 0.32710280373831774,
+          "median_error_px": 36.2019763715241,
+          "median_offset_xy_px": [
+            -4.479672134404609,
+            -16.93611413135318
+          ]
+        },
+        "within_page_affine": {
+          "n": 43,
+          "contains": 29,
+          "containment": 0.6744186046511628,
+          "centre_contains": 39,
+          "centre_containment": 0.9069767441860465,
+          "median_error_px": 8.288546560077968,
+          "median_offset_xy_px": [
+            -2.197200159153681,
+            1.617893729337311
+          ]
+        },
+        "within_page_identity": {
+          "n": 43,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 154.20765220960988,
+          "median_offset_xy_px": [
+            -56.0,
+            141.0
+          ]
+        }
+      }
+    },
+    {
+      "host": "fireworks",
+      "page": "1939-01_p061",
+      "size": [
+        1548,
+        2120
+      ],
+      "figure_values": 312,
+      "anchors": 214,
+      "transforms": {
+        "other_pages_shift": [
+          1.0,
+          1.0,
+          -0.0069841269841269815,
+          -0.07617924528301889
+        ],
+        "other_pages_affine": [
+          0.9411566384200901,
+          0.6667090154549857,
+          0.04706762019296092,
+          0.06291549688639703
+        ],
+        "within_page_affine": [
+          0.9454880275699552,
+          0.8731940583558109,
+          0.003700745199868629,
+          0.04014989165952397
+        ]
+      },
+      "metrics": {
+        "identity": {
+          "n": 214,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 6,
+          "centre_containment": 0.028037383177570093,
+          "median_error_px": 59.535644338538745,
+          "median_offset_xy_px": [
+            51.5,
+            16.5
+          ]
+        },
+        "undo_grid_conversion": {
+          "n": 214,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 480.6903206743634,
+          "median_offset_xy_px": [
+            -270.8837209302326,
+            -383.84433962264154
+          ]
+        },
+        "extra_grid_conversion": {
+          "n": 214,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 1035.9287828851193,
+          "median_offset_xy_px": [
+            552.098,
+            871.06
+          ]
+        },
+        "pdf_points_to_pixels": {
+          "n": 214,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 2193.6518852252284,
+          "median_offset_xy_px": [
+            1675.5,
+            1372.9444444444443
+          ]
+        },
+        "vertical_reflection": {
+          "n": 214,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 3,
+          "centre_containment": 0.014018691588785047,
+          "median_error_px": 615.708553791133,
+          "median_offset_xy_px": [
+            51.5,
+            613.25
+          ]
+        },
+        "swapped_axes": {
+          "n": 214,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 1,
+          "centre_containment": 0.004672897196261682,
+          "median_error_px": 595.7218885057827,
+          "median_offset_xy_px": [
+            -292.0377358490566,
+            479.0
+          ]
+        },
+        "other_pages_shift": {
+          "n": 214,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 152.14725923379433,
+          "median_offset_xy_px": [
+            40.688571428571436,
+            -145.0000000000001
+          ]
+        },
+        "other_pages_affine": {
+          "n": 214,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 117.65649874605558,
+          "median_offset_xy_px": [
+            64.76162231686266,
+            -101.67016780868425
+          ]
+        },
+        "within_page_affine": {
+          "n": 43,
+          "contains": 7,
+          "containment": 0.16279069767441862,
+          "centre_contains": 36,
+          "centre_containment": 0.8372093023255814,
+          "median_error_px": 9.986262060666453,
+          "median_offset_xy_px": [
+            -1.1583573604420963,
+            0.4707515386903651
+          ]
+        },
+        "within_page_identity": {
+          "n": 43,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 1,
+          "centre_containment": 0.023255813953488372,
+          "median_error_px": 61.33718285020922,
+          "median_offset_xy_px": [
+            52.0,
+            30.0
+          ]
+        }
+      }
+    },
+    {
+      "host": "baseten",
+      "page": "1939-08_p043",
+      "size": [
+        1606,
+        2142
+      ],
+      "figure_values": 85,
+      "anchors": 15,
+      "transforms": {
+        "other_pages_shift": [
+          1.0,
+          1.0,
+          0.0276190476190476,
+          -0.08024139472507824
+        ],
+        "other_pages_affine": [
+          1.0449292350679882,
+          0.8164838825502712,
+          0.01016083163050905,
+          0.016726763648878935
+        ],
+        "within_page_affine": [
+          1.0458804567173567,
+          0.4059175487572221,
+          -0.04667362382475967,
+          0.19273475155475034
+        ]
+      },
+      "metrics": {
+        "identity": {
+          "n": 15,
+          "contains": 4,
+          "containment": 0.26666666666666666,
+          "centre_contains": 6,
+          "centre_containment": 0.4,
+          "median_error_px": 24.052026941611388,
+          "median_offset_xy_px": [
+            -17.5,
+            16.5
+          ]
+        },
+        "undo_grid_conversion": {
+          "n": 15,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 584.0718236229425,
+          "median_offset_xy_px": [
+            -459.40660024906595,
+            -313.0522875816994
+          ]
+        },
+        "extra_grid_conversion": {
+          "n": 15,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 1035.2869862101036,
+          "median_offset_xy_px": [
+            781.4499999999998,
+            677.3539999999998
+          ]
+        },
+        "pdf_points_to_pixels": {
+          "n": 15,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 2478.387959247545,
+          "median_offset_xy_px": [
+            2274.7777777777774,
+            1050.5555555555552
+          ]
+        },
+        "vertical_reflection": {
+          "n": 15,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 930.7149133864784,
+          "median_offset_xy_px": [
+            -17.5,
+            930.5
+          ]
+        },
+        "swapped_axes": {
+          "n": 15,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 1087.3931600550745,
+          "median_offset_xy_px": [
+            -649.9859943977591,
+            871.7465753424658
+          ]
+        },
+        "other_pages_shift": {
+          "n": 15,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 157.68096927701922,
+          "median_offset_xy_px": [
+            26.856190476190477,
+            -155.3770675011176
+          ]
+        },
+        "other_pages_affine": {
+          "n": 15,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 81.8581177528411,
+          "median_offset_xy_px": [
+            54.34953206368209,
+            -63.07489420206025
+          ]
+        },
+        "within_page_affine": {
+          "n": 3,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 77.40851643845305,
+          "median_offset_xy_px": [
+            -34.1662347120664,
+            55.016192711761505
+          ]
+        },
+        "within_page_identity": {
+          "n": 3,
+          "contains": 1,
+          "containment": 0.3333333333333333,
+          "centre_contains": 1,
+          "centre_containment": 0.3333333333333333,
+          "median_error_px": 24.052026941611388,
+          "median_offset_xy_px": [
+            -20.0,
+            16.5
+          ]
+        }
+      }
+    },
+    {
+      "host": "fireworks",
+      "page": "1939-08_p043",
+      "size": [
+        1606,
+        2142
+      ],
+      "figure_values": 85,
+      "anchors": 15,
+      "transforms": {
+        "other_pages_shift": [
+          1.0,
+          1.0,
+          -0.014285714285714235,
+          -0.036556603773584884
+        ],
+        "other_pages_affine": [
+          0.9520194374066433,
+          0.6541046973983935,
+          0.027340915445193112,
+          0.08424133010298059
+        ],
+        "within_page_affine": [
+          1.0318526023377403,
+          0.2925372594047414,
+          -0.042326518622702175,
+          0.21435570086212216
+        ]
+      },
+      "metrics": {
+        "identity": {
+          "n": 15,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 91.58738996171907,
+          "median_offset_xy_px": [
+            -6.0,
+            78.5
+          ]
+        },
+        "undo_grid_conversion": {
+          "n": 15,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 565.5808921299848,
+          "median_offset_xy_px": [
+            -454.4252801992527,
+            -276.63772175536883
+          ]
+        },
+        "extra_grid_conversion": {
+          "n": 15,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 1159.1592773924558,
+          "median_offset_xy_px": [
+            801.7980000000002,
+            830.5069999999998
+          ]
+        },
+        "pdf_points_to_pixels": {
+          "n": 15,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 2593.3582320522332,
+          "median_offset_xy_px": [
+            2274.7777777777774,
+            1249.1666666666665
+          ]
+        },
+        "vertical_reflection": {
+          "n": 15,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 852.5093841125739,
+          "median_offset_xy_px": [
+            -6.0,
+            852.5
+          ]
+        },
+        "swapped_axes": {
+          "n": 15,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 1077.394205108693,
+          "median_offset_xy_px": [
+            -603.8562091503268,
+            871.7465753424658
+          ]
+        },
+        "other_pages_shift": {
+          "n": 15,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 49.70025932115442,
+          "median_offset_xy_px": [
+            -28.942857142857065,
+            0.19575471698112779
+          ]
+        },
+        "other_pages_affine": {
+          "n": 15,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 41.14405072547188,
+          "median_offset_xy_px": [
+            -23.932424232711128,
+            33.10422263417513
+          ]
+        },
+        "within_page_affine": {
+          "n": 3,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 77.52066661922672,
+          "median_offset_xy_px": [
+            -29.26204917314999,
+            53.508081166591296
+          ]
+        },
+        "within_page_identity": {
+          "n": 3,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 105.57580215181886,
+          "median_offset_xy_px": [
+            -4.0,
+            105.5
+          ]
+        }
+      }
+    },
+    {
+      "host": "baseten",
+      "page": "1982-06_p094",
+      "size": [
+        1650,
+        2237
+      ],
+      "figure_values": 602,
+      "anchors": 199,
+      "transforms": {
+        "other_pages_shift": [
+          1.0,
+          1.0,
+          0.030260243632336675,
+          -0.08089622641509436
+        ],
+        "other_pages_affine": [
+          1.0756618160122078,
+          0.8222981345246875,
+          -0.0005208167959926568,
+          0.016424469564105516
+        ],
+        "within_page_affine": [
+          0.9162706254406083,
+          0.7818305648314274,
+          0.06815487706820404,
+          0.028985782296921562
+        ]
+      },
+      "metrics": {
+        "identity": {
+          "n": 199,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 169.6209008347733,
+          "median_offset_xy_px": [
+            -31.0,
+            164.0
+          ]
+        },
+        "undo_grid_conversion": {
+          "n": 199,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 660.1176678503134,
+          "median_offset_xy_px": [
+            -458.5,
+            -421.02190433616454
+          ]
+        },
+        "extra_grid_conversion": {
+          "n": 199,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 1618.754306922842,
+          "median_offset_xy_px": [
+            674.05,
+            1488.379
+          ]
+        },
+        "pdf_points_to_pixels": {
+          "n": 199,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 2933.2771006815424,
+          "median_offset_xy_px": [
+            1911.2222222222222,
+            2065.3888888888887
+          ]
+        },
+        "vertical_reflection": {
+          "n": 199,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 825.7799343650826,
+          "median_offset_xy_px": [
+            -31.0,
+            272.0
+          ]
+        },
+        "swapped_axes": {
+          "n": 199,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 662.0446929204626,
+          "median_offset_xy_px": [
+            -296.5672776039339,
+            545.75
+          ]
+        },
+        "other_pages_shift": {
+          "n": 199,
+          "contains": 1,
+          "containment": 0.005025125628140704,
+          "centre_contains": 10,
+          "centre_containment": 0.05025125628140704,
+          "median_error_px": 96.49544506167247,
+          "median_offset_xy_px": [
+            18.92940199335544,
+            -16.96485849056603
+          ]
+        },
+        "other_pages_affine": {
+          "n": 199,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 60.558957256060864,
+          "median_offset_xy_px": [
+            50.29743017449641,
+            18.725914939094082
+          ]
+        },
+        "within_page_affine": {
+          "n": 40,
+          "contains": 4,
+          "containment": 0.1,
+          "centre_contains": 22,
+          "centre_containment": 0.55,
+          "median_error_px": 23.051953834238454,
+          "median_offset_xy_px": [
+            -19.1455767291161,
+            1.7349574849913552
+          ]
+        },
+        "within_page_identity": {
+          "n": 40,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 157.84223862206284,
+          "median_offset_xy_px": [
+            -32.25,
+            155.0
+          ]
+        }
+      }
+    },
+    {
+      "host": "fireworks",
+      "page": "1982-06_p094",
+      "size": [
+        1650,
+        2237
+      ],
+      "figure_values": 602,
+      "anchors": 153,
+      "transforms": {
+        "other_pages_shift": [
+          1.0,
+          1.0,
+          -0.018888888888888844,
+          -0.02051886792452834
+        ],
+        "other_pages_affine": [
+          0.9637044496587814,
+          0.7668511565317485,
+          0.0012825352632122443,
+          0.06296463764553908
+        ],
+        "within_page_affine": [
+          0.7793152195192319,
+          0.5352922058405424,
+          0.19485628233745442,
+          0.06352898298184971
+        ]
+      },
+      "metrics": {
+        "identity": {
+          "n": 153,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 403.2771999506047,
+          "median_offset_xy_px": [
+            -102.0,
+            394.0
+          ]
+        },
+        "undo_grid_conversion": {
+          "n": 153,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 563.7282218596407,
+          "median_offset_xy_px": [
+            -506.84848484848476,
+            -227.5413500223513
+          ]
+        },
+        "extra_grid_conversion": {
+          "n": 153,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 1891.0658959648263,
+          "median_offset_xy_px": [
+            568.4749999999999,
+            1784.388
+          ]
+        },
+        "pdf_points_to_pixels": {
+          "n": 153,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 3101.8178113112804,
+          "median_offset_xy_px": [
+            1731.7777777777774,
+            2392.2222222222226
+          ]
+        },
+        "vertical_reflection": {
+          "n": 153,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 650.1855504392573,
+          "median_offset_xy_px": [
+            -102.0,
+            383.0
+          ]
+        },
+        "swapped_axes": {
+          "n": 153,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 676.2815271458818,
+          "median_offset_xy_px": [
+            -250.89897183728203,
+            561.8239393939393
+          ]
+        },
+        "other_pages_shift": {
+          "n": 153,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 374.37236803494153,
+          "median_offset_xy_px": [
+            -133.16666666666674,
+            348.09929245283
+          ]
+        },
+        "other_pages_affine": {
+          "n": 153,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 311.03290505366243,
+          "median_offset_xy_px": [
+            -137.32267699266686,
+            272.79259435475626
+          ]
+        },
+        "within_page_affine": {
+          "n": 31,
+          "contains": 3,
+          "containment": 0.0967741935483871,
+          "centre_contains": 14,
+          "centre_containment": 0.45161290322580644,
+          "median_error_px": 17.947940258883044,
+          "median_offset_xy_px": [
+            -15.036473988439411,
+            2.1245281313235864
+          ]
+        },
+        "within_page_identity": {
+          "n": 31,
+          "contains": 0,
+          "containment": 0.0,
+          "centre_contains": 0,
+          "centre_containment": 0.0,
+          "median_error_px": 387.81600018565507,
+          "median_offset_xy_px": [
+            -106.0,
+            376.5
+          ]
+        }
+      }
+    }
+  ],
+  "pooled": {
+    "identity": {
+      "n": 1654,
+      "contains": 11,
+      "containment": 0.006650544135429262,
+      "qualifies": false
+    },
+    "undo_grid_conversion": {
+      "n": 1654,
+      "contains": 0,
+      "containment": 0.0,
+      "qualifies": false
+    },
+    "extra_grid_conversion": {
+      "n": 1654,
+      "contains": 0,
+      "containment": 0.0,
+      "qualifies": false
+    },
+    "pdf_points_to_pixels": {
+      "n": 1654,
+      "contains": 0,
+      "containment": 0.0,
+      "qualifies": false
+    },
+    "vertical_reflection": {
+      "n": 1654,
+      "contains": 0,
+      "containment": 0.0,
+      "qualifies": false
+    },
+    "swapped_axes": {
+      "n": 1654,
+      "contains": 0,
+      "containment": 0.0,
+      "qualifies": false
+    },
+    "other_pages_shift": {
+      "n": 1654,
+      "contains": 29,
+      "containment": 0.017533252720677146,
+      "qualifies": false
+    },
+    "other_pages_affine": {
+      "n": 1654,
+      "contains": 23,
+      "containment": 0.013905683192261185,
+      "qualifies": false
+    }
+  },
+  "reusable_conversion_found": false,
+  "new_model_calls": 0,
+  "cost_usd": 0
+}

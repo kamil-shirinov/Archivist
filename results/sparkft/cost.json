@@ -1,0 +1,60 @@
+{
+  "checked_at_utc": "2026-10-31T12:18:13.863107+00:00",
+  "status": "stopped_before_allocation_estimate_exceeds_cap",
+  "caps_usd": {
+    "modal": 40,
+    "baseten": 5,
+    "fireworks": 0,
+    "meta": 0
+  },
+  "new_spend_usd": {
+    "modal": 0,
+    "baseten": 0,
+    "fireworks": 0,
+    "meta": 0
+  },
+  "modal_jobs_launched": [],
+  "estimate_only": {
+    "implementation_validated": false,
+    "gpu": "B300:4",
+    "physical_cpu_cores": 16,
+    "host_memory_gib": 256,
+    "resource_rate_usd_s": "0.00866592",
+    "jobs": [
+      {
+        "stage": "base_validation",
+        "execution_timeout_s": 1800,
+        "startup_allowance_s": 300,
+        "shutdown_allowance_s": 15,
+        "containers": 1,
+        "retries": 0,
+        "reservation_usd": "18.32842080"
+      },
+      {
+        "stage": "training",
+        "execution_timeout_s": 7200,
+        "startup_allowance_s": 300,
+        "shutdown_allowance_s": 15,
+        "containers": 1,
+        "retries": 0,
+        "reservation_usd": "65.12438880"
+      },
+      {
+        "stage": "tuned_validation",
+        "execution_timeout_s": 1800,
+        "startup_allowance_s": 300,
+        "shutdown_allowance_s": 15,
+        "containers": 1,
+        "retries": 0,
+        "reservation_usd": "18.32842080"
+      }
+    ],
+    "overhead_reserve_usd": 5,
+    "total_reservation_usd": "106.78123040",
+    "prices_source": "https://modal.com/pricing",
+    "note": "Conservative unbenchmarked allowances, not a lower bound or an invoice."
+  },
+  "modal_apps_at_finish": [],
+  "apps_stopped_by_this_task": [],
+  "cleanup_note": "No apps were created; provider inventory is empty."
+}
