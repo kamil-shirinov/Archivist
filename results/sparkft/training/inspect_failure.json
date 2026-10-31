@@ -1,0 +1,1 @@
+{"type":"ValueError","reason":"Initial CPU preflight lacked torchvision; no GPU allocated","owned_app_id":"ap-qhlp0lncqGTBaRVVaTyAO9"}

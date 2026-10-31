@@ -254,3 +254,79 @@ workspace app list. All model calls continue through archivist.models.
 Commit this amendment after the exact Check and clean pre-commit, **before training**.
 Commit and push completed artifacts on sparkft without merging. Runtime, allocation,
 billing estimates, actual reported usage and retained ceilings must be distinguishable.
+
+### Concrete runtime protocol — before the GPU attempt
+
+The public mirror's 127 weight-shard hashes equal the official release's public
+hashes (training/weight_provenance.json). Keep that exact NVFP4 base and its frozen
+BF16 attention/perception layers; no re-quantisation, smaller replacement, CPU
+weight offload or library guard override. The official fine-grained integration
+routes gradient-bearing operations to its Triton kernels. Its quantizer advertises
+`is_trainable=False`; we do not change that flag or train packed weights. Use a
+plain PyTorch AdamW loop over PEFT attention-adapter parameters only, rather than
+asking Trainer to update a quantized base. Before loading the full base, test
+finite, nonzero input gradients through synthetic frozen NVFP4 experts on the
+selected GPU. This test contains no archive example and makes no optimizer update.
+If it fails, the training route fails; record the failure and do not invent a result.
+
+Use a fixed single-process model partition: language layers 0–15 / 16–31 / 32–47 /
+48–61 on GPUs 0 / 1 / 2 / 3; perception and embeddings on GPU 0, final norm and
+language head on GPU 3. The checkpoint's packed experts remain in NVFP4. Disable
+DeepGEMM dispatch and use the integration's eager experts path for gradients;
+retain SDPA and bf16 compute. Record actual placement, quantized module classes,
+dtypes, trainable names and peak memory. The allocation and $90.9225968 ceiling
+above are unchanged. Kernels 0.18.0, Torch 2.15.0, torchvision 0.29.2, PEFT 0.21.2,
+Accelerate 1.15.0, safetensors 0.8.0, Pillow 13.0.0 and huggingface_hub 2.4.0 are
+pinned alongside the Transformers commit already declared.
+
+Pack consecutive requested training cells from the same page in groups of up to
+eight, sorted by field ID: **52 conversations containing the original 401 answers**.
+This amortises the unchanged full-page image; no answer is added or dropped.
+Use the same table-layout prompt form for validation, with all frozen requests
+on each validation page. Keep microbatch one, three epochs and accumulation eight;
+flush and normalise the final partial group of each epoch. AdamW learning rate
+.0002, weight decay 0, gradient norm cap 1, deterministic Python/Torch seed 3401,
+no scheduler, no hyperparameter search and no intermediate validation. Save only
+the final adapter and reload it before tuned inference. Verify nonzero finite
+adapter gradients and refuse any trainable non-adapter parameter.
+
+Increase the original preliminary 4096-token context ceiling to **16,384 rendered
+tokens**, prospectively, to accommodate full-page image tokens plus table layout.
+Use **4,096 new tokens** for both validation arms. Keep the checkpoint processor's
+native image preparation; do not choose image resolution from an answer. CPU-only
+tokenisation checks all 52 training conversations and five validation requests
+before allocating a GPU. Reject oversized examples explicitly; never truncate a
+target. Inference receives only the explicit prompt, system and image, never
+reference values or boxes. Assistant-only loss masks the complete native prompt
+prefix, including image tokens. The same strict native framing parser is fixed
+in sparkft/scoring.py before either arm.
+
+The frozen independent validation proxy has supports **20, 16, 20, 20 and 1**
+(total **77**). The low support for claims is retained and reported, not replaced.
+Its cached Muse Spark 1.3 outputs are evaluation inputs only. dataset.json fixes
+prompts/page hashes/field IDs; the five *_reference.json files preserve exact OCR
+pixel boxes. No evaluated Spark Open output has been seen. The dataset hash is
+`2f55939051eafdf9bed3c1ec79d5dbadba42e35a8c1eb0021bf47be67cb08f79`.
+Report box area relative to its OCR figure as a secondary diagnostic, so a very
+large enclosing box is visible. The two strict adoption gates remain unchanged.
+
+The first CPU inspection failed on missing torchvision before GPU use. Its full
+$0.4629 ceiling is retained; the corrected CPU download/tokenisation attempts
+remain inside the original $5 overhead reserve. Task-owned base-cache files will
+be removed after recovery/validation; preserve only adapter/provenance artifacts
+on the task-owned volume. This prevents indefinite storage charges for hundreds
+of GB. Future serving first stages the identical pinned base on CPU, then loads
+the saved adapter on the bounded four-B300 Modal runtime; preparation, storage
+and serving together must fit the separately protected $20 reserve. Retain adapter
+hashes locally even if tensors stay on the task-owned Modal volume rather than
+in Git. No serving app is launched by the development experiment.
+
+
+One prospective bounded **synthetic gradient preflight** is added before the full
+four-GPU allocation, while CPU weight staging proceeds. It uses one B300, four
+physical CPU cores, 16 GiB hard-capped RAM, 300 s execution, 60 s startup and 15 s
+shutdown, one container, zero retries: **$0.77247** worst case. It touches no archive
+page or target. Retain this ceiling even on failure. The combined retained ceiling
+is now **$91.6950668**, below $95, with the $20 serving reserve unchanged. If the
+kernel fails, do not launch the large training job. The synthetic check runs again
+inside the eventual full allocation before any archive optimizer update.

@@ -1,0 +1,20 @@
+{
+  "page": "1984-06_p058",
+  "family": "total_claims_by_country",
+  "reference": [
+    {
+      "field_id": "T.total_claims_by_country:1984-06_p058:austria:c1",
+      "value": "206",
+      "canonical_value": "206",
+      "ocr_box": {
+        "x0": 441,
+        "y0": 197,
+        "x1": 459,
+        "y1": 204
+      },
+      "ocr_text": "206"
+    }
+  ],
+  "support": 1,
+  "returned_figure_fields": 744
+}

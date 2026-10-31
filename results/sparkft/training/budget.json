@@ -1,0 +1,20 @@
+{
+  "training_validation_cap_usd": 95,
+  "serving_reserve_usd": 20,
+  "gpu_reservation_usd": "85.92259680",
+  "preparation_reserve_usd": "5",
+  "retained_training_validation_ceiling_usd": "90.92259680",
+  "cpu_attempts": [
+    {
+      "stage": "inspect",
+      "ceiling_usd": "0.46290000",
+      "retained": true
+    },
+    {
+      "stage": "download",
+      "ceiling_usd": "0.46290000",
+      "retained": true
+    }
+  ],
+  "gpu_attempts": []
+}
