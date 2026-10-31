@@ -2,9 +2,9 @@
 kind = "llm"
 backend = "modal_sparkft"
 model_id = "sparkft-bf16-v2"
-settings = { settings_id = "1c545c199e793938f71125697ef620bf127e29d88d908a11e3748f4d19bb0892" }
+settings = { settings_id = "6eec3cc23aeb8511a2b0cf6425901ef3acc70fe7c1ac7de0ca9294c3e8272e32" }
 
 [prices.sparkft-bf16-v2]
 input_per_mtok = 0.0
 # One dispatcher token reserves the entire bounded GPU experiment.
-output_per_mtok = 83017908.8
+output_per_mtok = 82190212.8

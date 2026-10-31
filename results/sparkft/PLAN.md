@@ -103,8 +103,9 @@ waits on the already recorded task-owned preparation call, requires the exact
 BF16 revision and all 65 shards, then invokes the frozen registry backend. A file
 lock prevents duplicate controllers. If the initial preparation reaches its hard timeout, stop only its recorded owned
 app (to exclude concurrent writers), retain its cost ceiling, and permit exactly
-one declared continuation on the same cache. Any other failure, or failure of
-that continuation, exits without GPUs. A restart reconnects to the recorded
+two declared continuations on the same cache. The first continuation has a 3,600-second bound; a final continuation has a
+1,800-second bound. Any other failure, or failure after the final continuation,
+exits without GPUs. A restart reconnects to the recorded
 continuation instead of starting another download.
 
 Launch the archive experiment with `app.run(detach=True)`, `.spawn()`, and persist
@@ -144,26 +145,30 @@ entire gate passes. No held-out evaluation or open-weights run occurs here.
 
 [Modal public pricing](https://modal.com/pricing): B300 .001972/GPU/s,
 CPU .0000131/core/s, memory .00000222/GiB/s. Eight B300 + 16 cores + 256 GiB
-= **.01655392/s**. One full run has **4,700 s execution timeout**, 300 s startup
-and 15 s shutdown allowance: **$83.0179088**. Retries zero, max containers one,
+= **.01655392/s**. One full run has **4,650 s execution timeout**, 300 s startup
+and 15 s shutdown allowance: **$82.1902128**. Retries zero, max containers one,
 minimum zero and scale-down five seconds. All GPU/CPU functions have hard timeouts.
 
 Six failed probes retain 6 × $0.77247; the seventh retains $1.390446.
-Preparation reserve is $5, including a $4 cumulative CPU-attempt sub-cap, model
+Preparation reserve is $6, including a $4.50 cumulative CPU-attempt sub-cap, model
 storage, image building and cleanup. CPU preparation jobs are bounded at 1,800 s
 (or 900 s for tokenization), 60 s startup; each retains $0.4629 even on failure.
-One BF16 download and at most one bounded continuation are allowed, reusing
+One BF16 download and at most two bounded continuations are allowed, reusing
 completed files. Progress shows roughly eight 25-GB shards per eight minutes, so
 the continuation has a **3,600 s hard timeout**, 60 s startup and 15 s shutdown:
-**$0.907284** at .00024688/s for eight CPU cores and 64 GiB. Its entire retained
-ceiling stays inside the existing $4 CPU sub-cap: all declared CPU attempts,
-including cleanup, plus one read-only cache-integrity diagnostic ($0.0034203), total
-$3.6949449. The remaining $1.3050551 of the $5 preparation
-reserve covers storage/image overhead. The $94.0431748 total does not increase. No concurrent model-cache writers. The initial compressed cache
+**$0.907284** at .00024688/s for eight CPU cores and 64 GiB. Measured transfer of about 181 GB over thirteen minutes projects a possible
+unfinished tail at that bound. Fund one final **1,800-second continuation** at
+**$0.4629**, with eight parallel file downloads to favor complete, persistent
+shards. All declared CPU attempts, including cleanup and the read-only integrity
+check, total **$4.1578449**, below the $4.50 sub-cap. The remaining **$1.8421551** of
+the **$6 preparation reserve** covers storage/image overhead. Shortening the full
+GPU bound by fifty seconds to 4,650 s offsets this larger preparation allowance.
+This amendment precedes all archive inference/training; comparison data, epoch,
+decoding and adoption criteria are unchanged. No concurrent model-cache writers. The initial compressed cache
 is removed before/alongside cleanup to avoid indefinite storage charges.
 
 Total retained training/validation maximum:
-**$83.0179088 + $6.025266 + $5 = $94.0431748 < $95**.
+**$82.1902128 + $6.025266 + $6 = $94.2154788 < $95**.
 The $20 serving reserve is additional and cannot fund training or validation.
 Keep attempt ceilings in training/budget.json regardless of failures; do not
 mistake runtime-rate estimates for reconciled account invoices.

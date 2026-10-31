@@ -12,6 +12,11 @@ def verify_preparation(result):
         raise ValueError('Recorded preparation did not stage the exact BF16 release')
 
 
+def next_stage(index):
+    if index not in (0,1):raise ValueError('No further weight-download continuation funded')
+    return index+1
+
+
 def main():
     import modal
     from sparkft.backend import run
@@ -19,19 +24,21 @@ def main():
     lock.parent.mkdir(parents=True,exist_ok=True)
     with lock.open('w') as handle:
         fcntl.flock(handle,fcntl.LOCK_EX|fcntl.LOCK_NB)
-        saved=json.loads((OUT/'download_bf16_call.json').read_text())
-        require_owned(saved['app_id'])
-        continued=OUT/'download_bf16_resume_call.json'
-        if continued.exists():
-            saved=json.loads(continued.read_text());require_owned(saved['app_id'])
-            result=wait(modal.FunctionCall.from_id(saved['call_id']),'recorded BF16 continuation')
-        else:
+        stages=['download_bf16','download_bf16_resume','download_bf16_resume2']
+        index=max(i for i,stage in enumerate(stages) if (OUT/(stage+'_call.json')).exists())
+        while True:
+            stage=stages[index];record=OUT/(stage+'_call.json')
             try:
-                result=wait(modal.FunctionCall.from_id(saved['call_id']),'recorded BF16 preparation')
+                if record.exists():
+                    saved=json.loads(record.read_text());require_owned(saved['app_id'])
+                    result=wait(modal.FunctionCall.from_id(saved['call_id']),'recorded '+stage)
+                else:
+                    result=cpu(stage,download=True)
+                break
             except modal.exception.FunctionTimeoutError:
-                stop_owned(saved['app_id'])  # Ensure the first writer is terminated before resuming.
-                print('Initial preparation hit its hard bound; one declared CPU continuation',flush=True)
-                result=cpu('download_bf16_resume',download=True)
+                saved=json.loads(record.read_text());stop_owned(saved['app_id'])
+                index=next_stage(index)
+                print('Download hit its hard bound; declared continuation',stages[index],flush=True)
         verify_preparation(result)
         (OUT/'download_bf16.json').write_text(json.dumps(result,indent=2)+'\n')
         print('Exact BF16 preparation completed; handing off to frozen registry backend',flush=True)

@@ -1,9 +1,9 @@
 {
   "training_validation_cap_usd": 95,
   "serving_reserve_usd": 20,
-  "gpu_reservation_usd": "83.01790880",
-  "preparation_reserve_usd": "5",
-  "retained_training_validation_ceiling_usd": "94.04317480",
+  "gpu_reservation_usd": "82.19021280",
+  "preparation_reserve_usd": "6",
+  "retained_training_validation_ceiling_usd": "94.21547880",
   "cpu_attempts": [
     {
       "stage": "inspect",
@@ -103,10 +103,10 @@
       "retained": true
     }
   ],
-  "cpu_subcap_usd": 4,
+  "cpu_subcap_usd": 4.5,
   "gpu_plan": {
     "gpu": "B300:8",
-    "execution_timeout_s": 4700,
+    "execution_timeout_s": 4650,
     "startup_timeout_s": 300,
     "shutdown_allowance_s": 15,
     "rate_per_s": 0.01655392,

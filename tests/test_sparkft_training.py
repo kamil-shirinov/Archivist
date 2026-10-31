@@ -32,7 +32,7 @@ def test_cpu_reservations_survive_failure_and_cannot_use_serving_money(tmp_path,
     budget=json.loads((tmp_path/'budget.json').read_text())
     assert budget['serving_reserve_usd']==20
     assert budget['cpu_attempts'][0]['retained']
-    for _ in range(6):cloud.reserve_cpu('inspect')
+    for _ in range(7):cloud.reserve_cpu('inspect')
     with pytest.raises(ValueError,match='sub-budget'):
         cloud.reserve_cpu('inspect')
 
@@ -141,3 +141,10 @@ def test_stop_helper_never_invokes_cli_for_an_unowned_app(tmp_path,monkeypatch):
     monkeypatch.setattr(subprocess,'run',lambda *args,**kwargs:pytest.fail('Stop must not run'))
     with pytest.raises(ValueError,match='not started'):
         cloud.stop_owned('ap-glimmer-concurrent')
+
+
+def test_weight_staging_has_only_two_bounded_continuations():
+    from sparkft.launch_when_ready import next_stage
+    assert next_stage(0)==1 and next_stage(1)==2
+    with pytest.raises(ValueError,match='No further'):
+        next_stage(2)

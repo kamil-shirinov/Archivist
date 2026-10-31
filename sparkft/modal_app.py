@@ -54,7 +54,7 @@ def prepare(download_weights=False):
               'download_weights':download_weights}
     if download_weights:
         path = snapshot_download(MODEL, revision=REVISION, token=False,
-                                 headers={'User-Agent': UA}, max_workers=16)
+                                 headers={'User-Agent': UA}, max_workers=8)
         result['weight_shards'] = len(list(Path(path).glob('*.safetensors')))
     result['runtime_seconds'] = time.monotonic()-start
     Path(ROOT,'preparation.json').write_text(json.dumps(result,indent=2)+'\n')
@@ -69,7 +69,7 @@ def prepare_resume():
 
 
 @app.function(**COMMON, gpu='B300:8', cpu=(16,16), memory=(262144,262144),
-              timeout=4700, startup_timeout=300)
+              timeout=4650, startup_timeout=300)
 def experiment(payload, images):
     from sparkft.runtime import run
     try:

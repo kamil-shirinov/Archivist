@@ -58,14 +58,14 @@ def reserve_cpu(stage):
     OUT.mkdir(parents=True,exist_ok=True)
     data=json.loads(path.read_text()) if path.exists() else {
         'training_validation_cap_usd':95, 'serving_reserve_usd':20,
-        'gpu_reservation_usd':'85.92259680', 'preparation_reserve_usd':'5',
-        'retained_training_validation_ceiling_usd':'90.92259680',
+        'gpu_reservation_usd':'82.19021280', 'preparation_reserve_usd':'6',
+        'retained_training_validation_ceiling_usd':'94.21547880',
         'cpu_attempts':[], 'gpu_attempts':[]}
-    if stage=='download_bf16_resume' and any(x['stage']==stage for x in data['cpu_attempts']):
-        raise ValueError('Only one declared BF16 continuation is permitted')
+    if stage.startswith('download_bf16_resume') and any(x['stage']==stage for x in data['cpu_attempts']):
+        raise ValueError('Only one attempt for each declared BF16 continuation is permitted')
     amount=(Decimal('0.90728400') if stage=='download_bf16_resume' else
             Decimal('0.00342030') if stage in ('cleanup','kernel_transport') else Decimal('0.46290000'))
-    if sum((Decimal(x['ceiling_usd']) for x in data['cpu_attempts']),Decimal(0))+amount>Decimal('4'):
+    if sum((Decimal(x['ceiling_usd']) for x in data['cpu_attempts']),Decimal(0))+amount>Decimal('4.5'):
         raise ValueError('CPU attempts exhausted the declared preparation sub-budget')
     data['cpu_attempts'].append({'stage':stage,'ceiling_usd':str(amount),'retained':True})
     path.write_text(json.dumps(data,indent=2)+'\n')
@@ -126,6 +126,6 @@ def cpu(stage, download=False):
 if __name__=='__main__':
     import argparse
     parser=argparse.ArgumentParser()
-    parser.add_argument('stage',choices=['inspect','download','download_resume','download_bf16','download_bf16_resume','kernel_transport','tokenize','gradient','cleanup'])
+    parser.add_argument('stage',choices=['inspect','download','download_resume','download_bf16','download_bf16_resume','download_bf16_resume2','kernel_transport','tokenize','gradient','cleanup'])
     args=parser.parse_args()
     cpu(args.stage,download=args.stage.startswith('download'))
