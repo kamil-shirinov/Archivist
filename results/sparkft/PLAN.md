@@ -97,6 +97,12 @@ hyperparameter selection from validation outcomes. No further paid retry is fund
 
 ## Detached execution and recovery
 
+Run `.venv/bin/python -m sparkft.launch_when_ready` under `nohup` to preserve the
+handoff if the interactive client disconnects during CPU staging. This launcher
+waits on the already recorded task-owned preparation call, requires the exact
+BF16 revision and all 65 shards, then invokes the frozen registry backend. A file
+lock prevents duplicate controllers. A failed preparation exits without GPUs.
+
 Launch the archive experiment with `app.run(detach=True)`, `.spawn()`, and persist
 the owned app ID, call ID, frozen request/dataset hash and checkpoint location in
 training/experiment_call.json **before waiting locally**. A client usage limit or

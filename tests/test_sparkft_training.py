@@ -114,3 +114,13 @@ def test_fixed_coverage_draw_has_no_training_overlap_or_missing_approved_family(
     assert {r['family'] for r in data['validation']}==set(data['required_families'])
     for layout in {r['layout'] for r in data['validation']}:
         assert sum(r['layout']==layout and bool(r['fields']) for r in data['validation'])>=3
+
+
+def test_detached_handoff_refuses_incomplete_or_different_weights():
+    from sparkft.launch_when_ready import verify_preparation
+    from sparkft.runtime import MODEL,REVISION
+    verify_preparation({'model':MODEL,'revision':REVISION,'weight_shards':65})
+    with pytest.raises(ValueError):
+        verify_preparation({'model':MODEL,'revision':REVISION,'weight_shards':64})
+    with pytest.raises(ValueError):
+        verify_preparation({'model':MODEL,'revision':'different','weight_shards':65})
