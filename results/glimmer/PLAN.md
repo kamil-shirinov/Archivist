@@ -470,3 +470,21 @@ phase2/recovery_proposal.json, recovery_freeze.json and REPORT.md. The CLI refus
 under the current $24.31 approval before creating a Modal app/call. No new GPU has been
 started in this recovery turn. Raw outputs must still pass Check, be committed and pushed
 before any aggregate comparison. The 50-page human comparison stays deferred.
+
+## Recovery approved — 2026-10-31, before the recovery GPU request
+
+The owner explicitly approves: "raise the retained ceiling to $28.16 and run the recovery",
+with the first interrupted attempt (79/99 untrained batches, no saved answers) retained in
+the report. This supersedes only the prior pending budget approval. Retain the original
+$24.3099506 in full; add one recovery job maximum $3.8482016 for a combined retained bound
+$28.1581522 under the new $28.16 ceiling. Expected/conservative cost remains $2.2952/$3.3232,
+including the prepared checkpoint allowance. No additional automatic retry is funded.
+
+Run the already committed and separately frozen checkpointed recovery, without changing
+its model/input/generation settings, native parser, 791-page sample or original batch
+memberships. Input stays 1,024 characters. One L4, four physical CPU cores, 32 GiB RAM,
+10,825-second execution and 300-second startup hard timeouts; 15-second shutdown allowance.
+The app is detached, and full batches are committed atomically before continuing.
+The old source/phase-1 artifacts remain unchanged. Commit and push both raw arms after
+Check before any aggregate comparison. Read no human labels or other held-out records;
+the 50-page comparison remains deferred. Stop only this task's own recorded Modal apps.

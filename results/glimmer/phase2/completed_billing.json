@@ -1,0 +1,79 @@
+{
+  "queried_at": "2026-10-31T22:08:20.204112+00:00",
+  "source": "modal billing report --for today --show-resources --json",
+  "owned_app_ids": {
+    "interrupted": "ap-90heG0Xt09CZ8lLTAhSns9",
+    "recovery": "ap-Sw3Cab71JzfWFel9XEyGUI"
+  },
+  "resource_rows": {
+    "interrupted": [
+      {
+        "object_id": "ap-90heG0Xt09CZ8lLTAhSns9",
+        "description": "archivist-glimmer-phase2-20261031",
+        "environment": "main",
+        "interval_start": "2026-10-31T00:00:00",
+        "resource": "CPU",
+        "cost": "0.18447002"
+      },
+      {
+        "object_id": "ap-90heG0Xt09CZ8lLTAhSns9",
+        "description": "archivist-glimmer-phase2-20261031",
+        "environment": "main",
+        "interval_start": "2026-10-31T00:00:00",
+        "resource": "Memory",
+        "cost": "0.24960002"
+      },
+      {
+        "object_id": "ap-90heG0Xt09CZ8lLTAhSns9",
+        "description": "archivist-glimmer-phase2-20261031",
+        "environment": "main",
+        "interval_start": "2026-10-31T00:00:00",
+        "resource": "L4",
+        "cost": "0.78000006"
+      }
+    ],
+    "recovery": [
+      {
+        "object_id": "ap-Sw3Cab71JzfWFel9XEyGUI",
+        "description": "archivist-glimmer-phase2-recovery-20261031",
+        "environment": "main",
+        "interval_start": "2026-10-31T00:00:00",
+        "resource": "Network Egress",
+        "cost": "0.00002327"
+      },
+      {
+        "object_id": "ap-Sw3Cab71JzfWFel9XEyGUI",
+        "description": "archivist-glimmer-phase2-recovery-20261031",
+        "environment": "main",
+        "interval_start": "2026-10-31T00:00:00",
+        "resource": "CPU",
+        "cost": "0.30177397"
+      },
+      {
+        "object_id": "ap-Sw3Cab71JzfWFel9XEyGUI",
+        "description": "archivist-glimmer-phase2-recovery-20261031",
+        "environment": "main",
+        "interval_start": "2026-10-31T00:00:00",
+        "resource": "Memory",
+        "cost": "0.40831996"
+      },
+      {
+        "object_id": "ap-Sw3Cab71JzfWFel9XEyGUI",
+        "description": "archivist-glimmer-phase2-recovery-20261031",
+        "environment": "main",
+        "interval_start": "2026-10-31T00:00:00",
+        "resource": "L4",
+        "cost": "1.27599988"
+      }
+    ]
+  },
+  "interrupted_reported_usd": 1.2140701,
+  "recovery_reported_usd": 1.98611708,
+  "phase2_reported_usd": 3.20018718,
+  "preserved_phase1_and_development_reported_usd": 1.54829339,
+  "cumulative_glimmer_reported_usd": 4.74848057,
+  "billing_may_lag": true,
+  "other_apps_included": false,
+  "combined_retained_bound_usd": 28.1581522,
+  "approved_retained_ceiling_usd": 28.16
+}

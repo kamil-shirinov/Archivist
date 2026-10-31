@@ -1,105 +1,80 @@
-# Glimmer phase 2 — interrupted; recovery prepared, not submitted
+# Glimmer phase 2 — both raw arms complete, before comparison
 
-2026-10-31. No model-comparison result is available. No human label, cell draw, deep-check
-record or original scorer was read. The 50-page comparison remains deferred.
+2026-10-31. Both arms produced 791 raw answers in the same frozen page order. All 198
+batch checkpoints were saved; neither generated text parsing nor output/reference
+comparison has run. The required Check, commit and push of these raw artifacts comes first.
+No human label, cell draw, deep-check record, original scorer or git tag was read.
 
-## Frame and frozen inputs
+## Frozen experiment
 
-Independent checks of the permitted sweep classification/title records matched the owner:
-291 named pages = 136 confirmed + 155 title-rejected. All 4,569 pages were classified,
-4,278 were classifier-set-aside, and none failed. The one seed-4005 draw selected 500
-set-aside pages, giving the frozen 791-page sample. No redraw occurred.
+The validated frame contains 291 named pages (136 confirmed, 155 title-rejected) and
+4,278 classifier-set-aside pages, with zero failures. One seed-4005 draw selected 500
+set-aside pages: 791 pages total. No sample was redrawn. Both arms used the same first
+1,024 OCR characters, pinned NF4/double-quant/bf16 base, saved final adapter, original
+prompt, low reasoning, greedy decoding, batch 8 and 512-new-token limit. There are 78
+empty OCR inputs and 370 truncated inputs; none was dropped. No held-out image was
+opened or rendered. All 34 preserved phase-1 artifacts remain unchanged, including
+strict trained 0/40 and its separately labelled post hoc diagnostic 40/40.
 
-The first 1,024 OCR characters were retained for both arms; 78 inputs have empty OCR and
-370 were truncated. Only sampled pages' PDF text layers were accessed, with manifest
-dimensions reproducing the existing word filter without opening or rendering images.
-The original sample, prefixes, adapter, code and configuration remain frozen and committed
-in ae2505f. All 34 phase-1 artifacts remain byte-for-byte unchanged, including strict trained
-0/40 and the separately labelled post hoc diagnostic 40/40.
+## Interruption retained in full
 
-## What happened
+The first app, ap-90heG0Xt09CZ8lLTAhSns9, stopped on client disconnection after 79/99
+observed complete untrained batches (632 pages). It saved only at full-arm completion,
+so no answers survived; the trained arm never started. That checkpoint granularity was
+an implementation mistake. No lost answer was scored, inferred from logs or fabricated.
+Its reported $1.21407010 charge and entire $3.8482016 maximum remain included. The original
+function was checked at zero runners, running inputs and backlog. See interruption.json
+and interrupted_billing.json. No other Modal app was stopped by this task.
 
-Original app: `ap-90heG0Xt09CZ8lLTAhSns9`; original call:
-`fc-01M68Z9GEC7XSC5KHXWW28CG1J`.
+## Approved recovery
 
-Modal allocated the L4 before the 15-minute allocation cutoff. The model loaded and
-untrained inference logged 79 complete batches (632 pages). While the client was paused,
-Modal logged "Stopping app - local client disconnected" and terminated the runner. The
-function result is a terminal RemoteError. The trained arm did not start.
+The owner explicitly raised the retained ceiling to $28.16 and approved recovery. The
+unchanged native generator ran at the original batch memberships/tensor order, with atomic
+volume commits after each full batch and a detached app. Because zero prior answers
+survived, all 99 untrained batches were recomputed and all 99 trained batches ran for the
+first time. Completed saved batches are never regenerated; both current reuse counts are
+zero. This is one approved recovery job, not a checkpoint or hyperparameter search.
 
-The original wrapper persisted only after an entire arm, not after each batch. That was
-an implementation mistake: its persisted run directory is empty, and there is no local
-raw response or recoverable function result. The 632 computed answers cannot be reused.
-Thus **zero complete raw batches survive**, and all 791 untrained answers plus all 791
-trained answers are missing. No accuracy, precision or recall is reported from lost answers.
-No attempt was made to infer answers from progress logs or inspect pages to recreate them.
+Recovery app ap-Sw3Cab71JzfWFel9XEyGUI has finished. Only that recorded app was checked/
+stopped; it was already stopped when queried. Zero runners, running inputs and backlog
+are recorded in recovery_stopped_app.json. Complete cloud checkpoint counts are recorded
+in complete_checkpoint_inventory.json. The first checkpoint durability check confirmed
+files in the volume before proceeding; no raw content was read for those inspections.
 
-Inspection confirmed the original function has zero runners, running inputs and backlog.
-Only this task's original app was affected. No other Modal app was stopped by this task.
-The scoped inspection and failure are retained in interruption.json and failure.json.
+Untrained arm runtime: 4719.192 s;
+trained: 919.848 s;
+whole function: 5717.032 s. Live precision records show 720 NF4 modules,
+double quantisation, bf16 compute/storage and all parameters on CUDA in each arm. PEFT
+adapter parameters load as fp32, as in the original inference setup. Raw outputs,
+runtime, peak allocated/reserved memory and generation bookkeeping are retained in
+raw_response.json and raw_manifest.json. No crop, precision or decoding setting changed.
 
-## Cost and why recovery has not run
+## Budget and records
 
-Modal's app-specific report shows:
+This job's expected/conservative estimates were $2.2952/$3.3232. It had hard execution/
+startup timeouts of 10,825/300 seconds, plus 15 seconds shutdown allowance, on one L4
+with four physical CPU cores and 32 GiB RAM. Its maximum $3.8482016 remains
+retained alongside the first failed attempt and all earlier maxima/overhead: combined
+**$28.1581522**, below the approved **$28.16**. No additional retry is funded.
 
-| Resource | Reported dollars |
-|---|---:|
-| L4 | 0.78000006 |
-| CPU | 0.18447002 |
-| Memory | 0.24960002 |
-| Interrupted run total | **1.21407010** |
-| Cumulative reported Glimmer total | **2.76236349** |
+The recovery ledger records $1.97489156 of measured function-runtime compute,
+which excludes some startup/transport; it is not a reconciled invoice. The same event
+was appended once to results/spend_ledger.jsonl. App-specific provider billing will be
+saved separately; the previously reported total before recovery is $2.76236349 including
+the interrupted first attempt. The failed job's token usage was unrecovered, explicitly
+marked unknown rather than measured zero. No other task's charges are included.
 
-These are reported charges at the saved query, subject to billing lag, not reservation
-ceilings. No other task's charges are included. Token usage was not recovered: ledger
-integer placeholders are explicitly marked `token_usage_unknown`, not measured zero usage.
-The failed paid job is logged in this phase's ledger and the committed project ledger.
+Raw response SHA256: `3f3456aec4ac1448c1652f919151da909ec0942b58e1fca1b9d3d77873ab338b`.
+The metadata check verified 791 outputs per arm, indices 0..790, matching sample/input
+hashes, and unchanged phase-1 files; it did not parse answers or compare with references.
 
-The original job's full **$3.8482016** maximum remains retained. Together with all earlier
-maxima/overhead, retained cost is **$24.3099506** under the owner's **$24.31** ceiling.
-Only **$0.0000494** remains. The owner's new request authorises missing-batch recovery,
-but does not raise that ceiling. No new GPU was submitted.
+After Check and the raw-output commit/push, the declared parser and aggregate-only
+pipeline-proxy comparison may run. The owner's 50-page human comparison remains deferred
+until separately requested with its committed main-branch file. No label export was read.
 
-Concrete recovery proposal, awaiting explicit budget approval:
-
-| Quantity | Dollars |
-|---|---:|
-| New job expected estimate, including checkpoint allowance | 2.2952 |
-| New job conservative estimate, including checkpoint allowance | 3.3232 |
-| New job hard maximum | **3.8482016** |
-| Existing retained maxima | **24.3099506** |
-| Required combined retained bound | **28.1581522** |
-| Proposed rounded approval | **28.16** |
-
-The estimate uses the previously declared 791-page development timing extrapolation, with
-300 additional seconds for checkpoint I/O. The hard bound still uses 10,825 seconds
-execution + 300 startup + 15 shutdown, one L4, four physical CPU cores and 32 GiB RAM.
-Rates were checked on 2026-10-31 at https://modal.com/pricing . No extra retry is funded.
-
-## Prepared recovery
-
-The new wrapper leaves the original model loader and generator unchanged. It preserves
-the original token-length/index sort, batch memberships, tensor order, left-padding width,
-NF4/bf16 precision, prompt, 1,024-character input, greedy decoding, low reasoning and
-512-output-token limit. It validates saved checkpoint identity/membership/token counts,
-reuses each complete batch and generates only missing groups. Each group is written
-atomically and committed to the volume before proceeding. A corrupt saved batch stops
-recovery instead of silently being replaced. A detached app survives loss of the local
-client; the existing call can be collected without launching another GPU job.
-
-All 99 untrained groups currently lack persisted answers and must be computed again if
-the owner approves recovery; then the trained arm runs on exactly the same 791 pages.
-The interruption and repeated computation will remain part of the report and cost.
-Recovery source is separately frozen in recovery_freeze.json. The submit command refuses
-the current $24.31 retained limit before creating a Modal call. No proposed budget has
-been treated as approved. No generated answer has been parsed or compared with references.
-
-Offline tests demonstrate interruption after a complete saved batch, reuse without
-regeneration, identical original group ordering, refusal of corrupt/foreign checkpoints,
-and refusal to allocate under an unraised cap. The exact Check and pre-commit results
-are recorded in CHECKS.md. The two existing sparse exclusions importing prohibited
-labelling/scorer code remain in place.
-
-After approved recovery completes, the original ordering remains mandatory: Check, commit
-and push both raw arms first; only then report aggregate pipeline-proxy comparisons,
-Check, commit and push, and stop. Human comparison waits for the separate committed file.
+Provider billing queried 2026-10-31T22:08:20.204112+00:00: recovery **$1.98611708**;
+interrupted first attempt **$1.21407010**; phase 2 combined
+**$3.20018718**; cumulative Glimmer reported charges
+**$4.74848057**. Only the two recorded phase-2 apps
+were included. Billing may lag; retained bound stays $28.1581522 under $28.16.
+See completed_billing.json for the app-specific resource rows and query time.

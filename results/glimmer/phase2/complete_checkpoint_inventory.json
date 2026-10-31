@@ -1,0 +1,9 @@
+{
+  "queried_at": "2026-10-31T19:21:41.759788+00:00",
+  "counts": {
+    "untrained": 99,
+    "trained": 99
+  },
+  "raw_contents_read": false,
+  "scope": "own recovery batch directories only"
+}
