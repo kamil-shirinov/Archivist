@@ -1,0 +1,6817 @@
+{
+  "ref": "1982-06_p094",
+  "crop_host": "baseten",
+  "grid": {
+    "rows": 86,
+    "bands": 86,
+    "fixed": 21,
+    "order": null
+  },
+  "eligible": 756,
+  "cells": {
+    "T.total_claims_by_country:1982-06_p094:europe_hdr:country": {
+      "region": {
+        "x0": 173,
+        "y0": 335,
+        "x1": 248,
+        "y1": 358
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:europe_hdr:c1": {
+      "region": {
+        "x0": 594,
+        "y0": 335,
+        "x1": 660,
+        "y1": 358
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:europe_hdr:c2": {
+      "region": {
+        "x0": 792,
+        "y0": 335,
+        "x1": 858,
+        "y1": 358
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:europe_hdr:c3": {
+      "region": {
+        "x0": 924,
+        "y0": 335,
+        "x1": 990,
+        "y1": 358
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:europe_hdr:c4": {
+      "region": {
+        "x0": 1056,
+        "y0": 335,
+        "x1": 1122,
+        "y1": 358
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:europe_hdr:c5": {
+      "region": {
+        "x0": 1188,
+        "y0": 335,
+        "x1": 1254,
+        "y1": 358
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:europe_hdr:c6": {
+      "region": {
+        "x0": 1320,
+        "y0": 335,
+        "x1": 1386,
+        "y1": 358
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:europe_hdr:c7": {
+      "region": {
+        "x0": 1419,
+        "y0": 335,
+        "x1": 1485,
+        "y1": 358
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:europe_hdr:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 335,
+        "x1": 1584,
+        "y1": 358
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:austria:country": {
+      "region": {
+        "x0": 181,
+        "y0": 362,
+        "x1": 264,
+        "y1": 385
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:austria:c1": {
+      "region": {
+        "x0": 692,
+        "y0": 359,
+        "x1": 712,
+        "y1": 367
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:austria:c2": {
+      "region": {
+        "x0": 850,
+        "y0": 360,
+        "x1": 870,
+        "y1": 367
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:austria:c3": {
+      "region": {
+        "x0": 991,
+        "y0": 359,
+        "x1": 1019,
+        "y1": 367
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:austria:c4": {
+      "region": {
+        "x0": 1123,
+        "y0": 360,
+        "x1": 1152,
+        "y1": 368
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:austria:c5": {
+      "region": {
+        "x0": 1264,
+        "y0": 360,
+        "x1": 1293,
+        "y1": 368
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:austria:c6": {
+      "region": {
+        "x0": 1413,
+        "y0": 360,
+        "x1": 1434,
+        "y1": 368
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:austria:c7": {
+      "region": {
+        "x0": 1547,
+        "y0": 361,
+        "x1": 1567,
+        "y1": 369
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:austria:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 362,
+        "x1": 1584,
+        "y1": 385
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:belgium_luxembourg:country": {
+      "region": {
+        "x0": 181,
+        "y0": 384,
+        "x1": 363,
+        "y1": 408
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:belgium_luxembourg:c1": {
+      "region": {
+        "x0": 675,
+        "y0": 376,
+        "x1": 710,
+        "y1": 386
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:belgium_luxembourg:c2": {
+      "region": {
+        "x0": 832,
+        "y0": 376,
+        "x1": 868,
+        "y1": 386
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:belgium_luxembourg:c3": {
+      "region": {
+        "x0": 973,
+        "y0": 376,
+        "x1": 1019,
+        "y1": 386
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:belgium_luxembourg:c4": {
+      "region": {
+        "x0": 1106,
+        "y0": 376,
+        "x1": 1151,
+        "y1": 386
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:belgium_luxembourg:c5": {
+      "region": {
+        "x0": 1247,
+        "y0": 376,
+        "x1": 1292,
+        "y1": 386
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:belgium_luxembourg:c6": {
+      "region": {
+        "x0": 1396,
+        "y0": 377,
+        "x1": 1433,
+        "y1": 387
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:belgium_luxembourg:c7": {
+      "region": {
+        "x0": 1529,
+        "y0": 377,
+        "x1": 1567,
+        "y1": 387
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:belgium_luxembourg:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 384,
+        "x1": 1584,
+        "y1": 408
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:bulgaria:country": {
+      "region": {
+        "x0": 181,
+        "y0": 407,
+        "x1": 264,
+        "y1": 430
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:bulgaria:c1": {
+      "region": {
+        "x0": 665,
+        "y0": 389,
+        "x1": 712,
+        "y1": 401
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:bulgaria:c2": {
+      "region": {
+        "x0": 824,
+        "y0": 389,
+        "x1": 870,
+        "y1": 401
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:bulgaria:c3": {
+      "region": {
+        "x0": 964,
+        "y0": 389,
+        "x1": 1020,
+        "y1": 401
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:bulgaria:c4": {
+      "region": {
+        "x0": 1139,
+        "y0": 394,
+        "x1": 1152,
+        "y1": 401
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:bulgaria:c5": {
+      "region": {
+        "x0": 1272,
+        "y0": 393,
+        "x1": 1293,
+        "y1": 401
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:bulgaria:c6": {
+      "region": {
+        "x0": 1389,
+        "y0": 388,
+        "x1": 1435,
+        "y1": 400
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:bulgaria:c7": {
+      "region": {
+        "x0": 1556,
+        "y0": 395,
+        "x1": 1567,
+        "y1": 402
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:bulgaria:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 407,
+        "x1": 1584,
+        "y1": 430
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:czechoslovakia:country": {
+      "region": {
+        "x0": 181,
+        "y0": 429,
+        "x1": 314,
+        "y1": 452
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:czechoslovakia:c1": {
+      "region": {
+        "x0": 665,
+        "y0": 406,
+        "x1": 712,
+        "y1": 417
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:czechoslovakia:c2": {
+      "region": {
+        "x0": 824,
+        "y0": 406,
+        "x1": 870,
+        "y1": 417
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:czechoslovakia:c3": {
+      "region": {
+        "x0": 964,
+        "y0": 406,
+        "x1": 1020,
+        "y1": 417
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:czechoslovakia:c4": {
+      "region": {
+        "x0": 1139,
+        "y0": 409,
+        "x1": 1151,
+        "y1": 417
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:czechoslovakia:c5": {
+      "region": {
+        "x0": 1238,
+        "y0": 406,
+        "x1": 1294,
+        "y1": 417
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:czechoslovakia:c6": {
+      "region": {
+        "x0": 1389,
+        "y0": 405,
+        "x1": 1435,
+        "y1": 416
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:czechoslovakia:c7": {
+      "region": {
+        "x0": 1554,
+        "y0": 410,
+        "x1": 1566,
+        "y1": 418
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:czechoslovakia:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 429,
+        "x1": 1584,
+        "y1": 452
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:denmark:country": {
+      "region": {
+        "x0": 181,
+        "y0": 451,
+        "x1": 264,
+        "y1": 475
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:denmark:c1": {
+      "region": {
+        "x0": 691,
+        "y0": 426,
+        "x1": 711,
+        "y1": 434
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:denmark:c2": {
+      "region": {
+        "x0": 850,
+        "y0": 426,
+        "x1": 869,
+        "y1": 433
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:denmark:c3": {
+      "region": {
+        "x0": 990,
+        "y0": 426,
+        "x1": 1019,
+        "y1": 434
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:denmark:c4": {
+      "region": {
+        "x0": 1123,
+        "y0": 426,
+        "x1": 1151,
+        "y1": 435
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:denmark:c5": {
+      "region": {
+        "x0": 1274,
+        "y0": 426,
+        "x1": 1293,
+        "y1": 434
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:denmark:c6": {
+      "region": {
+        "x0": 1413,
+        "y0": 427,
+        "x1": 1434,
+        "y1": 435
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:denmark:c7": {
+      "region": {
+        "x0": 1547,
+        "y0": 427,
+        "x1": 1566,
+        "y1": 435
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:denmark:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 451,
+        "x1": 1584,
+        "y1": 475
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:finland:country": {
+      "region": {
+        "x0": 181,
+        "y0": 474,
+        "x1": 264,
+        "y1": 497
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:finland:c1": {
+      "region": {
+        "x0": 691,
+        "y0": 442,
+        "x1": 711,
+        "y1": 450
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:finland:c2": {
+      "region": {
+        "x0": 848,
+        "y0": 442,
+        "x1": 868,
+        "y1": 450
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:finland:c3": {
+      "region": {
+        "x0": 990,
+        "y0": 443,
+        "x1": 1019,
+        "y1": 451
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:finland:c4": {
+      "region": {
+        "x0": 1131,
+        "y0": 442,
+        "x1": 1151,
+        "y1": 451
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:finland:c5": {
+      "region": {
+        "x0": 1264,
+        "y0": 443,
+        "x1": 1293,
+        "y1": 451
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:finland:c6": {
+      "region": {
+        "x0": 1413,
+        "y0": 443,
+        "x1": 1434,
+        "y1": 451
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:finland:c7": {
+      "region": {
+        "x0": 1546,
+        "y0": 443,
+        "x1": 1567,
+        "y1": 452
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:finland:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 474,
+        "x1": 1584,
+        "y1": 497
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:france:country": {
+      "region": {
+        "x0": 181,
+        "y0": 496,
+        "x1": 256,
+        "y1": 519
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:france:c1": {
+      "region": {
+        "x0": 674,
+        "y0": 459,
+        "x1": 711,
+        "y1": 469
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:france:c2": {
+      "region": {
+        "x0": 833,
+        "y0": 459,
+        "x1": 869,
+        "y1": 469
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:france:c3": {
+      "region": {
+        "x0": 973,
+        "y0": 459,
+        "x1": 1019,
+        "y1": 470
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:france:c4": {
+      "region": {
+        "x0": 1097,
+        "y0": 456,
+        "x1": 1152,
+        "y1": 468
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:france:c5": {
+      "region": {
+        "x0": 1248,
+        "y0": 459,
+        "x1": 1293,
+        "y1": 470
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:france:c6": {
+      "region": {
+        "x0": 1397,
+        "y0": 460,
+        "x1": 1434,
+        "y1": 470
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:france:c7": {
+      "region": {
+        "x0": 1530,
+        "y0": 460,
+        "x1": 1566,
+        "y1": 470
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:france:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 496,
+        "x1": 1584,
+        "y1": 519
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:german_democratic_republic:country": {
+      "region": {
+        "x0": 181,
+        "y0": 518,
+        "x1": 446,
+        "y1": 542
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:german_democratic_republic:c1": {
+      "region": {
+        "x0": 692,
+        "y0": 476,
+        "x1": 711,
+        "y1": 484
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:german_democratic_republic:c2": {
+      "region": {
+        "x0": 850,
+        "y0": 476,
+        "x1": 868,
+        "y1": 484
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:german_democratic_republic:c3": {
+      "region": {
+        "x0": 999,
+        "y0": 476,
+        "x1": 1019,
+        "y1": 484
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:german_democratic_republic:c4": {
+      "region": {
+        "x0": 1123,
+        "y0": 477,
+        "x1": 1150,
+        "y1": 484
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:german_democratic_republic:c5": {
+      "region": {
+        "x0": 1264,
+        "y0": 476,
+        "x1": 1292,
+        "y1": 485
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:german_democratic_republic:c6": {
+      "region": {
+        "x0": 1414,
+        "y0": 477,
+        "x1": 1434,
+        "y1": 485
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:german_democratic_republic:c7": {
+      "region": {
+        "x0": 1547,
+        "y0": 477,
+        "x1": 1566,
+        "y1": 485
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:german_democratic_republic:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 518,
+        "x1": 1584,
+        "y1": 542
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:germany:country": {
+      "region": {
+        "x0": 181,
+        "y0": 541,
+        "x1": 264,
+        "y1": 564
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:germany:c1": {
+      "region": {
+        "x0": 675,
+        "y0": 492,
+        "x1": 711,
+        "y1": 502
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:germany:c2": {
+      "region": {
+        "x0": 834,
+        "y0": 493,
+        "x1": 869,
+        "y1": 503
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:germany:c3": {
+      "region": {
+        "x0": 973,
+        "y0": 493,
+        "x1": 1019,
+        "y1": 503
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:germany:c4": {
+      "region": {
+        "x0": 1116,
+        "y0": 493,
+        "x1": 1151,
+        "y1": 503
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:germany:c5": {
+      "region": {
+        "x0": 1248,
+        "y0": 493,
+        "x1": 1292,
+        "y1": 503
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:germany:c6": {
+      "region": {
+        "x0": 1398,
+        "y0": 494,
+        "x1": 1433,
+        "y1": 504
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:germany:c7": {
+      "region": {
+        "x0": 1531,
+        "y0": 494,
+        "x1": 1565,
+        "y1": 504
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:germany:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 541,
+        "x1": 1584,
+        "y1": 564
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:greece:country": {
+      "region": {
+        "x0": 181,
+        "y0": 563,
+        "x1": 256,
+        "y1": 587
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:greece:c1": {
+      "region": {
+        "x0": 691,
+        "y0": 508,
+        "x1": 711,
+        "y1": 517
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:greece:c2": {
+      "region": {
+        "x0": 849,
+        "y0": 509,
+        "x1": 868,
+        "y1": 517
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:greece:c3": {
+      "region": {
+        "x0": 990,
+        "y0": 510,
+        "x1": 1018,
+        "y1": 518
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:greece:c4": {
+      "region": {
+        "x0": 1097,
+        "y0": 506,
+        "x1": 1152,
+        "y1": 517
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:greece:c5": {
+      "region": {
+        "x0": 1264,
+        "y0": 510,
+        "x1": 1292,
+        "y1": 518
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:greece:c6": {
+      "region": {
+        "x0": 1413,
+        "y0": 509,
+        "x1": 1434,
+        "y1": 517
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:greece:c7": {
+      "region": {
+        "x0": 1545,
+        "y0": 510,
+        "x1": 1566,
+        "y1": 518
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:greece:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 563,
+        "x1": 1584,
+        "y1": 587
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:hungary:country": {
+      "region": {
+        "x0": 181,
+        "y0": 586,
+        "x1": 264,
+        "y1": 609
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:hungary:c1": {
+      "region": {
+        "x0": 692,
+        "y0": 525,
+        "x1": 712,
+        "y1": 533
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:hungary:c2": {
+      "region": {
+        "x0": 849,
+        "y0": 526,
+        "x1": 869,
+        "y1": 534
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:hungary:c3": {
+      "region": {
+        "x0": 999,
+        "y0": 526,
+        "x1": 1019,
+        "y1": 534
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:hungary:c4": {
+      "region": {
+        "x0": 1132,
+        "y0": 526,
+        "x1": 1152,
+        "y1": 535
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:hungary:c5": {
+      "region": {
+        "x0": 1273,
+        "y0": 526,
+        "x1": 1292,
+        "y1": 534
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:hungary:c6": {
+      "region": {
+        "x0": 1414,
+        "y0": 526,
+        "x1": 1434,
+        "y1": 535
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:hungary:c7": {
+      "region": {
+        "x0": 1547,
+        "y0": 526,
+        "x1": 1567,
+        "y1": 535
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:hungary:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 586,
+        "x1": 1584,
+        "y1": 609
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:italy:country": {
+      "region": {
+        "x0": 181,
+        "y0": 608,
+        "x1": 240,
+        "y1": 631
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:italy:c1": {
+      "region": {
+        "x0": 674,
+        "y0": 542,
+        "x1": 710,
+        "y1": 552
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:italy:c2": {
+      "region": {
+        "x0": 832,
+        "y0": 542,
+        "x1": 869,
+        "y1": 551
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:italy:c3": {
+      "region": {
+        "x0": 973,
+        "y0": 543,
+        "x1": 1019,
+        "y1": 553
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:italy:c4": {
+      "region": {
+        "x0": 1114,
+        "y0": 543,
+        "x1": 1151,
+        "y1": 553
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:italy:c5": {
+      "region": {
+        "x0": 1247,
+        "y0": 543,
+        "x1": 1291,
+        "y1": 553
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:italy:c6": {
+      "region": {
+        "x0": 1397,
+        "y0": 543,
+        "x1": 1433,
+        "y1": 553
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:italy:c7": {
+      "region": {
+        "x0": 1530,
+        "y0": 543,
+        "x1": 1566,
+        "y1": 553
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:italy:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 608,
+        "x1": 1584,
+        "y1": 631
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:netherlands:country": {
+      "region": {
+        "x0": 181,
+        "y0": 630,
+        "x1": 297,
+        "y1": 654
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:netherlands:c1": {
+      "region": {
+        "x0": 675,
+        "y0": 559,
+        "x1": 710,
+        "y1": 569
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:netherlands:c2": {
+      "region": {
+        "x0": 849,
+        "y0": 559,
+        "x1": 869,
+        "y1": 567
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:netherlands:c3": {
+      "region": {
+        "x0": 990,
+        "y0": 560,
+        "x1": 1017,
+        "y1": 568
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:netherlands:c4": {
+      "region": {
+        "x0": 1123,
+        "y0": 560,
+        "x1": 1151,
+        "y1": 568
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:netherlands:c5": {
+      "region": {
+        "x0": 1264,
+        "y0": 560,
+        "x1": 1292,
+        "y1": 568
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:netherlands:c6": {
+      "region": {
+        "x0": 1398,
+        "y0": 560,
+        "x1": 1432,
+        "y1": 569
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:netherlands:c7": {
+      "region": {
+        "x0": 1532,
+        "y0": 560,
+        "x1": 1567,
+        "y1": 570
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:netherlands:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 630,
+        "x1": 1584,
+        "y1": 654
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:norway:country": {
+      "region": {
+        "x0": 181,
+        "y0": 653,
+        "x1": 256,
+        "y1": 676
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:norway:c1": {
+      "region": {
+        "x0": 690,
+        "y0": 575,
+        "x1": 711,
+        "y1": 583
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:norway:c2": {
+      "region": {
+        "x0": 848,
+        "y0": 576,
+        "x1": 868,
+        "y1": 584
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:norway:c3": {
+      "region": {
+        "x0": 990,
+        "y0": 575,
+        "x1": 1019,
+        "y1": 584
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:norway:c4": {
+      "region": {
+        "x0": 1130,
+        "y0": 576,
+        "x1": 1151,
+        "y1": 584
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:norway:c5": {
+      "region": {
+        "x0": 1272,
+        "y0": 576,
+        "x1": 1291,
+        "y1": 584
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:norway:c6": {
+      "region": {
+        "x0": 1412,
+        "y0": 576,
+        "x1": 1433,
+        "y1": 584
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:norway:c7": {
+      "region": {
+        "x0": 1546,
+        "y0": 576,
+        "x1": 1566,
+        "y1": 585
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:norway:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 653,
+        "x1": 1584,
+        "y1": 676
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:poland:country": {
+      "region": {
+        "x0": 181,
+        "y0": 675,
+        "x1": 256,
+        "y1": 698
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:poland:c1": {
+      "region": {
+        "x0": 691,
+        "y0": 592,
+        "x1": 711,
+        "y1": 600
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:poland:c2": {
+      "region": {
+        "x0": 849,
+        "y0": 592,
+        "x1": 868,
+        "y1": 600
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:poland:c3": {
+      "region": {
+        "x0": 999,
+        "y0": 592,
+        "x1": 1019,
+        "y1": 601
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:poland:c4": {
+      "region": {
+        "x0": 1131,
+        "y0": 593,
+        "x1": 1151,
+        "y1": 601
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:poland:c5": {
+      "region": {
+        "x0": 1264,
+        "y0": 593,
+        "x1": 1293,
+        "y1": 601
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:poland:c6": {
+      "region": {
+        "x0": 1414,
+        "y0": 593,
+        "x1": 1434,
+        "y1": 601
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:poland:c7": {
+      "region": {
+        "x0": 1547,
+        "y0": 594,
+        "x1": 1567,
+        "y1": 602
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:poland:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 675,
+        "x1": 1584,
+        "y1": 698
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:portugal:country": {
+      "region": {
+        "x0": 181,
+        "y0": 697,
+        "x1": 264,
+        "y1": 721
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:portugal:c1": {
+      "region": {
+        "x0": 690,
+        "y0": 609,
+        "x1": 710,
+        "y1": 616
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:portugal:c2": {
+      "region": {
+        "x0": 848,
+        "y0": 608,
+        "x1": 869,
+        "y1": 616
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:portugal:c3": {
+      "region": {
+        "x0": 998,
+        "y0": 608,
+        "x1": 1018,
+        "y1": 616
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:portugal:c4": {
+      "region": {
+        "x0": 1097,
+        "y0": 605,
+        "x1": 1152,
+        "y1": 617
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:portugal:c5": {
+      "region": {
+        "x0": 1264,
+        "y0": 610,
+        "x1": 1292,
+        "y1": 618
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:portugal:c6": {
+      "region": {
+        "x0": 1413,
+        "y0": 609,
+        "x1": 1433,
+        "y1": 617
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:portugal:c7": {
+      "region": {
+        "x0": 1546,
+        "y0": 610,
+        "x1": 1565,
+        "y1": 618
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:portugal:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 697,
+        "x1": 1584,
+        "y1": 721
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:romania:country": {
+      "region": {
+        "x0": 181,
+        "y0": 720,
+        "x1": 264,
+        "y1": 743
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:romania:c1": {
+      "region": {
+        "x0": 665,
+        "y0": 622,
+        "x1": 712,
+        "y1": 634
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:romania:c2": {
+      "region": {
+        "x0": 824,
+        "y0": 622,
+        "x1": 870,
+        "y1": 634
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:romania:c3": {
+      "region": {
+        "x0": 964,
+        "y0": 622,
+        "x1": 1020,
+        "y1": 634
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:romania:c4": {
+      "region": {
+        "x0": 1097,
+        "y0": 622,
+        "x1": 1152,
+        "y1": 634
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:romania:c5": {
+      "region": {
+        "x0": 1238,
+        "y0": 622,
+        "x1": 1294,
+        "y1": 634
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:romania:c6": {
+      "region": {
+        "x0": 1389,
+        "y0": 621,
+        "x1": 1435,
+        "y1": 633
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:romania:c7": {
+      "region": {
+        "x0": 1521,
+        "y0": 621,
+        "x1": 1568,
+        "y1": 633
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:romania:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 720,
+        "x1": 1584,
+        "y1": 743
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:spain:country": {
+      "region": {
+        "x0": 181,
+        "y0": 742,
+        "x1": 248,
+        "y1": 766
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:spain:c1": {
+      "region": {
+        "x0": 665,
+        "y0": 639,
+        "x1": 712,
+        "y1": 651
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:spain:c2": {
+      "region": {
+        "x0": 824,
+        "y0": 639,
+        "x1": 870,
+        "y1": 651
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:spain:c3": {
+      "region": {
+        "x0": 964,
+        "y0": 639,
+        "x1": 1020,
+        "y1": 651
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:spain:c4": {
+      "region": {
+        "x0": 1097,
+        "y0": 639,
+        "x1": 1152,
+        "y1": 651
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:spain:c5": {
+      "region": {
+        "x0": 1238,
+        "y0": 639,
+        "x1": 1294,
+        "y1": 651
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:spain:c6": {
+      "region": {
+        "x0": 1389,
+        "y0": 638,
+        "x1": 1435,
+        "y1": 650
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:spain:c7": {
+      "region": {
+        "x0": 1521,
+        "y0": 638,
+        "x1": 1568,
+        "y1": 650
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:spain:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 742,
+        "x1": 1584,
+        "y1": 766
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:sweden:country": {
+      "region": {
+        "x0": 181,
+        "y0": 765,
+        "x1": 256,
+        "y1": 788
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:sweden:c1": {
+      "region": {
+        "x0": 665,
+        "y0": 656,
+        "x1": 712,
+        "y1": 668
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:sweden:c2": {
+      "region": {
+        "x0": 824,
+        "y0": 656,
+        "x1": 870,
+        "y1": 668
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:sweden:c3": {
+      "region": {
+        "x0": 964,
+        "y0": 656,
+        "x1": 1020,
+        "y1": 668
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:sweden:c4": {
+      "region": {
+        "x0": 1097,
+        "y0": 656,
+        "x1": 1152,
+        "y1": 668
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:sweden:c5": {
+      "region": {
+        "x0": 1238,
+        "y0": 656,
+        "x1": 1294,
+        "y1": 668
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:sweden:c6": {
+      "region": {
+        "x0": 1389,
+        "y0": 655,
+        "x1": 1435,
+        "y1": 667
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:sweden:c7": {
+      "region": {
+        "x0": 1521,
+        "y0": 655,
+        "x1": 1568,
+        "y1": 667
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:sweden:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 765,
+        "x1": 1584,
+        "y1": 788
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:switzerland:country": {
+      "region": {
+        "x0": 181,
+        "y0": 787,
+        "x1": 297,
+        "y1": 810
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:switzerland:c1": {
+      "region": {
+        "x0": 665,
+        "y0": 672,
+        "x1": 712,
+        "y1": 684
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:switzerland:c2": {
+      "region": {
+        "x0": 824,
+        "y0": 672,
+        "x1": 870,
+        "y1": 684
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:switzerland:c3": {
+      "region": {
+        "x0": 964,
+        "y0": 672,
+        "x1": 1020,
+        "y1": 684
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:switzerland:c4": {
+      "region": {
+        "x0": 1097,
+        "y0": 672,
+        "x1": 1152,
+        "y1": 684
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:switzerland:c5": {
+      "region": {
+        "x0": 1238,
+        "y0": 672,
+        "x1": 1294,
+        "y1": 684
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:switzerland:c6": {
+      "region": {
+        "x0": 1389,
+        "y0": 671,
+        "x1": 1435,
+        "y1": 683
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:switzerland:c7": {
+      "region": {
+        "x0": 1521,
+        "y0": 671,
+        "x1": 1568,
+        "y1": 683
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:switzerland:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 787,
+        "x1": 1584,
+        "y1": 810
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:turkey:country": {
+      "region": {
+        "x0": 181,
+        "y0": 809,
+        "x1": 248,
+        "y1": 833
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:turkey:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 809,
+        "x1": 677,
+        "y1": 833
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:turkey:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 809,
+        "x1": 850,
+        "y1": 833
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:turkey:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 809,
+        "x1": 982,
+        "y1": 833
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:turkey:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 809,
+        "x1": 1122,
+        "y1": 833
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:turkey:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 809,
+        "x1": 1246,
+        "y1": 833
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:turkey:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 809,
+        "x1": 1419,
+        "y1": 833
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:turkey:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 809,
+        "x1": 1543,
+        "y1": 833
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:turkey:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 809,
+        "x1": 1584,
+        "y1": 833
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:united_kingdom:country": {
+      "region": {
+        "x0": 181,
+        "y0": 832,
+        "x1": 347,
+        "y1": 855
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:united_kingdom:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 832,
+        "x1": 693,
+        "y1": 855
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:united_kingdom:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 832,
+        "x1": 875,
+        "y1": 855
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:united_kingdom:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 832,
+        "x1": 1015,
+        "y1": 855
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:united_kingdom:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 832,
+        "x1": 1147,
+        "y1": 855
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:united_kingdom:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 832,
+        "x1": 1279,
+        "y1": 855
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:united_kingdom:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 832,
+        "x1": 1436,
+        "y1": 855
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:united_kingdom:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 832,
+        "x1": 1568,
+        "y1": 855
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:united_kingdom:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 832,
+        "x1": 1584,
+        "y1": 855
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:ussr:country": {
+      "region": {
+        "x0": 181,
+        "y0": 854,
+        "x1": 264,
+        "y1": 877
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:ussr:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 854,
+        "x1": 677,
+        "y1": 877
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:ussr:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 854,
+        "x1": 850,
+        "y1": 877
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:ussr:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 854,
+        "x1": 982,
+        "y1": 877
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:ussr:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 854,
+        "x1": 1114,
+        "y1": 877
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:ussr:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 854,
+        "x1": 1254,
+        "y1": 877
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:ussr:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 854,
+        "x1": 1419,
+        "y1": 877
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:ussr:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 854,
+        "x1": 1543,
+        "y1": 877
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:ussr:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 854,
+        "x1": 1584,
+        "y1": 877
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:yugoslavia:country": {
+      "region": {
+        "x0": 181,
+        "y0": 876,
+        "x1": 281,
+        "y1": 900
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:yugoslavia:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 876,
+        "x1": 685,
+        "y1": 900
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:yugoslavia:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 876,
+        "x1": 850,
+        "y1": 900
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:yugoslavia:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 876,
+        "x1": 982,
+        "y1": 900
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:yugoslavia:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 876,
+        "x1": 1139,
+        "y1": 900
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:yugoslavia:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 876,
+        "x1": 1254,
+        "y1": 900
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:yugoslavia:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 876,
+        "x1": 1428,
+        "y1": 900
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:yugoslavia:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 876,
+        "x1": 1551,
+        "y1": 900
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:yugoslavia:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 876,
+        "x1": 1584,
+        "y1": 900
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_europe:country": {
+      "region": {
+        "x0": 181,
+        "y0": 899,
+        "x1": 297,
+        "y1": 922
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_europe:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 899,
+        "x1": 677,
+        "y1": 922
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_europe:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 899,
+        "x1": 850,
+        "y1": 922
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_europe:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 899,
+        "x1": 982,
+        "y1": 922
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_europe:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 899,
+        "x1": 1114,
+        "y1": 922
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_europe:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 899,
+        "x1": 1246,
+        "y1": 922
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_europe:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 899,
+        "x1": 1419,
+        "y1": 922
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_europe:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 899,
+        "x1": 1543,
+        "y1": 922
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_europe:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 899,
+        "x1": 1584,
+        "y1": 922
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_europe:country": {
+      "region": {
+        "x0": 181,
+        "y0": 921,
+        "x1": 297,
+        "y1": 945
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_europe:c1": {
+      "region": {
+        "x0": 618,
+        "y0": 921,
+        "x1": 693,
+        "y1": 945
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_europe:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 921,
+        "x1": 875,
+        "y1": 945
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_europe:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 921,
+        "x1": 1015,
+        "y1": 945
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_europe:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 921,
+        "x1": 1147,
+        "y1": 945
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_europe:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 921,
+        "x1": 1279,
+        "y1": 945
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_europe:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 921,
+        "x1": 1436,
+        "y1": 945
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_europe:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 921,
+        "x1": 1568,
+        "y1": 945
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_europe:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 921,
+        "x1": 1584,
+        "y1": 945
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:canada:country": {
+      "region": {
+        "x0": 181,
+        "y0": 944,
+        "x1": 256,
+        "y1": 967
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:canada:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 944,
+        "x1": 685,
+        "y1": 967
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:canada:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 944,
+        "x1": 867,
+        "y1": 967
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:canada:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 944,
+        "x1": 1015,
+        "y1": 967
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:canada:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 944,
+        "x1": 1147,
+        "y1": 967
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:canada:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 944,
+        "x1": 1279,
+        "y1": 967
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:canada:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 944,
+        "x1": 1436,
+        "y1": 967
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:canada:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 944,
+        "x1": 1568,
+        "y1": 967
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:canada:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 944,
+        "x1": 1584,
+        "y1": 967
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:latin_hdr:country": {
+      "region": {
+        "x0": 173,
+        "y0": 966,
+        "x1": 413,
+        "y1": 989
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:latin_hdr:c1": {
+      "region": {
+        "x0": 594,
+        "y0": 966,
+        "x1": 660,
+        "y1": 989
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:latin_hdr:c2": {
+      "region": {
+        "x0": 792,
+        "y0": 966,
+        "x1": 858,
+        "y1": 989
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:latin_hdr:c3": {
+      "region": {
+        "x0": 924,
+        "y0": 966,
+        "x1": 990,
+        "y1": 989
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:latin_hdr:c4": {
+      "region": {
+        "x0": 1056,
+        "y0": 966,
+        "x1": 1122,
+        "y1": 989
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:latin_hdr:c5": {
+      "region": {
+        "x0": 1188,
+        "y0": 966,
+        "x1": 1254,
+        "y1": 989
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:latin_hdr:c6": {
+      "region": {
+        "x0": 1320,
+        "y0": 966,
+        "x1": 1386,
+        "y1": 989
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:latin_hdr:c7": {
+      "region": {
+        "x0": 1419,
+        "y0": 966,
+        "x1": 1485,
+        "y1": 989
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:latin_hdr:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 966,
+        "x1": 1584,
+        "y1": 989
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:argentina:country": {
+      "region": {
+        "x0": 181,
+        "y0": 988,
+        "x1": 281,
+        "y1": 1012
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:argentina:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 988,
+        "x1": 685,
+        "y1": 1012
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:argentina:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 988,
+        "x1": 867,
+        "y1": 1012
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:argentina:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 988,
+        "x1": 999,
+        "y1": 1012
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:argentina:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 988,
+        "x1": 1131,
+        "y1": 1012
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:argentina:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 988,
+        "x1": 1271,
+        "y1": 1012
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:argentina:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 988,
+        "x1": 1428,
+        "y1": 1012
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:argentina:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 988,
+        "x1": 1551,
+        "y1": 1012
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:argentina:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 988,
+        "x1": 1584,
+        "y1": 1012
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:bahamas:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1011,
+        "x1": 264,
+        "y1": 1034
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:bahamas:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 1011,
+        "x1": 693,
+        "y1": 1034
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:bahamas:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 1011,
+        "x1": 875,
+        "y1": 1034
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:bahamas:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 1011,
+        "x1": 1015,
+        "y1": 1034
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:bahamas:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 1011,
+        "x1": 1147,
+        "y1": 1034
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:bahamas:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 1011,
+        "x1": 1271,
+        "y1": 1034
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:bahamas:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 1011,
+        "x1": 1436,
+        "y1": 1034
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:bahamas:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 1011,
+        "x1": 1568,
+        "y1": 1034
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:bahamas:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1011,
+        "x1": 1584,
+        "y1": 1034
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:bermuda:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1033,
+        "x1": 264,
+        "y1": 1056
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:bermuda:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 1033,
+        "x1": 677,
+        "y1": 1056
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:bermuda:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 1033,
+        "x1": 850,
+        "y1": 1056
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:bermuda:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 1033,
+        "x1": 982,
+        "y1": 1056
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:bermuda:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 1033,
+        "x1": 1122,
+        "y1": 1056
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:bermuda:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 1033,
+        "x1": 1254,
+        "y1": 1056
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:bermuda:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 1033,
+        "x1": 1419,
+        "y1": 1056
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:bermuda:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 1033,
+        "x1": 1543,
+        "y1": 1056
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:bermuda:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1033,
+        "x1": 1584,
+        "y1": 1056
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:brazil:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1055,
+        "x1": 248,
+        "y1": 1079
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:brazil:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 1055,
+        "x1": 693,
+        "y1": 1079
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:brazil:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 1055,
+        "x1": 875,
+        "y1": 1079
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:brazil:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 1055,
+        "x1": 1015,
+        "y1": 1079
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:brazil:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 1055,
+        "x1": 1147,
+        "y1": 1079
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:brazil:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 1055,
+        "x1": 1271,
+        "y1": 1079
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:brazil:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 1055,
+        "x1": 1436,
+        "y1": 1079
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:brazil:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 1055,
+        "x1": 1568,
+        "y1": 1079
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:brazil:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1055,
+        "x1": 1584,
+        "y1": 1079
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:british_west_indies:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1078,
+        "x1": 363,
+        "y1": 1101
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:british_west_indies:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 1078,
+        "x1": 693,
+        "y1": 1101
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:british_west_indies:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 1078,
+        "x1": 875,
+        "y1": 1101
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:british_west_indies:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 1078,
+        "x1": 1015,
+        "y1": 1101
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:british_west_indies:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 1078,
+        "x1": 1147,
+        "y1": 1101
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:british_west_indies:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 1078,
+        "x1": 1279,
+        "y1": 1101
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:british_west_indies:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 1078,
+        "x1": 1436,
+        "y1": 1101
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:british_west_indies:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 1078,
+        "x1": 1568,
+        "y1": 1101
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:british_west_indies:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1078,
+        "x1": 1584,
+        "y1": 1101
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:chile:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1100,
+        "x1": 240,
+        "y1": 1123
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:chile:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 1100,
+        "x1": 685,
+        "y1": 1123
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:chile:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 1100,
+        "x1": 867,
+        "y1": 1123
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:chile:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 1100,
+        "x1": 999,
+        "y1": 1123
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:chile:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 1100,
+        "x1": 1131,
+        "y1": 1123
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:chile:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 1100,
+        "x1": 1263,
+        "y1": 1123
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:chile:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 1100,
+        "x1": 1428,
+        "y1": 1123
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:chile:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 1100,
+        "x1": 1551,
+        "y1": 1123
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:chile:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1100,
+        "x1": 1584,
+        "y1": 1123
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:colombia:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1122,
+        "x1": 264,
+        "y1": 1146
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:colombia:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 1122,
+        "x1": 685,
+        "y1": 1146
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:colombia:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 1122,
+        "x1": 867,
+        "y1": 1146
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:colombia:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 1122,
+        "x1": 999,
+        "y1": 1146
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:colombia:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 1122,
+        "x1": 1131,
+        "y1": 1146
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:colombia:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 1122,
+        "x1": 1271,
+        "y1": 1146
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:colombia:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 1122,
+        "x1": 1428,
+        "y1": 1146
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:colombia:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 1122,
+        "x1": 1551,
+        "y1": 1146
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:colombia:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1122,
+        "x1": 1584,
+        "y1": 1146
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:cuba:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1145,
+        "x1": 240,
+        "y1": 1168
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:cuba:c1": {
+      "region": {
+        "x0": 635,
+        "y0": 1145,
+        "x1": 660,
+        "y1": 1168
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:cuba:c2": {
+      "region": {
+        "x0": 816,
+        "y0": 1145,
+        "x1": 842,
+        "y1": 1168
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:cuba:c3": {
+      "region": {
+        "x0": 948,
+        "y0": 1145,
+        "x1": 974,
+        "y1": 1168
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:cuba:c4": {
+      "region": {
+        "x0": 1080,
+        "y0": 1145,
+        "x1": 1106,
+        "y1": 1168
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:cuba:c5": {
+      "region": {
+        "x0": 1212,
+        "y0": 1145,
+        "x1": 1238,
+        "y1": 1168
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:cuba:c6": {
+      "region": {
+        "x0": 1377,
+        "y0": 1145,
+        "x1": 1403,
+        "y1": 1168
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:cuba:c7": {
+      "region": {
+        "x0": 1509,
+        "y0": 1145,
+        "x1": 1535,
+        "y1": 1168
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:cuba:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1145,
+        "x1": 1584,
+        "y1": 1168
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:ecuador:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1167,
+        "x1": 256,
+        "y1": 1191
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:ecuador:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 1167,
+        "x1": 685,
+        "y1": 1191
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:ecuador:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 1167,
+        "x1": 867,
+        "y1": 1191
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:ecuador:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 1167,
+        "x1": 999,
+        "y1": 1191
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:ecuador:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 1167,
+        "x1": 1139,
+        "y1": 1191
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:ecuador:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 1167,
+        "x1": 1271,
+        "y1": 1191
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:ecuador:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 1167,
+        "x1": 1428,
+        "y1": 1191
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:ecuador:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 1167,
+        "x1": 1551,
+        "y1": 1191
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:ecuador:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1167,
+        "x1": 1584,
+        "y1": 1191
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:guatemala:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1190,
+        "x1": 273,
+        "y1": 1213
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:guatemala:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 1190,
+        "x1": 677,
+        "y1": 1213
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:guatemala:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 1190,
+        "x1": 850,
+        "y1": 1213
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:guatemala:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 1190,
+        "x1": 982,
+        "y1": 1213
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:guatemala:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 1190,
+        "x1": 1122,
+        "y1": 1213
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:guatemala:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 1190,
+        "x1": 1254,
+        "y1": 1213
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:guatemala:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 1190,
+        "x1": 1419,
+        "y1": 1213
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:guatemala:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 1190,
+        "x1": 1543,
+        "y1": 1213
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:guatemala:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1190,
+        "x1": 1584,
+        "y1": 1213
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:jamaica:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1212,
+        "x1": 256,
+        "y1": 1235
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:jamaica:c1": {
+      "region": {
+        "x0": 635,
+        "y0": 1212,
+        "x1": 669,
+        "y1": 1235
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:jamaica:c2": {
+      "region": {
+        "x0": 816,
+        "y0": 1212,
+        "x1": 842,
+        "y1": 1235
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:jamaica:c3": {
+      "region": {
+        "x0": 948,
+        "y0": 1212,
+        "x1": 982,
+        "y1": 1235
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:jamaica:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 1212,
+        "x1": 1122,
+        "y1": 1235
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:jamaica:c5": {
+      "region": {
+        "x0": 1212,
+        "y0": 1212,
+        "x1": 1246,
+        "y1": 1235
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:jamaica:c6": {
+      "region": {
+        "x0": 1377,
+        "y0": 1212,
+        "x1": 1411,
+        "y1": 1235
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:jamaica:c7": {
+      "region": {
+        "x0": 1509,
+        "y0": 1212,
+        "x1": 1543,
+        "y1": 1235
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:jamaica:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1212,
+        "x1": 1584,
+        "y1": 1235
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:mexico:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1234,
+        "x1": 256,
+        "y1": 1258
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:mexico:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 1234,
+        "x1": 693,
+        "y1": 1258
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:mexico:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 1234,
+        "x1": 875,
+        "y1": 1258
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:mexico:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 1234,
+        "x1": 1007,
+        "y1": 1258
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:mexico:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 1234,
+        "x1": 1147,
+        "y1": 1258
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:mexico:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 1234,
+        "x1": 1279,
+        "y1": 1258
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:mexico:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 1234,
+        "x1": 1436,
+        "y1": 1258
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:mexico:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 1234,
+        "x1": 1568,
+        "y1": 1258
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:mexico:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1234,
+        "x1": 1584,
+        "y1": 1258
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:netherlands_antilles:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1257,
+        "x1": 363,
+        "y1": 1280
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:netherlands_antilles:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 1257,
+        "x1": 685,
+        "y1": 1280
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:netherlands_antilles:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 1257,
+        "x1": 850,
+        "y1": 1280
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:netherlands_antilles:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 1257,
+        "x1": 990,
+        "y1": 1280
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:netherlands_antilles:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 1257,
+        "x1": 1122,
+        "y1": 1280
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:netherlands_antilles:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 1257,
+        "x1": 1254,
+        "y1": 1280
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:netherlands_antilles:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 1257,
+        "x1": 1428,
+        "y1": 1280
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:netherlands_antilles:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 1257,
+        "x1": 1543,
+        "y1": 1280
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:netherlands_antilles:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1257,
+        "x1": 1584,
+        "y1": 1280
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:panama:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1279,
+        "x1": 256,
+        "y1": 1302
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:panama:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 1279,
+        "x1": 685,
+        "y1": 1302
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:panama:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 1279,
+        "x1": 867,
+        "y1": 1302
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:panama:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 1279,
+        "x1": 1007,
+        "y1": 1302
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:panama:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 1279,
+        "x1": 1139,
+        "y1": 1302
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:panama:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 1279,
+        "x1": 1271,
+        "y1": 1302
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:panama:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 1279,
+        "x1": 1428,
+        "y1": 1302
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:panama:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 1279,
+        "x1": 1551,
+        "y1": 1302
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:panama:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1279,
+        "x1": 1584,
+        "y1": 1302
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:peru:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1301,
+        "x1": 240,
+        "y1": 1325
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:peru:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 1301,
+        "x1": 685,
+        "y1": 1325
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:peru:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 1301,
+        "x1": 850,
+        "y1": 1325
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:peru:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 1301,
+        "x1": 990,
+        "y1": 1325
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:peru:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 1301,
+        "x1": 1122,
+        "y1": 1325
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:peru:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 1301,
+        "x1": 1254,
+        "y1": 1325
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:peru:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 1301,
+        "x1": 1428,
+        "y1": 1325
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:peru:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 1301,
+        "x1": 1551,
+        "y1": 1325
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:peru:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1301,
+        "x1": 1584,
+        "y1": 1325
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:trinidad_tobago:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1324,
+        "x1": 347,
+        "y1": 1347
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:trinidad_tobago:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 1324,
+        "x1": 677,
+        "y1": 1347
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:trinidad_tobago:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 1324,
+        "x1": 850,
+        "y1": 1347
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:trinidad_tobago:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 1324,
+        "x1": 982,
+        "y1": 1347
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:trinidad_tobago:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 1324,
+        "x1": 1122,
+        "y1": 1347
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:trinidad_tobago:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 1324,
+        "x1": 1254,
+        "y1": 1347
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:trinidad_tobago:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 1324,
+        "x1": 1419,
+        "y1": 1347
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:trinidad_tobago:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 1324,
+        "x1": 1543,
+        "y1": 1347
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:trinidad_tobago:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1324,
+        "x1": 1584,
+        "y1": 1347
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:uruguay:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1346,
+        "x1": 256,
+        "y1": 1370
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:uruguay:c1": {
+      "region": {
+        "x0": 665,
+        "y0": 1405,
+        "x1": 712,
+        "y1": 1416
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:uruguay:c2": {
+      "region": {
+        "x0": 824,
+        "y0": 1405,
+        "x1": 870,
+        "y1": 1416
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:uruguay:c3": {
+      "region": {
+        "x0": 964,
+        "y0": 1405,
+        "x1": 1020,
+        "y1": 1416
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:uruguay:c4": {
+      "region": {
+        "x0": 1131,
+        "y0": 1408,
+        "x1": 1150,
+        "y1": 1416
+      },
+      "source": "ocr"
+    },
+    "T.total_claims_by_country:1982-06_p094:uruguay:c5": {
+      "region": {
+        "x0": 1238,
+        "y0": 1405,
+        "x1": 1294,
+        "y1": 1416
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:uruguay:c6": {
+      "region": {
+        "x0": 1389,
+        "y0": 1404,
+        "x1": 1435,
+        "y1": 1415
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:uruguay:c7": {
+      "region": {
+        "x0": 1521,
+        "y0": 1404,
+        "x1": 1568,
+        "y1": 1415
+      },
+      "source": "grid"
+    },
+    "T.total_claims_by_country:1982-06_p094:uruguay:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1346,
+        "x1": 1584,
+        "y1": 1370
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:venezuela:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1369,
+        "x1": 273,
+        "y1": 1392
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:venezuela:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 1369,
+        "x1": 685,
+        "y1": 1392
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:venezuela:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 1369,
+        "x1": 867,
+        "y1": 1392
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:venezuela:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 1369,
+        "x1": 999,
+        "y1": 1392
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:venezuela:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 1369,
+        "x1": 1139,
+        "y1": 1392
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:venezuela:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 1369,
+        "x1": 1271,
+        "y1": 1392
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:venezuela:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 1369,
+        "x1": 1428,
+        "y1": 1392
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:venezuela:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 1369,
+        "x1": 1551,
+        "y1": 1392
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:venezuela:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1369,
+        "x1": 1584,
+        "y1": 1392
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_latin_america_caribbean:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1391,
+        "x1": 413,
+        "y1": 1425
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_latin_america_caribbean:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 1413,
+        "x1": 685,
+        "y1": 1437
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_latin_america_caribbean:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 1413,
+        "x1": 867,
+        "y1": 1437
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_latin_america_caribbean:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 1413,
+        "x1": 999,
+        "y1": 1437
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_latin_america_caribbean:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 1413,
+        "x1": 1139,
+        "y1": 1437
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_latin_america_caribbean:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 1413,
+        "x1": 1263,
+        "y1": 1437
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_latin_america_caribbean:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 1413,
+        "x1": 1428,
+        "y1": 1437
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_latin_america_caribbean:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 1413,
+        "x1": 1551,
+        "y1": 1437
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_latin_america_caribbean:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1413,
+        "x1": 1584,
+        "y1": 1437
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_latin_america_caribbean:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1436,
+        "x1": 413,
+        "y1": 1470
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_latin_america_caribbean:c1": {
+      "region": {
+        "x0": 618,
+        "y0": 1447,
+        "x1": 693,
+        "y1": 1470
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_latin_america_caribbean:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 1447,
+        "x1": 875,
+        "y1": 1470
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_latin_america_caribbean:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 1447,
+        "x1": 1015,
+        "y1": 1470
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_latin_america_caribbean:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 1447,
+        "x1": 1147,
+        "y1": 1470
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_latin_america_caribbean:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 1447,
+        "x1": 1279,
+        "y1": 1470
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_latin_america_caribbean:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 1447,
+        "x1": 1436,
+        "y1": 1470
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_latin_america_caribbean:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 1447,
+        "x1": 1568,
+        "y1": 1470
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_latin_america_caribbean:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1447,
+        "x1": 1584,
+        "y1": 1470
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:asia_hdr:country": {
+      "region": {
+        "x0": 173,
+        "y0": 1469,
+        "x1": 223,
+        "y1": 1493
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:asia_hdr:c1": {
+      "region": {
+        "x0": 594,
+        "y0": 1469,
+        "x1": 660,
+        "y1": 1493
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:asia_hdr:c2": {
+      "region": {
+        "x0": 792,
+        "y0": 1469,
+        "x1": 858,
+        "y1": 1493
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:asia_hdr:c3": {
+      "region": {
+        "x0": 924,
+        "y0": 1469,
+        "x1": 990,
+        "y1": 1493
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:asia_hdr:c4": {
+      "region": {
+        "x0": 1056,
+        "y0": 1469,
+        "x1": 1122,
+        "y1": 1493
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:asia_hdr:c5": {
+      "region": {
+        "x0": 1188,
+        "y0": 1469,
+        "x1": 1254,
+        "y1": 1493
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:asia_hdr:c6": {
+      "region": {
+        "x0": 1320,
+        "y0": 1469,
+        "x1": 1386,
+        "y1": 1493
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:asia_hdr:c7": {
+      "region": {
+        "x0": 1419,
+        "y0": 1469,
+        "x1": 1485,
+        "y1": 1493
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:asia_hdr:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1469,
+        "x1": 1584,
+        "y1": 1493
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:china_hdr:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1492,
+        "x1": 248,
+        "y1": 1515
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:china_hdr:c1": {
+      "region": {
+        "x0": 594,
+        "y0": 1492,
+        "x1": 660,
+        "y1": 1515
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:china_hdr:c2": {
+      "region": {
+        "x0": 792,
+        "y0": 1492,
+        "x1": 858,
+        "y1": 1515
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:china_hdr:c3": {
+      "region": {
+        "x0": 924,
+        "y0": 1492,
+        "x1": 990,
+        "y1": 1515
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:china_hdr:c4": {
+      "region": {
+        "x0": 1056,
+        "y0": 1492,
+        "x1": 1122,
+        "y1": 1515
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:china_hdr:c5": {
+      "region": {
+        "x0": 1188,
+        "y0": 1492,
+        "x1": 1254,
+        "y1": 1515
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:china_hdr:c6": {
+      "region": {
+        "x0": 1320,
+        "y0": 1492,
+        "x1": 1386,
+        "y1": 1515
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:china_hdr:c7": {
+      "region": {
+        "x0": 1419,
+        "y0": 1492,
+        "x1": 1485,
+        "y1": 1515
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:china_hdr:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1492,
+        "x1": 1584,
+        "y1": 1515
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:mainland:country": {
+      "region": {
+        "x0": 198,
+        "y0": 1514,
+        "x1": 281,
+        "y1": 1537
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:mainland:c1": {
+      "region": {
+        "x0": 635,
+        "y0": 1514,
+        "x1": 677,
+        "y1": 1537
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:mainland:c2": {
+      "region": {
+        "x0": 816,
+        "y0": 1514,
+        "x1": 850,
+        "y1": 1537
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:mainland:c3": {
+      "region": {
+        "x0": 948,
+        "y0": 1514,
+        "x1": 990,
+        "y1": 1537
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:mainland:c4": {
+      "region": {
+        "x0": 1080,
+        "y0": 1514,
+        "x1": 1114,
+        "y1": 1537
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:mainland:c5": {
+      "region": {
+        "x0": 1212,
+        "y0": 1514,
+        "x1": 1254,
+        "y1": 1537
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:mainland:c6": {
+      "region": {
+        "x0": 1377,
+        "y0": 1514,
+        "x1": 1419,
+        "y1": 1537
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:mainland:c7": {
+      "region": {
+        "x0": 1509,
+        "y0": 1514,
+        "x1": 1543,
+        "y1": 1537
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:mainland:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1514,
+        "x1": 1584,
+        "y1": 1537
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:taiwan:country": {
+      "region": {
+        "x0": 198,
+        "y0": 1536,
+        "x1": 264,
+        "y1": 1560
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:taiwan:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 1536,
+        "x1": 685,
+        "y1": 1560
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:taiwan:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 1536,
+        "x1": 867,
+        "y1": 1560
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:taiwan:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 1536,
+        "x1": 999,
+        "y1": 1560
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:taiwan:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 1536,
+        "x1": 1131,
+        "y1": 1560
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:taiwan:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 1536,
+        "x1": 1271,
+        "y1": 1560
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:taiwan:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 1536,
+        "x1": 1428,
+        "y1": 1560
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:taiwan:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 1536,
+        "x1": 1551,
+        "y1": 1560
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:taiwan:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1536,
+        "x1": 1584,
+        "y1": 1560
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:hong_kong:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1559,
+        "x1": 281,
+        "y1": 1582
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:hong_kong:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 1559,
+        "x1": 685,
+        "y1": 1582
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:hong_kong:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 1559,
+        "x1": 867,
+        "y1": 1582
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:hong_kong:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 1559,
+        "x1": 1007,
+        "y1": 1582
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:hong_kong:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 1559,
+        "x1": 1131,
+        "y1": 1582
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:hong_kong:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 1559,
+        "x1": 1263,
+        "y1": 1582
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:hong_kong:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 1559,
+        "x1": 1428,
+        "y1": 1582
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:hong_kong:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 1559,
+        "x1": 1551,
+        "y1": 1582
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:hong_kong:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1559,
+        "x1": 1584,
+        "y1": 1582
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:india:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1581,
+        "x1": 240,
+        "y1": 1604
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:india:c1": {
+      "region": {
+        "x0": 635,
+        "y0": 1581,
+        "x1": 677,
+        "y1": 1604
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:india:c2": {
+      "region": {
+        "x0": 816,
+        "y0": 1581,
+        "x1": 850,
+        "y1": 1604
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:india:c3": {
+      "region": {
+        "x0": 948,
+        "y0": 1581,
+        "x1": 990,
+        "y1": 1604
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:india:c4": {
+      "region": {
+        "x0": 1080,
+        "y0": 1581,
+        "x1": 1114,
+        "y1": 1604
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:india:c5": {
+      "region": {
+        "x0": 1212,
+        "y0": 1581,
+        "x1": 1254,
+        "y1": 1604
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:india:c6": {
+      "region": {
+        "x0": 1377,
+        "y0": 1581,
+        "x1": 1419,
+        "y1": 1604
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:india:c7": {
+      "region": {
+        "x0": 1509,
+        "y0": 1581,
+        "x1": 1543,
+        "y1": 1604
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:india:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1581,
+        "x1": 1584,
+        "y1": 1604
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:indonesia:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1603,
+        "x1": 273,
+        "y1": 1627
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:indonesia:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 1603,
+        "x1": 677,
+        "y1": 1627
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:indonesia:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 1603,
+        "x1": 850,
+        "y1": 1627
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:indonesia:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 1603,
+        "x1": 982,
+        "y1": 1627
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:indonesia:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 1603,
+        "x1": 1114,
+        "y1": 1627
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:indonesia:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 1603,
+        "x1": 1254,
+        "y1": 1627
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:indonesia:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 1603,
+        "x1": 1419,
+        "y1": 1627
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:indonesia:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 1603,
+        "x1": 1543,
+        "y1": 1627
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:indonesia:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1603,
+        "x1": 1584,
+        "y1": 1627
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:israel:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1626,
+        "x1": 248,
+        "y1": 1649
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:israel:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 1626,
+        "x1": 685,
+        "y1": 1649
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:israel:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 1626,
+        "x1": 867,
+        "y1": 1649
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:israel:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 1626,
+        "x1": 999,
+        "y1": 1649
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:israel:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 1626,
+        "x1": 1131,
+        "y1": 1649
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:israel:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 1626,
+        "x1": 1271,
+        "y1": 1649
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:israel:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 1626,
+        "x1": 1428,
+        "y1": 1649
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:israel:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 1626,
+        "x1": 1551,
+        "y1": 1649
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:israel:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1626,
+        "x1": 1584,
+        "y1": 1649
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:japan:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1648,
+        "x1": 248,
+        "y1": 1672
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:japan:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 1648,
+        "x1": 693,
+        "y1": 1672
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:japan:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 1648,
+        "x1": 875,
+        "y1": 1672
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:japan:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 1648,
+        "x1": 1015,
+        "y1": 1672
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:japan:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 1648,
+        "x1": 1147,
+        "y1": 1672
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:japan:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 1648,
+        "x1": 1279,
+        "y1": 1672
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:japan:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 1648,
+        "x1": 1436,
+        "y1": 1672
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:japan:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 1648,
+        "x1": 1568,
+        "y1": 1672
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:japan:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1648,
+        "x1": 1584,
+        "y1": 1672
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:korea:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1671,
+        "x1": 248,
+        "y1": 1694
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:korea:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 1671,
+        "x1": 685,
+        "y1": 1694
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:korea:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 1671,
+        "x1": 867,
+        "y1": 1694
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:korea:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 1671,
+        "x1": 1007,
+        "y1": 1694
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:korea:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 1671,
+        "x1": 1139,
+        "y1": 1694
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:korea:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 1671,
+        "x1": 1271,
+        "y1": 1694
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:korea:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 1671,
+        "x1": 1428,
+        "y1": 1694
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:korea:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 1671,
+        "x1": 1551,
+        "y1": 1694
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:korea:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1671,
+        "x1": 1584,
+        "y1": 1694
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:lebanon:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1693,
+        "x1": 256,
+        "y1": 1716
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:lebanon:c1": {
+      "region": {
+        "x0": 635,
+        "y0": 1693,
+        "x1": 669,
+        "y1": 1716
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:lebanon:c2": {
+      "region": {
+        "x0": 816,
+        "y0": 1693,
+        "x1": 842,
+        "y1": 1716
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:lebanon:c3": {
+      "region": {
+        "x0": 948,
+        "y0": 1693,
+        "x1": 982,
+        "y1": 1716
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:lebanon:c4": {
+      "region": {
+        "x0": 1080,
+        "y0": 1693,
+        "x1": 1114,
+        "y1": 1716
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:lebanon:c5": {
+      "region": {
+        "x0": 1212,
+        "y0": 1693,
+        "x1": 1246,
+        "y1": 1716
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:lebanon:c6": {
+      "region": {
+        "x0": 1377,
+        "y0": 1693,
+        "x1": 1411,
+        "y1": 1716
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:lebanon:c7": {
+      "region": {
+        "x0": 1509,
+        "y0": 1693,
+        "x1": 1535,
+        "y1": 1716
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:lebanon:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1693,
+        "x1": 1584,
+        "y1": 1716
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:malaysia:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1715,
+        "x1": 264,
+        "y1": 1739
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:malaysia:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 1715,
+        "x1": 677,
+        "y1": 1739
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:malaysia:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 1715,
+        "x1": 850,
+        "y1": 1739
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:malaysia:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 1715,
+        "x1": 982,
+        "y1": 1739
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:malaysia:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 1715,
+        "x1": 1114,
+        "y1": 1739
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:malaysia:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 1715,
+        "x1": 1246,
+        "y1": 1739
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:malaysia:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 1715,
+        "x1": 1419,
+        "y1": 1739
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:malaysia:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 1715,
+        "x1": 1543,
+        "y1": 1739
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:malaysia:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1715,
+        "x1": 1584,
+        "y1": 1739
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:pakistan:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1738,
+        "x1": 264,
+        "y1": 1761
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:pakistan:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 1738,
+        "x1": 677,
+        "y1": 1761
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:pakistan:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 1738,
+        "x1": 850,
+        "y1": 1761
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:pakistan:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 1738,
+        "x1": 990,
+        "y1": 1761
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:pakistan:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 1738,
+        "x1": 1114,
+        "y1": 1761
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:pakistan:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 1738,
+        "x1": 1254,
+        "y1": 1761
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:pakistan:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 1738,
+        "x1": 1419,
+        "y1": 1761
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:pakistan:c7": {
+      "region": {
+        "x0": 1509,
+        "y0": 1738,
+        "x1": 1535,
+        "y1": 1761
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:pakistan:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1738,
+        "x1": 1584,
+        "y1": 1761
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:philippines:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1760,
+        "x1": 289,
+        "y1": 1783
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:philippines:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 1760,
+        "x1": 685,
+        "y1": 1783
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:philippines:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 1760,
+        "x1": 850,
+        "y1": 1783
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:philippines:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 1760,
+        "x1": 982,
+        "y1": 1783
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:philippines:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 1760,
+        "x1": 1139,
+        "y1": 1783
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:philippines:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 1760,
+        "x1": 1271,
+        "y1": 1783
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:philippines:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 1760,
+        "x1": 1428,
+        "y1": 1783
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:philippines:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 1760,
+        "x1": 1551,
+        "y1": 1783
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:philippines:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1760,
+        "x1": 1584,
+        "y1": 1783
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:singapore:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1782,
+        "x1": 273,
+        "y1": 1806
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:singapore:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 1782,
+        "x1": 685,
+        "y1": 1806
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:singapore:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 1782,
+        "x1": 867,
+        "y1": 1806
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:singapore:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 1782,
+        "x1": 1007,
+        "y1": 1806
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:singapore:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 1782,
+        "x1": 1139,
+        "y1": 1806
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:singapore:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 1782,
+        "x1": 1271,
+        "y1": 1806
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:singapore:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 1782,
+        "x1": 1428,
+        "y1": 1806
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:singapore:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 1782,
+        "x1": 1551,
+        "y1": 1806
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:singapore:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1782,
+        "x1": 1584,
+        "y1": 1806
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:syria:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1805,
+        "x1": 248,
+        "y1": 1828
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:syria:c1": {
+      "region": {
+        "x0": 635,
+        "y0": 1805,
+        "x1": 669,
+        "y1": 1828
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:syria:c2": {
+      "region": {
+        "x0": 816,
+        "y0": 1805,
+        "x1": 842,
+        "y1": 1828
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:syria:c3": {
+      "region": {
+        "x0": 948,
+        "y0": 1805,
+        "x1": 982,
+        "y1": 1828
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:syria:c4": {
+      "region": {
+        "x0": 1080,
+        "y0": 1805,
+        "x1": 1114,
+        "y1": 1828
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:syria:c5": {
+      "region": {
+        "x0": 1212,
+        "y0": 1805,
+        "x1": 1246,
+        "y1": 1828
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:syria:c6": {
+      "region": {
+        "x0": 1377,
+        "y0": 1805,
+        "x1": 1411,
+        "y1": 1828
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:syria:c7": {
+      "region": {
+        "x0": 1509,
+        "y0": 1805,
+        "x1": 1535,
+        "y1": 1828
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:syria:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1805,
+        "x1": 1584,
+        "y1": 1828
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:thailand:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1827,
+        "x1": 264,
+        "y1": 1850
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:thailand:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 1827,
+        "x1": 677,
+        "y1": 1850
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:thailand:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 1827,
+        "x1": 850,
+        "y1": 1850
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:thailand:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 1827,
+        "x1": 982,
+        "y1": 1850
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:thailand:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 1827,
+        "x1": 1114,
+        "y1": 1850
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:thailand:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 1827,
+        "x1": 1254,
+        "y1": 1850
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:thailand:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 1827,
+        "x1": 1419,
+        "y1": 1850
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:thailand:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 1827,
+        "x1": 1543,
+        "y1": 1850
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:thailand:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1827,
+        "x1": 1584,
+        "y1": 1850
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:oil_exporting_asia:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1849,
+        "x1": 380,
+        "y1": 1873
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:oil_exporting_asia:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 1849,
+        "x1": 685,
+        "y1": 1873
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:oil_exporting_asia:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 1849,
+        "x1": 867,
+        "y1": 1873
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:oil_exporting_asia:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 1849,
+        "x1": 1007,
+        "y1": 1873
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:oil_exporting_asia:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 1849,
+        "x1": 1139,
+        "y1": 1873
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:oil_exporting_asia:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 1849,
+        "x1": 1271,
+        "y1": 1873
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:oil_exporting_asia:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 1849,
+        "x1": 1428,
+        "y1": 1873
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:oil_exporting_asia:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 1849,
+        "x1": 1551,
+        "y1": 1873
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:oil_exporting_asia:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1849,
+        "x1": 1584,
+        "y1": 1873
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_asia:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1872,
+        "x1": 281,
+        "y1": 1895
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_asia:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 1872,
+        "x1": 677,
+        "y1": 1895
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_asia:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 1872,
+        "x1": 850,
+        "y1": 1895
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_asia:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 1872,
+        "x1": 990,
+        "y1": 1895
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_asia:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 1872,
+        "x1": 1122,
+        "y1": 1895
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_asia:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 1872,
+        "x1": 1254,
+        "y1": 1895
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_asia:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 1872,
+        "x1": 1419,
+        "y1": 1895
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_asia:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 1872,
+        "x1": 1543,
+        "y1": 1895
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_asia:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1872,
+        "x1": 1584,
+        "y1": 1895
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_asia:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1894,
+        "x1": 289,
+        "y1": 1918
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_asia:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 1894,
+        "x1": 693,
+        "y1": 1918
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_asia:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 1894,
+        "x1": 875,
+        "y1": 1918
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_asia:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 1894,
+        "x1": 1015,
+        "y1": 1918
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_asia:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 1894,
+        "x1": 1147,
+        "y1": 1918
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_asia:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 1894,
+        "x1": 1279,
+        "y1": 1918
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_asia:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 1894,
+        "x1": 1436,
+        "y1": 1918
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_asia:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 1894,
+        "x1": 1568,
+        "y1": 1918
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_asia:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1894,
+        "x1": 1584,
+        "y1": 1918
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:africa_hdr:country": {
+      "region": {
+        "x0": 173,
+        "y0": 1917,
+        "x1": 240,
+        "y1": 1940
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:africa_hdr:c1": {
+      "region": {
+        "x0": 594,
+        "y0": 1917,
+        "x1": 660,
+        "y1": 1940
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:africa_hdr:c2": {
+      "region": {
+        "x0": 792,
+        "y0": 1917,
+        "x1": 858,
+        "y1": 1940
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:africa_hdr:c3": {
+      "region": {
+        "x0": 924,
+        "y0": 1917,
+        "x1": 990,
+        "y1": 1940
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:africa_hdr:c4": {
+      "region": {
+        "x0": 1056,
+        "y0": 1917,
+        "x1": 1122,
+        "y1": 1940
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:africa_hdr:c5": {
+      "region": {
+        "x0": 1188,
+        "y0": 1917,
+        "x1": 1254,
+        "y1": 1940
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:africa_hdr:c6": {
+      "region": {
+        "x0": 1320,
+        "y0": 1917,
+        "x1": 1386,
+        "y1": 1940
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:africa_hdr:c7": {
+      "region": {
+        "x0": 1419,
+        "y0": 1917,
+        "x1": 1485,
+        "y1": 1940
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:africa_hdr:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1917,
+        "x1": 1584,
+        "y1": 1940
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:egypt:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1939,
+        "x1": 248,
+        "y1": 1962
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:egypt:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 1939,
+        "x1": 677,
+        "y1": 1962
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:egypt:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 1939,
+        "x1": 850,
+        "y1": 1962
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:egypt:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 1939,
+        "x1": 990,
+        "y1": 1962
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:egypt:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 1939,
+        "x1": 1114,
+        "y1": 1962
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:egypt:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 1939,
+        "x1": 1246,
+        "y1": 1962
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:egypt:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 1939,
+        "x1": 1419,
+        "y1": 1962
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:egypt:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 1939,
+        "x1": 1543,
+        "y1": 1962
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:egypt:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1939,
+        "x1": 1584,
+        "y1": 1962
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:ghana:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1961,
+        "x1": 248,
+        "y1": 1985
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:ghana:c1": {
+      "region": {
+        "x0": 635,
+        "y0": 1961,
+        "x1": 669,
+        "y1": 1985
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:ghana:c2": {
+      "region": {
+        "x0": 816,
+        "y0": 1961,
+        "x1": 842,
+        "y1": 1985
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:ghana:c3": {
+      "region": {
+        "x0": 948,
+        "y0": 1961,
+        "x1": 982,
+        "y1": 1985
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:ghana:c4": {
+      "region": {
+        "x0": 1080,
+        "y0": 1961,
+        "x1": 1114,
+        "y1": 1985
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:ghana:c5": {
+      "region": {
+        "x0": 1212,
+        "y0": 1961,
+        "x1": 1246,
+        "y1": 1985
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:ghana:c6": {
+      "region": {
+        "x0": 1377,
+        "y0": 1961,
+        "x1": 1411,
+        "y1": 1985
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:ghana:c7": {
+      "region": {
+        "x0": 1509,
+        "y0": 1961,
+        "x1": 1535,
+        "y1": 1985
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:ghana:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1961,
+        "x1": 1584,
+        "y1": 1985
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:liberia:country": {
+      "region": {
+        "x0": 181,
+        "y0": 1984,
+        "x1": 256,
+        "y1": 2007
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:liberia:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 1984,
+        "x1": 677,
+        "y1": 2007
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:liberia:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 1984,
+        "x1": 850,
+        "y1": 2007
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:liberia:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 1984,
+        "x1": 982,
+        "y1": 2007
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:liberia:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 1984,
+        "x1": 1122,
+        "y1": 2007
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:liberia:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 1984,
+        "x1": 1254,
+        "y1": 2007
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:liberia:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 1984,
+        "x1": 1419,
+        "y1": 2007
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:liberia:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 1984,
+        "x1": 1543,
+        "y1": 2007
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:liberia:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 1984,
+        "x1": 1584,
+        "y1": 2007
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:morocco:country": {
+      "region": {
+        "x0": 181,
+        "y0": 2006,
+        "x1": 264,
+        "y1": 2029
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:morocco:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 2006,
+        "x1": 677,
+        "y1": 2029
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:morocco:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 2006,
+        "x1": 850,
+        "y1": 2029
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:morocco:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 2006,
+        "x1": 982,
+        "y1": 2029
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:morocco:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 2006,
+        "x1": 1122,
+        "y1": 2029
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:morocco:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 2006,
+        "x1": 1246,
+        "y1": 2029
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:morocco:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 2006,
+        "x1": 1419,
+        "y1": 2029
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:morocco:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 2006,
+        "x1": 1543,
+        "y1": 2029
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:morocco:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 2006,
+        "x1": 1584,
+        "y1": 2029
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:south_africa:country": {
+      "region": {
+        "x0": 181,
+        "y0": 2028,
+        "x1": 306,
+        "y1": 2052
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:south_africa:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 2028,
+        "x1": 685,
+        "y1": 2052
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:south_africa:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 2028,
+        "x1": 850,
+        "y1": 2052
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:south_africa:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 2028,
+        "x1": 982,
+        "y1": 2052
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:south_africa:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 2028,
+        "x1": 1114,
+        "y1": 2052
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:south_africa:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 2028,
+        "x1": 1263,
+        "y1": 2052
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:south_africa:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 2028,
+        "x1": 1428,
+        "y1": 2052
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:south_africa:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 2028,
+        "x1": 1551,
+        "y1": 2052
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:south_africa:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 2028,
+        "x1": 1584,
+        "y1": 2052
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:zaire:country": {
+      "region": {
+        "x0": 181,
+        "y0": 2051,
+        "x1": 240,
+        "y1": 2074
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:zaire:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 2051,
+        "x1": 677,
+        "y1": 2074
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:zaire:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 2051,
+        "x1": 850,
+        "y1": 2074
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:zaire:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 2051,
+        "x1": 990,
+        "y1": 2074
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:zaire:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 2051,
+        "x1": 1114,
+        "y1": 2074
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:zaire:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 2051,
+        "x1": 1246,
+        "y1": 2074
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:zaire:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 2051,
+        "x1": 1419,
+        "y1": 2074
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:zaire:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 2051,
+        "x1": 1543,
+        "y1": 2074
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:zaire:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 2051,
+        "x1": 1584,
+        "y1": 2074
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:oil_exporting_africa:country": {
+      "region": {
+        "x0": 181,
+        "y0": 2073,
+        "x1": 380,
+        "y1": 2097
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:oil_exporting_africa:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 2073,
+        "x1": 677,
+        "y1": 2097
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:oil_exporting_africa:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 2073,
+        "x1": 850,
+        "y1": 2097
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:oil_exporting_africa:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 2073,
+        "x1": 982,
+        "y1": 2097
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:oil_exporting_africa:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 2073,
+        "x1": 1122,
+        "y1": 2097
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:oil_exporting_africa:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 2073,
+        "x1": 1246,
+        "y1": 2097
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:oil_exporting_africa:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 2073,
+        "x1": 1419,
+        "y1": 2097
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:oil_exporting_africa:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 2073,
+        "x1": 1543,
+        "y1": 2097
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:oil_exporting_africa:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 2073,
+        "x1": 1584,
+        "y1": 2097
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_africa:country": {
+      "region": {
+        "x0": 181,
+        "y0": 2096,
+        "x1": 297,
+        "y1": 2119
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_africa:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 2096,
+        "x1": 677,
+        "y1": 2119
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_africa:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 2096,
+        "x1": 850,
+        "y1": 2119
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_africa:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 2096,
+        "x1": 982,
+        "y1": 2119
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_africa:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 2096,
+        "x1": 1114,
+        "y1": 2119
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_africa:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 2096,
+        "x1": 1254,
+        "y1": 2119
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_africa:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 2096,
+        "x1": 1419,
+        "y1": 2119
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_africa:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 2096,
+        "x1": 1543,
+        "y1": 2119
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_africa:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 2096,
+        "x1": 1584,
+        "y1": 2119
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_africa:country": {
+      "region": {
+        "x0": 181,
+        "y0": 2118,
+        "x1": 297,
+        "y1": 2141
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_africa:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 2118,
+        "x1": 685,
+        "y1": 2141
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_africa:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 2118,
+        "x1": 867,
+        "y1": 2141
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_africa:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 2118,
+        "x1": 999,
+        "y1": 2141
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_africa:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 2118,
+        "x1": 1139,
+        "y1": 2141
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_africa:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 2118,
+        "x1": 1271,
+        "y1": 2141
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_africa:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 2118,
+        "x1": 1428,
+        "y1": 2141
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_africa:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 2118,
+        "x1": 1551,
+        "y1": 2141
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_africa:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 2118,
+        "x1": 1584,
+        "y1": 2141
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_countries_hdr:country": {
+      "region": {
+        "x0": 173,
+        "y0": 2140,
+        "x1": 314,
+        "y1": 2164
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_countries_hdr:c1": {
+      "region": {
+        "x0": 594,
+        "y0": 2140,
+        "x1": 660,
+        "y1": 2164
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_countries_hdr:c2": {
+      "region": {
+        "x0": 792,
+        "y0": 2140,
+        "x1": 858,
+        "y1": 2164
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_countries_hdr:c3": {
+      "region": {
+        "x0": 924,
+        "y0": 2140,
+        "x1": 990,
+        "y1": 2164
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_countries_hdr:c4": {
+      "region": {
+        "x0": 1056,
+        "y0": 2140,
+        "x1": 1122,
+        "y1": 2164
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_countries_hdr:c5": {
+      "region": {
+        "x0": 1188,
+        "y0": 2140,
+        "x1": 1254,
+        "y1": 2164
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_countries_hdr:c6": {
+      "region": {
+        "x0": 1320,
+        "y0": 2140,
+        "x1": 1386,
+        "y1": 2164
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_countries_hdr:c7": {
+      "region": {
+        "x0": 1419,
+        "y0": 2140,
+        "x1": 1485,
+        "y1": 2164
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:other_countries_hdr:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 2140,
+        "x1": 1584,
+        "y1": 2164
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:australia:country": {
+      "region": {
+        "x0": 181,
+        "y0": 2163,
+        "x1": 273,
+        "y1": 2186
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:australia:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 2163,
+        "x1": 685,
+        "y1": 2186
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:australia:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 2163,
+        "x1": 867,
+        "y1": 2186
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:australia:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 2163,
+        "x1": 999,
+        "y1": 2186
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:australia:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 2163,
+        "x1": 1131,
+        "y1": 2186
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:australia:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 2163,
+        "x1": 1263,
+        "y1": 2186
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:australia:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 2163,
+        "x1": 1428,
+        "y1": 2186
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:australia:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 2163,
+        "x1": 1551,
+        "y1": 2186
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:australia:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 2163,
+        "x1": 1584,
+        "y1": 2186
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:all_other:country": {
+      "region": {
+        "x0": 181,
+        "y0": 2185,
+        "x1": 264,
+        "y1": 2208
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:all_other:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 2185,
+        "x1": 677,
+        "y1": 2208
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:all_other:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 2185,
+        "x1": 850,
+        "y1": 2208
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:all_other:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 2185,
+        "x1": 982,
+        "y1": 2208
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:all_other:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 2185,
+        "x1": 1122,
+        "y1": 2208
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:all_other:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 2185,
+        "x1": 1246,
+        "y1": 2208
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:all_other:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 2185,
+        "x1": 1419,
+        "y1": 2208
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:all_other:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 2185,
+        "x1": 1543,
+        "y1": 2208
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:all_other:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 2185,
+        "x1": 1584,
+        "y1": 2208
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_other_countries:country": {
+      "region": {
+        "x0": 181,
+        "y0": 2207,
+        "x1": 363,
+        "y1": 2231
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_other_countries:c1": {
+      "region": {
+        "x0": 627,
+        "y0": 2207,
+        "x1": 685,
+        "y1": 2231
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_other_countries:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 2207,
+        "x1": 867,
+        "y1": 2231
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_other_countries:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 2207,
+        "x1": 999,
+        "y1": 2231
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_other_countries:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 2207,
+        "x1": 1139,
+        "y1": 2231
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_other_countries:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 2207,
+        "x1": 1263,
+        "y1": 2231
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_other_countries:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 2207,
+        "x1": 1428,
+        "y1": 2231
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_other_countries:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 2207,
+        "x1": 1551,
+        "y1": 2231
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_other_countries:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 2207,
+        "x1": 1584,
+        "y1": 2231
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_foreign_countries:country": {
+      "region": {
+        "x0": 181,
+        "y0": 2230,
+        "x1": 380,
+        "y1": 2237
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_foreign_countries:c1": {
+      "region": {
+        "x0": 618,
+        "y0": 2230,
+        "x1": 693,
+        "y1": 2237
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_foreign_countries:c2": {
+      "region": {
+        "x0": 808,
+        "y0": 2230,
+        "x1": 875,
+        "y1": 2237
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_foreign_countries:c3": {
+      "region": {
+        "x0": 940,
+        "y0": 2230,
+        "x1": 1015,
+        "y1": 2237
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_foreign_countries:c4": {
+      "region": {
+        "x0": 1072,
+        "y0": 2230,
+        "x1": 1147,
+        "y1": 2237
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_foreign_countries:c5": {
+      "region": {
+        "x0": 1204,
+        "y0": 2230,
+        "x1": 1279,
+        "y1": 2237
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_foreign_countries:c6": {
+      "region": {
+        "x0": 1369,
+        "y0": 2230,
+        "x1": 1436,
+        "y1": 2237
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_foreign_countries:c7": {
+      "region": {
+        "x0": 1501,
+        "y0": 2230,
+        "x1": 1568,
+        "y1": 2237
+      },
+      "source": "model"
+    },
+    "T.total_claims_by_country:1982-06_p094:total_foreign_countries:c8": {
+      "region": {
+        "x0": 1518,
+        "y0": 2230,
+        "x1": 1584,
+        "y1": 2237
+      },
+      "source": "model"
+    }
+  }
+}

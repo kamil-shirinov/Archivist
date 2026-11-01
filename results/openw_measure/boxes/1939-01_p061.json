@@ -1,0 +1,3793 @@
+{
+  "ref": "1939-01_p061",
+  "crop_host": "baseten",
+  "grid": {
+    "rows": 24,
+    "bands": 17,
+    "fixed": 19,
+    "order": null
+  },
+  "eligible": 420,
+  "cells": {
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_01:label": {
+      "region": {
+        "x0": 61,
+        "y0": 328,
+        "x1": 295,
+        "y1": 361
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_01:united_kingdom": {
+      "region": {
+        "x0": 309,
+        "y0": 356,
+        "x1": 372,
+        "y1": 367
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_01:france": {
+      "region": {
+        "x0": 416,
+        "y0": 356,
+        "x1": 459,
+        "y1": 368
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_01:germany": {
+      "region": {
+        "x0": 521,
+        "y0": 355,
+        "x1": 546,
+        "y1": 365
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_01:italy": {
+      "region": {
+        "x0": 598,
+        "y0": 353,
+        "x1": 624,
+        "y1": 363
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_01:netherlands": {
+      "region": {
+        "x0": 666,
+        "y0": 355,
+        "x1": 710,
+        "y1": 365
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_01:switzerland": {
+      "region": {
+        "x0": 696,
+        "y0": 328,
+        "x1": 759,
+        "y1": 361
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_01:other_europe": {
+      "region": {
+        "x0": 839,
+        "y0": 354,
+        "x1": 883,
+        "y1": 365
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_01:total_europe": {
+      "region": {
+        "x0": 926,
+        "y0": 354,
+        "x1": 989,
+        "y1": 365
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_01:canada": {
+      "region": {
+        "x0": 1022,
+        "y0": 355,
+        "x1": 1075,
+        "y1": 365
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_01:latin_america": {
+      "region": {
+        "x0": 1118,
+        "y0": 356,
+        "x1": 1162,
+        "y1": 365
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_01:far_east": {
+      "region": {
+        "x0": 1195,
+        "y0": 356,
+        "x1": 1249,
+        "y1": 367
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_01:all_other": {
+      "region": {
+        "x0": 1191,
+        "y0": 328,
+        "x1": 1239,
+        "y1": 361
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_01:grand_total": {
+      "region": {
+        "x0": 1369,
+        "y0": 356,
+        "x1": 1432,
+        "y1": 367
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_02:label": {
+      "region": {
+        "x0": 135,
+        "y0": 375,
+        "x1": 150,
+        "y1": 385
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_02:united_kingdom": {
+      "region": {
+        "x0": 309,
+        "y0": 372,
+        "x1": 372,
+        "y1": 383
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_02:france": {
+      "region": {
+        "x0": 407,
+        "y0": 351,
+        "x1": 466,
+        "y1": 388
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_02:germany": {
+      "region": {
+        "x0": 521,
+        "y0": 374,
+        "x1": 546,
+        "y1": 384
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_02:italy": {
+      "region": {
+        "x0": 598,
+        "y0": 372,
+        "x1": 625,
+        "y1": 382
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_02:netherlands": {
+      "region": {
+        "x0": 657,
+        "y0": 374,
+        "x1": 710,
+        "y1": 386
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_02:switzerland": {
+      "region": {
+        "x0": 752,
+        "y0": 372,
+        "x1": 798,
+        "y1": 384
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_02:other_europe": {
+      "region": {
+        "x0": 825,
+        "y0": 351,
+        "x1": 889,
+        "y1": 388
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_02:total_europe": {
+      "region": {
+        "x0": 926,
+        "y0": 374,
+        "x1": 989,
+        "y1": 385
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_02:canada": {
+      "region": {
+        "x0": 1014,
+        "y0": 351,
+        "x1": 1083,
+        "y1": 388
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_02:latin_america": {
+      "region": {
+        "x0": 1118,
+        "y0": 351,
+        "x1": 1170,
+        "y1": 388
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_02:far_east": {
+      "region": {
+        "x0": 1196,
+        "y0": 376,
+        "x1": 1249,
+        "y1": 386
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_02:all_other": {
+      "region": {
+        "x0": 1191,
+        "y0": 360,
+        "x1": 1239,
+        "y1": 393
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_02:grand_total": {
+      "region": {
+        "x0": 1369,
+        "y0": 350,
+        "x1": 1435,
+        "y1": 387
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_03:label": {
+      "region": {
+        "x0": 136,
+        "y0": 396,
+        "x1": 151,
+        "y1": 405
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_03:united_kingdom": {
+      "region": {
+        "x0": 300,
+        "y0": 388,
+        "x1": 378,
+        "y1": 425
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_03:france": {
+      "region": {
+        "x0": 416,
+        "y0": 394,
+        "x1": 459,
+        "y1": 406
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_03:germany": {
+      "region": {
+        "x0": 521,
+        "y0": 394,
+        "x1": 546,
+        "y1": 404
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_03:italy": {
+      "region": {
+        "x0": 580,
+        "y0": 388,
+        "x1": 630,
+        "y1": 425
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_03:netherlands": {
+      "region": {
+        "x0": 657,
+        "y0": 392,
+        "x1": 711,
+        "y1": 404
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_03:switzerland": {
+      "region": {
+        "x0": 752,
+        "y0": 392,
+        "x1": 796,
+        "y1": 404
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_03:other_europe": {
+      "region": {
+        "x0": 840,
+        "y0": 393,
+        "x1": 883,
+        "y1": 403
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_03:total_europe": {
+      "region": {
+        "x0": 926,
+        "y0": 393,
+        "x1": 989,
+        "y1": 405
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_03:canada": {
+      "region": {
+        "x0": 1023,
+        "y0": 394,
+        "x1": 1076,
+        "y1": 404
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_03:latin_america": {
+      "region": {
+        "x0": 1118,
+        "y0": 395,
+        "x1": 1163,
+        "y1": 403
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_03:far_east": {
+      "region": {
+        "x0": 1196,
+        "y0": 395,
+        "x1": 1250,
+        "y1": 405
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_03:all_other": {
+      "region": {
+        "x0": 1191,
+        "y0": 392,
+        "x1": 1239,
+        "y1": 424
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_03:grand_total": {
+      "region": {
+        "x0": 1369,
+        "y0": 387,
+        "x1": 1435,
+        "y1": 424
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_04:label": {
+      "region": {
+        "x0": 135,
+        "y0": 413,
+        "x1": 151,
+        "y1": 423
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_04:united_kingdom": {
+      "region": {
+        "x0": 309,
+        "y0": 411,
+        "x1": 372,
+        "y1": 423
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_04:france": {
+      "region": {
+        "x0": 416,
+        "y0": 414,
+        "x1": 460,
+        "y1": 426
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_04:germany": {
+      "region": {
+        "x0": 521,
+        "y0": 412,
+        "x1": 546,
+        "y1": 422
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_04:italy": {
+      "region": {
+        "x0": 580,
+        "y0": 388,
+        "x1": 630,
+        "y1": 425
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_04:netherlands": {
+      "region": {
+        "x0": 666,
+        "y0": 412,
+        "x1": 710,
+        "y1": 422
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_04:switzerland": {
+      "region": {
+        "x0": 696,
+        "y0": 424,
+        "x1": 759,
+        "y1": 456
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_04:other_europe": {
+      "region": {
+        "x0": 830,
+        "y0": 412,
+        "x1": 882,
+        "y1": 422
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_04:total_europe": {
+      "region": {
+        "x0": 917,
+        "y0": 388,
+        "x1": 996,
+        "y1": 425
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_04:canada": {
+      "region": {
+        "x0": 1023,
+        "y0": 413,
+        "x1": 1076,
+        "y1": 423
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_04:latin_america": {
+      "region": {
+        "x0": 1119,
+        "y0": 413,
+        "x1": 1162,
+        "y1": 423
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_04:far_east": {
+      "region": {
+        "x0": 1196,
+        "y0": 413,
+        "x1": 1249,
+        "y1": 423
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_04:all_other": {
+      "region": {
+        "x0": 1191,
+        "y0": 424,
+        "x1": 1239,
+        "y1": 456
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_04:grand_total": {
+      "region": {
+        "x0": 1369,
+        "y0": 414,
+        "x1": 1433,
+        "y1": 425
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_05:label": {
+      "region": {
+        "x0": 61,
+        "y0": 455,
+        "x1": 295,
+        "y1": 488
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_05:united_kingdom": {
+      "region": {
+        "x0": 309,
+        "y0": 455,
+        "x1": 387,
+        "y1": 488
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_05:france": {
+      "region": {
+        "x0": 402,
+        "y0": 455,
+        "x1": 465,
+        "y1": 488
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_05:germany": {
+      "region": {
+        "x0": 479,
+        "y0": 455,
+        "x1": 527,
+        "y1": 488
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_05:italy": {
+      "region": {
+        "x0": 557,
+        "y0": 455,
+        "x1": 604,
+        "y1": 488
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_05:netherlands": {
+      "region": {
+        "x0": 619,
+        "y0": 455,
+        "x1": 682,
+        "y1": 488
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_05:switzerland": {
+      "region": {
+        "x0": 696,
+        "y0": 455,
+        "x1": 759,
+        "y1": 488
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_05:other_europe": {
+      "region": {
+        "x0": 774,
+        "y0": 455,
+        "x1": 836,
+        "y1": 488
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_05:total_europe": {
+      "region": {
+        "x0": 851,
+        "y0": 455,
+        "x1": 929,
+        "y1": 488
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_05:canada": {
+      "region": {
+        "x0": 944,
+        "y0": 455,
+        "x1": 1007,
+        "y1": 488
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_05:latin_america": {
+      "region": {
+        "x0": 1021,
+        "y0": 455,
+        "x1": 1084,
+        "y1": 488
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_05:far_east": {
+      "region": {
+        "x0": 1099,
+        "y0": 455,
+        "x1": 1161,
+        "y1": 488
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_05:all_other": {
+      "region": {
+        "x0": 1191,
+        "y0": 455,
+        "x1": 1239,
+        "y1": 488
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_purchase_05:grand_total": {
+      "region": {
+        "x0": 1269,
+        "y0": 455,
+        "x1": 1347,
+        "y1": 488
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_01:label": {
+      "region": {
+        "x0": 61,
+        "y0": 498,
+        "x1": 295,
+        "y1": 530
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_01:united_kingdom": {
+      "region": {
+        "x0": 319,
+        "y0": 491,
+        "x1": 372,
+        "y1": 501
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_01:france": {
+      "region": {
+        "x0": 416,
+        "y0": 491,
+        "x1": 459,
+        "y1": 501
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_01:germany": {
+      "region": {
+        "x0": 511,
+        "y0": 486,
+        "x1": 554,
+        "y1": 541
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_01:italy": {
+      "region": {
+        "x0": 580,
+        "y0": 486,
+        "x1": 630,
+        "y1": 541
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_01:netherlands": {
+      "region": {
+        "x0": 666,
+        "y0": 490,
+        "x1": 711,
+        "y1": 500
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_01:switzerland": {
+      "region": {
+        "x0": 696,
+        "y0": 498,
+        "x1": 759,
+        "y1": 530
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_01:other_europe": {
+      "region": {
+        "x0": 840,
+        "y0": 490,
+        "x1": 884,
+        "y1": 500
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_01:total_europe": {
+      "region": {
+        "x0": 917,
+        "y0": 486,
+        "x1": 996,
+        "y1": 541
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_01:canada": {
+      "region": {
+        "x0": 1022,
+        "y0": 490,
+        "x1": 1076,
+        "y1": 500
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_01:latin_america": {
+      "region": {
+        "x0": 1120,
+        "y0": 490,
+        "x1": 1162,
+        "y1": 500
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_01:far_east": {
+      "region": {
+        "x0": 1099,
+        "y0": 498,
+        "x1": 1161,
+        "y1": 530
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_01:all_other": {
+      "region": {
+        "x0": 1191,
+        "y0": 498,
+        "x1": 1239,
+        "y1": 530
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_01:grand_total": {
+      "region": {
+        "x0": 1369,
+        "y0": 485,
+        "x1": 1435,
+        "y1": 540
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_02:label": {
+      "region": {
+        "x0": 136,
+        "y0": 509,
+        "x1": 151,
+        "y1": 519
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_02:united_kingdom": {
+      "region": {
+        "x0": 319,
+        "y0": 510,
+        "x1": 372,
+        "y1": 520
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_02:france": {
+      "region": {
+        "x0": 415,
+        "y0": 509,
+        "x1": 461,
+        "y1": 520
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_02:germany": {
+      "region": {
+        "x0": 521,
+        "y0": 508,
+        "x1": 546,
+        "y1": 518
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_02:italy": {
+      "region": {
+        "x0": 580,
+        "y0": 486,
+        "x1": 630,
+        "y1": 541
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_02:netherlands": {
+      "region": {
+        "x0": 666,
+        "y0": 509,
+        "x1": 710,
+        "y1": 519
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_02:switzerland": {
+      "region": {
+        "x0": 696,
+        "y0": 530,
+        "x1": 759,
+        "y1": 562
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_02:other_europe": {
+      "region": {
+        "x0": 840,
+        "y0": 508,
+        "x1": 884,
+        "y1": 518
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_02:total_europe": {
+      "region": {
+        "x0": 926,
+        "y0": 506,
+        "x1": 989,
+        "y1": 519
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_02:canada": {
+      "region": {
+        "x0": 1014,
+        "y0": 486,
+        "x1": 1083,
+        "y1": 541
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_02:latin_america": {
+      "region": {
+        "x0": 1120,
+        "y0": 509,
+        "x1": 1162,
+        "y1": 519
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_02:far_east": {
+      "region": {
+        "x0": 1206,
+        "y0": 511,
+        "x1": 1251,
+        "y1": 521
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_02:all_other": {
+      "region": {
+        "x0": 1191,
+        "y0": 530,
+        "x1": 1239,
+        "y1": 562
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_02:grand_total": {
+      "region": {
+        "x0": 1370,
+        "y0": 510,
+        "x1": 1433,
+        "y1": 520
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_03:label": {
+      "region": {
+        "x0": 61,
+        "y0": 561,
+        "x1": 295,
+        "y1": 594
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_03:united_kingdom": {
+      "region": {
+        "x0": 320,
+        "y0": 527,
+        "x1": 373,
+        "y1": 537
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_03:france": {
+      "region": {
+        "x0": 415,
+        "y0": 528,
+        "x1": 459,
+        "y1": 541
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_03:germany": {
+      "region": {
+        "x0": 511,
+        "y0": 486,
+        "x1": 554,
+        "y1": 541
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_03:italy": {
+      "region": {
+        "x0": 580,
+        "y0": 486,
+        "x1": 630,
+        "y1": 541
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_03:netherlands": {
+      "region": {
+        "x0": 666,
+        "y0": 527,
+        "x1": 709,
+        "y1": 539
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_03:switzerland": {
+      "region": {
+        "x0": 696,
+        "y0": 561,
+        "x1": 759,
+        "y1": 594
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_03:other_europe": {
+      "region": {
+        "x0": 839,
+        "y0": 527,
+        "x1": 884,
+        "y1": 537
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_03:total_europe": {
+      "region": {
+        "x0": 926,
+        "y0": 527,
+        "x1": 990,
+        "y1": 539
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_03:canada": {
+      "region": {
+        "x0": 1022,
+        "y0": 528,
+        "x1": 1076,
+        "y1": 538
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_03:latin_america": {
+      "region": {
+        "x0": 1119,
+        "y0": 528,
+        "x1": 1162,
+        "y1": 538
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_03:far_east": {
+      "region": {
+        "x0": 1206,
+        "y0": 530,
+        "x1": 1250,
+        "y1": 541
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_03:all_other": {
+      "region": {
+        "x0": 1191,
+        "y0": 561,
+        "x1": 1239,
+        "y1": 594
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_03:grand_total": {
+      "region": {
+        "x0": 1370,
+        "y0": 529,
+        "x1": 1433,
+        "y1": 539
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_04:label": {
+      "region": {
+        "x0": 61,
+        "y0": 593,
+        "x1": 295,
+        "y1": 626
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_04:united_kingdom": {
+      "region": {
+        "x0": 309,
+        "y0": 548,
+        "x1": 373,
+        "y1": 560
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_04:france": {
+      "region": {
+        "x0": 415,
+        "y0": 549,
+        "x1": 459,
+        "y1": 561
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_04:germany": {
+      "region": {
+        "x0": 531,
+        "y0": 548,
+        "x1": 546,
+        "y1": 557
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_04:italy": {
+      "region": {
+        "x0": 580,
+        "y0": 544,
+        "x1": 630,
+        "y1": 561
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_04:netherlands": {
+      "region": {
+        "x0": 666,
+        "y0": 546,
+        "x1": 710,
+        "y1": 559
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_04:switzerland": {
+      "region": {
+        "x0": 771,
+        "y0": 546,
+        "x1": 796,
+        "y1": 555
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_04:other_europe": {
+      "region": {
+        "x0": 839,
+        "y0": 547,
+        "x1": 883,
+        "y1": 559
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_04:total_europe": {
+      "region": {
+        "x0": 926,
+        "y0": 547,
+        "x1": 989,
+        "y1": 557
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_04:canada": {
+      "region": {
+        "x0": 1033,
+        "y0": 548,
+        "x1": 1077,
+        "y1": 561
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_04:latin_america": {
+      "region": {
+        "x0": 1119,
+        "y0": 548,
+        "x1": 1163,
+        "y1": 561
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_04:far_east": {
+      "region": {
+        "x0": 1099,
+        "y0": 593,
+        "x1": 1161,
+        "y1": 626
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_04:all_other": {
+      "region": {
+        "x0": 1191,
+        "y0": 593,
+        "x1": 1239,
+        "y1": 626
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_04:grand_total": {
+      "region": {
+        "x0": 1370,
+        "y0": 550,
+        "x1": 1433,
+        "y1": 560
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_05:label": {
+      "region": {
+        "x0": 61,
+        "y0": 625,
+        "x1": 295,
+        "y1": 658
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_05:united_kingdom": {
+      "region": {
+        "x0": 309,
+        "y0": 625,
+        "x1": 387,
+        "y1": 658
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_05:france": {
+      "region": {
+        "x0": 402,
+        "y0": 625,
+        "x1": 465,
+        "y1": 658
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_05:germany": {
+      "region": {
+        "x0": 479,
+        "y0": 625,
+        "x1": 527,
+        "y1": 658
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_05:italy": {
+      "region": {
+        "x0": 557,
+        "y0": 625,
+        "x1": 604,
+        "y1": 658
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_05:netherlands": {
+      "region": {
+        "x0": 619,
+        "y0": 625,
+        "x1": 682,
+        "y1": 658
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_05:switzerland": {
+      "region": {
+        "x0": 696,
+        "y0": 625,
+        "x1": 759,
+        "y1": 658
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_05:other_europe": {
+      "region": {
+        "x0": 774,
+        "y0": 625,
+        "x1": 836,
+        "y1": 658
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_05:total_europe": {
+      "region": {
+        "x0": 851,
+        "y0": 625,
+        "x1": 929,
+        "y1": 658
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_05:canada": {
+      "region": {
+        "x0": 944,
+        "y0": 625,
+        "x1": 1007,
+        "y1": 658
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_05:latin_america": {
+      "region": {
+        "x0": 1021,
+        "y0": 625,
+        "x1": 1084,
+        "y1": 658
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_05:far_east": {
+      "region": {
+        "x0": 1099,
+        "y0": 625,
+        "x1": 1161,
+        "y1": 658
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_05:all_other": {
+      "region": {
+        "x0": 1191,
+        "y0": 625,
+        "x1": 1239,
+        "y1": 658
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_foreign_05:grand_total": {
+      "region": {
+        "x0": 1269,
+        "y0": 625,
+        "x1": 1347,
+        "y1": 658
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_01:label": {
+      "region": {
+        "x0": 61,
+        "y0": 667,
+        "x1": 295,
+        "y1": 700
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_01:united_kingdom": {
+      "region": {
+        "x0": 309,
+        "y0": 623,
+        "x1": 372,
+        "y1": 635
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_01:france": {
+      "region": {
+        "x0": 416,
+        "y0": 625,
+        "x1": 459,
+        "y1": 637
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_01:germany": {
+      "region": {
+        "x0": 511,
+        "y0": 620,
+        "x1": 554,
+        "y1": 658
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_01:italy": {
+      "region": {
+        "x0": 598,
+        "y0": 625,
+        "x1": 624,
+        "y1": 635
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_01:netherlands": {
+      "region": {
+        "x0": 667,
+        "y0": 624,
+        "x1": 711,
+        "y1": 636
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_01:switzerland": {
+      "region": {
+        "x0": 753,
+        "y0": 624,
+        "x1": 797,
+        "y1": 634
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_01:other_europe": {
+      "region": {
+        "x0": 840,
+        "y0": 623,
+        "x1": 883,
+        "y1": 635
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_01:total_europe": {
+      "region": {
+        "x0": 926,
+        "y0": 624,
+        "x1": 990,
+        "y1": 636
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_01:canada": {
+      "region": {
+        "x0": 1023,
+        "y0": 624,
+        "x1": 1077,
+        "y1": 636
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_01:latin_america": {
+      "region": {
+        "x0": 1118,
+        "y0": 620,
+        "x1": 1170,
+        "y1": 658
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_01:far_east": {
+      "region": {
+        "x0": 1196,
+        "y0": 626,
+        "x1": 1251,
+        "y1": 636
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_01:all_other": {
+      "region": {
+        "x0": 1191,
+        "y0": 667,
+        "x1": 1239,
+        "y1": 700
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_01:grand_total": {
+      "region": {
+        "x0": 1370,
+        "y0": 628,
+        "x1": 1433,
+        "y1": 637
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_02:label": {
+      "region": {
+        "x0": 61,
+        "y0": 699,
+        "x1": 295,
+        "y1": 732
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_02:united_kingdom": {
+      "region": {
+        "x0": 300,
+        "y0": 620,
+        "x1": 378,
+        "y1": 658
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_02:france": {
+      "region": {
+        "x0": 415,
+        "y0": 645,
+        "x1": 460,
+        "y1": 655
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_02:germany": {
+      "region": {
+        "x0": 511,
+        "y0": 620,
+        "x1": 554,
+        "y1": 658
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_02:italy": {
+      "region": {
+        "x0": 598,
+        "y0": 642,
+        "x1": 623,
+        "y1": 651
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_02:netherlands": {
+      "region": {
+        "x0": 619,
+        "y0": 699,
+        "x1": 682,
+        "y1": 732
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_02:switzerland": {
+      "region": {
+        "x0": 753,
+        "y0": 643,
+        "x1": 797,
+        "y1": 653
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_02:other_europe": {
+      "region": {
+        "x0": 840,
+        "y0": 645,
+        "x1": 883,
+        "y1": 655
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_02:total_europe": {
+      "region": {
+        "x0": 926,
+        "y0": 643,
+        "x1": 991,
+        "y1": 655
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_02:canada": {
+      "region": {
+        "x0": 1024,
+        "y0": 645,
+        "x1": 1077,
+        "y1": 657
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_02:latin_america": {
+      "region": {
+        "x0": 1120,
+        "y0": 646,
+        "x1": 1164,
+        "y1": 654
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_02:far_east": {
+      "region": {
+        "x0": 1196,
+        "y0": 644,
+        "x1": 1251,
+        "y1": 655
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_02:all_other": {
+      "region": {
+        "x0": 1191,
+        "y0": 699,
+        "x1": 1239,
+        "y1": 732
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_02:grand_total": {
+      "region": {
+        "x0": 1371,
+        "y0": 647,
+        "x1": 1433,
+        "y1": 657
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_03:label": {
+      "region": {
+        "x0": 61,
+        "y0": 731,
+        "x1": 295,
+        "y1": 764
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_03:united_kingdom": {
+      "region": {
+        "x0": 308,
+        "y0": 661,
+        "x1": 374,
+        "y1": 671
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_03:france": {
+      "region": {
+        "x0": 415,
+        "y0": 661,
+        "x1": 460,
+        "y1": 671
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_03:germany": {
+      "region": {
+        "x0": 511,
+        "y0": 658,
+        "x1": 554,
+        "y1": 695
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_03:italy": {
+      "region": {
+        "x0": 598,
+        "y0": 661,
+        "x1": 622,
+        "y1": 671
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_03:netherlands": {
+      "region": {
+        "x0": 619,
+        "y0": 731,
+        "x1": 682,
+        "y1": 764
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_03:switzerland": {
+      "region": {
+        "x0": 752,
+        "y0": 663,
+        "x1": 797,
+        "y1": 671
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_03:other_europe": {
+      "region": {
+        "x0": 840,
+        "y0": 663,
+        "x1": 885,
+        "y1": 671
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_03:total_europe": {
+      "region": {
+        "x0": 926,
+        "y0": 662,
+        "x1": 990,
+        "y1": 675
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_03:canada": {
+      "region": {
+        "x0": 1014,
+        "y0": 658,
+        "x1": 1083,
+        "y1": 695
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_03:latin_america": {
+      "region": {
+        "x0": 1120,
+        "y0": 664,
+        "x1": 1163,
+        "y1": 674
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_03:far_east": {
+      "region": {
+        "x0": 1196,
+        "y0": 664,
+        "x1": 1251,
+        "y1": 675
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_03:all_other": {
+      "region": {
+        "x0": 1191,
+        "y0": 731,
+        "x1": 1239,
+        "y1": 764
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_03:grand_total": {
+      "region": {
+        "x0": 1370,
+        "y0": 663,
+        "x1": 1433,
+        "y1": 671
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_04:label": {
+      "region": {
+        "x0": 61,
+        "y0": 763,
+        "x1": 295,
+        "y1": 795
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_04:united_kingdom": {
+      "region": {
+        "x0": 307,
+        "y0": 682,
+        "x1": 372,
+        "y1": 692
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_04:france": {
+      "region": {
+        "x0": 416,
+        "y0": 682,
+        "x1": 459,
+        "y1": 694
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_04:germany": {
+      "region": {
+        "x0": 511,
+        "y0": 658,
+        "x1": 554,
+        "y1": 695
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_04:italy": {
+      "region": {
+        "x0": 580,
+        "y0": 658,
+        "x1": 630,
+        "y1": 695
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_04:netherlands": {
+      "region": {
+        "x0": 619,
+        "y0": 763,
+        "x1": 682,
+        "y1": 795
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_04:switzerland": {
+      "region": {
+        "x0": 753,
+        "y0": 681,
+        "x1": 797,
+        "y1": 693
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_04:other_europe": {
+      "region": {
+        "x0": 825,
+        "y0": 658,
+        "x1": 889,
+        "y1": 695
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_04:total_europe": {
+      "region": {
+        "x0": 926,
+        "y0": 682,
+        "x1": 989,
+        "y1": 694
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_04:canada": {
+      "region": {
+        "x0": 1024,
+        "y0": 683,
+        "x1": 1077,
+        "y1": 693
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_04:latin_america": {
+      "region": {
+        "x0": 1120,
+        "y0": 683,
+        "x1": 1164,
+        "y1": 693
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_04:far_east": {
+      "region": {
+        "x0": 1197,
+        "y0": 683,
+        "x1": 1250,
+        "y1": 693
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_04:all_other": {
+      "region": {
+        "x0": 1191,
+        "y0": 763,
+        "x1": 1239,
+        "y1": 795
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_04:grand_total": {
+      "region": {
+        "x0": 1370,
+        "y0": 685,
+        "x1": 1433,
+        "y1": 695
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_05:label": {
+      "region": {
+        "x0": 61,
+        "y0": 795,
+        "x1": 295,
+        "y1": 827
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_05:united_kingdom": {
+      "region": {
+        "x0": 309,
+        "y0": 795,
+        "x1": 387,
+        "y1": 827
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_05:france": {
+      "region": {
+        "x0": 402,
+        "y0": 795,
+        "x1": 465,
+        "y1": 827
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_05:germany": {
+      "region": {
+        "x0": 479,
+        "y0": 795,
+        "x1": 527,
+        "y1": 827
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_05:italy": {
+      "region": {
+        "x0": 557,
+        "y0": 795,
+        "x1": 604,
+        "y1": 827
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_05:netherlands": {
+      "region": {
+        "x0": 619,
+        "y0": 795,
+        "x1": 682,
+        "y1": 827
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_05:switzerland": {
+      "region": {
+        "x0": 696,
+        "y0": 795,
+        "x1": 759,
+        "y1": 827
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_05:other_europe": {
+      "region": {
+        "x0": 774,
+        "y0": 795,
+        "x1": 836,
+        "y1": 827
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_05:total_europe": {
+      "region": {
+        "x0": 851,
+        "y0": 795,
+        "x1": 929,
+        "y1": 827
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_05:canada": {
+      "region": {
+        "x0": 944,
+        "y0": 795,
+        "x1": 1007,
+        "y1": 827
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_05:latin_america": {
+      "region": {
+        "x0": 1021,
+        "y0": 795,
+        "x1": 1084,
+        "y1": 827
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_05:far_east": {
+      "region": {
+        "x0": 1099,
+        "y0": 795,
+        "x1": 1161,
+        "y1": 827
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_05:all_other": {
+      "region": {
+        "x0": 1191,
+        "y0": 795,
+        "x1": 1239,
+        "y1": 827
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:purchase_domestic_05:grand_total": {
+      "region": {
+        "x0": 1269,
+        "y0": 795,
+        "x1": 1347,
+        "y1": 827
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_01:label": {
+      "region": {
+        "x0": 61,
+        "y0": 837,
+        "x1": 295,
+        "y1": 870
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_01:united_kingdom": {
+      "region": {
+        "x0": 309,
+        "y0": 837,
+        "x1": 387,
+        "y1": 870
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_01:france": {
+      "region": {
+        "x0": 402,
+        "y0": 837,
+        "x1": 465,
+        "y1": 870
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_01:germany": {
+      "region": {
+        "x0": 479,
+        "y0": 837,
+        "x1": 527,
+        "y1": 870
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_01:italy": {
+      "region": {
+        "x0": 557,
+        "y0": 837,
+        "x1": 604,
+        "y1": 870
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_01:netherlands": {
+      "region": {
+        "x0": 619,
+        "y0": 837,
+        "x1": 682,
+        "y1": 870
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_01:switzerland": {
+      "region": {
+        "x0": 696,
+        "y0": 837,
+        "x1": 759,
+        "y1": 870
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_01:other_europe": {
+      "region": {
+        "x0": 774,
+        "y0": 837,
+        "x1": 836,
+        "y1": 870
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_01:total_europe": {
+      "region": {
+        "x0": 851,
+        "y0": 837,
+        "x1": 929,
+        "y1": 870
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_01:canada": {
+      "region": {
+        "x0": 944,
+        "y0": 837,
+        "x1": 1007,
+        "y1": 870
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_01:latin_america": {
+      "region": {
+        "x0": 1021,
+        "y0": 837,
+        "x1": 1084,
+        "y1": 870
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_01:far_east": {
+      "region": {
+        "x0": 1099,
+        "y0": 837,
+        "x1": 1161,
+        "y1": 870
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_01:all_other": {
+      "region": {
+        "x0": 1191,
+        "y0": 837,
+        "x1": 1239,
+        "y1": 870
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_01:grand_total": {
+      "region": {
+        "x0": 1269,
+        "y0": 837,
+        "x1": 1347,
+        "y1": 870
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_02:label": {
+      "region": {
+        "x0": 134,
+        "y0": 895,
+        "x1": 150,
+        "y1": 904
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_02:united_kingdom": {
+      "region": {
+        "x0": 300,
+        "y0": 871,
+        "x1": 378,
+        "y1": 926
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_02:france": {
+      "region": {
+        "x0": 407,
+        "y0": 871,
+        "x1": 466,
+        "y1": 926
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_02:germany": {
+      "region": {
+        "x0": 511,
+        "y0": 871,
+        "x1": 554,
+        "y1": 926
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_02:italy": {
+      "region": {
+        "x0": 580,
+        "y0": 871,
+        "x1": 630,
+        "y1": 926
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_02:netherlands": {
+      "region": {
+        "x0": 619,
+        "y0": 869,
+        "x1": 682,
+        "y1": 901
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_02:switzerland": {
+      "region": {
+        "x0": 696,
+        "y0": 869,
+        "x1": 759,
+        "y1": 901
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_02:other_europe": {
+      "region": {
+        "x0": 825,
+        "y0": 871,
+        "x1": 889,
+        "y1": 926
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_02:total_europe": {
+      "region": {
+        "x0": 917,
+        "y0": 871,
+        "x1": 996,
+        "y1": 926
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_02:canada": {
+      "region": {
+        "x0": 1014,
+        "y0": 871,
+        "x1": 1083,
+        "y1": 926
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_02:latin_america": {
+      "region": {
+        "x0": 1118,
+        "y0": 871,
+        "x1": 1170,
+        "y1": 926
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_02:far_east": {
+      "region": {
+        "x0": 1099,
+        "y0": 869,
+        "x1": 1161,
+        "y1": 901
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_02:all_other": {
+      "region": {
+        "x0": 1191,
+        "y0": 869,
+        "x1": 1239,
+        "y1": 901
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_02:grand_total": {
+      "region": {
+        "x0": 1369,
+        "y0": 870,
+        "x1": 1435,
+        "y1": 925
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_03:label": {
+      "region": {
+        "x0": 134,
+        "y0": 917,
+        "x1": 149,
+        "y1": 927
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_03:united_kingdom": {
+      "region": {
+        "x0": 300,
+        "y0": 871,
+        "x1": 378,
+        "y1": 926
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_03:france": {
+      "region": {
+        "x0": 407,
+        "y0": 871,
+        "x1": 466,
+        "y1": 926
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_03:germany": {
+      "region": {
+        "x0": 511,
+        "y0": 871,
+        "x1": 554,
+        "y1": 926
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_03:italy": {
+      "region": {
+        "x0": 580,
+        "y0": 871,
+        "x1": 630,
+        "y1": 926
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_03:netherlands": {
+      "region": {
+        "x0": 619,
+        "y0": 901,
+        "x1": 682,
+        "y1": 933
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_03:switzerland": {
+      "region": {
+        "x0": 696,
+        "y0": 901,
+        "x1": 759,
+        "y1": 933
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_03:other_europe": {
+      "region": {
+        "x0": 825,
+        "y0": 871,
+        "x1": 889,
+        "y1": 926
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_03:total_europe": {
+      "region": {
+        "x0": 917,
+        "y0": 871,
+        "x1": 996,
+        "y1": 926
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_03:canada": {
+      "region": {
+        "x0": 1014,
+        "y0": 871,
+        "x1": 1083,
+        "y1": 926
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_03:latin_america": {
+      "region": {
+        "x0": 1118,
+        "y0": 871,
+        "x1": 1170,
+        "y1": 926
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_03:far_east": {
+      "region": {
+        "x0": 1099,
+        "y0": 901,
+        "x1": 1161,
+        "y1": 933
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_03:all_other": {
+      "region": {
+        "x0": 1191,
+        "y0": 901,
+        "x1": 1239,
+        "y1": 933
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_03:grand_total": {
+      "region": {
+        "x0": 1369,
+        "y0": 870,
+        "x1": 1435,
+        "y1": 925
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_04:label": {
+      "region": {
+        "x0": 134,
+        "y0": 934,
+        "x1": 151,
+        "y1": 944
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_04:united_kingdom": {
+      "region": {
+        "x0": 300,
+        "y0": 929,
+        "x1": 378,
+        "y1": 946
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_04:france": {
+      "region": {
+        "x0": 407,
+        "y0": 929,
+        "x1": 466,
+        "y1": 946
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_04:germany": {
+      "region": {
+        "x0": 511,
+        "y0": 929,
+        "x1": 554,
+        "y1": 946
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_04:italy": {
+      "region": {
+        "x0": 580,
+        "y0": 929,
+        "x1": 630,
+        "y1": 946
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_04:netherlands": {
+      "region": {
+        "x0": 619,
+        "y0": 932,
+        "x1": 682,
+        "y1": 965
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_04:switzerland": {
+      "region": {
+        "x0": 696,
+        "y0": 932,
+        "x1": 759,
+        "y1": 965
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_04:other_europe": {
+      "region": {
+        "x0": 825,
+        "y0": 929,
+        "x1": 889,
+        "y1": 946
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_04:total_europe": {
+      "region": {
+        "x0": 917,
+        "y0": 929,
+        "x1": 996,
+        "y1": 946
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_04:canada": {
+      "region": {
+        "x0": 1014,
+        "y0": 929,
+        "x1": 1083,
+        "y1": 946
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_04:latin_america": {
+      "region": {
+        "x0": 1118,
+        "y0": 929,
+        "x1": 1170,
+        "y1": 946
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_04:far_east": {
+      "region": {
+        "x0": 1099,
+        "y0": 932,
+        "x1": 1161,
+        "y1": 965
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_04:all_other": {
+      "region": {
+        "x0": 1191,
+        "y0": 932,
+        "x1": 1239,
+        "y1": 965
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_04:grand_total": {
+      "region": {
+        "x0": 1369,
+        "y0": 928,
+        "x1": 1435,
+        "y1": 945
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_05:label": {
+      "region": {
+        "x0": 61,
+        "y0": 964,
+        "x1": 295,
+        "y1": 997
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_05:united_kingdom": {
+      "region": {
+        "x0": 309,
+        "y0": 964,
+        "x1": 387,
+        "y1": 997
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_05:france": {
+      "region": {
+        "x0": 402,
+        "y0": 964,
+        "x1": 465,
+        "y1": 997
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_05:germany": {
+      "region": {
+        "x0": 479,
+        "y0": 964,
+        "x1": 527,
+        "y1": 997
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_05:italy": {
+      "region": {
+        "x0": 557,
+        "y0": 964,
+        "x1": 604,
+        "y1": 997
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_05:netherlands": {
+      "region": {
+        "x0": 619,
+        "y0": 964,
+        "x1": 682,
+        "y1": 997
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_05:switzerland": {
+      "region": {
+        "x0": 696,
+        "y0": 964,
+        "x1": 759,
+        "y1": 997
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_05:other_europe": {
+      "region": {
+        "x0": 774,
+        "y0": 964,
+        "x1": 836,
+        "y1": 997
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_05:total_europe": {
+      "region": {
+        "x0": 851,
+        "y0": 964,
+        "x1": 929,
+        "y1": 997
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_05:canada": {
+      "region": {
+        "x0": 944,
+        "y0": 964,
+        "x1": 1007,
+        "y1": 997
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_05:latin_america": {
+      "region": {
+        "x0": 1021,
+        "y0": 964,
+        "x1": 1084,
+        "y1": 997
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_05:far_east": {
+      "region": {
+        "x0": 1099,
+        "y0": 964,
+        "x1": 1161,
+        "y1": 997
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_05:all_other": {
+      "region": {
+        "x0": 1191,
+        "y0": 964,
+        "x1": 1239,
+        "y1": 997
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:total_sale_05:grand_total": {
+      "region": {
+        "x0": 1269,
+        "y0": 964,
+        "x1": 1347,
+        "y1": 997
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_01:label": {
+      "region": {
+        "x0": 61,
+        "y0": 1007,
+        "x1": 295,
+        "y1": 1039
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_01:united_kingdom": {
+      "region": {
+        "x0": 300,
+        "y0": 1007,
+        "x1": 378,
+        "y1": 1044
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_01:france": {
+      "region": {
+        "x0": 407,
+        "y0": 1007,
+        "x1": 466,
+        "y1": 1044
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_01:germany": {
+      "region": {
+        "x0": 511,
+        "y0": 1007,
+        "x1": 554,
+        "y1": 1044
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_01:italy": {
+      "region": {
+        "x0": 580,
+        "y0": 1007,
+        "x1": 630,
+        "y1": 1044
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_01:netherlands": {
+      "region": {
+        "x0": 619,
+        "y0": 1007,
+        "x1": 682,
+        "y1": 1039
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_01:switzerland": {
+      "region": {
+        "x0": 696,
+        "y0": 1007,
+        "x1": 759,
+        "y1": 1039
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_01:other_europe": {
+      "region": {
+        "x0": 825,
+        "y0": 1007,
+        "x1": 889,
+        "y1": 1044
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_01:total_europe": {
+      "region": {
+        "x0": 917,
+        "y0": 1007,
+        "x1": 996,
+        "y1": 1044
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_01:canada": {
+      "region": {
+        "x0": 1014,
+        "y0": 1007,
+        "x1": 1083,
+        "y1": 1044
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_01:latin_america": {
+      "region": {
+        "x0": 1118,
+        "y0": 1007,
+        "x1": 1170,
+        "y1": 1044
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_01:far_east": {
+      "region": {
+        "x0": 1099,
+        "y0": 1007,
+        "x1": 1161,
+        "y1": 1039
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_01:all_other": {
+      "region": {
+        "x0": 1191,
+        "y0": 1007,
+        "x1": 1239,
+        "y1": 1039
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_01:grand_total": {
+      "region": {
+        "x0": 1369,
+        "y0": 1006,
+        "x1": 1435,
+        "y1": 1043
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_02:label": {
+      "region": {
+        "x0": 134,
+        "y0": 1031,
+        "x1": 150,
+        "y1": 1041
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_02:united_kingdom": {
+      "region": {
+        "x0": 300,
+        "y0": 1007,
+        "x1": 378,
+        "y1": 1044
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_02:france": {
+      "region": {
+        "x0": 407,
+        "y0": 1007,
+        "x1": 466,
+        "y1": 1044
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_02:germany": {
+      "region": {
+        "x0": 511,
+        "y0": 1007,
+        "x1": 554,
+        "y1": 1044
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_02:italy": {
+      "region": {
+        "x0": 580,
+        "y0": 1007,
+        "x1": 630,
+        "y1": 1044
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_02:netherlands": {
+      "region": {
+        "x0": 619,
+        "y0": 1038,
+        "x1": 682,
+        "y1": 1071
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_02:switzerland": {
+      "region": {
+        "x0": 696,
+        "y0": 1038,
+        "x1": 759,
+        "y1": 1071
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_02:other_europe": {
+      "region": {
+        "x0": 825,
+        "y0": 1007,
+        "x1": 889,
+        "y1": 1044
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_02:total_europe": {
+      "region": {
+        "x0": 917,
+        "y0": 1007,
+        "x1": 996,
+        "y1": 1044
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_02:canada": {
+      "region": {
+        "x0": 1014,
+        "y0": 1007,
+        "x1": 1083,
+        "y1": 1044
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_02:latin_america": {
+      "region": {
+        "x0": 1118,
+        "y0": 1007,
+        "x1": 1170,
+        "y1": 1044
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_02:far_east": {
+      "region": {
+        "x0": 1099,
+        "y0": 1038,
+        "x1": 1161,
+        "y1": 1071
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_02:all_other": {
+      "region": {
+        "x0": 1191,
+        "y0": 1038,
+        "x1": 1239,
+        "y1": 1071
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_02:grand_total": {
+      "region": {
+        "x0": 1369,
+        "y0": 1006,
+        "x1": 1435,
+        "y1": 1043
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_03:label": {
+      "region": {
+        "x0": 135,
+        "y0": 1052,
+        "x1": 149,
+        "y1": 1061
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_03:united_kingdom": {
+      "region": {
+        "x0": 300,
+        "y0": 1044,
+        "x1": 378,
+        "y1": 1081
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_03:france": {
+      "region": {
+        "x0": 407,
+        "y0": 1044,
+        "x1": 466,
+        "y1": 1081
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_03:germany": {
+      "region": {
+        "x0": 511,
+        "y0": 1044,
+        "x1": 554,
+        "y1": 1081
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_03:italy": {
+      "region": {
+        "x0": 580,
+        "y0": 1044,
+        "x1": 630,
+        "y1": 1081
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_03:netherlands": {
+      "region": {
+        "x0": 619,
+        "y0": 1070,
+        "x1": 682,
+        "y1": 1103
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_03:switzerland": {
+      "region": {
+        "x0": 696,
+        "y0": 1070,
+        "x1": 759,
+        "y1": 1103
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_03:other_europe": {
+      "region": {
+        "x0": 825,
+        "y0": 1044,
+        "x1": 889,
+        "y1": 1081
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_03:total_europe": {
+      "region": {
+        "x0": 917,
+        "y0": 1044,
+        "x1": 996,
+        "y1": 1081
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_03:canada": {
+      "region": {
+        "x0": 1014,
+        "y0": 1044,
+        "x1": 1083,
+        "y1": 1081
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_03:latin_america": {
+      "region": {
+        "x0": 1118,
+        "y0": 1044,
+        "x1": 1170,
+        "y1": 1081
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_03:far_east": {
+      "region": {
+        "x0": 1099,
+        "y0": 1070,
+        "x1": 1161,
+        "y1": 1103
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_03:all_other": {
+      "region": {
+        "x0": 1191,
+        "y0": 1070,
+        "x1": 1239,
+        "y1": 1103
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_03:grand_total": {
+      "region": {
+        "x0": 1369,
+        "y0": 1043,
+        "x1": 1435,
+        "y1": 1080
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_04:label": {
+      "region": {
+        "x0": 135,
+        "y0": 1069,
+        "x1": 151,
+        "y1": 1079
+      },
+      "source": "ocr"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_04:united_kingdom": {
+      "region": {
+        "x0": 300,
+        "y0": 1044,
+        "x1": 378,
+        "y1": 1081
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_04:france": {
+      "region": {
+        "x0": 407,
+        "y0": 1044,
+        "x1": 466,
+        "y1": 1081
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_04:germany": {
+      "region": {
+        "x0": 511,
+        "y0": 1044,
+        "x1": 554,
+        "y1": 1081
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_04:italy": {
+      "region": {
+        "x0": 580,
+        "y0": 1044,
+        "x1": 630,
+        "y1": 1081
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_04:netherlands": {
+      "region": {
+        "x0": 619,
+        "y0": 1102,
+        "x1": 682,
+        "y1": 1135
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_04:switzerland": {
+      "region": {
+        "x0": 696,
+        "y0": 1102,
+        "x1": 759,
+        "y1": 1135
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_04:other_europe": {
+      "region": {
+        "x0": 825,
+        "y0": 1044,
+        "x1": 889,
+        "y1": 1081
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_04:total_europe": {
+      "region": {
+        "x0": 917,
+        "y0": 1044,
+        "x1": 996,
+        "y1": 1081
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_04:canada": {
+      "region": {
+        "x0": 1014,
+        "y0": 1044,
+        "x1": 1083,
+        "y1": 1081
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_04:latin_america": {
+      "region": {
+        "x0": 1118,
+        "y0": 1044,
+        "x1": 1170,
+        "y1": 1081
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_04:far_east": {
+      "region": {
+        "x0": 1099,
+        "y0": 1102,
+        "x1": 1161,
+        "y1": 1135
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_04:all_other": {
+      "region": {
+        "x0": 1191,
+        "y0": 1102,
+        "x1": 1239,
+        "y1": 1135
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_04:grand_total": {
+      "region": {
+        "x0": 1369,
+        "y0": 1043,
+        "x1": 1435,
+        "y1": 1080
+      },
+      "source": "grid"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_05:label": {
+      "region": {
+        "x0": 61,
+        "y0": 1134,
+        "x1": 295,
+        "y1": 1166
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_05:united_kingdom": {
+      "region": {
+        "x0": 309,
+        "y0": 1134,
+        "x1": 387,
+        "y1": 1166
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_05:france": {
+      "region": {
+        "x0": 402,
+        "y0": 1134,
+        "x1": 465,
+        "y1": 1166
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_05:germany": {
+      "region": {
+        "x0": 479,
+        "y0": 1134,
+        "x1": 527,
+        "y1": 1166
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_05:italy": {
+      "region": {
+        "x0": 557,
+        "y0": 1134,
+        "x1": 604,
+        "y1": 1166
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_05:netherlands": {
+      "region": {
+        "x0": 619,
+        "y0": 1134,
+        "x1": 682,
+        "y1": 1166
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_05:switzerland": {
+      "region": {
+        "x0": 696,
+        "y0": 1134,
+        "x1": 759,
+        "y1": 1166
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_05:other_europe": {
+      "region": {
+        "x0": 774,
+        "y0": 1134,
+        "x1": 836,
+        "y1": 1166
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_05:total_europe": {
+      "region": {
+        "x0": 851,
+        "y0": 1134,
+        "x1": 929,
+        "y1": 1166
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_05:canada": {
+      "region": {
+        "x0": 944,
+        "y0": 1134,
+        "x1": 1007,
+        "y1": 1166
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_05:latin_america": {
+      "region": {
+        "x0": 1021,
+        "y0": 1134,
+        "x1": 1084,
+        "y1": 1166
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_05:far_east": {
+      "region": {
+        "x0": 1099,
+        "y0": 1134,
+        "x1": 1161,
+        "y1": 1166
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_05:all_other": {
+      "region": {
+        "x0": 1191,
+        "y0": 1134,
+        "x1": 1239,
+        "y1": 1166
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_foreign_05:grand_total": {
+      "region": {
+        "x0": 1269,
+        "y0": 1134,
+        "x1": 1347,
+        "y1": 1166
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_01:label": {
+      "region": {
+        "x0": 61,
+        "y0": 1176,
+        "x1": 295,
+        "y1": 1209
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_01:united_kingdom": {
+      "region": {
+        "x0": 309,
+        "y0": 1176,
+        "x1": 387,
+        "y1": 1209
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_01:france": {
+      "region": {
+        "x0": 402,
+        "y0": 1176,
+        "x1": 465,
+        "y1": 1209
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_01:germany": {
+      "region": {
+        "x0": 479,
+        "y0": 1176,
+        "x1": 527,
+        "y1": 1209
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_01:italy": {
+      "region": {
+        "x0": 557,
+        "y0": 1176,
+        "x1": 604,
+        "y1": 1209
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_01:netherlands": {
+      "region": {
+        "x0": 619,
+        "y0": 1176,
+        "x1": 682,
+        "y1": 1209
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_01:switzerland": {
+      "region": {
+        "x0": 696,
+        "y0": 1176,
+        "x1": 759,
+        "y1": 1209
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_01:other_europe": {
+      "region": {
+        "x0": 774,
+        "y0": 1176,
+        "x1": 836,
+        "y1": 1209
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_01:total_europe": {
+      "region": {
+        "x0": 851,
+        "y0": 1176,
+        "x1": 929,
+        "y1": 1209
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_01:canada": {
+      "region": {
+        "x0": 944,
+        "y0": 1176,
+        "x1": 1007,
+        "y1": 1209
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_01:latin_america": {
+      "region": {
+        "x0": 1021,
+        "y0": 1176,
+        "x1": 1084,
+        "y1": 1209
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_01:far_east": {
+      "region": {
+        "x0": 1099,
+        "y0": 1176,
+        "x1": 1161,
+        "y1": 1209
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_01:all_other": {
+      "region": {
+        "x0": 1191,
+        "y0": 1176,
+        "x1": 1239,
+        "y1": 1209
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_01:grand_total": {
+      "region": {
+        "x0": 1269,
+        "y0": 1176,
+        "x1": 1347,
+        "y1": 1209
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_02:label": {
+      "region": {
+        "x0": 61,
+        "y0": 1208,
+        "x1": 295,
+        "y1": 1241
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_02:united_kingdom": {
+      "region": {
+        "x0": 309,
+        "y0": 1208,
+        "x1": 387,
+        "y1": 1241
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_02:france": {
+      "region": {
+        "x0": 402,
+        "y0": 1208,
+        "x1": 465,
+        "y1": 1241
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_02:germany": {
+      "region": {
+        "x0": 479,
+        "y0": 1208,
+        "x1": 527,
+        "y1": 1241
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_02:italy": {
+      "region": {
+        "x0": 557,
+        "y0": 1208,
+        "x1": 604,
+        "y1": 1241
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_02:netherlands": {
+      "region": {
+        "x0": 619,
+        "y0": 1208,
+        "x1": 682,
+        "y1": 1241
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_02:switzerland": {
+      "region": {
+        "x0": 696,
+        "y0": 1208,
+        "x1": 759,
+        "y1": 1241
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_02:other_europe": {
+      "region": {
+        "x0": 774,
+        "y0": 1208,
+        "x1": 836,
+        "y1": 1241
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_02:total_europe": {
+      "region": {
+        "x0": 851,
+        "y0": 1208,
+        "x1": 929,
+        "y1": 1241
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_02:canada": {
+      "region": {
+        "x0": 944,
+        "y0": 1208,
+        "x1": 1007,
+        "y1": 1241
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_02:latin_america": {
+      "region": {
+        "x0": 1021,
+        "y0": 1208,
+        "x1": 1084,
+        "y1": 1241
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_02:far_east": {
+      "region": {
+        "x0": 1099,
+        "y0": 1208,
+        "x1": 1161,
+        "y1": 1241
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_02:all_other": {
+      "region": {
+        "x0": 1191,
+        "y0": 1208,
+        "x1": 1239,
+        "y1": 1241
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_02:grand_total": {
+      "region": {
+        "x0": 1269,
+        "y0": 1208,
+        "x1": 1347,
+        "y1": 1241
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_03:label": {
+      "region": {
+        "x0": 61,
+        "y0": 1240,
+        "x1": 295,
+        "y1": 1272
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_03:united_kingdom": {
+      "region": {
+        "x0": 309,
+        "y0": 1240,
+        "x1": 387,
+        "y1": 1272
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_03:france": {
+      "region": {
+        "x0": 402,
+        "y0": 1240,
+        "x1": 465,
+        "y1": 1272
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_03:germany": {
+      "region": {
+        "x0": 479,
+        "y0": 1240,
+        "x1": 527,
+        "y1": 1272
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_03:italy": {
+      "region": {
+        "x0": 557,
+        "y0": 1240,
+        "x1": 604,
+        "y1": 1272
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_03:netherlands": {
+      "region": {
+        "x0": 619,
+        "y0": 1240,
+        "x1": 682,
+        "y1": 1272
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_03:switzerland": {
+      "region": {
+        "x0": 696,
+        "y0": 1240,
+        "x1": 759,
+        "y1": 1272
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_03:other_europe": {
+      "region": {
+        "x0": 774,
+        "y0": 1240,
+        "x1": 836,
+        "y1": 1272
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_03:total_europe": {
+      "region": {
+        "x0": 851,
+        "y0": 1240,
+        "x1": 929,
+        "y1": 1272
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_03:canada": {
+      "region": {
+        "x0": 944,
+        "y0": 1240,
+        "x1": 1007,
+        "y1": 1272
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_03:latin_america": {
+      "region": {
+        "x0": 1021,
+        "y0": 1240,
+        "x1": 1084,
+        "y1": 1272
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_03:far_east": {
+      "region": {
+        "x0": 1099,
+        "y0": 1240,
+        "x1": 1161,
+        "y1": 1272
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_03:all_other": {
+      "region": {
+        "x0": 1191,
+        "y0": 1240,
+        "x1": 1239,
+        "y1": 1272
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_03:grand_total": {
+      "region": {
+        "x0": 1269,
+        "y0": 1240,
+        "x1": 1347,
+        "y1": 1272
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_04:label": {
+      "region": {
+        "x0": 61,
+        "y0": 1272,
+        "x1": 295,
+        "y1": 1304
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_04:united_kingdom": {
+      "region": {
+        "x0": 309,
+        "y0": 1272,
+        "x1": 387,
+        "y1": 1304
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_04:france": {
+      "region": {
+        "x0": 402,
+        "y0": 1272,
+        "x1": 465,
+        "y1": 1304
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_04:germany": {
+      "region": {
+        "x0": 479,
+        "y0": 1272,
+        "x1": 527,
+        "y1": 1304
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_04:italy": {
+      "region": {
+        "x0": 557,
+        "y0": 1272,
+        "x1": 604,
+        "y1": 1304
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_04:netherlands": {
+      "region": {
+        "x0": 619,
+        "y0": 1272,
+        "x1": 682,
+        "y1": 1304
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_04:switzerland": {
+      "region": {
+        "x0": 696,
+        "y0": 1272,
+        "x1": 759,
+        "y1": 1304
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_04:other_europe": {
+      "region": {
+        "x0": 774,
+        "y0": 1272,
+        "x1": 836,
+        "y1": 1304
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_04:total_europe": {
+      "region": {
+        "x0": 851,
+        "y0": 1272,
+        "x1": 929,
+        "y1": 1304
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_04:canada": {
+      "region": {
+        "x0": 944,
+        "y0": 1272,
+        "x1": 1007,
+        "y1": 1304
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_04:latin_america": {
+      "region": {
+        "x0": 1021,
+        "y0": 1272,
+        "x1": 1084,
+        "y1": 1304
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_04:far_east": {
+      "region": {
+        "x0": 1099,
+        "y0": 1272,
+        "x1": 1161,
+        "y1": 1304
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_04:all_other": {
+      "region": {
+        "x0": 1191,
+        "y0": 1272,
+        "x1": 1239,
+        "y1": 1304
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_04:grand_total": {
+      "region": {
+        "x0": 1269,
+        "y0": 1272,
+        "x1": 1347,
+        "y1": 1304
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_05:label": {
+      "region": {
+        "x0": 61,
+        "y0": 1303,
+        "x1": 295,
+        "y1": 1336
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_05:united_kingdom": {
+      "region": {
+        "x0": 309,
+        "y0": 1303,
+        "x1": 387,
+        "y1": 1336
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_05:france": {
+      "region": {
+        "x0": 402,
+        "y0": 1303,
+        "x1": 465,
+        "y1": 1336
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_05:germany": {
+      "region": {
+        "x0": 479,
+        "y0": 1303,
+        "x1": 527,
+        "y1": 1336
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_05:italy": {
+      "region": {
+        "x0": 557,
+        "y0": 1303,
+        "x1": 604,
+        "y1": 1336
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_05:netherlands": {
+      "region": {
+        "x0": 619,
+        "y0": 1303,
+        "x1": 682,
+        "y1": 1336
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_05:switzerland": {
+      "region": {
+        "x0": 696,
+        "y0": 1303,
+        "x1": 759,
+        "y1": 1336
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_05:other_europe": {
+      "region": {
+        "x0": 774,
+        "y0": 1303,
+        "x1": 836,
+        "y1": 1336
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_05:total_europe": {
+      "region": {
+        "x0": 851,
+        "y0": 1303,
+        "x1": 929,
+        "y1": 1336
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_05:canada": {
+      "region": {
+        "x0": 944,
+        "y0": 1303,
+        "x1": 1007,
+        "y1": 1336
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_05:latin_america": {
+      "region": {
+        "x0": 1021,
+        "y0": 1303,
+        "x1": 1084,
+        "y1": 1336
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_05:far_east": {
+      "region": {
+        "x0": 1099,
+        "y0": 1303,
+        "x1": 1161,
+        "y1": 1336
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_05:all_other": {
+      "region": {
+        "x0": 1191,
+        "y0": 1303,
+        "x1": 1239,
+        "y1": 1336
+      },
+      "source": "model"
+    },
+    "T.outstanding_forward_exchange_contracts:1939-01_p061:sale_domestic_05:grand_total": {
+      "region": {
+        "x0": 1269,
+        "y0": 1303,
+        "x1": 1347,
+        "y1": 1336
+      },
+      "source": "model"
+    }
+  }
+}

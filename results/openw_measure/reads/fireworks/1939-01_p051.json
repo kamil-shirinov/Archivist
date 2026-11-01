@@ -1,0 +1,12 @@
+{
+  "host": "fireworks",
+  "ref": "1939-01_p051",
+  "family": "short_term_foreign_liabilities_as",
+  "allowance": 32000,
+  "effort": "low",
+  "started_at": "2026-10-30T22:40:10+00:00",
+  "ok": false,
+  "final": true,
+  "error": "no answer in 1800 s (the call's own timeout was 1200 s and never fired: the connection stayed open); the run was stopped by hand at 23:10:13 UTC and the read is not asked again",
+  "seconds": 1800.0
+}

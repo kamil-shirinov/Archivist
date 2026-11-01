@@ -1,0 +1,6313 @@
+{
+  "ref": "1939-01_p051",
+  "crop_host": "baseten",
+  "grid": {
+    "rows": 40,
+    "bands": 38,
+    "fixed": 10,
+    "order": null
+  },
+  "eligible": 700,
+  "cells": {
+    "T.short_term_foreign_liabilities_as:1939-01_p051:01:label": {
+      "region": {
+        "x0": 55,
+        "y0": 508,
+        "x1": 292,
+        "y1": 569
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:01:united_kingdom": {
+      "region": {
+        "x0": 307,
+        "y0": 530,
+        "x1": 371,
+        "y1": 562
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:01:france": {
+      "region": {
+        "x0": 385,
+        "y0": 530,
+        "x1": 449,
+        "y1": 562
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:01:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 530,
+        "x1": 512,
+        "y1": 562
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:01:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 530,
+        "x1": 591,
+        "y1": 562
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:01:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 530,
+        "x1": 670,
+        "y1": 562
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:01:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 530,
+        "x1": 764,
+        "y1": 562
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:01:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 530,
+        "x1": 859,
+        "y1": 562
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:01:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 530,
+        "x1": 969,
+        "y1": 562
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:01:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 530,
+        "x1": 1056,
+        "y1": 562
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:01:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 530,
+        "x1": 1142,
+        "y1": 562
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:01:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 530,
+        "x1": 1221,
+        "y1": 562
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:01:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 530,
+        "x1": 1300,
+        "y1": 562
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:01:grand_total": {
+      "region": {
+        "x0": 1330,
+        "y0": 530,
+        "x1": 1410,
+        "y1": 562
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:02:label": {
+      "region": {
+        "x0": 170,
+        "y0": 539,
+        "x1": 185,
+        "y1": 549
+      },
+      "source": "ocr"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:02:united_kingdom": {
+      "region": {
+        "x0": 301,
+        "y0": 537,
+        "x1": 383,
+        "y1": 553
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:02:france": {
+      "region": {
+        "x0": 401,
+        "y0": 537,
+        "x1": 471,
+        "y1": 553
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:02:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 561,
+        "x1": 512,
+        "y1": 590
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:02:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 561,
+        "x1": 591,
+        "y1": 590
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:02:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 561,
+        "x1": 670,
+        "y1": 590
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:02:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 561,
+        "x1": 764,
+        "y1": 590
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:02:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 561,
+        "x1": 859,
+        "y1": 590
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:02:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 561,
+        "x1": 969,
+        "y1": 590
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:02:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 561,
+        "x1": 1056,
+        "y1": 590
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:02:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 561,
+        "x1": 1142,
+        "y1": 590
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:02:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 561,
+        "x1": 1221,
+        "y1": 590
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:02:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 561,
+        "x1": 1300,
+        "y1": 590
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:02:grand_total": {
+      "region": {
+        "x0": 1282,
+        "y0": 539,
+        "x1": 1420,
+        "y1": 555
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:03:label": {
+      "region": {
+        "x0": 110,
+        "y0": 589,
+        "x1": 292,
+        "y1": 617
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:03:united_kingdom": {
+      "region": {
+        "x0": 301,
+        "y0": 556,
+        "x1": 383,
+        "y1": 572
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:03:france": {
+      "region": {
+        "x0": 401,
+        "y0": 556,
+        "x1": 471,
+        "y1": 572
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:03:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 589,
+        "x1": 512,
+        "y1": 617
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:03:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 589,
+        "x1": 591,
+        "y1": 617
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:03:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 589,
+        "x1": 670,
+        "y1": 617
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:03:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 589,
+        "x1": 764,
+        "y1": 617
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:03:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 589,
+        "x1": 859,
+        "y1": 617
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:03:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 589,
+        "x1": 969,
+        "y1": 617
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:03:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 589,
+        "x1": 1056,
+        "y1": 617
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:03:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 589,
+        "x1": 1142,
+        "y1": 617
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:03:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 589,
+        "x1": 1221,
+        "y1": 617
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:03:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 589,
+        "x1": 1300,
+        "y1": 617
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:03:grand_total": {
+      "region": {
+        "x0": 1282,
+        "y0": 558,
+        "x1": 1420,
+        "y1": 574
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:04:label": {
+      "region": {
+        "x0": 110,
+        "y0": 616,
+        "x1": 292,
+        "y1": 645
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:04:united_kingdom": {
+      "region": {
+        "x0": 301,
+        "y0": 575,
+        "x1": 383,
+        "y1": 591
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:04:france": {
+      "region": {
+        "x0": 401,
+        "y0": 575,
+        "x1": 471,
+        "y1": 591
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:04:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 616,
+        "x1": 512,
+        "y1": 645
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:04:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 616,
+        "x1": 591,
+        "y1": 645
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:04:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 616,
+        "x1": 670,
+        "y1": 645
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:04:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 616,
+        "x1": 764,
+        "y1": 645
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:04:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 616,
+        "x1": 859,
+        "y1": 645
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:04:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 616,
+        "x1": 969,
+        "y1": 645
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:04:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 616,
+        "x1": 1056,
+        "y1": 645
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:04:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 616,
+        "x1": 1142,
+        "y1": 645
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:04:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 616,
+        "x1": 1221,
+        "y1": 645
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:04:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 616,
+        "x1": 1300,
+        "y1": 645
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:04:grand_total": {
+      "region": {
+        "x0": 1282,
+        "y0": 577,
+        "x1": 1420,
+        "y1": 593
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:05:label": {
+      "region": {
+        "x0": 55,
+        "y0": 657,
+        "x1": 292,
+        "y1": 717
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:05:united_kingdom": {
+      "region": {
+        "x0": 301,
+        "y0": 652,
+        "x1": 383,
+        "y1": 668
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:05:france": {
+      "region": {
+        "x0": 401,
+        "y0": 652,
+        "x1": 471,
+        "y1": 668
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:05:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 678,
+        "x1": 512,
+        "y1": 706
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:05:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 678,
+        "x1": 591,
+        "y1": 706
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:05:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 678,
+        "x1": 670,
+        "y1": 706
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:05:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 678,
+        "x1": 764,
+        "y1": 706
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:05:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 678,
+        "x1": 859,
+        "y1": 706
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:05:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 678,
+        "x1": 969,
+        "y1": 706
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:05:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 678,
+        "x1": 1056,
+        "y1": 706
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:05:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 678,
+        "x1": 1142,
+        "y1": 706
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:05:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 678,
+        "x1": 1221,
+        "y1": 706
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:05:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 678,
+        "x1": 1300,
+        "y1": 706
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:05:grand_total": {
+      "region": {
+        "x0": 1282,
+        "y0": 654,
+        "x1": 1420,
+        "y1": 670
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:06:label": {
+      "region": {
+        "x0": 110,
+        "y0": 705,
+        "x1": 292,
+        "y1": 734
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:06:united_kingdom": {
+      "region": {
+        "x0": 301,
+        "y0": 671,
+        "x1": 383,
+        "y1": 687
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:06:france": {
+      "region": {
+        "x0": 401,
+        "y0": 671,
+        "x1": 471,
+        "y1": 687
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:06:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 705,
+        "x1": 512,
+        "y1": 734
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:06:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 705,
+        "x1": 591,
+        "y1": 734
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:06:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 705,
+        "x1": 670,
+        "y1": 734
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:06:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 705,
+        "x1": 764,
+        "y1": 734
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:06:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 705,
+        "x1": 859,
+        "y1": 734
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:06:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 705,
+        "x1": 969,
+        "y1": 734
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:06:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 705,
+        "x1": 1056,
+        "y1": 734
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:06:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 705,
+        "x1": 1142,
+        "y1": 734
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:06:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 705,
+        "x1": 1221,
+        "y1": 734
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:06:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 705,
+        "x1": 1300,
+        "y1": 734
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:06:grand_total": {
+      "region": {
+        "x0": 1282,
+        "y0": 673,
+        "x1": 1420,
+        "y1": 689
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:07:label": {
+      "region": {
+        "x0": 110,
+        "y0": 733,
+        "x1": 292,
+        "y1": 762
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:07:united_kingdom": {
+      "region": {
+        "x0": 301,
+        "y0": 691,
+        "x1": 383,
+        "y1": 707
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:07:france": {
+      "region": {
+        "x0": 401,
+        "y0": 691,
+        "x1": 471,
+        "y1": 707
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:07:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 733,
+        "x1": 512,
+        "y1": 762
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:07:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 733,
+        "x1": 591,
+        "y1": 762
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:07:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 733,
+        "x1": 670,
+        "y1": 762
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:07:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 733,
+        "x1": 764,
+        "y1": 762
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:07:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 733,
+        "x1": 859,
+        "y1": 762
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:07:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 733,
+        "x1": 969,
+        "y1": 762
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:07:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 733,
+        "x1": 1056,
+        "y1": 762
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:07:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 733,
+        "x1": 1142,
+        "y1": 762
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:07:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 733,
+        "x1": 1221,
+        "y1": 762
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:07:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 733,
+        "x1": 1300,
+        "y1": 762
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:07:grand_total": {
+      "region": {
+        "x0": 1282,
+        "y0": 693,
+        "x1": 1420,
+        "y1": 709
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:08:label": {
+      "region": {
+        "x0": 110,
+        "y0": 761,
+        "x1": 292,
+        "y1": 789
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:08:united_kingdom": {
+      "region": {
+        "x0": 301,
+        "y0": 710,
+        "x1": 383,
+        "y1": 725
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:08:france": {
+      "region": {
+        "x0": 401,
+        "y0": 710,
+        "x1": 471,
+        "y1": 725
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:08:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 761,
+        "x1": 512,
+        "y1": 789
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:08:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 761,
+        "x1": 591,
+        "y1": 789
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:08:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 761,
+        "x1": 670,
+        "y1": 789
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:08:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 761,
+        "x1": 764,
+        "y1": 789
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:08:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 761,
+        "x1": 859,
+        "y1": 789
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:08:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 761,
+        "x1": 969,
+        "y1": 789
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:08:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 761,
+        "x1": 1056,
+        "y1": 789
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:08:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 761,
+        "x1": 1142,
+        "y1": 789
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:08:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 761,
+        "x1": 1221,
+        "y1": 789
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:08:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 761,
+        "x1": 1300,
+        "y1": 789
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:08:grand_total": {
+      "region": {
+        "x0": 1282,
+        "y0": 712,
+        "x1": 1420,
+        "y1": 727
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:09:label": {
+      "region": {
+        "x0": 55,
+        "y0": 801,
+        "x1": 292,
+        "y1": 861
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:09:united_kingdom": {
+      "region": {
+        "x0": 301,
+        "y0": 788,
+        "x1": 383,
+        "y1": 802
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:09:france": {
+      "region": {
+        "x0": 401,
+        "y0": 788,
+        "x1": 471,
+        "y1": 802
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:09:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 822,
+        "x1": 512,
+        "y1": 851
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:09:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 822,
+        "x1": 591,
+        "y1": 851
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:09:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 822,
+        "x1": 670,
+        "y1": 851
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:09:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 822,
+        "x1": 764,
+        "y1": 851
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:09:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 822,
+        "x1": 859,
+        "y1": 851
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:09:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 822,
+        "x1": 969,
+        "y1": 851
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:09:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 822,
+        "x1": 1056,
+        "y1": 851
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:09:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 822,
+        "x1": 1142,
+        "y1": 851
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:09:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 822,
+        "x1": 1221,
+        "y1": 851
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:09:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 822,
+        "x1": 1300,
+        "y1": 851
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:09:grand_total": {
+      "region": {
+        "x0": 1282,
+        "y0": 790,
+        "x1": 1420,
+        "y1": 804
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:10:label": {
+      "region": {
+        "x0": 168,
+        "y0": 810,
+        "x1": 183,
+        "y1": 819
+      },
+      "source": "ocr"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:10:united_kingdom": {
+      "region": {
+        "x0": 301,
+        "y0": 807,
+        "x1": 383,
+        "y1": 823
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:10:france": {
+      "region": {
+        "x0": 401,
+        "y0": 807,
+        "x1": 471,
+        "y1": 823
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:10:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 850,
+        "x1": 512,
+        "y1": 878
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:10:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 850,
+        "x1": 591,
+        "y1": 878
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:10:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 850,
+        "x1": 670,
+        "y1": 878
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:10:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 850,
+        "x1": 764,
+        "y1": 878
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:10:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 850,
+        "x1": 859,
+        "y1": 878
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:10:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 850,
+        "x1": 969,
+        "y1": 878
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:10:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 850,
+        "x1": 1056,
+        "y1": 878
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:10:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 850,
+        "x1": 1142,
+        "y1": 878
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:10:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 850,
+        "x1": 1221,
+        "y1": 878
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:10:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 850,
+        "x1": 1300,
+        "y1": 878
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:10:grand_total": {
+      "region": {
+        "x0": 1282,
+        "y0": 809,
+        "x1": 1420,
+        "y1": 825
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:11:label": {
+      "region": {
+        "x0": 168,
+        "y0": 830,
+        "x1": 183,
+        "y1": 839
+      },
+      "source": "ocr"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:11:united_kingdom": {
+      "region": {
+        "x0": 301,
+        "y0": 826,
+        "x1": 383,
+        "y1": 842
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:11:france": {
+      "region": {
+        "x0": 401,
+        "y0": 826,
+        "x1": 471,
+        "y1": 842
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:11:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 877,
+        "x1": 512,
+        "y1": 906
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:11:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 877,
+        "x1": 591,
+        "y1": 906
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:11:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 877,
+        "x1": 670,
+        "y1": 906
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:11:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 877,
+        "x1": 764,
+        "y1": 906
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:11:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 877,
+        "x1": 859,
+        "y1": 906
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:11:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 877,
+        "x1": 969,
+        "y1": 906
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:11:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 877,
+        "x1": 1056,
+        "y1": 906
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:11:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 877,
+        "x1": 1142,
+        "y1": 906
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:11:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 877,
+        "x1": 1221,
+        "y1": 906
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:11:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 877,
+        "x1": 1300,
+        "y1": 906
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:11:grand_total": {
+      "region": {
+        "x0": 1282,
+        "y0": 828,
+        "x1": 1420,
+        "y1": 844
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:12:label": {
+      "region": {
+        "x0": 168,
+        "y0": 849,
+        "x1": 183,
+        "y1": 858
+      },
+      "source": "ocr"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:12:united_kingdom": {
+      "region": {
+        "x0": 301,
+        "y0": 846,
+        "x1": 383,
+        "y1": 861
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:12:france": {
+      "region": {
+        "x0": 401,
+        "y0": 846,
+        "x1": 471,
+        "y1": 861
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:12:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 905,
+        "x1": 512,
+        "y1": 933
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:12:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 905,
+        "x1": 591,
+        "y1": 933
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:12:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 905,
+        "x1": 670,
+        "y1": 933
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:12:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 905,
+        "x1": 764,
+        "y1": 933
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:12:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 905,
+        "x1": 859,
+        "y1": 933
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:12:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 905,
+        "x1": 969,
+        "y1": 933
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:12:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 905,
+        "x1": 1056,
+        "y1": 933
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:12:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 905,
+        "x1": 1142,
+        "y1": 933
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:12:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 905,
+        "x1": 1221,
+        "y1": 933
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:12:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 905,
+        "x1": 1300,
+        "y1": 933
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:12:grand_total": {
+      "region": {
+        "x0": 1282,
+        "y0": 848,
+        "x1": 1420,
+        "y1": 863
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:13:label": {
+      "region": {
+        "x0": 55,
+        "y0": 945,
+        "x1": 292,
+        "y1": 1005
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:13:united_kingdom": {
+      "region": {
+        "x0": 301,
+        "y0": 963,
+        "x1": 383,
+        "y1": 978
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:13:france": {
+      "region": {
+        "x0": 401,
+        "y0": 963,
+        "x1": 471,
+        "y1": 978
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:13:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 966,
+        "x1": 512,
+        "y1": 995
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:13:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 966,
+        "x1": 591,
+        "y1": 995
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:13:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 966,
+        "x1": 670,
+        "y1": 995
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:13:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 966,
+        "x1": 764,
+        "y1": 995
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:13:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 966,
+        "x1": 859,
+        "y1": 995
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:13:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 966,
+        "x1": 969,
+        "y1": 995
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:13:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 966,
+        "x1": 1056,
+        "y1": 995
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:13:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 966,
+        "x1": 1142,
+        "y1": 995
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:13:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 966,
+        "x1": 1221,
+        "y1": 995
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:13:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 966,
+        "x1": 1300,
+        "y1": 995
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:13:grand_total": {
+      "region": {
+        "x0": 1282,
+        "y0": 965,
+        "x1": 1420,
+        "y1": 980
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:14:label": {
+      "region": {
+        "x0": 168,
+        "y0": 985,
+        "x1": 183,
+        "y1": 995
+      },
+      "source": "ocr"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:14:united_kingdom": {
+      "region": {
+        "x0": 301,
+        "y0": 982,
+        "x1": 383,
+        "y1": 998
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:14:france": {
+      "region": {
+        "x0": 401,
+        "y0": 982,
+        "x1": 471,
+        "y1": 998
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:14:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 994,
+        "x1": 512,
+        "y1": 1022
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:14:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 994,
+        "x1": 591,
+        "y1": 1022
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:14:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 994,
+        "x1": 670,
+        "y1": 1022
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:14:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 994,
+        "x1": 764,
+        "y1": 1022
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:14:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 994,
+        "x1": 859,
+        "y1": 1022
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:14:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 994,
+        "x1": 969,
+        "y1": 1022
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:14:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 994,
+        "x1": 1056,
+        "y1": 1022
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:14:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 994,
+        "x1": 1142,
+        "y1": 1022
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:14:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 994,
+        "x1": 1221,
+        "y1": 1022
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:14:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 994,
+        "x1": 1300,
+        "y1": 1022
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:14:grand_total": {
+      "region": {
+        "x0": 1282,
+        "y0": 984,
+        "x1": 1420,
+        "y1": 1000
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:15:label": {
+      "region": {
+        "x0": 169,
+        "y0": 1006,
+        "x1": 183,
+        "y1": 1015
+      },
+      "source": "ocr"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:15:united_kingdom": {
+      "region": {
+        "x0": 301,
+        "y0": 1002,
+        "x1": 383,
+        "y1": 1017
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:15:france": {
+      "region": {
+        "x0": 401,
+        "y0": 1002,
+        "x1": 471,
+        "y1": 1017
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:15:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 1021,
+        "x1": 512,
+        "y1": 1050
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:15:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 1021,
+        "x1": 591,
+        "y1": 1050
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:15:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 1021,
+        "x1": 670,
+        "y1": 1050
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:15:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 1021,
+        "x1": 764,
+        "y1": 1050
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:15:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 1021,
+        "x1": 859,
+        "y1": 1050
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:15:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 1021,
+        "x1": 969,
+        "y1": 1050
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:15:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 1021,
+        "x1": 1056,
+        "y1": 1050
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:15:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 1021,
+        "x1": 1142,
+        "y1": 1050
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:15:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 1021,
+        "x1": 1221,
+        "y1": 1050
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:15:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 1021,
+        "x1": 1300,
+        "y1": 1050
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:15:grand_total": {
+      "region": {
+        "x0": 1282,
+        "y0": 1004,
+        "x1": 1420,
+        "y1": 1019
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:16:label": {
+      "region": {
+        "x0": 110,
+        "y0": 1049,
+        "x1": 292,
+        "y1": 1077
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:16:united_kingdom": {
+      "region": {
+        "x0": 307,
+        "y0": 1049,
+        "x1": 371,
+        "y1": 1077
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:16:france": {
+      "region": {
+        "x0": 385,
+        "y0": 1049,
+        "x1": 449,
+        "y1": 1077
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:16:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 1049,
+        "x1": 512,
+        "y1": 1077
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:16:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 1049,
+        "x1": 591,
+        "y1": 1077
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:16:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 1049,
+        "x1": 670,
+        "y1": 1077
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:16:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 1049,
+        "x1": 764,
+        "y1": 1077
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:16:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 1049,
+        "x1": 859,
+        "y1": 1077
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:16:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 1049,
+        "x1": 969,
+        "y1": 1077
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:16:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 1049,
+        "x1": 1056,
+        "y1": 1077
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:16:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 1049,
+        "x1": 1142,
+        "y1": 1077
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:16:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 1049,
+        "x1": 1221,
+        "y1": 1077
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:16:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 1049,
+        "x1": 1300,
+        "y1": 1077
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:16:grand_total": {
+      "region": {
+        "x0": 1330,
+        "y0": 1049,
+        "x1": 1410,
+        "y1": 1077
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:17:label": {
+      "region": {
+        "x0": 55,
+        "y0": 1089,
+        "x1": 292,
+        "y1": 1171
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:17:united_kingdom": {
+      "region": {
+        "x0": 307,
+        "y0": 1132,
+        "x1": 371,
+        "y1": 1160
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:17:france": {
+      "region": {
+        "x0": 385,
+        "y0": 1132,
+        "x1": 449,
+        "y1": 1160
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:17:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 1132,
+        "x1": 512,
+        "y1": 1160
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:17:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 1132,
+        "x1": 591,
+        "y1": 1160
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:17:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 1132,
+        "x1": 670,
+        "y1": 1160
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:17:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 1132,
+        "x1": 764,
+        "y1": 1160
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:17:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 1132,
+        "x1": 859,
+        "y1": 1160
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:17:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 1132,
+        "x1": 969,
+        "y1": 1160
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:17:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 1132,
+        "x1": 1056,
+        "y1": 1160
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:17:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 1132,
+        "x1": 1142,
+        "y1": 1160
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:17:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 1132,
+        "x1": 1221,
+        "y1": 1160
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:17:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 1132,
+        "x1": 1300,
+        "y1": 1160
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:17:grand_total": {
+      "region": {
+        "x0": 1330,
+        "y0": 1132,
+        "x1": 1410,
+        "y1": 1160
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:18:label": {
+      "region": {
+        "x0": 110,
+        "y0": 1159,
+        "x1": 292,
+        "y1": 1188
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:18:united_kingdom": {
+      "region": {
+        "x0": 307,
+        "y0": 1159,
+        "x1": 371,
+        "y1": 1188
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:18:france": {
+      "region": {
+        "x0": 385,
+        "y0": 1159,
+        "x1": 449,
+        "y1": 1188
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:18:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 1159,
+        "x1": 512,
+        "y1": 1188
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:18:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 1159,
+        "x1": 591,
+        "y1": 1188
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:18:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 1159,
+        "x1": 670,
+        "y1": 1188
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:18:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 1159,
+        "x1": 764,
+        "y1": 1188
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:18:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 1159,
+        "x1": 859,
+        "y1": 1188
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:18:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 1159,
+        "x1": 969,
+        "y1": 1188
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:18:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 1159,
+        "x1": 1056,
+        "y1": 1188
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:18:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 1159,
+        "x1": 1142,
+        "y1": 1188
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:18:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 1159,
+        "x1": 1221,
+        "y1": 1188
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:18:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 1159,
+        "x1": 1300,
+        "y1": 1188
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:18:grand_total": {
+      "region": {
+        "x0": 1330,
+        "y0": 1159,
+        "x1": 1410,
+        "y1": 1188
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:19:label": {
+      "region": {
+        "x0": 110,
+        "y0": 1187,
+        "x1": 292,
+        "y1": 1215
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:19:united_kingdom": {
+      "region": {
+        "x0": 307,
+        "y0": 1187,
+        "x1": 371,
+        "y1": 1215
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:19:france": {
+      "region": {
+        "x0": 385,
+        "y0": 1187,
+        "x1": 449,
+        "y1": 1215
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:19:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 1187,
+        "x1": 512,
+        "y1": 1215
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:19:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 1187,
+        "x1": 591,
+        "y1": 1215
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:19:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 1187,
+        "x1": 670,
+        "y1": 1215
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:19:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 1187,
+        "x1": 764,
+        "y1": 1215
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:19:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 1187,
+        "x1": 859,
+        "y1": 1215
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:19:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 1187,
+        "x1": 969,
+        "y1": 1215
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:19:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 1187,
+        "x1": 1056,
+        "y1": 1215
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:19:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 1187,
+        "x1": 1142,
+        "y1": 1215
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:19:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 1187,
+        "x1": 1221,
+        "y1": 1215
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:19:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 1187,
+        "x1": 1300,
+        "y1": 1215
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:19:grand_total": {
+      "region": {
+        "x0": 1330,
+        "y0": 1187,
+        "x1": 1410,
+        "y1": 1215
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:20:label": {
+      "region": {
+        "x0": 110,
+        "y0": 1214,
+        "x1": 292,
+        "y1": 1243
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:20:united_kingdom": {
+      "region": {
+        "x0": 307,
+        "y0": 1214,
+        "x1": 371,
+        "y1": 1243
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:20:france": {
+      "region": {
+        "x0": 385,
+        "y0": 1214,
+        "x1": 449,
+        "y1": 1243
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:20:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 1214,
+        "x1": 512,
+        "y1": 1243
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:20:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 1214,
+        "x1": 591,
+        "y1": 1243
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:20:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 1214,
+        "x1": 670,
+        "y1": 1243
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:20:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 1214,
+        "x1": 764,
+        "y1": 1243
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:20:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 1214,
+        "x1": 859,
+        "y1": 1243
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:20:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 1214,
+        "x1": 969,
+        "y1": 1243
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:20:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 1214,
+        "x1": 1056,
+        "y1": 1243
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:20:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 1214,
+        "x1": 1142,
+        "y1": 1243
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:20:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 1214,
+        "x1": 1221,
+        "y1": 1243
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:20:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 1214,
+        "x1": 1300,
+        "y1": 1243
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:20:grand_total": {
+      "region": {
+        "x0": 1330,
+        "y0": 1214,
+        "x1": 1410,
+        "y1": 1243
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:21:label": {
+      "region": {
+        "x0": 55,
+        "y0": 1255,
+        "x1": 292,
+        "y1": 1315
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:21:united_kingdom": {
+      "region": {
+        "x0": 307,
+        "y0": 1276,
+        "x1": 371,
+        "y1": 1304
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:21:france": {
+      "region": {
+        "x0": 385,
+        "y0": 1276,
+        "x1": 449,
+        "y1": 1304
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:21:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 1276,
+        "x1": 512,
+        "y1": 1304
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:21:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 1276,
+        "x1": 591,
+        "y1": 1304
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:21:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 1276,
+        "x1": 670,
+        "y1": 1304
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:21:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 1276,
+        "x1": 764,
+        "y1": 1304
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:21:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 1276,
+        "x1": 859,
+        "y1": 1304
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:21:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 1276,
+        "x1": 969,
+        "y1": 1304
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:21:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 1276,
+        "x1": 1056,
+        "y1": 1304
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:21:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 1276,
+        "x1": 1142,
+        "y1": 1304
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:21:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 1276,
+        "x1": 1221,
+        "y1": 1304
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:21:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 1276,
+        "x1": 1300,
+        "y1": 1304
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:21:grand_total": {
+      "region": {
+        "x0": 1330,
+        "y0": 1276,
+        "x1": 1410,
+        "y1": 1304
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:22:label": {
+      "region": {
+        "x0": 110,
+        "y0": 1303,
+        "x1": 292,
+        "y1": 1332
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:22:united_kingdom": {
+      "region": {
+        "x0": 307,
+        "y0": 1303,
+        "x1": 371,
+        "y1": 1332
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:22:france": {
+      "region": {
+        "x0": 385,
+        "y0": 1303,
+        "x1": 449,
+        "y1": 1332
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:22:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 1303,
+        "x1": 512,
+        "y1": 1332
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:22:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 1303,
+        "x1": 591,
+        "y1": 1332
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:22:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 1303,
+        "x1": 670,
+        "y1": 1332
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:22:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 1303,
+        "x1": 764,
+        "y1": 1332
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:22:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 1303,
+        "x1": 859,
+        "y1": 1332
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:22:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 1303,
+        "x1": 969,
+        "y1": 1332
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:22:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 1303,
+        "x1": 1056,
+        "y1": 1332
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:22:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 1303,
+        "x1": 1142,
+        "y1": 1332
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:22:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 1303,
+        "x1": 1221,
+        "y1": 1332
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:22:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 1303,
+        "x1": 1300,
+        "y1": 1332
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:22:grand_total": {
+      "region": {
+        "x0": 1330,
+        "y0": 1303,
+        "x1": 1410,
+        "y1": 1332
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:23:label": {
+      "region": {
+        "x0": 110,
+        "y0": 1331,
+        "x1": 292,
+        "y1": 1359
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:23:united_kingdom": {
+      "region": {
+        "x0": 307,
+        "y0": 1331,
+        "x1": 371,
+        "y1": 1359
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:23:france": {
+      "region": {
+        "x0": 385,
+        "y0": 1331,
+        "x1": 449,
+        "y1": 1359
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:23:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 1331,
+        "x1": 512,
+        "y1": 1359
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:23:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 1331,
+        "x1": 591,
+        "y1": 1359
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:23:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 1331,
+        "x1": 670,
+        "y1": 1359
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:23:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 1331,
+        "x1": 764,
+        "y1": 1359
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:23:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 1331,
+        "x1": 859,
+        "y1": 1359
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:23:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 1331,
+        "x1": 969,
+        "y1": 1359
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:23:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 1331,
+        "x1": 1056,
+        "y1": 1359
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:23:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 1331,
+        "x1": 1142,
+        "y1": 1359
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:23:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 1331,
+        "x1": 1221,
+        "y1": 1359
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:23:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 1331,
+        "x1": 1300,
+        "y1": 1359
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:23:grand_total": {
+      "region": {
+        "x0": 1330,
+        "y0": 1331,
+        "x1": 1410,
+        "y1": 1359
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:24:label": {
+      "region": {
+        "x0": 110,
+        "y0": 1358,
+        "x1": 292,
+        "y1": 1387
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:24:united_kingdom": {
+      "region": {
+        "x0": 307,
+        "y0": 1358,
+        "x1": 371,
+        "y1": 1387
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:24:france": {
+      "region": {
+        "x0": 385,
+        "y0": 1358,
+        "x1": 449,
+        "y1": 1387
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:24:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 1358,
+        "x1": 512,
+        "y1": 1387
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:24:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 1358,
+        "x1": 591,
+        "y1": 1387
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:24:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 1358,
+        "x1": 670,
+        "y1": 1387
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:24:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 1358,
+        "x1": 764,
+        "y1": 1387
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:24:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 1358,
+        "x1": 859,
+        "y1": 1387
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:24:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 1358,
+        "x1": 969,
+        "y1": 1387
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:24:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 1358,
+        "x1": 1056,
+        "y1": 1387
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:24:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 1358,
+        "x1": 1142,
+        "y1": 1387
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:24:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 1358,
+        "x1": 1221,
+        "y1": 1387
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:24:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 1358,
+        "x1": 1300,
+        "y1": 1387
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:24:grand_total": {
+      "region": {
+        "x0": 1330,
+        "y0": 1358,
+        "x1": 1410,
+        "y1": 1387
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:25:label": {
+      "region": {
+        "x0": 55,
+        "y0": 1399,
+        "x1": 292,
+        "y1": 1459
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:25:united_kingdom": {
+      "region": {
+        "x0": 307,
+        "y0": 1420,
+        "x1": 371,
+        "y1": 1448
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:25:france": {
+      "region": {
+        "x0": 385,
+        "y0": 1420,
+        "x1": 449,
+        "y1": 1448
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:25:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 1420,
+        "x1": 512,
+        "y1": 1448
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:25:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 1420,
+        "x1": 591,
+        "y1": 1448
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:25:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 1420,
+        "x1": 670,
+        "y1": 1448
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:25:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 1420,
+        "x1": 764,
+        "y1": 1448
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:25:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 1420,
+        "x1": 859,
+        "y1": 1448
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:25:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 1420,
+        "x1": 969,
+        "y1": 1448
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:25:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 1420,
+        "x1": 1056,
+        "y1": 1448
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:25:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 1420,
+        "x1": 1142,
+        "y1": 1448
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:25:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 1420,
+        "x1": 1221,
+        "y1": 1448
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:25:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 1420,
+        "x1": 1300,
+        "y1": 1448
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:25:grand_total": {
+      "region": {
+        "x0": 1330,
+        "y0": 1420,
+        "x1": 1410,
+        "y1": 1448
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:26:label": {
+      "region": {
+        "x0": 110,
+        "y0": 1447,
+        "x1": 292,
+        "y1": 1476
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:26:united_kingdom": {
+      "region": {
+        "x0": 307,
+        "y0": 1447,
+        "x1": 371,
+        "y1": 1476
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:26:france": {
+      "region": {
+        "x0": 385,
+        "y0": 1447,
+        "x1": 449,
+        "y1": 1476
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:26:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 1447,
+        "x1": 512,
+        "y1": 1476
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:26:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 1447,
+        "x1": 591,
+        "y1": 1476
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:26:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 1447,
+        "x1": 670,
+        "y1": 1476
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:26:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 1447,
+        "x1": 764,
+        "y1": 1476
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:26:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 1447,
+        "x1": 859,
+        "y1": 1476
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:26:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 1447,
+        "x1": 969,
+        "y1": 1476
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:26:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 1447,
+        "x1": 1056,
+        "y1": 1476
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:26:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 1447,
+        "x1": 1142,
+        "y1": 1476
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:26:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 1447,
+        "x1": 1221,
+        "y1": 1476
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:26:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 1447,
+        "x1": 1300,
+        "y1": 1476
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:26:grand_total": {
+      "region": {
+        "x0": 1330,
+        "y0": 1447,
+        "x1": 1410,
+        "y1": 1476
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:27:label": {
+      "region": {
+        "x0": 110,
+        "y0": 1475,
+        "x1": 292,
+        "y1": 1504
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:27:united_kingdom": {
+      "region": {
+        "x0": 307,
+        "y0": 1475,
+        "x1": 371,
+        "y1": 1504
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:27:france": {
+      "region": {
+        "x0": 385,
+        "y0": 1475,
+        "x1": 449,
+        "y1": 1504
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:27:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 1475,
+        "x1": 512,
+        "y1": 1504
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:27:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 1475,
+        "x1": 591,
+        "y1": 1504
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:27:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 1475,
+        "x1": 670,
+        "y1": 1504
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:27:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 1475,
+        "x1": 764,
+        "y1": 1504
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:27:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 1475,
+        "x1": 859,
+        "y1": 1504
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:27:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 1475,
+        "x1": 969,
+        "y1": 1504
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:27:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 1475,
+        "x1": 1056,
+        "y1": 1504
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:27:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 1475,
+        "x1": 1142,
+        "y1": 1504
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:27:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 1475,
+        "x1": 1221,
+        "y1": 1504
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:27:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 1475,
+        "x1": 1300,
+        "y1": 1504
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:27:grand_total": {
+      "region": {
+        "x0": 1330,
+        "y0": 1475,
+        "x1": 1410,
+        "y1": 1504
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:28:label": {
+      "region": {
+        "x0": 110,
+        "y0": 1503,
+        "x1": 292,
+        "y1": 1531
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:28:united_kingdom": {
+      "region": {
+        "x0": 307,
+        "y0": 1503,
+        "x1": 371,
+        "y1": 1531
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:28:france": {
+      "region": {
+        "x0": 385,
+        "y0": 1503,
+        "x1": 449,
+        "y1": 1531
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:28:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 1503,
+        "x1": 512,
+        "y1": 1531
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:28:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 1503,
+        "x1": 591,
+        "y1": 1531
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:28:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 1503,
+        "x1": 670,
+        "y1": 1531
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:28:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 1503,
+        "x1": 764,
+        "y1": 1531
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:28:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 1503,
+        "x1": 859,
+        "y1": 1531
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:28:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 1503,
+        "x1": 969,
+        "y1": 1531
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:28:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 1503,
+        "x1": 1056,
+        "y1": 1531
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:28:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 1503,
+        "x1": 1142,
+        "y1": 1531
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:28:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 1503,
+        "x1": 1221,
+        "y1": 1531
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:28:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 1503,
+        "x1": 1300,
+        "y1": 1531
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:28:grand_total": {
+      "region": {
+        "x0": 1330,
+        "y0": 1503,
+        "x1": 1410,
+        "y1": 1531
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:29:label": {
+      "region": {
+        "x0": 55,
+        "y0": 1543,
+        "x1": 292,
+        "y1": 1603
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:29:united_kingdom": {
+      "region": {
+        "x0": 307,
+        "y0": 1564,
+        "x1": 371,
+        "y1": 1593
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:29:france": {
+      "region": {
+        "x0": 385,
+        "y0": 1564,
+        "x1": 449,
+        "y1": 1593
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:29:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 1564,
+        "x1": 512,
+        "y1": 1593
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:29:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 1564,
+        "x1": 591,
+        "y1": 1593
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:29:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 1564,
+        "x1": 670,
+        "y1": 1593
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:29:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 1564,
+        "x1": 764,
+        "y1": 1593
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:29:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 1564,
+        "x1": 859,
+        "y1": 1593
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:29:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 1564,
+        "x1": 969,
+        "y1": 1593
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:29:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 1564,
+        "x1": 1056,
+        "y1": 1593
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:29:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 1564,
+        "x1": 1142,
+        "y1": 1593
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:29:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 1564,
+        "x1": 1221,
+        "y1": 1593
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:29:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 1564,
+        "x1": 1300,
+        "y1": 1593
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:29:grand_total": {
+      "region": {
+        "x0": 1330,
+        "y0": 1564,
+        "x1": 1410,
+        "y1": 1593
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:30:label": {
+      "region": {
+        "x0": 110,
+        "y0": 1592,
+        "x1": 292,
+        "y1": 1620
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:30:united_kingdom": {
+      "region": {
+        "x0": 307,
+        "y0": 1592,
+        "x1": 371,
+        "y1": 1620
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:30:france": {
+      "region": {
+        "x0": 385,
+        "y0": 1592,
+        "x1": 449,
+        "y1": 1620
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:30:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 1592,
+        "x1": 512,
+        "y1": 1620
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:30:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 1592,
+        "x1": 591,
+        "y1": 1620
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:30:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 1592,
+        "x1": 670,
+        "y1": 1620
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:30:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 1592,
+        "x1": 764,
+        "y1": 1620
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:30:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 1592,
+        "x1": 859,
+        "y1": 1620
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:30:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 1592,
+        "x1": 969,
+        "y1": 1620
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:30:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 1592,
+        "x1": 1056,
+        "y1": 1620
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:30:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 1592,
+        "x1": 1142,
+        "y1": 1620
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:30:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 1592,
+        "x1": 1221,
+        "y1": 1620
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:30:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 1592,
+        "x1": 1300,
+        "y1": 1620
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:30:grand_total": {
+      "region": {
+        "x0": 1330,
+        "y0": 1592,
+        "x1": 1410,
+        "y1": 1620
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:31:label": {
+      "region": {
+        "x0": 168,
+        "y0": 1654,
+        "x1": 182,
+        "y1": 1663
+      },
+      "source": "ocr"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:31:united_kingdom": {
+      "region": {
+        "x0": 301,
+        "y0": 1651,
+        "x1": 383,
+        "y1": 1666
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:31:france": {
+      "region": {
+        "x0": 401,
+        "y0": 1651,
+        "x1": 471,
+        "y1": 1666
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:31:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 1619,
+        "x1": 512,
+        "y1": 1648
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:31:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 1619,
+        "x1": 591,
+        "y1": 1648
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:31:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 1619,
+        "x1": 670,
+        "y1": 1648
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:31:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 1619,
+        "x1": 764,
+        "y1": 1648
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:31:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 1619,
+        "x1": 859,
+        "y1": 1648
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:31:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 1619,
+        "x1": 969,
+        "y1": 1648
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:31:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 1619,
+        "x1": 1056,
+        "y1": 1648
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:31:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 1619,
+        "x1": 1142,
+        "y1": 1648
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:31:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 1619,
+        "x1": 1221,
+        "y1": 1648
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:31:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 1619,
+        "x1": 1300,
+        "y1": 1648
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:31:grand_total": {
+      "region": {
+        "x0": 1282,
+        "y0": 1653,
+        "x1": 1420,
+        "y1": 1668
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:32:label": {
+      "region": {
+        "x0": 110,
+        "y0": 1647,
+        "x1": 292,
+        "y1": 1675
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:32:united_kingdom": {
+      "region": {
+        "x0": 301,
+        "y0": 1541,
+        "x1": 383,
+        "y1": 1557
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:32:france": {
+      "region": {
+        "x0": 401,
+        "y0": 1541,
+        "x1": 471,
+        "y1": 1557
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:32:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 1647,
+        "x1": 512,
+        "y1": 1675
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:32:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 1647,
+        "x1": 591,
+        "y1": 1675
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:32:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 1647,
+        "x1": 670,
+        "y1": 1675
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:32:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 1647,
+        "x1": 764,
+        "y1": 1675
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:32:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 1647,
+        "x1": 859,
+        "y1": 1675
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:32:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 1647,
+        "x1": 969,
+        "y1": 1675
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:32:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 1647,
+        "x1": 1056,
+        "y1": 1675
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:32:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 1647,
+        "x1": 1142,
+        "y1": 1675
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:32:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 1647,
+        "x1": 1221,
+        "y1": 1675
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:32:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 1647,
+        "x1": 1300,
+        "y1": 1675
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:32:grand_total": {
+      "region": {
+        "x0": 1282,
+        "y0": 1543,
+        "x1": 1420,
+        "y1": 1559
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:33:label": {
+      "region": {
+        "x0": 55,
+        "y0": 1687,
+        "x1": 292,
+        "y1": 1747
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:33:united_kingdom": {
+      "region": {
+        "x0": 301,
+        "y0": 1612,
+        "x1": 383,
+        "y1": 1627
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:33:france": {
+      "region": {
+        "x0": 401,
+        "y0": 1612,
+        "x1": 471,
+        "y1": 1627
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:33:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 1708,
+        "x1": 512,
+        "y1": 1737
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:33:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 1708,
+        "x1": 591,
+        "y1": 1737
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:33:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 1708,
+        "x1": 670,
+        "y1": 1737
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:33:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 1708,
+        "x1": 764,
+        "y1": 1737
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:33:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 1708,
+        "x1": 859,
+        "y1": 1737
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:33:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 1708,
+        "x1": 969,
+        "y1": 1737
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:33:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 1708,
+        "x1": 1056,
+        "y1": 1737
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:33:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 1708,
+        "x1": 1142,
+        "y1": 1737
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:33:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 1708,
+        "x1": 1221,
+        "y1": 1737
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:33:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 1708,
+        "x1": 1300,
+        "y1": 1737
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:33:grand_total": {
+      "region": {
+        "x0": 1282,
+        "y0": 1614,
+        "x1": 1420,
+        "y1": 1629
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:34:label": {
+      "region": {
+        "x0": 110,
+        "y0": 1736,
+        "x1": 292,
+        "y1": 1764
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:34:united_kingdom": {
+      "region": {
+        "x0": 301,
+        "y0": 1631,
+        "x1": 383,
+        "y1": 1648
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:34:france": {
+      "region": {
+        "x0": 401,
+        "y0": 1631,
+        "x1": 471,
+        "y1": 1648
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:34:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 1736,
+        "x1": 512,
+        "y1": 1764
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:34:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 1736,
+        "x1": 591,
+        "y1": 1764
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:34:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 1736,
+        "x1": 670,
+        "y1": 1764
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:34:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 1736,
+        "x1": 764,
+        "y1": 1764
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:34:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 1736,
+        "x1": 859,
+        "y1": 1764
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:34:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 1736,
+        "x1": 969,
+        "y1": 1764
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:34:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 1736,
+        "x1": 1056,
+        "y1": 1764
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:34:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 1736,
+        "x1": 1142,
+        "y1": 1764
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:34:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 1736,
+        "x1": 1221,
+        "y1": 1764
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:34:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 1736,
+        "x1": 1300,
+        "y1": 1764
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:34:grand_total": {
+      "region": {
+        "x0": 1282,
+        "y0": 1633,
+        "x1": 1420,
+        "y1": 1650
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:35:label": {
+      "region": {
+        "x0": 110,
+        "y0": 1763,
+        "x1": 292,
+        "y1": 1792
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:35:united_kingdom": {
+      "region": {
+        "x0": 301,
+        "y0": 1651,
+        "x1": 383,
+        "y1": 1666
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:35:france": {
+      "region": {
+        "x0": 401,
+        "y0": 1651,
+        "x1": 471,
+        "y1": 1666
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:35:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 1763,
+        "x1": 512,
+        "y1": 1792
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:35:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 1763,
+        "x1": 591,
+        "y1": 1792
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:35:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 1763,
+        "x1": 670,
+        "y1": 1792
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:35:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 1763,
+        "x1": 764,
+        "y1": 1792
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:35:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 1763,
+        "x1": 859,
+        "y1": 1792
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:35:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 1763,
+        "x1": 969,
+        "y1": 1792
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:35:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 1763,
+        "x1": 1056,
+        "y1": 1792
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:35:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 1763,
+        "x1": 1142,
+        "y1": 1792
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:35:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 1763,
+        "x1": 1221,
+        "y1": 1792
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:35:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 1763,
+        "x1": 1300,
+        "y1": 1792
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:35:grand_total": {
+      "region": {
+        "x0": 1282,
+        "y0": 1653,
+        "x1": 1420,
+        "y1": 1668
+      },
+      "source": "grid"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:36:label": {
+      "region": {
+        "x0": 110,
+        "y0": 1791,
+        "x1": 292,
+        "y1": 1819
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:36:united_kingdom": {
+      "region": {
+        "x0": 307,
+        "y0": 1791,
+        "x1": 371,
+        "y1": 1819
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:36:france": {
+      "region": {
+        "x0": 385,
+        "y0": 1791,
+        "x1": 449,
+        "y1": 1819
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:36:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 1791,
+        "x1": 512,
+        "y1": 1819
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:36:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 1791,
+        "x1": 591,
+        "y1": 1819
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:36:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 1791,
+        "x1": 670,
+        "y1": 1819
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:36:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 1791,
+        "x1": 764,
+        "y1": 1819
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:36:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 1791,
+        "x1": 859,
+        "y1": 1819
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:36:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 1791,
+        "x1": 969,
+        "y1": 1819
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:36:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 1791,
+        "x1": 1056,
+        "y1": 1819
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:36:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 1791,
+        "x1": 1142,
+        "y1": 1819
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:36:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 1791,
+        "x1": 1221,
+        "y1": 1819
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:36:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 1791,
+        "x1": 1300,
+        "y1": 1819
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:36:grand_total": {
+      "region": {
+        "x0": 1330,
+        "y0": 1791,
+        "x1": 1410,
+        "y1": 1819
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:37:label": {
+      "region": {
+        "x0": 55,
+        "y0": 1831,
+        "x1": 292,
+        "y1": 1892
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:37:united_kingdom": {
+      "region": {
+        "x0": 307,
+        "y0": 1852,
+        "x1": 371,
+        "y1": 1881
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:37:france": {
+      "region": {
+        "x0": 385,
+        "y0": 1852,
+        "x1": 449,
+        "y1": 1881
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:37:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 1852,
+        "x1": 512,
+        "y1": 1881
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:37:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 1852,
+        "x1": 591,
+        "y1": 1881
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:37:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 1852,
+        "x1": 670,
+        "y1": 1881
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:37:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 1852,
+        "x1": 764,
+        "y1": 1881
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:37:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 1852,
+        "x1": 859,
+        "y1": 1881
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:37:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 1852,
+        "x1": 969,
+        "y1": 1881
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:37:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 1852,
+        "x1": 1056,
+        "y1": 1881
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:37:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 1852,
+        "x1": 1142,
+        "y1": 1881
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:37:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 1852,
+        "x1": 1221,
+        "y1": 1881
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:37:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 1852,
+        "x1": 1300,
+        "y1": 1881
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:37:grand_total": {
+      "region": {
+        "x0": 1330,
+        "y0": 1852,
+        "x1": 1410,
+        "y1": 1881
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:38:label": {
+      "region": {
+        "x0": 110,
+        "y0": 1880,
+        "x1": 292,
+        "y1": 1908
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:38:united_kingdom": {
+      "region": {
+        "x0": 307,
+        "y0": 1880,
+        "x1": 371,
+        "y1": 1908
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:38:france": {
+      "region": {
+        "x0": 385,
+        "y0": 1880,
+        "x1": 449,
+        "y1": 1908
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:38:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 1880,
+        "x1": 512,
+        "y1": 1908
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:38:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 1880,
+        "x1": 591,
+        "y1": 1908
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:38:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 1880,
+        "x1": 670,
+        "y1": 1908
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:38:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 1880,
+        "x1": 764,
+        "y1": 1908
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:38:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 1880,
+        "x1": 859,
+        "y1": 1908
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:38:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 1880,
+        "x1": 969,
+        "y1": 1908
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:38:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 1880,
+        "x1": 1056,
+        "y1": 1908
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:38:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 1880,
+        "x1": 1142,
+        "y1": 1908
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:38:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 1880,
+        "x1": 1221,
+        "y1": 1908
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:38:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 1880,
+        "x1": 1300,
+        "y1": 1908
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:38:grand_total": {
+      "region": {
+        "x0": 1330,
+        "y0": 1880,
+        "x1": 1410,
+        "y1": 1908
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:39:label": {
+      "region": {
+        "x0": 110,
+        "y0": 1908,
+        "x1": 292,
+        "y1": 1936
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:39:united_kingdom": {
+      "region": {
+        "x0": 307,
+        "y0": 1908,
+        "x1": 371,
+        "y1": 1936
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:39:france": {
+      "region": {
+        "x0": 385,
+        "y0": 1908,
+        "x1": 449,
+        "y1": 1936
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:39:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 1908,
+        "x1": 512,
+        "y1": 1936
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:39:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 1908,
+        "x1": 591,
+        "y1": 1936
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:39:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 1908,
+        "x1": 670,
+        "y1": 1936
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:39:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 1908,
+        "x1": 764,
+        "y1": 1936
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:39:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 1908,
+        "x1": 859,
+        "y1": 1936
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:39:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 1908,
+        "x1": 969,
+        "y1": 1936
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:39:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 1908,
+        "x1": 1056,
+        "y1": 1936
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:39:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 1908,
+        "x1": 1142,
+        "y1": 1936
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:39:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 1908,
+        "x1": 1221,
+        "y1": 1936
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:39:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 1908,
+        "x1": 1300,
+        "y1": 1936
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:39:grand_total": {
+      "region": {
+        "x0": 1330,
+        "y0": 1908,
+        "x1": 1410,
+        "y1": 1936
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:40:label": {
+      "region": {
+        "x0": 110,
+        "y0": 1935,
+        "x1": 292,
+        "y1": 1964
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:40:united_kingdom": {
+      "region": {
+        "x0": 307,
+        "y0": 1935,
+        "x1": 371,
+        "y1": 1964
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:40:france": {
+      "region": {
+        "x0": 385,
+        "y0": 1935,
+        "x1": 449,
+        "y1": 1964
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:40:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 1935,
+        "x1": 512,
+        "y1": 1964
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:40:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 1935,
+        "x1": 591,
+        "y1": 1964
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:40:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 1935,
+        "x1": 670,
+        "y1": 1964
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:40:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 1935,
+        "x1": 764,
+        "y1": 1964
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:40:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 1935,
+        "x1": 859,
+        "y1": 1964
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:40:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 1935,
+        "x1": 969,
+        "y1": 1964
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:40:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 1935,
+        "x1": 1056,
+        "y1": 1964
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:40:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 1935,
+        "x1": 1142,
+        "y1": 1964
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:40:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 1935,
+        "x1": 1221,
+        "y1": 1964
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:40:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 1935,
+        "x1": 1300,
+        "y1": 1964
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:40:grand_total": {
+      "region": {
+        "x0": 1330,
+        "y0": 1935,
+        "x1": 1410,
+        "y1": 1964
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:41:label": {
+      "region": {
+        "x0": 55,
+        "y0": 1963,
+        "x1": 292,
+        "y1": 1991
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:41:united_kingdom": {
+      "region": {
+        "x0": 307,
+        "y0": 1963,
+        "x1": 371,
+        "y1": 1991
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:41:france": {
+      "region": {
+        "x0": 385,
+        "y0": 1963,
+        "x1": 449,
+        "y1": 1991
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:41:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 1963,
+        "x1": 512,
+        "y1": 1991
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:41:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 1963,
+        "x1": 591,
+        "y1": 1991
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:41:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 1963,
+        "x1": 670,
+        "y1": 1991
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:41:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 1963,
+        "x1": 764,
+        "y1": 1991
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:41:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 1963,
+        "x1": 859,
+        "y1": 1991
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:41:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 1963,
+        "x1": 969,
+        "y1": 1991
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:41:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 1963,
+        "x1": 1056,
+        "y1": 1991
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:41:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 1963,
+        "x1": 1142,
+        "y1": 1991
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:41:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 1963,
+        "x1": 1221,
+        "y1": 1991
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:41:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 1963,
+        "x1": 1300,
+        "y1": 1991
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:41:grand_total": {
+      "region": {
+        "x0": 1330,
+        "y0": 1963,
+        "x1": 1410,
+        "y1": 1991
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:42:label": {
+      "region": {
+        "x0": 55,
+        "y0": 1990,
+        "x1": 292,
+        "y1": 2019
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:42:united_kingdom": {
+      "region": {
+        "x0": 307,
+        "y0": 1990,
+        "x1": 371,
+        "y1": 2019
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:42:france": {
+      "region": {
+        "x0": 385,
+        "y0": 1990,
+        "x1": 449,
+        "y1": 2019
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:42:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 1990,
+        "x1": 512,
+        "y1": 2019
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:42:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 1990,
+        "x1": 591,
+        "y1": 2019
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:42:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 1990,
+        "x1": 670,
+        "y1": 2019
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:42:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 1990,
+        "x1": 764,
+        "y1": 2019
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:42:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 1990,
+        "x1": 859,
+        "y1": 2019
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:42:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 1990,
+        "x1": 969,
+        "y1": 2019
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:42:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 1990,
+        "x1": 1056,
+        "y1": 2019
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:42:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 1990,
+        "x1": 1142,
+        "y1": 2019
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:42:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 1990,
+        "x1": 1221,
+        "y1": 2019
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:42:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 1990,
+        "x1": 1300,
+        "y1": 2019
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:42:grand_total": {
+      "region": {
+        "x0": 1330,
+        "y0": 1990,
+        "x1": 1410,
+        "y1": 2019
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:43:label": {
+      "region": {
+        "x0": 55,
+        "y0": 2018,
+        "x1": 292,
+        "y1": 2046
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:43:united_kingdom": {
+      "region": {
+        "x0": 307,
+        "y0": 2018,
+        "x1": 371,
+        "y1": 2046
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:43:france": {
+      "region": {
+        "x0": 385,
+        "y0": 2018,
+        "x1": 449,
+        "y1": 2046
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:43:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 2018,
+        "x1": 512,
+        "y1": 2046
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:43:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 2018,
+        "x1": 591,
+        "y1": 2046
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:43:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 2018,
+        "x1": 670,
+        "y1": 2046
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:43:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 2018,
+        "x1": 764,
+        "y1": 2046
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:43:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 2018,
+        "x1": 859,
+        "y1": 2046
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:43:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 2018,
+        "x1": 969,
+        "y1": 2046
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:43:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 2018,
+        "x1": 1056,
+        "y1": 2046
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:43:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 2018,
+        "x1": 1142,
+        "y1": 2046
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:43:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 2018,
+        "x1": 1221,
+        "y1": 2046
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:43:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 2018,
+        "x1": 1300,
+        "y1": 2046
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:43:grand_total": {
+      "region": {
+        "x0": 1330,
+        "y0": 2018,
+        "x1": 1410,
+        "y1": 2046
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:44:label": {
+      "region": {
+        "x0": 55,
+        "y0": 2045,
+        "x1": 292,
+        "y1": 2074
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:44:united_kingdom": {
+      "region": {
+        "x0": 307,
+        "y0": 2045,
+        "x1": 371,
+        "y1": 2074
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:44:france": {
+      "region": {
+        "x0": 385,
+        "y0": 2045,
+        "x1": 449,
+        "y1": 2074
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:44:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 2045,
+        "x1": 512,
+        "y1": 2074
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:44:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 2045,
+        "x1": 591,
+        "y1": 2074
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:44:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 2045,
+        "x1": 670,
+        "y1": 2074
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:44:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 2045,
+        "x1": 764,
+        "y1": 2074
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:44:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 2045,
+        "x1": 859,
+        "y1": 2074
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:44:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 2045,
+        "x1": 969,
+        "y1": 2074
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:44:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 2045,
+        "x1": 1056,
+        "y1": 2074
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:44:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 2045,
+        "x1": 1142,
+        "y1": 2074
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:44:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 2045,
+        "x1": 1221,
+        "y1": 2074
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:44:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 2045,
+        "x1": 1300,
+        "y1": 2074
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:44:grand_total": {
+      "region": {
+        "x0": 1330,
+        "y0": 2045,
+        "x1": 1410,
+        "y1": 2074
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:45:label": {
+      "region": {
+        "x0": 55,
+        "y0": 2073,
+        "x1": 292,
+        "y1": 2101
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:45:united_kingdom": {
+      "region": {
+        "x0": 307,
+        "y0": 2073,
+        "x1": 371,
+        "y1": 2101
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:45:france": {
+      "region": {
+        "x0": 385,
+        "y0": 2073,
+        "x1": 449,
+        "y1": 2101
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:45:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 2073,
+        "x1": 512,
+        "y1": 2101
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:45:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 2073,
+        "x1": 591,
+        "y1": 2101
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:45:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 2073,
+        "x1": 670,
+        "y1": 2101
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:45:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 2073,
+        "x1": 764,
+        "y1": 2101
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:45:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 2073,
+        "x1": 859,
+        "y1": 2101
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:45:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 2073,
+        "x1": 969,
+        "y1": 2101
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:45:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 2073,
+        "x1": 1056,
+        "y1": 2101
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:45:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 2073,
+        "x1": 1142,
+        "y1": 2101
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:45:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 2073,
+        "x1": 1221,
+        "y1": 2101
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:45:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 2073,
+        "x1": 1300,
+        "y1": 2101
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:45:grand_total": {
+      "region": {
+        "x0": 1330,
+        "y0": 2073,
+        "x1": 1410,
+        "y1": 2101
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:46:label": {
+      "region": {
+        "x0": 55,
+        "y0": 2100,
+        "x1": 292,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:46:united_kingdom": {
+      "region": {
+        "x0": 307,
+        "y0": 2100,
+        "x1": 371,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:46:france": {
+      "region": {
+        "x0": 385,
+        "y0": 2100,
+        "x1": 449,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:46:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 2100,
+        "x1": 512,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:46:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 2100,
+        "x1": 591,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:46:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 2100,
+        "x1": 670,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:46:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 2100,
+        "x1": 764,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:46:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 2100,
+        "x1": 859,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:46:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 2100,
+        "x1": 969,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:46:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 2100,
+        "x1": 1056,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:46:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 2100,
+        "x1": 1142,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:46:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 2100,
+        "x1": 1221,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:46:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 2100,
+        "x1": 1300,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:46:grand_total": {
+      "region": {
+        "x0": 1330,
+        "y0": 2100,
+        "x1": 1410,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:47:label": {
+      "region": {
+        "x0": 55,
+        "y0": 2100,
+        "x1": 292,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:47:united_kingdom": {
+      "region": {
+        "x0": 307,
+        "y0": 2100,
+        "x1": 371,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:47:france": {
+      "region": {
+        "x0": 385,
+        "y0": 2100,
+        "x1": 449,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:47:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 2100,
+        "x1": 512,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:47:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 2100,
+        "x1": 591,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:47:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 2100,
+        "x1": 670,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:47:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 2100,
+        "x1": 764,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:47:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 2100,
+        "x1": 859,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:47:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 2100,
+        "x1": 969,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:47:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 2100,
+        "x1": 1056,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:47:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 2100,
+        "x1": 1142,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:47:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 2100,
+        "x1": 1221,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:47:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 2100,
+        "x1": 1300,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:47:grand_total": {
+      "region": {
+        "x0": 1330,
+        "y0": 2100,
+        "x1": 1410,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:48:label": {
+      "region": {
+        "x0": 55,
+        "y0": 2100,
+        "x1": 292,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:48:united_kingdom": {
+      "region": {
+        "x0": 307,
+        "y0": 2100,
+        "x1": 371,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:48:france": {
+      "region": {
+        "x0": 385,
+        "y0": 2100,
+        "x1": 449,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:48:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 2100,
+        "x1": 512,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:48:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 2100,
+        "x1": 591,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:48:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 2100,
+        "x1": 670,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:48:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 2100,
+        "x1": 764,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:48:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 2100,
+        "x1": 859,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:48:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 2100,
+        "x1": 969,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:48:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 2100,
+        "x1": 1056,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:48:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 2100,
+        "x1": 1142,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:48:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 2100,
+        "x1": 1221,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:48:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 2100,
+        "x1": 1300,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:48:grand_total": {
+      "region": {
+        "x0": 1330,
+        "y0": 2100,
+        "x1": 1410,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:49:label": {
+      "region": {
+        "x0": 55,
+        "y0": 2100,
+        "x1": 292,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:49:united_kingdom": {
+      "region": {
+        "x0": 307,
+        "y0": 2100,
+        "x1": 371,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:49:france": {
+      "region": {
+        "x0": 385,
+        "y0": 2100,
+        "x1": 449,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:49:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 2100,
+        "x1": 512,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:49:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 2100,
+        "x1": 591,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:49:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 2100,
+        "x1": 670,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:49:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 2100,
+        "x1": 764,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:49:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 2100,
+        "x1": 859,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:49:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 2100,
+        "x1": 969,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:49:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 2100,
+        "x1": 1056,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:49:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 2100,
+        "x1": 1142,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:49:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 2100,
+        "x1": 1221,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:49:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 2100,
+        "x1": 1300,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:49:grand_total": {
+      "region": {
+        "x0": 1330,
+        "y0": 2100,
+        "x1": 1410,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:50:label": {
+      "region": {
+        "x0": 55,
+        "y0": 2100,
+        "x1": 292,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:50:united_kingdom": {
+      "region": {
+        "x0": 307,
+        "y0": 2100,
+        "x1": 371,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:50:france": {
+      "region": {
+        "x0": 385,
+        "y0": 2100,
+        "x1": 449,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:50:germany": {
+      "region": {
+        "x0": 464,
+        "y0": 2100,
+        "x1": 512,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:50:italy": {
+      "region": {
+        "x0": 543,
+        "y0": 2100,
+        "x1": 591,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:50:netherlands": {
+      "region": {
+        "x0": 622,
+        "y0": 2100,
+        "x1": 670,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:50:switzerland": {
+      "region": {
+        "x0": 700,
+        "y0": 2100,
+        "x1": 764,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:50:other_europe": {
+      "region": {
+        "x0": 795,
+        "y0": 2100,
+        "x1": 859,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:50:total_europe": {
+      "region": {
+        "x0": 889,
+        "y0": 2100,
+        "x1": 969,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:50:canada": {
+      "region": {
+        "x0": 1000,
+        "y0": 2100,
+        "x1": 1056,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:50:latin_america": {
+      "region": {
+        "x0": 1078,
+        "y0": 2100,
+        "x1": 1142,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:50:far_east": {
+      "region": {
+        "x0": 1157,
+        "y0": 2100,
+        "x1": 1221,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:50:all_other": {
+      "region": {
+        "x0": 1252,
+        "y0": 2100,
+        "x1": 1300,
+        "y1": 2120
+      },
+      "source": "model"
+    },
+    "T.short_term_foreign_liabilities_as:1939-01_p051:50:grand_total": {
+      "region": {
+        "x0": 1330,
+        "y0": 2100,
+        "x1": 1410,
+        "y1": 2120
+      },
+      "source": "model"
+    }
+  }
+}

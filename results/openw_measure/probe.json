@@ -1,0 +1,382 @@
+{
+  "page": "1939-12_p053",
+  "prompt": "Read a cell in the \"United Kingdom\" column of the table \"Short-Term Foreign Liabilities as Reported by Banks and Bankers in the United States\".\n\nThe image is a crop of a scanned page, centred on that value; parts of neighbouring cells or lines may show at its edges. Read only the value in the middle.\n- Copy it exactly as printed or written, character for character, including commas, leading zeros and punctuation. Never correct arithmetic, spelling or formatting.\n- If the cell is blank, the value is \"\" (an empty string).\n- If a value is there but can't be read (covered, smudged, torn), the value is null. Never guess.",
+  "cells": [
+    {
+      "id": "probe0",
+      "printed": "656,676",
+      "box": {
+        "x0": 376,
+        "y0": 456,
+        "x1": 438,
+        "y1": 468
+      }
+    },
+    {
+      "id": "probe1",
+      "printed": "65,128",
+      "box": {
+        "x0": 1325,
+        "y0": 613,
+        "x1": 1377,
+        "y1": 625
+      }
+    },
+    {
+      "id": "probe2",
+      "printed": "1,808,320",
+      "box": {
+        "x0": 964,
+        "y0": 797,
+        "x1": 1044,
+        "y1": 809
+      }
+    },
+    {
+      "id": "probe3",
+      "printed": "66,903",
+      "box": {
+        "x0": 390,
+        "y0": 1442,
+        "x1": 442,
+        "y1": 1454
+      }
+    }
+  ],
+  "max_output_tokens": 2048,
+  "rule": "Pure functions over the measurement's records (calls.jsonl and the files beside it): no model,\nno network, nothing read but what is passed in. The rules here are fixed before any probe call:\n\n* An effort is ACCEPTED on a host if at least one probe call at it got an answer, and REFUSED if\n  every one came back as an HTTP 4xx. (An API that takes a value and silently runs it as another\n  is accepted, not honoured.)\n* An effort is HONOURED if it spends less than \"low\" on the same cells: on at least HONOUR_CELLS\n  of the cells where both answered, fewer reasoning tokens (or, where the host reports none,\n  fewer output tokens), and the median ratio to \"low\" at most HONOUR_RATIO.\n* The setting the re-reads use on a host: \"minimal\" if honoured (version 1's setting), else \"none\"\n  if honoured, else \"low\".\n",
+  "hosts": {
+    "baseten": {
+      "efforts": {
+        "none": {
+          "answered": 4,
+          "refused": 0,
+          "refused_statuses": [],
+          "other_errors": [],
+          "accepted": true,
+          "reasoning_tokens_median": 267.5,
+          "output_tokens_median": 285.5,
+          "reasoning_reported": true,
+          "empty": 0,
+          "finish_length": 0,
+          "paired_with_low": 4,
+          "fewer_than_low": 1,
+          "median_ratio_to_low": 1.136612551202771,
+          "honoured": false
+        },
+        "minimal": {
+          "answered": 4,
+          "refused": 0,
+          "refused_statuses": [],
+          "other_errors": [],
+          "accepted": true,
+          "reasoning_tokens_median": 219.5,
+          "output_tokens_median": 237.5,
+          "reasoning_reported": true,
+          "empty": 0,
+          "finish_length": 0,
+          "paired_with_low": 4,
+          "fewer_than_low": 2,
+          "median_ratio_to_low": 1.0087359336661308,
+          "honoured": false
+        },
+        "low": {
+          "answered": 4,
+          "refused": 0,
+          "refused_statuses": [],
+          "other_errors": [],
+          "accepted": true,
+          "reasoning_tokens_median": 248.0,
+          "output_tokens_median": 266.0,
+          "reasoning_reported": true,
+          "empty": 0,
+          "finish_length": 0,
+          "paired_with_low": 4,
+          "fewer_than_low": 0,
+          "median_ratio_to_low": 1.0,
+          "honoured": true
+        },
+        "medium": {
+          "answered": 4,
+          "refused": 0,
+          "refused_statuses": [],
+          "other_errors": [],
+          "accepted": true,
+          "reasoning_tokens_median": 554.0,
+          "output_tokens_median": 572.0,
+          "reasoning_reported": true,
+          "empty": 1,
+          "finish_length": 1,
+          "paired_with_low": 4,
+          "fewer_than_low": 0,
+          "median_ratio_to_low": 2.083540383176903,
+          "honoured": false
+        },
+        "high": {
+          "answered": 4,
+          "refused": 0,
+          "refused_statuses": [],
+          "other_errors": [],
+          "accepted": true,
+          "reasoning_tokens_median": 666.0,
+          "output_tokens_median": 683.0,
+          "reasoning_reported": true,
+          "empty": 1,
+          "finish_length": 1,
+          "paired_with_low": 4,
+          "fewer_than_low": 0,
+          "median_ratio_to_low": 1.7508558778466574,
+          "honoured": false
+        },
+        "xhigh": {
+          "answered": 4,
+          "refused": 0,
+          "refused_statuses": [],
+          "other_errors": [],
+          "accepted": true,
+          "reasoning_tokens_median": 1252.5,
+          "output_tokens_median": 1262.5,
+          "reasoning_reported": true,
+          "empty": 2,
+          "finish_length": 2,
+          "paired_with_low": 4,
+          "fewer_than_low": 0,
+          "median_ratio_to_low": 1.7584282755535843,
+          "honoured": false
+        },
+        "bogus": {
+          "answered": 0,
+          "refused": 1,
+          "refused_statuses": [
+            "400"
+          ],
+          "other_errors": [],
+          "accepted": false,
+          "reasoning_tokens_median": null,
+          "output_tokens_median": null,
+          "reasoning_reported": null,
+          "empty": 0,
+          "finish_length": 0,
+          "paired_with_low": 0,
+          "fewer_than_low": 0,
+          "median_ratio_to_low": null,
+          "honoured": false
+        },
+        "max": {
+          "answered": 4,
+          "refused": 0,
+          "refused_statuses": [],
+          "other_errors": [],
+          "accepted": true,
+          "reasoning_tokens_median": 1029.0,
+          "output_tokens_median": 1047.0,
+          "reasoning_reported": true,
+          "empty": 1,
+          "finish_length": 1,
+          "paired_with_low": 4,
+          "fewer_than_low": 0,
+          "median_ratio_to_low": 2.7023744638943916,
+          "honoured": false
+        }
+      },
+      "reread_effort": "low"
+    },
+    "fireworks": {
+      "efforts": {
+        "none": {
+          "answered": 0,
+          "refused": 4,
+          "refused_statuses": [
+            "400"
+          ],
+          "other_errors": [],
+          "accepted": false,
+          "reasoning_tokens_median": null,
+          "output_tokens_median": null,
+          "reasoning_reported": null,
+          "empty": 0,
+          "finish_length": 0,
+          "paired_with_low": 0,
+          "fewer_than_low": 0,
+          "median_ratio_to_low": null,
+          "honoured": false
+        },
+        "minimal": {
+          "answered": 4,
+          "refused": 0,
+          "refused_statuses": [],
+          "other_errors": [],
+          "accepted": true,
+          "reasoning_tokens_median": 330.5,
+          "output_tokens_median": 347.5,
+          "reasoning_reported": true,
+          "empty": 0,
+          "finish_length": 0,
+          "paired_with_low": 4,
+          "fewer_than_low": 1,
+          "median_ratio_to_low": 1.5039251336898396,
+          "honoured": false
+        },
+        "low": {
+          "answered": 4,
+          "refused": 0,
+          "refused_statuses": [],
+          "other_errors": [],
+          "accepted": true,
+          "reasoning_tokens_median": 226.5,
+          "output_tokens_median": 243.5,
+          "reasoning_reported": true,
+          "empty": 0,
+          "finish_length": 0,
+          "paired_with_low": 4,
+          "fewer_than_low": 0,
+          "median_ratio_to_low": 1.0,
+          "honoured": true
+        },
+        "medium": {
+          "answered": 4,
+          "refused": 0,
+          "refused_statuses": [],
+          "other_errors": [],
+          "accepted": true,
+          "reasoning_tokens_median": 553.0,
+          "output_tokens_median": 570.0,
+          "reasoning_reported": true,
+          "empty": 0,
+          "finish_length": 0,
+          "paired_with_low": 4,
+          "fewer_than_low": 0,
+          "median_ratio_to_low": 2.5733891625615763,
+          "honoured": false
+        },
+        "high": {
+          "answered": 3,
+          "refused": 0,
+          "refused_statuses": [],
+          "other_errors": [
+            "APITimeoutError"
+          ],
+          "accepted": true,
+          "reasoning_tokens_median": 1265,
+          "output_tokens_median": 1282,
+          "reasoning_reported": true,
+          "empty": 0,
+          "finish_length": 0,
+          "paired_with_low": 3,
+          "fewer_than_low": 0,
+          "median_ratio_to_low": 5.3,
+          "honoured": false
+        },
+        "xhigh": {
+          "answered": 4,
+          "refused": 0,
+          "refused_statuses": [],
+          "other_errors": [],
+          "accepted": true,
+          "reasoning_tokens_median": 988.0,
+          "output_tokens_median": 1006.0,
+          "reasoning_reported": true,
+          "empty": 0,
+          "finish_length": 0,
+          "paired_with_low": 4,
+          "fewer_than_low": 0,
+          "median_ratio_to_low": 4.71903743315508,
+          "honoured": false
+        },
+        "bogus": {
+          "answered": 0,
+          "refused": 1,
+          "refused_statuses": [
+            "400"
+          ],
+          "other_errors": [],
+          "accepted": false,
+          "reasoning_tokens_median": null,
+          "output_tokens_median": null,
+          "reasoning_reported": null,
+          "empty": 0,
+          "finish_length": 0,
+          "paired_with_low": 0,
+          "fewer_than_low": 0,
+          "median_ratio_to_low": null,
+          "honoured": false
+        },
+        "int64": {
+          "answered": 0,
+          "refused": 4,
+          "refused_statuses": [
+            "400"
+          ],
+          "other_errors": [],
+          "accepted": false,
+          "reasoning_tokens_median": null,
+          "output_tokens_median": null,
+          "reasoning_reported": null,
+          "empty": 0,
+          "finish_length": 0,
+          "paired_with_low": 0,
+          "fewer_than_low": 0,
+          "median_ratio_to_low": null,
+          "honoured": false
+        },
+        "max": {
+          "answered": 2,
+          "refused": 0,
+          "refused_statuses": [],
+          "other_errors": [
+            "APITimeoutError",
+            "APITimeoutError"
+          ],
+          "accepted": true,
+          "reasoning_tokens_median": 502.0,
+          "output_tokens_median": 519.0,
+          "reasoning_reported": true,
+          "empty": 0,
+          "finish_length": 0,
+          "paired_with_low": 2,
+          "fewer_than_low": 0,
+          "median_ratio_to_low": 2.5856536972155633,
+          "honoured": false
+        },
+        "false": {
+          "answered": 0,
+          "refused": 4,
+          "refused_statuses": [
+            "400"
+          ],
+          "other_errors": [],
+          "accepted": false,
+          "reasoning_tokens_median": null,
+          "output_tokens_median": null,
+          "reasoning_reported": null,
+          "empty": 0,
+          "finish_length": 0,
+          "paired_with_low": 0,
+          "fewer_than_low": 0,
+          "median_ratio_to_low": null,
+          "honoured": false
+        },
+        "adaptive": {
+          "answered": 0,
+          "refused": 4,
+          "refused_statuses": [
+            "400"
+          ],
+          "other_errors": [],
+          "accepted": false,
+          "reasoning_tokens_median": null,
+          "output_tokens_median": null,
+          "reasoning_reported": null,
+          "empty": 0,
+          "finish_length": 0,
+          "paired_with_low": 0,
+          "fewer_than_low": 0,
+          "median_ratio_to_low": null,
+          "honoured": false
+        }
+      },
+      "reread_effort": "low"
+    }
+  },
+  "finished_at": "2026-10-30T22:39:51+00:00"
+}
