@@ -41,6 +41,14 @@
       <rect width="6" height="6" class="surface"/>
       <line x1="0" y1="0" x2="0" y2="6" class="tline" stroke-width="3"/>
     </pattern>
+    <pattern id="dots-purple" width="6" height="6" patternUnits="userSpaceOnUse">
+      <rect width="6" height="6" class="surface"/>
+      <circle cx="3" cy="3" r="1.7" class="purple"/>
+    </pattern>
+    <pattern id="dots-teal" width="6" height="6" patternUnits="userSpaceOnUse">
+      <rect width="6" height="6" class="surface"/>
+      <circle cx="3" cy="3" r="1.7" class="teal"/>
+    </pattern>
   </defs>
   <rect x="0.5" y="0.5" width="719" height="261" rx="8" class="card"/>
   <text x="24" y="34" class="t" font-size="16" font-weight="600" text-anchor="start">Wrong values that reach the database, per 1,000 accepted</text>

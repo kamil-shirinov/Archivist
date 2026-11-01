@@ -6,11 +6,11 @@ Archivist turns scanned financial archives into a verified database. Every value
 
 ## For judges
 
-**The problem.** *(Draft: for the author to rewrite from their bank internship.)* Banks hold decades of records as scans. Typing them in is slow, and a model reading them alone gets some values wrong without saying which.
+**The problem.** *(Draft: for the author to rewrite.)* Banks hold decades of records as scans. Typing them in is slow, and a model reading them alone gets some values wrong without saying which.
 
-**Headline results.** On a pre-registered test (targets fixed in git before it ran) of 157 synthetic pages, reading once let in 189 wrong values out of 4,251 accepted (4.4%). Archivist let in 12 of 3,330 (0.4%) but sent 21.6% of values to a person. Three of five targets were met. Real scans: [results pending].
+**Headline.** On a pre-registered test (targets set in git first) of 157 synthetic pages, a single read let in about 45 wrong values per 1,000. Archivist let in about 4 and sent about 1 in 5 values to a person. Three of five targets were met. Real scans: [results pending].
 
-**Meta models.** Muse Spark 1.3 and SAM 3.1 (Meta's API), Muse Spark Open (open weights, on Baseten), Muse Glimmer (Modal GPUs, being measured).
+**Meta models.** Muse Glimmer (Modal GPUs) sorts pages; Muse Spark 1.3 and SAM 3.1 (Meta's API) read and find covered ink; Muse Spark Open (open weights, Baseten) can replace Muse Spark 1.3.
 
 **Live demo:** [link pending] · **Video:** [link pending]
 
@@ -18,65 +18,58 @@ Archivist turns scanned financial archives into a verified database. Every value
 
 ## How it works
 
-Archivist reads each page in seven steps, and a value is accepted only when independent checks agree.
+Seven steps; a value is accepted only when independent checks agree.
 
 <img src="docs/img/architecture.svg" alt="Flow chart of the seven steps: sort the page, read and cite, snap to the ink, find covered ink, read again blind, check the arithmetic, decide. Models are purple, plain code is grey, results and people are teal." width="100%">
 
-1. **Sort the page.** A model says which kind of page it is. A table from a real archive is described by a template, a description of its layout, drafted by Muse Spark and approved by a person.
-2. **Read and cite.** A model reads every value and draws a box where it saw it.
-3. **Snap to the ink.** Plain code moves each box onto the printed figure, using the page image, the archive's own text layer, or the table's ruled grid.
-4. **Find covered ink.** SAM 3.1, a Meta model that outlines objects in an image, looks for stamps and stains over a value.
+1. **Sort the page.** Muse Glimmer, untrained, picks the table type from the page's text; a plain-code title check confirms it. Each real-archive table type has a template, a description of its layout, drafted by Muse Spark and approved by a person.
+2. **Read and cite.** A model reads every value and boxes where it saw it.
+3. **Snap to the ink.** Plain code fits each box to the printed figure, using the archive's text layer or ruled lines.
+4. **Find covered ink.** SAM 3.1, a Meta model that outlines objects in an image, looks for stamps and stains over values.
 5. **Read again, blind.** A model re-reads each value from a small crop, never seeing the first answer.
 6. **Check the arithmetic.** Plain code tests rules a person approved, such as totals that must add up.
-7. **Decide.** A value is accepted only if both reads agree and every rule holds. Anything else goes to a person.
+7. **Decide.** A value is accepted only if both reads agree and every rule holds; otherwise a person decides.
+
+Step 1 is being wired in on branch `glimmer` (P37); the first real-scan test sorted pages with Muse Spark 1.3.
 
 Principles:
 
 - No model grades its own work.
-- The model proposes and a person decides. Archivist never changes a value; it proposes a correction with evidence (D25).
-- Source errors are flagged, never corrected. Archivist reports what the document says (D10).
-- Every decision is recorded and replays exactly (`archivist.replay`).
-- Only synthetic or public-domain pages reach a model (D14).
+- The model proposes, a person decides; values are never changed.
+- Source errors are flagged, never corrected.
+- Every decision is recorded and replays exactly.
+- Only synthetic or public-domain pages reach a model.
 
-## Two ways to run it
+## One scheme, one swap
 
-One method, two places for the models to run. **Hosted** uses Meta's API and is the default and the measured headline. **Open weights** uses Muse Spark Open, a model whose trained weights are published, so it can run on your own hardware.
+Muse Spark Open, a model whose trained weights are published, can replace Muse Spark 1.3 for both reads (steps 2 and 5), so a bank that cannot send documents out can run the reading on its own machines.
 
-<img src="docs/img/two-modes.svg" alt="The same seven steps in both modes. Three steps change model: sort the page, read and cite, and read again blind. Hosted uses Muse Spark 1.3; open weights uses Muse Spark Open. SAM 3.1 and the plain-code steps are the same in both." width="100%">
+<img src="docs/img/two-modes.svg" alt="The seven steps in one row. Steps 2 and 5, the two reads, are highlighted. Under each, two labels: Meta's API with Muse Spark 1.3, or your own hardware with Muse Spark Open." width="100%">
 
-Why both:
-
-- **Banks that cannot send documents out** can keep pages on their own machines. No measured run has yet: the open-weights arm used Baseten, and SAM 3.1 still ran on Meta's API.
-- **The method, not one model, gives the accuracy.** On the same pre-registered test the open-weights arm let in 3.0 wrong values per 1,000 accepted against 3.6 hosted, meeting its target of under 1%. It also extracted with Muse Spark Open, so this compares whole set-ups.
-- **Cost per page** was $0.0564 open weights against $0.0089 hosted on that test. Hosted calls ran at the hackathon's Contributor discount: $0.10 in and $0.20 out per million tokens against $1.25 and $4.25 at the standard price (`config/models.toml`, D19). The gap is partly price.
-
-Measured so far:
-
-- **Hosted:** the synthetic test; the real Treasury pages (run on 2026-10-29, scores [pending]).
-- **Open weights:** the synthetic test; development pages of the Treasury Bulletin, for cost, speed and empty answers only, with no accuracy; real held-out pages [pending]; your own hardware, not measured.
+- **Just as accurate on the test pages:** 0.30% wrong among accepted values against 0.36%, with overlapping ranges. The method, not one model, gives the accuracy.
+- **Costlier per page:** $0.0564 against $0.0089, partly because hosted calls ran at the hackathon's Contributor discount.
+- **Not yet proven on-site.** No measured run has kept a page on a bank's own machines: Muse Spark Open ran on Baseten and SAM 3.1 still used Meta's API.
+- **Measured so far:** the synthetic test on both; real Treasury pages on Meta's API (scores [pending]). Open weights are not measured on real scans yet, apart from cost, speed and empty answers on development pages.
 
 <details>
-<summary>The four Meta models: exact ids, hosts, jobs, and what the open-weights report found</summary>
+<summary>The four Meta models: exact ids, hosts, jobs, and what each report found</summary>
 
-The report is [`results/openw_measure/REPORT.md`](https://github.com/kamil-shirinov/Archivist/blob/openw-measure/results/openw_measure/REPORT.md) on branch `openw-measure` (commit `633cdff`, not merged). It used development pages only and made no call to Meta's API.
-
-| Model | Exact id (file) | Host | Job | What the report found |
+| Model | Exact id (file) | Host | Job | What was found |
 |---|---|---|---|---|
-| Muse Spark 1.3 | `muse-spark-1.3-contributor` (`config/models.toml`) | Meta Model API | Sorts, reads and cites, re-reads blind, drafts templates | A one-value re-read costs $0.00011; the open model's costs about 25 times as much. |
-| Muse Spark Open | `meta-models/muse-spark-open-1026` (`config/models_open.toml`) | Baseten | The same jobs, in open-weights mode | Takes "low" reasoning but does not honour "minimal". 5 of 200 re-reads came back empty (2.5%). $0.0028 a re-read, 2.1 a second at 8 at once. The report's pick for both jobs. |
-| Muse Spark Open | `accounts/fireworks/models/muse-spark-open` (`config/models_fireworks.toml`) | Fireworks | A second host, measured only | 3 of 200 re-reads empty. Answered "can't read" for 103 of 200 crops (51.5%) against 8 of 200 on Baseten. 0.39 re-reads a second. One page read did not return in 30 minutes. |
-| SAM 3.1 | `sam-3.1` (every config) | Meta Model API | Finds covered ink | Not measured there. It stayed on Meta's API in the open-weights arm. |
-| Muse Glimmer | `meta-models/Muse-Glimmer-30B@a4e59da52a7bc87ae7251dd5545c0dd437c44b68` (branch `glimmer`, `results/glimmer/baseline_roles.toml`; not in `config/`) | Modal GPUs | A second opinion for sorting pages, from the page's text | Not in that report. Its own phase-1 report ([`results/glimmer/REPORT.md`](https://github.com/kamil-shirinov/Archivist/blob/glimmer/results/glimmer/REPORT.md)): on 40 development pages, scored against Muse Spark's own confirmed answers, untrained 39 of 40; trained 0 of 40 under the frozen parser and 40 of 40 under a diagnostic added afterwards, which is not a pre-registered claim. Phase 2: [pending]. |
+| Muse Glimmer | `meta-models/Muse-Glimmer-30B@a4e59da52a7bc87ae7251dd5545c0dd437c44b68` (branch `glimmer`, `results/glimmer/baseline_roles.toml`; not in `config/` yet) | Modal GPUs | Untrained, picks the table type from the page's text (step 1) | Phase 2 (791 unseen pages): see Results, "Sorting pages". It still named a table type for 78 of the 155 pages the title check rejected, so the title check stays. Report [`results/glimmer/phase2/REPORT.md`](https://github.com/kamil-shirinov/Archivist/blob/glimmer/results/glimmer/phase2/REPORT.md). Phase 1 (40 development pages, scored against Muse Spark's own confirmed answers): untrained 39 of 40; fine-tuned 0 of 40 under the frozen parser and 40 of 40 under a diagnostic added afterwards, which is not a pre-registered claim; report [`results/glimmer/REPORT.md`](https://github.com/kamil-shirinov/Archivist/blob/glimmer/results/glimmer/REPORT.md). |
+| Muse Spark 1.3 | `muse-spark-1.3-contributor` (`config/models.toml`) | Meta Model API | Reads and cites, re-reads blind, drafts templates; sorted pages in the version 1 real-scan test | A one-value re-read costs $0.00011; the open model's costs about 25 times as much. |
+| Muse Spark Open | `meta-models/muse-spark-open-1026` (`config/models_open.toml`) | Baseten | Replaces Muse Spark 1.3 for both reads | Takes "low" reasoning but does not honour "minimal". 5 of 200 re-reads came back empty (2.5%). $0.0028 a re-read, 2.1 a second at 8 at once. The report's pick of host. A second host, Fireworks (`accounts/fireworks/models/muse-spark-open`, `config/models_fireworks.toml`), was tried and dropped: 3 of 200 re-reads empty, "can't read" for 103 of 200 crops (51.5%) against 8 of 200 on Baseten, 0.39 re-reads a second. |
+| SAM 3.1 | `sam-3.1` (every config) | Meta Model API | Finds covered ink (step 4) | Not measured in the open-weights report. It stayed on Meta's API in the open-weights arm. |
 
-On development pages of real scans the report also found Muse Spark Open's own boxes sit away from the printed figures, so the box step anchors fewer cells and most re-read crops come from the wrong place (report section 4.5).
+The open-weights report is [`results/openw_measure/REPORT.md`](https://github.com/kamil-shirinov/Archivist/blob/openw-measure/results/openw_measure/REPORT.md) on branch `openw-measure` (commit `633cdff`, not merged). It used development pages only and made no call to Meta's API. It also found that on development pages of real scans Muse Spark Open's own boxes sit away from the printed figures, so the box step anchors fewer cells and most re-read crops come from the wrong place (section 4.5).
 
 </details>
 
 ## Results
 
-On the pre-registered synthetic test Archivist met three of five targets. The numbers are in [`results/test_report.json`](results/test_report.json) and [`results/TEST_RESULTS.md`](results/TEST_RESULTS.md). A 95% interval is the middle 95% of a rate recomputed on 2,000 resamples of the test pages.
+Archivist met three of five pre-registered targets on the synthetic test. Sources are listed at the end.
 
-| | Target | Result | Verdict |
+| | Target | Result (95% interval: the middle 95% of the rate on 2,000 resamples of the test pages) | Verdict |
 |---|---|---|---|
 | H1 | Wrong values among those accepted: lower than reading once, intervals not overlapping | 0.36% (0.14% to 0.67%) against 4.45% (2.28% to 7.14%) | Met |
 | H2 | Catches at least 85% of wrong values | 93.65% (88.31% to 97.28%): 177 of 189 | Met |
@@ -86,13 +79,17 @@ On the pre-registered synthetic test Archivist met three of five targets. The nu
 
 <img src="docs/img/chart-mistakes.svg" alt="Bar chart: wrong values per 1,000 accepted. Read once, 44.5 with interval 22.8 to 71.4. Archivist, 3.6 with interval 1.4 to 6.7." width="100%">
 
-<img src="docs/img/chart-hosted-vs-open.svg" alt="Three bar charts comparing hosted and open weights on the same test: wrong values per 1,000 accepted, share of wrong values caught, and share of values sent to a person." width="100%">
+<img src="docs/img/chart-hosted-vs-open.svg" alt="Three bar charts comparing Muse Spark 1.3, Muse Spark Open and the mixed set-up on the same test: wrong values per 1,000 accepted, share of wrong values caught, and share of values sent to a person." width="100%">
 
-<img src="docs/img/chart-review-by-condition.svg" alt="Grouped bar chart: share of values sent to a person for each scan condition from 0 (mildest) to 3 (worst), hosted and open weights." width="100%">
+Mixing the two models (Muse Spark 1.3 first, Muse Spark Open second) did worse on both wrong values and review, so Archivist never mixes them in one run.
 
-The charts are drawn from the report by [`docs/make_charts.py`](docs/make_charts.py).
+<img src="docs/img/chart-review-by-condition.svg" alt="Grouped bar chart: share of values sent to a person for each scan condition, clean, light wear, moderate wear and heavy wear, for Muse Spark 1.3 and Muse Spark Open." width="100%">
 
-**Real-scan test** (plan: [`PREREGISTRATION_REAL.md`](PREREGISTRATION_REAL.md); records: `results/real_test/held_out/`). Held-out pages are ones the system never saw while it was built. The sweep sorted all 4,569 held-out Treasury Bulletin pages (46 issues: 1940 to 1942 and each June of 1985 to 1994) among five approved table types. The model assigned 291 and a plain-code title check confirmed 136. The deep check ran the full pipeline on 58: 33,114 table cells and 29,018 blind re-reads. The answer key is 400 cells drawn in advance and labelled by the author from the printed page, never shown a model's figure; 40 are labelled again a day or more later. The scorer runs once the labels are committed, on the code tagged `run-real-treasury`.
+A [script](docs/make_charts.py) draws the charts from the test report and fails if they drift.
+
+**Sorting pages.** Measured against the pipeline's own decisions, not human truth: on 791 held-out pages (never seen while the system was built), untrained Muse Glimmer found all 136 confirmed table pages and called 495 of 500 sampled other pages "other". The fine-tuned version missed 19 table pages, including all 10 total-claims pages, so Archivist uses the untrained one. A 50-page human check is still to do.
+
+**Real-scan test** ([plan](PREREGISTRATION_REAL.md)). The sweep sorted all 4,569 held-out Treasury Bulletin pages into five approved table types, and the title check confirmed 136 of the 291 the model assigned. The deep check ran on 58 of them: 33,114 table cells and 29,018 blind re-reads. The answer key is 400 cells drawn in advance and labelled by the author from the printed page, never shown a model's figure; 40 are labelled again a day or more later. The scorer runs once the labels are committed, on the tagged code.
 
 - [real-scan results, version 1, hosted: pending]
 - [real-scan results, open weights: pending]
@@ -100,12 +97,21 @@ The charts are drawn from the report by [`docs/make_charts.py`](docs/make_charts
 
 ## Why it's built this way
 
-- **Every value is read twice, once without seeing the first answer,** because a model reading in context can make a mistake add up: in development a misread debit was carried through every later balance, so arithmetic alone passed it (D26).
-- **The arithmetic is plain code,** so it cannot share a model's blind spots and anyone can read the rules (D4, D24).
-- **Tests use held-out pages the system never saw while it was built,** so a score cannot be tuned: the synthetic test set was generated once and the real pages were split before any model saw one (D7, D30).
-- **The answer key is hand-labelled,** because on real scans only a person reading the printed page can say what is true.
-- **Only synthetic or public-domain pages reach a model,** because free-credit API traffic may be used by Meta for product improvement (D14).
-- **Two modes,** so the accuracy belongs to the method and a bank can choose where its pages go ([Two ways to run it](#two-ways-to-run-it)).
+- **Every value is read twice, once blind,** because in development one misread debit was carried through every later balance, so arithmetic alone passed it.
+- **The arithmetic is plain code,** so it shares none of a model's blind spots.
+- **Tests use held-out pages,** so a score cannot be tuned.
+- **The answer key is hand-labelled,** because only a person reading the printed page can say what is true on a real scan.
+- **Only synthetic or public-domain pages reach a model,** because free-credit API traffic may be used by Meta for product improvement.
+- **One scheme, one swap,** so accuracy belongs to the method and a bank can choose where its pages go ([above](#one-scheme-one-swap)).
+
+## Tried and dropped
+
+| Tried | Why it was dropped | Evidence |
+|---|---|---|
+| Fine-tuned Muse Glimmer for sorting | Missed 19 of 136 table pages on 791 unseen pages, including all 10 total-claims pages | Glimmer phase 2 report, branch `glimmer` |
+| Mixing the two models between reads (arm C) | Worse than either model alone on wrong values accepted (4.7 per 1,000 against 3.6 and 3.0) and on values sent to a person (24.1% against 21.6% and 22.4%) | `results/test_report.json`, arms A, B and C |
+| A second look before raising an alarm (policy v3) | Cut review by about a third but missed more errors, and its proposed corrections were mostly wrong | `DECISIONS.md` D29; `results/arms_compare.json` |
+| Fireworks as a second host for Muse Spark Open | Page reads 4 to 13 times slower than Baseten (one never returned in 30 minutes), re-reads about a fifth as fast, and "can't read" for half the crops | Open-weights report, sections 4, 5 and 10, branch `openw-measure` |
 
 ## Proof and dates
 
@@ -127,17 +133,17 @@ The tags are lightweight, so git stores the tagged commit's date, not when the t
 
 </details>
 
-The first commit is `dd55660`, 2026-10-26 16:06 UTC, and there is none before it. Everything in the repository was built from 26 Oct 2026, except the third-party components in Credits.
+The first commit is `dd55660`, 2026-10-26 16:06 UTC; none comes before it. Everything here was built from 26 Oct 2026, except the third-party components in Credits.
 
 ## Honest limits
 
-- **Two targets were missed:** 21.58% of values went to a person against a 20% limit (H3), and 23 of 26 planted source errors were flagged, 88.46% against 90% (H5).
-- **The synthetic test is one run** on 157 pages from 12 accounts, which share names and amounts, so the intervals may understate the uncertainty.
+- **Two targets missed:** 21.58% of values went to a person (limit 20%); 23 of 26 planted source errors were flagged, 88.46% (target 90%).
+- **One run:** 157 pages from 12 accounts that share names and amounts, so the intervals may understate the uncertainty.
 - **Boxes can sit away from the printed value on pages where section headings repeat.** [box-offset measurement: not yet in a committed file]
-- **The templates drifted on the wartime layout.** They were drafted from 1939 pages. Of the 58 deep-check pages, 39 print different columns from their template (all from April 1940 on), 18 match (one only as far as its text layer reaches) and one is a different table (`PREREGISTRATION_REAL.md`, Deviations). The results will score cells both ways.
-- **One page passed the title check wrongly.** A table of revisions to security transactions was confirmed because its title contains the approved one. The results will name this as a weakness of the check.
-- **Hosted costs use the Contributor discount.** Real deployments would pay the standard price or use open weights (D19).
-- **Open weights are untested on real scans** and have not run on-site. The real-scan test has one labeller, the author, and covers later issues of tables the system was built from, not unseen archives.
+- **The templates drifted on the wartime layout.** Drafted from 1939 pages, they met later issues: 39 of 58 deep-check pages print different columns (all from April 1940 on), 18 match (one only as far as its text layer reaches) and one is a different table.
+- **One page passed the title check wrongly:** a table of revisions to security transactions, whose title contains the approved one.
+- **Hosted costs use the Contributor discount** (see above).
+- **One labeller, familiar tables:** the author alone labels the real-scan key, and the test covers later issues of tables the system was built from, not unseen archives.
 
 ## Run it yourself
 
@@ -151,29 +157,43 @@ uv sync --frozen
 uv run pytest -q && uv run python -m archivist.replay
 ```
 
-That second command is the Check. `cache/`, the saved model answers, is not committed, so `replay` stops at the missing cache. Without the Treasury scans and rebuilt development images, three tests in `tests/test_export.py` also fail (3 failed, 1,379 passed, 1 skipped, 2026-10-31).
+That second command is the Check. The saved model answers are not committed, so the replay stops at the missing cache. Without the Treasury scans, three export tests also fail (3 failed, 1,379 passed, 1 skipped on 2026-10-31).
 
-From the repository alone, with no key and no model call, you can:
+| With no key and no model call, run | What it shows |
+|---|---|
+| `uv run python -m archivist.eval.test_report` | Rewrites `results/test_report.json` and `results/TEST_RESULTS.md` unchanged in a clean checkout (24 seconds, 2026-10-31) |
+| `uv run python -m archivist.export.bundle --run test-archivist-A --check` | A committed export matches its run |
+| `uv run python docs/make_charts.py --check` | The charts match the report |
 
-- Re-score the pre-registered test: `uv run python -m archivist.eval.test_report` rewrote `results/test_report.json` and `results/TEST_RESULTS.md` unchanged in a clean checkout (24 seconds, 2026-10-31).
-- Check a committed export against its run: `uv run python -m archivist.export.bundle --run test-archivist-A --check`.
-- Check the charts against the data: `uv run python docs/make_charts.py --check`.
+Not reproducible here: the model calls (they need a key and spend) and the held-out real-page run, which ran once on the tagged code; its scans come from FRASER and are not committed.
 
-Not reproducible here: the model calls, which need a key and spend, and the held-out real-page run, which ran once on the tagged code. Its scans come from FRASER (`uv run python -m archivist.ingest.fraser`) and are not committed.
-
-### Reading a page live
-
-For the demo, a local app reads a page with real model calls, each visible as it happens. It runs only on your machine.
+For the demo, a local app reads a page with real model calls, each visible as it happens, on your machine only.
 
 ```bash
 uv run python -m archivist.live
 ```
 
-Open the address it prints and choose **Read a page**. **Live calls** needs `META_API_KEY` (and `BASETEN_API_KEY` for open-weight choices) in your environment or an uncommitted `.env`; every call still passes the cache, spend caps and ledger. **Replay** plays a recorded read from `cache/` and spends nothing. Only development pages are offered. See [`docs/live-reading.md`](docs/live-reading.md).
+Open the address it prints and choose **Read a page**. **Live calls** needs `META_API_KEY` (and `BASETEN_API_KEY` for open-weight choices); **Replay** spends nothing. Only development pages are offered. [Details](docs/live-reading.md).
 
 ## What's next
 
-A learning loop, not built yet. People correct values in the review queue and the corrections are kept. A new version is trained on them, measured on held-back pages, and approved by a person before it replaces the current one. Today a reviewer's answers stay in their own browser.
+A learning loop, not built yet: people correct values in the review queue and the corrections are kept; a new version is trained on them, measured on held-back pages and approved by a person first. Today a reviewer's answers stay in their own browser.
+
+<details>
+<summary>Where the numbers come from</summary>
+
+| Numbers | Source |
+|---|---|
+| Test results, charts, per-page costs | [`results/test_report.json`](results/test_report.json), [`results/TEST_RESULTS.md`](results/TEST_RESULTS.md); plan [`PREREGISTRATION.md`](PREREGISTRATION.md) |
+| Real-scan test counts (4,569 pages in 46 issues: every month of 1940 to 1942 and each June of 1985 to 1994) | `results/real_test/held_out/sweep.json`, `run.json`, `labels/draw.json`; plan `PREREGISTRATION_REAL.md`; tag `run-real-treasury` |
+| Layout drift, title-check page (the results will score the drifted cells both ways, and name the title-check page as a weakness) | `PREREGISTRATION_REAL.md` (Deviations); `results/real_test/held_out/layout_check.md` |
+| Prices ($0.10 in and $0.20 out per million tokens for Contributor mode; $1.25 and $4.25 at the standard price) | `config/models.toml` (decision D19) |
+| Open-weights findings | `results/openw_measure/REPORT.md` on branch `openw-measure` |
+| Sorting results | `results/glimmer/phase2/REPORT.md` on branch `glimmer` (commit `a867f4d`) |
+| Why it is built this way | `DECISIONS.md`: D4, D7, D10, D14, D24, D25, D26, D30 |
+| Dates and commits | `git log` (see Proof and dates) |
+
+</details>
 
 <details>
 <summary>Credits</summary>

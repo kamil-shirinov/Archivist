@@ -1,6 +1,6 @@
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 880 640" width="880" height="640" role="img" aria-labelledby="title desc">
   <title id="title">How Archivist reads a page</title>
-  <desc id="desc">Flow chart. Row 1: Scanned pages, then Sort the page (Muse Spark 1.3; Muse Glimmer as a second opinion, being measured), then Template (drafted by Muse Spark, approved by a person). Row 2: Read and cite (Muse Spark 1.3 or Muse Spark Open), then Snap to the ink (plain code), then Find covered ink (SAM 3.1). Row 3: Read again, blind (Muse Spark 1.3 or Muse Spark Open), then Check the arithmetic (rules a person approved), then Decide (accept, or ask a person). Decide produces two outputs: a verified database with every value cited, and a person who reviews only the doubtful values.</desc>
+  <desc id="desc">Flow chart. Row 1: Scanned pages, then Sort the page (untrained Muse Glimmer picks the table type from the page&#x27;s text; a title check confirms it), then Template (drafted by Muse Spark, approved by a person). Row 2: Read and cite (Muse Spark 1.3 or Muse Spark Open), then Snap to the ink (plain code), then Find covered ink (SAM 3.1). Row 3: Read again, blind (Muse Spark 1.3 or Muse Spark Open), then Check the arithmetic (rules a person approved), then Decide (accept, or ask a person). Decide produces two outputs: a verified database with every value cited, and a person who reviews only the doubtful values.</desc>
   <style>
     text { font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
     .card { fill: #ffffff; stroke: #d0d7de; }
@@ -9,7 +9,7 @@
     .p { fill: #efe9fc; stroke: #6d3fd0; stroke-width: 1.5; } .pt { fill: #2d1566; } .ps { fill: #4a3a86; }
     .g { fill: #eef0f2; stroke: #6b7380; stroke-width: 1.5; } .gt { fill: #1f2328; } .gs { fill: #4b5563; }
     .tl { fill: #dff5f2; stroke: #00907f; stroke-width: 1.5; } .tt { fill: #0a3f3a; } .ts { fill: #0f5c54; }
-    .hl { fill: rgba(109,63,208,0.10); stroke: #6d3fd0; stroke-width: 1; stroke-dasharray: 4 3; }
+    .ph { fill: #dccffa; stroke: #6d3fd0; stroke-width: 3; }
     @media (prefers-color-scheme: dark) {
       .card { fill: #0d1117; stroke: #30363d; }
       .t { fill: #e6edf3; } .m { fill: #aab3bd; }
@@ -17,7 +17,7 @@
       .p { fill: #251b45; stroke: #9575ec; stroke-width: 1.5; } .pt { fill: #eadfff; } .ps { fill: #c3b2f5; }
       .g { fill: #1b2027; stroke: #8b949e; stroke-width: 1.5; } .gt { fill: #e6edf3; } .gs { fill: #aab3bd; }
       .tl { fill: #0e2f2b; stroke: #22a595; stroke-width: 1.5; } .tt { fill: #d3f5ef; } .ts { fill: #9fdcd2; }
-      .hl { fill: rgba(149,117,236,0.18); stroke: #9575ec; stroke-width: 1; stroke-dasharray: 4 3; }
+      .ph { fill: #3a2a70; stroke: #9575ec; stroke-width: 3; }
     }
   </style>
   <defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0L10 5L0 10z" class="ah"/></marker></defs>
@@ -34,9 +34,9 @@
   <text x="33" y="143.0" class="gs" font-size="12" font-weight="400" text-anchor="start">Images of financial records</text>
   <rect x="317" y="84" width="246" height="92" rx="8" class="p"/>
   <text x="331" y="110.0" class="pt" font-size="14" font-weight="600" text-anchor="start">Sort the page</text>
-  <text x="331" y="127.0" class="ps" font-size="12" font-weight="400" text-anchor="start">Muse Spark 1.3</text>
-  <text x="331" y="144.0" class="ps" font-size="12" font-weight="400" text-anchor="start">Muse Glimmer: second opinion,</text>
-  <text x="331" y="161.0" class="ps" font-size="12" font-weight="400" text-anchor="start">being measured</text>
+  <text x="331" y="127.0" class="ps" font-size="12" font-weight="400" text-anchor="start">Muse Glimmer, untrained</text>
+  <text x="331" y="144.0" class="ps" font-size="12" font-weight="400" text-anchor="start">Picks the type from page text</text>
+  <text x="331" y="161.0" class="ps" font-size="12" font-weight="400" text-anchor="start">A title check confirms it</text>
   <rect x="615" y="84" width="246" height="92" rx="8" class="p"/>
   <text x="629" y="119.0" class="pt" font-size="14" font-weight="600" text-anchor="start">Template</text>
   <text x="629" y="136.0" class="ps" font-size="12" font-weight="400" text-anchor="start">Drafted by Muse Spark</text>

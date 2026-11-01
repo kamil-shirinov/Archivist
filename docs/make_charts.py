@@ -4,7 +4,7 @@
     uv run python docs/make_charts.py --check    # fails if a committed chart differs from the data
 
 Reads results/test_report.json (written by archivist.eval.test_report from the committed
-runs) and nothing else; every number on a chart is read from it or is a plain rescaling of one
+runs) and the review app's list of condition names (ui/js/store.js), and nothing else; every number on a chart is read from it or is a plain rescaling of one
 (a rate times 1,000). Output is byte-identical for the same input, so the committed SVGs cannot
 drift from the data without --check saying so.
 
@@ -18,12 +18,14 @@ diagonal hatch, so the two arms differ by texture and by label, never by colour 
 from __future__ import annotations
 
 import json
+import re
 import sys
 from html import escape
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 REPORT = ROOT / "results" / "test_report.json"
+STORE = ROOT / "ui" / "js" / "store.js"
 OUT = ROOT / "docs" / "img"
 
 FONT = '-apple-system, "Segoe UI", Helvetica, Arial, sans-serif'
@@ -59,7 +61,7 @@ STYLE = f"""
   }}
 """
 
-# A diagonal hatch on the card colour: the open-weights arm's texture.
+# Textures on the card colour tell the arms apart without colour: solid, a diagonal hatch, dots.
 DEFS = """<defs>
     <pattern id="hatch-purple" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
       <rect width="6" height="6" class="surface"/>
@@ -68,6 +70,14 @@ DEFS = """<defs>
     <pattern id="hatch-teal" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
       <rect width="6" height="6" class="surface"/>
       <line x1="0" y1="0" x2="0" y2="6" class="tline" stroke-width="3"/>
+    </pattern>
+    <pattern id="dots-purple" width="6" height="6" patternUnits="userSpaceOnUse">
+      <rect width="6" height="6" class="surface"/>
+      <circle cx="3" cy="3" r="1.7" class="purple"/>
+    </pattern>
+    <pattern id="dots-teal" width="6" height="6" patternUnits="userSpaceOnUse">
+      <rect width="6" height="6" class="surface"/>
+      <circle cx="3" cy="3" r="1.7" class="teal"/>
     </pattern>
   </defs>"""
 
@@ -96,15 +106,16 @@ class Svg:
     def line(self, x1, y1, x2, y2, cls) -> None:
         self.parts.append(f'<line x1="{n(x1)}" y1="{n(y1)}" x2="{n(x2)}" y2="{n(y2)}" class="{cls}"/>')
 
-    def bar(self, x, y, w, h, hue: str, hatched: bool) -> None:
+    def bar(self, x, y, w, h, hue: str, style: str | bool = "solid") -> None:
         """A bar from the baseline: rounded at the data end only, as a path."""
+        style = {False: "solid", True: "hatch"}.get(style, style)
         r = min(4, h / 2, w)
         if w <= 0:
             return
         d = (f"M{n(x)} {n(y)}H{n(x + w - r)}A{n(r)} {n(r)} 0 0 1 {n(x + w)} {n(y + r)}"
              f"V{n(y + h - r)}A{n(r)} {n(r)} 0 0 1 {n(x + w - r)} {n(y + h)}H{n(x)}Z")
-        if hatched:
-            self.parts.append(f'<path d="{d}" fill="url(#hatch-{hue})" class="{hue[0]}stroke"/>')
+        if style != "solid":
+            self.parts.append(f'<path d="{d}" fill="url(#{style}-{hue})" class="{hue[0]}stroke"/>')
         else:
             self.parts.append(f'<path d="{d}" class="{hue}"/>')
 
@@ -140,15 +151,28 @@ def axis(svg: Svg, x0: float, x1: float, y_top: float, y_bot: float, top: float,
     return k
 
 
-def legend(svg: Svg, x: float, y: float, hue: str, items: list[tuple[str, bool]]) -> None:
-    for label, hatched in items:
-        svg.bar(x, y - 10, 22, 12, hue, hatched)
+def legend(svg: Svg, x: float, y: float, hue: str, items: list[tuple[str, str | bool]],
+           vertical: bool = False) -> None:
+    for label, style in items:
+        svg.bar(x, y - 10, 22, 12, hue, style)
         svg.text(x + 30, y, label, "t", 12)
-        x += 30 + 7.2 * len(label) + 22
+        if vertical:
+            y += 20
+        else:
+            x += 30 + 7.2 * len(label) + 22
 
 
 def load() -> dict:
     return json.loads(REPORT.read_text())
+
+
+def conditions() -> list[str]:
+    """The review app's names for the four damage levels, so the charts and the app cannot disagree."""
+    m = re.search(r"export const COND = \[(.*?)\];", STORE.read_text())
+    names = re.findall(r'"([^"]+)"', m.group(1)) if m else []
+    if len(names) != 4:
+        raise SystemExit("ui/js/store.js no longer lists four condition names in COND")
+    return names
 
 
 def per_1000(rate: float) -> float:
@@ -203,8 +227,11 @@ def chart_mistakes(rep: dict) -> str:
 
 
 def chart_hosted_vs_open(rep: dict) -> str:
-    a = rep["configurations"]["A"]["stats"]
-    b = rep["configurations"]["B"]["stats"]
+    arms = [
+        ("Muse Spark 1.3", "Muse Spark 1.3 for both reads, on Meta's API (arm A)", "solid", rep["configurations"]["A"]["stats"]),
+        ("Muse Spark Open", "Muse Spark Open for both reads, on Baseten (arm B)", "hatch", rep["configurations"]["B"]["stats"]),
+        ("Mixed", "Mixed: Muse Spark 1.3 first, Muse Spark Open second (arm C)", "dots", rep["configurations"]["C"]["stats"]),
+    ]
     panels = [
         ("Wrong values among those accepted, per 1,000 (lower is better)",
          "error_rate_accepted", "error_rate_accepted_ci95", per_1000, 10, 2, lambda v: f"{v:.1f}"),
@@ -213,37 +240,37 @@ def chart_hosted_vs_open(rep: dict) -> str:
         ("Share of all values sent to a person (lower is better; target 20% or less)",
          "review_rate", "review_rate_ci95", pct, 40, 10, lambda v: f"{v:.1f}%"),
     ]
-    h = 534
+    h = 676
     rows = []
     for title, key, cikey, conv, top, step, fmt in panels:
-        for name, s in (("Hosted", a), ("Open weights", b)):
+        for name, _, _, s in arms:
             lo, hi = s[cikey]
             rows.append(f"{title.split(' (')[0]}, {name}: {fmt(conv(s[key]))} "
                         f"(95% interval {fmt(conv(lo))} to {fmt(conv(hi))})")
-    svg = Svg(h, "Hosted against open weights on the same synthetic test",
-              "Three small bar charts, hosted (arm A) against open weights (arm B). " + "; ".join(rows) + ".")
-    svg.text(24, 34, "Hosted against open weights, same test pages", "t", 16, weight="600")
-    svg.text(24, 54, "Hosted: Muse Spark 1.3 on Meta's API. Open weights: Muse Spark Open, served by Baseten.",
-             "m", 12)
-    legend(svg, 24, 80, "purple", [("Hosted (arm A)", False), ("Open weights (arm B)", True)])
+    svg = Svg(h, "The two models, and the two mixed, on the same synthetic test",
+              "Three small bar charts comparing Muse Spark 1.3 for both reads (arm A), Muse Spark Open for both reads (arm B) "
+              "and the mixed set-up (arm C). " + "; ".join(rows) + ".")
+    svg.text(24, 34, "Muse Spark 1.3, Muse Spark Open, and the two mixed", "t", 16, weight="600")
+    svg.text(24, 54, "Same 157 synthetic test pages. Lines are 95% intervals (pages resampled 2,000 times).", "m", 12)
+    legend(svg, 24, 80, "purple", [(label, style) for _, label, style, _ in arms], vertical=True)
     x0, x1 = 150, 500
     for p, (title, key, cikey, conv, top, step, fmt) in enumerate(panels):
-        y0 = 112 + p * 128
+        y0 = 160 + p * 150
         svg.text(24, y0, title, "t", 12, weight="600")
-        y_top, y_bot = y0 + 12, y0 + 82
+        y_top, y_bot = y0 + 12, y0 + 108
         k = axis(svg, x0, x1, y_top, y_bot, top, step, lambda v: f"{v:g}", y_bot + 16)
-        for i, (name, s, hatched) in enumerate((("Hosted", a, False), ("Open weights", b, True))):
+        for i, (name, _, style, s) in enumerate(arms):
             v = conv(s[key])
             lo, hi = (conv(c) for c in s[cikey])
-            yc = y_top + 20 + i * 34
+            yc = y_top + 20 + i * 30
             svg.text(x0 - 12, yc + 4, name, "t", 12, "end")
-            svg.bar(x0, yc - 9, v * k, 18, "purple", hatched)
+            svg.bar(x0, yc - 9, v * k, 18, "purple", style)
             svg.whisker(x0 + lo * k, x0 + hi * k, yc)
             svg.text(522, yc - 1, fmt(v), "t", 13, weight="600")
-            svg.text(522, yc + 13, f"interval {fmt(lo)} to {fmt(hi)}", "m", 11)
-    svg.text(24, h - 38, "Source: results/test_report.json, arms A and B. Wrong values caught = sent to review.", "m", 11)
-    svg.text(24, h - 24, "Arm B also used Muse Spark Open to extract the values, so this compares whole set-ups,", "m", 11)
-    svg.text(24, h - 10, "not the second read alone.", "m", 11)
+            svg.text(522, yc + 12, f"interval {fmt(lo)} to {fmt(hi)}", "m", 11)
+    svg.text(24, h - 38, "Source: results/test_report.json, arms A, B and C. Wrong values caught = sent to review.", "m", 11)
+    svg.text(24, h - 24, "Mixed did worse than either model alone, on wrong values accepted and on values sent to a person.", "m", 11)
+    svg.text(24, h - 10, "Arm B also extracted with Muse Spark Open, so it compares whole set-ups, not the second read alone.", "m", 11)
     return svg.render()
 
 
@@ -253,18 +280,17 @@ def chart_hosted_vs_open(rep: dict) -> str:
 def chart_review_by_condition(rep: dict) -> str:
     a = rep["configurations"]["A"]["by_severity"]
     b = rep["configurations"]["B"]["by_severity"]
-    names = {"0": "Condition 0 (mildest)", "1": "Condition 1", "2": "Condition 2", "3": "Condition 3 (worst)"}
-    h = 388
+    names = {str(i): c for i, c in enumerate(conditions())}
+    h = 398
     desc = "; ".join(
-        f"{names[s]}: hosted {pct(a[s]['review_rate']):.1f}% ({a[s]['n_review']} of {a[s]['n_fields']:,}), "
-        f"open weights {pct(b[s]['review_rate']):.1f}% ({b[s]['n_review']} of {b[s]['n_fields']:,})"
+        f"{names[s]}: Muse Spark 1.3 {pct(a[s]['review_rate']):.1f}% ({a[s]['n_review']} of {a[s]['n_fields']:,}), "
+        f"Muse Spark Open {pct(b[s]['review_rate']):.1f}% ({b[s]['n_review']} of {b[s]['n_fields']:,})"
         for s in names)
     svg = Svg(h, "Share of values sent to a person, by condition of the scan",
               "Grouped bar chart on the pre-registered synthetic test. " + desc + ".")
     svg.text(24, 34, "Share of values sent to a person, by condition of the scan", "t", 16, weight="600")
-    svg.text(24, 54, "Condition is how badly the page was degraded, 0 mildest to 3 worst. "
-             "Hosted and open weights, same pages.", "m", 12)
-    legend(svg, 24, 80, "teal", [("Hosted (arm A)", False), ("Open weights (arm B)", True)])
+    svg.text(24, 54, "How worn the page was made, from clean to heavy wear. Same pages for both models.", "m", 12)
+    legend(svg, 24, 80, "teal", [("Muse Spark 1.3 (arm A)", "solid"), ("Muse Spark Open (arm B)", "hatch")])
     x0, x1, y_top, y_bot = 190, 500, 100, 330
     k = axis(svg, x0, x1, y_top, y_bot, 50, 10, lambda v: f"{v:g}%", y_bot + 18)
     for g, s in enumerate(names):
@@ -277,8 +303,9 @@ def chart_review_by_condition(rep: dict) -> str:
             svg.bar(x0, yb, v * k, 18, "teal", hatched)
             svg.text(x0 + v * k + 8, yb + 13, f"{v:.1f}%", "t", 12, weight="600")
             svg.text(560, yb + 13, f"{r['n_review']} of {r['n_fields']:,}", "m", 11)
-    svg.text(24, h - 14, "Source: results/test_report.json, by_severity of arms A and B. The report gives no interval "
-             "for each condition.", "m", 11)
+    svg.text(24, h - 28, "Source: results/test_report.json, by_severity of arms A and B. Condition names are the review app's "
+             "(ui/js/store.js).", "m", 11)
+    svg.text(24, h - 12, "The report gives no interval for each condition.", "m", 11)
     return svg.render()
 
 
