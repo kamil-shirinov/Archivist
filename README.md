@@ -1,8 +1,11 @@
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="assets/brand/logo-dark.svg">
+  <img src="assets/brand/logo-light.svg" alt="Archivist logo: a page of text lines with a gold tick" width="64" height="64">
+</picture>
+
 # Archivist
 
 [![CI](https://github.com/kamil-shirinov/Archivist/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/kamil-shirinov/Archivist/actions/workflows/ci.yml)
-
-<!-- Logo goes here: assets/brand/ (added later). -->
 
 Archivist turns scanned financial archives into a verified database. Every value is cited to its spot on the page, cross-checked by arithmetic and a blind second read, and flagged for a person when unsure. Values are never changed automatically.
 
@@ -13,6 +16,23 @@ Archivist turns scanned financial archives into a verified database. Every value
 **Headline.** On the pre-registered synthetic test (targets set in git first), Archivist met three of five targets. The results and missed targets are below; real-scan scores are pending.
 
 **Live demo:** [link pending] · **Video:** [link pending]
+
+## What you get
+
+Archivist reads two kinds of page: synthetic ledger cards with their payment memos (the collection the app calls Box 14), and tables from three public-domain government archives. It gives you:
+
+- **A verified database, every value cited.** One command writes SQLite and CSV files for a run (`exports/<run>/`): accounts, documents, transactions, memos, field values and the links between them. Each value row holds its page, its box on the scan, the checks it went through, why it was sent to a person, and any correction proposed. Two exports are committed.
+- **A review queue.** The values the checks could not settle, one at a time: the page with the value ringed, the cell cut from the scan, and what each read and each rule said. A reviewer picks a read, types what the page says or marks it unreadable. The answer stays in that browser.
+- **A document page with its marks.** The scan beside the record read from it. Values that need a person are ringed with a pen loop, SAM's marks show where a stamp or stain covers values, and pointing at a value draws a thread from the record to its place on the scan. The **How it was read** tab lists every step for the page and what it found.
+- **Document types drafted by Muse Spark and approved by a person.** A table type is a template file. Muse Spark drafts it from two or three development pages, an arithmetic test reads the pages twice and checks every rule, and a person approves it. Five Treasury Bulletin types are approved; eleven more drafts wait for a person. The **Document types** view shows each rule and the evidence it held on.
+- **Watch it work.** The recorded read of one page, replayed value by value in the pipeline's order at 1×, 3× or 10×. It calls no model.
+- **Live reading on your own machine.** A local app reads a development page with real model calls, each one listed as it happens with its model, step, delay, tokens and cost. Its Replay mode plays a cached read and spends nothing. See [Run it yourself](#run-it-yourself).
+
+<img src="docs/img/ui-review.png" alt="The review queue on a synthetic ledger card. The sheet number is ringed on the scan, the cell cut from the scan sits beside the two reads, 35 and 3, and the reviewer chooses which is right, types another value or marks it unreadable." width="100%">
+
+<img src="docs/img/ui-document.png" alt="The document page for a synthetic ledger card. The scan is on the left with red marks on the values that need a person, and the record read from it is on the right." width="100%">
+
+The review app also has Overview, Accounts, Transactions and Documents views, and an Accuracy report of the pre-registered synthetic test whose real-scans tab reads "pending". It is static: no key, no server code and no model call.
 
 ## How it works
 
@@ -25,7 +45,7 @@ Seven steps; a value is accepted only when independent checks agree.
 3. **Snap to the ink.** Plain code fits each box to the printed figure, using the archive's text layer or ruled lines.
 4. **Find covered ink.** SAM 3.1, a Meta model that outlines objects in an image, looks for stamps and stains over values.
 5. **Read again, blind.** A model re-reads each value from a small crop, never seeing the first answer.
-6. **Check the arithmetic.** Plain code tests rules a person approved, such as totals that must add up.
+6. **Check the arithmetic.** Plain code tests rules a bank clerk would recognise, such as running balances and totals that must add up. For an archive table, the rules are the ones a person approved.
 7. **Decide.** A value is accepted only if both reads agree and every rule holds; otherwise a person decides.
 
 The version 1 real-scan test sorted pages with Muse Spark 1.3.
@@ -121,7 +141,7 @@ Each plan was committed before the runs it governs. Dates are from `git log`, se
 | Scorer, tested on synthetic records only | `b934786` | 2026-10-30 07:26 | The scoring | Weights decision recorded `f1d3091`, 07:38, before any scoring |
 | Real-scan score | [pending] | [pending] | | |
 
-The tags are lightweight, so git stores the tagged commit's date, not when the tag was made; the run's own timestamps (`sweep.json`) show it began after the tagged commit. Both plans have changed only below their Deviations heading (checked 2026-10-31).
+The tags are lightweight, so git stores the tagged commit's date, not when the tag was made; the run's own timestamps (`sweep.json`) show it began after the tagged commit. Both plans have changed only below their Deviations heading (checked 2026-11-01, against every commit that touched them).
 
 </details>
 
@@ -158,6 +178,21 @@ uv run python -m archivist.verify
 | Then | Prints a plain-English summary of what passed, what was not checked and why, and what failed; it exits non-zero on any failure |
 | In CI | [GitHub Actions](.github/workflows/ci.yml) runs the tests and this command on every push to main and on pull requests |
 
+To open the review app, which needs no key and makes no model call, serve the repository with any file server:
+
+```bash
+python -m http.server
+```
+
+Then open <http://localhost:8000/ui/>. It reads the three runs in `data/bundles/`: the synthetic test pages read by Muse Spark 1.3 and by Muse Spark Open (a switch in the header), and the Treasury Bulletin's development pages. Add `?run=<run_id>` to open one run directly.
+
+To write a run's database and review bundle again from the committed run (the bundle and CSVs come out byte for byte the same, the SQLite file with the same rows; `archivist.verify` checks both):
+
+```bash
+uv run python -m archivist.export.database --run test-archivist-A
+uv run python -m archivist.export.bundle --run test-archivist-A
+```
+
 The rest:
 
 ```bash
@@ -176,6 +211,31 @@ uv run --group glimmer python -m archivist.live
 
 Open the address it prints and choose **Read a page**. **Live calls** need your own keys, listed in the [details](docs/live-reading.md), and spend; keep `GLIMMER_CAP_USD` at or below $10. **Replay** spends nothing and needs each read's cached answers. Only development pages are offered.
 
+## Code tour
+
+Where each part lives, for someone reading the code. Every model call goes through `archivist.models`, and `archivist.pipeline` never imports `archivist.synth`, so answers cannot leak into predictions.
+
+| Where | What is there |
+|---|---|
+| `src/archivist/synth/` | The synthetic archive: accounts, ledger cards and payment memos, rendered and degraded into scans with exact ground truth kept apart in `gt/` |
+| `src/archivist/models/` | Every model call. `registry.py` builds each role as cache, then spend cap, then backend (Meta's API, Baseten, Fireworks, Muse Glimmer on Modal); `mock.py` stands in for tests |
+| `src/archivist/pipeline/` | The seven steps: `extract.py` (sort, read, cite), `citations.py` (snap to the ink), `occlusion.py` (SAM), `reread.py` (blind re-read), `checks.py` (rules), `verify.py` (decide) |
+| `src/archivist/doctypes/` | Document types: ledger cards and memos in code (`ledger.py`), table types from template files (`template.py`), the title check (`titles.py`) |
+| `templates/`, `src/archivist/templates/` | The template files and their evidence, and the tools that draft, test and approve them, find their boxes (`ocr.py`, `grid.py`) and run the real-pages test (`real_test.py`) |
+| `src/archivist/ingest/` | Downloads and renders the three FRASER archives, and surveys their recurring tables; no model |
+| `src/archivist/export/` | A run turned into the review bundle (`bundle.py`), the SQLite and CSV database (`database.py`), pen loops and rule results |
+| `src/archivist/eval/` | Scoring and the test report; this is where ground truth is read to score a run |
+| `src/archivist/live/` | The local live-reading server |
+| `src/archivist/verify.py`, `replay.py` | The two whole-repository checks: the published numbers, and every committed run replayed from the cache |
+| `src/archivist/glimmer/`, `openw/`, `sparkft/` | Code behind the Muse Glimmer, open-weights measurement and Spark Open fine-tuning reports in `results/` |
+| `labelling/` | The real-scan answer key: the draw, the labelling pages and the scorer |
+| `ui/` | The static review app in plain HTML, CSS and JavaScript modules, with no build step; `ui/mockup/` is the approved design |
+| `config/` | Which model serves each role, the prices, and the three arms (`config/arms/`) |
+| `tests/` | About 1,500 tests; none touch the network, and the browser tests drive headless Chrome |
+| `data/`, `exports/`, `results/` | Datasets and manifests, database exports, and every recorded run and report |
+| `PREREGISTRATION*.md`, `DECISIONS.md`, `DATA_SOURCES.md` | The plans, the decisions with their reasons, and where each asset and dataset came from |
+| `CLAUDE.md`, `AGENTS.md` | The working rules for people and coding agents |
+
 ## What's next
 
 A learning loop, not built yet: people correct values in the review queue and the corrections are kept; a new version is trained on them, measured on held-back pages and approved by a person first. Today a reviewer's answers stay in their own browser.
@@ -185,9 +245,9 @@ A learning loop, not built yet: people correct values in the review queue and th
 
 | Numbers | Source |
 |---|---|
-| Test results, charts, per-page costs | [`results/test_report.json`](results/test_report.json), [[Synthetic results](results/TEST_RESULTS.md)](results/TEST_RESULTS.md); plan [`PREREGISTRATION.md`](PREREGISTRATION.md) |
+| Test results, charts, per-page costs | [`results/test_report.json`](results/test_report.json), [Synthetic results](results/TEST_RESULTS.md); plan [`PREREGISTRATION.md`](PREREGISTRATION.md) |
 | Real-scan test counts (4,569 pages in 46 issues: every month of 1940 to 1942 and each June of 1985 to 1994) | [Sweep](results/real_test/held_out/sweep.json), [deep run](results/real_test/held_out/run.json), [draw](results/real_test/held_out/labels/draw.json); plan `PREREGISTRATION_REAL.md`; tag `run-real-treasury` |
-| Layout drift, title-check page (the results will score the drifted cells both ways, and name the title-check page as a weakness) | `PREREGISTRATION_REAL.md` (Deviations); [Layout check](results/real_test/held_out/layout_check.md) |
+| Layout drift, title-check page (the results will score the drifted cells both ways, and name the title-check page as a weakness) | `PREREGISTRATION_REAL.md` (Deviations); [Layout check](results/real_test/held_out/layout_check.md), which settled 42 pages from the text layer; the other 16 were checked by eye ([`layouts_checked.jsonl`](results/real_test/held_out/labels/layouts_checked.jsonl)) |
 | Prices ($0.10 in and $0.20 out per million tokens for Contributor mode; $1.25 and $4.25 at the standard price) | `config/models.toml` (decision D19) |
 | Why it is built this way | `DECISIONS.md`: D4, D7, D10, D14, D24, D25, D26, D30 |
 | Dates and commits | `git log` (see Proof and dates) |
@@ -199,9 +259,9 @@ A learning loop, not built yet: people correct values in the review queue and th
 
 Archivist's own code is all rights reserved; see [LICENSE](LICENSE).
 
-**Fonts.** Rendering synthetic documents: Libre Baskerville, Courier Prime and Nanum Pen Script (SIL Open Font License 1.1); Special Elite and Homemade Apple (Apache License 2.0). Licence files are in `assets/fonts/`. The review app uses Geist (SIL Open Font License 1.1, `ui/fonts/GEIST-OFL.txt`). Sources and dates: [`DATA_SOURCES.md`](DATA_SOURCES.md).
+**Fonts.** Rendering synthetic documents: Libre Baskerville, Courier Prime and Nanum Pen Script (SIL Open Font License 1.1); Special Elite and Homemade Apple (Apache License 2.0). Licence files are in `assets/fonts/`. The review app uses Geist (SIL Open Font License 1.1, `ui/fonts/GEIST-OFL.txt`). Sources and dates: [`DATA_SOURCES.md`](DATA_SOURCES.md). **Logo.** The two files in `assets/brand/` redraw the review app's own mark (`ui/index.html`), in the app's light and dark colours.
 
-**Libraries** (`pyproject.toml`): faker, meta-sam-parser, numpy, openai (the SDK that calls the APIs), pillow, pydantic, pypdfium2, python-dotenv, pyyaml; for development jsonschema, pre-commit and pytest. Python 3.12, locked with uv.
+**Libraries** (`pyproject.toml`): faker, meta-sam-parser, numpy, openai (the SDK that calls the APIs), pillow, pydantic, pypdfium2, python-dotenv, pyyaml; for development jsonschema, pre-commit and pytest; modal in the optional `glimmer` group, for the Muse Glimmer sorter. Python 3.12, locked with uv.
 
 **Data.** All from FRASER, the St. Louis Fed's archive; PDFs are not committed, and per-file records are in each source's `sources.json`.
 
