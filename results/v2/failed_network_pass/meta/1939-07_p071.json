@@ -1,0 +1,1093 @@
+{
+  "host": "meta",
+  "ref": "1939-07_p071",
+  "family": "short_term_foreign_liabilities_as",
+  "cells": [
+    "T.short_term_foreign_liabilities_as:1939-07_p071:04:france",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:04:italy",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:05:total_europe",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:06:far_east",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:06:netherlands",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:10:netherlands",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:11:united_kingdom",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:14:canada",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:14:far_east",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:15:grand_total",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:16:canada",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:16:grand_total",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:16:switzerland",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:17:total_europe",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:20:total_europe",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:21:france",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:21:latin_america",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:22:total_europe",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:24:germany",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:24:other_europe",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:27:switzerland",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:28:france",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:28:united_kingdom",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:30:germany",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:30:grand_total",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:30:netherlands",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:30:total_europe",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:32:latin_america",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:33:grand_total",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:34:grand_total",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:40:canada",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:42:canada",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:42:other_europe",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:45:canada",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:45:france",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:45:germany",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:47:other_europe",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:50:grand_total",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:50:netherlands",
+    "T.short_term_foreign_liabilities_as:1939-07_p071:50:united_kingdom"
+  ],
+  "strategies": {
+    "v1": [
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:04:france",
+        "first": "256,027",
+        "reread": "256,027",
+        "failure": null,
+        "agree": true,
+        "box": [
+          458,
+          418,
+          520,
+          428
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:04:italy",
+        "first": "12,728",
+        "reread": "12,728",
+        "failure": null,
+        "agree": true,
+        "box": [
+          631,
+          418,
+          684,
+          430
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:05:total_europe",
+        "first": "1,609,326",
+        "reread": "1,609,326",
+        "failure": null,
+        "agree": true,
+        "box": [
+          967,
+          437,
+          1049,
+          450
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:06:far_east",
+        "first": "256,189",
+        "reread": "256,189",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1245,
+          455,
+          1308,
+          468
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:06:netherlands",
+        "first": "153,369",
+        "reread": "153,369",
+        "failure": null,
+        "agree": true,
+        "box": [
+          708,
+          458,
+          770,
+          468
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:10:netherlands",
+        "first": "157,974",
+        "reread": "157,974",
+        "failure": null,
+        "agree": true,
+        "box": [
+          708,
+          575,
+          771,
+          583
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:11:united_kingdom",
+        "first": "477,712",
+        "reread": "877,712",
+        "failure": null,
+        "agree": false,
+        "box": [
+          345,
+          587,
+          437,
+          605
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:14:canada",
+        "first": "245,488",
+        "reread": "245,488",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1072,
+          688,
+          1137,
+          698
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:14:far_east",
+        "first": "210,909",
+        "reread": "210,909",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1247,
+          687,
+          1310,
+          699
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:15:grand_total",
+        "first": "2,184,899",
+        "reread": "2,184,899",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1397,
+          707,
+          1504,
+          727
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:16:canada",
+        "first": "250,808",
+        "reread": "250,806",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1073,
+          726,
+          1136,
+          738
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:16:grand_total",
+        "first": "2,257,392",
+        "reread": "2,257,392",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1410,
+          724,
+          1493,
+          735
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:16:switzerland",
+        "first": "229,401",
+        "reread": "229,401",
+        "failure": null,
+        "agree": true,
+        "box": [
+          794,
+          727,
+          857,
+          736
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:17:total_europe",
+        "first": "1,468,068",
+        "reread": "1,468,068",
+        "failure": null,
+        "agree": true,
+        "box": [
+          968,
+          746,
+          1050,
+          757
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:20:total_europe",
+        "first": "44,967",
+        "reread": "4,967",
+        "failure": null,
+        "agree": false,
+        "box": [
+          996,
+          841,
+          1051,
+          850
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:21:france",
+        "first": "2,508",
+        "reread": "2,508",
+        "failure": null,
+        "agree": true,
+        "box": [
+          478,
+          863,
+          521,
+          873
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:21:latin_america",
+        "first": "17,982",
+        "reread": "17,962",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1171,
+          862,
+          1224,
+          874
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:22:total_europe",
+        "first": "42,360",
+        "reread": "42,360",
+        "failure": null,
+        "agree": true,
+        "box": [
+          997,
+          882,
+          1051,
+          890
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:24:germany",
+        "first": "308",
+        "reread": "308",
+        "failure": null,
+        "agree": true,
+        "box": [
+          584,
+          922,
+          609,
+          932
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:24:other_europe",
+        "first": "11,895",
+        "reread": "11,895",
+        "failure": null,
+        "agree": true,
+        "box": [
+          892,
+          920,
+          945,
+          933
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:27:switzerland",
+        "first": "-",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          779,
+          1021,
+          869,
+          1041
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:28:france",
+        "first": "-",
+        "reread": "-",
+        "failure": null,
+        "agree": true,
+        "box": [
+          457,
+          1073,
+          532,
+          1086
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:28:united_kingdom",
+        "first": "17",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          345,
+          1073,
+          437,
+          1086
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:30:germany",
+        "first": "-",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          553,
+          1112,
+          612,
+          1124
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:30:grand_total",
+        "first": "1,815",
+        "reread": "1,815",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1397,
+          1100,
+          1504,
+          1121
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:30:netherlands",
+        "first": "-",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          692,
+          1100,
+          773,
+          1121
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:30:total_europe",
+        "first": "15",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          966,
+          1110,
+          1054,
+          1122
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:32:latin_america",
+        "first": "399",
+        "reread": "299",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1200,
+          1193,
+          1225,
+          1202
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:33:grand_total",
+        "first": "16,431",
+        "reread": "16,431",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1441,
+          1208,
+          1494,
+          1219
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:34:grand_total",
+        "first": "19,080",
+        "reread": "16,431",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1397,
+          1204,
+          1504,
+          1224
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:40:canada",
+        "first": "1,506",
+        "reread": "1,506",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1095,
+          1385,
+          1140,
+          1395
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:42:canada",
+        "first": "1,087",
+        "reread": "2,057",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1096,
+          1423,
+          1139,
+          1435
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:42:other_europe",
+        "first": "1,646",
+        "reread": "1,646",
+        "failure": null,
+        "agree": true,
+        "box": [
+          902,
+          1424,
+          946,
+          1434
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:45:canada",
+        "first": "2,012",
+        "reread": "2, 012",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1096,
+          1519,
+          1140,
+          1529
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:45:france",
+        "first": "335",
+        "reread": "335",
+        "failure": null,
+        "agree": true,
+        "box": [
+          499,
+          1524,
+          523,
+          1534
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:45:germany",
+        "first": "360",
+        "reread": "360",
+        "failure": null,
+        "agree": true,
+        "box": [
+          586,
+          1522,
+          610,
+          1532
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:47:other_europe",
+        "first": "1,123",
+        "reread": "1,123",
+        "failure": null,
+        "agree": true,
+        "box": [
+          903,
+          1559,
+          947,
+          1569
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:50:grand_total",
+        "first": "40,977",
+        "reread": "40,977",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1443,
+          1656,
+          1497,
+          1665
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:50:netherlands",
+        "first": "729",
+        "reread": "189",
+        "failure": null,
+        "agree": false,
+        "box": [
+          750,
+          1658,
+          774,
+          1668
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:50:united_kingdom",
+        "first": "37,443",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          345,
+          1654,
+          437,
+          1669
+        ]
+      }
+    ],
+    "v2": [
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:04:france",
+        "first": "256,027",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          456,
+          416,
+          522,
+          430
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:04:italy",
+        "first": "12,728",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          629,
+          416,
+          686,
+          432
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:05:total_europe",
+        "first": "1,609,326",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          965,
+          435,
+          1051,
+          452
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:06:far_east",
+        "first": "256,189",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1243,
+          453,
+          1310,
+          470
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:06:netherlands",
+        "first": "153,369",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          706,
+          456,
+          772,
+          470
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:10:netherlands",
+        "first": "157,974",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          706,
+          573,
+          773,
+          585
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:11:united_kingdom",
+        "first": "477,712",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          370,
+          592,
+          436,
+          606
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:14:canada",
+        "first": "245,488",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1070,
+          686,
+          1139,
+          700
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:14:far_east",
+        "first": "210,909",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1245,
+          685,
+          1312,
+          701
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:15:grand_total",
+        "first": "2,184,899",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1408,
+          704,
+          1495,
+          719
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:16:canada",
+        "first": "250,808",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1071,
+          724,
+          1138,
+          740
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:16:grand_total",
+        "first": "2,257,392",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1408,
+          722,
+          1495,
+          737
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:16:switzerland",
+        "first": "229,401",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          792,
+          725,
+          859,
+          738
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:17:total_europe",
+        "first": "1,468,068",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          966,
+          744,
+          1052,
+          759
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:20:total_europe",
+        "first": "44,967",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          994,
+          839,
+          1053,
+          852
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:21:france",
+        "first": "2,508",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          476,
+          861,
+          523,
+          875
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:21:latin_america",
+        "first": "17,982",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1169,
+          860,
+          1226,
+          876
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:22:total_europe",
+        "first": "42,360",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          995,
+          880,
+          1053,
+          892
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:24:germany",
+        "first": "308",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          582,
+          920,
+          611,
+          934
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:24:other_europe",
+        "first": "11,895",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          890,
+          918,
+          947,
+          935
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:27:switzerland",
+        "first": "-",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          779,
+          1021,
+          869,
+          1041
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:28:france",
+        "first": "-",
+        "reread": "-",
+        "failure": null,
+        "agree": true,
+        "box": [
+          457,
+          1073,
+          532,
+          1086
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:28:united_kingdom",
+        "first": "17",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          345,
+          1073,
+          437,
+          1086
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:30:germany",
+        "first": "-",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          553,
+          1112,
+          612,
+          1124
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:30:grand_total",
+        "first": "1,815",
+        "reread": "1,815",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1397,
+          1100,
+          1504,
+          1121
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:30:netherlands",
+        "first": "-",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          692,
+          1100,
+          773,
+          1121
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:30:total_europe",
+        "first": "15",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          966,
+          1110,
+          1054,
+          1122
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:32:latin_america",
+        "first": "399",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1198,
+          1191,
+          1227,
+          1204
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:33:grand_total",
+        "first": "16,431",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1439,
+          1206,
+          1496,
+          1221
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:34:grand_total",
+        "first": "19,080",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1440,
+          1225,
+          1497,
+          1240
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:40:canada",
+        "first": "1,506",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1093,
+          1383,
+          1142,
+          1397
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:42:canada",
+        "first": "1,087",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1094,
+          1421,
+          1141,
+          1437
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:42:other_europe",
+        "first": "1,646",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          900,
+          1422,
+          948,
+          1436
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:45:canada",
+        "first": "2,012",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1094,
+          1517,
+          1142,
+          1531
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:45:france",
+        "first": "335",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          497,
+          1522,
+          525,
+          1536
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:45:germany",
+        "first": "360",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          584,
+          1520,
+          612,
+          1534
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:47:other_europe",
+        "first": "1,123",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          901,
+          1557,
+          949,
+          1571
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:50:grand_total",
+        "first": "40,977",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1441,
+          1654,
+          1499,
+          1667
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:50:netherlands",
+        "first": "729",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          748,
+          1656,
+          776,
+          1670
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-07_p071:50:united_kingdom",
+        "first": "37,443",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          381,
+          1655,
+          439,
+          1669
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,1093 @@
+{
+  "host": "meta",
+  "ref": "1939-12_p055",
+  "family": "security_transactions_as_reported_by",
+  "cells": [
+    "T.security_transactions_as_reported_by:1939-12_p055:04:france",
+    "T.security_transactions_as_reported_by:1939-12_p055:04:italy",
+    "T.security_transactions_as_reported_by:1939-12_p055:05:total_europe",
+    "T.security_transactions_as_reported_by:1939-12_p055:07:far_east",
+    "T.security_transactions_as_reported_by:1939-12_p055:07:netherlands",
+    "T.security_transactions_as_reported_by:1939-12_p055:10:netherlands",
+    "T.security_transactions_as_reported_by:1939-12_p055:12:united_kingdom",
+    "T.security_transactions_as_reported_by:1939-12_p055:14:canada",
+    "T.security_transactions_as_reported_by:1939-12_p055:14:far_east",
+    "T.security_transactions_as_reported_by:1939-12_p055:15:grand_total",
+    "T.security_transactions_as_reported_by:1939-12_p055:17:canada",
+    "T.security_transactions_as_reported_by:1939-12_p055:17:switzerland",
+    "T.security_transactions_as_reported_by:1939-12_p055:18:total_europe",
+    "T.security_transactions_as_reported_by:1939-12_p055:20:total_europe",
+    "T.security_transactions_as_reported_by:1939-12_p055:22:france",
+    "T.security_transactions_as_reported_by:1939-12_p055:23:total_europe",
+    "T.security_transactions_as_reported_by:1939-12_p055:25:germany",
+    "T.security_transactions_as_reported_by:1939-12_p055:25:other_europe",
+    "T.security_transactions_as_reported_by:1939-12_p055:28:switzerland",
+    "T.security_transactions_as_reported_by:1939-12_p055:29:france",
+    "T.security_transactions_as_reported_by:1939-12_p055:29:united_kingdom",
+    "T.security_transactions_as_reported_by:1939-12_p055:32:germany",
+    "T.security_transactions_as_reported_by:1939-12_p055:32:grand_total",
+    "T.security_transactions_as_reported_by:1939-12_p055:32:netherlands",
+    "T.security_transactions_as_reported_by:1939-12_p055:32:total_europe",
+    "T.security_transactions_as_reported_by:1939-12_p055:33:latin_america",
+    "T.security_transactions_as_reported_by:1939-12_p055:34:grand_total",
+    "T.security_transactions_as_reported_by:1939-12_p055:35:grand_total",
+    "T.security_transactions_as_reported_by:1939-12_p055:42:canada",
+    "T.security_transactions_as_reported_by:1939-12_p055:44:other_europe",
+    "T.security_transactions_as_reported_by:1939-12_p055:47:canada",
+    "T.security_transactions_as_reported_by:1939-12_p055:47:france",
+    "T.security_transactions_as_reported_by:1939-12_p055:47:germany",
+    "T.security_transactions_as_reported_by:1939-12_p055:52:grand_total",
+    "T.security_transactions_as_reported_by:1939-12_p055:52:united_kingdom",
+    "T.security_transactions_as_reported_by:1939-12_p055:53:far_east",
+    "T.security_transactions_as_reported_by:1939-12_p055:53:france",
+    "T.security_transactions_as_reported_by:1939-12_p055:53:latin_america",
+    "T.security_transactions_as_reported_by:1939-12_p055:58:netherlands",
+    "T.security_transactions_as_reported_by:1939-12_p055:60:netherlands"
+  ],
+  "strategies": {
+    "v1": [
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:04:france",
+        "first": "1,991",
+        "reread": "1,991",
+        "failure": null,
+        "agree": true,
+        "box": [
+          497,
+          446,
+          539,
+          458
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:04:italy",
+        "first": "231",
+        "reread": "231",
+        "failure": null,
+        "agree": true,
+        "box": [
+          676,
+          448,
+          700,
+          457
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:05:total_europe",
+        "first": "13,912",
+        "reread": "13,912",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1007,
+          469,
+          1060,
+          479
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:07:far_east",
+        "first": "4,659",
+        "reread": "4,659",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1271,
+          542,
+          1314,
+          551
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:07:netherlands",
+        "first": "2,455",
+        "reread": "10,055",
+        "failure": null,
+        "agree": false,
+        "box": [
+          738,
+          535,
+          795,
+          552
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:10:netherlands",
+        "first": "3,376",
+        "reread": "3,376",
+        "failure": null,
+        "agree": true,
+        "box": [
+          742,
+          598,
+          784,
+          607
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:12:united_kingdom",
+        "first": "314",
+        "reread": "324",
+        "failure": null,
+        "agree": false,
+        "box": [
+          429,
+          665,
+          453,
+          673
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:14:canada",
+        "first": "1,027",
+        "reread": "1,027",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1100,
+          708,
+          1142,
+          717
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:14:far_east",
+        "first": "389",
+        "reread": "389",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1290,
+          710,
+          1313,
+          720
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:15:grand_total",
+        "first": "3,563",
+        "reread": "3,562",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1452,
+          730,
+          1495,
+          740
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:17:canada",
+        "first": "4,136",
+        "reread": "10,602",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1091,
+          818,
+          1156,
+          837
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:17:switzerland",
+        "first": "2,606",
+        "reread": "6,120",
+        "failure": null,
+        "agree": false,
+        "box": [
+          832,
+          816,
+          890,
+          835
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:18:total_europe",
+        "first": "23,821",
+        "reread": "23,821",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1004,
+          840,
+          1056,
+          852
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:20:total_europe",
+        "first": "19,694",
+        "reread": "19,694",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1004,
+          879,
+          1057,
+          889
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:22:france",
+        "first": "732",
+        "reread": "732",
+        "failure": null,
+        "agree": true,
+        "box": [
+          513,
+          946,
+          537,
+          956
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:23:total_europe",
+        "first": "21,237",
+        "reread": "21,237",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1003,
+          968,
+          1056,
+          978
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:25:germany",
+        "first": "35",
+        "reread": "35",
+        "failure": null,
+        "agree": true,
+        "box": [
+          598,
+          998,
+          641,
+          1014
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:25:other_europe",
+        "first": "1,876",
+        "reread": "1,876",
+        "failure": null,
+        "agree": true,
+        "box": [
+          908,
+          1001,
+          970,
+          1017
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:28:switzerland",
+        "first": "519",
+        "reread": "519",
+        "failure": null,
+        "agree": true,
+        "box": [
+          851,
+          1097,
+          874,
+          1106
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:29:france",
+        "first": "32",
+        "reread": "-32",
+        "failure": null,
+        "agree": false,
+        "box": [
+          493,
+          1107,
+          553,
+          1122
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:29:united_kingdom",
+        "first": "343",
+        "reread": "113",
+        "failure": null,
+        "agree": false,
+        "box": [
+          425,
+          1113,
+          449,
+          1120
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:32:germany",
+        "first": "-",
+        "reread": "-",
+        "failure": null,
+        "agree": true,
+        "box": [
+          598,
+          1222,
+          641,
+          1234
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:32:grand_total",
+        "first": "680",
+        "reread": "680",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1468,
+          1231,
+          1492,
+          1241
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:32:netherlands",
+        "first": "-",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          738,
+          1224,
+          795,
+          1236
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:32:total_europe",
+        "first": "83",
+        "reread": "83",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1039,
+          1230,
+          1054,
+          1239
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:33:latin_america",
+        "first": "-",
+        "reread": "-",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1184,
+          1247,
+          1240,
+          1259
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:34:grand_total",
+        "first": "769",
+        "reread": "769",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1468,
+          1273,
+          1491,
+          1282
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:35:grand_total",
+        "first": "532",
+        "reread": "532",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1467,
+          1292,
+          1492,
+          1302
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:42:canada",
+        "first": "551",
+        "reread": "551",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1114,
+          1486,
+          1137,
+          1495
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:44:other_europe",
+        "first": "-",
+        "reread": "-",
+        "failure": null,
+        "agree": true,
+        "box": [
+          908,
+          1516,
+          970,
+          1528
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:47:canada",
+        "first": "1,564",
+        "reread": "1,564",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1093,
+          1633,
+          1137,
+          1643
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:47:france",
+        "first": "3",
+        "reread": "3",
+        "failure": null,
+        "agree": true,
+        "box": [
+          493,
+          1626,
+          553,
+          1639
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:47:germany",
+        "first": "21",
+        "reread": "21",
+        "failure": null,
+        "agree": true,
+        "box": [
+          598,
+          1627,
+          641,
+          1640
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:52:grand_total",
+        "first": "-",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1417,
+          1727,
+          1503,
+          1756
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:52:united_kingdom",
+        "first": "-",
+        "reread": "-",
+        "failure": null,
+        "agree": true,
+        "box": [
+          366,
+          1727,
+          461,
+          1756
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:53:far_east",
+        "first": "-",
+        "reread": null,
+        "failure": "illegible to the re-read",
+        "agree": false,
+        "box": [
+          1240,
+          1755,
+          1320,
+          1781
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:53:france",
+        "first": "-",
+        "reread": "-",
+        "failure": null,
+        "agree": true,
+        "box": [
+          481,
+          1755,
+          545,
+          1781
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:53:latin_america",
+        "first": "-",
+        "reread": "-",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1155,
+          1755,
+          1234,
+          1781
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:58:netherlands",
+        "first": "5",
+        "reread": "5",
+        "failure": null,
+        "agree": true,
+        "box": [
+          738,
+          1899,
+          795,
+          1913
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:60:netherlands",
+        "first": "32",
+        "reread": "32",
+        "failure": null,
+        "agree": true,
+        "box": [
+          760,
+          1941,
+          775,
+          1951
+        ]
+      }
+    ],
+    "v2": [
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:04:france",
+        "first": "1,991",
+        "reread": "1,991",
+        "failure": null,
+        "agree": true,
+        "box": [
+          495,
+          444,
+          541,
+          460
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:04:italy",
+        "first": "231",
+        "reread": "231",
+        "failure": null,
+        "agree": true,
+        "box": [
+          674,
+          446,
+          702,
+          459
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:05:total_europe",
+        "first": "13,912",
+        "reread": "13,912",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1005,
+          467,
+          1062,
+          481
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:07:far_east",
+        "first": "4,659",
+        "reread": "4,659",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1269,
+          540,
+          1316,
+          553
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:07:netherlands",
+        "first": "2,455",
+        "reread": "2,455",
+        "failure": null,
+        "agree": true,
+        "box": [
+          739,
+          539,
+          787,
+          551
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:10:netherlands",
+        "first": "3,376",
+        "reread": "3.376",
+        "failure": null,
+        "agree": false,
+        "box": [
+          740,
+          596,
+          786,
+          609
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:12:united_kingdom",
+        "first": "314",
+        "reread": "324",
+        "failure": null,
+        "agree": false,
+        "box": [
+          427,
+          663,
+          455,
+          675
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:14:canada",
+        "first": "1,027",
+        "reread": "1,027",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1098,
+          706,
+          1144,
+          719
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:14:far_east",
+        "first": "389",
+        "reread": "389",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1288,
+          708,
+          1315,
+          722
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:15:grand_total",
+        "first": "3,563",
+        "reread": "3,963",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1450,
+          728,
+          1497,
+          742
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:17:canada",
+        "first": "4,136",
+        "reread": "10,602",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1095,
+          816,
+          1146,
+          839
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:17:switzerland",
+        "first": "2,606",
+        "reread": "2,606",
+        "failure": null,
+        "agree": true,
+        "box": [
+          832,
+          818,
+          879,
+          833
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:18:total_europe",
+        "first": "23,821",
+        "reread": "21,821",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1002,
+          838,
+          1058,
+          854
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:20:total_europe",
+        "first": "19,694",
+        "reread": "19,694",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1002,
+          877,
+          1059,
+          891
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:22:france",
+        "first": "732",
+        "reread": "732",
+        "failure": null,
+        "agree": true,
+        "box": [
+          511,
+          944,
+          539,
+          958
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:23:total_europe",
+        "first": "21,237",
+        "reread": "21,237",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1001,
+          966,
+          1058,
+          980
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:25:germany",
+        "first": "35",
+        "reread": "89",
+        "failure": null,
+        "agree": false,
+        "box": [
+          604,
+          983,
+          624,
+          1017
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:25:other_europe",
+        "first": "1,876",
+        "reread": "1,876",
+        "failure": null,
+        "agree": true,
+        "box": [
+          907,
+          1003,
+          954,
+          1019
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:28:switzerland",
+        "first": "519",
+        "reread": "519",
+        "failure": null,
+        "agree": true,
+        "box": [
+          849,
+          1095,
+          876,
+          1108
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:29:france",
+        "first": "32",
+        "reread": "04",
+        "failure": null,
+        "agree": false,
+        "box": [
+          517,
+          1106,
+          538,
+          1128
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:29:united_kingdom",
+        "first": "343",
+        "reread": "343",
+        "failure": null,
+        "agree": true,
+        "box": [
+          423,
+          1111,
+          451,
+          1122
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:32:germany",
+        "first": "-",
+        "reread": "-",
+        "failure": null,
+        "agree": true,
+        "box": [
+          611,
+          1227,
+          622,
+          1234
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:32:grand_total",
+        "first": "680",
+        "reread": "680",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1466,
+          1229,
+          1494,
+          1243
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:32:netherlands",
+        "first": "-",
+        "reread": null,
+        "failure": "illegible to the re-read",
+        "agree": false,
+        "box": [
+          771,
+          1227,
+          783,
+          1235
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:32:total_europe",
+        "first": "83",
+        "reread": "83",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1037,
+          1228,
+          1056,
+          1241
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:33:latin_america",
+        "first": "-",
+        "reread": "-",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1217,
+          1251,
+          1229,
+          1258
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:34:grand_total",
+        "first": "769",
+        "reread": "769",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1466,
+          1271,
+          1493,
+          1284
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:35:grand_total",
+        "first": "532",
+        "reread": "532",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1465,
+          1290,
+          1494,
+          1304
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:42:canada",
+        "first": "551",
+        "reread": "552",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1112,
+          1484,
+          1139,
+          1497
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:44:other_europe",
+        "first": "-",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          938,
+          1520,
+          951,
+          1527
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:47:canada",
+        "first": "1,564",
+        "reread": "1,564",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1091,
+          1631,
+          1139,
+          1645
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:47:france",
+        "first": "3",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          456,
+          1623,
+          535,
+          1643
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:47:germany",
+        "first": "21",
+        "reread": "21",
+        "failure": null,
+        "agree": true,
+        "box": [
+          542,
+          1623,
+          618,
+          1647
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:52:grand_total",
+        "first": "-",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1478,
+          1767,
+          1490,
+          1774
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:52:united_kingdom",
+        "first": "-",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          436,
+          1757,
+          448,
+          1764
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:53:far_east",
+        "first": "-",
+        "reread": null,
+        "failure": "illegible to the re-read",
+        "agree": false,
+        "box": [
+          1297,
+          1784,
+          1309,
+          1791
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:53:france",
+        "first": "-",
+        "reread": "-",
+        "failure": null,
+        "agree": true,
+        "box": [
+          455,
+          1775,
+          533,
+          1793
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:53:latin_america",
+        "first": "-",
+        "reread": "-",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1146,
+          1775,
+          1234,
+          1794
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:58:netherlands",
+        "first": "5",
+        "reread": "5",
+        "failure": null,
+        "agree": true,
+        "box": [
+          767,
+          1897,
+          778,
+          1916
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-12_p055:60:netherlands",
+        "first": "32",
+        "reread": "32",
+        "failure": null,
+        "agree": true,
+        "box": [
+          758,
+          1939,
+          777,
+          1953
+        ]
+      }
+    ]
+  }
+}

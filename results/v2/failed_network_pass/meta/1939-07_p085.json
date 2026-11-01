@@ -1,0 +1,1093 @@
+{
+  "host": "meta",
+  "ref": "1939-07_p085",
+  "family": "outstanding_forward_exchange_contracts",
+  "cells": [
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_domestic_02:canada",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_domestic_02:france",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_domestic_02:united_kingdom",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_domestic_03:canada",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_domestic_03:germany",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_domestic_04:switzerland",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_domestic_05:italy",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_foreign_01:all_other",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_foreign_01:canada",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_foreign_01:other_europe",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_foreign_02:united_kingdom",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_foreign_03:united_kingdom",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_foreign_04:canada",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_foreign_05:netherlands",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_foreign_05:total_europe",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:sale_domestic_01:total_europe",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:sale_domestic_02:canada",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:sale_domestic_03:germany",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:sale_domestic_03:grand_total",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:sale_domestic_03:switzerland",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:sale_domestic_04:other_europe",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:sale_foreign_02:all_other",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:sale_foreign_03:germany",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:sale_foreign_04:all_other",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:sale_foreign_04:canada",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:total_purchase_01:far_east",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:total_purchase_01:latin_america",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:total_purchase_01:netherlands",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:total_purchase_01:switzerland",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:total_purchase_03:switzerland",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:total_purchase_04:switzerland",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:total_purchase_05:grand_total",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:total_sale_01:canada",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:total_sale_01:france",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:total_sale_02:far_east",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:total_sale_02:switzerland",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:total_sale_03:total_europe",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:total_sale_04:switzerland",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:total_sale_05:all_other",
+    "T.outstanding_forward_exchange_contracts:1939-07_p085:total_sale_05:france"
+  ],
+  "strategies": {
+    "v1": [
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_domestic_02:canada",
+        "first": "74,881",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1065,
+          710,
+          1143,
+          747
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_domestic_02:france",
+        "first": "3,003",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          465,
+          712,
+          512,
+          749
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_domestic_02:united_kingdom",
+        "first": "216,787",
+        "reread": "216,787",
+        "failure": null,
+        "agree": true,
+        "box": [
+          360,
+          737,
+          423,
+          747
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_domestic_03:canada",
+        "first": "79,364",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1065,
+          750,
+          1143,
+          766
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_domestic_03:germany",
+        "first": "88",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          572,
+          752,
+          599,
+          768
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_domestic_04:switzerland",
+        "first": "1,994",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          793,
+          821,
+          848,
+          839
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_domestic_05:italy",
+        "first": "332",
+        "reread": "332",
+        "failure": null,
+        "agree": true,
+        "box": [
+          648,
+          770,
+          689,
+          806
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_foreign_01:all_other",
+        "first": "40",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1351,
+          554,
+          1395,
+          571
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_foreign_01:canada",
+        "first": "15,744",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1065,
+          555,
+          1143,
+          572
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_foreign_01:other_europe",
+        "first": "3,327",
+        "reread": "1,131",
+        "failure": null,
+        "agree": false,
+        "box": [
+          881,
+          578,
+          937,
+          596
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_foreign_02:united_kingdom",
+        "first": "83,767",
+        "reread": "83,767",
+        "failure": null,
+        "agree": true,
+        "box": [
+          370,
+          583,
+          423,
+          593
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_foreign_03:united_kingdom",
+        "first": "83,027",
+        "reread": "83,027",
+        "failure": null,
+        "agree": true,
+        "box": [
+          370,
+          601,
+          423,
+          613
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_foreign_04:canada",
+        "first": "16,750",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1065,
+          595,
+          1143,
+          650
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_foreign_05:netherlands",
+        "first": "4,504",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          707,
+          596,
+          774,
+          651
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_foreign_05:total_europe",
+        "first": "94,285",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          976,
+          595,
+          1043,
+          650
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:sale_domestic_01:total_europe",
+        "first": "236,367",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          976,
+          1155,
+          1043,
+          1203
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:sale_domestic_02:canada",
+        "first": "57,495",
+        "reread": "60,335",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1074,
+          1240,
+          1129,
+          1258
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:sale_domestic_03:germany",
+        "first": "380",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          537,
+          1266,
+          592,
+          1284
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:sale_domestic_03:grand_total",
+        "first": "293,327",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1418,
+          1266,
+          1474,
+          1284
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:sale_domestic_03:switzerland",
+        "first": "1,878",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          793,
+          1266,
+          848,
+          1284
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:sale_domestic_04:other_europe",
+        "first": "4,320",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          881,
+          1292,
+          937,
+          1310
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:sale_foreign_02:all_other",
+        "first": "74",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1351,
+          1000,
+          1395,
+          1036
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:sale_foreign_03:germany",
+        "first": "345",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          572,
+          1042,
+          599,
+          1097
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:sale_foreign_04:all_other",
+        "first": "74",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1351,
+          1039,
+          1395,
+          1094
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:sale_foreign_04:canada",
+        "first": "43,501",
+        "reread": "41,808",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1065,
+          1040,
+          1143,
+          1095
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:total_purchase_01:far_east",
+        "first": "15,656",
+        "reread": "16,401",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1242,
+          410,
+          1297,
+          428
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:total_purchase_01:latin_america",
+        "first": "1,309",
+        "reread": "1,309",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1158,
+          410,
+          1214,
+          428
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:total_purchase_01:netherlands",
+        "first": "16,531",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          707,
+          403,
+          774,
+          450
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:total_purchase_01:switzerland",
+        "first": "3,322",
+        "reread": "3,056",
+        "failure": null,
+        "agree": false,
+        "box": [
+          793,
+          410,
+          848,
+          428
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:total_purchase_03:switzerland",
+        "first": "2,873",
+        "reread": "2,165",
+        "failure": null,
+        "agree": false,
+        "box": [
+          793,
+          462,
+          848,
+          480
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:total_purchase_04:switzerland",
+        "first": "2,365",
+        "reread": "2,251",
+        "failure": null,
+        "agree": false,
+        "box": [
+          793,
+          488,
+          848,
+          506
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:total_purchase_05:grand_total",
+        "first": "433,348",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1416,
+          448,
+          1484,
+          495
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:total_sale_01:canada",
+        "first": "101,716",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1065,
+          846,
+          1143,
+          902
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:total_sale_01:france",
+        "first": "8,460",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          465,
+          848,
+          512,
+          904
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:total_sale_02:far_east",
+        "first": "18,257",
+        "reread": "16,115",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1242,
+          909,
+          1297,
+          927
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:total_sale_02:switzerland",
+        "first": "5,598",
+        "reread": "4, 691",
+        "failure": null,
+        "agree": false,
+        "box": [
+          793,
+          909,
+          848,
+          927
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:total_sale_03:total_europe",
+        "first": "363,782",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          976,
+          846,
+          1043,
+          902
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:total_sale_04:switzerland",
+        "first": "5,212",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          793,
+          961,
+          848,
+          979
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:total_sale_05:all_other",
+        "first": "118",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1351,
+          904,
+          1395,
+          940
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:total_sale_05:france",
+        "first": "6,829",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          465,
+          907,
+          512,
+          943
+        ]
+      }
+    ],
+    "v2": [
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_domestic_02:canada",
+        "first": "74,881",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1065,
+          710,
+          1143,
+          747
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_domestic_02:france",
+        "first": "3,003",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          465,
+          712,
+          512,
+          749
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_domestic_02:united_kingdom",
+        "first": "216,787",
+        "reread": "216,787",
+        "failure": null,
+        "agree": true,
+        "box": [
+          360,
+          737,
+          423,
+          747
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_domestic_03:canada",
+        "first": "79,364",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1065,
+          750,
+          1143,
+          766
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_domestic_03:germany",
+        "first": "88",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          572,
+          752,
+          599,
+          768
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_domestic_04:switzerland",
+        "first": "1,994",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          793,
+          821,
+          848,
+          839
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_domestic_05:italy",
+        "first": "332",
+        "reread": "332",
+        "failure": null,
+        "agree": true,
+        "box": [
+          648,
+          770,
+          689,
+          806
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_foreign_01:all_other",
+        "first": "40",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1351,
+          554,
+          1395,
+          571
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_foreign_01:canada",
+        "first": "15,744",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1065,
+          555,
+          1143,
+          572
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_foreign_01:other_europe",
+        "first": "3,327",
+        "reread": "1,131",
+        "failure": null,
+        "agree": false,
+        "box": [
+          881,
+          578,
+          937,
+          596
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_foreign_02:united_kingdom",
+        "first": "83,767",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          368,
+          581,
+          425,
+          595
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_foreign_03:united_kingdom",
+        "first": "83,027",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          368,
+          599,
+          425,
+          615
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_foreign_04:canada",
+        "first": "16,750",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1065,
+          595,
+          1143,
+          650
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_foreign_05:netherlands",
+        "first": "4,504",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          707,
+          596,
+          774,
+          651
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:purchase_foreign_05:total_europe",
+        "first": "94,285",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          976,
+          595,
+          1043,
+          650
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:sale_domestic_01:total_europe",
+        "first": "236,367",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          976,
+          1155,
+          1043,
+          1203
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:sale_domestic_02:canada",
+        "first": "57,495",
+        "reread": "60,335",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1074,
+          1240,
+          1129,
+          1258
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:sale_domestic_03:germany",
+        "first": "380",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          537,
+          1266,
+          592,
+          1284
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:sale_domestic_03:grand_total",
+        "first": "293,327",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1418,
+          1266,
+          1474,
+          1284
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:sale_domestic_03:switzerland",
+        "first": "1,878",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          793,
+          1266,
+          848,
+          1284
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:sale_domestic_04:other_europe",
+        "first": "4,320",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          881,
+          1292,
+          937,
+          1310
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:sale_foreign_02:all_other",
+        "first": "74",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1351,
+          1000,
+          1395,
+          1036
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:sale_foreign_03:germany",
+        "first": "345",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          572,
+          1042,
+          599,
+          1097
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:sale_foreign_04:all_other",
+        "first": "74",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1351,
+          1039,
+          1395,
+          1094
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:sale_foreign_04:canada",
+        "first": "43,501",
+        "reread": "41,808",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1065,
+          1040,
+          1143,
+          1095
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:total_purchase_01:far_east",
+        "first": "15,656",
+        "reread": "16,401",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1242,
+          410,
+          1297,
+          428
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:total_purchase_01:latin_america",
+        "first": "1,309",
+        "reread": "1,309",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1158,
+          410,
+          1214,
+          428
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:total_purchase_01:netherlands",
+        "first": "16,531",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          707,
+          403,
+          774,
+          450
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:total_purchase_01:switzerland",
+        "first": "3,322",
+        "reread": "3,056",
+        "failure": null,
+        "agree": false,
+        "box": [
+          793,
+          410,
+          848,
+          428
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:total_purchase_03:switzerland",
+        "first": "2,873",
+        "reread": "2,165",
+        "failure": null,
+        "agree": false,
+        "box": [
+          793,
+          462,
+          848,
+          480
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:total_purchase_04:switzerland",
+        "first": "2,365",
+        "reread": "2,251",
+        "failure": null,
+        "agree": false,
+        "box": [
+          793,
+          488,
+          848,
+          506
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:total_purchase_05:grand_total",
+        "first": "433,348",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1416,
+          448,
+          1484,
+          495
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:total_sale_01:canada",
+        "first": "101,716",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1065,
+          846,
+          1143,
+          902
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:total_sale_01:france",
+        "first": "8,460",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          465,
+          848,
+          512,
+          904
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:total_sale_02:far_east",
+        "first": "18,257",
+        "reread": "16,115",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1242,
+          909,
+          1297,
+          927
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:total_sale_02:switzerland",
+        "first": "5,598",
+        "reread": "4, 691",
+        "failure": null,
+        "agree": false,
+        "box": [
+          793,
+          909,
+          848,
+          927
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:total_sale_03:total_europe",
+        "first": "363,782",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          976,
+          846,
+          1043,
+          902
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:total_sale_04:switzerland",
+        "first": "5,212",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          793,
+          961,
+          848,
+          979
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:total_sale_05:all_other",
+        "first": "118",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1351,
+          904,
+          1395,
+          940
+        ]
+      },
+      {
+        "field_id": "T.outstanding_forward_exchange_contracts:1939-07_p085:total_sale_05:france",
+        "first": "6,829",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          465,
+          907,
+          512,
+          943
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+{
+  "note": "Summary of the first geometry pass, before the two documented implementation corrections; not the final candidate.",
+  "meta": {
+    "references": 2739,
+    "v1_contains": 2726,
+    "v2_contains": 2726
+  },
+  "baseten": {
+    "references": 1003,
+    "v1_contains": 254,
+    "v2_contains": 999
+  }
+}

@@ -1,0 +1,18 @@
+{
+  "starting_usd": {
+    "meta": 10.047628300000001,
+    "baseten": 24.9548475,
+    "fireworks": 1.971717,
+    "modal_glimmer_sorter": 0.13815628657101953
+  },
+  "caps_usd": {
+    "meta": 15.047628300000001,
+    "baseten": 29.9548475,
+    "fireworks": 1.971717,
+    "modal_glimmer_sorter": 0.13815628657101953
+  },
+  "allowance_usd": {
+    "meta": 5,
+    "baseten": 5
+  }
+}

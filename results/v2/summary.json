@@ -1,0 +1,48 @@
+{
+  "readers": {
+    "meta": {
+      "references": 2739,
+      "contains": {
+        "v1": 2726,
+        "v2": 2728
+      },
+      "sampled": 600,
+      "agreement": {
+        "v1": 406,
+        "v2": 372
+      },
+      "centre_contains": {
+        "v1": 2728,
+        "v2": 2728
+      },
+      "complete": true,
+      "qualifies": false
+    },
+    "baseten": {
+      "references": 1003,
+      "contains": {
+        "v1": 254,
+        "v2": 1000
+      },
+      "sampled": 200,
+      "agreement": {
+        "v1": 52,
+        "v2": 102
+      },
+      "centre_contains": {
+        "v1": 267,
+        "v2": 1000
+      },
+      "complete": true,
+      "qualifies": true
+    }
+  },
+  "adopted": false,
+  "cost_usd": {
+    "meta": 0.04865229999999876,
+    "baseten": 1.0514167500000013,
+    "fireworks": 0.0,
+    "modal_glimmer_sorter": 0.0
+  },
+  "code_sha256": "0d323889f344dc06e5397fbd798a07ec4e1c0199198ef4e7ff353111da7a212b"
+}

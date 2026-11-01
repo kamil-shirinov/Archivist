@@ -1,0 +1,1093 @@
+{
+  "host": "meta",
+  "ref": "1982-06_p094",
+  "family": "total_claims_by_country",
+  "cells": [
+    "T.total_claims_by_country:1982-06_p094:asian_regional:c1",
+    "T.total_claims_by_country:1982-06_p094:asian_regional:c4",
+    "T.total_claims_by_country:1982-06_p094:austria:c4",
+    "T.total_claims_by_country:1982-06_p094:austria:c8",
+    "T.total_claims_by_country:1982-06_p094:bahamas:c5",
+    "T.total_claims_by_country:1982-06_p094:british_west_indies:c8",
+    "T.total_claims_by_country:1982-06_p094:canada:c7",
+    "T.total_claims_by_country:1982-06_p094:colombia:c3",
+    "T.total_claims_by_country:1982-06_p094:colombia:c4",
+    "T.total_claims_by_country:1982-06_p094:czechoslovakia:c2",
+    "T.total_claims_by_country:1982-06_p094:egypt:c7",
+    "T.total_claims_by_country:1982-06_p094:france:c5",
+    "T.total_claims_by_country:1982-06_p094:german_democratic_republic:c1",
+    "T.total_claims_by_country:1982-06_p094:greece:c5",
+    "T.total_claims_by_country:1982-06_p094:guatemala:c1",
+    "T.total_claims_by_country:1982-06_p094:india:c1",
+    "T.total_claims_by_country:1982-06_p094:india:c7",
+    "T.total_claims_by_country:1982-06_p094:italy:c1",
+    "T.total_claims_by_country:1982-06_p094:italy:c4",
+    "T.total_claims_by_country:1982-06_p094:jamaica:c4",
+    "T.total_claims_by_country:1982-06_p094:latin_american_regional:c1",
+    "T.total_claims_by_country:1982-06_p094:middle_eastern_regional:c7",
+    "T.total_claims_by_country:1982-06_p094:norway:c5",
+    "T.total_claims_by_country:1982-06_p094:oil_exporting_asia:c5",
+    "T.total_claims_by_country:1982-06_p094:oil_exporting_asia:c7",
+    "T.total_claims_by_country:1982-06_p094:panama:c6",
+    "T.total_claims_by_country:1982-06_p094:peru:c7",
+    "T.total_claims_by_country:1982-06_p094:peru:c8",
+    "T.total_claims_by_country:1982-06_p094:philippines:c3",
+    "T.total_claims_by_country:1982-06_p094:spain:c2",
+    "T.total_claims_by_country:1982-06_p094:syria:c1",
+    "T.total_claims_by_country:1982-06_p094:taiwan:c7",
+    "T.total_claims_by_country:1982-06_p094:total_africa:c7",
+    "T.total_claims_by_country:1982-06_p094:total_asia:c2",
+    "T.total_claims_by_country:1982-06_p094:total_foreign_countries:c8",
+    "T.total_claims_by_country:1982-06_p094:total_latin_america_caribbean:c7",
+    "T.total_claims_by_country:1982-06_p094:turkey:c7",
+    "T.total_claims_by_country:1982-06_p094:venezuela:c1",
+    "T.total_claims_by_country:1982-06_p094:venezuela:c8",
+    "T.total_claims_by_country:1982-06_p094:zaire:country"
+  ],
+  "strategies": {
+    "v1": [
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:asian_regional:c1",
+        "first": "10",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          503,
+          1843,
+          578,
+          1855
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:asian_regional:c4",
+        "first": "*",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          932,
+          1843,
+          1015,
+          1855
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:austria:c4",
+        "first": "r198",
+        "reread": "1,198",
+        "failure": null,
+        "agree": false,
+        "box": [
+          965,
+          355,
+          1020,
+          368
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:austria:c8",
+        "first": "288",
+        "reread": "288",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1547,
+          361,
+          1567,
+          369
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:bahamas:c5",
+        "first": "r35,423",
+        "reread": "35,423",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1098,
+          860,
+          1151,
+          870
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:british_west_indies:c8",
+        "first": "24,470",
+        "reread": "24,470",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1521,
+          906,
+          1568,
+          918
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:canada:c7",
+        "first": "13,971",
+        "reread": "13,971",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1389,
+          805,
+          1435,
+          818
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:colombia:c3",
+        "first": "1,524",
+        "reread": "1,524",
+        "failure": null,
+        "agree": true,
+        "box": [
+          833,
+          943,
+          868,
+          953
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:colombia:c4",
+        "first": "1,524",
+        "reread": "1,524",
+        "failure": null,
+        "agree": true,
+        "box": [
+          965,
+          940,
+          1020,
+          952
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:czechoslovakia:c2",
+        "first": "65",
+        "reread": "65",
+        "failure": null,
+        "agree": true,
+        "box": [
+          666,
+          406,
+          712,
+          417
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:egypt:c7",
+        "first": "261",
+        "reread": "261",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1389,
+          1583,
+          1435,
+          1594
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:france:c5",
+        "first": "r4,543",
+        "reread": "r4,543",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1097,
+          456,
+          1152,
+          468
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:german_democratic_republic:c1",
+        "first": "88",
+        "reread": "68",
+        "failure": null,
+        "agree": false,
+        "box": [
+          541,
+          475,
+          553,
+          483
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:greece:c5",
+        "first": "369",
+        "reread": "349",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1097,
+          506,
+          1152,
+          517
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:guatemala:c1",
+        "first": "180",
+        "reread": "180",
+        "failure": null,
+        "agree": true,
+        "box": [
+          533,
+          993,
+          553,
+          1001
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:india:c1",
+        "first": "211",
+        "reread": "211",
+        "failure": null,
+        "agree": true,
+        "box": [
+          532,
+          1308,
+          551,
+          1315
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:india:c7",
+        "first": "177",
+        "reread": "177",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1413,
+          1307,
+          1432,
+          1315
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:italy:c1",
+        "first": "3,739",
+        "reread": "3,739",
+        "failure": null,
+        "agree": true,
+        "box": [
+          516,
+          541,
+          553,
+          552
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:italy:c4",
+        "first": "r3,448",
+        "reread": "r3,448",
+        "failure": null,
+        "agree": true,
+        "box": [
+          973,
+          543,
+          1019,
+          553
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:jamaica:c4",
+        "first": "50",
+        "reread": "50",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1007,
+          1011,
+          1018,
+          1019
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:latin_american_regional:c1",
+        "first": "57",
+        "reread": "57",
+        "failure": null,
+        "agree": true,
+        "box": [
+          508,
+          1896,
+          554,
+          1907
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:middle_eastern_regional:c7",
+        "first": "-",
+        "reread": "-",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1389,
+          1945,
+          1435,
+          1961
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:norway:c5",
+        "first": "209",
+        "reread": "209",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1130,
+          576,
+          1151,
+          584
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:oil_exporting_asia:c5",
+        "first": "r2,117",
+        "reread": "2,117",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1104,
+          1508,
+          1149,
+          1518
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:oil_exporting_asia:c7",
+        "first": "2,243",
+        "reread": "2,243",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1395,
+          1507,
+          1432,
+          1517
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:panama:c6",
+        "first": "r7,024",
+        "reread": "7,024",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1247,
+          1060,
+          1292,
+          1071
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:peru:c7",
+        "first": "1,282",
+        "reread": "1,282",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1398,
+          1077,
+          1433,
+          1087
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:peru:c8",
+        "first": "1,582",
+        "reread": "1,582",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1521,
+          1073,
+          1568,
+          1085
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:philippines:c3",
+        "first": "658",
+        "reread": "658",
+        "failure": null,
+        "agree": true,
+        "box": [
+          848,
+          1441,
+          868,
+          1449
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:spain:c2",
+        "first": "2,355",
+        "reread": "2,355",
+        "failure": null,
+        "agree": true,
+        "box": [
+          674,
+          642,
+          711,
+          650
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:syria:c1",
+        "first": "31",
+        "reread": null,
+        "failure": "illegible to the re-read",
+        "agree": false,
+        "box": [
+          540,
+          1475,
+          551,
+          1482
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:taiwan:c7",
+        "first": "2,913",
+        "reread": "2,913",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1396,
+          1274,
+          1433,
+          1284
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:total_africa:c7",
+        "first": "4,313",
+        "reread": "4,313",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1389,
+          1724,
+          1435,
+          1735
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:total_asia:c2",
+        "first": "55,943",
+        "reread": "55,943",
+        "failure": null,
+        "agree": true,
+        "box": [
+          666,
+          1548,
+          710,
+          1558
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:total_foreign_countries:c8",
+        "first": "325,943",
+        "reread": "325,949",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1521,
+          1822,
+          1568,
+          1833
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:total_latin_america_caribbean:c7",
+        "first": "142,821",
+        "reread": "142,821",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1389,
+          1198,
+          1435,
+          1218
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:turkey:c7",
+        "first": "478",
+        "reread": "478",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1413,
+          693,
+          1433,
+          701
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:venezuela:c1",
+        "first": "5,796",
+        "reread": "5,796",
+        "failure": null,
+        "agree": true,
+        "box": [
+          516,
+          1126,
+          552,
+          1136
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:venezuela:c8",
+        "first": "8,427",
+        "reread": "8,427",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1521,
+          1123,
+          1568,
+          1135
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:zaire:country",
+        "first": "Zaire",
+        "reread": "Morocco",
+        "failure": null,
+        "agree": false,
+        "box": [
+          181,
+          1633,
+          462,
+          1645
+        ]
+      }
+    ],
+    "v2": [
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:asian_regional:c1",
+        "first": "10",
+        "reread": "10",
+        "failure": null,
+        "agree": true,
+        "box": [
+          414,
+          1910,
+          556,
+          1924
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:asian_regional:c4",
+        "first": "*",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1010,
+          1912,
+          1019,
+          1922
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:austria:c4",
+        "first": "r198",
+        "reread": "1,298",
+        "failure": null,
+        "agree": false,
+        "box": [
+          987,
+          354,
+          1022,
+          369
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:austria:c8",
+        "first": "288",
+        "reread": "633",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1545,
+          359,
+          1569,
+          371
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:bahamas:c5",
+        "first": "r35,423",
+        "reread": "r35,423",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1096,
+          858,
+          1153,
+          872
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:british_west_indies:c8",
+        "first": "24,470",
+        "reread": "2,470",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1427,
+          905,
+          1570,
+          923
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:canada:c7",
+        "first": "13,971",
+        "reread": "13,971",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1389,
+          805,
+          1435,
+          818
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:colombia:c3",
+        "first": "1,524",
+        "reread": "1,524",
+        "failure": null,
+        "agree": true,
+        "box": [
+          831,
+          941,
+          870,
+          955
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:colombia:c4",
+        "first": "1,524",
+        "reread": "1,524",
+        "failure": null,
+        "agree": true,
+        "box": [
+          981,
+          942,
+          1020,
+          956
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:czechoslovakia:c2",
+        "first": "65",
+        "reread": "65",
+        "failure": null,
+        "agree": true,
+        "box": [
+          666,
+          406,
+          712,
+          417
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:egypt:c7",
+        "first": "261",
+        "reread": "261",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1389,
+          1583,
+          1435,
+          1594
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:france:c5",
+        "first": "r4,543",
+        "reread": "4,543",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1104,
+          458,
+          1153,
+          472
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:german_democratic_republic:c1",
+        "first": "88",
+        "reread": "88",
+        "failure": null,
+        "agree": true,
+        "box": [
+          539,
+          473,
+          555,
+          485
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:greece:c5",
+        "first": "369",
+        "reread": "349",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1129,
+          507,
+          1153,
+          519
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:guatemala:c1",
+        "first": "180",
+        "reread": "1964",
+        "failure": null,
+        "agree": false,
+        "box": [
+          531,
+          991,
+          555,
+          1003
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:india:c1",
+        "first": "211",
+        "reread": "211",
+        "failure": null,
+        "agree": true,
+        "box": [
+          530,
+          1306,
+          553,
+          1317
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:india:c7",
+        "first": "177",
+        "reread": "177",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1413,
+          1307,
+          1432,
+          1315
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:italy:c1",
+        "first": "3,739",
+        "reread": "3,739",
+        "failure": null,
+        "agree": true,
+        "box": [
+          514,
+          539,
+          555,
+          554
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:italy:c4",
+        "first": "r3,448",
+        "reread": "r771",
+        "failure": null,
+        "agree": false,
+        "box": [
+          971,
+          541,
+          1021,
+          555
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:jamaica:c4",
+        "first": "50",
+        "reread": "52",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1005,
+          1009,
+          1020,
+          1021
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:latin_american_regional:c1",
+        "first": "57",
+        "reread": "57",
+        "failure": null,
+        "agree": true,
+        "box": [
+          508,
+          1896,
+          554,
+          1907
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:middle_eastern_regional:c7",
+        "first": "-",
+        "reread": "-",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1389,
+          1945,
+          1435,
+          1961
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:norway:c5",
+        "first": "209",
+        "reread": "209",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1128,
+          574,
+          1153,
+          586
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:oil_exporting_asia:c5",
+        "first": "r2,117",
+        "reread": "2,117",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1102,
+          1506,
+          1151,
+          1520
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:oil_exporting_asia:c7",
+        "first": "2,243",
+        "reread": "2,243",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1395,
+          1507,
+          1432,
+          1517
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:panama:c6",
+        "first": "r7,024",
+        "reread": "7,853",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1245,
+          1058,
+          1294,
+          1073
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:peru:c7",
+        "first": "1,282",
+        "reread": "1,282",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1398,
+          1077,
+          1433,
+          1087
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:peru:c8",
+        "first": "1,582",
+        "reread": "1,582",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1427,
+          1072,
+          1569,
+          1089
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:philippines:c3",
+        "first": "658",
+        "reread": "658",
+        "failure": null,
+        "agree": true,
+        "box": [
+          846,
+          1439,
+          870,
+          1451
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:spain:c2",
+        "first": "2,355",
+        "reread": "2,355",
+        "failure": null,
+        "agree": true,
+        "box": [
+          674,
+          642,
+          711,
+          650
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:syria:c1",
+        "first": "31",
+        "reread": "31",
+        "failure": null,
+        "agree": true,
+        "box": [
+          538,
+          1473,
+          553,
+          1484
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:taiwan:c7",
+        "first": "2,913",
+        "reread": "2,913",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1396,
+          1274,
+          1433,
+          1284
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:total_africa:c7",
+        "first": "4,313",
+        "reread": "4,313",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1389,
+          1724,
+          1435,
+          1735
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:total_asia:c2",
+        "first": "55,943",
+        "reread": "55,943",
+        "failure": null,
+        "agree": true,
+        "box": [
+          666,
+          1548,
+          710,
+          1558
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:total_foreign_countries:c8",
+        "first": "325,943",
+        "reread": "325,943",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1427,
+          1820,
+          1568,
+          1840
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:total_latin_america_caribbean:c7",
+        "first": "142,821",
+        "reread": "142,821",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1389,
+          1198,
+          1435,
+          1218
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:turkey:c7",
+        "first": "478",
+        "reread": "478",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1413,
+          693,
+          1433,
+          701
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:venezuela:c1",
+        "first": "5,796",
+        "reread": "5,796",
+        "failure": null,
+        "agree": true,
+        "box": [
+          514,
+          1124,
+          554,
+          1138
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:venezuela:c8",
+        "first": "8,427",
+        "reread": "8,427",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1427,
+          1122,
+          1569,
+          1139
+        ]
+      },
+      {
+        "field_id": "T.total_claims_by_country:1982-06_p094:zaire:country",
+        "first": "Zaire",
+        "reread": "Morocco",
+        "failure": null,
+        "agree": false,
+        "box": [
+          181,
+          1633,
+          462,
+          1645
+        ]
+      }
+    ]
+  }
+}

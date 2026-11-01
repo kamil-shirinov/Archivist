@@ -1,0 +1,1093 @@
+{
+  "host": "baseten",
+  "ref": "1939-01_p051",
+  "family": "short_term_foreign_liabilities_as",
+  "cells": [
+    "T.short_term_foreign_liabilities_as:1939-01_p051:03:france",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:03:italy",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:04:total_europe",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:05:far_east",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:05:netherlands",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:06:all_other",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:08:netherlands",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:09:united_kingdom",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:11:canada",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:11:far_east",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:12:grand_total",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:13:canada",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:13:grand_total",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:13:switzerland",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:14:grand_total",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:14:total_europe",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:16:total_europe",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:17:canada",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:17:france",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:17:latin_america",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:18:total_europe",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:20:germany",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:20:other_europe",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:22:switzerland",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:23:france",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:23:united_kingdom",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:25:germany",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:25:grand_total",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:25:netherlands",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:25:total_europe",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:26:latin_america",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:27:grand_total",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:28:grand_total",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:33:canada",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:35:canada",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:35:other_europe",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:37:canada",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:37:france",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:37:germany",
+    "T.short_term_foreign_liabilities_as:1939-01_p051:39:other_europe"
+  ],
+  "strategies": {
+    "v1": [
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:03:france",
+        "first": "192,776",
+        "reread": "185, 061",
+        "failure": null,
+        "agree": false,
+        "box": [
+          401,
+          556,
+          471,
+          572
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:03:italy",
+        "first": "21,433",
+        "reread": "41",
+        "failure": null,
+        "agree": false,
+        "box": [
+          543,
+          589,
+          591,
+          617
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:04:total_europe",
+        "first": "1,137,279",
+        "reread": null,
+        "failure": "illegible to the re-read",
+        "agree": false,
+        "box": [
+          889,
+          616,
+          969,
+          645
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:05:far_east",
+        "first": "200,365",
+        "reread": "718",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1157,
+          678,
+          1221,
+          706
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:05:netherlands",
+        "first": "74,009",
+        "reread": null,
+        "failure": "the re-read failed: ReReadFailed: JSONDecodeError: Expecting value: line 1 column 1 (char 0) | retry: JSONDecodeError: Expecting value: line 1 column 1 (char 0)",
+        "agree": false,
+        "box": [
+          622,
+          678,
+          670,
+          706
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:06:all_other",
+        "first": "35,011",
+        "reread": "32,",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1252,
+          705,
+          1300,
+          734
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:08:netherlands",
+        "first": "79,649",
+        "reread": "06",
+        "failure": null,
+        "agree": false,
+        "box": [
+          622,
+          761,
+          670,
+          789
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:09:united_kingdom",
+        "first": "256,037",
+        "reread": "8,518",
+        "failure": null,
+        "agree": false,
+        "box": [
+          301,
+          788,
+          383,
+          802
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:11:canada",
+        "first": "201,279",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1000,
+          877,
+          1056,
+          906
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:11:far_east",
+        "first": "183,727",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1157,
+          877,
+          1221,
+          906
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:12:grand_total",
+        "first": "1,702,478",
+        "reread": "988",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1282,
+          848,
+          1420,
+          863
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:13:canada",
+        "first": "4,277",
+        "reread": "1",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1000,
+          966,
+          1056,
+          995
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:13:grand_total",
+        "first": "72,750",
+        "reread": "3,836",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1282,
+          965,
+          1420,
+          980
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:13:switzerland",
+        "first": "4,583",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          700,
+          966,
+          764,
+          995
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:14:grand_total",
+        "first": "73,153",
+        "reread": "3,821",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1282,
+          984,
+          1420,
+          1000
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:14:total_europe",
+        "first": "29,914",
+        "reread": "3,82",
+        "failure": null,
+        "agree": false,
+        "box": [
+          889,
+          994,
+          969,
+          1022
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:16:total_europe",
+        "first": "32,685",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          889,
+          1049,
+          969,
+          1077
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:17:canada",
+        "first": "-",
+        "reread": null,
+        "failure": "illegible to the re-read",
+        "agree": false,
+        "box": [
+          1000,
+          1132,
+          1056,
+          1160
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:17:france",
+        "first": "3,280",
+        "reread": "2,985",
+        "failure": null,
+        "agree": false,
+        "box": [
+          385,
+          1132,
+          449,
+          1160
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:17:latin_america",
+        "first": "15",
+        "reread": "50",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1078,
+          1132,
+          1142,
+          1160
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:18:total_europe",
+        "first": "3,821",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          889,
+          1159,
+          969,
+          1188
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:20:germany",
+        "first": "-",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          464,
+          1214,
+          512,
+          1243
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:20:other_europe",
+        "first": "10",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          795,
+          1214,
+          859,
+          1243
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:22:switzerland",
+        "first": "712",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          700,
+          1303,
+          764,
+          1332
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:23:france",
+        "first": "2,989",
+        "reread": "428",
+        "failure": null,
+        "agree": false,
+        "box": [
+          385,
+          1331,
+          449,
+          1359
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:23:united_kingdom",
+        "first": "24,985",
+        "reread": "22,648",
+        "failure": null,
+        "agree": false,
+        "box": [
+          307,
+          1331,
+          371,
+          1359
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:25:germany",
+        "first": "419",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          464,
+          1420,
+          512,
+          1448
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:25:grand_total",
+        "first": "67,085",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1330,
+          1420,
+          1410,
+          1448
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:25:netherlands",
+        "first": "1,145",
+        "reread": "31",
+        "failure": null,
+        "agree": false,
+        "box": [
+          622,
+          1420,
+          670,
+          1448
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:25:total_europe",
+        "first": "58,081",
+        "reread": "28,55",
+        "failure": null,
+        "agree": false,
+        "box": [
+          889,
+          1420,
+          969,
+          1448
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:26:latin_america",
+        "first": "393",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1078,
+          1447,
+          1142,
+          1476
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:27:grand_total",
+        "first": "71,824",
+        "reread": "29,00",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1330,
+          1475,
+          1410,
+          1504
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:28:grand_total",
+        "first": "71,805",
+        "reread": "28,2",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1330,
+          1503,
+          1410,
+          1531
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:33:canada",
+        "first": "180",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1000,
+          1708,
+          1056,
+          1737
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:35:canada",
+        "first": "190",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1000,
+          1763,
+          1056,
+          1792
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:35:other_europe",
+        "first": "35",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          795,
+          1763,
+          859,
+          1792
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:37:canada",
+        "first": "98",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1000,
+          1852,
+          1056,
+          1881
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:37:france",
+        "first": "164",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          385,
+          1852,
+          449,
+          1881
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:37:germany",
+        "first": "11",
+        "reread": null,
+        "failure": "illegible to the re-read",
+        "agree": false,
+        "box": [
+          464,
+          1852,
+          512,
+          1881
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:39:other_europe",
+        "first": "404",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          795,
+          1908,
+          859,
+          1936
+        ]
+      }
+    ],
+    "v2": [
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:03:france",
+        "first": "192,776",
+        "reread": "192.776",
+        "failure": null,
+        "agree": false,
+        "box": [
+          400,
+          422,
+          466,
+          436
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:03:italy",
+        "first": "21,433",
+        "reread": "21,473",
+        "failure": null,
+        "agree": false,
+        "box": [
+          573,
+          423,
+          631,
+          438
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:04:total_europe",
+        "first": "1,137,279",
+        "reread": "1,137,279",
+        "failure": null,
+        "agree": true,
+        "box": [
+          912,
+          443,
+          998,
+          459
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:05:far_east",
+        "first": "200,365",
+        "reread": "200,365",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1192,
+          521,
+          1259,
+          537
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:05:netherlands",
+        "first": "74,009",
+        "reread": "74.009",
+        "failure": null,
+        "agree": false,
+        "box": [
+          661,
+          517,
+          718,
+          531
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:06:all_other",
+        "first": "35,011",
+        "reread": "35,011",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1280,
+          541,
+          1335,
+          554
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:08:netherlands",
+        "first": "79,649",
+        "reread": "79,649",
+        "failure": null,
+        "agree": true,
+        "box": [
+          661,
+          575,
+          718,
+          592
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:09:united_kingdom",
+        "first": "256,037",
+        "reread": "256,037",
+        "failure": null,
+        "agree": true,
+        "box": [
+          312,
+          654,
+          379,
+          668
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:11:canada",
+        "first": "201,279",
+        "reread": "320, 671",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1018,
+          693,
+          1086,
+          710
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:11:far_east",
+        "first": "183,727",
+        "reread": "183,722",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1193,
+          695,
+          1260,
+          709
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:12:grand_total",
+        "first": "1,702,478",
+        "reread": "1,702,478",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1357,
+          714,
+          1443,
+          729
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:13:canada",
+        "first": "4,277",
+        "reread": "4,277",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1039,
+          792,
+          1087,
+          806
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:13:grand_total",
+        "first": "72,750",
+        "reread": "72.750",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1388,
+          792,
+          1443,
+          807
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:13:switzerland",
+        "first": "4,583",
+        "reread": "4,583",
+        "failure": null,
+        "agree": true,
+        "box": [
+          757,
+          791,
+          805,
+          803
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:14:grand_total",
+        "first": "73,153",
+        "reread": "73.153",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1387,
+          812,
+          1444,
+          827
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:14:total_europe",
+        "first": "29,914",
+        "reread": "29,914",
+        "failure": null,
+        "agree": true,
+        "box": [
+          941,
+          810,
+          999,
+          825
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:16:total_europe",
+        "first": "32,685",
+        "reread": "32,685",
+        "failure": null,
+        "agree": true,
+        "box": [
+          942,
+          849,
+          999,
+          865
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:17:canada",
+        "first": "-",
+        "reread": null,
+        "failure": "illegible to the re-read",
+        "agree": false,
+        "box": [
+          1000,
+          1132,
+          1056,
+          1160
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:17:france",
+        "first": "3,280",
+        "reread": "2,985",
+        "failure": null,
+        "agree": false,
+        "box": [
+          385,
+          1132,
+          449,
+          1160
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:17:latin_america",
+        "first": "15",
+        "reread": "50",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1078,
+          1132,
+          1142,
+          1160
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:18:total_europe",
+        "first": "3,821",
+        "reread": "7,620",
+        "failure": null,
+        "agree": false,
+        "box": [
+          951,
+          986,
+          997,
+          1001
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:20:germany",
+        "first": "-",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          464,
+          1214,
+          512,
+          1243
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:20:other_europe",
+        "first": "10",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          795,
+          1214,
+          859,
+          1243
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:22:switzerland",
+        "first": "712",
+        "reread": "712",
+        "failure": null,
+        "agree": true,
+        "box": [
+          777,
+          1117,
+          805,
+          1130
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:23:france",
+        "first": "2,989",
+        "reread": "2,989",
+        "failure": null,
+        "agree": true,
+        "box": [
+          418,
+          1134,
+          466,
+          1150
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:23:united_kingdom",
+        "first": "24,985",
+        "reread": "24,985",
+        "failure": null,
+        "agree": true,
+        "box": [
+          321,
+          1133,
+          379,
+          1149
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:25:germany",
+        "first": "419",
+        "reread": "429",
+        "failure": null,
+        "agree": false,
+        "box": [
+          524,
+          1227,
+          553,
+          1240
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:25:grand_total",
+        "first": "67,085",
+        "reread": "67.085",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1386,
+          1228,
+          1443,
+          1244
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:25:netherlands",
+        "first": "1,145",
+        "reread": "145",
+        "failure": null,
+        "agree": false,
+        "box": [
+          682,
+          1225,
+          717,
+          1239
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:25:total_europe",
+        "first": "58,081",
+        "reread": "58,051",
+        "failure": null,
+        "agree": false,
+        "box": [
+          940,
+          1227,
+          997,
+          1243
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:26:latin_america",
+        "first": "393",
+        "reread": "277",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1144,
+          1250,
+          1172,
+          1263
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:27:grand_total",
+        "first": "71,824",
+        "reread": "71,529",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1387,
+          1264,
+          1445,
+          1278
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:28:grand_total",
+        "first": "71,805",
+        "reread": "72,805",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1387,
+          1286,
+          1444,
+          1300
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:33:canada",
+        "first": "180",
+        "reread": "180",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1056,
+          1486,
+          1085,
+          1500
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:35:canada",
+        "first": "190",
+        "reread": "190",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1056,
+          1526,
+          1085,
+          1540
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:35:other_europe",
+        "first": "35",
+        "reread": "22",
+        "failure": null,
+        "agree": false,
+        "box": [
+          870,
+          1521,
+          893,
+          1541
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:37:canada",
+        "first": "98",
+        "reread": "97",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1066,
+          1617,
+          1084,
+          1631
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:37:france",
+        "first": "164",
+        "reread": "164",
+        "failure": null,
+        "agree": true,
+        "box": [
+          436,
+          1615,
+          465,
+          1626
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:37:germany",
+        "first": "11",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          468,
+          1611,
+          552,
+          1634
+        ]
+      },
+      {
+        "field_id": "T.short_term_foreign_liabilities_as:1939-01_p051:39:other_europe",
+        "first": "404",
+        "reread": "1515",
+        "failure": null,
+        "agree": false,
+        "box": [
+          861,
+          1655,
+          891,
+          1667
+        ]
+      }
+    ]
+  }
+}

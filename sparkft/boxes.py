@@ -97,9 +97,9 @@ def fixed(pair: dict, name: str) -> list[float]:
 
 def main() -> None:
     revision = P33_REVISION
-    current = subprocess.check_output(['git', 'rev-parse', 'openw-measure'], text=True).strip()
+    current = subprocess.check_output(['git', 'rev-parse', '633cdff^{commit}'], text=True).strip()
     if current != revision:
-        raise ValueError('P33 branch moved; review inputs before regenerating')
+        raise ValueError('P33 pinned commit mismatch; review inputs before regenerating')
     split = json.loads(Path('data/real/split.json').read_text())
     types = from_config(Path('config/real_test.toml'))
     pairs, inputs, rows = [], {}, []

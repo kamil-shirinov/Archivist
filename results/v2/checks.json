@@ -1,0 +1,38 @@
+{
+  "command": "uv run pytest -q && uv run python -m archivist.replay",
+  "unpiped": true,
+  "exit_code": 0,
+  "pytest": {
+    "passed": 1520,
+    "failed": 0
+  },
+  "replay": {
+    "runs": 11,
+    "all_identical": true,
+    "exports": [
+      "test-archivist-A",
+      "test-archivist-B",
+      "treasury-development"
+    ],
+    "ledger_lines_before": 83142,
+    "ledger_lines_after": 83142,
+    "problems": [],
+    "report_sha256": "12bd316d569dcfc0e05273d9c01ff1cc73ad9609fe353b716af2170fb6cf7286"
+  },
+  "pre_commit_hooks_passed": [
+    "gitleaks",
+    "trailing-whitespace",
+    "end-of-file-fixer"
+  ],
+  "prior_attempts": [
+    {
+      "pytest_passed": 1518,
+      "pytest_failed": 2,
+      "cause": "Scratch guard also blocked invented temporary scorer fixtures; guard scope corrected."
+    },
+    {
+      "collection_errors": 3,
+      "cause": "Hook cache exposed third-party tests; moved to a hidden ignored directory."
+    }
+  ]
+}

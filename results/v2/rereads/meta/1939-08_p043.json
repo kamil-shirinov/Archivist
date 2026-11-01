@@ -1,0 +1,1093 @@
+{
+  "host": "meta",
+  "ref": "1939-08_p043",
+  "family": "receipts_and_expenditures_under_railroad",
+  "cells": [
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:01:to_unemployment",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:01:total_exp",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:02:taxes",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:02:to_retirement",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:02:total_exp",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:03:total_exp",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:04:taxes",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:04:total_exp",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:05:admin",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:05:taxes",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:05:to_retirement",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:06:admin",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:06:taxes",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:07:taxes",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:07:to_retirement",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:07:to_unemployment",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:08:admin",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:08:taxes",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:09:admin",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:09:to_unemployment",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:09:total_exp",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:10:taxes",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:10:to_unemployment",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:11:admin",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:11:to_unemployment",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:12:taxes",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:12:to_unemployment",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:13:admin",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:13:taxes",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:13:to_retirement",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:13:to_unemployment",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:13:total_exp",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:14:to_retirement",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:15:to_retirement",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:15:to_unemployment",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:15:total_exp",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:16:to_retirement",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:16:to_unemployment",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:17:to_retirement",
+    "T.receipts_and_expenditures_under_railroad:1939-08_p043:17:total_exp"
+  ],
+  "strategies": {
+    "v1": [
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:01:to_unemployment",
+        "first": "-",
+        "reread": "-",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1180,
+          381,
+          1202,
+          407
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:01:total_exp",
+        "first": ".3",
+        "reread": "1 3/5",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1332,
+          381,
+          1366,
+          407
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:02:taxes",
+        "first": ".4",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          632,
+          413,
+          703,
+          420
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:02:to_retirement",
+        "first": "-",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          907,
+          413,
+          1033,
+          420
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:02:total_exp",
+        "first": "1.5",
+        "reread": "1.5",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1337,
+          413,
+          1361,
+          423
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:03:total_exp",
+        "first": "149.0",
+        "reread": "149.0",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1317,
+          432,
+          1361,
+          441
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:04:taxes",
+        "first": "109.3",
+        "reread": "109.3",
+        "failure": null,
+        "agree": true,
+        "box": [
+          645,
+          452,
+          688,
+          462
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:04:total_exp",
+        "first": "110.4",
+        "reread": "120.4",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1298,
+          446,
+          1364,
+          461
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:05:admin",
+        "first": ".2",
+        "reread": ".2",
+        "failure": null,
+        "agree": true,
+        "box": [
+          795,
+          494,
+          861,
+          507
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:05:taxes",
+        "first": ".4",
+        "reread": ".4",
+        "failure": null,
+        "agree": true,
+        "box": [
+          632,
+          494,
+          703,
+          507
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:05:to_retirement",
+        "first": "22.0",
+        "reread": "22.0",
+        "failure": null,
+        "agree": true,
+        "box": [
+          994,
+          499,
+          1029,
+          509
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:06:admin",
+        "first": ".2",
+        "reread": null,
+        "failure": "illegible to the re-read",
+        "agree": false,
+        "box": [
+          795,
+          513,
+          861,
+          528
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:06:taxes",
+        "first": "25.5",
+        "reread": "25.5",
+        "failure": null,
+        "agree": true,
+        "box": [
+          655,
+          520,
+          689,
+          530
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:07:taxes",
+        "first": "-",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          632,
+          532,
+          703,
+          544
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:07:to_retirement",
+        "first": "11.5",
+        "reread": "11.5",
+        "failure": null,
+        "agree": true,
+        "box": [
+          907,
+          532,
+          1033,
+          544
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:07:to_unemployment",
+        "first": "-",
+        "reread": "-",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1100,
+          532,
+          1218,
+          544
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:08:admin",
+        "first": ".2",
+        "reread": ".2",
+        "failure": null,
+        "agree": true,
+        "box": [
+          795,
+          571,
+          861,
+          583
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:08:taxes",
+        "first": ".8",
+        "reread": ".8",
+        "failure": null,
+        "agree": true,
+        "box": [
+          632,
+          571,
+          703,
+          583
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:09:admin",
+        "first": ".2",
+        "reread": ".2",
+        "failure": null,
+        "agree": true,
+        "box": [
+          795,
+          590,
+          861,
+          603
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:09:to_unemployment",
+        "first": "-",
+        "reread": "-",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1100,
+          590,
+          1218,
+          603
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:09:total_exp",
+        "first": "16.7",
+        "reread": "16.7",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1328,
+          594,
+          1362,
+          604
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:10:taxes",
+        "first": "-",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          632,
+          609,
+          703,
+          621
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:10:to_unemployment",
+        "first": "-",
+        "reread": "-",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1100,
+          609,
+          1218,
+          621
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:11:admin",
+        "first": ".3",
+        "reread": ".3",
+        "failure": null,
+        "agree": true,
+        "box": [
+          795,
+          647,
+          861,
+          659
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:11:to_unemployment",
+        "first": "-",
+        "reread": "-",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1100,
+          647,
+          1218,
+          659
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:12:taxes",
+        "first": "27.5",
+        "reread": "27.5",
+        "failure": null,
+        "agree": true,
+        "box": [
+          655,
+          672,
+          689,
+          682
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:12:to_unemployment",
+        "first": "-",
+        "reread": "-",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1100,
+          666,
+          1218,
+          679
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:13:admin",
+        "first": ".3",
+        "reread": ".3",
+        "failure": null,
+        "agree": true,
+        "box": [
+          795,
+          684,
+          861,
+          697
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:13:taxes",
+        "first": "-",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          632,
+          684,
+          703,
+          697
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:13:to_retirement",
+        "first": "18.0",
+        "reread": "15.0",
+        "failure": null,
+        "agree": false,
+        "box": [
+          907,
+          684,
+          1033,
+          697
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:13:to_unemployment",
+        "first": "-",
+        "reread": "-",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1100,
+          684,
+          1218,
+          697
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:13:total_exp",
+        "first": "18.3",
+        "reread": "18.3",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1329,
+          689,
+          1363,
+          699
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:14:to_retirement",
+        "first": "-",
+        "reread": ".1",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1011,
+          726,
+          1036,
+          752
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:15:to_retirement",
+        "first": ".1",
+        "reread": ".1",
+        "failure": null,
+        "agree": true,
+        "box": [
+          907,
+          743,
+          1033,
+          754
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:15:to_unemployment",
+        "first": "-",
+        "reread": "-",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1100,
+          743,
+          1218,
+          754
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:15:total_exp",
+        "first": ".4",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1298,
+          743,
+          1364,
+          754
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:16:to_retirement",
+        "first": "-",
+        "reread": "-",
+        "failure": null,
+        "agree": true,
+        "box": [
+          907,
+          763,
+          1033,
+          775
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:16:to_unemployment",
+        "first": "-",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1100,
+          763,
+          1218,
+          775
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:17:to_retirement",
+        "first": "21.9",
+        "reread": "21.9",
+        "failure": null,
+        "agree": true,
+        "box": [
+          996,
+          805,
+          1030,
+          815
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:17:total_exp",
+        "first": "37.4",
+        "reread": "51.4",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1329,
+          806,
+          1364,
+          814
+        ]
+      }
+    ],
+    "v2": [
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:01:to_unemployment",
+        "first": "-",
+        "reread": "-",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1180,
+          381,
+          1202,
+          407
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:01:total_exp",
+        "first": ".3",
+        "reread": "1 3/5",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1332,
+          381,
+          1366,
+          407
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:02:taxes",
+        "first": ".4",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          632,
+          413,
+          703,
+          420
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:02:to_retirement",
+        "first": "-",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          907,
+          413,
+          1033,
+          420
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:02:total_exp",
+        "first": "1.5",
+        "reread": "1.5",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1337,
+          413,
+          1361,
+          423
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:03:total_exp",
+        "first": "149.0",
+        "reread": "149.0",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1317,
+          432,
+          1361,
+          441
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:04:taxes",
+        "first": "109.3",
+        "reread": "150.1",
+        "failure": null,
+        "agree": false,
+        "box": [
+          643,
+          429,
+          690,
+          464
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:04:total_exp",
+        "first": "110.4",
+        "reread": "110,4",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1315,
+          445,
+          1364,
+          461
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:05:admin",
+        "first": ".2",
+        "reread": ".2",
+        "failure": null,
+        "agree": true,
+        "box": [
+          795,
+          494,
+          861,
+          507
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:05:taxes",
+        "first": ".4",
+        "reread": "25.5",
+        "failure": null,
+        "agree": false,
+        "box": [
+          653,
+          500,
+          692,
+          532
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:05:to_retirement",
+        "first": "22.0",
+        "reread": "9.5",
+        "failure": null,
+        "agree": false,
+        "box": [
+          992,
+          497,
+          1031,
+          532
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:06:admin",
+        "first": ".2",
+        "reread": null,
+        "failure": "illegible to the re-read",
+        "agree": false,
+        "box": [
+          795,
+          513,
+          861,
+          528
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:06:taxes",
+        "first": "25.5",
+        "reread": "25.5",
+        "failure": null,
+        "agree": true,
+        "box": [
+          655,
+          520,
+          689,
+          530
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:07:taxes",
+        "first": "-",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          632,
+          532,
+          703,
+          544
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:07:to_retirement",
+        "first": "11.5",
+        "reread": "11.5",
+        "failure": null,
+        "agree": true,
+        "box": [
+          907,
+          532,
+          1033,
+          544
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:07:to_unemployment",
+        "first": "-",
+        "reread": "-",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1100,
+          532,
+          1218,
+          544
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:08:admin",
+        "first": ".2",
+        "reread": ".2",
+        "failure": null,
+        "agree": true,
+        "box": [
+          795,
+          571,
+          861,
+          583
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:08:taxes",
+        "first": ".8",
+        "reread": "26.5",
+        "failure": null,
+        "agree": false,
+        "box": [
+          652,
+          592,
+          691,
+          606
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:09:admin",
+        "first": ".2",
+        "reread": ".2",
+        "failure": null,
+        "agree": true,
+        "box": [
+          795,
+          590,
+          861,
+          603
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:09:to_unemployment",
+        "first": "-",
+        "reread": "-",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1100,
+          590,
+          1218,
+          603
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:09:total_exp",
+        "first": "16.7",
+        "reread": "16.7",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1328,
+          594,
+          1362,
+          604
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:10:taxes",
+        "first": "-",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          632,
+          609,
+          703,
+          621
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:10:to_unemployment",
+        "first": "-",
+        "reread": "-",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1100,
+          609,
+          1218,
+          621
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:11:admin",
+        "first": ".3",
+        "reread": ".3",
+        "failure": null,
+        "agree": true,
+        "box": [
+          795,
+          647,
+          861,
+          659
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:11:to_unemployment",
+        "first": "-",
+        "reread": "-",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1100,
+          647,
+          1218,
+          659
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:12:taxes",
+        "first": "27.5",
+        "reread": "27.5",
+        "failure": null,
+        "agree": true,
+        "box": [
+          655,
+          672,
+          689,
+          682
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:12:to_unemployment",
+        "first": "-",
+        "reread": "-",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1100,
+          666,
+          1218,
+          679
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:13:admin",
+        "first": ".3",
+        "reread": ".3",
+        "failure": null,
+        "agree": true,
+        "box": [
+          795,
+          684,
+          861,
+          697
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:13:taxes",
+        "first": "-",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          632,
+          684,
+          703,
+          697
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:13:to_retirement",
+        "first": "18.0",
+        "reread": "15.0",
+        "failure": null,
+        "agree": false,
+        "box": [
+          907,
+          684,
+          1033,
+          697
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:13:to_unemployment",
+        "first": "-",
+        "reread": "-",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1100,
+          684,
+          1218,
+          697
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:13:total_exp",
+        "first": "18.3",
+        "reread": "18.3",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1329,
+          689,
+          1363,
+          699
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:14:to_retirement",
+        "first": "-",
+        "reread": ".1",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1017,
+          746,
+          1032,
+          758
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:15:to_retirement",
+        "first": ".1",
+        "reread": ".1",
+        "failure": null,
+        "agree": true,
+        "box": [
+          907,
+          743,
+          1033,
+          754
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:15:to_unemployment",
+        "first": "-",
+        "reread": "-",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1100,
+          743,
+          1218,
+          754
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:15:total_exp",
+        "first": ".4",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1298,
+          743,
+          1364,
+          754
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:16:to_retirement",
+        "first": "-",
+        "reread": "-",
+        "failure": null,
+        "agree": true,
+        "box": [
+          907,
+          763,
+          1033,
+          775
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:16:to_unemployment",
+        "first": "-",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1100,
+          763,
+          1218,
+          775
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:17:to_retirement",
+        "first": "21.9",
+        "reread": "21.9",
+        "failure": null,
+        "agree": true,
+        "box": [
+          994,
+          803,
+          1032,
+          817
+        ]
+      },
+      {
+        "field_id": "T.receipts_and_expenditures_under_railroad:1939-08_p043:17:total_exp",
+        "first": "37.4",
+        "reread": "37.4",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1327,
+          804,
+          1366,
+          816
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,1093 @@
+{
+  "host": "meta",
+  "ref": "1939-07_p075",
+  "family": "security_transactions_as_reported_by",
+  "cells": [
+    "T.security_transactions_as_reported_by:1939-07_p075:06:france",
+    "T.security_transactions_as_reported_by:1939-07_p075:06:italy",
+    "T.security_transactions_as_reported_by:1939-07_p075:07:total_europe",
+    "T.security_transactions_as_reported_by:1939-07_p075:08:far_east",
+    "T.security_transactions_as_reported_by:1939-07_p075:08:netherlands",
+    "T.security_transactions_as_reported_by:1939-07_p075:11:all_other",
+    "T.security_transactions_as_reported_by:1939-07_p075:13:netherlands",
+    "T.security_transactions_as_reported_by:1939-07_p075:14:united_kingdom",
+    "T.security_transactions_as_reported_by:1939-07_p075:18:canada",
+    "T.security_transactions_as_reported_by:1939-07_p075:18:far_east",
+    "T.security_transactions_as_reported_by:1939-07_p075:19:grand_total",
+    "T.security_transactions_as_reported_by:1939-07_p075:20:canada",
+    "T.security_transactions_as_reported_by:1939-07_p075:20:grand_total",
+    "T.security_transactions_as_reported_by:1939-07_p075:20:switzerland",
+    "T.security_transactions_as_reported_by:1939-07_p075:21:grand_total",
+    "T.security_transactions_as_reported_by:1939-07_p075:21:total_europe",
+    "T.security_transactions_as_reported_by:1939-07_p075:26:total_europe",
+    "T.security_transactions_as_reported_by:1939-07_p075:27:canada",
+    "T.security_transactions_as_reported_by:1939-07_p075:27:france",
+    "T.security_transactions_as_reported_by:1939-07_p075:27:latin_america",
+    "T.security_transactions_as_reported_by:1939-07_p075:28:total_europe",
+    "T.security_transactions_as_reported_by:1939-07_p075:30:germany",
+    "T.security_transactions_as_reported_by:1939-07_p075:30:other_europe",
+    "T.security_transactions_as_reported_by:1939-07_p075:34:switzerland",
+    "T.security_transactions_as_reported_by:1939-07_p075:35:france",
+    "T.security_transactions_as_reported_by:1939-07_p075:35:united_kingdom",
+    "T.security_transactions_as_reported_by:1939-07_p075:37:germany",
+    "T.security_transactions_as_reported_by:1939-07_p075:37:grand_total",
+    "T.security_transactions_as_reported_by:1939-07_p075:37:netherlands",
+    "T.security_transactions_as_reported_by:1939-07_p075:37:total_europe",
+    "T.security_transactions_as_reported_by:1939-07_p075:40:latin_america",
+    "T.security_transactions_as_reported_by:1939-07_p075:41:grand_total",
+    "T.security_transactions_as_reported_by:1939-07_p075:42:grand_total",
+    "T.security_transactions_as_reported_by:1939-07_p075:50:canada",
+    "T.security_transactions_as_reported_by:1939-07_p075:52:canada",
+    "T.security_transactions_as_reported_by:1939-07_p075:52:other_europe",
+    "T.security_transactions_as_reported_by:1939-07_p075:56:canada",
+    "T.security_transactions_as_reported_by:1939-07_p075:56:france",
+    "T.security_transactions_as_reported_by:1939-07_p075:56:germany",
+    "T.security_transactions_as_reported_by:1939-07_p075:58:other_europe"
+  ],
+  "strategies": {
+    "v1": [
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:06:france",
+        "first": "3,367",
+        "reread": "3,367",
+        "failure": null,
+        "agree": true,
+        "box": [
+          451,
+          429,
+          494,
+          439
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:06:italy",
+        "first": "32",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          641,
+          423,
+          659,
+          442
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:07:total_europe",
+        "first": "17,904",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          967,
+          442,
+          1039,
+          460
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:08:far_east",
+        "first": "1,164",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1236,
+          460,
+          1299,
+          479
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:08:netherlands",
+        "first": "2,022",
+        "reread": "2,022",
+        "failure": null,
+        "agree": true,
+        "box": [
+          700,
+          466,
+          743,
+          476
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:11:all_other",
+        "first": "337",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1331,
+          519,
+          1359,
+          536
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:13:netherlands",
+        "first": "2,989",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          698,
+          559,
+          745,
+          576
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:14:united_kingdom",
+        "first": "7,327",
+        "reread": "7,327",
+        "failure": null,
+        "agree": true,
+        "box": [
+          364,
+          582,
+          407,
+          594
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:18:canada",
+        "first": "4,199",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1062,
+          654,
+          1125,
+          670
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:18:far_east",
+        "first": "104",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1236,
+          654,
+          1299,
+          670
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:19:grand_total",
+        "first": "5,744",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1407,
+          672,
+          1465,
+          689
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:20:canada",
+        "first": "819",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1062,
+          693,
+          1125,
+          709
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:20:grand_total",
+        "first": "4,789",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1407,
+          692,
+          1465,
+          708
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:20:switzerland",
+        "first": "1,003",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          785,
+          693,
+          832,
+          709
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:21:grand_total",
+        "first": "4,812",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1407,
+          712,
+          1465,
+          727
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:21:total_europe",
+        "first": "3,502",
+        "reread": "3,502",
+        "failure": null,
+        "agree": true,
+        "box": [
+          967,
+          713,
+          1039,
+          728
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:26:total_europe",
+        "first": "18,236",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          967,
+          808,
+          1039,
+          825
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:27:canada",
+        "first": "3,343",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1062,
+          828,
+          1125,
+          847
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:27:france",
+        "first": "3,901",
+        "reread": "3,900",
+        "failure": null,
+        "agree": false,
+        "box": [
+          451,
+          833,
+          493,
+          843
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:27:latin_america",
+        "first": "960",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1151,
+          828,
+          1215,
+          847
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:28:total_europe",
+        "first": "13,825",
+        "reread": "8,662",
+        "failure": null,
+        "agree": false,
+        "box": [
+          967,
+          847,
+          1039,
+          866
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:30:germany",
+        "first": "45",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          557,
+          884,
+          582,
+          903
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:30:other_europe",
+        "first": "932",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          871,
+          884,
+          918,
+          903
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:34:switzerland",
+        "first": "1,168",
+        "reread": "1,168",
+        "failure": null,
+        "agree": true,
+        "box": [
+          787,
+          968,
+          830,
+          980
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:35:france",
+        "first": "1,647",
+        "reread": "1,647",
+        "failure": null,
+        "agree": true,
+        "box": [
+          450,
+          987,
+          493,
+          999
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:35:united_kingdom",
+        "first": "4,360",
+        "reread": "4,360",
+        "failure": null,
+        "agree": true,
+        "box": [
+          362,
+          987,
+          408,
+          999
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:37:germany",
+        "first": "42",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          557,
+          1020,
+          582,
+          1038
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:37:grand_total",
+        "first": "9,688",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1407,
+          1019,
+          1465,
+          1037
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:37:netherlands",
+        "first": "615",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          698,
+          1020,
+          745,
+          1038
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:37:total_europe",
+        "first": "6,614",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          967,
+          1020,
+          1039,
+          1038
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:40:latin_america",
+        "first": "150",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1151,
+          1080,
+          1215,
+          1097
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:41:grand_total",
+        "first": "3,410",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1407,
+          1100,
+          1465,
+          1115
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:42:grand_total",
+        "first": "2,520",
+        "reread": "2,520",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1407,
+          1119,
+          1465,
+          1135
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:50:canada",
+        "first": "1,864",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1062,
+          1274,
+          1125,
+          1288
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:52:canada",
+        "first": "1,020",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1062,
+          1313,
+          1125,
+          1328
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:52:other_europe",
+        "first": "5",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          871,
+          1313,
+          918,
+          1328
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:56:canada",
+        "first": "21",
+        "reread": "-",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1045,
+          1434,
+          1115,
+          1450
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:56:france",
+        "first": "-",
+        "reread": "-",
+        "failure": null,
+        "agree": true,
+        "box": [
+          432,
+          1434,
+          497,
+          1450
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:56:germany",
+        "first": "-",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          512,
+          1434,
+          570,
+          1450
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:58:other_europe",
+        "first": "-",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          871,
+          1430,
+          918,
+          1441
+        ]
+      }
+    ],
+    "v2": [
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:06:france",
+        "first": "3,367",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          449,
+          427,
+          496,
+          441
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:06:italy",
+        "first": "32",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          641,
+          423,
+          659,
+          442
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:07:total_europe",
+        "first": "17,904",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          967,
+          442,
+          1039,
+          460
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:08:far_east",
+        "first": "1,164",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1236,
+          460,
+          1299,
+          479
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:08:netherlands",
+        "first": "2,022",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          698,
+          464,
+          745,
+          478
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:11:all_other",
+        "first": "337",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1331,
+          519,
+          1359,
+          536
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:13:netherlands",
+        "first": "2,989",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          698,
+          559,
+          745,
+          576
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:14:united_kingdom",
+        "first": "7,327",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          362,
+          580,
+          409,
+          596
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:18:canada",
+        "first": "4,199",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1062,
+          654,
+          1125,
+          670
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:18:far_east",
+        "first": "104",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1236,
+          654,
+          1299,
+          670
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:19:grand_total",
+        "first": "5,744",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1407,
+          672,
+          1465,
+          689
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:20:canada",
+        "first": "819",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1062,
+          693,
+          1125,
+          709
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:20:grand_total",
+        "first": "4,789",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1407,
+          692,
+          1465,
+          708
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:20:switzerland",
+        "first": "1,003",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          797,
+          696,
+          831,
+          709
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:21:grand_total",
+        "first": "4,812",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1407,
+          712,
+          1465,
+          727
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:21:total_europe",
+        "first": "3,502",
+        "reread": "3,502",
+        "failure": null,
+        "agree": true,
+        "box": [
+          967,
+          713,
+          1039,
+          728
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:26:total_europe",
+        "first": "18,236",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          967,
+          808,
+          1039,
+          825
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:27:canada",
+        "first": "3,343",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1062,
+          828,
+          1125,
+          847
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:27:france",
+        "first": "3,901",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          449,
+          831,
+          495,
+          845
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:27:latin_america",
+        "first": "960",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1151,
+          828,
+          1215,
+          847
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:28:total_europe",
+        "first": "13,825",
+        "reread": "8,662",
+        "failure": null,
+        "agree": false,
+        "box": [
+          967,
+          847,
+          1039,
+          866
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:30:germany",
+        "first": "45",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          562,
+          892,
+          583,
+          902
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:30:other_europe",
+        "first": "932",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          887,
+          885,
+          920,
+          906
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:34:switzerland",
+        "first": "1,168",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          785,
+          966,
+          832,
+          982
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:35:france",
+        "first": "1,647",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          448,
+          985,
+          495,
+          1001
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:35:united_kingdom",
+        "first": "4,360",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          360,
+          985,
+          410,
+          1001
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:37:germany",
+        "first": "42",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          505,
+          1021,
+          584,
+          1045
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:37:grand_total",
+        "first": "9,688",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1407,
+          1019,
+          1465,
+          1037
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:37:netherlands",
+        "first": "615",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          715,
+          1021,
+          748,
+          1042
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:37:total_europe",
+        "first": "6,614",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          967,
+          1020,
+          1039,
+          1038
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:40:latin_america",
+        "first": "150",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1151,
+          1080,
+          1215,
+          1097
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:41:grand_total",
+        "first": "3,410",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1407,
+          1100,
+          1465,
+          1115
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:42:grand_total",
+        "first": "2,520",
+        "reread": "2,520",
+        "failure": null,
+        "agree": true,
+        "box": [
+          1407,
+          1119,
+          1465,
+          1135
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:50:canada",
+        "first": "1,864",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1062,
+          1274,
+          1125,
+          1288
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:52:canada",
+        "first": "1,020",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          1062,
+          1313,
+          1125,
+          1328
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:52:other_europe",
+        "first": "5",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          871,
+          1313,
+          918,
+          1328
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:56:canada",
+        "first": "21",
+        "reread": "-",
+        "failure": null,
+        "agree": false,
+        "box": [
+          1045,
+          1434,
+          1115,
+          1450
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:56:france",
+        "first": "-",
+        "reread": "-",
+        "failure": null,
+        "agree": true,
+        "box": [
+          432,
+          1434,
+          497,
+          1450
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:56:germany",
+        "first": "-",
+        "reread": "",
+        "failure": null,
+        "agree": false,
+        "box": [
+          512,
+          1434,
+          570,
+          1450
+        ]
+      },
+      {
+        "field_id": "T.security_transactions_as_reported_by:1939-07_p075:58:other_europe",
+        "first": "-",
+        "reread": null,
+        "failure": "the re-read failed: APIConnectionError: Connection error.",
+        "agree": false,
+        "box": [
+          871,
+          1430,
+          918,
+          1441
+        ]
+      }
+    ]
+  }
+}
