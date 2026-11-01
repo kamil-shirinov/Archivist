@@ -9,7 +9,7 @@ Turns scanned financial archives into a verified database: every value cited to 
 - Assets only with clear rights: OFL/Apache fonts with their licence files, procedural textures, invented names.
 - Every model call goes through archivist.models (registry → cache → budget → backend). No HTTP calls anywhere else.
 - archivist.pipeline must never import archivist.synth (keeps ground truth out of predictions).
-- The pipeline reads only data/<split>/images/; only archivist.eval may read data/<split>/gt/.
+- The pipeline reads only data/<split>/images/; only archivist.eval may read data/<split>/gt/, apart from the exporter's `--truth` option (archivist.export.bundle), which reads it for the demo's truth.json and nothing else (see Export).
 - The UI never calls a model; it only renders exported run bundles.
 - Tests never touch the network. One task per session; never edit files the task doesn't name.
 - Finish every task by committing ("Pn: …") and pushing, only after its Check passes and pre-commit is clean. Never use --no-verify, never force-push, never rewrite history.
@@ -18,6 +18,7 @@ Turns scanned financial archives into a verified database: every value cited to 
 - Nothing runs on data/real's held-out issues except PREREGISTRATION_REAL.md's runs, by archivist.templates.real_test on the code tagged run-real-treasury. PREREGISTRATION_REAL.md may only change in its Deviations section.
 
 ## Layout
+src/archivist/__init__.py — P44: `main()`, the `archivist` console script (`uv run archivist`): prints the main commands (verify, live reading, replay and the two exports) in plain English. COMMANDS holds them, and tests/test_cli.py checks that each names a module that exists. The package imports nothing of its own, since every other module imports it
 src/archivist/schema.py — data contracts, including PageExtraction and the verdict models
 src/archivist/verify.py — P42: every check that needs no key, no model cache and no scans, in one command (`uv run python -m archivist.verify`). It regenerates results/test_report.json and results/TEST_RESULTS.md in a scratch folder and compares them byte for byte, checks docs/img's charts against the report (docs/make_charts.py --check), and rebuilds each committed export from its run (the bundle and its entry in data/bundles/index.json, the CSVs byte for byte, the SQLite file by its tables and rows, since its bytes depend on the SQLite version). The Treasury development bundle needs uncommitted scans: it is checked as far as it can be and its rebuild is reported as skipped, never as passed. Ends with a plain-English summary; exit status 0 only when nothing failed. Calls no model and writes nothing to the repository; CI runs it
 src/archivist/synth/ — world.py, render.py, degrade.py, build.py
@@ -55,6 +56,7 @@ results/modern/survey.md — P24's survey of three candidate sources for 1980 to
 
 ## Run
 uv run pytest -q
+uv run archivist  # P44: the main commands, in plain English (verify, live reading, replay, export)
 uv run python -m archivist.replay  # after any change to code the committed runs depend on; spends nothing, a cache miss aborts. It needs the uncommitted cache/, so in a clean clone it stops there (pytest still passes)
 uv run python -m archivist.verify  # P42: the published numbers, charts and exports rebuilt from what is committed and compared; no key, cache or scans needed; CI runs it
 uv run python docs/make_charts.py [--check]  # redraws the README's charts from results/test_report.json; --check fails if a committed chart differs
@@ -151,3 +153,4 @@ cd <worktree of run-real-treasury, after uv sync --frozen> && PYTHONPATH=<this c
 - [x] P39 tests that pass in a clean clone (those that need the gitignored scans skip with their reason; replay still needs cache/); arm C in the condition chart
 - [x] P42 archivist.verify, CI (.github/workflows/ci.yml: tests with a browser, then verify), the LICENSE (all rights reserved, for review), and the README's "What we learned about Meta's models"
 - [x] P43 the README and docs complete and judge-ready: the logo (assets/brand/), What you get with two screenshots, Code tour, and the fixes an audit of the code against every Markdown file found; this file's Layout, Run, Export and Status brought up to date; AGENTS.md's branch rule (start from main, a short-lived branch, fast-forward main, delete the branch). No code, config, record or result changed
+- [x] P44 the loose ends from P43's audit: pyproject.toml's description; the `archivist` command lists the main commands, with tests/test_cli.py; the hard rule about reading gt/ names the exporter's `--truth`; a DATA_SOURCES.md row for the logo files; D46 to D57 record, each from a committed source, the decisions the code already relied on (Muse Glimmer on Modal and its cap, the title check, the real-pages test's design, the Treasury Bulletin's rights basis, the Treasury and Comptroller family-choice rules, the all-blank rule and blank_means, review answers in the browser, the licence, CI, verify's SQLite comparison, Baseten over Fireworks superseding D42, the stopped Spark Open fine-tune). The GitHub About description and topics are set by hand: the session's proxy refuses repository-settings writes (HTTP 403). No code other than the command, no record or result changed
