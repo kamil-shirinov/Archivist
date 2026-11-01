@@ -278,32 +278,38 @@ def chart_hosted_vs_open(rep: dict) -> str:
 
 
 def chart_review_by_condition(rep: dict) -> str:
-    a = rep["configurations"]["A"]["by_severity"]
-    b = rep["configurations"]["B"]["by_severity"]
+    cfg = rep["configurations"]
+    arms = [
+        ("Muse Spark 1.3 (arm A)", "solid", cfg["A"]["by_severity"]),
+        ("Muse Spark Open (arm B)", "hatch", cfg["B"]["by_severity"]),
+        ("Mixed: Muse Spark 1.3 first, Muse Spark Open second (arm C)", "dots", cfg["C"]["by_severity"]),
+    ]
     names = {str(i): c for i, c in enumerate(conditions())}
-    h = 398
+    h = 548
     desc = "; ".join(
-        f"{names[s]}: Muse Spark 1.3 {pct(a[s]['review_rate']):.1f}% ({a[s]['n_review']} of {a[s]['n_fields']:,}), "
-        f"Muse Spark Open {pct(b[s]['review_rate']):.1f}% ({b[s]['n_review']} of {b[s]['n_fields']:,})"
+        f"{names[s]}: " + ", ".join(
+            f"{label.split(' (')[0]} {pct(a[s]['review_rate']):.1f}% ({a[s]['n_review']} of {a[s]['n_fields']:,})"
+            for label, _, a in arms)
         for s in names)
     svg = Svg(h, "Share of values sent to a person, by condition of the scan",
-              "Grouped bar chart on the pre-registered synthetic test. " + desc + ".")
+              "Grouped bar chart on the pre-registered synthetic test, three set-ups: Muse Spark 1.3 for both reads (arm A), "
+              "Muse Spark Open for both reads (arm B) and the mixed set-up (arm C). " + desc + ".")
     svg.text(24, 34, "Share of values sent to a person, by condition of the scan", "t", 16, weight="600")
-    svg.text(24, 54, "How worn the page was made, from clean to heavy wear. Same pages for both models.", "m", 12)
-    legend(svg, 24, 80, "teal", [("Muse Spark 1.3 (arm A)", "solid"), ("Muse Spark Open (arm B)", "hatch")])
-    x0, x1, y_top, y_bot = 190, 500, 100, 330
+    svg.text(24, 54, "How worn the page was made, from clean to heavy wear. Same pages for all three set-ups.", "m", 12)
+    legend(svg, 24, 80, "teal", [(label, style) for label, style, _ in arms], vertical=True)
+    x0, x1, y_top, y_bot = 190, 500, 148, 480
     k = axis(svg, x0, x1, y_top, y_bot, 50, 10, lambda v: f"{v:g}%", y_bot + 18)
     for g, s in enumerate(names):
-        gy = y_top + 14 + g * 56
-        svg.text(x0 - 14, gy + 24, names[s], "t", 12, "end", "600")
-        for i, (arm, hatched) in enumerate(((a, False), (b, True))):
+        gy = y_top + 14 + g * 80
+        svg.text(x0 - 14, gy + 31, names[s], "t", 12, "end", "600")
+        for i, (_, style, arm) in enumerate(arms):
             r = arm[s]
             yb = gy + i * 22
             v = pct(r["review_rate"])
-            svg.bar(x0, yb, v * k, 18, "teal", hatched)
+            svg.bar(x0, yb, v * k, 18, "teal", style)
             svg.text(x0 + v * k + 8, yb + 13, f"{v:.1f}%", "t", 12, weight="600")
             svg.text(560, yb + 13, f"{r['n_review']} of {r['n_fields']:,}", "m", 11)
-    svg.text(24, h - 28, "Source: results/test_report.json, by_severity of arms A and B. Condition names are the review app's "
+    svg.text(24, h - 28, "Source: results/test_report.json, by_severity of arms A, B and C. Condition names are the review app's "
              "(ui/js/store.js).", "m", 11)
     svg.text(24, h - 12, "The report gives no interval for each condition.", "m", 11)
     return svg.render()

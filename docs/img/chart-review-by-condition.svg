@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 398" width="720" height="398" role="img" aria-labelledby="title desc">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 548" width="720" height="548" role="img" aria-labelledby="title desc">
   <title id="title">Share of values sent to a person, by condition of the scan</title>
-  <desc id="desc">Grouped bar chart on the pre-registered synthetic test. Clean: Muse Spark 1.3 10.4% (130 of 1,248), Muse Spark Open 12.1% (151 of 1,248); Light wear: Muse Spark 1.3 6.9% (74 of 1,065), Muse Spark Open 12.6% (134 of 1,065); Moderate wear: Muse Spark 1.3 23.6% (168 of 713), Muse Spark Open 22.7% (162 of 713); Heavy wear: Muse Spark 1.3 44.2% (549 of 1,241), Muse Spark Open 41.1% (510 of 1,241).</desc>
+  <desc id="desc">Grouped bar chart on the pre-registered synthetic test, three set-ups: Muse Spark 1.3 for both reads (arm A), Muse Spark Open for both reads (arm B) and the mixed set-up (arm C). Clean: Muse Spark 1.3 10.4% (130 of 1,248), Muse Spark Open 12.1% (151 of 1,248), Mixed: Muse Spark 1.3 first, Muse Spark Open second 14.2% (177 of 1,248); Light wear: Muse Spark 1.3 6.9% (74 of 1,065), Muse Spark Open 12.6% (134 of 1,065), Mixed: Muse Spark 1.3 first, Muse Spark Open second 9.5% (101 of 1,065); Moderate wear: Muse Spark 1.3 23.6% (168 of 713), Muse Spark Open 22.7% (162 of 713), Mixed: Muse Spark 1.3 first, Muse Spark Open second 27.8% (198 of 713); Heavy wear: Muse Spark 1.3 44.2% (549 of 1,241), Muse Spark Open 41.1% (510 of 1,241), Mixed: Muse Spark 1.3 first, Muse Spark Open second 44.4% (551 of 1,241).</desc>
   <style>
   text { font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
   .card { fill: #ffffff; stroke: #d0d7de; }
@@ -50,53 +50,67 @@
       <circle cx="3" cy="3" r="1.7" class="teal"/>
     </pattern>
   </defs>
-  <rect x="0.5" y="0.5" width="719" height="397" rx="8" class="card"/>
+  <rect x="0.5" y="0.5" width="719" height="547" rx="8" class="card"/>
   <text x="24" y="34" class="t" font-size="16" font-weight="600" text-anchor="start">Share of values sent to a person, by condition of the scan</text>
-  <text x="24" y="54" class="m" font-size="12" font-weight="400" text-anchor="start">How worn the page was made, from clean to heavy wear. Same pages for both models.</text>
+  <text x="24" y="54" class="m" font-size="12" font-weight="400" text-anchor="start">How worn the page was made, from clean to heavy wear. Same pages for all three set-ups.</text>
   <path d="M24 70H42A4 4 0 0 1 46 74V78A4 4 0 0 1 42 82H24Z" class="teal"/>
   <text x="54" y="80" class="t" font-size="12" font-weight="400" text-anchor="start">Muse Spark 1.3 (arm A)</text>
-  <path d="M234.4 70H252.4A4 4 0 0 1 256.4 74V78A4 4 0 0 1 252.4 82H234.4Z" fill="url(#hatch-teal)" class="tstroke"/>
-  <text x="264.4" y="80" class="t" font-size="12" font-weight="400" text-anchor="start">Muse Spark Open (arm B)</text>
-  <line x1="190" y1="100" x2="190" y2="330" class="axis"/>
-  <text x="190" y="348" class="m" font-size="11" font-weight="400" text-anchor="middle">0%</text>
-  <line x1="252" y1="100" x2="252" y2="330" class="grid"/>
-  <text x="252" y="348" class="m" font-size="11" font-weight="400" text-anchor="middle">10%</text>
-  <line x1="314" y1="100" x2="314" y2="330" class="grid"/>
-  <text x="314" y="348" class="m" font-size="11" font-weight="400" text-anchor="middle">20%</text>
-  <line x1="376" y1="100" x2="376" y2="330" class="grid"/>
-  <text x="376" y="348" class="m" font-size="11" font-weight="400" text-anchor="middle">30%</text>
-  <line x1="438" y1="100" x2="438" y2="330" class="grid"/>
-  <text x="438" y="348" class="m" font-size="11" font-weight="400" text-anchor="middle">40%</text>
-  <line x1="500" y1="100" x2="500" y2="330" class="grid"/>
-  <text x="500" y="348" class="m" font-size="11" font-weight="400" text-anchor="middle">50%</text>
-  <text x="176" y="138" class="t" font-size="12" font-weight="600" text-anchor="end">Clean</text>
-  <path d="M190 114H250.6A4 4 0 0 1 254.6 118V128A4 4 0 0 1 250.6 132H190Z" class="teal"/>
-  <text x="262.6" y="127" class="t" font-size="12" font-weight="600" text-anchor="start">10.4%</text>
-  <text x="560" y="127" class="m" font-size="11" font-weight="400" text-anchor="start">130 of 1,248</text>
-  <path d="M190 136H261A4 4 0 0 1 265 140V150A4 4 0 0 1 261 154H190Z" fill="url(#hatch-teal)" class="tstroke"/>
-  <text x="273" y="149" class="t" font-size="12" font-weight="600" text-anchor="start">12.1%</text>
-  <text x="560" y="149" class="m" font-size="11" font-weight="400" text-anchor="start">151 of 1,248</text>
-  <text x="176" y="194" class="t" font-size="12" font-weight="600" text-anchor="end">Light wear</text>
-  <path d="M190 170H229.1A4 4 0 0 1 233.1 174V184A4 4 0 0 1 229.1 188H190Z" class="teal"/>
-  <text x="241.1" y="183" class="t" font-size="12" font-weight="600" text-anchor="start">6.9%</text>
-  <text x="560" y="183" class="m" font-size="11" font-weight="400" text-anchor="start">74 of 1,065</text>
-  <path d="M190 192H264A4 4 0 0 1 268 196V206A4 4 0 0 1 264 210H190Z" fill="url(#hatch-teal)" class="tstroke"/>
-  <text x="276" y="205" class="t" font-size="12" font-weight="600" text-anchor="start">12.6%</text>
-  <text x="560" y="205" class="m" font-size="11" font-weight="400" text-anchor="start">134 of 1,065</text>
-  <text x="176" y="250" class="t" font-size="12" font-weight="600" text-anchor="end">Moderate wear</text>
-  <path d="M190 226H332.1A4 4 0 0 1 336.1 230V240A4 4 0 0 1 332.1 244H190Z" class="teal"/>
-  <text x="344.1" y="239" class="t" font-size="12" font-weight="600" text-anchor="start">23.6%</text>
-  <text x="560" y="239" class="m" font-size="11" font-weight="400" text-anchor="start">168 of 713</text>
-  <path d="M190 248H326.9A4 4 0 0 1 330.9 252V262A4 4 0 0 1 326.9 266H190Z" fill="url(#hatch-teal)" class="tstroke"/>
-  <text x="338.9" y="261" class="t" font-size="12" font-weight="600" text-anchor="start">22.7%</text>
-  <text x="560" y="261" class="m" font-size="11" font-weight="400" text-anchor="start">162 of 713</text>
-  <text x="176" y="306" class="t" font-size="12" font-weight="600" text-anchor="end">Heavy wear</text>
-  <path d="M190 282H460.3A4 4 0 0 1 464.3 286V296A4 4 0 0 1 460.3 300H190Z" class="teal"/>
-  <text x="472.3" y="295" class="t" font-size="12" font-weight="600" text-anchor="start">44.2%</text>
-  <text x="560" y="295" class="m" font-size="11" font-weight="400" text-anchor="start">549 of 1,241</text>
-  <path d="M190 304H440.8A4 4 0 0 1 444.8 308V318A4 4 0 0 1 440.8 322H190Z" fill="url(#hatch-teal)" class="tstroke"/>
-  <text x="452.8" y="317" class="t" font-size="12" font-weight="600" text-anchor="start">41.1%</text>
-  <text x="560" y="317" class="m" font-size="11" font-weight="400" text-anchor="start">510 of 1,241</text>
-  <text x="24" y="370" class="m" font-size="11" font-weight="400" text-anchor="start">Source: results/test_report.json, by_severity of arms A and B. Condition names are the review app&#x27;s (ui/js/store.js).</text>
-  <text x="24" y="386" class="m" font-size="11" font-weight="400" text-anchor="start">The report gives no interval for each condition.</text>
+  <path d="M24 90H42A4 4 0 0 1 46 94V98A4 4 0 0 1 42 102H24Z" fill="url(#hatch-teal)" class="tstroke"/>
+  <text x="54" y="100" class="t" font-size="12" font-weight="400" text-anchor="start">Muse Spark Open (arm B)</text>
+  <path d="M24 110H42A4 4 0 0 1 46 114V118A4 4 0 0 1 42 122H24Z" fill="url(#dots-teal)" class="tstroke"/>
+  <text x="54" y="120" class="t" font-size="12" font-weight="400" text-anchor="start">Mixed: Muse Spark 1.3 first, Muse Spark Open second (arm C)</text>
+  <line x1="190" y1="148" x2="190" y2="480" class="axis"/>
+  <text x="190" y="498" class="m" font-size="11" font-weight="400" text-anchor="middle">0%</text>
+  <line x1="252" y1="148" x2="252" y2="480" class="grid"/>
+  <text x="252" y="498" class="m" font-size="11" font-weight="400" text-anchor="middle">10%</text>
+  <line x1="314" y1="148" x2="314" y2="480" class="grid"/>
+  <text x="314" y="498" class="m" font-size="11" font-weight="400" text-anchor="middle">20%</text>
+  <line x1="376" y1="148" x2="376" y2="480" class="grid"/>
+  <text x="376" y="498" class="m" font-size="11" font-weight="400" text-anchor="middle">30%</text>
+  <line x1="438" y1="148" x2="438" y2="480" class="grid"/>
+  <text x="438" y="498" class="m" font-size="11" font-weight="400" text-anchor="middle">40%</text>
+  <line x1="500" y1="148" x2="500" y2="480" class="grid"/>
+  <text x="500" y="498" class="m" font-size="11" font-weight="400" text-anchor="middle">50%</text>
+  <text x="176" y="193" class="t" font-size="12" font-weight="600" text-anchor="end">Clean</text>
+  <path d="M190 162H250.6A4 4 0 0 1 254.6 166V176A4 4 0 0 1 250.6 180H190Z" class="teal"/>
+  <text x="262.6" y="175" class="t" font-size="12" font-weight="600" text-anchor="start">10.4%</text>
+  <text x="560" y="175" class="m" font-size="11" font-weight="400" text-anchor="start">130 of 1,248</text>
+  <path d="M190 184H261A4 4 0 0 1 265 188V198A4 4 0 0 1 261 202H190Z" fill="url(#hatch-teal)" class="tstroke"/>
+  <text x="273" y="197" class="t" font-size="12" font-weight="600" text-anchor="start">12.1%</text>
+  <text x="560" y="197" class="m" font-size="11" font-weight="400" text-anchor="start">151 of 1,248</text>
+  <path d="M190 206H273.9A4 4 0 0 1 277.9 210V220A4 4 0 0 1 273.9 224H190Z" fill="url(#dots-teal)" class="tstroke"/>
+  <text x="285.9" y="219" class="t" font-size="12" font-weight="600" text-anchor="start">14.2%</text>
+  <text x="560" y="219" class="m" font-size="11" font-weight="400" text-anchor="start">177 of 1,248</text>
+  <text x="176" y="273" class="t" font-size="12" font-weight="600" text-anchor="end">Light wear</text>
+  <path d="M190 242H229.1A4 4 0 0 1 233.1 246V256A4 4 0 0 1 229.1 260H190Z" class="teal"/>
+  <text x="241.1" y="255" class="t" font-size="12" font-weight="600" text-anchor="start">6.9%</text>
+  <text x="560" y="255" class="m" font-size="11" font-weight="400" text-anchor="start">74 of 1,065</text>
+  <path d="M190 264H264A4 4 0 0 1 268 268V278A4 4 0 0 1 264 282H190Z" fill="url(#hatch-teal)" class="tstroke"/>
+  <text x="276" y="277" class="t" font-size="12" font-weight="600" text-anchor="start">12.6%</text>
+  <text x="560" y="277" class="m" font-size="11" font-weight="400" text-anchor="start">134 of 1,065</text>
+  <path d="M190 286H244.8A4 4 0 0 1 248.8 290V300A4 4 0 0 1 244.8 304H190Z" fill="url(#dots-teal)" class="tstroke"/>
+  <text x="256.8" y="299" class="t" font-size="12" font-weight="600" text-anchor="start">9.5%</text>
+  <text x="560" y="299" class="m" font-size="11" font-weight="400" text-anchor="start">101 of 1,065</text>
+  <text x="176" y="353" class="t" font-size="12" font-weight="600" text-anchor="end">Moderate wear</text>
+  <path d="M190 322H332.1A4 4 0 0 1 336.1 326V336A4 4 0 0 1 332.1 340H190Z" class="teal"/>
+  <text x="344.1" y="335" class="t" font-size="12" font-weight="600" text-anchor="start">23.6%</text>
+  <text x="560" y="335" class="m" font-size="11" font-weight="400" text-anchor="start">168 of 713</text>
+  <path d="M190 344H326.9A4 4 0 0 1 330.9 348V358A4 4 0 0 1 326.9 362H190Z" fill="url(#hatch-teal)" class="tstroke"/>
+  <text x="338.9" y="357" class="t" font-size="12" font-weight="600" text-anchor="start">22.7%</text>
+  <text x="560" y="357" class="m" font-size="11" font-weight="400" text-anchor="start">162 of 713</text>
+  <path d="M190 366H358.2A4 4 0 0 1 362.2 370V380A4 4 0 0 1 358.2 384H190Z" fill="url(#dots-teal)" class="tstroke"/>
+  <text x="370.2" y="379" class="t" font-size="12" font-weight="600" text-anchor="start">27.8%</text>
+  <text x="560" y="379" class="m" font-size="11" font-weight="400" text-anchor="start">198 of 713</text>
+  <text x="176" y="433" class="t" font-size="12" font-weight="600" text-anchor="end">Heavy wear</text>
+  <path d="M190 402H460.3A4 4 0 0 1 464.3 406V416A4 4 0 0 1 460.3 420H190Z" class="teal"/>
+  <text x="472.3" y="415" class="t" font-size="12" font-weight="600" text-anchor="start">44.2%</text>
+  <text x="560" y="415" class="m" font-size="11" font-weight="400" text-anchor="start">549 of 1,241</text>
+  <path d="M190 424H440.8A4 4 0 0 1 444.8 428V438A4 4 0 0 1 440.8 442H190Z" fill="url(#hatch-teal)" class="tstroke"/>
+  <text x="452.8" y="437" class="t" font-size="12" font-weight="600" text-anchor="start">41.1%</text>
+  <text x="560" y="437" class="m" font-size="11" font-weight="400" text-anchor="start">510 of 1,241</text>
+  <path d="M190 446H461.3A4 4 0 0 1 465.3 450V460A4 4 0 0 1 461.3 464H190Z" fill="url(#dots-teal)" class="tstroke"/>
+  <text x="473.3" y="459" class="t" font-size="12" font-weight="600" text-anchor="start">44.4%</text>
+  <text x="560" y="459" class="m" font-size="11" font-weight="400" text-anchor="start">551 of 1,241</text>
+  <text x="24" y="520" class="m" font-size="11" font-weight="400" text-anchor="start">Source: results/test_report.json, by_severity of arms A, B and C. Condition names are the review app&#x27;s (ui/js/store.js).</text>
+  <text x="24" y="536" class="m" font-size="11" font-weight="400" text-anchor="start">The report gives no interval for each condition.</text>
 </svg>

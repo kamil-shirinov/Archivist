@@ -68,7 +68,7 @@ The 157-page synthetic test targets and measured results:
 
 <img src="docs/img/chart-hosted-vs-open.svg" alt="Three bar charts comparing Muse Spark 1.3, Muse Spark Open and the mixed set-up on the same test: wrong values per 1,000 accepted, share of wrong values caught, and share of values sent to a person." width="100%">
 
-<img src="docs/img/chart-review-by-condition.svg" alt="Grouped bar chart: share of values sent to a person for each scan condition, clean, light wear, moderate wear and heavy wear, for Muse Spark 1.3 and Muse Spark Open." width="100%">
+<img src="docs/img/chart-review-by-condition.svg" alt="Grouped bar chart: share of values sent to a person for each scan condition, clean, light wear, moderate wear and heavy wear, for three set-ups: Muse Spark 1.3 for both reads, Muse Spark Open for both reads, and the mixed set-up (Muse Spark 1.3 first, Muse Spark Open second)." width="100%">
 
 A [script](docs/make_charts.py) draws the charts from the test report and fails if they drift.
 
