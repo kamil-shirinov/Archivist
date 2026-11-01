@@ -1,0 +1,4757 @@
+{
+  "seed": 4005,
+  "sample_pages": 791,
+  "frame_source_sha256": {
+    "sweep.json": "088e21a739699e0c4e9f6a55fd3499a4aed82733deb4b27707f8473235cde35b",
+    "sweep.jsonl": "21629a45a5e971169c7057b520ae08394e6827b8f4df2d6eb5c0b7dbd48e14ec",
+    "titles.jsonl": "5f616e260596c6e802f330723813594cd3902fe55039e093fa6aa5038cc84f0e"
+  },
+  "pages": [
+    {
+      "page": "1940-01_p003",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-01_p017",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-01_p026",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-01_p032",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-01_p039",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-01_p044",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-01_p051",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-01_p053",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-01_p054",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-01_p058",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-01_p061",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-01_p066",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-01_p073",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-01_p075",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-02_p001",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-02_p008",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-02_p023",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-02_p026",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-02_p027",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-02_p028",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-02_p045",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-02_p050",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-02_p055",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-02_p057",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-02_p058",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-02_p062",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-02_p063",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-02_p072",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-02_p076",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-03_p001",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-03_p006",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-03_p011",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-03_p022",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-03_p024",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-03_p025",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-03_p042",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-03_p043",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-03_p044",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-03_p053",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-03_p055",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-03_p056",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-03_p060",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-03_p069",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-03_p070",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-03_p074",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-04_p009",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-04_p018",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-04_p022",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-04_p024",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-04_p029",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-04_p032",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-04_p038",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-04_p050",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-04_p051",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-04_p055",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-04_p056",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-04_p059",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-04_p060",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-04_p061",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-04_p065",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-05_p009",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-05_p030",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-05_p031",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-05_p042",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-05_p050",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-05_p051",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-05_p053",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-05_p057",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-05_p058",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-05_p059",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-05_p061",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-05_p062",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-05_p063",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-05_p064",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-05_p067",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-05_p070",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-05_p073",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-05_p077",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-06_p006",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-06_p012",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-06_p014",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-06_p023",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-06_p029",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-06_p035",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-06_p038",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-06_p043",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-06_p059",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-06_p060",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-06_p061",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-06_p062",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-06_p063",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-06_p064",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-06_p065",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-06_p069",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-06_p070",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-06_p074",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-06_p076",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-06_p082",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-07_p007",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-07_p016",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-07_p026",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-07_p031",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-07_p035",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-07_p045",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-07_p054",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-07_p057",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-07_p058",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-07_p061",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-07_p062",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-07_p063",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-07_p067",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-07_p069",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-07_p073",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-07_p076",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-08_p008",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-08_p015",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-08_p024",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-08_p027",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-08_p029",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-08_p045",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-08_p048",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-08_p053",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-08_p054",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-08_p057",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-08_p058",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-08_p059",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-08_p063",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-08_p065",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-08_p066",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-08_p067",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-08_p075",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-09_p024",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-09_p028",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-09_p038",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-09_p043",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-09_p048",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-09_p051",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-09_p053",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-09_p054",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-09_p057",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-09_p058",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-09_p059",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-09_p063",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-09_p065",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-10_p004",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-10_p006",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-10_p009",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-10_p010",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-10_p011",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-10_p023",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-10_p024",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-10_p034",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-10_p037",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-10_p038",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-10_p041",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-10_p044",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-10_p059",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-10_p060",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-10_p061",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-10_p062",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-10_p063",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-10_p065",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-10_p067",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-10_p086",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-10_p088",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-11_p003",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-11_p013",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-11_p022",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-11_p023",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-11_p025",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-11_p029",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-11_p037",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-11_p039",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-11_p042",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-11_p046",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-11_p047",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-11_p050",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-11_p051",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-11_p052",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-11_p054",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-11_p055",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-11_p056",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-11_p058",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-11_p060",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-11_p061",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-11_p067",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-11_p072",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-11_p078",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-12_p001",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-12_p011",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-12_p024",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-12_p026",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-12_p036",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-12_p044",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-12_p049",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-12_p050",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-12_p053",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-12_p054",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-12_p055",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-12_p056",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-12_p059",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1940-12_p065",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-12_p067",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-12_p069",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-12_p071",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1940-12_p072",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-01_p005",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-01_p008",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-01_p022",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-01_p023",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-01_p031",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-01_p034",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-01_p036",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-01_p042",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-01_p048",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-01_p049",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-01_p052",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-01_p053",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-01_p054",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-01_p058",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-01_p063",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-01_p068",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-02_p012",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-02_p015",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-02_p024",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-02_p035",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-02_p045",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-02_p048",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-02_p049",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-02_p050",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-02_p052",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-02_p053",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-02_p054",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-02_p058",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-02_p064",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-03_p003",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-03_p004",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-03_p017",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-03_p031",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-03_p034",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-03_p045",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-03_p052",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-03_p053",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-03_p056",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-03_p057",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-03_p060",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-03_p061",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-03_p062",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-03_p066",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-03_p069",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-03_p070",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-03_p081",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-03_p084",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-04_p004",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-04_p010",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-04_p014",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-04_p019",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-04_p029",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-04_p049",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-04_p058",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-04_p059",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-04_p062",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-04_p063",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-04_p064",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-04_p066",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-04_p068",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-04_p073",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-05_p009",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-05_p013",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-05_p016",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-05_p018",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-05_p021",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-05_p045",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-05_p046",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-05_p047",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-05_p049",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-05_p058",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-05_p059",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-05_p060",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-05_p062",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-05_p063",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-05_p064",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-05_p068",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-05_p072",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-05_p079",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-05_p083",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-06_p009",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-06_p020",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-06_p023",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-06_p034",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-06_p035",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-06_p041",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-06_p044",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-06_p049",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-06_p050",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-06_p051",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-06_p053",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-06_p057",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-06_p064",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-06_p065",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-06_p068",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-06_p069",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-06_p070",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-06_p074",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-06_p078",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-06_p091",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-07_p006",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-07_p017",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-07_p031",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-07_p040",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-07_p053",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-07_p059",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-07_p065",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-07_p070",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-07_p071",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-07_p074",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-07_p075",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-07_p076",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-07_p080",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-07_p081",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-08_p002",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-08_p008",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-08_p016",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-08_p017",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-08_p031",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-08_p036",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-08_p056",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-08_p064",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-08_p065",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-08_p068",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-08_p069",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-08_p070",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-08_p071",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-08_p074",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-08_p079",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-08_p084",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-09_p004",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-09_p016",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-09_p017",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-09_p019",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-09_p027",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-09_p030",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-09_p031",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-09_p036",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-09_p049",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-09_p055",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-09_p065",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-09_p066",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-09_p067",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-09_p069",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-09_p070",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-09_p071",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-09_p075",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-09_p077",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-09_p080",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-09_p081",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-10_p008",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-10_p015",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-10_p019",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-10_p020",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-10_p023",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-10_p025",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-10_p041",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-10_p045",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-10_p047",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-10_p060",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-10_p068",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-10_p072",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-10_p074",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-10_p078",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-10_p082",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-10_p083",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-10_p086",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-10_p087",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-10_p088",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-10_p091",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-10_p092",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-10_p098",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-11_p003",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-11_p008",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-11_p014",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-11_p020",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-11_p022",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-11_p023",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-11_p025",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-11_p028",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-11_p035",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-11_p039",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-11_p052",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-11_p067",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-11_p068",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-11_p072",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-11_p073",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-11_p076",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-11_p077",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-11_p080",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-11_p081",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-11_p082",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-11_p083",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-11_p086",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-11_p087",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-11_p091",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-11_p096",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-12_p005",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-12_p013",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-12_p018",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-12_p020",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-12_p023",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-12_p033",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-12_p034",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-12_p035",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-12_p043",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-12_p051",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-12_p062",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-12_p064",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-12_p072",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-12_p073",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-12_p076",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-12_p077",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-12_p078",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-12_p082",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1941-12_p087",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1941-12_p096",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-01_p006",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-01_p009",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-01_p012",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-01_p022",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-01_p025",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-01_p031",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-01_p032",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-01_p039",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-01_p047",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-01_p052",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-01_p079",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-01_p082",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-01_p083",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-01_p086",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-01_p087",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-01_p088",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-01_p092",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-01_p095",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-01_p099",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-02_p006",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-02_p014",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-02_p022",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-02_p025",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-02_p026",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-02_p036",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-02_p039",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-02_p047",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-02_p059",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-02_p065",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-02_p072",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-02_p082",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-02_p083",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-02_p086",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-02_p087",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-02_p088",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-02_p092",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-02_p095",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-02_p096",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-02_p097",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-03_p012",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-03_p020",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-03_p022",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-03_p025",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-03_p026",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-03_p053",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-03_p054",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-03_p063",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-03_p069",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-03_p076",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-03_p077",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-03_p080",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-03_p081",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-03_p084",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-03_p085",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-03_p086",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-03_p087",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-03_p090",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-03_p094",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-03_p102",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-04_p005",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-04_p016",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-04_p019",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-04_p022",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-04_p023",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-04_p044",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-04_p060",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-04_p068",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-04_p069",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-04_p070",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-04_p077",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-04_p078",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-04_p083",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-04_p086",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-04_p089",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-05_p001",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-05_p006",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-05_p017",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-05_p019",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-05_p022",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-05_p023",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-05_p025",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-05_p029",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-05_p058",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-05_p059",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-05_p073",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-05_p079",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-05_p088",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-06_p005",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-06_p014",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-06_p018",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-06_p020",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-06_p023",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-06_p024",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-06_p050",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-06_p085",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-06_p088",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-07_p012",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-07_p021",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-07_p024",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-07_p025",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-07_p037",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-07_p044",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-07_p055",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-07_p068",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-07_p081",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-08_p017",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-08_p020",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-08_p021",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-08_p024",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-08_p025",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-08_p028",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-08_p032",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-08_p033",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-08_p047",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-08_p053",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-08_p060",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-08_p063",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-08_p068",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-08_p073",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-08_p074",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-08_p085",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-08_p090",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-09_p004",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-09_p015",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-09_p017",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-09_p021",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-09_p024",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-09_p025",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-09_p027",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-09_p029",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-09_p030",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-09_p055",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-09_p057",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-09_p067",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-09_p082",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-09_p084",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-09_p086",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-09_p095",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-10_p006",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-10_p010",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-10_p016",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-10_p021",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-10_p024",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-10_p025",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-10_p037",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-10_p045",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-10_p062",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-10_p068",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-10_p070",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-10_p086",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-10_p090",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-10_p091",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-11_p002",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-11_p015",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-11_p021",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-11_p024",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-11_p025",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-11_p037",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-11_p040",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-11_p045",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-11_p056",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-11_p060",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-11_p062",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-11_p070",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-11_p082",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-12_p002",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-12_p021",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-12_p024",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-12_p025",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1942-12_p037",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-12_p039",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-12_p043",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-12_p045",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-12_p046",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-12_p051",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-12_p073",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-12_p079",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-12_p087",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1942-12_p088",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1985-06_p002",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1985-06_p003",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1985-06_p010",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1985-06_p027",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1985-06_p046",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1985-06_p058",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1985-06_p059",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1985-06_p065",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1985-06_p066",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1985-06_p070",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1985-06_p071",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1985-06_p079",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1985-06_p083",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1985-06_p087",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1986-06_p003",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1986-06_p015",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1986-06_p030",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1986-06_p034",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1986-06_p039",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1986-06_p040",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1986-06_p057",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1986-06_p060",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1986-06_p061",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1986-06_p063",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1986-06_p067",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1986-06_p068",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1986-06_p072",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1986-06_p080",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1986-06_p085",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1986-06_p093",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1987-06_p004",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1987-06_p014",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1987-06_p026",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1987-06_p032",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1987-06_p040",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1987-06_p044",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1987-06_p046",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1987-06_p072",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1987-06_p073",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1987-06_p079",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1987-06_p080",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1987-06_p082",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1987-06_p084",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1987-06_p085",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1987-06_p097",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1987-06_p102",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1987-06_p104",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1988-06_p002",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1988-06_p004",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1988-06_p005",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1988-06_p007",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1988-06_p013",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1988-06_p021",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1988-06_p027",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1988-06_p031",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1988-06_p048",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1988-06_p051",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1988-06_p054",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1988-06_p066",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1988-06_p091",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1988-06_p103",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1988-06_p104",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1988-06_p107",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1988-06_p110",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1988-06_p111",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1988-06_p115",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1988-06_p116",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1988-06_p120",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1989-06_p010",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1989-06_p018",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1989-06_p026",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1989-06_p028",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1989-06_p030",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1989-06_p033",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1989-06_p038",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1989-06_p042",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1989-06_p046",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1989-06_p049",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1989-06_p052",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1989-06_p057",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1989-06_p065",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1989-06_p069",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1989-06_p095",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1989-06_p099",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1989-06_p100",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1989-06_p103",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1989-06_p106",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1989-06_p107",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1989-06_p111",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1989-06_p124",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1989-06_p131",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1990-06_p016",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1990-06_p025",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1990-06_p026",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1990-06_p027",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1990-06_p052",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1990-06_p054",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1990-06_p059",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1990-06_p064",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1990-06_p069",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1990-06_p074",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1990-06_p103",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1990-06_p104",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1990-06_p107",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1990-06_p110",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1990-06_p111",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1990-06_p115",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1990-06_p120",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1990-06_p125",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1991-06_p040",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1991-06_p056",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1991-06_p063",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1991-06_p066",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1991-06_p075",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1991-06_p078",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1991-06_p091",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1991-06_p107",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1991-06_p108",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1991-06_p114",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1991-06_p115",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1991-06_p119",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1991-06_p120",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1991-06_p131",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1992-06_p049",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1992-06_p057",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1992-06_p071",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1992-06_p073",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1992-06_p083",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1992-06_p086",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1992-06_p091",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1992-06_p093",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1992-06_p121",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1992-06_p122",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1992-06_p123",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1992-06_p124",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1992-06_p131",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1992-06_p133",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1992-06_p134",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1992-06_p135",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1992-06_p136",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1992-06_p140",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1992-06_p162",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1993-06_p001",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1993-06_p006",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1993-06_p017",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1993-06_p020",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1993-06_p030",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1993-06_p056",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1993-06_p057",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1993-06_p064",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1993-06_p073",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1993-06_p087",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1993-06_p097",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1993-06_p098",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1993-06_p099",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1993-06_p100",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1993-06_p101",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1993-06_p108",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1993-06_p109",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1993-06_p110",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1993-06_p111",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1993-06_p121",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1993-06_p128",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1993-06_p129",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1993-06_p142",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1994-06_p001",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1994-06_p029",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1994-06_p035",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1994-06_p039",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1994-06_p048",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1994-06_p055",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1994-06_p056",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1994-06_p062",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1994-06_p067",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1994-06_p081",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1994-06_p086",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1994-06_p099",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1994-06_p100",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1994-06_p101",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1994-06_p102",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1994-06_p111",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1994-06_p112",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1994-06_p113",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1994-06_p114",
+      "stratum": "named_family",
+      "inclusion_probability": 1.0,
+      "weight": 1.0
+    },
+    {
+      "page": "1994-06_p121",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1994-06_p129",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1994-06_p144",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1994-06_p145",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    },
+    {
+      "page": "1994-06_p147",
+      "stratum": "classifier_set_aside",
+      "inclusion_probability": 0.1168770453482936,
+      "weight": 8.556
+    }
+  ]
+}

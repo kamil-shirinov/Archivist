@@ -1,0 +1,23 @@
+{
+  "recorded_at": "2026-10-31T17:37:22.464226+00:00",
+  "approved_retained_cap_usd": 28.16,
+  "owner_instruction": "Approved: raise the retained ceiling to $28.16 and run the recovery. Record the interrupted first attempt (79 of 99 batches, no answers saved) in the report.",
+  "recovery_proposal_sha256": "ff43b3d349106f32aa184e89eab4c0027d28295744efab4b1524f7f17a55d700",
+  "recovery_code_id": "f08e4463a10cdfd43430a4f94a0aec172017e94263d24929a745259abb450b6f",
+  "budget": {
+    "prior_retained_usd": 24.3099506,
+    "maximum_usd": 3.8482016,
+    "combined_retained_usd": 28.1581522,
+    "approved_retained_cap_usd": 28.16,
+    "execution_timeout_seconds": 10825,
+    "startup_timeout_seconds": 300,
+    "shutdown_allowance_seconds": 15,
+    "gpu": "L4",
+    "cpu_cores": 4,
+    "host_memory_gib": 32
+  },
+  "original_interruption_retained": true,
+  "sample_redrawn": false,
+  "ocr_prefix_chars": 1024,
+  "comparison_order": "Check, commit and push both raw arms before any output/reference comparison"
+}

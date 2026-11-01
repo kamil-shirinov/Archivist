@@ -1,0 +1,27 @@
+[
+  {
+    "family": "short_term_foreign_liabilities_as",
+    "title": "Short-Term Foreign Liabilities as Reported by Banks and Bankers in the United States",
+    "description": "Weekly short-term foreign liabilities by country with Total Europe and Grand total columns in thousands of dollars"
+  },
+  {
+    "family": "security_transactions_as_reported_by",
+    "title": "Security Transactions as Reported by Banks, Bankers, Brokers and Dealers in the United States",
+    "description": "Weekly security purchases and sales by country with Total Europe and Grand total in thousands of dollars"
+  },
+  {
+    "family": "outstanding_forward_exchange_contracts",
+    "title": "Outstanding Forward Exchange Contracts as Reported by Banks and Bankers in the United States During",
+    "description": "Table of outstanding forward exchange contracts by currency with purchase and sale totals split into foreign and domestic customers"
+  },
+  {
+    "family": "receipts_and_expenditures_under_railroad",
+    "title": "Receipts and Expenditures Under Railroad Retirement and Railroad Unemployment Insurance Acts",
+    "description": "Page with receipts and expenditures under railroad retirement and unemployment insurance in millions of dollars"
+  },
+  {
+    "family": "total_claims_by_country",
+    "title": "Table CM-II-2. - Total Claims by Country",
+    "description": "Regional breakdown of total claims by country with Europe Latin America Asia Africa totals and foreign and grand totals"
+  }
+]

@@ -1,0 +1,20 @@
+{
+  "queried_at": "2026-10-31T17:47:53.230181+00:00",
+  "scope": "own recovery untrained directory only",
+  "complete_checkpoint_files_visible": 3,
+  "files": [
+    {
+      "path": "phase2_recovery/04074f6339a4b2833fe790abff7aaae79f1b1bee15fc7374b8c2a8b4a891e773/untrained/batch_002.json",
+      "size_bytes": 6524
+    },
+    {
+      "path": "phase2_recovery/04074f6339a4b2833fe790abff7aaae79f1b1bee15fc7374b8c2a8b4a891e773/untrained/batch_001.json",
+      "size_bytes": 6462
+    },
+    {
+      "path": "phase2_recovery/04074f6339a4b2833fe790abff7aaae79f1b1bee15fc7374b8c2a8b4a891e773/untrained/batch_000.json",
+      "size_bytes": 6508
+    }
+  ],
+  "raw_contents_read": false
+}

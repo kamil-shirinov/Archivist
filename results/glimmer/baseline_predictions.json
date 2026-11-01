@@ -1,0 +1,772 @@
+{
+  "stage": "baseline",
+  "model": "meta-models/Muse-Glimmer-30B",
+  "revision": "a4e59da52a7bc87ae7251dd5545c0dd437c44b68",
+  "gpu": "NVIDIA H100 80GB HBM3",
+  "outputs": [
+    {
+      "index": 0,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: '^^Vno. i LIBRARY ROOM 5030 J UN 91 1972 TREASURY DEPARTMENT\n\nReturn exactly one family ID from list, or other.\n\nThis OCR is just library stamp. No match. So other.\n\n<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 316,
+      "output_tokens": 111,
+      "seconds": 16.219185844000002,
+      "at_token_limit": false
+    },
+    {
+      "index": 1,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: empty? The user gave OCR text: (blank). So we cannot match. Return other? Probably none of these tables. Return other.\n\nWe must return exactly one family ID from list, or other. No explanation.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 292,
+      "output_tokens": 111,
+      "seconds": 7.648031570999997,
+      "at_token_limit": false
+    },
+    {
+      "index": 2,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text is about Treasury Library Bulletin December 1939... Analysis of Receipts and Disbursements Composition of the Public Debt Capital Movements and Monetary Data Other Treasury Statistics\n\nNone of the families match. This is a bulletin cover page, not a table.\n\nReturn other.\n\n<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 368,
+      "output_tokens": 114,
+      "seconds": 9.853896375000005,
+      "at_token_limit": false
+    },
+    {
+      "index": 3,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: empty? The user gave OCR text: (blank). So we cannot match. Return other? Probably none of these tables. Return other.\n\nWe must return exactly one family ID from list, or other. No explanation.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 292,
+      "output_tokens": 111,
+      "seconds": 5.878873007999999,
+      "at_token_limit": false
+    },
+    {
+      "index": 4,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as\n- security_transactions_as_reported_by\n- outstanding_forward_exchange_contracts\n- receipts_and_expenditures_under_railroad\n- total_claims_by_country\n- other\n\nOCR text is Table of Contents Page Receipts and Expenditures Fiscal Years... etc. Contains \"Short-term Foreign Assets and Liabilities 37-3^\" \"Security Transactions and Brokerage Balances 39-*^\" \"Transactions In U. S. Domestic Securities 'I Foreign Exchange Transactions 4-3-lrt\"\n\nThe OCR text is a table of contents page, not a specific table. So none of these tables. Probably \"other\".\n\nReturn exactly one family ID from list, or other. So output \"other\".\n\n<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 543,
+      "output_tokens": 165,
+      "seconds": 21.638049857999988,
+      "at_token_limit": false
+    },
+    {
+      "index": 5,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as\n- security_transactions_as_reported_by\n- outstanding_forward_exchange_contracts\n- receipts_and_expenditures_under_railroad\n- total_claims_by_country\n- other\n\nOCR text is about Expenditures - General, Expenditures - Recovery and Relief, with columns like Departmental national defense Veterans' Administration etc. This looks like receipts and expenditures under railroad? No. It mentions Social Security and Railroad Retirement Acts. But the text is about Expenditures - General and Recovery and Relief.\n\nThe family receipts_and_expenditures_under_railroad: Receipts and Expenditures Under Railroad Retirement and Railroad Unemployment Insurance Acts. Page with receipts and expenditures under railroad retirement and unemployment insurance in millions of dollars\n\nThe OCR mentions Social Security and Railroad Retirement Acts, but not specifically receipts and expenditures under railroad retirement and unemployment insurance acts. Might be other.\n\nProbably \"other\". The text is about general expenditures, not matching any family.\n\nReturn exactly one family ID from list, or other.\n\nSo output: other<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 1403,
+      "output_tokens": 222,
+      "seconds": 29.477790514999995,
+      "at_token_limit": false
+    },
+    {
+      "index": 6,
+      "text": " to=self<|message|>Allowed families list. OCR text about Estimated Receipts from Taxes Imposed by Various Revenue Acts on Imports into the United States. That's not matching any family. Families are about short-term foreign liabilities, security transactions, forward exchange contracts, railroad receipts, total claims by country.\n\nThis OCR is about import taxes receipts. So none of these tables. So return other.\n\nReturn exactly one family ID from list, or other.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 1821,
+      "output_tokens": 99,
+      "seconds": 13.115192168000021,
+      "at_token_limit": false
+    },
+    {
+      "index": 7,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as\n- security_transactions_as_reported_by\n- outstanding_forward_exchange_contracts\n- receipts_and_expenditures_under_railroad\n- total_claims_by_country\n- other\n\nOCR text is about Receipts and Expenditures Under Railroad Retirement and Railroad Unemployment Insurance Acts. That's receipts_and_expenditures_under_railroad.\n\nReturn exactly one family ID.\n\n<|eom|><|start|>assistant to=user<|message|>receipts_and_expenditures_under_railroad<|eot|>",
+      "input_tokens": 1134,
+      "output_tokens": 103,
+      "seconds": 13.63041797400001,
+      "at_token_limit": false
+    },
+    {
+      "index": 8,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: empty? The user gave OCR text: (blank). So we cannot match. Return other? Probably none of these tables. Return other.\n\nWe must return exactly one family ID from list, or other. No explanation.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 292,
+      "output_tokens": 111,
+      "seconds": 6.266358516999986,
+      "at_token_limit": false
+    },
+    {
+      "index": 9,
+      "text": " to=self<|message|>Allowed families list. OCR text is about Interest-bearing Debt Outstanding, Computed Annual Interest Charge, Computed Rate of Interest, Comparison of Average Yields... Not matching any of the families.\n\nFamilies are about short-term foreign liabilities, security transactions, forward exchange contracts, railroad receipts, total claims by country.\n\nOCR is about Treasury debt interest. So none.\n\nReturn \"other\".\n\n<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 2237,
+      "output_tokens": 85,
+      "seconds": 10.720608397999996,
+      "at_token_limit": false
+    },
+    {
+      "index": 10,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text:\n33 Principal of Outstanding Obligations Guaranteed by the United States (In allllona of dollara - compiled from reports rocolTed Ijy the Treasury) Xnd of fiaeal year or month\n\nReturn exactly one family ID from list, or other.\n\nThis is about Principal of Outstanding Obligations Guaranteed by United States. Not matching any. So other.\n\n<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 333,
+      "output_tokens": 136,
+      "seconds": 7.473707155,
+      "at_token_limit": false
+    },
+    {
+      "index": 11,
+      "text": " to=self<|message|>Allowed families list. OCR text mentions \"Short-Term Foreign Liabilities as Reported by Banks and Bankers in the United States for September 1939\". That matches first family: short_term_foreign_liabilities_as.\n\nReturn exactly one family ID.\n\n<|eom|><|start|>assistant to=user<|message|>short_term_foreign_liabilities_as<|eot|>",
+      "input_tokens": 2436,
+      "output_tokens": 65,
+      "seconds": 7.290103477999992,
+      "at_token_limit": false
+    },
+    {
+      "index": 12,
+      "text": " to=self<|message|>Allowed families list. OCR text mentions \"Security Transactions as Reported by Banks, Bankers, Brokers and Dealers in the United States for September 1939\". That matches family security_transactions_as_reported_by.\n\nReturn exactly one family ID.\n\n<|eom|><|start|>assistant to=user<|message|>security_transactions_as_reported_by<|eot|>",
+      "input_tokens": 1924,
+      "output_tokens": 65,
+      "seconds": 8.839457295000017,
+      "at_token_limit": false
+    },
+    {
+      "index": 13,
+      "text": " to=self<|message|>Allowed families list. OCR text mentions \"44 Outstanding Forward Exchange Contracts as Reported by Banks and Bankers in the United States during September 1939\". That matches family outstanding_forward_exchange_contracts.\n\nAlso mentions Net Position... but first part is forward exchange contracts.\n\nReturn exactly one family ID.\n\nSo output: outstanding_forward_exchange_contracts<|eom|><|start|>assistant to=user<|message|>outstanding_forward_exchange_contracts<|eot|>",
+      "input_tokens": 1937,
+      "output_tokens": 82,
+      "seconds": 7.240162804999983,
+      "at_token_limit": false
+    },
+    {
+      "index": 14,
+      "text": " to=self<|message|>Allowed families list. OCR text about Net Movement of Silver to and from United States, Seigniorage on Silver. Not matching any family. So other.\n\nReturn exactly one family ID.<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 2030,
+      "output_tokens": 49,
+      "seconds": 5.701449404000016,
+      "at_token_limit": false
+    },
+    {
+      "index": 15,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text:\n51 Ratios of Index of Wholesale Prices in 39 Countries to Index of Wholesale Prices In the United States 1935 100\n\nReturn exactly one family ID from list, or other.\n\nThis is about wholesale prices index ratios. None of families match. So other.\n\n<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 317,
+      "output_tokens": 115,
+      "seconds": 6.432110351000006,
+      "at_token_limit": false
+    },
+    {
+      "index": 16,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: empty? The user gave OCR text: (blank). So no data.\n\nReturn exactly one family ID from list, or other. Do not explain.\n\nProbably \"other\". Since no OCR text, cannot match. Return other.\n\n<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 292,
+      "output_tokens": 107,
+      "seconds": 5.956433193000009,
+      "at_token_limit": false
+    },
+    {
+      "index": 17,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: empty? The user gave OCR text: (blank). So we cannot match. Return other? Probably none of these tables. Return other.\n\nWe must return exactly one family ID from list, or other. No explanation.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 292,
+      "output_tokens": 111,
+      "seconds": 5.865949459999996,
+      "at_token_limit": false
+    },
+    {
+      "index": 18,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: empty? The user gave OCR text: (blank). So no data.\n\nReturn exactly one family ID from list, or other. Do not explain.\n\nProbably \"other\". Since no OCR text, cannot match. Return other.\n\n<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 292,
+      "output_tokens": 107,
+      "seconds": 5.963872841000011,
+      "at_token_limit": false
+    },
+    {
+      "index": 19,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text:\nJO r I'pr^.c^r^v JUM 2 19B5\n\nReturn exactly one family ID from list, or other.\n\nOCR is garbled. No match. Probably other.\n\nReturn other.<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 311,
+      "output_tokens": 107,
+      "seconds": 6.043310332000004,
+      "at_token_limit": false
+    },
+    {
+      "index": 20,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: empty? The user gave OCR text: (blank). So we cannot match. Return other? Probably none of these tables. Return other.\n\nWe must return exactly one family ID from list, or other. No explanation.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 292,
+      "output_tokens": 111,
+      "seconds": 5.9796907559999966,
+      "at_token_limit": false
+    },
+    {
+      "index": 21,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text is about Treasury Bulletin sale info. Not matching any. So other.\n\nReturn exactly one family ID from list, or other.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 341,
+      "output_tokens": 91,
+      "seconds": 4.865080106999983,
+      "at_token_limit": false
+    },
+    {
+      "index": 22,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: DODDl\n\nReturn exactly one family ID from list, or other.\n\nOCR text is \"DODDl\". That seems not matching. Probably other.\n\nReturn other.<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 295,
+      "output_tokens": 96,
+      "seconds": 5.333443783000007,
+      "at_token_limit": false
+    },
+    {
+      "index": 23,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text is about FEDERAL FISCAL OPERATIONS Table FFO\u20143. - Budget Outlays by Agency... Not matching any.\n\nSo return other.\n\nReturn exactly one family ID from list, or other.\n\n<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 605,
+      "output_tokens": 100,
+      "seconds": 5.342404205000037,
+      "at_token_limit": false
+    },
+    {
+      "index": 24,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text is about Federal Obligations - Gross Obligations Incurred Outside Federal Government by Department or Agency as of Dec 31 1983. That's not matching any of the families. So return other.\n\nReturn exactly one family ID from list, or other.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 902,
+      "output_tokens": 117,
+      "seconds": 15.846373947000018,
+      "at_token_limit": false
+    },
+    {
+      "index": 25,
+      "text": " to=self<|message|>Allowed families list. OCR text is about Federal Debt Table FD-1 Summary of Federal Debt. Not matching any families. So other.\n\nReturn exactly one family ID from list, or other. So output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 1206,
+      "output_tokens": 54,
+      "seconds": 4.951240541000004,
+      "at_token_limit": false
+    },
+    {
+      "index": 26,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text:\n18 FEDERAL DEBT Table FD-7. - Treasury Holdings of Securities Issued by Government Corporations and Other Agencies [In millions of dollars. Source: Monthly Treasury Statement...] End of fiscal year or month Agriculture Department Cormodity\n\nThis is Federal Debt table FD-7. Not matching any families. So other.\n\nReturn exactly one family ID from list, or other.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 349,
+      "output_tokens": 143,
+      "seconds": 8.676093619000028,
+      "at_token_limit": false
+    },
+    {
+      "index": 27,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: empty? The user gave OCR text: (blank). So we cannot match. Return other? Probably none of these tables. Return other.\n\nWe must return exactly one family ID from list, or other. No explanation.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 292,
+      "output_tokens": 111,
+      "seconds": 6.119843158000037,
+      "at_token_limit": false
+    },
+    {
+      "index": 28,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: \"44 CAPITAL MOVEMENTS Total Liabilities by Type and Country, as of Mar. 31, 1984, Preliminary [PosUion in millions or dollars] Total Payable Payable dollars foreign To foreign official unaffiliated foreign I Demand Time 2/ Tr. (1) (g) Europe: Austria 872 861...\"\n\nThis looks like Total Liabilities by Type and Country. That matches short_term_foreign_liabilities_as? Short-Term Foreign Liabilities as Reported by Banks and Bankers in the United States. Weekly short-term foreign liabilities by country with Total Europe and Grand total columns in thousands of dollars.\n\nThe OCR shows Total Liabilities by Type and Country, as of Mar. 31, 1984, Preliminary [Position in millions of dollars] Total Payable... Europe... Total Europe... Grand total 381.662 376.457\n\nThat is likely short_term_foreign_liabilities_as.\n\nAlso total_claims_by_country is Table CM-II-2 - Total Claims by Country.\n\nThis is Capital Movements Total Liabilities by Type and Country. That's short_term_foreign_liabilities_as.\n\nReturn exactly one family ID.\n\n<|eom|><|start|>assistant to=user<|message|>short_term_foreign_liabilities_as<|eot|>",
+      "input_tokens": 1015,
+      "output_tokens": 295,
+      "seconds": 30.043556726999952,
+      "at_token_limit": false
+    },
+    {
+      "index": 29,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as\n- security_transactions_as_reported_by\n- outstanding_forward_exchange_contracts\n- receipts_and_expenditures_under_railroad\n- total_claims_by_country\n- other\n\nOCR text mentions Table CM-II-2. - Total Claims by Country Europe: Austria... Total Europe Canada Latin America... etc. Grand total 206\n\nThat matches total_claims_by_country.\n\nReturn exactly one family ID.\n\n<|eom|><|start|>assistant to=user<|message|>total_claims_by_country<|eot|>",
+      "input_tokens": 514,
+      "output_tokens": 108,
+      "seconds": 8.556302057999972,
+      "at_token_limit": false
+    },
+    {
+      "index": 30,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text:\nCAPITAL MOVEMENTS -11-3. - Total Claims on Foreigners by Type and Country Reported by Banks in the United States, as of Dec. 31, 1983 47 Payable dol lars 1,333...\n\nThis looks like Total Claims by Country? The family total_claims_by_country: Table CM-II-2. - Total Claims by Country.\n\nThe OCR says CAPITAL MOVEMENTS -11-3. - Total Claims on Foreigners by Type and Country Reported by Banks in the United States, as of Dec. 31, 1983\n\nThat is not exactly Table CM-II-2. Might be different table. Could be total_claims_by_country? The family description: Table CM-II-2. - Total Claims by Country. Regional breakdown...\n\nThe OCR mentions Total Claims on Foreigners by Type and Country. Might be similar but not exact.\n\nProbably other.\n\nReturn exactly one family ID. Likely other.\n\n<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 363,
+      "output_tokens": 253,
+      "seconds": 16.01837085300002,
+      "at_token_limit": false
+    },
+    {
+      "index": 31,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as\n- security_transactions_as_reported_by\n- outstanding_forward_exchange_contracts\n- receipts_and_expenditures_under_railroad\n- total_claims_by_country\n- other\n\nOCR text mentions CAPITAL MOVEMENTS Table CM-III\u2014 2. \u2014 Dollar Liabilities to, and Dollar Claims on, Foreigners in Countries and Areas Not Regularly Reported Separately [Position at end of period in millions of dollars]\n\nThat is not in list. List has total_claims_by_country: Table CM-II-2. - Total Claims by Country.\n\nDifferent table number. So likely other.\n\nReturn exactly one family ID.\n\nother<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 600,
+      "output_tokens": 146,
+      "seconds": 11.365926671000011,
+      "at_token_limit": false
+    },
+    {
+      "index": 32,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as\n- security_transactions_as_reported_by\n- outstanding_forward_exchange_contracts\n- receipts_and_expenditures_under_railroad\n- total_claims_by_country\n- other\n\nOCR text mentions Table CM-IV-3. - Total Liabilities by Type and Country, as of Dec. 31, 1983, Preliminary [Position at end of period In millions of dollars] Financial liabilities Payable in foreign...\n\nThis looks like total liabilities by type and country. Not matching listed families. The families are about short-term foreign liabilities, security transactions, forward exchange contracts, railroad receipts, total claims by country.\n\nTable CM-IV-3 is Total Liabilities by Type and Country. Not in list. Could be short_term_foreign_liabilities_as? That is short-term foreign liabilities as reported by banks... Weekly short-term foreign liabilities by country.\n\nMaybe not match. The OCR mentions Financial liabilities Payable in foreign... Europe.- Austr Belgi...\n\nProbably other.\n\nReturn exactly one family ID from list, or other.\n\nI think other.\n\n<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 415,
+      "output_tokens": 226,
+      "seconds": 12.506535053999983,
+      "at_token_limit": false
+    },
+    {
+      "index": 33,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text mentions FOREIGN CURRENCY POSITIONS Section I. - Summary Positions Table FCP-l-1. - Nonbanking Firms' Positions... Table FCP-l-2. - Weekly Bank Positions\n\nThis is not matching any of the allowed families. The families are about short-term foreign liabilities, security transactions, outstanding forward exchange contracts, receipts and expenditures under railroad, total claims by country.\n\nThe OCR is about foreign currency positions. That's not listed. So other.\n\nReturn exactly one family ID from list, or other.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 951,
+      "output_tokens": 169,
+      "seconds": 9.454257923,
+      "at_token_limit": false
+    },
+    {
+      "index": 34,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as\n- security_transactions_as_reported_by\n- outstanding_forward_exchange_contracts\n- receipts_and_expenditures_under_railroad\n- total_claims_by_country\n- other\n\nOCR text mentions FOREIGN CURRENCY POSITIONS Section IV. - Japanese Yen Positions Table FCP-IV-1. - Nonbanking Firms' Positions! [In bi 1 lions of yen] ... Table FCP-IV-2. - Weekly Bank Positions [In billions of yen]\n\nNone of allowed families match. So other.\n\nReturn exactly one family ID from list, or other.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 419,
+      "output_tokens": 141,
+      "seconds": 7.773588759000006,
+      "at_token_limit": false
+    },
+    {
+      "index": 35,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as\n- security_transactions_as_reported_by\n- outstanding_forward_exchange_contracts\n- receipts_and_expenditures_under_railroad\n- total_claims_by_country\n- other\n\nOCR text mentions FOREIGN CURRENCY POSITIONS Section V. \u2014 Swiss Franc Positions Table FCP-V-1. - Nonbanking Firms' Positions [In millions of francs] Net Assets Liabilities V Exchange bought... Table FCP-V-2. - Weekly Bank Positions\n\nNone of the allowed families match. This is about foreign currency positions Swiss Franc. Not matching.\n\nSo return other.\n\nReturn exactly one family ID from list, or other.\n\nOutput \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 396,
+      "output_tokens": 151,
+      "seconds": 8.311250244000007,
+      "at_token_limit": false
+    },
+    {
+      "index": 36,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as\n- security_transactions_as_reported_by\n- outstanding_forward_exchange_contracts\n- receipts_and_expenditures_under_railroad\n- total_claims_by_country\n- other\n\nOCR text is about FOREIGN CURRENCY POSITIONS Footnotes to Tables FCP-I through FCP-VII ... Worldwide net positions...\n\nThis does not match any of the families. The families are about short-term foreign liabilities, security transactions, outstanding forward exchange contracts, receipts and expenditures under railroad, total claims by country.\n\nThe OCR is about foreign currency positions footnotes. That's not listed. So other.\n\nReturn exactly one family ID from list, or other.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 654,
+      "output_tokens": 155,
+      "seconds": 14.048215948000006,
+      "at_token_limit": false
+    },
+    {
+      "index": 37,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: empty? The user gave OCR text: (blank). So no data.\n\nReturn exactly one family ID from list, or other. Do not explain.\n\nProbably \"other\". Since no OCR text, cannot match. Return other.\n\n<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 292,
+      "output_tokens": 107,
+      "seconds": 6.1965134949999765,
+      "at_token_limit": false
+    },
+    {
+      "index": 38,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: empty? The user gave OCR text: (blank). So we cannot match. Return other? Probably none of these tables. Return other.\n\nWe must return exactly one family ID from list, or other. No explanation.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 292,
+      "output_tokens": 111,
+      "seconds": 6.254247819,
+      "at_token_limit": false
+    },
+    {
+      "index": 39,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text about U.S. Currency and Com Outstanding and In Circulation... CURRENCY IN CIRCULATION BY DENOMINATION Mar. 31, 1984 Federal\n\nNone of the families match. So other.\n\nReturn exactly one family ID from list, or other.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 519,
+      "output_tokens": 117,
+      "seconds": 6.622480473999985,
+      "at_token_limit": false
+    }
+  ],
+  "runtime_seconds": 432.209266624,
+  "peak_allocated_bytes": 20184206848,
+  "predictions": [
+    {
+      "page": "1939-12_p003",
+      "expected": "other",
+      "predicted": "other",
+      "index": 0,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: '^^Vno. i LIBRARY ROOM 5030 J UN 91 1972 TREASURY DEPARTMENT\n\nReturn exactly one family ID from list, or other.\n\nThis OCR is just library stamp. No match. So other.\n\n<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 316,
+      "output_tokens": 111,
+      "seconds": 16.219185844000002,
+      "at_token_limit": false
+    },
+    {
+      "page": "1939-12_p004",
+      "expected": "other",
+      "predicted": "other",
+      "index": 1,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: empty? The user gave OCR text: (blank). So we cannot match. Return other? Probably none of these tables. Return other.\n\nWe must return exactly one family ID from list, or other. No explanation.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 292,
+      "output_tokens": 111,
+      "seconds": 7.648031570999997,
+      "at_token_limit": false
+    },
+    {
+      "page": "1939-12_p005",
+      "expected": "other",
+      "predicted": "other",
+      "index": 2,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text is about Treasury Library Bulletin December 1939... Analysis of Receipts and Disbursements Composition of the Public Debt Capital Movements and Monetary Data Other Treasury Statistics\n\nNone of the families match. This is a bulletin cover page, not a table.\n\nReturn other.\n\n<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 368,
+      "output_tokens": 114,
+      "seconds": 9.853896375000005,
+      "at_token_limit": false
+    },
+    {
+      "page": "1939-12_p006",
+      "expected": "other",
+      "predicted": "other",
+      "index": 3,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: empty? The user gave OCR text: (blank). So we cannot match. Return other? Probably none of these tables. Return other.\n\nWe must return exactly one family ID from list, or other. No explanation.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 292,
+      "output_tokens": 111,
+      "seconds": 5.878873007999999,
+      "at_token_limit": false
+    },
+    {
+      "page": "1939-12_p009",
+      "expected": "other",
+      "predicted": "other",
+      "index": 4,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as\n- security_transactions_as_reported_by\n- outstanding_forward_exchange_contracts\n- receipts_and_expenditures_under_railroad\n- total_claims_by_country\n- other\n\nOCR text is Table of Contents Page Receipts and Expenditures Fiscal Years... etc. Contains \"Short-term Foreign Assets and Liabilities 37-3^\" \"Security Transactions and Brokerage Balances 39-*^\" \"Transactions In U. S. Domestic Securities 'I Foreign Exchange Transactions 4-3-lrt\"\n\nThe OCR text is a table of contents page, not a specific table. So none of these tables. Probably \"other\".\n\nReturn exactly one family ID from list, or other. So output \"other\".\n\n<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 543,
+      "output_tokens": 165,
+      "seconds": 21.638049857999988,
+      "at_token_limit": false
+    },
+    {
+      "page": "1939-12_p016",
+      "expected": "other",
+      "predicted": "other",
+      "index": 5,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as\n- security_transactions_as_reported_by\n- outstanding_forward_exchange_contracts\n- receipts_and_expenditures_under_railroad\n- total_claims_by_country\n- other\n\nOCR text is about Expenditures - General, Expenditures - Recovery and Relief, with columns like Departmental national defense Veterans' Administration etc. This looks like receipts and expenditures under railroad? No. It mentions Social Security and Railroad Retirement Acts. But the text is about Expenditures - General and Recovery and Relief.\n\nThe family receipts_and_expenditures_under_railroad: Receipts and Expenditures Under Railroad Retirement and Railroad Unemployment Insurance Acts. Page with receipts and expenditures under railroad retirement and unemployment insurance in millions of dollars\n\nThe OCR mentions Social Security and Railroad Retirement Acts, but not specifically receipts and expenditures under railroad retirement and unemployment insurance acts. Might be other.\n\nProbably \"other\". The text is about general expenditures, not matching any family.\n\nReturn exactly one family ID from list, or other.\n\nSo output: other<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 1403,
+      "output_tokens": 222,
+      "seconds": 29.477790514999995,
+      "at_token_limit": false
+    },
+    {
+      "page": "1939-12_p022",
+      "expected": "other",
+      "predicted": "other",
+      "index": 6,
+      "text": " to=self<|message|>Allowed families list. OCR text about Estimated Receipts from Taxes Imposed by Various Revenue Acts on Imports into the United States. That's not matching any family. Families are about short-term foreign liabilities, security transactions, forward exchange contracts, railroad receipts, total claims by country.\n\nThis OCR is about import taxes receipts. So none of these tables. So return other.\n\nReturn exactly one family ID from list, or other.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 1821,
+      "output_tokens": 99,
+      "seconds": 13.115192168000021,
+      "at_token_limit": false
+    },
+    {
+      "page": "1939-12_p025",
+      "expected": "receipts_and_expenditures_under_railroad",
+      "predicted": "receipts_and_expenditures_under_railroad",
+      "index": 7,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as\n- security_transactions_as_reported_by\n- outstanding_forward_exchange_contracts\n- receipts_and_expenditures_under_railroad\n- total_claims_by_country\n- other\n\nOCR text is about Receipts and Expenditures Under Railroad Retirement and Railroad Unemployment Insurance Acts. That's receipts_and_expenditures_under_railroad.\n\nReturn exactly one family ID.\n\n<|eom|><|start|>assistant to=user<|message|>receipts_and_expenditures_under_railroad<|eot|>",
+      "input_tokens": 1134,
+      "output_tokens": 103,
+      "seconds": 13.63041797400001,
+      "at_token_limit": false
+    },
+    {
+      "page": "1939-12_p034",
+      "expected": "other",
+      "predicted": "other",
+      "index": 8,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: empty? The user gave OCR text: (blank). So we cannot match. Return other? Probably none of these tables. Return other.\n\nWe must return exactly one family ID from list, or other. No explanation.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 292,
+      "output_tokens": 111,
+      "seconds": 6.266358516999986,
+      "at_token_limit": false
+    },
+    {
+      "page": "1939-12_p037",
+      "expected": "other",
+      "predicted": "other",
+      "index": 9,
+      "text": " to=self<|message|>Allowed families list. OCR text is about Interest-bearing Debt Outstanding, Computed Annual Interest Charge, Computed Rate of Interest, Comparison of Average Yields... Not matching any of the families.\n\nFamilies are about short-term foreign liabilities, security transactions, forward exchange contracts, railroad receipts, total claims by country.\n\nOCR is about Treasury debt interest. So none.\n\nReturn \"other\".\n\n<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 2237,
+      "output_tokens": 85,
+      "seconds": 10.720608397999996,
+      "at_token_limit": false
+    },
+    {
+      "page": "1939-12_p048",
+      "expected": "other",
+      "predicted": "other",
+      "index": 10,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text:\n33 Principal of Outstanding Obligations Guaranteed by the United States (In allllona of dollara - compiled from reports rocolTed Ijy the Treasury) Xnd of fiaeal year or month\n\nReturn exactly one family ID from list, or other.\n\nThis is about Principal of Outstanding Obligations Guaranteed by United States. Not matching any. So other.\n\n<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 333,
+      "output_tokens": 136,
+      "seconds": 7.473707155,
+      "at_token_limit": false
+    },
+    {
+      "page": "1939-12_p053",
+      "expected": "short_term_foreign_liabilities_as",
+      "predicted": "short_term_foreign_liabilities_as",
+      "index": 11,
+      "text": " to=self<|message|>Allowed families list. OCR text mentions \"Short-Term Foreign Liabilities as Reported by Banks and Bankers in the United States for September 1939\". That matches first family: short_term_foreign_liabilities_as.\n\nReturn exactly one family ID.\n\n<|eom|><|start|>assistant to=user<|message|>short_term_foreign_liabilities_as<|eot|>",
+      "input_tokens": 2436,
+      "output_tokens": 65,
+      "seconds": 7.290103477999992,
+      "at_token_limit": false
+    },
+    {
+      "page": "1939-12_p055",
+      "expected": "security_transactions_as_reported_by",
+      "predicted": "security_transactions_as_reported_by",
+      "index": 12,
+      "text": " to=self<|message|>Allowed families list. OCR text mentions \"Security Transactions as Reported by Banks, Bankers, Brokers and Dealers in the United States for September 1939\". That matches family security_transactions_as_reported_by.\n\nReturn exactly one family ID.\n\n<|eom|><|start|>assistant to=user<|message|>security_transactions_as_reported_by<|eot|>",
+      "input_tokens": 1924,
+      "output_tokens": 65,
+      "seconds": 8.839457295000017,
+      "at_token_limit": false
+    },
+    {
+      "page": "1939-12_p060",
+      "expected": "outstanding_forward_exchange_contracts",
+      "predicted": "outstanding_forward_exchange_contracts",
+      "index": 13,
+      "text": " to=self<|message|>Allowed families list. OCR text mentions \"44 Outstanding Forward Exchange Contracts as Reported by Banks and Bankers in the United States during September 1939\". That matches family outstanding_forward_exchange_contracts.\n\nAlso mentions Net Position... but first part is forward exchange contracts.\n\nReturn exactly one family ID.\n\nSo output: outstanding_forward_exchange_contracts<|eom|><|start|>assistant to=user<|message|>outstanding_forward_exchange_contracts<|eot|>",
+      "input_tokens": 1937,
+      "output_tokens": 82,
+      "seconds": 7.240162804999983,
+      "at_token_limit": false
+    },
+    {
+      "page": "1939-12_p066",
+      "expected": "other",
+      "predicted": "other",
+      "index": 14,
+      "text": " to=self<|message|>Allowed families list. OCR text about Net Movement of Silver to and from United States, Seigniorage on Silver. Not matching any family. So other.\n\nReturn exactly one family ID.<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 2030,
+      "output_tokens": 49,
+      "seconds": 5.701449404000016,
+      "at_token_limit": false
+    },
+    {
+      "page": "1939-12_p068",
+      "expected": "other",
+      "predicted": "other",
+      "index": 15,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text:\n51 Ratios of Index of Wholesale Prices in 39 Countries to Index of Wholesale Prices In the United States 1935 100\n\nReturn exactly one family ID from list, or other.\n\nThis is about wholesale prices index ratios. None of families match. So other.\n\n<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 317,
+      "output_tokens": 115,
+      "seconds": 6.432110351000006,
+      "at_token_limit": false
+    },
+    {
+      "page": "1939-12_p074",
+      "expected": "other",
+      "predicted": "other",
+      "index": 16,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: empty? The user gave OCR text: (blank). So no data.\n\nReturn exactly one family ID from list, or other. Do not explain.\n\nProbably \"other\". Since no OCR text, cannot match. Return other.\n\n<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 292,
+      "output_tokens": 107,
+      "seconds": 5.956433193000009,
+      "at_token_limit": false
+    },
+    {
+      "page": "1939-12_p076",
+      "expected": "other",
+      "predicted": "other",
+      "index": 17,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: empty? The user gave OCR text: (blank). So we cannot match. Return other? Probably none of these tables. Return other.\n\nWe must return exactly one family ID from list, or other. No explanation.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 292,
+      "output_tokens": 111,
+      "seconds": 5.865949459999996,
+      "at_token_limit": false
+    },
+    {
+      "page": "1984-06_p001",
+      "expected": "other",
+      "predicted": "other",
+      "index": 18,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: empty? The user gave OCR text: (blank). So no data.\n\nReturn exactly one family ID from list, or other. Do not explain.\n\nProbably \"other\". Since no OCR text, cannot match. Return other.\n\n<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 292,
+      "output_tokens": 107,
+      "seconds": 5.963872841000011,
+      "at_token_limit": false
+    },
+    {
+      "page": "1984-06_p003",
+      "expected": "other",
+      "predicted": "other",
+      "index": 19,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text:\nJO r I'pr^.c^r^v JUM 2 19B5\n\nReturn exactly one family ID from list, or other.\n\nOCR is garbled. No match. Probably other.\n\nReturn other.<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 311,
+      "output_tokens": 107,
+      "seconds": 6.043310332000004,
+      "at_token_limit": false
+    },
+    {
+      "page": "1984-06_p005",
+      "expected": "other",
+      "predicted": "other",
+      "index": 20,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: empty? The user gave OCR text: (blank). So we cannot match. Return other? Probably none of these tables. Return other.\n\nWe must return exactly one family ID from list, or other. No explanation.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 292,
+      "output_tokens": 111,
+      "seconds": 5.9796907559999966,
+      "at_token_limit": false
+    },
+    {
+      "page": "1984-06_p009",
+      "expected": "other",
+      "predicted": "other",
+      "index": 21,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text is about Treasury Bulletin sale info. Not matching any. So other.\n\nReturn exactly one family ID from list, or other.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 341,
+      "output_tokens": 91,
+      "seconds": 4.865080106999983,
+      "at_token_limit": false
+    },
+    {
+      "page": "1984-06_p013",
+      "expected": "other",
+      "predicted": "other",
+      "index": 22,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: DODDl\n\nReturn exactly one family ID from list, or other.\n\nOCR text is \"DODDl\". That seems not matching. Probably other.\n\nReturn other.<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 295,
+      "output_tokens": 96,
+      "seconds": 5.333443783000007,
+      "at_token_limit": false
+    },
+    {
+      "page": "1984-06_p020",
+      "expected": "other",
+      "predicted": "other",
+      "index": 23,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text is about FEDERAL FISCAL OPERATIONS Table FFO\u20143. - Budget Outlays by Agency... Not matching any.\n\nSo return other.\n\nReturn exactly one family ID from list, or other.\n\n<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 605,
+      "output_tokens": 100,
+      "seconds": 5.342404205000037,
+      "at_token_limit": false
+    },
+    {
+      "page": "1984-06_p024",
+      "expected": "other",
+      "predicted": "other",
+      "index": 24,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text is about Federal Obligations - Gross Obligations Incurred Outside Federal Government by Department or Agency as of Dec 31 1983. That's not matching any of the families. So return other.\n\nReturn exactly one family ID from list, or other.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 902,
+      "output_tokens": 117,
+      "seconds": 15.846373947000018,
+      "at_token_limit": false
+    },
+    {
+      "page": "1984-06_p026",
+      "expected": "other",
+      "predicted": "other",
+      "index": 25,
+      "text": " to=self<|message|>Allowed families list. OCR text is about Federal Debt Table FD-1 Summary of Federal Debt. Not matching any families. So other.\n\nReturn exactly one family ID from list, or other. So output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 1206,
+      "output_tokens": 54,
+      "seconds": 4.951240541000004,
+      "at_token_limit": false
+    },
+    {
+      "page": "1984-06_p030",
+      "expected": "other",
+      "predicted": "other",
+      "index": 26,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text:\n18 FEDERAL DEBT Table FD-7. - Treasury Holdings of Securities Issued by Government Corporations and Other Agencies [In millions of dollars. Source: Monthly Treasury Statement...] End of fiscal year or month Agriculture Department Cormodity\n\nThis is Federal Debt table FD-7. Not matching any families. So other.\n\nReturn exactly one family ID from list, or other.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 349,
+      "output_tokens": 143,
+      "seconds": 8.676093619000028,
+      "at_token_limit": false
+    },
+    {
+      "page": "1984-06_p048",
+      "expected": "other",
+      "predicted": "other",
+      "index": 27,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: empty? The user gave OCR text: (blank). So we cannot match. Return other? Probably none of these tables. Return other.\n\nWe must return exactly one family ID from list, or other. No explanation.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 292,
+      "output_tokens": 111,
+      "seconds": 6.119843158000037,
+      "at_token_limit": false
+    },
+    {
+      "page": "1984-06_p056",
+      "expected": "other",
+      "predicted": "short_term_foreign_liabilities_as",
+      "index": 28,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: \"44 CAPITAL MOVEMENTS Total Liabilities by Type and Country, as of Mar. 31, 1984, Preliminary [PosUion in millions or dollars] Total Payable Payable dollars foreign To foreign official unaffiliated foreign I Demand Time 2/ Tr. (1) (g) Europe: Austria 872 861...\"\n\nThis looks like Total Liabilities by Type and Country. That matches short_term_foreign_liabilities_as? Short-Term Foreign Liabilities as Reported by Banks and Bankers in the United States. Weekly short-term foreign liabilities by country with Total Europe and Grand total columns in thousands of dollars.\n\nThe OCR shows Total Liabilities by Type and Country, as of Mar. 31, 1984, Preliminary [Position in millions of dollars] Total Payable... Europe... Total Europe... Grand total 381.662 376.457\n\nThat is likely short_term_foreign_liabilities_as.\n\nAlso total_claims_by_country is Table CM-II-2 - Total Claims by Country.\n\nThis is Capital Movements Total Liabilities by Type and Country. That's short_term_foreign_liabilities_as.\n\nReturn exactly one family ID.\n\n<|eom|><|start|>assistant to=user<|message|>short_term_foreign_liabilities_as<|eot|>",
+      "input_tokens": 1015,
+      "output_tokens": 295,
+      "seconds": 30.043556726999952,
+      "at_token_limit": false
+    },
+    {
+      "page": "1984-06_p058",
+      "expected": "total_claims_by_country",
+      "predicted": "total_claims_by_country",
+      "index": 29,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as\n- security_transactions_as_reported_by\n- outstanding_forward_exchange_contracts\n- receipts_and_expenditures_under_railroad\n- total_claims_by_country\n- other\n\nOCR text mentions Table CM-II-2. - Total Claims by Country Europe: Austria... Total Europe Canada Latin America... etc. Grand total 206\n\nThat matches total_claims_by_country.\n\nReturn exactly one family ID.\n\n<|eom|><|start|>assistant to=user<|message|>total_claims_by_country<|eot|>",
+      "input_tokens": 514,
+      "output_tokens": 108,
+      "seconds": 8.556302057999972,
+      "at_token_limit": false
+    },
+    {
+      "page": "1984-06_p059",
+      "expected": "other",
+      "predicted": "other",
+      "index": 30,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text:\nCAPITAL MOVEMENTS -11-3. - Total Claims on Foreigners by Type and Country Reported by Banks in the United States, as of Dec. 31, 1983 47 Payable dol lars 1,333...\n\nThis looks like Total Claims by Country? The family total_claims_by_country: Table CM-II-2. - Total Claims by Country.\n\nThe OCR says CAPITAL MOVEMENTS -11-3. - Total Claims on Foreigners by Type and Country Reported by Banks in the United States, as of Dec. 31, 1983\n\nThat is not exactly Table CM-II-2. Might be different table. Could be total_claims_by_country? The family description: Table CM-II-2. - Total Claims by Country. Regional breakdown...\n\nThe OCR mentions Total Claims on Foreigners by Type and Country. Might be similar but not exact.\n\nProbably other.\n\nReturn exactly one family ID. Likely other.\n\n<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 363,
+      "output_tokens": 253,
+      "seconds": 16.01837085300002,
+      "at_token_limit": false
+    },
+    {
+      "page": "1984-06_p061",
+      "expected": "other",
+      "predicted": "other",
+      "index": 31,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as\n- security_transactions_as_reported_by\n- outstanding_forward_exchange_contracts\n- receipts_and_expenditures_under_railroad\n- total_claims_by_country\n- other\n\nOCR text mentions CAPITAL MOVEMENTS Table CM-III\u2014 2. \u2014 Dollar Liabilities to, and Dollar Claims on, Foreigners in Countries and Areas Not Regularly Reported Separately [Position at end of period in millions of dollars]\n\nThat is not in list. List has total_claims_by_country: Table CM-II-2. - Total Claims by Country.\n\nDifferent table number. So likely other.\n\nReturn exactly one family ID.\n\nother<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 600,
+      "output_tokens": 146,
+      "seconds": 11.365926671000011,
+      "at_token_limit": false
+    },
+    {
+      "page": "1984-06_p064",
+      "expected": "other",
+      "predicted": "other",
+      "index": 32,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as\n- security_transactions_as_reported_by\n- outstanding_forward_exchange_contracts\n- receipts_and_expenditures_under_railroad\n- total_claims_by_country\n- other\n\nOCR text mentions Table CM-IV-3. - Total Liabilities by Type and Country, as of Dec. 31, 1983, Preliminary [Position at end of period In millions of dollars] Financial liabilities Payable in foreign...\n\nThis looks like total liabilities by type and country. Not matching listed families. The families are about short-term foreign liabilities, security transactions, forward exchange contracts, railroad receipts, total claims by country.\n\nTable CM-IV-3 is Total Liabilities by Type and Country. Not in list. Could be short_term_foreign_liabilities_as? That is short-term foreign liabilities as reported by banks... Weekly short-term foreign liabilities by country.\n\nMaybe not match. The OCR mentions Financial liabilities Payable in foreign... Europe.- Austr Belgi...\n\nProbably other.\n\nReturn exactly one family ID from list, or other.\n\nI think other.\n\n<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 415,
+      "output_tokens": 226,
+      "seconds": 12.506535053999983,
+      "at_token_limit": false
+    },
+    {
+      "page": "1984-06_p072",
+      "expected": "other",
+      "predicted": "other",
+      "index": 33,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text mentions FOREIGN CURRENCY POSITIONS Section I. - Summary Positions Table FCP-l-1. - Nonbanking Firms' Positions... Table FCP-l-2. - Weekly Bank Positions\n\nThis is not matching any of the allowed families. The families are about short-term foreign liabilities, security transactions, outstanding forward exchange contracts, receipts and expenditures under railroad, total claims by country.\n\nThe OCR is about foreign currency positions. That's not listed. So other.\n\nReturn exactly one family ID from list, or other.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 951,
+      "output_tokens": 169,
+      "seconds": 9.454257923,
+      "at_token_limit": false
+    },
+    {
+      "page": "1984-06_p075",
+      "expected": "other",
+      "predicted": "other",
+      "index": 34,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as\n- security_transactions_as_reported_by\n- outstanding_forward_exchange_contracts\n- receipts_and_expenditures_under_railroad\n- total_claims_by_country\n- other\n\nOCR text mentions FOREIGN CURRENCY POSITIONS Section IV. - Japanese Yen Positions Table FCP-IV-1. - Nonbanking Firms' Positions! [In bi 1 lions of yen] ... Table FCP-IV-2. - Weekly Bank Positions [In billions of yen]\n\nNone of allowed families match. So other.\n\nReturn exactly one family ID from list, or other.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 419,
+      "output_tokens": 141,
+      "seconds": 7.773588759000006,
+      "at_token_limit": false
+    },
+    {
+      "page": "1984-06_p076",
+      "expected": "other",
+      "predicted": "other",
+      "index": 35,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as\n- security_transactions_as_reported_by\n- outstanding_forward_exchange_contracts\n- receipts_and_expenditures_under_railroad\n- total_claims_by_country\n- other\n\nOCR text mentions FOREIGN CURRENCY POSITIONS Section V. \u2014 Swiss Franc Positions Table FCP-V-1. - Nonbanking Firms' Positions [In millions of francs] Net Assets Liabilities V Exchange bought... Table FCP-V-2. - Weekly Bank Positions\n\nNone of the allowed families match. This is about foreign currency positions Swiss Franc. Not matching.\n\nSo return other.\n\nReturn exactly one family ID from list, or other.\n\nOutput \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 396,
+      "output_tokens": 151,
+      "seconds": 8.311250244000007,
+      "at_token_limit": false
+    },
+    {
+      "page": "1984-06_p079",
+      "expected": "other",
+      "predicted": "other",
+      "index": 36,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as\n- security_transactions_as_reported_by\n- outstanding_forward_exchange_contracts\n- receipts_and_expenditures_under_railroad\n- total_claims_by_country\n- other\n\nOCR text is about FOREIGN CURRENCY POSITIONS Footnotes to Tables FCP-I through FCP-VII ... Worldwide net positions...\n\nThis does not match any of the families. The families are about short-term foreign liabilities, security transactions, outstanding forward exchange contracts, receipts and expenditures under railroad, total claims by country.\n\nThe OCR is about foreign currency positions footnotes. That's not listed. So other.\n\nReturn exactly one family ID from list, or other.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 654,
+      "output_tokens": 155,
+      "seconds": 14.048215948000006,
+      "at_token_limit": false
+    },
+    {
+      "page": "1984-06_p082",
+      "expected": "other",
+      "predicted": "other",
+      "index": 37,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: empty? The user gave OCR text: (blank). So no data.\n\nReturn exactly one family ID from list, or other. Do not explain.\n\nProbably \"other\". Since no OCR text, cannot match. Return other.\n\n<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 292,
+      "output_tokens": 107,
+      "seconds": 6.1965134949999765,
+      "at_token_limit": false
+    },
+    {
+      "page": "1984-06_p092",
+      "expected": "other",
+      "predicted": "other",
+      "index": 38,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text: empty? The user gave OCR text: (blank). So we cannot match. Return other? Probably none of these tables. Return other.\n\nWe must return exactly one family ID from list, or other. No explanation.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 292,
+      "output_tokens": 111,
+      "seconds": 6.254247819,
+      "at_token_limit": false
+    },
+    {
+      "page": "1984-06_p096",
+      "expected": "other",
+      "predicted": "other",
+      "index": 39,
+      "text": " to=self<|message|>Allowed families:\n- short_term_foreign_liabilities_as...\n- security_transactions_as_reported_by...\n- outstanding_forward_exchange_contracts...\n- receipts_and_expenditures_under_railroad...\n- total_claims_by_country...\n- other\n\nOCR text about U.S. Currency and Com Outstanding and In Circulation... CURRENCY IN CIRCULATION BY DENOMINATION Mar. 31, 1984 Federal\n\nNone of the families match. So other.\n\nReturn exactly one family ID from list, or other.\n\nSo output \"other\".<|eom|><|start|>assistant to=user<|message|>other<|eot|>",
+      "input_tokens": 519,
+      "output_tokens": 117,
+      "seconds": 6.622480473999985,
+      "at_token_limit": false
+    }
+  ]
+}

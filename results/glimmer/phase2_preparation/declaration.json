@@ -1,0 +1,41 @@
+{
+  "status": "awaiting_owner_go_and_development_L4_fit_timing",
+  "sample_drawn": false,
+  "held_out_data_read": false,
+  "parser_version": "native-assistant-header-v1",
+  "plan_sha256": "6130fed95e6b03e5be56da25b4fd17141ab0a5d72df5aa5ae70320ac22892614",
+  "sources": [
+    {
+      "file": "src/archivist/glimmer/phase2.py",
+      "sha256": "6c0c2996cdeb2fad5e70d042ff52562f5bab8e5a69d8d3a86f8575ab2b0cd1a9"
+    },
+    {
+      "file": "src/archivist/glimmer/phase2_cost.py",
+      "sha256": "ee71c775f0f61fe1c0a8c57460c9ccfc4edbf9f7a37c70d68f5734f7cbf698ae"
+    },
+    {
+      "file": "src/archivist/glimmer/prepare_phase2.py",
+      "sha256": "a79b0213775f8be856dd44438683b771f72dccf5af0e655bee47d5f21f50708d"
+    },
+    {
+      "file": "tests/test_glimmer_phase2.py",
+      "sha256": "da7cc93fbc105e76b74408c18427819a7c41f16e3773ddc55c8c685068cdd85b"
+    },
+    {
+      "file": "src/archivist/models/glimmer_batch.py",
+      "sha256": "8b588d7707f3125b098dc7d1efb561ecf87f90b68e9f1f9e7acd5177ebaad364"
+    },
+    {
+      "file": "src/archivist/models/glimmer_batch_backend.py",
+      "sha256": "52a95dad529bc7293d3cef34c40a34bc1527d9d10a2674c0c86fb0b132c6b1e3"
+    },
+    {
+      "file": "src/archivist/models/glimmer_batch_modal.py",
+      "sha256": "70f5488f597d1b9f3c87cc6a4ea026114fe0b1dc96a1f9e682a46c13b4aa23c3"
+    }
+  ],
+  "adapter_weights_sha256": "7471260b80935821b07f19e1e0c35330abe08633498e4fd737cf1e18b29f58e1",
+  "base_revision": "a4e59da52a7bc87ae7251dd5545c0dd437c44b68",
+  "phase1_strict_results_preserved": true,
+  "phase1_diagnostic_remains_post_hoc": true
+}

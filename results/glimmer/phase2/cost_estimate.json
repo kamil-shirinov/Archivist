@@ -1,0 +1,15 @@
+{
+  "sample_pages": 791,
+  "measured_seconds_per_paired_page": 7.5244420522499995,
+  "observed_load_seconds": 77.471113274,
+  "expected_function_seconds": 6029.30477660375,
+  "conservative_function_seconds": 9005.221608268625,
+  "expected_cost_usd": 2.1915766420299994,
+  "conservative_cost_usd": 3.219577352360314,
+  "gpu_job_ceiling_usd": 3.8482016000000003,
+  "fits_runtime_limit": true,
+  "rate_per_second_usd": 0.00034544,
+  "function_limit_seconds": 10825,
+  "selected_gpu": "L4",
+  "note": "development timing extrapolation, not held-out timing or a sample draw"
+}

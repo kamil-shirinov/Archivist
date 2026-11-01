@@ -12,6 +12,7 @@ restarts because they are read from the same file.
 from __future__ import annotations
 
 import json
+import fcntl
 import math
 import os
 import threading
@@ -28,6 +29,7 @@ from archivist.models.base import (
     SegmentResponse,
     Usage,
     VisionLLM,
+    SortRequest, SortResponse, TextSorter,
 )
 
 LEDGER_PATH = Path("results/spend_ledger.jsonl")
@@ -36,6 +38,7 @@ BACKEND_CAPS = {
     "meta": ("BUDGET_CAP_USD", 120.0),
     "baseten": ("BASETEN_CAP_USD", 80.0),
     "fireworks": ("FIREWORKS_CAP_USD", 40.0),
+    "modal_glimmer_sorter": ("GLIMMER_CAP_USD", 10.0),
 }
 IMAGE_TOKENS = 2_000  # projected input tokens per image, on the high side
 # A SegmentRequest has no output limit; project the LLM default. SAM 3.1 is billed per image, not
@@ -54,6 +57,7 @@ class Price:
     input_per_mtok: float
     output_per_mtok: float
     per_image_usd: float = 0.0
+    per_request_usd: float = 0.0  # fixed hardware-time upper bound for a text-sort RPC
 
 
 def caps_from_env() -> dict[str, float]:
@@ -126,14 +130,15 @@ class BudgetGuard:
             )
 
     def record(
-        self, role: str, backend: str, model_id: str, usage: Usage, *, reserved: float = 0.0
+        self, role: str, backend: str, model_id: str, usage: Usage, *, reserved: float = 0.0,
+        metadata: Mapping[str, object] | None = None
     ) -> None:
         """Append the call to the ledger and release what it reserved, in one step."""
         with self._lock:
-            self._record(role, backend, model_id, usage)
+            self._record(role, backend, model_id, usage, metadata=metadata)
             self._reserved[backend] = self._reserved.get(backend, 0.0) - reserved
 
-    def _record(self, role: str, backend: str, model_id: str, usage: Usage) -> None:
+    def _record(self, role: str, backend: str, model_id: str, usage: Usage, *, metadata=None) -> None:
         entry = {
             "timestamp": datetime.now(UTC).isoformat(timespec="milliseconds"),
             "role": role,
@@ -143,18 +148,26 @@ class BudgetGuard:
             "output_tokens": usage.output_tokens,
             "cost_usd": usage.cost_usd,
         }
+        if metadata:
+            if set(entry) & set(metadata):
+                raise ValueError("spend metadata cannot replace accounting fields")
+            entry.update(metadata)
         self.ledger_path.parent.mkdir(parents=True, exist_ok=True)
         with self.ledger_path.open("a", encoding="utf-8") as ledger:
             ledger.write(json.dumps(entry) + "\n")
 
 
-def project_cost(request: LLMRequest | SegmentRequest, price: Price) -> float:
+def project_cost(request: LLMRequest | SegmentRequest | SortRequest, price: Price) -> float:
     """A deliberately pessimistic cost for one call: assume the whole output limit is used.
 
     Input is 4 characters per token plus IMAGE_TOKENS per image. Everything sent counts, so for
     an LLMRequest that is the system prompt and the JSON schema as well as the prompt. A
     SegmentRequest also pays per_image_usd once per prompt: a segmenter sends the page with each.
     """
+    if isinstance(request, SortRequest):
+        if not math.isfinite(price.per_request_usd) or price.per_request_usd < 0:
+            raise ValueError("finite nonnegative sort-request ceiling required")
+        return price.per_request_usd
     per_image = 0.0
     if isinstance(request, LLMRequest):
         chars = len(request.prompt) + len(request.system or "")
@@ -171,7 +184,7 @@ def project_cost(request: LLMRequest | SegmentRequest, price: Price) -> float:
 
 
 class Budget:
-    def __init__(self, inner: VisionLLM | Segmenter, guard: BudgetGuard, price: Price) -> None:
+    def __init__(self, inner: VisionLLM | Segmenter | TextSorter, guard: BudgetGuard, price: Price) -> None:
         self.inner = inner
         self.name = inner.name
         self.model_id = inner.model_id
@@ -180,6 +193,33 @@ class Budget:
 
     def complete(self, request: LLMRequest) -> LLMResponse:
         return self._guarded(request, self.inner.complete)
+
+    def sort(self, request: SortRequest) -> SortResponse:
+        # Serialize the cap check + RPC + ledger write across processes. Holding this
+        # lock also keeps an uncertain paid failure from disappearing from the cap.
+        path = self.guard.ledger_path.with_name(self.guard.ledger_path.name + ".sort.lock")
+        path.parent.mkdir(parents=True, exist_ok=True)
+        with path.open("a") as handle:
+            fcntl.flock(handle, fcntl.LOCK_EX)
+            try:
+                projected = project_cost(request, self.price)
+                self.guard.reserve(projected, self.name)
+                try:
+                    response = self.inner.sort(request)
+                except BaseException as error:
+                    if getattr(error, "submitted", True):
+                        self.guard.record(request.role, self.name, self.model_id,
+                                          Usage(0, 0, projected), reserved=projected,
+                                          metadata={"status":"failed_reserved_maximum",
+                                                    "token_usage_unknown":True})
+                    else:
+                        self.guard.release(projected, self.name)
+                    raise
+                self.guard.record(request.role, self.name, response.model_id,
+                                  response.usage, reserved=projected)
+                return response
+            finally:
+                fcntl.flock(handle, fcntl.LOCK_UN)
 
     def segment(self, request: SegmentRequest) -> SegmentResponse:
         return self._guarded(request, self.inner.segment)

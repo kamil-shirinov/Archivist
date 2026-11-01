@@ -1,0 +1,15 @@
+{
+  "cap_usd": 24.31,
+  "historical_retained_usd": 19.233529800000003,
+  "new_gpu_maxima_usd": {
+    "L4": 0.4197096,
+    "L40S": 0.8085095999999998
+  },
+  "retained_after_checks_usd": 20.461749000000005,
+  "remaining_for_future_run_usd": 3.848250999999994,
+  "execution_seconds": 900,
+  "allocation_wait_seconds": 900,
+  "startup_seconds": 300,
+  "shutdown_transport_seconds": 15,
+  "future_5_08_placeholder_superseded": true
+}

@@ -1,0 +1,38 @@
+{
+  "queried_at": "2026-10-31T23:31:28.078437+00:00",
+  "source": "modal billing report --for today --show-resources --json",
+  "owned_app_id": "ap-KDG2khyUIKIkwekBeEPVDv",
+  "resource_rows": [
+    {
+      "object_id": "ap-KDG2khyUIKIkwekBeEPVDv",
+      "description": "archivist-glimmer-sorter-p37",
+      "environment": "main",
+      "interval_start": "2026-10-31T00:00:00",
+      "resource": "CPU",
+      "cost": "0.00945999"
+    },
+    {
+      "object_id": "ap-KDG2khyUIKIkwekBeEPVDv",
+      "description": "archivist-glimmer-sorter-p37",
+      "environment": "main",
+      "interval_start": "2026-10-31T00:00:00",
+      "resource": "L4",
+      "cost": "0.03999996"
+    },
+    {
+      "object_id": "ap-KDG2khyUIKIkwekBeEPVDv",
+      "description": "archivist-glimmer-sorter-p37",
+      "environment": "main",
+      "interval_start": "2026-10-31T00:00:00",
+      "resource": "Memory",
+      "cost": "0.01279999"
+    }
+  ],
+  "reported_usd": 0.06225994,
+  "billing_may_lag": true,
+  "other_apps_included": false,
+  "ledger_conservative_charge_usd": 0.13815628657101953,
+  "task_retained_bound_usd": 0.52040048,
+  "task_cap_usd": 10,
+  "live_check_cap_usd": 2
+}

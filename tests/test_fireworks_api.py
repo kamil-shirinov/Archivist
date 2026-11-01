@@ -226,14 +226,14 @@ def test_host_and_effort_are_part_of_the_cache_key():
 def test_fireworks_has_its_own_cap_of_40_dollars_from_its_own_variable(monkeypatch):
     for variable, _ in BACKEND_CAPS.values():
         monkeypatch.delenv(variable, raising=False)
-    assert caps_from_env() == {"meta": 120.0, "baseten": 80.0, "fireworks": 40.0}
+    assert caps_from_env() == {"meta": 120.0, "baseten": 80.0, "fireworks": 40.0, "modal_glimmer_sorter": 10.0}
 
     monkeypatch.setenv("FIREWORKS_CAP_USD", "2.5")
-    assert caps_from_env() == {"meta": 120.0, "baseten": 80.0, "fireworks": 2.5}
+    assert caps_from_env() == {"meta": 120.0, "baseten": 80.0, "fireworks": 2.5, "modal_glimmer_sorter": 10.0}
 
 
 def test_spending_on_the_other_backends_does_not_use_up_fireworks_cap(tmp_path):
-    caps = {"meta": 120.0, "baseten": 80.0, "fireworks": 40.0}
+    caps = {"meta": 120.0, "baseten": 80.0, "fireworks": 40.0, "modal_glimmer_sorter": 10.0}
     guard = BudgetGuard(120.0, tmp_path / "ledger.jsonl", caps=caps)
     guard.record("extractor", "baseten", BASETEN_SLUG, Usage(1, 1, 79.0))
     guard.record("extractor", "fireworks", MUSE_SPARK_OPEN, Usage(1, 1, 39.5))

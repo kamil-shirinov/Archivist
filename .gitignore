@@ -20,3 +20,11 @@ data/real_frb/pdf/
 data/real_frb/pages/
 data/real_frb/.ingest.lock
 ui/screenshots/
+
+# Local Glimmer tooling and temporary files
+.cache/
+.tmp/
+results/glimmer/*.lock
+
+# Cross-process text-sort spend lock (the ledger itself is committed)
+results/*.sort.lock

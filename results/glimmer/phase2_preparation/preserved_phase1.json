@@ -1,0 +1,138 @@
+[
+  {
+    "file": "results/glimmer/CHECKS.md",
+    "sha256": "fb605670261f8448e3f8b1a7d0d442b1f4557da3143c81cd03c68d6334f2e045"
+  },
+  {
+    "file": "results/glimmer/REPORT.md",
+    "sha256": "45734a3cdba05204107920538b179fde32bfe91f5c804417388d49527d214f04"
+  },
+  {
+    "file": "results/glimmer/SETUP.md",
+    "sha256": "cd0b2ae9799f959bf655525963adf3c1ec7844e706dc4044b4927cd723e396cb"
+  },
+  {
+    "file": "results/glimmer/access.json",
+    "sha256": "ab28d7f8ac671ebef905dd9254f8ff9827b7cc5e03775de87127742690da6f3f"
+  },
+  {
+    "file": "results/glimmer/adapter/README.md",
+    "sha256": "53dc14b60ad828176f98d51d3b98fe4695a38ea923732e4e3b9d2130b6598100"
+  },
+  {
+    "file": "results/glimmer/adapter/adapter_config.json",
+    "sha256": "3edc8627a600a90bcc9b994f8f36148dab01cb0ebd1ff8a6bb58164403a4676c"
+  },
+  {
+    "file": "results/glimmer/adapter/adapter_model.safetensors",
+    "sha256": "7471260b80935821b07f19e1e0c35330abe08633498e4fd737cf1e18b29f58e1"
+  },
+  {
+    "file": "results/glimmer/adapter/training_metrics.json",
+    "sha256": "a54e66b0dc32ba51b00b09dddc51b644216a35c3ccaf31997895d34424cab2eb"
+  },
+  {
+    "file": "results/glimmer/artifact_manifest.json",
+    "sha256": "ef62cf78b3d99c0dd902b409d658af92138dd8db884febc972ba53d9a2c8a3eb"
+  },
+  {
+    "file": "results/glimmer/baseline_metrics.json",
+    "sha256": "dbaf62b07ab6c93b1413208402ab49cb62b9b947daf277db8ccf54376dfff2a4"
+  },
+  {
+    "file": "results/glimmer/baseline_native_framing_metrics.json",
+    "sha256": "40a19c1e94aa65387632e8d8184bd100168e8246b38b8a1797933d798b31088d"
+  },
+  {
+    "file": "results/glimmer/baseline_predictions.json",
+    "sha256": "ea57730b29c0bf51e25858e66727fc55e80853f07a4beee3b4411dd8c4899c51"
+  },
+  {
+    "file": "results/glimmer/baseline_roles.toml",
+    "sha256": "70a31accee8c21e56ec4fc6a15c957828f24fb26998a83a708b864d8e45d15a3"
+  },
+  {
+    "file": "results/glimmer/billing.json",
+    "sha256": "a1198e2e0dc2438b102162cac80e0fe69ee2aa2e5b9203d42ab92e6f6e525473"
+  },
+  {
+    "file": "results/glimmer/cost.json",
+    "sha256": "9a59ec1325f6cdf17b2d7637e09b79555fda5164cdabfade3d6b67628bae3fce"
+  },
+  {
+    "file": "results/glimmer/cost.lock",
+    "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  },
+  {
+    "file": "results/glimmer/data_manifest.json",
+    "sha256": "39d941e87f1a429ed03f9efea2a17935ce5fc770c1ca791a304bd04778adea88"
+  },
+  {
+    "file": "results/glimmer/environment.json",
+    "sha256": "3f74af3a6bc150c8170433eb27a3ff098069ee83626627330149f001a597b7db"
+  },
+  {
+    "file": "results/glimmer/families.json",
+    "sha256": "41c0ed0067f8bf651bb76d92410424c95d861ebce9be3a7edbd1f3392707821e"
+  },
+  {
+    "file": "results/glimmer/recovery.json",
+    "sha256": "be7cbed46b908208aff3105b2fd20d33c1a094fc923a5ff2c664f5c85aa6a595"
+  },
+  {
+    "file": "results/glimmer/run_manifest.json",
+    "sha256": "fcae7c4f8c13840efa37c6161e152436b5bdb1bca4ece8687cd557fa5b5b00ba"
+  },
+  {
+    "file": "results/glimmer/spark_confirmed_metrics.json",
+    "sha256": "94107abff9edf4bacc5e7a456e9465ec7bd0f72a7353c66016055a9d32e17d6c"
+  },
+  {
+    "file": "results/glimmer/spark_raw_metrics.json",
+    "sha256": "7f94f4aa1d93dac4d796363c6049fd0e53f267450c98795845b0596b5ee08719"
+  },
+  {
+    "file": "results/glimmer/spend_ledger.jsonl",
+    "sha256": "0e9f9a00551e51391afe197be166f9c84902568e8e98029a6deaa7af05768405"
+  },
+  {
+    "file": "results/glimmer/stopped_apps.json",
+    "sha256": "1a55510b0970df13faa4c90c02929351d043e9d1aa257133fb726edba9c4b9dd"
+  },
+  {
+    "file": "results/glimmer/train.jsonl",
+    "sha256": "af315ba118efeaa2bac34722c13920493122ba79365c394898f71e55f69d34a8"
+  },
+  {
+    "file": "results/glimmer/train_roles.toml",
+    "sha256": "ae23079260a08afd00617ce8e79817ab3356bcbdc4604ec1c5e92469551c9d31"
+  },
+  {
+    "file": "results/glimmer/trained_metrics.json",
+    "sha256": "b31a9adae8fdd2b8e4e562eff9cb640b58dd485deb93d2118eff880804baf132"
+  },
+  {
+    "file": "results/glimmer/trained_native_framing_metrics.json",
+    "sha256": "1e3f21406812885f7aa98a6baffb9f80acff9667cc70cf00d51200a1244db2b4"
+  },
+  {
+    "file": "results/glimmer/trained_predictions.json",
+    "sha256": "393f133c24b2f7d282d04353610e16ee6da48992f3029f6ad4b6ee373b05f607"
+  },
+  {
+    "file": "results/glimmer/trained_roles.toml",
+    "sha256": "106baf36cb372f82d9f05a67157fa23459a43fa34c4bb6cb4f1209355c14548d"
+  },
+  {
+    "file": "results/glimmer/training_metrics.json",
+    "sha256": "a78abf4f5401db13a7b945ab53a21dae279d91adf56a1c79f2f0bdebf147c450"
+  },
+  {
+    "file": "results/glimmer/training_return_failure.json",
+    "sha256": "4aea2eebcfd414fdf452042263f0a9de35b80a4b5d16fda7fa03fc8a84b24f77"
+  },
+  {
+    "file": "results/glimmer/validation.jsonl",
+    "sha256": "a6c1a513ee7655ce3adf22b7304a4ac97bae059e1b3bc3b9917e575e1ba28392"
+  }
+]

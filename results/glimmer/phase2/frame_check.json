@@ -1,0 +1,47 @@
+{
+  "counts": {
+    "named": 291,
+    "confirmed": 136,
+    "title_rejected": 155,
+    "sample": 791
+  },
+  "population_pages": 4569,
+  "successful_pages": 4569,
+  "classifier_set_aside": 4278,
+  "unresolved_failures": 0,
+  "failed_attempt_records": 0,
+  "by_family": {
+    "outstanding_forward_exchange_contracts": {
+      "classified": 27,
+      "confirmed": 19,
+      "type_unconfirmed": 8
+    },
+    "receipts_and_expenditures_under_railroad": {
+      "classified": 63,
+      "confirmed": 21,
+      "type_unconfirmed": 42
+    },
+    "security_transactions_as_reported_by": {
+      "classified": 95,
+      "confirmed": 42,
+      "type_unconfirmed": 53
+    },
+    "short_term_foreign_liabilities_as": {
+      "classified": 54,
+      "confirmed": 44,
+      "type_unconfirmed": 10
+    },
+    "total_claims_by_country": {
+      "classified": 52,
+      "confirmed": 10,
+      "type_unconfirmed": 42
+    }
+  },
+  "status": "validated_before_draw",
+  "source_sha256": {
+    "sweep.json": "088e21a739699e0c4e9f6a55fd3499a4aed82733deb4b27707f8473235cde35b",
+    "sweep.jsonl": "21629a45a5e971169c7057b520ae08394e6827b8f4df2d6eb5c0b7dbd48e14ec",
+    "titles.jsonl": "5f616e260596c6e802f330723813594cd3902fe55039e093fa6aa5038cc84f0e"
+  },
+  "split_sha256": "812520b7999ddbc3b8ac6add2e5362ffa3256c75cbbe12b6a7f21cf7da6d8de2"
+}

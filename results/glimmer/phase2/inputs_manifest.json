@@ -1,0 +1,8 @@
+{
+  "input_sha256": "a5137c611f840601438968b993c798c4af8f75685164e45cb7a1f33b48bf2467",
+  "pages": 791,
+  "empty_ocr_pages": 78,
+  "truncated_pages": 370,
+  "manifest_sha256": "76f14cbd0d271807833113406be999901756d9602e0d91fb1cdb4bc2bc56c83b",
+  "source_scope": "sampled PDF text layer only; no image rendered or opened"
+}

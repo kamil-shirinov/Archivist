@@ -1,0 +1,23 @@
+{
+  "timestamp": "2026-10-31T23:19:51.890618+00:00",
+  "app": {
+    "app_id": "ap-KDG2khyUIKIkwekBeEPVDv",
+    "description": "archivist-glimmer-sorter-p37",
+    "state": "deployed",
+    "tasks": "0",
+    "created_at": "2026-10-31 23:19:28+00:00",
+    "stopped_at": null
+  },
+  "function_id": "fu-c409CvBPG862uTUoIGyfOc",
+  "before_check": {
+    "runners": 0,
+    "running_inputs": 0,
+    "backlog": 0
+  },
+  "code_commit": "9fe2eb0d95ad6cbf2978cfb4e6b1566e655d9ef9",
+  "minimum_containers": 0,
+  "maximum_containers": 1,
+  "scaledown_seconds": 2,
+  "execution_timeout_seconds": 900,
+  "startup_timeout_seconds": 300
+}

@@ -1,0 +1,163 @@
+{
+  "queried_at": "2026-10-30T21:31:00.183029+00:00",
+  "source": "modal billing report --for today --show-resources --json",
+  "total_usd": 1.40809042,
+  "gpu_usd": 1.06881925,
+  "billing_may_lag": true,
+  "resources": [
+    {
+      "object_id": "ap-1Q1kN2L3XOMluTqX7iDBEi",
+      "description": "archivist-glimmer-p31",
+      "interval_start": "2026-10-30T00:00:00",
+      "resource": "H100",
+      "cost": "0.48277787"
+    },
+    {
+      "object_id": "ap-1Q1kN2L3XOMluTqX7iDBEi",
+      "description": "archivist-glimmer-p31",
+      "interval_start": "2026-10-30T00:00:00",
+      "resource": "Memory",
+      "cost": "0.06257779"
+    },
+    {
+      "object_id": "ap-1Q1kN2L3XOMluTqX7iDBEi",
+      "description": "archivist-glimmer-p31",
+      "interval_start": "2026-10-30T00:00:00",
+      "resource": "Network Egress",
+      "cost": "7E-8"
+    },
+    {
+      "object_id": "ap-1Q1kN2L3XOMluTqX7iDBEi",
+      "description": "archivist-glimmer-p31",
+      "interval_start": "2026-10-30T00:00:00",
+      "resource": "CPU",
+      "cost": "0.02312445"
+    },
+    {
+      "object_id": "ap-3ifQ4hjkvNidMlrbPg2YMj",
+      "description": "archivist-glimmer-p31",
+      "interval_start": "2026-10-30T00:00:00",
+      "resource": "Memory",
+      "cost": "0.00007702"
+    },
+    {
+      "object_id": "ap-3ifQ4hjkvNidMlrbPg2YMj",
+      "description": "archivist-glimmer-p31",
+      "interval_start": "2026-10-30T00:00:00",
+      "resource": "Network Egress",
+      "cost": "0.00015882"
+    },
+    {
+      "object_id": "ap-3ifQ4hjkvNidMlrbPg2YMj",
+      "description": "archivist-glimmer-p31",
+      "interval_start": "2026-10-30T00:00:00",
+      "resource": "CPU",
+      "cost": "0.00281866"
+    },
+    {
+      "object_id": "ap-8xfjGKV2Sw61RZPsraOYji",
+      "description": "archivist-glimmer-p31",
+      "interval_start": "2026-10-30T00:00:00",
+      "resource": "H100",
+      "cost": "0.48592249"
+    },
+    {
+      "object_id": "ap-8xfjGKV2Sw61RZPsraOYji",
+      "description": "archivist-glimmer-p31",
+      "interval_start": "2026-10-30T00:00:00",
+      "resource": "Memory",
+      "cost": "0.06298540"
+    },
+    {
+      "object_id": "ap-8xfjGKV2Sw61RZPsraOYji",
+      "description": "archivist-glimmer-p31",
+      "interval_start": "2026-10-30T00:00:00",
+      "resource": "Network Egress",
+      "cost": "9E-8"
+    },
+    {
+      "object_id": "ap-8xfjGKV2Sw61RZPsraOYji",
+      "description": "archivist-glimmer-p31",
+      "interval_start": "2026-10-30T00:00:00",
+      "resource": "CPU",
+      "cost": "0.02327507"
+    },
+    {
+      "object_id": "ap-IBRlD0JoRbNx32OfNBTA9I",
+      "description": "archivist-glimmer-p31-prepare",
+      "interval_start": "2026-10-30T00:00:00",
+      "resource": "Memory",
+      "cost": "0.04714152"
+    },
+    {
+      "object_id": "ap-IBRlD0JoRbNx32OfNBTA9I",
+      "description": "archivist-glimmer-p31-prepare",
+      "interval_start": "2026-10-30T00:00:00",
+      "resource": "Network Egress",
+      "cost": "0.05732558"
+    },
+    {
+      "object_id": "ap-IBRlD0JoRbNx32OfNBTA9I",
+      "description": "archivist-glimmer-p31-prepare",
+      "interval_start": "2026-10-30T00:00:00",
+      "resource": "CPU",
+      "cost": "0.03484053"
+    },
+    {
+      "object_id": "ap-W4e2OKninfiDyNoiQ5UiZh",
+      "description": "archivist-glimmer-p31",
+      "interval_start": "2026-10-30T00:00:00",
+      "resource": "H100",
+      "cost": "0.10011889"
+    },
+    {
+      "object_id": "ap-W4e2OKninfiDyNoiQ5UiZh",
+      "description": "archivist-glimmer-p31",
+      "interval_start": "2026-10-30T00:00:00",
+      "resource": "Memory",
+      "cost": "0.01297744"
+    },
+    {
+      "object_id": "ap-W4e2OKninfiDyNoiQ5UiZh",
+      "description": "archivist-glimmer-p31",
+      "interval_start": "2026-10-30T00:00:00",
+      "resource": "CPU",
+      "cost": "0.00479557"
+    },
+    {
+      "object_id": "ap-dl2RdBNcxWCy1yltKE66ZS",
+      "description": "archivist-glimmer-p31-prepare",
+      "interval_start": "2026-10-30T00:00:00",
+      "resource": "Memory",
+      "cost": "0.00170668"
+    },
+    {
+      "object_id": "ap-dl2RdBNcxWCy1yltKE66ZS",
+      "description": "archivist-glimmer-p31-prepare",
+      "interval_start": "2026-10-30T00:00:00",
+      "resource": "CPU",
+      "cost": "0.00063067"
+    },
+    {
+      "object_id": "ap-xCsLoDz65Oalu5pMiwsQdJ",
+      "description": "archivist-glimmer-p31-prepare",
+      "interval_start": "2026-10-30T00:00:00",
+      "resource": "Memory",
+      "cost": "0.00227576"
+    },
+    {
+      "object_id": "ap-xCsLoDz65Oalu5pMiwsQdJ",
+      "description": "archivist-glimmer-p31-prepare",
+      "interval_start": "2026-10-30T00:00:00",
+      "resource": "Network Egress",
+      "cost": "0.00171908"
+    },
+    {
+      "object_id": "ap-xCsLoDz65Oalu5pMiwsQdJ",
+      "description": "archivist-glimmer-p31-prepare",
+      "interval_start": "2026-10-30T00:00:00",
+      "resource": "CPU",
+      "cost": "0.00084097"
+    }
+  ]
+}

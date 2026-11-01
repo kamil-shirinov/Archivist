@@ -1,0 +1,33 @@
+{
+  "queried_at": "2026-10-31T17:19:20.136335+00:00",
+  "source": "modal billing report --for today --show-resources --json",
+  "rows": [
+    {
+      "object_id": "ap-90heG0Xt09CZ8lLTAhSns9",
+      "description": "archivist-glimmer-phase2-20261031",
+      "environment": "main",
+      "interval_start": "2026-10-31T00:00:00",
+      "resource": "CPU",
+      "cost": "0.18447002"
+    },
+    {
+      "object_id": "ap-90heG0Xt09CZ8lLTAhSns9",
+      "description": "archivist-glimmer-phase2-20261031",
+      "environment": "main",
+      "interval_start": "2026-10-31T00:00:00",
+      "resource": "L4",
+      "cost": "0.78000006"
+    },
+    {
+      "object_id": "ap-90heG0Xt09CZ8lLTAhSns9",
+      "description": "archivist-glimmer-phase2-20261031",
+      "environment": "main",
+      "interval_start": "2026-10-31T00:00:00",
+      "resource": "Memory",
+      "cost": "0.24960002"
+    }
+  ],
+  "reported_cost_usd": 1.2140701,
+  "cumulative_reported_glimmer_cost_usd": 2.76236349,
+  "billing_may_lag": true
+}

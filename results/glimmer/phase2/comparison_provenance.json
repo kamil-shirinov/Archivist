@@ -1,0 +1,8 @@
+{
+  "compared_at": "2026-10-31T22:11:18.890733+00:00",
+  "raw_commit_already_pushed": "a33ace9bb020e2701769c86c2a8a89a66f22b345",
+  "raw_response_sha256_unchanged": "3f3456aec4ac1448c1652f919151da909ec0942b58e1fca1b9d3d77873ab338b",
+  "summary_sha256": "7ab2b095b614ac813c2b9204f35f72cd320f24e75faf34bf0ae8efac1acd91cf",
+  "comparison_scope": "aggregate pipeline-proxy metrics only; no human labels",
+  "model_or_metric_code_changed_after_freeze": false
+}

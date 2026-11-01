@@ -82,6 +82,7 @@ cd <worktree of run-real-treasury, after uv sync --frozen> && PYTHONPATH=<this c
 - Output is byte-identical for the same inputs. After changing export/schema.py, bump SCHEMA_VERSION, run `python -m archivist.export.schema` (ui/schema/bundle.schema.json) and re-export the committed bundles; tests fail on a stale schema or export.
 
 ## Status
+- [x] P37 untrained Muse Glimmer text sorter for new archive runs (D44): config/archive_glimmer.toml; same first 1,024 characters, NF4/bfloat16, prompt and parser as phase 2, followed by the existing title check. No text layer keeps image classification; committed configs stay unchanged. Private Modal L4 service scales to zero, GLIMMER_CAP_USD defaults to $10; results/glimmer/sorter/ records the development check and the tested live-reading merge patch.
 - [x] P1 scaffold
 - [x] P2 schema
 - [x] P3 world generator

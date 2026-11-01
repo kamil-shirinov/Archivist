@@ -1,0 +1,13 @@
+{
+  "branch": "origin/live-reading",
+  "commit": "ecdfafb8fcc3e6c6a5503844f1e2fc4971b2f798",
+  "files": [
+    "src/archivist/live/reader.py",
+    "src/archivist/live/events.py",
+    "src/archivist/live/session.py",
+    "src/archivist/export/bundle.py"
+  ],
+  "patch_applies": true,
+  "patched_files_compile": true,
+  "branches_merged": false
+}

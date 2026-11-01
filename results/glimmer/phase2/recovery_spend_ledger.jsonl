@@ -1,0 +1,1 @@
+{"timestamp": "2026-10-31T19:20:45.137+00:00", "role": "glimmer_phase2_recovery", "backend": "modal_glimmer_phase2_recovery", "model_id": "meta-models/Muse-Glimmer-30B@a4e59da52a7bc87ae7251dd5545c0dd437c44b68/phase2-recovery/f08e4463a10cdfd43430a4f94a0aec172017e94263d24929a745259abb450b6f", "input_tokens": 805232, "output_tokens": 111615, "cost_usd": 1.974891560225663}

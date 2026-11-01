@@ -1,0 +1,27 @@
+{
+  "pages": [
+    "1939-12_p025",
+    "1939-12_p053",
+    "1939-12_p055",
+    "1939-12_p056",
+    "1939-12_p057",
+    "1939-12_p060",
+    "1984-06_p058",
+    "1984-06_p059",
+    "1984-06_p065",
+    "1984-06_p066"
+  ],
+  "model_id": "meta-models/Muse-Glimmer-30B@a4e59da52a7bc87ae7251dd5545c0dd437c44b68/untrained-sorter-v1",
+  "app_name": "archivist-glimmer-sorter-p37",
+  "selection": "five frozen validation positives plus all five frozen title_other pages",
+  "data_manifest_sha256": "39d941e87f1a429ed03f9efea2a17935ce5fc770c1ca791a304bd04778adea88",
+  "config_sha256": "fb5651aa6ad1d93bf6131294c3532b8574d9e0e92bee6cffdd3fadd12594101e",
+  "request_sha256": "4d3e3d3143eb875c1d626064d28477bfbce5c9afba92deabdfeeaa57bc5bd39b",
+  "estimated_gpu_maximum_usd": 0.42040048,
+  "rate_usd_per_second": 0.00034544,
+  "deployment_storage_allowance_usd": 0.1,
+  "live_check_limit_usd": 2,
+  "task_limit_usd": 10,
+  "no_training": true,
+  "ocr_chars": 1024
+}

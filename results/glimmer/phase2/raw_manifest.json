@@ -1,0 +1,85 @@
+{
+  "created_at": "2026-10-31T19:21:37.858808+00:00",
+  "status": "both_raw_arms_complete_no_reference_comparison_run",
+  "raw_response_sha256": "3f3456aec4ac1448c1652f919151da909ec0942b58e1fca1b9d3d77873ab338b",
+  "raw_response_bytes": 788605,
+  "sample_sha256": "04074f6339a4b2833fe790abff7aaae79f1b1bee15fc7374b8c2a8b4a891e773",
+  "input_sha256": "a5137c611f840601438968b993c798c4af8f75685164e45cb7a1f33b48bf2467",
+  "pages_per_arm": 791,
+  "original_order_validated": true,
+  "phase1_preserved_files": 34,
+  "gpu": "NVIDIA L4",
+  "gpu_total_bytes": 23689363456,
+  "model_footprint_bytes": 18928972480,
+  "runtime_seconds": 5717.032075688,
+  "arm_metadata": {
+    "untrained": {
+      "runtime_seconds": 4719.19189786,
+      "precision": {
+        "loaded_in_4bit": true,
+        "quantised_linear_modules": 720,
+        "double_quantisation": true,
+        "compute_dtypes": [
+          "torch.bfloat16"
+        ],
+        "quantisation_types": [
+          "nf4"
+        ],
+        "quantised_storage_dtypes": [
+          "torch.bfloat16"
+        ],
+        "parameter_device_types": [
+          "cuda"
+        ],
+        "adapter_parameter_dtypes": []
+      },
+      "checkpoint_counts": {
+        "reused_batches": 0,
+        "new_batches": 99,
+        "complete_batches": 99
+      },
+      "peak_allocated_bytes": 21006185984,
+      "peak_reserved_bytes": 22951231488,
+      "free_and_total_memory_bytes": [
+        480968704,
+        23689363456
+      ]
+    },
+    "trained": {
+      "runtime_seconds": 919.847665794,
+      "precision": {
+        "loaded_in_4bit": true,
+        "quantised_linear_modules": 720,
+        "double_quantisation": true,
+        "compute_dtypes": [
+          "torch.bfloat16"
+        ],
+        "quantisation_types": [
+          "nf4"
+        ],
+        "quantised_storage_dtypes": [
+          "torch.bfloat16"
+        ],
+        "parameter_device_types": [
+          "cuda"
+        ],
+        "adapter_parameter_dtypes": [
+          "torch.float32"
+        ]
+      },
+      "checkpoint_counts": {
+        "reused_batches": 0,
+        "new_batches": 99,
+        "complete_batches": 99
+      },
+      "peak_allocated_bytes": 21124666880,
+      "peak_reserved_bytes": 23249027072,
+      "free_and_total_memory_bytes": [
+        208338944,
+        23689363456
+      ]
+    }
+  },
+  "parser_not_run_yet": true,
+  "reference_comparison_not_run_yet": true
+}

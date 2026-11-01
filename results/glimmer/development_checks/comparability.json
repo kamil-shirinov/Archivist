@@ -1,0 +1,16 @@
+{
+  "same_precision": true,
+  "precision": "4-bit NF4 base, double quantisation, bf16 compute and quantised storage; unquantised bf16 load; saved LoRA adapter",
+  "same_input": false,
+  "phase1_ocr_character_limit": 12000,
+  "phase2_ocr_character_limit": 1024,
+  "validation_pages": 40,
+  "validation_inputs_changed": 16,
+  "loader": "archivist.models.glimmer_runtime.load_model",
+  "loader_source_sha256": "aa60e2d9e5f2a51055c5fe72215916e24c3d812fd22c16d46f581437aedad53e",
+  "phase1_batch_size": 1,
+  "development_check_batch_size": 8,
+  "phase1_gpu": "H100",
+  "phase1_results_preserved": true,
+  "new_result_label": "development check; phase-2 input and parser"
+}

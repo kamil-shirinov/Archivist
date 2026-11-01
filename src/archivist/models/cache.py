@@ -1,4 +1,4 @@
-"""Response cache: one wrapper for both protocols, also the replay log of a run.
+"""Response cache: one wrapper for all model capabilities, also the replay log of a run.
 
 The key covers the backend, the model, the backend's settings (such as reasoning_effort) and
 every field of the request, so changing any of them is a miss. A hit returns the stored response
@@ -49,6 +49,7 @@ from archivist.models.base import (
     SegmentResponse,
     Usage,
     VisionLLM,
+    SortRequest, SortResponse, SortAnswer, TextSorter,
 )
 from archivist.schema import BBox
 
@@ -79,6 +80,8 @@ def _flight(path: Path) -> Iterator[None]:
 
 
 def _canonical(value: object) -> object:
+    if dataclasses.is_dataclass(value):
+        return {f.name: _canonical(getattr(value, f.name)) for f in dataclasses.fields(value)}
     if isinstance(value, bytes):
         return hashlib.sha256(value).hexdigest()
     if isinstance(value, tuple | list):
@@ -89,7 +92,7 @@ def _canonical(value: object) -> object:
 def cache_key(
     backend: str,
     model_id: str,
-    request: LLMRequest | SegmentRequest,
+    request: LLMRequest | SegmentRequest | SortRequest,
     settings: Mapping[str, object] | None = None,
 ) -> str:
     fields = {f.name: _canonical(getattr(request, f.name)) for f in dataclasses.fields(request)}
@@ -121,10 +124,15 @@ def _load_segment(data: dict) -> SegmentResponse:
     return SegmentResponse(**{**data, "regions": regions, "usage": Usage(**data["usage"])})
 
 
+def _load_sort(data: dict) -> SortResponse:
+    return SortResponse(**{**data, "usage": Usage(**data["usage"]),
+        "answers": tuple(SortAnswer(**row) for row in data["answers"])})
+
+
 class Cache:
     def __init__(
         self,
-        inner: VisionLLM | Segmenter,
+        inner: VisionLLM | Segmenter | TextSorter,
         cache_dir: Path = CACHE_DIR,
         settings: Mapping[str, object] | None = None,
     ) -> None:
@@ -137,10 +145,13 @@ class Cache:
     def complete(self, request: LLMRequest) -> LLMResponse:
         return self._through(request, self.inner.complete, _load_llm)
 
+    def sort(self, request: SortRequest) -> SortResponse:
+        return self._through(request, self.inner.sort, _load_sort)
+
     def segment(self, request: SegmentRequest) -> SegmentResponse:
         return self._through(request, self.inner.segment, _load_segment)
 
-    def _through[Req: (LLMRequest, SegmentRequest), Resp: (LLMResponse, SegmentResponse)](
+    def _through[Req: (LLMRequest, SegmentRequest, SortRequest), Resp: (LLMResponse, SegmentResponse, SortResponse)](
         self, request: Req, call: Callable[[Req], Resp], load: Callable[[dict], Resp]
     ) -> Resp:
         key = cache_key(self.name, self.model_id, request, self.settings)

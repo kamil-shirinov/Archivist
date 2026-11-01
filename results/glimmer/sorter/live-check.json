@@ -1,0 +1,111 @@
+{
+  "pages": 10,
+  "raw_agreement": 8,
+  "confirmed_agreement": 10,
+  "positive_recall": 5,
+  "positive_pages": 5,
+  "cache_replay_verified": true,
+  "ledger_reserved_charge_usd": 0.13815628657101953,
+  "comparisons": [
+    {
+      "page": "1939-12_p025",
+      "spark_raw": "receipts_and_expenditures_under_railroad",
+      "spark_confirmed": "receipts_and_expenditures_under_railroad",
+      "glimmer_raw": "receipts_and_expenditures_under_railroad",
+      "glimmer_confirmed": "receipts_and_expenditures_under_railroad",
+      "title_pattern": "receipts and expenditures under railroad retirement\\s+and railroad unemployment insurance acts",
+      "raw_agrees": true,
+      "confirmed_agrees": true
+    },
+    {
+      "page": "1939-12_p053",
+      "spark_raw": "short_term_foreign_liabilities_as",
+      "spark_confirmed": "short_term_foreign_liabilities_as",
+      "glimmer_raw": "short_term_foreign_liabilities_as",
+      "glimmer_confirmed": "short_term_foreign_liabilities_as",
+      "title_pattern": "Short-Term Foreign Liabilities as Reported by Banks and Bankers",
+      "raw_agrees": true,
+      "confirmed_agrees": true
+    },
+    {
+      "page": "1939-12_p055",
+      "spark_raw": "security_transactions_as_reported_by",
+      "spark_confirmed": "security_transactions_as_reported_by",
+      "glimmer_raw": "security_transactions_as_reported_by",
+      "glimmer_confirmed": "security_transactions_as_reported_by",
+      "title_pattern": "security\\s+transactions\\s+as\\s+reported\\s+by\\s+banks,?\\s+bankers,?\\s+brokers",
+      "raw_agrees": true,
+      "confirmed_agrees": true
+    },
+    {
+      "page": "1939-12_p056",
+      "spark_raw": "security_transactions_as_reported_by",
+      "spark_confirmed": "other",
+      "glimmer_raw": "security_transactions_as_reported_by",
+      "glimmer_confirmed": "other",
+      "title_pattern": null,
+      "raw_agrees": true,
+      "confirmed_agrees": true
+    },
+    {
+      "page": "1939-12_p057",
+      "spark_raw": "security_transactions_as_reported_by",
+      "spark_confirmed": "other",
+      "glimmer_raw": "security_transactions_as_reported_by",
+      "glimmer_confirmed": "other",
+      "title_pattern": null,
+      "raw_agrees": true,
+      "confirmed_agrees": true
+    },
+    {
+      "page": "1939-12_p060",
+      "spark_raw": "outstanding_forward_exchange_contracts",
+      "spark_confirmed": "outstanding_forward_exchange_contracts",
+      "glimmer_raw": "outstanding_forward_exchange_contracts",
+      "glimmer_confirmed": "outstanding_forward_exchange_contracts",
+      "title_pattern": "Outstanding\\s+Forward\\s+Exchange\\s+Contracts\\s+as\\s+Reported\\s+by\\s+Banks",
+      "raw_agrees": true,
+      "confirmed_agrees": true
+    },
+    {
+      "page": "1984-06_p058",
+      "spark_raw": "total_claims_by_country",
+      "spark_confirmed": "total_claims_by_country",
+      "glimmer_raw": "total_claims_by_country",
+      "glimmer_confirmed": "total_claims_by_country",
+      "title_pattern": "table\\s+cm-ii-2.*total\\s+claims\\s+by\\s+country",
+      "raw_agrees": true,
+      "confirmed_agrees": true
+    },
+    {
+      "page": "1984-06_p059",
+      "spark_raw": "total_claims_by_country",
+      "spark_confirmed": "other",
+      "glimmer_raw": "other",
+      "glimmer_confirmed": "other",
+      "title_pattern": null,
+      "raw_agrees": false,
+      "confirmed_agrees": true
+    },
+    {
+      "page": "1984-06_p065",
+      "spark_raw": "total_claims_by_country",
+      "spark_confirmed": "other",
+      "glimmer_raw": "total_claims_by_country",
+      "glimmer_confirmed": "other",
+      "title_pattern": null,
+      "raw_agrees": true,
+      "confirmed_agrees": true
+    },
+    {
+      "page": "1984-06_p066",
+      "spark_raw": "total_claims_by_country",
+      "spark_confirmed": "other",
+      "glimmer_raw": "other",
+      "glimmer_confirmed": "other",
+      "title_pattern": null,
+      "raw_agrees": false,
+      "confirmed_agrees": true
+    }
+  ]
+}

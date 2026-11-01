@@ -1,0 +1,13 @@
+{
+  "prior_retained_usd": 24.3099506,
+  "maximum_usd": 3.8482016,
+  "combined_retained_usd": 28.1581522,
+  "approved_retained_cap_usd": 28.16,
+  "execution_timeout_seconds": 10825,
+  "startup_timeout_seconds": 300,
+  "shutdown_allowance_seconds": 15,
+  "gpu": "L4",
+  "cpu_cores": 4,
+  "host_memory_gib": 32,
+  "reserved_at": "2026-10-31T17:37:34.645398+00:00"
+}

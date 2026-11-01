@@ -1,0 +1,15 @@
+{
+  "model": "meta-models/Muse-Glimmer-30B",
+  "revision": "a4e59da52a7bc87ae7251dd5545c0dd437c44b68",
+  "architecture": "MuseGlimmerForConditionalGeneration",
+  "template_works": true,
+  "max_training_tokens": 3051,
+  "max_validation_prompt_tokens": 2436,
+  "versions": {
+    "torch": "2.15.0",
+    "transformers": "5.22.1",
+    "peft": "0.21.2",
+    "bitsandbytes": "0.50.2",
+    "accelerate": "1.15.0"
+  }
+}

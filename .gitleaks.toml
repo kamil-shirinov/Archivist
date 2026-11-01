@@ -9,3 +9,11 @@ paths = [
   '''^results/real_test/held_out/unanswered_rereads\.jsonl$''',
   '''^results/real_test/held_out/unanswered_rereads_2\.jsonl$''',
 ]
+
+# One exact public source-code SHA256 in the Glimmer audit manifests.
+[[allowlists]]
+description = "Exact SHA256 of the public Glimmer weight-access preflight source; no credential."
+condition = "AND"
+paths = ['^results/glimmer/(run_manifest|recovery)\.json$']
+regexTarget = "secret"
+regexes = ['^d992302d0d413be04bcba1fae6ab2d62d78eef05fbc3f5be9add769b57a00c43$']

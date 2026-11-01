@@ -1,0 +1,67 @@
+[
+  {
+    "event": "submitted",
+    "function_id": "fu-7bcD4BdeGb4EeQ4Jc7suPI",
+    "call_id": "fc-01M67F5DX08299TNQZXR3YKN6D"
+  },
+  {
+    "event": "allocation_status",
+    "elapsed_seconds": 0.5918176249997487,
+    "ever_allocated": false,
+    "runners": 0,
+    "running_inputs": 0,
+    "backlog": 1
+  },
+  {
+    "event": "allocation_status",
+    "elapsed_seconds": 63.58239045799928,
+    "ever_allocated": true,
+    "runners": 1,
+    "running_inputs": 1,
+    "backlog": 0
+  },
+  {
+    "event": "allocation_status",
+    "elapsed_seconds": 121.28050662499845,
+    "ever_allocated": true,
+    "runners": 1,
+    "running_inputs": 1,
+    "backlog": 0
+  },
+  {
+    "event": "allocation_status",
+    "elapsed_seconds": 184.279742875,
+    "ever_allocated": true,
+    "runners": 1,
+    "running_inputs": 1,
+    "backlog": 0
+  },
+  {
+    "event": "allocation_status",
+    "elapsed_seconds": 242.00147241599916,
+    "ever_allocated": true,
+    "runners": 1,
+    "running_inputs": 1,
+    "backlog": 0
+  },
+  {
+    "event": "allocation_status",
+    "elapsed_seconds": 305.11442762499973,
+    "ever_allocated": true,
+    "runners": 1,
+    "running_inputs": 1,
+    "backlog": 0
+  },
+  {
+    "event": "allocation_status",
+    "elapsed_seconds": 362.88414041599935,
+    "ever_allocated": true,
+    "runners": 1,
+    "running_inputs": 1,
+    "backlog": 0
+  },
+  {
+    "event": "completed",
+    "elapsed_seconds": 403.7884020829988
+  }
+]

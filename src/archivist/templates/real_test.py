@@ -166,35 +166,7 @@ def words(page: Page, root: Path = DEFAULT_ROOT) -> tuple[ocr.Word, ...]:
 
 
 # The OCR layer's common confusions, folded the same way in the text and in the patterns.
-_FOLD = str.maketrans(
-    {"l": "i", "1": "i", "|": "i", "!": "i", "0": "o", "—": "-", "–": "-", "‐": "-"}
-)
-
-
-def fold(text: str) -> str:
-    """Text as the title check compares it: lower case, each confusion folded, a dash as a space
-    (the layer prints "Short-Term-Foreign" for "Short-Term Foreign"), and any run of whitespace one
-    space."""
-    return " ".join(text.lower().translate(_FOLD).replace("-", " ").split())
-
-
-def fold_pattern(pattern: str) -> str:
-    """A title pattern folded as fold() folds text, leaving each escape (\\s, \\.) as it is; a
-    literal space or dash matches any run of spacing."""
-    out, escaped = [], False
-    for char in pattern:
-        out.append(char if escaped else char.lower().translate(_FOLD))
-        escaped = char == "\\" and not escaped
-    return re.sub(r"(?<!\\)[ -]+", r"\\s+", "".join(out))
-
-
-def title_match(doc_type: TemplateType, text: str) -> str | None:
-    """The first of the family's approved title patterns that the page's text matches, or None."""
-    folded = fold(text)
-    for pattern in doc_type.template.identity.title_patterns:
-        if re.search(fold_pattern(pattern), folded, re.IGNORECASE) is not None:
-            return pattern
-    return None
+from archivist.doctypes.titles import _FOLD, fold, fold_pattern, title_match
 
 
 def sample(classes: Mapping[str, str], per_family: int, seed: int = SEED) -> dict[str, list[str]]:

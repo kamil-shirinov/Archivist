@@ -1,0 +1,33 @@
+{
+  "adapter_files_sha256": {
+    "adapter_model.safetensors": "7471260b80935821b07f19e1e0c35330abe08633498e4fd737cf1e18b29f58e1",
+    "README.md": "53dc14b60ad828176f98d51d3b98fe4695a38ea923732e4e3b9d2130b6598100",
+    "training_metrics.json": "a54e66b0dc32ba51b00b09dddc51b644216a35c3ccaf31997895d34424cab2eb",
+    "adapter_config.json": "3edc8627a600a90bcc9b994f8f36148dab01cb0ebd1ff8a6bb58164403a4676c"
+  },
+  "metadata_normalisation": {
+    "README.md": {
+      "remote_original_sha256": "3283b0022fa09da1c3b448e21f2a0af738ff5abc20a4af836a072e96856a1082",
+      "committed_sha256": "53dc14b60ad828176f98d51d3b98fe4695a38ea923732e4e3b9d2130b6598100",
+      "change": "trailing whitespace and final newline only; no tensor or JSON semantic change"
+    },
+    "adapter_config.json": {
+      "remote_original_sha256": "28e7fb3ac3f47614fbee3f48e261216f488f44d4951034a77a2ea37bf1721eca",
+      "committed_sha256": "3edc8627a600a90bcc9b994f8f36148dab01cb0ebd1ff8a6bb58164403a4676c",
+      "change": "trailing whitespace and final newline only; no tensor or JSON semantic change"
+    }
+  },
+  "strict_scores_sha256": {
+    "baseline_metrics.json": "dbaf62b07ab6c93b1413208402ab49cb62b9b947daf277db8ccf54376dfff2a4",
+    "trained_metrics.json": "b31a9adae8fdd2b8e4e562eff9cb640b58dd485deb93d2118eff880804baf132"
+  },
+  "postprocessing_source_sha256": {
+    "src/archivist/glimmer/__init__.py": "39426f25ac243cd53b66aa6b9f185c91a4664114043bbc6480dd581e4bf4670d",
+    "src/archivist/glimmer/cost.py": "91981d472d29096e7a2306ac86da81946fc8c6a965bccab1dfa718266820310d",
+    "src/archivist/glimmer/data.py": "5f3383b73241266c84eaed9bccc1c2ef14acf920b4433b01a996c69b2f7c5807",
+    "src/archivist/glimmer/metrics.py": "dc223eef7172d4e680871d7b505e75f5b1627e2a7be9fb1113061d709bb91947",
+    "src/archivist/glimmer/native_diagnostic.py": "52545a15f1464ee30c7b5c5d45c0dc0fcb83d9d6fcc1d25115bf29b81865cfac",
+    "src/archivist/glimmer/report.py": "a443aafee1396d237e10b2536447253aabb6684bba207c77560de3f1f725891f",
+    "src/archivist/glimmer/run.py": "dc5d08cd57978b4685b30f5fda5e3c7944538533a4ac406e477fe6094a5c9513"
+  }
+}

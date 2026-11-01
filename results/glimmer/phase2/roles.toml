@@ -1,0 +1,7 @@
+[roles.sort]
+kind = "llm"
+backend = "modal_glimmer_phase2"
+model_id = "meta-models/Muse-Glimmer-30B@a4e59da52a7bc87ae7251dd5545c0dd437c44b68/phase2/04074f6339a4b2833fe790abff7aaae79f1b1bee15fc7374b8c2a8b4a891e773/934b5b3202c57262fd919e0cbb94f9cfd49e106abe9aa4251ade2ad43032b81b"
+[prices."meta-models/Muse-Glimmer-30B@a4e59da52a7bc87ae7251dd5545c0dd437c44b68/phase2/04074f6339a4b2833fe790abff7aaae79f1b1bee15fc7374b8c2a8b4a891e773/934b5b3202c57262fd919e0cbb94f9cfd49e106abe9aa4251ade2ad43032b81b"]
+input_per_mtok = 0.0
+output_per_mtok = 0.0
