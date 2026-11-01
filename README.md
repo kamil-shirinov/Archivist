@@ -1,7 +1,9 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/brand/logo-dark.svg">
   <img src="assets/brand/logo-light.svg" alt="Archivist logo: a page of text lines with a gold tick" width="64" height="64">
-</picture> # Archivist
+</picture> 
+
+# Archivist
 
 [![CI](https://github.com/kamil-shirinov/Archivist/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/kamil-shirinov/Archivist/actions/workflows/ci.yml)
 
