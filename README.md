@@ -137,7 +137,7 @@ uv sync --frozen
 uv run pytest -q && uv run python -m archivist.replay
 ```
 
-The Check needs the uncommitted response cache and Treasury scans; a clean clone cannot complete it without them.
+Without the Treasury scans (`data/real/pdf` and `data/real/pages`, gitignored; `uv run python -m archivist.ingest.fraser` fetches them), the tests that read them are skipped, each with its reason, and run when the files are there. Replay still needs the uncommitted response cache, `cache/`, and stops without it, so a clean clone passes `pytest` and cannot finish the replay.
 
 | With no key and no model call, run | What it shows |
 |---|---|

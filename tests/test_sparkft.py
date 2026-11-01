@@ -2,6 +2,7 @@
 import sys
 from dataclasses import dataclass
 from pathlib import Path
+from types import SimpleNamespace
 
 import pytest
 
@@ -22,6 +23,16 @@ def test_gate_rejects_other_pages(ref):
 
 
 def test_geometry_refuses_before_source_response_or_page_access(monkeypatch):
+    # The module pins the commit it was built from by asking git for the branch openw-measure,
+    # which no longer exists. The commit itself is in main's history, so ask for that instead.
+    real = boxes.subprocess.check_output
+
+    def pinned(cmd, *args, **kwargs):
+        if list(cmd) == ['git', 'rev-parse', 'openw-measure']:
+            cmd = ['git', 'rev-parse', '633cdff^{commit}']
+        return real(cmd, *args, **kwargs)
+
+    monkeypatch.setattr(boxes, 'subprocess', SimpleNamespace(check_output=pinned))
     monkeypatch.setattr(boxes, 'PAGES', ('1940-01_p001',))
 
     def forbidden(*args):

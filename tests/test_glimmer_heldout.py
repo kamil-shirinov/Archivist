@@ -68,6 +68,11 @@ def test_text_only_ocr_matches_all_40_frozen_development_inputs():
     dev=set(split['development'])
     manifest=json.loads(Path('data/real/manifest.json').read_text())
     metadata={(r['issue'],r['page']):(r['width'],r['height']) for r in manifest['pages'] if r['issue'] in dev}
+    missing=sorted({row['page'].rsplit('_p',1)[0] for row in rows
+                    if not (Path('data/real/pdf')/pdf_name(row['page'].rsplit('_p',1)[0])).is_file()})
+    if missing:
+        pytest.skip('needs the Treasury Bulletin PDFs in data/real/pdf (gitignored; fetch with '
+                    'uv run python -m archivist.ingest.fraser); missing for '+', '.join(missing))
     # Both allow sets deliberately contain DEVELOPMENT references for this equivalence test.
     for row in rows:
         ref=row['page']

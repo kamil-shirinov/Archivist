@@ -26,11 +26,14 @@ def live(request,tmp_path,monkeypatch):
         pytest.skip("handoff source commit is not present in this clone")
     sources=[*record['files'],'src/archivist/live/pages.py']
     prefix=tmp_path/'tree'
+    prefix.mkdir()
     for name in sources:
         text=subprocess.run(['git','show',record['commit']+':'+name],capture_output=True,text=True,check=True).stdout
         path=prefix/name;path.parent.mkdir(parents=True,exist_ok=True);path.write_text(text)
-    subprocess.run(['git','apply','--directory='+str(prefix.relative_to(Path.cwd())),
-        'results/glimmer/sorter/live-reading.patch'],check=True)
+    # git apply resolves --directory against the repository root, so it cannot name a folder
+    # elsewhere; apply the patch inside the copied tree instead, wherever pytest put it.
+    subprocess.run(['git','apply',str(Path('results/glimmer/sorter/live-reading.patch').resolve())],
+        cwd=prefix,check=True)
     # Only the reader/events/pages are imported. UI exporter dependencies live on ui;
     # its patched model-name function has a separate syntax/application check.
     from archivist.export import bundle

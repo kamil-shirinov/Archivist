@@ -475,6 +475,31 @@ def test_every_committed_flag_is_explained(run, monkeypatch):
         assert bool(causes) == (f.status != "accepted"), f.field_id
 
 
+def _sqlite_dump(path: Path) -> list[str]:
+    """A database's contents (schema and rows) as SQL text, which does not depend on the SQLite
+    version that wrote the file; its raw bytes do."""
+    db = sqlite3.connect(path)
+    try:
+        return list(db.iterdump())
+    finally:
+        db.close()
+
+
+def database_problems(b, out_dir: Path, scratch: Path) -> list[str]:
+    """database.check, but the SQLite file is compared by contents and the CSVs by bytes."""
+    problems = []
+    for fresh in database.write(b, scratch):
+        on_disk = out_dir / fresh.name
+        if not on_disk.exists():
+            problems.append(f"{on_disk} is missing")
+        elif fresh.suffix == ".sqlite":
+            if _sqlite_dump(on_disk) != _sqlite_dump(fresh):
+                problems.append(f"{on_disk} differs in content from a fresh export of {b.run.run_id}")
+        elif on_disk.read_bytes() != fresh.read_bytes():
+            problems.append(f"{on_disk} differs from a fresh export of {b.run.run_id}")
+    return problems
+
+
 @pytest.mark.parametrize(
     "run", [r for r in COMMITTED if (ROOT / bundle.BUNDLES_DIR / r / bundle.BUNDLE_FILE).exists()]
 )
@@ -482,7 +507,7 @@ def test_committed_exports_are_current(run, tmp_path, monkeypatch):
     monkeypatch.chdir(ROOT)  # the runs name their images relative to the repository
     b = bundle.build(COMMITTED_RUNS / run)
     assert bundle.check(b, bundle.BUNDLES_DIR / run) == []
-    assert database.check(b, database.EXPORTS_DIR / run, tmp_path) == []
+    assert database_problems(b, database.EXPORTS_DIR / run, tmp_path) == []
     verdicts = load_verdicts(COMMITTED_RUNS / run / "verdicts.jsonl")
     db = sqlite3.connect(database.EXPORTS_DIR / run / database.DATABASE_FILE)
     by_status = dict(db.execute("SELECT status, COUNT(*) FROM field_values GROUP BY status"))
@@ -728,6 +753,11 @@ def test_every_committed_failing_flag_is_a_failed_rule_result(run):
 # --- the second collection: the development run on the Treasury Bulletin's pages -----------------
 
 
+@pytest.mark.skipif(
+    not any((ROOT / "data" / "real" / "pages").glob("*/*.jpg")),
+    reason="needs the Treasury Bulletin scans in data/real/pages (gitignored; fetch with "
+    "uv run python -m archivist.ingest.fraser)",
+)
 def test_the_development_run_is_exported_from_its_own_folder_and_is_current(monkeypatch, tmp_path):
     monkeypatch.chdir(ROOT)
     built = bundle.build(bundle.run_dir(DEVELOPMENT))
