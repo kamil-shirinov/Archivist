@@ -1,0 +1,5 @@
+{
+  "passed": true,
+  "method": "native BF16 grouped_mm expert input-gradient test",
+  "max_input_gradient": 3.46875
+}

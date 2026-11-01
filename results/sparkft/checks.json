@@ -1,0 +1,17 @@
+{
+  "command": "uv run pytest -q && uv run python -m archivist.replay",
+  "unpiped": true,
+  "exit_code": 0,
+  "pytest_passed": 1188,
+  "replay_runs_identical": 11,
+  "spend_ledger_lines_before": 81156,
+  "spend_ledger_lines_after": 81156,
+  "pre_commit": "passed: gitleaks, trailing whitespace, end-of-file",
+  "production_files_changed": false,
+  "data_links_staged": false,
+  "held_out_page_content_accessed": false,
+  "owner_labels_accessed": false,
+  "new_meta_calls": 0,
+  "glimmer_files_or_apps_changed": false,
+  "branch": "sparkft"
+}

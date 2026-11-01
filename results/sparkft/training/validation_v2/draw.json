@@ -1,0 +1,4292 @@
+{
+  "rule": "RULE.md",
+  "inventory": [
+    {
+      "page": "1939-01_p051",
+      "family": "short_term_foreign_liabilities_as",
+      "layout": "8590dcedb912",
+      "layout_signature": {
+        "row_mode": "ReadRows",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Liabilities as of following dates"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": true,
+      "image_sha256": "3d6609ff97136d3c8321412f99de050eca8ae02f370e5f647f67af2afb119fb5"
+    },
+    {
+      "page": "1939-01_p055",
+      "family": "security_transactions_as_reported_by",
+      "layout": "17f41ebdd51b",
+      "layout_signature": {
+        "row_mode": "ReadRows",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Transactions during week ended-"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": true,
+      "image_sha256": "4da1500999d2e02e056b5d0db3aa8934981b16caddb04428df0396cf261864a9"
+    },
+    {
+      "page": "1939-01_p061",
+      "family": "outstanding_forward_exchange_contracts",
+      "layout": "49015cd4f4fa",
+      "layout_signature": {
+        "row_mode": "Sections",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Contracts as of following dates"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": true,
+      "image_sha256": "9f3ecbba908248e9870e84e68eceb6e00c428413c32401403ee9c4219f719694"
+    },
+    {
+      "page": "1939-02_p079",
+      "family": "short_term_foreign_liabilities_as",
+      "layout": "8590dcedb912",
+      "layout_signature": {
+        "row_mode": "ReadRows",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Liabilities as of following dates"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": false,
+      "image_sha256": "3f11fceef78dadb716c7d70b5fb3e5f089d720889289807e900b8acb2a43ea0e"
+    },
+    {
+      "page": "1939-02_p083",
+      "family": "security_transactions_as_reported_by",
+      "layout": "17f41ebdd51b",
+      "layout_signature": {
+        "row_mode": "ReadRows",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Transactions during week ended-"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": false,
+      "image_sha256": "ef490dc0f841b8329923d37599e24faedc04b2fdd18d3955beb2cc41b3e830bc"
+    },
+    {
+      "page": "1939-02_p089",
+      "family": "outstanding_forward_exchange_contracts",
+      "layout": "49015cd4f4fa",
+      "layout_signature": {
+        "row_mode": "Sections",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Contracts as of following dates"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": false,
+      "image_sha256": "864811d9d9594eb5602f1636978d82b03644043d9804c2e56456c700a3f8f521"
+    },
+    {
+      "page": "1939-03_p083",
+      "family": "short_term_foreign_liabilities_as",
+      "layout": "8590dcedb912",
+      "layout_signature": {
+        "row_mode": "ReadRows",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Liabilities as of following dates"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": false,
+      "image_sha256": "6ce59ef81efa516d8aff56e1f25db7e933459331903bfc1056fd79d4bf11fc49"
+    },
+    {
+      "page": "1939-03_p087",
+      "family": "security_transactions_as_reported_by",
+      "layout": "17f41ebdd51b",
+      "layout_signature": {
+        "row_mode": "ReadRows",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Transactions during week ended-"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": false,
+      "image_sha256": "7290626eea10c7957fc56384c137f8deb544182c17bfb2aa88596fe74cb30797"
+    },
+    {
+      "page": "1939-03_p093",
+      "family": "outstanding_forward_exchange_contracts",
+      "layout": "49015cd4f4fa",
+      "layout_signature": {
+        "row_mode": "Sections",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Contracts as of following dates"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": false,
+      "image_sha256": "cd7f12818190a9726443005be0463e6835699b57103fc7f886022dc054408d98"
+    },
+    {
+      "page": "1939-04_p065",
+      "family": "short_term_foreign_liabilities_as",
+      "layout": "8590dcedb912",
+      "layout_signature": {
+        "row_mode": "ReadRows",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Liabilities as of following dates"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": false,
+      "image_sha256": "fcd714c9cc67c685b01c72076fc4819c4c2e2c0102c7567db5212a30845b8b06"
+    },
+    {
+      "page": "1939-04_p069",
+      "family": "security_transactions_as_reported_by",
+      "layout": "17f41ebdd51b",
+      "layout_signature": {
+        "row_mode": "ReadRows",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Transactions during week ended-"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": false,
+      "image_sha256": "547c6019cd979aefd393951be45d8e386409743936704c24adff8404828ab458"
+    },
+    {
+      "page": "1939-04_p075",
+      "family": "outstanding_forward_exchange_contracts",
+      "layout": "49015cd4f4fa",
+      "layout_signature": {
+        "row_mode": "Sections",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Contracts as of following dates"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": false,
+      "image_sha256": "dfae58d06ea0fa79b28b7e29463c5c89ce52544e0bb24ef5820dca334b2dc76c"
+    },
+    {
+      "page": "1939-05_p089",
+      "family": "outstanding_forward_exchange_contracts",
+      "layout": "49015cd4f4fa",
+      "layout_signature": {
+        "row_mode": "Sections",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Contracts as of following dates"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": false,
+      "image_sha256": "3968dad96e9167b7b0208edc50f636da4efdc3e2539eb2ead6e4824848284ae0"
+    },
+    {
+      "page": "1939-06_p083",
+      "family": "short_term_foreign_liabilities_as",
+      "layout": "8590dcedb912",
+      "layout_signature": {
+        "row_mode": "ReadRows",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Liabilities as of following dates"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": false,
+      "image_sha256": "3e05a2006abac3fe80cc77d59346d46f391aa17e2836bbe4146e3ac6a57538b8"
+    },
+    {
+      "page": "1939-06_p087",
+      "family": "security_transactions_as_reported_by",
+      "layout": "17f41ebdd51b",
+      "layout_signature": {
+        "row_mode": "ReadRows",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Transactions during week ended-"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": false,
+      "image_sha256": "61ce2eb11999fdbf36496207e335f3b15daad454c173eeb3fa17994c0f9f3cb3"
+    },
+    {
+      "page": "1939-06_p097",
+      "family": "outstanding_forward_exchange_contracts",
+      "layout": "49015cd4f4fa",
+      "layout_signature": {
+        "row_mode": "Sections",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Contracts as of following dates"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": false,
+      "image_sha256": "1dae3182e925a86787ef0f878b231cfd0a254796bd2a4febd5cbecc10e66bd18"
+    },
+    {
+      "page": "1939-07_p071",
+      "family": "short_term_foreign_liabilities_as",
+      "layout": "8590dcedb912",
+      "layout_signature": {
+        "row_mode": "ReadRows",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Liabilities as of following dates"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": true,
+      "image_sha256": "a2fa8049c8325b2e3b0f4409b240d5f4673acd4644e301949641377d8bf8ce88"
+    },
+    {
+      "page": "1939-07_p075",
+      "family": "security_transactions_as_reported_by",
+      "layout": "17f41ebdd51b",
+      "layout_signature": {
+        "row_mode": "ReadRows",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Transactions during week ended-"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": true,
+      "image_sha256": "0aaa4afe3d242fa862c2dc3cef95a0486adb0e0375ed378d0854b0b3ece475b2"
+    },
+    {
+      "page": "1939-07_p085",
+      "family": "outstanding_forward_exchange_contracts",
+      "layout": "49015cd4f4fa",
+      "layout_signature": {
+        "row_mode": "Sections",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Contracts as of following dates"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": true,
+      "image_sha256": "4b942e02148d1ffb241ed5e21be73b1a08d6ed84a95051fd76eea4fb229eb185"
+    },
+    {
+      "page": "1939-08_p043",
+      "family": "receipts_and_expenditures_under_railroad",
+      "layout": "be687f3defad",
+      "layout_signature": {
+        "row_mode": "ReadRows",
+        "columns": [
+          [
+            "period",
+            "text",
+            "Fiscal year or month"
+          ],
+          [
+            "taxes",
+            "money",
+            "Taxes upon carriers and their employees"
+          ],
+          [
+            "admin",
+            "money",
+            "Administrative Expenses"
+          ],
+          [
+            "to_retirement",
+            "money",
+            "Transfers to Railroad Retirement Acct."
+          ],
+          [
+            "to_unemployment",
+            "money",
+            "Transfers to Railroad Unemployment insurance account"
+          ],
+          [
+            "total_exp",
+            "money",
+            "Total Expenditures"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": true,
+      "image_sha256": "7cd7e74dbd677d95d8b633d4982b93dcc02fc62416ae3e973b099b10a631bfeb"
+    },
+    {
+      "page": "1939-08_p083",
+      "family": "short_term_foreign_liabilities_as",
+      "layout": "8590dcedb912",
+      "layout_signature": {
+        "row_mode": "ReadRows",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Liabilities as of following dates"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": false,
+      "image_sha256": "73a22b095a2c4e258dbc6af111b4bd42adfcf4372e63aaa6fa2e8bfa71a22946"
+    },
+    {
+      "page": "1939-08_p087",
+      "family": "security_transactions_as_reported_by",
+      "layout": "17f41ebdd51b",
+      "layout_signature": {
+        "row_mode": "ReadRows",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Transactions during week ended-"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": false,
+      "image_sha256": "22d487ddfe8a3efdf6df20b990fc7fae6be9bd92ec8de52c7181336bc4819397"
+    },
+    {
+      "page": "1939-08_p097",
+      "family": "outstanding_forward_exchange_contracts",
+      "layout": "49015cd4f4fa",
+      "layout_signature": {
+        "row_mode": "Sections",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Contracts as of following dates"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": false,
+      "image_sha256": "c549eefe9e334e98abcacaa954f7bdaecc0474f1593997eaf5a9a5ef0ea03470"
+    },
+    {
+      "page": "1939-09_p024",
+      "family": "receipts_and_expenditures_under_railroad",
+      "layout": "be687f3defad",
+      "layout_signature": {
+        "row_mode": "ReadRows",
+        "columns": [
+          [
+            "period",
+            "text",
+            "Fiscal year or month"
+          ],
+          [
+            "taxes",
+            "money",
+            "Taxes upon carriers and their employees"
+          ],
+          [
+            "admin",
+            "money",
+            "Administrative Expenses"
+          ],
+          [
+            "to_retirement",
+            "money",
+            "Transfers to Railroad Retirement Acct."
+          ],
+          [
+            "to_unemployment",
+            "money",
+            "Transfers to Railroad Unemployment insurance account"
+          ],
+          [
+            "total_exp",
+            "money",
+            "Total Expenditures"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": false,
+      "image_sha256": "03e4453573b634df04ba1a6ef09356f4e600fae547becc6c1714a7ae71eb6cc2"
+    },
+    {
+      "page": "1939-09_p047",
+      "family": "short_term_foreign_liabilities_as",
+      "layout": "8590dcedb912",
+      "layout_signature": {
+        "row_mode": "ReadRows",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Liabilities as of following dates"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": false,
+      "image_sha256": "f14029d59f25f962339c52cc5dc66b3b97aa226eff6ce7bb508341715d415228"
+    },
+    {
+      "page": "1939-09_p049",
+      "family": "security_transactions_as_reported_by",
+      "layout": "17f41ebdd51b",
+      "layout_signature": {
+        "row_mode": "ReadRows",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Transactions during week ended-"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": false,
+      "image_sha256": "52467a5858f3d3f06a1fd3f3baf9829ea47393a22c06850d289d3c4f4435b25c"
+    },
+    {
+      "page": "1939-09_p054",
+      "family": "outstanding_forward_exchange_contracts",
+      "layout": "49015cd4f4fa",
+      "layout_signature": {
+        "row_mode": "Sections",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Contracts as of following dates"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": false,
+      "image_sha256": "671e707fb82a10b85397f793f0048e81f2f3220a650d05e38dcd80be0e9e4a43"
+    },
+    {
+      "page": "1939-10_p024",
+      "family": "receipts_and_expenditures_under_railroad",
+      "layout": "be687f3defad",
+      "layout_signature": {
+        "row_mode": "ReadRows",
+        "columns": [
+          [
+            "period",
+            "text",
+            "Fiscal year or month"
+          ],
+          [
+            "taxes",
+            "money",
+            "Taxes upon carriers and their employees"
+          ],
+          [
+            "admin",
+            "money",
+            "Administrative Expenses"
+          ],
+          [
+            "to_retirement",
+            "money",
+            "Transfers to Railroad Retirement Acct."
+          ],
+          [
+            "to_unemployment",
+            "money",
+            "Transfers to Railroad Unemployment insurance account"
+          ],
+          [
+            "total_exp",
+            "money",
+            "Total Expenditures"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": true,
+      "image_sha256": "58f9f05eaf11eef35e6aa2d5970d1777d970ee64bb9890f41d5b67a335e430a8"
+    },
+    {
+      "page": "1939-10_p047",
+      "family": "short_term_foreign_liabilities_as",
+      "layout": "8590dcedb912",
+      "layout_signature": {
+        "row_mode": "ReadRows",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Liabilities as of following dates"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": false,
+      "image_sha256": "ef85d57900d25ad59f26974ad0d0379da281911aec4254b8df3ca4dabfaac3d1"
+    },
+    {
+      "page": "1939-10_p049",
+      "family": "security_transactions_as_reported_by",
+      "layout": "17f41ebdd51b",
+      "layout_signature": {
+        "row_mode": "ReadRows",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Transactions during week ended-"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": false,
+      "image_sha256": "2db0fec8640a36fc02d762a0b364355ad29ce6ec7a9209deec7cda0f0cad58a1"
+    },
+    {
+      "page": "1939-10_p054",
+      "family": "outstanding_forward_exchange_contracts",
+      "layout": "49015cd4f4fa",
+      "layout_signature": {
+        "row_mode": "Sections",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Contracts as of following dates"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": false,
+      "image_sha256": "25bb773e55d4c44c9c0f26e0080696f273473e8f603c25d257b056c45b32334a"
+    },
+    {
+      "page": "1939-11_p053",
+      "family": "security_transactions_as_reported_by",
+      "layout": "17f41ebdd51b",
+      "layout_signature": {
+        "row_mode": "ReadRows",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Transactions during week ended-"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": false,
+      "image_sha256": "66fde7e9494143ec6f7346e1bbcffdcf74022a27f2a9d8654330c1f1afc74f43"
+    },
+    {
+      "page": "1939-11_p058",
+      "family": "outstanding_forward_exchange_contracts",
+      "layout": "49015cd4f4fa",
+      "layout_signature": {
+        "row_mode": "Sections",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Contracts as of following dates"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": false,
+      "image_sha256": "ea3a0ac4f3f431fb0233d14bfc681f67dc47818ac24d3ca25c071f57daf78b51"
+    },
+    {
+      "page": "1939-12_p025",
+      "family": "receipts_and_expenditures_under_railroad",
+      "layout": "be687f3defad",
+      "layout_signature": {
+        "row_mode": "ReadRows",
+        "columns": [
+          [
+            "period",
+            "text",
+            "Fiscal year or month"
+          ],
+          [
+            "taxes",
+            "money",
+            "Taxes upon carriers and their employees"
+          ],
+          [
+            "admin",
+            "money",
+            "Administrative Expenses"
+          ],
+          [
+            "to_retirement",
+            "money",
+            "Transfers to Railroad Retirement Acct."
+          ],
+          [
+            "to_unemployment",
+            "money",
+            "Transfers to Railroad Unemployment insurance account"
+          ],
+          [
+            "total_exp",
+            "money",
+            "Total Expenditures"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": true,
+      "image_sha256": "5c4fed4f98b349fb1bca3f7a87c34d4fa44e01338d080e19c4972032a714176c"
+    },
+    {
+      "page": "1939-12_p053",
+      "family": "short_term_foreign_liabilities_as",
+      "layout": "8590dcedb912",
+      "layout_signature": {
+        "row_mode": "ReadRows",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Liabilities as of following dates"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": true,
+      "image_sha256": "bfc394faa44b067a7c997b852a2eaf8368a6d2bc72291d9a0d05926e651e277e"
+    },
+    {
+      "page": "1939-12_p055",
+      "family": "security_transactions_as_reported_by",
+      "layout": "17f41ebdd51b",
+      "layout_signature": {
+        "row_mode": "ReadRows",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Transactions during week ended-"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": true,
+      "image_sha256": "c4fbf32afdf145da19365e16d0c9e0c3c41dd99055db65779aae28d85d6f278e"
+    },
+    {
+      "page": "1939-12_p060",
+      "family": "outstanding_forward_exchange_contracts",
+      "layout": "49015cd4f4fa",
+      "layout_signature": {
+        "row_mode": "Sections",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Contracts as of following dates"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": true,
+      "image_sha256": "935aa0e24b73267da2ba5d0c54b74dafcc590967e643545b07f0b3f205d7c8d6"
+    },
+    {
+      "page": "1982-06_p094",
+      "family": "total_claims_by_country",
+      "layout": "a2f2732dc10b",
+      "layout_signature": {
+        "row_mode": "list",
+        "columns": [
+          [
+            "country",
+            "text",
+            "Country"
+          ],
+          [
+            "c1",
+            "money",
+            "Calendar year 1981"
+          ],
+          [
+            "c2",
+            "money",
+            "June 1982"
+          ],
+          [
+            "c3",
+            "money",
+            "Sept. 1982"
+          ],
+          [
+            "c4",
+            "money",
+            "Dec. 1982"
+          ],
+          [
+            "c5",
+            "money",
+            "Mar. 1983"
+          ],
+          [
+            "c6",
+            "money",
+            "June 1983"
+          ],
+          [
+            "c7",
+            "money",
+            "Sept. 1983"
+          ],
+          [
+            "c8",
+            "money",
+            "Dec. 1983"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": true,
+      "image_sha256": "1bcba2f47aed8f524599dba064a4b4b27c9aac772cd7f7a32a9568aa4fb211e2"
+    },
+    {
+      "page": "1983-06_p092",
+      "family": "total_claims_by_country",
+      "layout": "a2f2732dc10b",
+      "layout_signature": {
+        "row_mode": "list",
+        "columns": [
+          [
+            "country",
+            "text",
+            "Country"
+          ],
+          [
+            "c1",
+            "money",
+            "Calendar year 1981"
+          ],
+          [
+            "c2",
+            "money",
+            "June 1982"
+          ],
+          [
+            "c3",
+            "money",
+            "Sept. 1982"
+          ],
+          [
+            "c4",
+            "money",
+            "Dec. 1982"
+          ],
+          [
+            "c5",
+            "money",
+            "Mar. 1983"
+          ],
+          [
+            "c6",
+            "money",
+            "June 1983"
+          ],
+          [
+            "c7",
+            "money",
+            "Sept. 1983"
+          ],
+          [
+            "c8",
+            "money",
+            "Dec. 1983"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": true,
+      "image_sha256": "9c0354ab9d512dac367176b6313ec97d45eef6ad682a8c8f341cb69a63068d67"
+    },
+    {
+      "page": "1984-06_p058",
+      "family": "total_claims_by_country",
+      "layout": "a2f2732dc10b",
+      "layout_signature": {
+        "row_mode": "list",
+        "columns": [
+          [
+            "country",
+            "text",
+            "Country"
+          ],
+          [
+            "c1",
+            "money",
+            "Calendar year 1981"
+          ],
+          [
+            "c2",
+            "money",
+            "June 1982"
+          ],
+          [
+            "c3",
+            "money",
+            "Sept. 1982"
+          ],
+          [
+            "c4",
+            "money",
+            "Dec. 1982"
+          ],
+          [
+            "c5",
+            "money",
+            "Mar. 1983"
+          ],
+          [
+            "c6",
+            "money",
+            "June 1983"
+          ],
+          [
+            "c7",
+            "money",
+            "Sept. 1983"
+          ],
+          [
+            "c8",
+            "money",
+            "Dec. 1983"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": true,
+      "image_sha256": "ae00d994bd818929440000113df70c6a8c314a9b4f48a489f347883fbd2d4770"
+    }
+  ],
+  "pdf_hashes": {
+    "1939-01": "4356eefee64b0445692ec10740e32cb0c96ec14691da6cb1d0d80202b608f2c3",
+    "1939-02": "d32c63b57ad24dcf2b24590bc5238d71128f4418a2a247042edfda4f4f80271e",
+    "1939-03": "3889c242ac51152a34cc1fd0a4bda6cac1c96275e0f498812ab101a3fedd8ba3",
+    "1939-04": "01a3da4bfeb07ccaa5b4946fb8dfd225d78a9b10f9c76c586277c0cf54147106",
+    "1939-05": "6b8010bbc622e50ba8d6d7b4c357357642c89d2de69b3955d7c28e487899373f",
+    "1939-06": "dc3be1cc7b4f246005ab68a5fbc2708c883699afd67d8c134d4cd713ead4f91e",
+    "1939-07": "700b037eb5d945652fcbbd7467d2ccc373a33534a2c2d8e581a76375ab5a0b55",
+    "1939-08": "c61df68edf8f68219195435740a4cfd2db407f647a94171eeb93e8988910e287",
+    "1939-09": "b587d4e35eccebd6d86335b447c1b4e97dbcf9ab2a1fa40480c5fe351f7edc29",
+    "1939-10": "2ce500ebf4aecb2e62f00e1097b34be0fe63e0e46b97200f429aea1c5d650f85",
+    "1939-11": "36c65430828682d435dbae06f129d086b473faf546228f13e8d798dd522d7879",
+    "1939-12": "3ec43a9f562dc26f55ca1ffa80786b5af5ab52cfd6ff641b4c2b66b21b50bcef",
+    "1982-06": "7d2bd7dfdeb7a98ce9a3c0804ed27e9d1efd4ea721b316934572cba2254252dc",
+    "1983-06": "dc93162bc161d697849ad34d84fccae2d3bb7f5fe1477cdb9c934d4d63686b29",
+    "1984-06": "281881cb0091f3bdbaa4f30a1aa7c18301473a45b90a53a9d89914b36b200f7b"
+  },
+  "training_pages": [
+    "1939-01_p055",
+    "1939-01_p061",
+    "1939-08_p043"
+  ],
+  "withdrawn_training_pages": [
+    "1982-06_p094"
+  ],
+  "validation": [
+    {
+      "page": "1939-04_p075",
+      "family": "outstanding_forward_exchange_contracts",
+      "layout": "49015cd4f4fa",
+      "layout_signature": {
+        "row_mode": "Sections",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Contracts as of following dates"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": false,
+      "image_sha256": "dfae58d06ea0fa79b28b7e29463c5c89ce52544e0bb24ef5820dca334b2dc76c"
+    },
+    {
+      "page": "1939-08_p097",
+      "family": "outstanding_forward_exchange_contracts",
+      "layout": "49015cd4f4fa",
+      "layout_signature": {
+        "row_mode": "Sections",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Contracts as of following dates"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": false,
+      "image_sha256": "c549eefe9e334e98abcacaa954f7bdaecc0474f1593997eaf5a9a5ef0ea03470"
+    },
+    {
+      "page": "1939-12_p060",
+      "family": "outstanding_forward_exchange_contracts",
+      "layout": "49015cd4f4fa",
+      "layout_signature": {
+        "row_mode": "Sections",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Contracts as of following dates"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": true,
+      "image_sha256": "935aa0e24b73267da2ba5d0c54b74dafcc590967e643545b07f0b3f205d7c8d6"
+    },
+    {
+      "page": "1939-09_p024",
+      "family": "receipts_and_expenditures_under_railroad",
+      "layout": "be687f3defad",
+      "layout_signature": {
+        "row_mode": "ReadRows",
+        "columns": [
+          [
+            "period",
+            "text",
+            "Fiscal year or month"
+          ],
+          [
+            "taxes",
+            "money",
+            "Taxes upon carriers and their employees"
+          ],
+          [
+            "admin",
+            "money",
+            "Administrative Expenses"
+          ],
+          [
+            "to_retirement",
+            "money",
+            "Transfers to Railroad Retirement Acct."
+          ],
+          [
+            "to_unemployment",
+            "money",
+            "Transfers to Railroad Unemployment insurance account"
+          ],
+          [
+            "total_exp",
+            "money",
+            "Total Expenditures"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": false,
+      "image_sha256": "03e4453573b634df04ba1a6ef09356f4e600fae547becc6c1714a7ae71eb6cc2"
+    },
+    {
+      "page": "1939-10_p024",
+      "family": "receipts_and_expenditures_under_railroad",
+      "layout": "be687f3defad",
+      "layout_signature": {
+        "row_mode": "ReadRows",
+        "columns": [
+          [
+            "period",
+            "text",
+            "Fiscal year or month"
+          ],
+          [
+            "taxes",
+            "money",
+            "Taxes upon carriers and their employees"
+          ],
+          [
+            "admin",
+            "money",
+            "Administrative Expenses"
+          ],
+          [
+            "to_retirement",
+            "money",
+            "Transfers to Railroad Retirement Acct."
+          ],
+          [
+            "to_unemployment",
+            "money",
+            "Transfers to Railroad Unemployment insurance account"
+          ],
+          [
+            "total_exp",
+            "money",
+            "Total Expenditures"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": true,
+      "image_sha256": "58f9f05eaf11eef35e6aa2d5970d1777d970ee64bb9890f41d5b67a335e430a8"
+    },
+    {
+      "page": "1939-12_p025",
+      "family": "receipts_and_expenditures_under_railroad",
+      "layout": "be687f3defad",
+      "layout_signature": {
+        "row_mode": "ReadRows",
+        "columns": [
+          [
+            "period",
+            "text",
+            "Fiscal year or month"
+          ],
+          [
+            "taxes",
+            "money",
+            "Taxes upon carriers and their employees"
+          ],
+          [
+            "admin",
+            "money",
+            "Administrative Expenses"
+          ],
+          [
+            "to_retirement",
+            "money",
+            "Transfers to Railroad Retirement Acct."
+          ],
+          [
+            "to_unemployment",
+            "money",
+            "Transfers to Railroad Unemployment insurance account"
+          ],
+          [
+            "total_exp",
+            "money",
+            "Total Expenditures"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": true,
+      "image_sha256": "5c4fed4f98b349fb1bca3f7a87c34d4fa44e01338d080e19c4972032a714176c"
+    },
+    {
+      "page": "1939-02_p083",
+      "family": "security_transactions_as_reported_by",
+      "layout": "17f41ebdd51b",
+      "layout_signature": {
+        "row_mode": "ReadRows",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Transactions during week ended-"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": false,
+      "image_sha256": "ef490dc0f841b8329923d37599e24faedc04b2fdd18d3955beb2cc41b3e830bc"
+    },
+    {
+      "page": "1939-08_p087",
+      "family": "security_transactions_as_reported_by",
+      "layout": "17f41ebdd51b",
+      "layout_signature": {
+        "row_mode": "ReadRows",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Transactions during week ended-"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": false,
+      "image_sha256": "22d487ddfe8a3efdf6df20b990fc7fae6be9bd92ec8de52c7181336bc4819397"
+    },
+    {
+      "page": "1939-12_p055",
+      "family": "security_transactions_as_reported_by",
+      "layout": "17f41ebdd51b",
+      "layout_signature": {
+        "row_mode": "ReadRows",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Transactions during week ended-"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": true,
+      "image_sha256": "c4fbf32afdf145da19365e16d0c9e0c3c41dd99055db65779aae28d85d6f278e"
+    },
+    {
+      "page": "1939-06_p083",
+      "family": "short_term_foreign_liabilities_as",
+      "layout": "8590dcedb912",
+      "layout_signature": {
+        "row_mode": "ReadRows",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Liabilities as of following dates"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": false,
+      "image_sha256": "3e05a2006abac3fe80cc77d59346d46f391aa17e2836bbe4146e3ac6a57538b8"
+    },
+    {
+      "page": "1939-10_p047",
+      "family": "short_term_foreign_liabilities_as",
+      "layout": "8590dcedb912",
+      "layout_signature": {
+        "row_mode": "ReadRows",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Liabilities as of following dates"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": false,
+      "image_sha256": "ef85d57900d25ad59f26974ad0d0379da281911aec4254b8df3ca4dabfaac3d1"
+    },
+    {
+      "page": "1939-12_p053",
+      "family": "short_term_foreign_liabilities_as",
+      "layout": "8590dcedb912",
+      "layout_signature": {
+        "row_mode": "ReadRows",
+        "columns": [
+          [
+            "label",
+            "text",
+            "Liabilities as of following dates"
+          ],
+          [
+            "united_kingdom",
+            "money",
+            "United Kingdom"
+          ],
+          [
+            "france",
+            "money",
+            "France"
+          ],
+          [
+            "germany",
+            "money",
+            "Germany"
+          ],
+          [
+            "italy",
+            "money",
+            "Italy"
+          ],
+          [
+            "netherlands",
+            "money",
+            "Netherlands"
+          ],
+          [
+            "switzerland",
+            "money",
+            "Switzerland"
+          ],
+          [
+            "other_europe",
+            "money",
+            "Other Europe"
+          ],
+          [
+            "total_europe",
+            "money",
+            "Total Europe"
+          ],
+          [
+            "canada",
+            "money",
+            "Canada"
+          ],
+          [
+            "latin_america",
+            "money",
+            "Latin America"
+          ],
+          [
+            "far_east",
+            "money",
+            "Far East"
+          ],
+          [
+            "all_other",
+            "money",
+            "All other"
+          ],
+          [
+            "grand_total",
+            "money",
+            "Grand total"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": true,
+      "image_sha256": "bfc394faa44b067a7c997b852a2eaf8368a6d2bc72291d9a0d05926e651e277e"
+    },
+    {
+      "page": "1982-06_p094",
+      "family": "total_claims_by_country",
+      "layout": "a2f2732dc10b",
+      "layout_signature": {
+        "row_mode": "list",
+        "columns": [
+          [
+            "country",
+            "text",
+            "Country"
+          ],
+          [
+            "c1",
+            "money",
+            "Calendar year 1981"
+          ],
+          [
+            "c2",
+            "money",
+            "June 1982"
+          ],
+          [
+            "c3",
+            "money",
+            "Sept. 1982"
+          ],
+          [
+            "c4",
+            "money",
+            "Dec. 1982"
+          ],
+          [
+            "c5",
+            "money",
+            "Mar. 1983"
+          ],
+          [
+            "c6",
+            "money",
+            "June 1983"
+          ],
+          [
+            "c7",
+            "money",
+            "Sept. 1983"
+          ],
+          [
+            "c8",
+            "money",
+            "Dec. 1983"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": true,
+      "image_sha256": "1bcba2f47aed8f524599dba064a4b4b27c9aac772cd7f7a32a9568aa4fb211e2"
+    },
+    {
+      "page": "1983-06_p092",
+      "family": "total_claims_by_country",
+      "layout": "a2f2732dc10b",
+      "layout_signature": {
+        "row_mode": "list",
+        "columns": [
+          [
+            "country",
+            "text",
+            "Country"
+          ],
+          [
+            "c1",
+            "money",
+            "Calendar year 1981"
+          ],
+          [
+            "c2",
+            "money",
+            "June 1982"
+          ],
+          [
+            "c3",
+            "money",
+            "Sept. 1982"
+          ],
+          [
+            "c4",
+            "money",
+            "Dec. 1982"
+          ],
+          [
+            "c5",
+            "money",
+            "Mar. 1983"
+          ],
+          [
+            "c6",
+            "money",
+            "June 1983"
+          ],
+          [
+            "c7",
+            "money",
+            "Sept. 1983"
+          ],
+          [
+            "c8",
+            "money",
+            "Dec. 1983"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": true,
+      "image_sha256": "9c0354ab9d512dac367176b6313ec97d45eef6ad682a8c8f341cb69a63068d67"
+    },
+    {
+      "page": "1984-06_p058",
+      "family": "total_claims_by_country",
+      "layout": "a2f2732dc10b",
+      "layout_signature": {
+        "row_mode": "list",
+        "columns": [
+          [
+            "country",
+            "text",
+            "Country"
+          ],
+          [
+            "c1",
+            "money",
+            "Calendar year 1981"
+          ],
+          [
+            "c2",
+            "money",
+            "June 1982"
+          ],
+          [
+            "c3",
+            "money",
+            "Sept. 1982"
+          ],
+          [
+            "c4",
+            "money",
+            "Dec. 1982"
+          ],
+          [
+            "c5",
+            "money",
+            "Mar. 1983"
+          ],
+          [
+            "c6",
+            "money",
+            "June 1983"
+          ],
+          [
+            "c7",
+            "money",
+            "Sept. 1983"
+          ],
+          [
+            "c8",
+            "money",
+            "Dec. 1983"
+          ]
+        ],
+        "panels": 1,
+        "orientation": "portrait"
+      },
+      "title_matched": true,
+      "approved_evidence": true,
+      "image_sha256": "ae00d994bd818929440000113df70c6a8c314a9b4f48a489f347883fbd2d4770"
+    }
+  ],
+  "prior_validation_preserved": [
+    "1939-12_p025",
+    "1939-12_p053",
+    "1939-12_p055",
+    "1939-12_p060",
+    "1984-06_p058"
+  ],
+  "all_approved_families": [
+    "outstanding_forward_exchange_contracts",
+    "receipts_and_expenditures_under_railroad",
+    "security_transactions_as_reported_by",
+    "short_term_foreign_liabilities_as",
+    "total_claims_by_country"
+  ],
+  "minimum_pages_per_layout": 3
+}

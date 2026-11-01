@@ -1,0 +1,20 @@
+{
+  "status": "timeout_loading_no_training_or_adoption",
+  "caps_usd": {
+    "modal_training_validation": 95,
+    "modal_serving_reserved": 20,
+    "baseten": 5,
+    "meta": 0,
+    "fireworks": 0
+  },
+  "modal_resource_estimate_usd": "92.69050790",
+  "modal_invoice_reconciled": false,
+  "modal_accounting": "training/resource_accounting.json",
+  "baseten_new_spend_usd": 0.7237565,
+  "meta_new_spend_usd": 0,
+  "fireworks_new_spend_usd": 0,
+  "modal_serving_spend_usd": 0,
+  "owned_apps_all_stopped": true,
+  "base_cache_removed": true,
+  "original_feasibility_record": "training/initial_feasibility_cost.json"
+}

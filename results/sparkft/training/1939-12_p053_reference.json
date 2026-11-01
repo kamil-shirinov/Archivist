@@ -1,0 +1,248 @@
+{
+  "page": "1939-12_p053",
+  "family": "short_term_foreign_liabilities_as",
+  "reference": [
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-12_p053:50:other_europe",
+      "value": "456",
+      "canonical_value": "456",
+      "ocr_box": {
+        "x0": 930,
+        "y0": 1987,
+        "x1": 956,
+        "y1": 1996
+      },
+      "ocr_text": "U56"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-12_p053:05:other_europe",
+      "value": "446,353",
+      "canonical_value": "446353",
+      "ocr_box": {
+        "x0": 886,
+        "y0": 457,
+        "x1": 948,
+        "y1": 466
+      },
+      "ocr_text": "1*1*6,353"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-12_p053:38:grand_total",
+      "value": "24,740",
+      "canonical_value": "24740",
+      "ocr_box": {
+        "x0": 1432,
+        "y0": 1623,
+        "x1": 1485,
+        "y1": 1633
+      },
+      "ocr_text": "2U,7l*0"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-12_p053:48:grand_total",
+      "value": "8,963",
+      "canonical_value": "8963",
+      "ocr_box": {
+        "x0": 1444,
+        "y0": 1951,
+        "x1": 1487,
+        "y1": 1963
+      },
+      "ocr_text": "8,963"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-12_p053:12:canada",
+      "value": "322,078",
+      "canonical_value": "322078",
+      "ocr_box": {
+        "x0": 1068,
+        "y0": 739,
+        "x1": 1129,
+        "y1": 751
+      },
+      "ocr_text": "322,078"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-12_p053:33:netherlands",
+      "value": "666",
+      "canonical_value": "666",
+      "ocr_box": {
+        "x0": 750,
+        "y0": 1460,
+        "x1": 773,
+        "y1": 1469
+      },
+      "ocr_text": "666"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-12_p053:10:far_east",
+      "value": "290,205",
+      "canonical_value": "290205",
+      "ocr_box": {
+        "x0": 1238,
+        "y0": 633,
+        "x1": 1301,
+        "y1": 645
+      },
+      "ocr_text": "290,205"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-12_p053:07:united_kingdom",
+      "value": "552,606",
+      "canonical_value": "552606",
+      "ocr_box": {
+        "x0": 377,
+        "y0": 580,
+        "x1": 438,
+        "y1": 591
+      },
+      "ocr_text": "552,606"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-12_p053:28:far_east",
+      "value": "330",
+      "canonical_value": "330",
+      "ocr_box": {
+        "x0": 1280,
+        "y0": 1282,
+        "x1": 1304,
+        "y1": 1292
+      },
+      "ocr_text": "330"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-12_p053:45:netherlands",
+      "value": "487",
+      "canonical_value": "487",
+      "ocr_box": {
+        "x0": 750,
+        "y0": 1826,
+        "x1": 775,
+        "y1": 1834
+      },
+      "ocr_text": "1*87"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-12_p053:10:other_europe",
+      "value": "444,392",
+      "canonical_value": "444392",
+      "ocr_box": {
+        "x0": 886,
+        "y0": 633,
+        "x1": 949,
+        "y1": 644
+      },
+      "ocr_text": "UU1*,392"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-12_p053:33:germany",
+      "value": "249",
+      "canonical_value": "249",
+      "ocr_box": {
+        "x0": 587,
+        "y0": 1463,
+        "x1": 612,
+        "y1": 1470
+      },
+      "ocr_text": "21*9"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-12_p053:34:switzerland",
+      "value": "209",
+      "canonical_value": "209",
+      "ocr_box": {
+        "x0": 843,
+        "y0": 1480,
+        "x1": 867,
+        "y1": 1489
+      },
+      "ocr_text": "209"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-12_p053:43:canada",
+      "value": "183",
+      "canonical_value": "183",
+      "ocr_box": {
+        "x0": 1110,
+        "y0": 1786,
+        "x1": 1134,
+        "y1": 1796
+      },
+      "ocr_text": "183"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-12_p053:43:france",
+      "value": "1,704",
+      "canonical_value": "1704",
+      "ocr_box": {
+        "x0": 485,
+        "y0": 1787,
+        "x1": 530,
+        "y1": 1797
+      },
+      "ocr_text": "1,701*"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-12_p053:04:netherlands",
+      "value": "180,037",
+      "canonical_value": "180037",
+      "ocr_box": {
+        "x0": 707,
+        "y0": 437,
+        "x1": 768,
+        "y1": 449
+      },
+      "ocr_text": "180,037"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-12_p053:15:total_europe",
+      "value": "1,808,320",
+      "canonical_value": "1808320",
+      "ocr_box": {
+        "x0": 964,
+        "y0": 797,
+        "x1": 1044,
+        "y1": 809
+      },
+      "ocr_text": "1,808,320"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-12_p053:38:germany",
+      "value": "206",
+      "canonical_value": "206",
+      "ocr_box": {
+        "x0": 589,
+        "y0": 1625,
+        "x1": 614,
+        "y1": 1634
+      },
+      "ocr_text": "206"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-12_p053:35:all_other",
+      "value": "442",
+      "canonical_value": "442",
+      "ocr_box": {
+        "x0": 1356,
+        "y0": 1499,
+        "x1": 1382,
+        "y1": 1505
+      },
+      "ocr_text": "1*1*2"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-12_p053:48:other_europe",
+      "value": "436",
+      "canonical_value": "436",
+      "ocr_box": {
+        "x0": 931,
+        "y0": 1952,
+        "x1": 956,
+        "y1": 1959
+      },
+      "ocr_text": "1*36"
+    }
+  ],
+  "support": 20,
+  "returned_figure_fields": 650
+}

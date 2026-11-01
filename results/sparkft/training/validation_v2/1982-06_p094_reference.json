@@ -1,0 +1,253 @@
+{
+  "page": "1982-06_p094",
+  "family": "total_claims_by_country",
+  "layout": "a2f2732dc10b",
+  "reference": [
+    {
+      "field_id": "T.total_claims_by_country:1982-06_p094:oil_exporting_africa:c1",
+      "value": "1,073",
+      "canonical_value": "1073",
+      "ocr_box": {
+        "x0": 517,
+        "y0": 1686,
+        "x1": 553,
+        "y1": 1696
+      },
+      "ocr_text": "1,073"
+    },
+    {
+      "field_id": "T.total_claims_by_country:1982-06_p094:guatemala:c1",
+      "value": "180",
+      "canonical_value": "180",
+      "ocr_box": {
+        "x0": 533,
+        "y0": 993,
+        "x1": 553,
+        "y1": 1001
+      },
+      "ocr_text": "180"
+    },
+    {
+      "field_id": "T.total_claims_by_country:1982-06_p094:yugoslavia:c3",
+      "value": "954",
+      "canonical_value": "954",
+      "ocr_box": {
+        "x0": 849,
+        "y0": 742,
+        "x1": 868,
+        "y1": 750
+      },
+      "ocr_text": "954"
+    },
+    {
+      "field_id": "T.total_claims_by_country:1982-06_p094:thailand:c1",
+      "value": "912",
+      "canonical_value": "912",
+      "ocr_box": {
+        "x0": 532,
+        "y0": 1490,
+        "x1": 552,
+        "y1": 1498
+      },
+      "ocr_text": "912"
+    },
+    {
+      "field_id": "T.total_claims_by_country:1982-06_p094:finland:c5",
+      "value": "446",
+      "canonical_value": "446",
+      "ocr_box": {
+        "x0": 1131,
+        "y0": 442,
+        "x1": 1151,
+        "y1": 451
+      },
+      "ocr_text": "446"
+    },
+    {
+      "field_id": "T.total_claims_by_country:1982-06_p094:philippines:c4",
+      "value": "662",
+      "canonical_value": "662",
+      "ocr_box": {
+        "x0": 997,
+        "y0": 1441,
+        "x1": 1017,
+        "y1": 1449
+      },
+      "ocr_text": "662"
+    },
+    {
+      "field_id": "T.total_claims_by_country:1982-06_p094:belgium_luxembourg:c1",
+      "value": "2,078",
+      "canonical_value": "2078",
+      "ocr_box": {
+        "x0": 516,
+        "y0": 375,
+        "x1": 553,
+        "y1": 385
+      },
+      "ocr_text": "2,078"
+    },
+    {
+      "field_id": "T.total_claims_by_country:1982-06_p094:india:c5",
+      "value": "166",
+      "canonical_value": "166",
+      "ocr_box": {
+        "x0": 1131,
+        "y0": 1308,
+        "x1": 1151,
+        "y1": 1316
+      },
+      "ocr_text": "166"
+    },
+    {
+      "field_id": "T.total_claims_by_country:1982-06_p094:liberia:c1",
+      "value": "321",
+      "canonical_value": "321",
+      "ocr_box": {
+        "x0": 532,
+        "y0": 1620,
+        "x1": 551,
+        "y1": 1627
+      },
+      "ocr_text": "321"
+    },
+    {
+      "field_id": "T.total_claims_by_country:1982-06_p094:india:c1",
+      "value": "211",
+      "canonical_value": "211",
+      "ocr_box": {
+        "x0": 532,
+        "y0": 1308,
+        "x1": 551,
+        "y1": 1315
+      },
+      "ocr_text": "211"
+    },
+    {
+      "field_id": "T.total_claims_by_country:1982-06_p094:philippines:c1",
+      "value": "1,051",
+      "canonical_value": "1051",
+      "ocr_box": {
+        "x0": 517,
+        "y0": 1441,
+        "x1": 551,
+        "y1": 1450
+      },
+      "ocr_text": "1,051"
+    },
+    {
+      "field_id": "T.total_claims_by_country:1982-06_p094:france:c1",
+      "value": "4,411",
+      "canonical_value": "4411",
+      "ocr_box": {
+        "x0": 517,
+        "y0": 458,
+        "x1": 553,
+        "y1": 468
+      },
+      "ocr_text": "4,411"
+    },
+    {
+      "field_id": "T.total_claims_by_country:1982-06_p094:hungary:c1",
+      "value": "497",
+      "canonical_value": "497",
+      "ocr_box": {
+        "x0": 533,
+        "y0": 525,
+        "x1": 553,
+        "y1": 533
+      },
+      "ocr_text": "497"
+    },
+    {
+      "field_id": "T.total_claims_by_country:1982-06_p094:taiwan:c3",
+      "value": "2,890",
+      "canonical_value": "2890",
+      "ocr_box": {
+        "x0": 831,
+        "y0": 1274,
+        "x1": 868,
+        "y1": 1284
+      },
+      "ocr_text": "2,890"
+    },
+    {
+      "field_id": "T.total_claims_by_country:1982-06_p094:thailand:c5",
+      "value": "693",
+      "canonical_value": "693",
+      "ocr_box": {
+        "x0": 1130,
+        "y0": 1491,
+        "x1": 1151,
+        "y1": 1500
+      },
+      "ocr_text": "693"
+    },
+    {
+      "field_id": "T.total_claims_by_country:1982-06_p094:belgium_luxembourg:c3",
+      "value": "2,902",
+      "canonical_value": "2902",
+      "ocr_box": {
+        "x0": 832,
+        "y0": 376,
+        "x1": 868,
+        "y1": 386
+      },
+      "ocr_text": "2,902"
+    },
+    {
+      "field_id": "T.total_claims_by_country:1982-06_p094:german_democratic_republic:c8",
+      "value": "182",
+      "canonical_value": "182",
+      "ocr_box": {
+        "x0": 1547,
+        "y0": 477,
+        "x1": 1566,
+        "y1": 485
+      },
+      "ocr_text": "182"
+    },
+    {
+      "field_id": "T.total_claims_by_country:1982-06_p094:taiwan:c1",
+      "value": "2,959",
+      "canonical_value": "2959",
+      "ocr_box": {
+        "x0": 515,
+        "y0": 1274,
+        "x1": 552,
+        "y1": 1284
+      },
+      "ocr_text": "2,959"
+    },
+    {
+      "field_id": "T.total_claims_by_country:1982-06_p094:poland:c5",
+      "value": "805",
+      "canonical_value": "805",
+      "ocr_box": {
+        "x0": 1131,
+        "y0": 593,
+        "x1": 1151,
+        "y1": 601
+      },
+      "ocr_text": "805"
+    },
+    {
+      "field_id": "T.total_claims_by_country:1982-06_p094:egypt:c5",
+      "value": "172",
+      "canonical_value": "172",
+      "ocr_box": {
+        "x0": 1131,
+        "y0": 1587,
+        "x1": 1150,
+        "y1": 1594
+      },
+      "ocr_text": "172"
+    }
+  ],
+  "support": 20,
+  "source": "cached_meta_1.3",
+  "source_hashes": {
+    "322da7f63ef9b8767ab49c2a6fc8385e773bb89ade89bbde00047d8fbf1bbcb5": "8b548f0468e4b20a100a3f6f8da3b868c0390f3b1bd73fb9babee8da86c0f17b"
+  },
+  "returned_figure_fields": 744
+}

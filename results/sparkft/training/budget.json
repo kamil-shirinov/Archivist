@@ -1,0 +1,133 @@
+{
+  "training_validation_cap_usd": 95,
+  "serving_reserve_usd": 20,
+  "gpu_reservation_usd": "82.19021280",
+  "preparation_reserve_usd": "6",
+  "retained_training_validation_ceiling_usd": "94.21547880",
+  "cpu_attempts": [
+    {
+      "stage": "inspect",
+      "ceiling_usd": "0.46290000",
+      "retained": true
+    },
+    {
+      "stage": "download",
+      "ceiling_usd": "0.46290000",
+      "retained": true
+    },
+    {
+      "stage": "kernel_transport",
+      "ceiling_usd": "0.00342030",
+      "retained": true
+    },
+    {
+      "stage": "download_resume",
+      "ceiling_usd": "0.46290000",
+      "retained": true
+    },
+    {
+      "stage": "tokenize",
+      "ceiling_usd": "0.46290000",
+      "retained": true
+    },
+    {
+      "stage": "download_bf16",
+      "ceiling_usd": "0.46290000",
+      "retained": true
+    },
+    {
+      "stage": "tokenize",
+      "ceiling_usd": "0.46290000",
+      "retained": true
+    },
+    {
+      "stage": "download_bf16_resume",
+      "ceiling_usd": "0.90728400",
+      "retained": true
+    },
+    {
+      "stage": "cache_integrity",
+      "ceiling_usd": "0.00342030",
+      "retained": true
+    },
+    {
+      "stage": "download_bf16_resume2",
+      "ceiling_usd": "0.68046300",
+      "retained": true
+    },
+    {
+      "stage": "cleanup",
+      "ceiling_usd": "0.00342030",
+      "retained": true
+    }
+  ],
+  "gpu_attempts": [
+    {
+      "ceiling_usd": "82.19021280",
+      "retained": true,
+      "status": "timed_out_loading_no_optimizer_update",
+      "closed_wall_resource_upper_bound_usd": "77.789834",
+      "source": "provider finished timestamp plus 15-second margin"
+    }
+  ],
+  "gradient_probe_attempts": [
+    {
+      "gpu": "B300",
+      "execution_timeout_s": 300,
+      "startup_timeout_s": 60,
+      "ceiling_usd": "0.77247000",
+      "retained": true
+    },
+    {
+      "gpu": "B300",
+      "execution_timeout_s": 300,
+      "startup_timeout_s": 60,
+      "ceiling_usd": "0.77247000",
+      "retained": true
+    },
+    {
+      "gpu": "B300",
+      "execution_timeout_s": 300,
+      "startup_timeout_s": 60,
+      "ceiling_usd": "0.77247000",
+      "retained": true
+    },
+    {
+      "gpu": "B300",
+      "execution_timeout_s": 300,
+      "startup_timeout_s": 60,
+      "ceiling_usd": "0.77247000",
+      "retained": true
+    },
+    {
+      "gpu": "B300",
+      "execution_timeout_s": 300,
+      "startup_timeout_s": 60,
+      "ceiling_usd": "0.77247000",
+      "retained": true
+    },
+    {
+      "gpu": "B300",
+      "execution_timeout_s": 300,
+      "startup_timeout_s": 60,
+      "ceiling_usd": "0.77247000",
+      "retained": true
+    },
+    {
+      "gpu": "B300",
+      "execution_timeout_s": 600,
+      "startup_timeout_s": 60,
+      "ceiling_usd": "1.39044600",
+      "retained": true
+    }
+  ],
+  "cpu_subcap_usd": 4.5,
+  "gpu_plan": {
+    "gpu": "B300:8",
+    "execution_timeout_s": 4650,
+    "startup_timeout_s": 300,
+    "shutdown_allowance_s": 15,
+    "rate_per_s": 0.01655392,
+    "epochs": 1
+  }
+}

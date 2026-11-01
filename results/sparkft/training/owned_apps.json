@@ -1,0 +1,285 @@
+[
+  {
+    "event": "started",
+    "app_id": "ap-qhlp0lncqGTBaRVVaTyAO9",
+    "stage": "inspect"
+  },
+  {
+    "event": "run_context_exiting",
+    "app_id": "ap-qhlp0lncqGTBaRVVaTyAO9",
+    "stage": "inspect"
+  },
+  {
+    "event": "started",
+    "app_id": "ap-i9MXRDl5BCuu5glE0fJRFB",
+    "stage": "download"
+  },
+  {
+    "event": "started",
+    "app_id": "ap-ZUTBhenZ9TQHxaddJB8inG",
+    "stage": "gradient"
+  },
+  {
+    "event": "run_context_exiting",
+    "app_id": "ap-ZUTBhenZ9TQHxaddJB8inG",
+    "stage": "gradient"
+  },
+  {
+    "event": "started",
+    "app_id": "ap-twA1qWXmDYtQwtJw9fYwKx",
+    "stage": "gradient"
+  },
+  {
+    "event": "run_context_exiting",
+    "app_id": "ap-twA1qWXmDYtQwtJw9fYwKx",
+    "stage": "gradient"
+  },
+  {
+    "event": "started",
+    "app_id": "ap-Z92sBqJG69CnKG3YJ2vik8",
+    "stage": "gradient"
+  },
+  {
+    "event": "run_context_exiting",
+    "app_id": "ap-Z92sBqJG69CnKG3YJ2vik8",
+    "stage": "gradient"
+  },
+  {
+    "event": "started",
+    "app_id": "ap-QjKH72a38MXa9tAw2YfK0C",
+    "stage": "gradient"
+  },
+  {
+    "event": "run_context_exiting",
+    "app_id": "ap-QjKH72a38MXa9tAw2YfK0C",
+    "stage": "gradient"
+  },
+  {
+    "event": "started",
+    "app_id": "ap-f1BfcpCaWq7rGZRmoPT8CJ",
+    "stage": "kernel_transport"
+  },
+  {
+    "event": "run_context_exiting",
+    "app_id": "ap-i9MXRDl5BCuu5glE0fJRFB",
+    "stage": "download"
+  },
+  {
+    "event": "run_context_exiting",
+    "app_id": "ap-f1BfcpCaWq7rGZRmoPT8CJ",
+    "stage": "kernel_transport"
+  },
+  {
+    "event": "started",
+    "app_id": "ap-DqMhHuVefUsH3SMAw80HDe",
+    "stage": "download_resume"
+  },
+  {
+    "event": "started",
+    "app_id": "ap-Rgdj0XzT5iiuZVzgkYAijJ",
+    "stage": "gradient"
+  },
+  {
+    "event": "run_context_exiting",
+    "app_id": "ap-Rgdj0XzT5iiuZVzgkYAijJ",
+    "stage": "gradient"
+  },
+  {
+    "event": "started",
+    "app_id": "ap-zGITyYWpPKIqs7EqdmgNqq",
+    "stage": "gradient"
+  },
+  {
+    "event": "run_context_exiting",
+    "app_id": "ap-DqMhHuVefUsH3SMAw80HDe",
+    "stage": "download_resume"
+  },
+  {
+    "event": "started",
+    "app_id": "ap-OutIOWYC0P4iVs1ta5XSmK",
+    "stage": "tokenize"
+  },
+  {
+    "event": "run_context_exiting",
+    "app_id": "ap-zGITyYWpPKIqs7EqdmgNqq",
+    "stage": "gradient"
+  },
+  {
+    "event": "run_context_exiting",
+    "app_id": "ap-OutIOWYC0P4iVs1ta5XSmK",
+    "stage": "tokenize"
+  },
+  {
+    "event": "started",
+    "app_id": "ap-sOlnVEAPUmEClFySDEp6Iw",
+    "stage": "gradient"
+  },
+  {
+    "event": "run_context_exiting",
+    "app_id": "ap-sOlnVEAPUmEClFySDEp6Iw",
+    "stage": "gradient"
+  },
+  {
+    "event": "started",
+    "app_id": "ap-ERT62w9D2VysscMcJPlmkf",
+    "stage": "download_bf16"
+  },
+  {
+    "event": "started",
+    "app_id": "ap-BASlIljT6TDebuTD8Cz63y",
+    "stage": "tokenize"
+  },
+  {
+    "event": "run_context_exiting",
+    "app_id": "ap-BASlIljT6TDebuTD8Cz63y",
+    "stage": "tokenize"
+  },
+  {
+    "event": "run_context_exiting",
+    "app_id": "ap-ERT62w9D2VysscMcJPlmkf",
+    "stage": "download_bf16"
+  },
+  {
+    "event": "stopped",
+    "app_id": "ap-ERT62w9D2VysscMcJPlmkf"
+  },
+  {
+    "event": "started",
+    "app_id": "ap-cZ2vA5NeXIu0YudYrTcDma",
+    "stage": "download_bf16_resume"
+  },
+  {
+    "event": "started",
+    "app_id": "ap-ZACASeCehkolT9nZRGUL8q",
+    "stage": "cache_integrity"
+  },
+  {
+    "event": "run_context_exiting",
+    "app_id": "ap-ZACASeCehkolT9nZRGUL8q",
+    "stage": "cache_integrity"
+  },
+  {
+    "event": "stopped",
+    "app_id": "ap-cZ2vA5NeXIu0YudYrTcDma"
+  },
+  {
+    "event": "started",
+    "app_id": "ap-S921J4u7zEsHtr07L2PDgJ",
+    "stage": "download_bf16_resume2"
+  },
+  {
+    "event": "run_context_exiting",
+    "app_id": "ap-S921J4u7zEsHtr07L2PDgJ",
+    "stage": "download_bf16_resume2"
+  },
+  {
+    "event": "started",
+    "app_id": "ap-i5Jlfzsm9azROYNAD2gnF4",
+    "stage": "experiment"
+  },
+  {
+    "event": "started",
+    "app_id": "ap-XiD5x9pRmjQuLnkcEoFiTF",
+    "stage": "cleanup"
+  },
+  {
+    "event": "run_context_exiting",
+    "app_id": "ap-XiD5x9pRmjQuLnkcEoFiTF",
+    "stage": "cleanup"
+  },
+  {
+    "event": "confirmed_stopped",
+    "app_id": "ap-BASlIljT6TDebuTD8Cz63y",
+    "service_message": "App is already stopped. (Finished at 2026-10-31 22:47:38+00:00)."
+  },
+  {
+    "event": "confirmed_stopped",
+    "app_id": "ap-DqMhHuVefUsH3SMAw80HDe",
+    "service_message": "App is already stopped. (Finished at 2026-10-31 13:19:21+00:00)."
+  },
+  {
+    "event": "confirmed_stopped",
+    "app_id": "ap-ERT62w9D2VysscMcJPlmkf",
+    "service_message": "App is already stopped. (Finished at 2026-10-31 23:14:11+00:00)."
+  },
+  {
+    "event": "confirmed_stopped",
+    "app_id": "ap-OutIOWYC0P4iVs1ta5XSmK",
+    "service_message": "App is already stopped. (Finished at 2026-10-31 13:22:40+00:00)."
+  },
+  {
+    "event": "confirmed_stopped",
+    "app_id": "ap-QjKH72a38MXa9tAw2YfK0C",
+    "service_message": "App is already stopped. (Finished at 2026-10-31 13:06:06+00:00)."
+  },
+  {
+    "event": "confirmed_stopped",
+    "app_id": "ap-Rgdj0XzT5iiuZVzgkYAijJ",
+    "service_message": "App is already stopped. (Finished at 2026-10-31 13:13:09+00:00)."
+  },
+  {
+    "event": "confirmed_stopped",
+    "app_id": "ap-S921J4u7zEsHtr07L2PDgJ",
+    "service_message": "App is already stopped. (Finished at 2026-11-01 01:00:25+00:00)."
+  },
+  {
+    "event": "confirmed_stopped",
+    "app_id": "ap-XiD5x9pRmjQuLnkcEoFiTF",
+    "service_message": "App is already stopped. (Finished at 2026-11-01 07:13:12+00:00)."
+  },
+  {
+    "event": "confirmed_stopped",
+    "app_id": "ap-Z92sBqJG69CnKG3YJ2vik8",
+    "service_message": "App is already stopped. (Finished at 2026-10-31 13:02:31+00:00)."
+  },
+  {
+    "event": "confirmed_stopped",
+    "app_id": "ap-ZACASeCehkolT9nZRGUL8q",
+    "service_message": "App is already stopped. (Finished at 2026-10-31 23:20:31+00:00)."
+  },
+  {
+    "event": "confirmed_stopped",
+    "app_id": "ap-ZUTBhenZ9TQHxaddJB8inG",
+    "service_message": "App is already stopped. (Finished at 2026-10-31 12:56:08+00:00)."
+  },
+  {
+    "event": "confirmed_stopped",
+    "app_id": "ap-cZ2vA5NeXIu0YudYrTcDma",
+    "service_message": "App is already stopped. (Stopped at 2026-11-01 00:15:03+00:00 by task client)."
+  },
+  {
+    "event": "confirmed_stopped",
+    "app_id": "ap-f1BfcpCaWq7rGZRmoPT8CJ",
+    "service_message": "App is already stopped. (Finished at 2026-10-31 13:11:01+00:00)."
+  },
+  {
+    "event": "confirmed_stopped",
+    "app_id": "ap-i5Jlfzsm9azROYNAD2gnF4",
+    "service_message": "App is already stopped. (Finished at 2026-11-01 02:18:23+00:00)."
+  },
+  {
+    "event": "confirmed_stopped",
+    "app_id": "ap-i9MXRDl5BCuu5glE0fJRFB",
+    "service_message": "App is already stopped. (Finished at 2026-10-31 13:11:45+00:00)."
+  },
+  {
+    "event": "confirmed_stopped",
+    "app_id": "ap-qhlp0lncqGTBaRVVaTyAO9",
+    "service_message": "App is already stopped. (Finished at 2026-10-31 12:38:26+00:00)."
+  },
+  {
+    "event": "confirmed_stopped",
+    "app_id": "ap-sOlnVEAPUmEClFySDEp6Iw",
+    "service_message": "App is already stopped. (Finished at 2026-10-31 22:41:40+00:00)."
+  },
+  {
+    "event": "confirmed_stopped",
+    "app_id": "ap-twA1qWXmDYtQwtJw9fYwKx",
+    "service_message": "App is already stopped. (Finished at 2026-10-31 13:00:13+00:00)."
+  },
+  {
+    "event": "confirmed_stopped",
+    "app_id": "ap-zGITyYWpPKIqs7EqdmgNqq",
+    "service_message": "App is already stopped. (Finished at 2026-10-31 13:23:08+00:00)."
+  }
+]

@@ -1,0 +1,6 @@
+Loading weights:  18%|█▊        | 362/2000 [1:14:32<4:44:53, 10.44s/it]
+Loading weights:  18%|█▊        | 364/2000 [1:14:32<4:31:03,  9.94s/it][modal-client] 2026-11-01T02:18:02+0000 Received a cancellation signal while processing input ('in-01M6A9Y80FNEXWQAX6JCY325VX:1793494818851-0',)
+Loading weights:  18%|█▊        | 364/2000 [1:15:45<5:40:29, 12.49s/it]
+Loading weights:  18%|█▊        | 364/2000 [1:14:32<4:31:03,  9.94s/it][modal-client] 2026-11-01T02:18:02+0000 Received a cancellation signal while processing input ('in-01M6A9Y80FNEXWQAX6JCY325VX:1793494818851-0',)
+[modal-client] 2026-11-01T02:18:02+0000 Successfully canceled input ('in-01M6A9Y80FNEXWQAX6JCY325VX:1793494818851-0',)
+Runner terminated.

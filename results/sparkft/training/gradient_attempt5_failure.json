@@ -1,0 +1,4 @@
+{
+  "type": "ZeroDivisionError",
+  "message": "integer modulo by zero"
+}

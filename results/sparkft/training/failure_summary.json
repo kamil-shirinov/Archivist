@@ -1,0 +1,16 @@
+{
+  "status": "timeout_during_model_loading",
+  "last_weight_tensors_loaded": 364,
+  "weight_tensor_total": 2000,
+  "optimizer_steps": 0,
+  "base_validation_predictions": 0,
+  "adapter_validation_predictions": 0,
+  "adapter_exists": false,
+  "checkpoint_exists": false,
+  "adopt": false,
+  "saved_artifacts": [
+    "identity.json",
+    "gradient_preflight.json"
+  ],
+  "source_log": "results/sparkft/training/loading_log_excerpt.txt"
+}

@@ -1,0 +1,38 @@
+{
+  "baseten_spent_before": 22.153824,
+  "task_cap_usd": 5,
+  "attempts": [
+    {
+      "page": "1939-04_p075",
+      "reservation_usd": 0.3
+    },
+    {
+      "page": "1939-08_p097",
+      "reservation_usd": 0.3
+    },
+    {
+      "page": "1939-09_p024",
+      "reservation_usd": 0.3
+    },
+    {
+      "page": "1939-02_p083",
+      "reservation_usd": 0.3
+    },
+    {
+      "page": "1939-08_p087",
+      "reservation_usd": 0.3
+    },
+    {
+      "page": "1939-06_p083",
+      "reservation_usd": 0.3
+    },
+    {
+      "page": "1939-10_p047",
+      "reservation_usd": 0.3
+    }
+  ],
+  "public_domain_source": "https://fraser.stlouisfed.org/title/treasury-bulletin-407",
+  "rights": "No Copyright - United States",
+  "baseten_spent_after": 22.8775805,
+  "new_baseten_spend_usd": 0.7237565000000004
+}

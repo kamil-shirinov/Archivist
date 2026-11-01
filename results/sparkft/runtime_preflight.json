@@ -1,0 +1,30 @@
+{
+  "checked_date": "2026-10-31",
+  "gpu_jobs_started": 0,
+  "credentials_inspected": false,
+  "official_config_anonymous_http_status": 401,
+  "local_hf_token_configured": false,
+  "models": {
+    "unsloth/Muse-Spark-Open-816B-A42B-NVFP4": {
+      "revision": "fc6908f53c6882d4ec48fca5ba144e41d21e1f92",
+      "gated": false
+    },
+    "meta-models/Muse-Spark-Open-816B-A42B": {
+      "revision": "0fb02478b02565b2ce7fc57e6051c91172774ac9",
+      "gated": "manual"
+    },
+    "meta-models/Muse-Spark-Open-816B-A42B-NVFP4": {
+      "revision": "4239e4db19376904f2e82c167e78f70abb5455fe",
+      "gated": "manual"
+    },
+    "unsloth/Muse-Spark-Open-816B-A42B": {
+      "revision": "49cade7b0c6ed297f0434229ac67eea5f9ae1220",
+      "gated": false
+    }
+  },
+  "transformers_revision": "585946e8dbfc114a5f45e62b41e35a468e9e85b9",
+  "sources": [
+    "https://dev.meta.ai/docs/muse-spark-open/deploy",
+    "https://huggingface.co/unsloth/Muse-Spark-Open-816B-A42B-NVFP4"
+  ]
+}

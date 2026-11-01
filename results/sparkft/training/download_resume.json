@@ -1,0 +1,21 @@
+{
+  "model": "unsloth/Muse-Spark-Open-816B-A42B-NVFP4",
+  "revision": "fc6908f53c6882d4ec48fca5ba144e41d21e1f92",
+  "architecture": [
+    "MuseSparkForConditionalGeneration"
+  ],
+  "processor": "MuseSparkProcessor",
+  "expert_class": "FineGrainedExperts",
+  "licence_sha256": "458a5c57d8e622e395eb0e59799ba5bba1ea7524ffd120ee6e3018688d7d6ace",
+  "versions": {
+    "torch": "2.15.0",
+    "transformers": "5.19.0.dev0",
+    "peft": "0.21.2",
+    "accelerate": "1.15.0",
+    "kernels": "0.17.2",
+    "huggingface_hub": "2.4.0"
+  },
+  "download_weights": true,
+  "weight_shards": 127,
+  "runtime_seconds": 252.894594506
+}

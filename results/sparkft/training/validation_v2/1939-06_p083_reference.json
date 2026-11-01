@@ -1,0 +1,253 @@
+{
+  "page": "1939-06_p083",
+  "family": "short_term_foreign_liabilities_as",
+  "layout": "8590dcedb912",
+  "reference": [
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-06_p083:40:other_europe",
+      "value": "501",
+      "canonical_value": "501",
+      "ocr_box": {
+        "x0": 919,
+        "y0": 1800,
+        "x1": 943,
+        "y1": 1809
+      },
+      "ocr_text": "501"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-06_p083:10:far_east",
+      "value": "209,674",
+      "canonical_value": "209674",
+      "ocr_box": {
+        "x0": 1244,
+        "y0": 721,
+        "x1": 1308,
+        "y1": 733
+      },
+      "ocr_text": "209,674"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-06_p083:22:united_kingdom",
+      "value": "6,021",
+      "canonical_value": "6021",
+      "ocr_box": {
+        "x0": 393,
+        "y0": 1190,
+        "x1": 436,
+        "y1": 1202
+      },
+      "ocr_text": "6,021"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-06_p083:13:grand_total",
+      "value": "101,373",
+      "canonical_value": "101373",
+      "ocr_box": {
+        "x0": 1427,
+        "y0": 846,
+        "x1": 1489,
+        "y1": 858
+      },
+      "ocr_text": "101,373"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-06_p083:23:all_other",
+      "value": "161",
+      "canonical_value": "161",
+      "ocr_box": {
+        "x0": 1361,
+        "y0": 1209,
+        "x1": 1384,
+        "y1": 1219
+      },
+      "ocr_text": "161"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-06_p083:16:italy",
+      "value": "679",
+      "canonical_value": "679",
+      "ocr_box": {
+        "x0": 662,
+        "y0": 905,
+        "x1": 686,
+        "y1": 915
+      },
+      "ocr_text": "679"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-06_p083:24:italy",
+      "value": "135",
+      "canonical_value": "135",
+      "ocr_box": {
+        "x0": 662,
+        "y0": 1231,
+        "x1": 686,
+        "y1": 1241
+      },
+      "ocr_text": "135"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-06_p083:13:germany",
+      "value": "226",
+      "canonical_value": "226",
+      "ocr_box": {
+        "x0": 585,
+        "y0": 844,
+        "x1": 611,
+        "y1": 854
+      },
+      "ocr_text": "226"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-06_p083:11:italy",
+      "value": "12,947",
+      "canonical_value": "12947",
+      "ocr_box": {
+        "x0": 633,
+        "y0": 740,
+        "x1": 686,
+        "y1": 752
+      },
+      "ocr_text": "12,947"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-06_p083:15:germany",
+      "value": "277",
+      "canonical_value": "277",
+      "ocr_box": {
+        "x0": 585,
+        "y0": 885,
+        "x1": 610,
+        "y1": 895
+      },
+      "ocr_text": "277"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-06_p083:08:italy",
+      "value": "14,493",
+      "canonical_value": "14493",
+      "ocr_box": {
+        "x0": 633,
+        "y0": 616,
+        "x1": 687,
+        "y1": 628
+      },
+      "ocr_text": "14,493"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-06_p083:28:germany",
+      "value": "332",
+      "canonical_value": "332",
+      "ocr_box": {
+        "x0": 586,
+        "y0": 1372,
+        "x1": 610,
+        "y1": 1382
+      },
+      "ocr_text": "332"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-06_p083:15:netherlands",
+      "value": "4,283",
+      "canonical_value": "4283",
+      "ocr_box": {
+        "x0": 728,
+        "y0": 884,
+        "x1": 772,
+        "y1": 896
+      },
+      "ocr_text": "4,283"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-06_p083:04:latin_america",
+      "value": "300,741",
+      "canonical_value": "300741",
+      "ocr_box": {
+        "x0": 1158,
+        "y0": 475,
+        "x1": 1220,
+        "y1": 487
+      },
+      "ocr_text": "300,741"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-06_p083:05:germany",
+      "value": "16,566",
+      "canonical_value": "16566",
+      "ocr_box": {
+        "x0": 557,
+        "y0": 558,
+        "x1": 611,
+        "y1": 570
+      },
+      "ocr_text": "16,566"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-06_p083:37:all_other",
+      "value": "177",
+      "canonical_value": "177",
+      "ocr_box": {
+        "x0": 1360,
+        "y0": 1743,
+        "x1": 1384,
+        "y1": 1752
+      },
+      "ocr_text": "177"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-06_p083:31:other_europe",
+      "value": "734",
+      "canonical_value": "734",
+      "ocr_box": {
+        "x0": 919,
+        "y0": 1494,
+        "x1": 943,
+        "y1": 1504
+      },
+      "ocr_text": "73*"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-06_p083:22:far_east",
+      "value": "981",
+      "canonical_value": "981",
+      "ocr_box": {
+        "x0": 1284,
+        "y0": 1191,
+        "x1": 1308,
+        "y1": 1201
+      },
+      "ocr_text": "981"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-06_p083:14:switzerland",
+      "value": "18,601",
+      "canonical_value": "18601",
+      "ocr_box": {
+        "x0": 805,
+        "y0": 864,
+        "x1": 858,
+        "y1": 876
+      },
+      "ocr_text": "18,601"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-06_p083:11:grand_total",
+      "value": "2,013,043",
+      "canonical_value": "2013043",
+      "ocr_box": {
+        "x0": 1407,
+        "y0": 739,
+        "x1": 1489,
+        "y1": 751
+      },
+      "ocr_text": "2,013,043"
+    }
+  ],
+  "support": 20,
+  "source": "baseten_muse_spark_open",
+  "source_hashes": {
+    "response_sha256": "40b264263ab56b71c0eb65a74900a7f17d787b61ae8766ac2ca4fcd5b66106ff"
+  },
+  "returned_figure_fields": 650
+}

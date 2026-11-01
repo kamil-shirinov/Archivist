@@ -1,0 +1,253 @@
+{
+  "page": "1939-10_p047",
+  "family": "short_term_foreign_liabilities_as",
+  "layout": "8590dcedb912",
+  "reference": [
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-10_p047:15:france",
+      "value": "286,892",
+      "canonical_value": "286892",
+      "ocr_box": {
+        "x0": 461,
+        "y0": 702,
+        "x1": 523,
+        "y1": 714
+      },
+      "ocr_text": "286,892"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-10_p047:34:france",
+      "value": "1,417",
+      "canonical_value": "1417",
+      "ocr_box": {
+        "x0": 481,
+        "y0": 1219,
+        "x1": 524,
+        "y1": 1228
+      },
+      "ocr_text": "1,1*17"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-10_p047:06:germany",
+      "value": "14,313",
+      "canonical_value": "14313",
+      "ocr_box": {
+        "x0": 554,
+        "y0": 436,
+        "x1": 607,
+        "y1": 446
+      },
+      "ocr_text": "li*,3l3"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-10_p047:22:germany",
+      "value": "305",
+      "canonical_value": "305",
+      "ocr_box": {
+        "x0": 585,
+        "y0": 877,
+        "x1": 609,
+        "y1": 887
+      },
+      "ocr_text": "305"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-10_p047:33:germany",
+      "value": "268",
+      "canonical_value": "268",
+      "ocr_box": {
+        "x0": 585,
+        "y0": 1198,
+        "x1": 609,
+        "y1": 1207
+      },
+      "ocr_text": "268"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-10_p047:12:united_kingdom",
+      "value": "525,812",
+      "canonical_value": "525812",
+      "ocr_box": {
+        "x0": 375,
+        "y0": 608,
+        "x1": 437,
+        "y1": 620
+      },
+      "ocr_text": "525,812"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-10_p047:11:france",
+      "value": "281,714",
+      "canonical_value": "281714",
+      "ocr_box": {
+        "x0": 460,
+        "y0": 589,
+        "x1": 522,
+        "y1": 599
+      },
+      "ocr_text": "281,711*"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-10_p047:11:united_kingdom",
+      "value": "508,912",
+      "canonical_value": "508912",
+      "ocr_box": {
+        "x0": 376,
+        "y0": 588,
+        "x1": 437,
+        "y1": 600
+      },
+      "ocr_text": "508,912"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-10_p047:45:italy",
+      "value": "251",
+      "canonical_value": "251",
+      "ocr_box": {
+        "x0": 582,
+        "y0": 533,
+        "x1": 607,
+        "y1": 542
+      },
+      "ocr_text": "251"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-10_p047:38:united_kingdom",
+      "value": "62,237",
+      "canonical_value": "62237",
+      "ocr_box": {
+        "x0": 387,
+        "y0": 1351,
+        "x1": 439,
+        "y1": 1363
+      },
+      "ocr_text": "62,237"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-10_p047:12:france",
+      "value": "281,967",
+      "canonical_value": "281967",
+      "ocr_box": {
+        "x0": 460,
+        "y0": 608,
+        "x1": 521,
+        "y1": 620
+      },
+      "ocr_text": "281,967"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-10_p047:14:france",
+      "value": "290,022",
+      "canonical_value": "290022",
+      "ocr_box": {
+        "x0": 460,
+        "y0": 684,
+        "x1": 522,
+        "y1": 696
+      },
+      "ocr_text": "290,022"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-10_p047:32:germany",
+      "value": "382",
+      "canonical_value": "382",
+      "ocr_box": {
+        "x0": 585,
+        "y0": 1180,
+        "x1": 609,
+        "y1": 1189
+      },
+      "ocr_text": "382"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-10_p047:05:germany",
+      "value": "13,759",
+      "canonical_value": "13759",
+      "ocr_box": {
+        "x0": 554,
+        "y0": 419,
+        "x1": 606,
+        "y1": 431
+      },
+      "ocr_text": "13,759"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-10_p047:08:united_kingdom",
+      "value": "516,023",
+      "canonical_value": "516023",
+      "ocr_box": {
+        "x0": 375,
+        "y0": 531,
+        "x1": 437,
+        "y1": 543
+      },
+      "ocr_text": "516,023"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-10_p047:20:france",
+      "value": "2,283",
+      "canonical_value": "2283",
+      "ocr_box": {
+        "x0": 480,
+        "y0": 837,
+        "x1": 523,
+        "y1": 849
+      },
+      "ocr_text": "2,283"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-10_p047:32:united_kingdom",
+      "value": "3,898",
+      "canonical_value": "3898",
+      "ocr_box": {
+        "x0": 396,
+        "y0": 1181,
+        "x1": 438,
+        "y1": 1193
+      },
+      "ocr_text": "3,898"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-10_p047:04:germany",
+      "value": "15,115",
+      "canonical_value": "15115",
+      "ocr_box": {
+        "x0": 554,
+        "y0": 399,
+        "x1": 608,
+        "y1": 411
+      },
+      "ocr_text": "15,115"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-10_p047:04:france",
+      "value": "292,843",
+      "canonical_value": "292843",
+      "ocr_box": {
+        "x0": 460,
+        "y0": 399,
+        "x1": 522,
+        "y1": 410
+      },
+      "ocr_text": "292,81*3"
+    },
+    {
+      "field_id": "T.short_term_foreign_liabilities_as:1939-10_p047:23:france",
+      "value": "2,166",
+      "canonical_value": "2166",
+      "ocr_box": {
+        "x0": 480,
+        "y0": 893,
+        "x1": 523,
+        "y1": 905
+      },
+      "ocr_text": "2,166"
+    }
+  ],
+  "support": 20,
+  "source": "baseten_muse_spark_open",
+  "source_hashes": {
+    "response_sha256": "fd4a29d9bb7e62cea24bb87327019d90a9f7a46d3caaad898a9ffcd2cb31c721"
+  },
+  "returned_figure_fields": 650
+}

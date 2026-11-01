@@ -1,0 +1,248 @@
+{
+  "page": "1939-12_p055",
+  "family": "security_transactions_as_reported_by",
+  "reference": [
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-12_p055:15:canada",
+      "value": "796",
+      "canonical_value": "796",
+      "ocr_box": {
+        "x0": 1120,
+        "y0": 728,
+        "x1": 1143,
+        "y1": 737
+      },
+      "ocr_text": "796"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-12_p055:27:united_kingdom",
+      "value": "2,146",
+      "canonical_value": "2146",
+      "ocr_box": {
+        "x0": 407,
+        "y0": 1072,
+        "x1": 450,
+        "y1": 1082
+      },
+      "ocr_text": "2,11*6"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-12_p055:30:total_europe",
+      "value": "1,487",
+      "canonical_value": "1487",
+      "ocr_box": {
+        "x0": 1012,
+        "y0": 1135,
+        "x1": 1055,
+        "y1": 1145
+      },
+      "ocr_text": "1,1*87"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-12_p055:30:other_europe",
+      "value": "167",
+      "canonical_value": "167",
+      "ocr_box": {
+        "x0": 927,
+        "y0": 1134,
+        "x1": 950,
+        "y1": 1143
+      },
+      "ocr_text": "167"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-12_p055:25:all_other",
+      "value": "214",
+      "canonical_value": "214",
+      "ocr_box": {
+        "x0": 1374,
+        "y0": 1008,
+        "x1": 1399,
+        "y1": 1017
+      },
+      "ocr_text": "21U"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-12_p055:18:total_europe",
+      "value": "23,821",
+      "canonical_value": "23821",
+      "ocr_box": {
+        "x0": 1004,
+        "y0": 840,
+        "x1": 1056,
+        "y1": 852
+      },
+      "ocr_text": "23,821"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-12_p055:07:other_europe",
+      "value": "1,409",
+      "canonical_value": "1409",
+      "ocr_box": {
+        "x0": 912,
+        "y0": 541,
+        "x1": 954,
+        "y1": 551
+      },
+      "ocr_text": "1,1*09"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-12_p055:10:other_europe",
+      "value": "1,970",
+      "canonical_value": "1970",
+      "ocr_box": {
+        "x0": 911,
+        "y0": 598,
+        "x1": 954,
+        "y1": 610
+      },
+      "ocr_text": "1,970"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-12_p055:13:united_kingdom",
+      "value": "279",
+      "canonical_value": "279",
+      "ocr_box": {
+        "x0": 428,
+        "y0": 685,
+        "x1": 452,
+        "y1": 694
+      },
+      "ocr_text": "279"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-12_p055:29:latin_america",
+      "value": "377",
+      "canonical_value": "377",
+      "ocr_box": {
+        "x0": 1202,
+        "y0": 1119,
+        "x1": 1226,
+        "y1": 1129
+      },
+      "ocr_text": "377"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-12_p055:04:total_europe",
+      "value": "20,073",
+      "canonical_value": "20073",
+      "ocr_box": {
+        "x0": 1007,
+        "y0": 450,
+        "x1": 1059,
+        "y1": 462
+      },
+      "ocr_text": "20,073"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-12_p055:14:france",
+      "value": "309",
+      "canonical_value": "309",
+      "ocr_box": {
+        "x0": 514,
+        "y0": 705,
+        "x1": 538,
+        "y1": 714
+      },
+      "ocr_text": "309"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-12_p055:09:all_other",
+      "value": "525",
+      "canonical_value": "525",
+      "ocr_box": {
+        "x0": 1377,
+        "y0": 584,
+        "x1": 1401,
+        "y1": 593
+      },
+      "ocr_text": "525"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-12_p055:30:switzerland",
+      "value": "479",
+      "canonical_value": "479",
+      "ocr_box": {
+        "x0": 850,
+        "y0": 1135,
+        "x1": 875,
+        "y1": 1142
+      },
+      "ocr_text": "1*79"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-12_p055:22:netherlands",
+      "value": "1,217",
+      "canonical_value": "1217",
+      "ocr_box": {
+        "x0": 739,
+        "y0": 947,
+        "x1": 781,
+        "y1": 959
+      },
+      "ocr_text": "1,217"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-12_p055:15:switzerland",
+      "value": "600",
+      "canonical_value": "600",
+      "ocr_box": {
+        "x0": 854,
+        "y0": 724,
+        "x1": 877,
+        "y1": 734
+      },
+      "ocr_text": "600"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-12_p055:18:grand_total",
+      "value": "42,691",
+      "canonical_value": "42691",
+      "ocr_box": {
+        "x0": 1441,
+        "y0": 844,
+        "x1": 1494,
+        "y1": 854
+      },
+      "ocr_text": "1*2,691"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-12_p055:23:france",
+      "value": "2,386",
+      "canonical_value": "2386",
+      "ocr_box": {
+        "x0": 492,
+        "y0": 963,
+        "x1": 536,
+        "y1": 975
+      },
+      "ocr_text": "2,386"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-12_p055:54:canada",
+      "value": "133",
+      "canonical_value": "133",
+      "ocr_box": {
+        "x0": 1111,
+        "y0": 1801,
+        "x1": 1135,
+        "y1": 1811
+      },
+      "ocr_text": "133"
+    },
+    {
+      "field_id": "T.security_transactions_as_reported_by:1939-12_p055:32:canada",
+      "value": "553",
+      "canonical_value": "553",
+      "ocr_box": {
+        "x0": 1116,
+        "y0": 1232,
+        "x1": 1139,
+        "y1": 1241
+      },
+      "ocr_text": "553"
+    }
+  ],
+  "support": 20,
+  "returned_figure_fields": 780
+}
