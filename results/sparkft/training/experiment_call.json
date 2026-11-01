@@ -1,0 +1,8 @@
+{
+  "app_id": "ap-i5Jlfzsm9azROYNAD2gnF4",
+  "call_id": "fc-01M6A9Y805QG5J1VTP8M0K00DC",
+  "request_sha256": "0997ba3254a27ea13481c53c644d4f0bcd0ebb28ee6163577ece5279a79c7dd1",
+  "detached": true,
+  "dataset_sha256": "4f6c651be0c4d54b346a5576e91494840cee8e43f35b197f026f09cb22c38d51",
+  "checkpoint_path": "/sparkft-store/experiment-v1/latest.json"
+}

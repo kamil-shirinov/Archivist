@@ -49,9 +49,27 @@
       "stage": "cache_integrity",
       "ceiling_usd": "0.00342030",
       "retained": true
+    },
+    {
+      "stage": "download_bf16_resume2",
+      "ceiling_usd": "0.68046300",
+      "retained": true
+    },
+    {
+      "stage": "cleanup",
+      "ceiling_usd": "0.00342030",
+      "retained": true
     }
   ],
-  "gpu_attempts": [],
+  "gpu_attempts": [
+    {
+      "ceiling_usd": "82.19021280",
+      "retained": true,
+      "status": "timed_out_loading_no_optimizer_update",
+      "closed_wall_resource_upper_bound_usd": "77.789834",
+      "source": "provider finished timestamp plus 15-second margin"
+    }
+  ],
   "gradient_probe_attempts": [
     {
       "gpu": "B300",

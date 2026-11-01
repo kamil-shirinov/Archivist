@@ -187,3 +187,34 @@ def test_saved_call_id_is_used_before_reconnected_object_hydrates(monkeypatch):
     monkeypatch.setattr(cloud,'require_owned',lambda app:None)
     assert cloud.wait(Call(),'reconnected',app_id='ap-owned',wall_seconds=100,
                       call_id='fc-01M6A3T6DZFQPM6236QBY1K46V')=={'finished':True}
+
+
+def test_empty_counts_separate_explicit_missing_and_invalid_answers():
+    ref={'page':'1939-01_p001','family':'f','layout':'l','fields':['a','b','c'],
+         'size':[1000,1000],'target':{k:{'value':'123'} for k in ['a','b','c']},
+         'ocr_boxes':[{'x0':10,'y0':10,'x1':20,'y1':20}]*3}
+    s=score([{'parsed_pixel_cells':{'a':{'value':None},'b':{'value':'  '}}}],[ref])
+    assert (s['empty_answers'],s['explicit_empty_answers'],s['missing_answers'],s['unusable_answers'])==(3,2,1,0)
+    assert s['per_family']['f']['empty_answers']==3
+    bad=score([{'text':'not JSON','at_token_limit':False}],[ref])
+    assert (bad['empty_answers'],bad['explicit_empty_answers'],bad['unusable_answers'])==(3,0,3)
+
+
+def test_historical_pixel_boxes_are_not_rescaled_or_corrected():
+    ref={'page':'1939-01_p001','fields':['a'],'size':[1650,2200],
+         'target':{'c00':{'value':'123'}},'ocr_boxes':[{'x0':10,'y0':10,'x1':11,'y1':11}]}
+    s=score([{'parsed_pixel_cells':{'c00':{'value':'123','box':[10,10,11,11]}}}],[ref])
+    assert s['value_correct']==s['figure_contained']==1
+    assert s['per_page'][0]['cells'][0]['area_ratio']==1
+
+
+def test_already_stopped_owned_apps_do_not_abort_cleanup(monkeypatch):
+    from types import SimpleNamespace
+    import subprocess
+    events=[]
+    monkeypatch.setattr(cloud,'require_owned',lambda app:None)
+    monkeypatch.setattr(subprocess,'run',lambda *a,**k:SimpleNamespace(
+        args=a[0],returncode=1,stdout='',stderr='App is already stopped. (Finished at 2026-11-01).'))
+    monkeypatch.setattr(cloud,'append_event',events.append)
+    cloud.stop_owned('ap-owned')
+    assert events[0]['event']=='confirmed_stopped'

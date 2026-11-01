@@ -1,9 +1,102 @@
-# P34 — Spark Open development fine-tune
+# P34 — Spark Open archive-reader attempt: no adapter qualified
 
-**Status: BF16 weight staging; no archive inference or optimizer update yet.**
-The operative plan was committed before training (fc79eaf; bounded detached
-handoff amendments 0b8ba01 and d8f2de2). No adapter qualifies for use at this stage.
-The initial $40 feasibility stop is superseded by the owner's $95 authorization.
+**The GPU job timed out loading the BF16 base. No optimizer update, adapter,
+checkpoint or validation prediction was produced. Keep the existing base reader.**
+No fine-tuning gain or held-out result is claimed. No further GPU attempt fits the
+remaining budget at the observed loading rate.
+
+The frozen experiment was committed before launch (final runtime commit
+`5ce375d`). Its detached call `fc-01M6A9Y805QG5J1VTP8M0K00DC` was submitted
+2026-11-01 01:00:18 UTC; its app finished at 02:18:23 UTC. The synthetic native
+BF16 expert-gradient test passed, but the last loader progress was **364/2,000
+weight tensors (18%)** after about 75 minutes. The function reached its 4,650-second
+hard timeout during `from_pretrained`, before `loaded.json` or base inference.
+Only `identity.json` and `gradient_preflight.json` were saved. Checkpointing after
+every optimizer update was implemented; there were no updates to checkpoint.
+Failure evidence is in `training/failure_summary.json` and `gradient_preflight.json`.
+
+The owner's two additions were added to PLAN.md on 2026-11-01 **after this GPU job
+had launched and timed out**, before this post-attempt cached comparison. Training
+itself never began. Glimmer's branch/files/apps were not changed. No held-out
+page content or owner labels were opened. A real-scan run requires its own separate
+pre-registration afterwards and is outside this task.
+
+## Fixed development data and three-reader comparison
+
+The coverage rule preceded the development OCR census. Validation is **15 fixed
+pages / 270 OCR-supported figure fields**, three pages in every approved Treasury
+family/layout. Each of the five families has one supported portrait single-panel
+layout; per-layout counts/signatures and per-page details are in
+`training/comparison_v2/comparison.json` and `validation_v2/draw.json`. This does
+not claim coverage of unknown or unapproved archive layouts. One claims page has
+only one supported figure and remains in the frozen draw.
+
+Withdrawing all three claims pages for validation left **283 two-host-plus-OCR
+agreed training answers**, 37 conversations on three development pages: security,
+forward exchange and railroad. There were no short-term or claims training
+examples. Teachers were the same open model on two independent hosts, so agreement
+is correlated pseudo-supervision. All target boxes came from OCR. Planned training
+was attention-only rank-16 LoRA, one epoch, five accumulated optimizer updates.
+
+| Reader | Completed validation coverage | Result |
+| --- | --- | --- |
+| Fine-tuned Muse Spark Open | 0/15 pages | No adapter; every family unavailable |
+| Matching untrained local BF16 Muse Spark Open | 0/15 pages | Loading timed out; every family unavailable |
+| Cached hosted Muse Spark 1.3 | 8/15 pages, 133 fields | Cached context below; no new Meta call |
+
+Unavailable local arms are **not scored as zero or as empty**. There is no
+completed paired base/adapter evaluation, so the adoption gate fails. The gate
+still requires strict pooled improvement in both value accuracy and full-figure
+containment, no regression in any family/layout, and at least three scorable pages
+per layout. Hosted 1.3 never substitutes for that gate.
+
+Cached 1.3 results on the frozen requested fields (counts, not whole-table accuracy):
+
+| Family / supported layout | Available pages | Values matching reference | Full figure contained | Empty/missing usable answers |
+| --- | ---: | ---: | ---: | ---: |
+| Forward exchange | 1/3 | 20/20 | 0/20 | 0/20 |
+| Railroad | 2/3 | 32/32 | 13/32 | 0/32 |
+| Security transactions | 1/3 | 20/20 | 10/20 | 0/20 |
+| Short-term liabilities | 1/3 | 20/20 | 2/20 | 0/20 |
+| Claims by country | 3/3 | 41/41 | 0/41 | 0/41 |
+| Pooled cached subset | 8/15 | 133/133 | 25/133 | 0/133 |
+
+**Reference conditioning:** these eight pages' selected values came from the same
+cached 1.3 read plus unique OCR agreement. Consequently 133/133 value agreement
+and zero empty selected values follow from reference construction; they are not
+an independent accuracy/abstention estimate. Figure containment uses the original
+model box against the OCR figure, without OCR replacement. These are OCR proxies,
+not human labels. No missing cached page is replaced or treated as a model error.
+
+To expose empties outside that selected subset, counts among **all returned figure
+fields** on those same available pages are below. Legitimately blank printed cells
+can be included; omitted rows are unknown. These denominators differ from the
+OCR-reference subset and do not establish whether an empty answer is an error.
+
+| Family | Returned null/blank/abstained figure fields |
+| --- | ---: |
+| Forward exchange | 78/390 |
+| Railroad | 0/170 |
+| Security transactions | 156/780 |
+| Short-term liabilities | 130/650 |
+| Claims by country | 168/2232 |
+| Pooled | 532/4,222 |
+
+P33's pre-existing Baseten Open read overlaps the draw on only **1982-06_p094**.
+The approved template is byte-identical between P33 and this checkout. On the
+same twenty frozen fields of that page:
+
+| Historical reader | Values matching reference | Full figure contained | Empty/abstained |
+| --- | ---: | ---: | ---: |
+| Untrained Open, P33 Baseten cache | 0/20 | 0/20 | 1/20 |
+| Hosted Muse Spark 1.3 cache | 20/20 | 0/20 | 0/20 |
+
+This supplementary comparison is reference-conditioned, uses historical full-table
+prompts, and has no established checkpoint/decoding equivalence to the local BF16
+base. It is not a replacement base arm or evidence of a fine-tuning gain. The Open
+cache had 142 null/blank/abstained fields among all 744 returned figure fields on
+that page. Exact source hashes, raw cached values, per-family/layout scores and
+empty/missing/invalid distinctions are saved under `training/comparison_v2/`.
 
 ## Cached boxes: no reusable conversion found
 
@@ -52,89 +145,52 @@ limitations, not human-scored correctness. Both hosts read the same pages, so 1,
 count of box observations, not independent examples. Fireworks failed on 1939-01_p051;
 that missing read remains missing. Nearest-box matching was never used.
 
-## Frozen training and validation
+## Runtime feasibility, terms and serving
 
-The coverage rule preceded the full development OCR census. Three pages for every
-approved Treasury family/layout were frozen before reference reads. All three
-claims pages are validation-only, removing 118 previously prepared training answers.
-Training now has **283 two-host-plus-OCR-agreed answers on three development pages**,
-37 conversations, one fixed epoch (five accumulated optimizer steps). Training
-contains security, forward exchange and railroad examples; no short-term or claims
-examples. Both teachers are the same open model on independent hosts, so agreement
-is correlated pseudo-supervision. Every target box is from OCR.
+Seven bounded synthetic NVFP4 probes failed before archive inference/training:
+package/trust/transport problems, then a tiny-shape backward division by zero and
+actual-width timeouts. This establishes no working compressed backward route in
+this task, not impossibility for every implementation. The BF16 fallback's 65
+weight-shard hashes match Meta's original release; its native expert gradient
+preflight passed. Its measured model-loading path does not fit this budget.
 
-Validation has **15 pages / 270 uniquely OCR-supported figures**, three pages for
-each of the five approved portrait single-panel family/layout combinations. This
-covers the supported template layouts; it is not a census of unknown/unapproved
-archive layouts. One claims page has only one supported figure; that denominator
-is retained rather than replacing the frozen page. OCR references are imperfect
-proxies, not human labels. No held-out scan/result or owner label is accessed.
+[TERMS.md](TERMS.md) records the open-weight fine-tuning grant, licence/policy and
+attribution requirements, and Meta API output restrictions. No closed Meta API
+output was used for training. Treasury Bulletin provenance records FRASER's
+public-domain rights. Development gates precede page/PDF/cache access.
 
-| Family | Pages | Figures | Base value / containment | Adapter value / containment |
-| --- | ---: | ---: | --- | --- |
-| outstanding_forward_exchange_contracts | 3 | 60 | Pending | Pending |
-| receipts_and_expenditures_under_railroad | 3 | 49 | Pending | Pending |
-| security_transactions_as_reported_by | 3 | 60 | Pending | Pending |
-| short_term_foreign_liabilities_as | 3 | 60 | Pending | Pending |
-| total_claims_by_country | 3 | 41 | Pending | Pending |
-| Pooled | 15 | 270 | Pending | Pending |
+**There is no fine-tuned model to serve.** The earlier proposed $20 Modal batch
+forecast assumed a fast load and is invalidated by the observed loading failure.
+Do not deploy this BF16 recipe for the open-weights run on that forecast. Keep the
+$20 reserve untouched. A future qualifying adapter would require a measured,
+affordable loading/serving path on Modal (or independently verified Fireworks image
+adapter support), unchanged development gates, then separate real-scan
+pre-registration. No endpoint or real-scan job was launched.
 
-Adoption requires strict pooled gains in both value accuracy and full-figure
-containment, **no family/layout decreases in either**, identical references and
-at least three scorable pages per layout. Missing or incomplete evaluation rejects
-adoption. Area ratios and invalid outputs are reported separately. Baseline and
-adapter receive the same prompts/images/decoding and no reference answer.
+Next options are to profile/repair loading on CPU and validate the quantized
+backward implementation before another paid full allocation, or retain the hosted
+base. Another attempt needs a new costed plan; no further training is started here.
 
-## Runtime, costs and recovery
+## Cost and cleanup
 
-Seven synthetic NVFP4 preflights failed before any archive inference/training:
-version/trust/transport issues, then a tiny-shape backward division by zero and
-two actual-width timeouts. These failures do not establish that every NVFP4
-training implementation is unusable. This task's compressed route was not validated.
-All failed-attempt ceilings remain charged against the plan.
+The pre-launch retained resource ceiling was **$94.2154788 / $95**. After the job
+finished, submission time and the provider's app-finished time give a conservative
+GPU resource bound of **$77.789834**, including fifteen extra shutdown seconds.
+Retaining all CPU attempt ceilings ($4.3754079), all seven synthetic GPU probe
+ceilings ($6.025266), a $4 storage allowance and $0.50 build/network/shutdown
+allowance yields **$92.6905079**. This is a resource-based conservative estimate,
+**not a reconciled Modal invoice**; its timing/rate/cache-footprint assumptions are
+recorded in `training/resource_accounting.json`. The failed archive call's GPU
+cost bound is recorded in the spend ledger instead of silently recording zero.
 
-The fallback is exact original BF16 Muse Spark Open weights, mirrored by Unsloth:
-65/65 shard hashes match Meta's release (training/bf16_provenance.json). One
-8-B300 allocation, native grouped_mm experts, frozen base, attention-only rank-16
-LoRA, 4,650-second execution timeout and no GPU retry. A detached controller
-waits for the exact recorded preparation; two bounded continuations are permitted (the final one uses a smaller
-non-preemptible CPU allocation).
-The GPU app itself is detached and records call/app IDs before waiting. Every
-optimizer update commits adapter, optimizer and RNG state to the task-owned Modal
-volume. Base/adapter validation predictions are committed after every page.
+Baseten validation-reference reads cost **$0.7237565 / $5**. New Meta calls: **0**.
+New Fireworks calls: **0**. Serving spend: **$0 / $20 reserved**.
 
-Retained training/validation ceiling is **$94.2154788 < $95**:
-$82.1902128 full GPU allocation + $6.025266 seven probes + $6 preparation/storage.
-These are conservative reservations, not reconciled invoices. Modal replaced a
-CPU worker during download. Absolute submission-time deadlines now bound all
-infrastructure restarts; per-attempt function timeouts alone would reset. The final
-CPU stage is non-preemptible, two cores/16 GiB, within the same preparation reserve. **$20 serving is
-separate and untouched.** Seven new Baseten validation-reference reads cost
-**$0.7237565 < $5**; no new Meta or Fireworks request. Training teachers use cached
-P33 reads only. Preparation and all other jobs have hard timeouts; owned app IDs
-are recorded. Only apps started by this task may be stopped. Glimmer is untouched.
+All recorded Sparkft-owned apps are stopped/confirmed stopped; no other app was
+stopped. Its large model cache was removed at 07:13 UTC; the small experiment
+metadata is preserved. See `training/final_apps.json` and `cleanup.json`. Main
+checkout changes are limited to the original worktree registration/exclude line;
+data and credential links are ignored, read-only in use and never committed.
 
-Reconnection: `.venv/bin/python -m sparkft.backend` retrieves the recorded detached
-experiment call; it does not allocate another job. Checkpoints and final adapter
-are under `archivist-sparkft-p34-v1:/experiment-v1/`. Preserve adapters/checkpoints
-and remove the task's large base cache after bounded work finishes.
-
-## Serving and terms
-
-If and only if the full adoption gate passes, reload the exact BF16 base and saved
-PEFT adapter on Modal, through the model registry/cache/budget layer. No permanent
-endpoint or open-weights run is launched here. An 800-second later serving batch
-plus 300-second startup/15-second shutdown reserves $18.4576208 of the $20; actual
-measured throughput and all staging/storage overhead must fit before launch.
-Otherwise retain the hosted base or seek a new serving budget. No arbitrary run
-is promised to fit $20. Fireworks private per-token serverless adapters are not
-assumed to support this model/image path.
-
-[TERMS.md](TERMS.md) records the model licence's fine-tuning grant and attribution,
-licence/policy obligations, and Meta API output restrictions. No closed Meta API
-output enters training. Treasury Bulletin provenance records FRASER's public-domain
-rights. All page accesses are gated against development before file reads.
-
-Latest pre-training Check: **1,185 tests passed**, all **11 replay runs identical**,
-spend ledger unchanged at 81,155 lines during replay; pre-commit clean. All work is
-inside sparkft; push is plain `git push origin sparkft`, without merging.
+The final exact unpiped Check and pre-commit results are recorded in
+`training/final_checks.json`. Push is plain `git push origin sparkft`; no merge.

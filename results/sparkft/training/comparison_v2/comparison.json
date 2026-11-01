@@ -1,0 +1,2392 @@
+{
+  "dataset_sha256": "4f6c651be0c4d54b346a5576e91494840cee8e43f35b197f026f09cb22c38d51",
+  "new_meta_calls": 0,
+  "new_other_hosted_calls": 0,
+  "adopt": false,
+  "paired_base_and_adapter": "unavailable: timed out loading; no validation predictions",
+  "reference_bias": "Meta 1.3 supplied some OCR-agreed references; its value/empty scores there are conditioned on reference construction",
+  "prompt_limitation": "Historical hosted reads use full-table prompts; local paired experiment requested fixed subsets",
+  "models": {
+    "hosted_meta_1_3": {
+      "available_pages": [
+        "1939-12_p060",
+        "1939-10_p024",
+        "1939-12_p025",
+        "1939-12_p055",
+        "1939-12_p053",
+        "1982-06_p094",
+        "1983-06_p092",
+        "1984-06_p058"
+      ],
+      "unavailable_pages": [
+        "1939-04_p075",
+        "1939-08_p097",
+        "1939-09_p024",
+        "1939-02_p083",
+        "1939-08_p087",
+        "1939-06_p083",
+        "1939-10_p047"
+      ],
+      "scores": {
+        "value_correct": 133,
+        "figure_contained": 25,
+        "empty_answers": 0,
+        "explicit_empty_answers": 0,
+        "missing_answers": 0,
+        "unusable_answers": 0,
+        "n": 133,
+        "value_accuracy": 1.0,
+        "box_containment": 0.18796992481203006,
+        "joint_accuracy": 0.18796992481203006,
+        "invalid_pages": 0,
+        "per_page": [
+          {
+            "page": "1939-12_p060",
+            "family": "outstanding_forward_exchange_contracts",
+            "layout": "49015cd4f4fa",
+            "n": 20,
+            "value_correct": 20,
+            "figure_contained": 0,
+            "joint_correct": 0,
+            "empty_answers": 0,
+            "explicit_empty_answers": 0,
+            "missing_answers": 0,
+            "unusable_answers": 0,
+            "error": null,
+            "cells": [
+              {
+                "field": "T.outstanding_forward_exchange_contracts:1939-12_p060:purchase_domestic_04:latin_america",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 7.111111111111111,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.outstanding_forward_exchange_contracts:1939-12_p060:purchase_domestic_02:other_europe",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 3.0952380952380953,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.outstanding_forward_exchange_contracts:1939-12_p060:purchase_foreign_04:canada",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 3.0697674418604652,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.outstanding_forward_exchange_contracts:1939-12_p060:purchase_domestic_04:united_kingdom",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 2.1639344262295084,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.outstanding_forward_exchange_contracts:1939-12_p060:sale_foreign_01:france",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 3.0952380952380953,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.outstanding_forward_exchange_contracts:1939-12_p060:purchase_domestic_03:netherlands",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 2.5384615384615383,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.outstanding_forward_exchange_contracts:1939-12_p060:total_sale_01:total_europe",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 2.8852459016393444,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.outstanding_forward_exchange_contracts:1939-12_p060:purchase_foreign_01:grand_total",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 2.5806451612903225,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.outstanding_forward_exchange_contracts:1939-12_p060:purchase_foreign_03:switzerland",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 7.435185185185185,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.outstanding_forward_exchange_contracts:1939-12_p060:total_sale_02:canada",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 2.5142857142857142,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.outstanding_forward_exchange_contracts:1939-12_p060:purchase_foreign_04:france",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 5.958333333333333,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.outstanding_forward_exchange_contracts:1939-12_p060:sale_domestic_01:grand_total",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 2.622950819672131,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.outstanding_forward_exchange_contracts:1939-12_p060:purchase_domestic_01:far_east",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 2.2564102564102564,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.outstanding_forward_exchange_contracts:1939-12_p060:purchase_domestic_04:grand_total",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 2.3655913978494625,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.outstanding_forward_exchange_contracts:1939-12_p060:sale_foreign_01:netherlands",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 2.588235294117647,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.outstanding_forward_exchange_contracts:1939-12_p060:purchase_foreign_02:switzerland",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 7.758454106280193,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.outstanding_forward_exchange_contracts:1939-12_p060:purchase_domestic_02:netherlands",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 2.5384615384615383,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.outstanding_forward_exchange_contracts:1939-12_p060:sale_domestic_02:far_east",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 2.2564102564102564,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.outstanding_forward_exchange_contracts:1939-12_p060:purchase_foreign_03:other_europe",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 3.3255813953488373,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.outstanding_forward_exchange_contracts:1939-12_p060:sale_foreign_03:canada",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 2.933333333333333,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              }
+            ]
+          },
+          {
+            "page": "1939-10_p024",
+            "family": "receipts_and_expenditures_under_railroad",
+            "layout": "be687f3defad",
+            "n": 16,
+            "value_correct": 16,
+            "figure_contained": 11,
+            "joint_correct": 11,
+            "empty_answers": 0,
+            "explicit_empty_answers": 0,
+            "missing_answers": 0,
+            "unusable_answers": 0,
+            "error": null,
+            "cells": [
+              {
+                "field": "T.receipts_and_expenditures_under_railroad:1939-10_p024:16:total_exp",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 3.2,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.receipts_and_expenditures_under_railroad:1939-10_p024:03:total_exp",
+                "value_correct": true,
+                "figure_contained": true,
+                "area_ratio": 3.2232558139534886,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.receipts_and_expenditures_under_railroad:1939-10_p024:07:taxes",
+                "value_correct": true,
+                "figure_contained": true,
+                "area_ratio": 4.658823529411765,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.receipts_and_expenditures_under_railroad:1939-10_p024:11:total_exp",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 3.2,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.receipts_and_expenditures_under_railroad:1939-10_p024:14:taxes",
+                "value_correct": true,
+                "figure_contained": true,
+                "area_ratio": 4.8,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.receipts_and_expenditures_under_railroad:1939-10_p024:06:total_exp",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 3.1058823529411765,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.receipts_and_expenditures_under_railroad:1939-10_p024:15:to_unemployment",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 4.026143790849673,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.receipts_and_expenditures_under_railroad:1939-10_p024:11:to_retirement",
+                "value_correct": true,
+                "figure_contained": true,
+                "area_ratio": 4.148148148148148,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.receipts_and_expenditures_under_railroad:1939-10_p024:10:taxes",
+                "value_correct": true,
+                "figure_contained": true,
+                "area_ratio": 4.658823529411765,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.receipts_and_expenditures_under_railroad:1939-10_p024:05:total_exp",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 3.0545454545454547,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.receipts_and_expenditures_under_railroad:1939-10_p024:15:to_retirement",
+                "value_correct": true,
+                "figure_contained": true,
+                "area_ratio": 3.623529411764706,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.receipts_and_expenditures_under_railroad:1939-10_p024:03:taxes",
+                "value_correct": true,
+                "figure_contained": true,
+                "area_ratio": 3.7714285714285714,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.receipts_and_expenditures_under_railroad:1939-10_p024:16:to_retirement",
+                "value_correct": true,
+                "figure_contained": true,
+                "area_ratio": 3.85,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.receipts_and_expenditures_under_railroad:1939-10_p024:17:taxes",
+                "value_correct": true,
+                "figure_contained": true,
+                "area_ratio": 4.658823529411765,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.receipts_and_expenditures_under_railroad:1939-10_p024:04:taxes",
+                "value_correct": true,
+                "figure_contained": true,
+                "area_ratio": 4.190476190476191,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.receipts_and_expenditures_under_railroad:1939-10_p024:04:to_retirement",
+                "value_correct": true,
+                "figure_contained": true,
+                "area_ratio": 4.132275132275132,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              }
+            ]
+          },
+          {
+            "page": "1939-12_p025",
+            "family": "receipts_and_expenditures_under_railroad",
+            "layout": "be687f3defad",
+            "n": 16,
+            "value_correct": 16,
+            "figure_contained": 2,
+            "joint_correct": 2,
+            "empty_answers": 0,
+            "explicit_empty_answers": 0,
+            "missing_answers": 0,
+            "unusable_answers": 0,
+            "error": null,
+            "cells": [
+              {
+                "field": "T.receipts_and_expenditures_under_railroad:1939-12_p025:03:taxes",
+                "value_correct": true,
+                "figure_contained": true,
+                "area_ratio": 3.2744186046511627,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.receipts_and_expenditures_under_railroad:1939-12_p025:04:to_retirement",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 3.3523809523809525,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.receipts_and_expenditures_under_railroad:1939-12_p025:16:total_exp",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 5.042424242424242,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.receipts_and_expenditures_under_railroad:1939-12_p025:03:total_exp",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 3.2,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.receipts_and_expenditures_under_railroad:1939-12_p025:09:total_exp",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 4.141176470588236,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.receipts_and_expenditures_under_railroad:1939-12_p025:12:taxes",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 4.7407407407407405,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.receipts_and_expenditures_under_railroad:1939-12_p025:04:taxes",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 3.2744186046511627,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.receipts_and_expenditures_under_railroad:1939-12_p025:08:taxes",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 4.601307189542483,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.receipts_and_expenditures_under_railroad:1939-12_p025:14:to_retirement",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 4.266666666666667,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.receipts_and_expenditures_under_railroad:1939-12_p025:13:total_exp",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 4.7542857142857144,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.receipts_and_expenditures_under_railroad:1939-12_p025:15:taxes",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 5.602693602693603,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.receipts_and_expenditures_under_railroad:1939-12_p025:04:total_exp",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 3.476543209876543,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.receipts_and_expenditures_under_railroad:1939-12_p025:13:to_retirement",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 5.042424242424242,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.receipts_and_expenditures_under_railroad:1939-12_p025:13:to_unemployment",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 2.523529411764706,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.receipts_and_expenditures_under_railroad:1939-12_p025:17:total_exp",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 5.08235294117647,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.receipts_and_expenditures_under_railroad:1939-12_p025:05:total_exp",
+                "value_correct": true,
+                "figure_contained": true,
+                "area_ratio": 5.042424242424242,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              }
+            ]
+          },
+          {
+            "page": "1939-12_p055",
+            "family": "security_transactions_as_reported_by",
+            "layout": "17f41ebdd51b",
+            "n": 20,
+            "value_correct": 20,
+            "figure_contained": 10,
+            "joint_correct": 10,
+            "empty_answers": 0,
+            "explicit_empty_answers": 0,
+            "missing_answers": 0,
+            "unusable_answers": 0,
+            "error": null,
+            "cells": [
+              {
+                "field": "T.security_transactions_as_reported_by:1939-12_p055:15:canada",
+                "value_correct": true,
+                "figure_contained": true,
+                "area_ratio": 11.207729468599034,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.security_transactions_as_reported_by:1939-12_p055:27:united_kingdom",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 6.186046511627907,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.security_transactions_as_reported_by:1939-12_p055:30:total_europe",
+                "value_correct": true,
+                "figure_contained": true,
+                "area_ratio": 5.8,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.security_transactions_as_reported_by:1939-12_p055:30:other_europe",
+                "value_correct": true,
+                "figure_contained": true,
+                "area_ratio": 11.207729468599034,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.security_transactions_as_reported_by:1939-12_p055:25:all_other",
+                "value_correct": true,
+                "figure_contained": true,
+                "area_ratio": 9.955555555555556,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.security_transactions_as_reported_by:1939-12_p055:18:total_europe",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 3.7211538461538463,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.security_transactions_as_reported_by:1939-12_p055:07:other_europe",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 5.523809523809524,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.security_transactions_as_reported_by:1939-12_p055:10:other_europe",
+                "value_correct": true,
+                "figure_contained": true,
+                "area_ratio": 4.341085271317829,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.security_transactions_as_reported_by:1939-12_p055:13:united_kingdom",
+                "value_correct": true,
+                "figure_contained": true,
+                "area_ratio": 11.875,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.security_transactions_as_reported_by:1939-12_p055:29:latin_america",
+                "value_correct": true,
+                "figure_contained": true,
+                "area_ratio": 9.216666666666667,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.security_transactions_as_reported_by:1939-12_p055:04:total_europe",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 3.858974358974359,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.security_transactions_as_reported_by:1939-12_p055:14:france",
+                "value_correct": true,
+                "figure_contained": true,
+                "area_ratio": 8.296296296296296,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.security_transactions_as_reported_by:1939-12_p055:09:all_other",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 10.74074074074074,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.security_transactions_as_reported_by:1939-12_p055:30:switzerland",
+                "value_correct": true,
+                "figure_contained": true,
+                "area_ratio": 13.257142857142858,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.security_transactions_as_reported_by:1939-12_p055:22:netherlands",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 4.603174603174603,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.security_transactions_as_reported_by:1939-12_p055:15:switzerland",
+                "value_correct": true,
+                "figure_contained": true,
+                "area_ratio": 10.08695652173913,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.security_transactions_as_reported_by:1939-12_p055:18:grand_total",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 4.381132075471698,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.security_transactions_as_reported_by:1939-12_p055:23:france",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 3.1515151515151514,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.security_transactions_as_reported_by:1939-12_p055:54:canada",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 9.666666666666666,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.security_transactions_as_reported_by:1939-12_p055:32:canada",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 10.821256038647343,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              }
+            ]
+          },
+          {
+            "page": "1939-12_p053",
+            "family": "short_term_foreign_liabilities_as",
+            "layout": "8590dcedb912",
+            "n": 20,
+            "value_correct": 20,
+            "figure_contained": 2,
+            "joint_correct": 2,
+            "empty_answers": 0,
+            "explicit_empty_answers": 0,
+            "missing_answers": 0,
+            "unusable_answers": 0,
+            "error": null,
+            "cells": [
+              {
+                "field": "T.short_term_foreign_liabilities_as:1939-12_p053:50:other_europe",
+                "value_correct": true,
+                "figure_contained": true,
+                "area_ratio": 10.85897435897436,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.short_term_foreign_liabilities_as:1939-12_p053:05:other_europe",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 4.553763440860215,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.short_term_foreign_liabilities_as:1939-12_p053:38:grand_total",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 6.581132075471698,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.short_term_foreign_liabilities_as:1939-12_p053:48:grand_total",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 6.75968992248062,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.short_term_foreign_liabilities_as:1939-12_p053:12:canada",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 3.7868852459016393,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.short_term_foreign_liabilities_as:1939-12_p053:33:netherlands",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 13.391304347826088,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.short_term_foreign_liabilities_as:1939-12_p053:10:far_east",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 3.386243386243386,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.short_term_foreign_liabilities_as:1939-12_p053:07:united_kingdom",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 4.180327868852459,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.short_term_foreign_liabilities_as:1939-12_p053:28:far_east",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 10.666666666666666,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.short_term_foreign_liabilities_as:1939-12_p053:45:netherlands",
+                "value_correct": true,
+                "figure_contained": true,
+                "area_ratio": 13.86,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.short_term_foreign_liabilities_as:1939-12_p053:10:other_europe",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 3.5555555555555554,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.short_term_foreign_liabilities_as:1939-12_p053:33:germany",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 16.02857142857143,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.short_term_foreign_liabilities_as:1939-12_p053:34:switzerland",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 15.277777777777779,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.short_term_foreign_liabilities_as:1939-12_p053:43:canada",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 11.55,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.short_term_foreign_liabilities_as:1939-12_p053:43:france",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 6.086666666666667,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.short_term_foreign_liabilities_as:1939-12_p053:04:netherlands",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 3.7868852459016393,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.short_term_foreign_liabilities_as:1939-12_p053:15:total_europe",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 3.196875,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.short_term_foreign_liabilities_as:1939-12_p053:38:germany",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 12.088888888888889,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.short_term_foreign_liabilities_as:1939-12_p053:35:all_other",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 14.596153846153847,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.short_term_foreign_liabilities_as:1939-12_p053:48:other_europe",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 14.08,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              }
+            ]
+          },
+          {
+            "page": "1982-06_p094",
+            "family": "total_claims_by_country",
+            "layout": "a2f2732dc10b",
+            "n": 20,
+            "value_correct": 20,
+            "figure_contained": 0,
+            "joint_correct": 0,
+            "empty_answers": 0,
+            "explicit_empty_answers": 0,
+            "missing_answers": 0,
+            "unusable_answers": 0,
+            "error": null,
+            "cells": [
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:oil_exporting_africa:c1",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 2.5,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:guatemala:c1",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 5.625,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:yugoslavia:c3",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 5.2894736842105265,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:thailand:c1",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 5.625,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:finland:c5",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 5.533333333333333,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:philippines:c4",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 6.225,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:belgium_luxembourg:c1",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 2.4324324324324325,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:india:c5",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 6.225,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:liberia:c1",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 6.7669172932330826,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:india:c1",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 6.7669172932330826,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:philippines:c1",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 2.9411764705882355,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:france:c1",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 2.5,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:hungary:c1",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 5.625,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:taiwan:c3",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 2.172972972972973,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:thailand:c5",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 5.26984126984127,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:belgium_luxembourg:c3",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 2.2333333333333334,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:german_democratic_republic:c8",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 6.4144736842105265,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:taiwan:c1",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 2.4324324324324325,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:poland:c5",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 6.225,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:egypt:c5",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 7.488721804511278,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              }
+            ]
+          },
+          {
+            "page": "1983-06_p092",
+            "family": "total_claims_by_country",
+            "layout": "a2f2732dc10b",
+            "n": 20,
+            "value_correct": 20,
+            "figure_contained": 0,
+            "joint_correct": 0,
+            "empty_answers": 0,
+            "explicit_empty_answers": 0,
+            "missing_answers": 0,
+            "unusable_answers": 0,
+            "error": null,
+            "cells": [
+              {
+                "field": "T.total_claims_by_country:1983-06_p092:denmark:c1",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 5.186868686868687,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1983-06_p092:hungary:c2",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 5.585858585858586,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1983-06_p092:singapore:c5",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 2.2771618625277164,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1983-06_p092:trinidad_tobago:c3",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 6.113095238095238,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1983-06_p092:venezuela:c3",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 2.334090909090909,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1983-06_p092:bahamas:c2",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 1.8672727272727272,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1983-06_p092:philippines:c4",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 2.7026315789473685,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1983-06_p092:oil_exporting_africa:c1",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 2.334090909090909,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1983-06_p092:peru:c7",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 2.2195121951219514,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1983-06_p092:poland:c1",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 5.4338624338624335,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1983-06_p092:turkey:c3",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 6.41875,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1983-06_p092:indonesia:c6",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 5.365079365079365,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1983-06_p092:bermuda:c3",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 5.585858585858586,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1983-06_p092:romania:c3",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 5.4338624338624335,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1983-06_p092:taiwan:c7",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 2.3045454545454547,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1983-06_p092:guatemala:c7",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 5.777777777777778,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1983-06_p092:hungary:c8",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 5.27536231884058,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1983-06_p092:austria:c8",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 6.204545454545454,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1983-06_p092:colombia:c3",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 2.334090909090909,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1983-06_p092:finland:c2",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 5.342995169082125,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              }
+            ]
+          },
+          {
+            "page": "1984-06_p058",
+            "family": "total_claims_by_country",
+            "layout": "a2f2732dc10b",
+            "n": 1,
+            "value_correct": 1,
+            "figure_contained": 0,
+            "joint_correct": 0,
+            "empty_answers": 0,
+            "explicit_empty_answers": 0,
+            "missing_answers": 0,
+            "unusable_answers": 0,
+            "error": null,
+            "cells": [
+              {
+                "field": "T.total_claims_by_country:1984-06_p058:austria:c1",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 6.373015873015873,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              }
+            ]
+          }
+        ],
+        "per_family": {
+          "outstanding_forward_exchange_contracts": {
+            "pages": 1,
+            "n": 20,
+            "value_correct": 20,
+            "figure_contained": 0,
+            "empty_answers": 0,
+            "explicit_empty_answers": 0,
+            "missing_answers": 0,
+            "unusable_answers": 0,
+            "value_accuracy": 1.0,
+            "box_containment": 0.0
+          },
+          "receipts_and_expenditures_under_railroad": {
+            "pages": 2,
+            "n": 32,
+            "value_correct": 32,
+            "figure_contained": 13,
+            "empty_answers": 0,
+            "explicit_empty_answers": 0,
+            "missing_answers": 0,
+            "unusable_answers": 0,
+            "value_accuracy": 1.0,
+            "box_containment": 0.40625
+          },
+          "security_transactions_as_reported_by": {
+            "pages": 1,
+            "n": 20,
+            "value_correct": 20,
+            "figure_contained": 10,
+            "empty_answers": 0,
+            "explicit_empty_answers": 0,
+            "missing_answers": 0,
+            "unusable_answers": 0,
+            "value_accuracy": 1.0,
+            "box_containment": 0.5
+          },
+          "short_term_foreign_liabilities_as": {
+            "pages": 1,
+            "n": 20,
+            "value_correct": 20,
+            "figure_contained": 2,
+            "empty_answers": 0,
+            "explicit_empty_answers": 0,
+            "missing_answers": 0,
+            "unusable_answers": 0,
+            "value_accuracy": 1.0,
+            "box_containment": 0.1
+          },
+          "total_claims_by_country": {
+            "pages": 3,
+            "n": 41,
+            "value_correct": 41,
+            "figure_contained": 0,
+            "empty_answers": 0,
+            "explicit_empty_answers": 0,
+            "missing_answers": 0,
+            "unusable_answers": 0,
+            "value_accuracy": 1.0,
+            "box_containment": 0.0
+          }
+        },
+        "per_layout": {
+          "49015cd4f4fa": {
+            "pages": 1,
+            "n": 20,
+            "value_correct": 20,
+            "figure_contained": 0,
+            "empty_answers": 0,
+            "explicit_empty_answers": 0,
+            "missing_answers": 0,
+            "unusable_answers": 0,
+            "value_accuracy": 1.0,
+            "box_containment": 0.0
+          },
+          "be687f3defad": {
+            "pages": 2,
+            "n": 32,
+            "value_correct": 32,
+            "figure_contained": 13,
+            "empty_answers": 0,
+            "explicit_empty_answers": 0,
+            "missing_answers": 0,
+            "unusable_answers": 0,
+            "value_accuracy": 1.0,
+            "box_containment": 0.40625
+          },
+          "17f41ebdd51b": {
+            "pages": 1,
+            "n": 20,
+            "value_correct": 20,
+            "figure_contained": 10,
+            "empty_answers": 0,
+            "explicit_empty_answers": 0,
+            "missing_answers": 0,
+            "unusable_answers": 0,
+            "value_accuracy": 1.0,
+            "box_containment": 0.5
+          },
+          "8590dcedb912": {
+            "pages": 1,
+            "n": 20,
+            "value_correct": 20,
+            "figure_contained": 2,
+            "empty_answers": 0,
+            "explicit_empty_answers": 0,
+            "missing_answers": 0,
+            "unusable_answers": 0,
+            "value_accuracy": 1.0,
+            "box_containment": 0.1
+          },
+          "a2f2732dc10b": {
+            "pages": 3,
+            "n": 41,
+            "value_correct": 41,
+            "figure_contained": 0,
+            "empty_answers": 0,
+            "explicit_empty_answers": 0,
+            "missing_answers": 0,
+            "unusable_answers": 0,
+            "value_accuracy": 1.0,
+            "box_containment": 0.0
+          }
+        }
+      },
+      "all_returned_figure_fields": [
+        {
+          "page": "1939-12_p060",
+          "family": "outstanding_forward_exchange_contracts",
+          "layout": "49015cd4f4fa",
+          "returned_figure_fields": 390,
+          "empty_or_abstained": 78,
+          "omitted_rows": "unknown; not inferred from returned fields"
+        },
+        {
+          "page": "1939-10_p024",
+          "family": "receipts_and_expenditures_under_railroad",
+          "layout": "be687f3defad",
+          "returned_figure_fields": 85,
+          "empty_or_abstained": 0,
+          "omitted_rows": "unknown; not inferred from returned fields"
+        },
+        {
+          "page": "1939-12_p025",
+          "family": "receipts_and_expenditures_under_railroad",
+          "layout": "be687f3defad",
+          "returned_figure_fields": 85,
+          "empty_or_abstained": 0,
+          "omitted_rows": "unknown; not inferred from returned fields"
+        },
+        {
+          "page": "1939-12_p055",
+          "family": "security_transactions_as_reported_by",
+          "layout": "17f41ebdd51b",
+          "returned_figure_fields": 780,
+          "empty_or_abstained": 156,
+          "omitted_rows": "unknown; not inferred from returned fields"
+        },
+        {
+          "page": "1939-12_p053",
+          "family": "short_term_foreign_liabilities_as",
+          "layout": "8590dcedb912",
+          "returned_figure_fields": 650,
+          "empty_or_abstained": 130,
+          "omitted_rows": "unknown; not inferred from returned fields"
+        },
+        {
+          "page": "1982-06_p094",
+          "family": "total_claims_by_country",
+          "layout": "a2f2732dc10b",
+          "returned_figure_fields": 744,
+          "empty_or_abstained": 56,
+          "omitted_rows": "unknown; not inferred from returned fields"
+        },
+        {
+          "page": "1983-06_p092",
+          "family": "total_claims_by_country",
+          "layout": "a2f2732dc10b",
+          "returned_figure_fields": 744,
+          "empty_or_abstained": 56,
+          "omitted_rows": "unknown; not inferred from returned fields"
+        },
+        {
+          "page": "1984-06_p058",
+          "family": "total_claims_by_country",
+          "layout": "a2f2732dc10b",
+          "returned_figure_fields": 744,
+          "empty_or_abstained": 56,
+          "omitted_rows": "unknown; not inferred from returned fields"
+        }
+      ],
+      "source_hashes": {
+        "1939-12_p060": {
+          "582028a31696736f1201d6ecbdc657d0650b7b2b50798b9044122e20663ad430": "f9c7837539c5f7464a7c6b10b5f2333358955582830728b1db098081373ab528"
+        },
+        "1939-10_p024": {
+          "5ca59003cafd0c41f563d6ab39ea525ce2184d4f1ef506b849d83d3a859af719": "7b37680c3280c11c939221d86787670cf56bc267401fa44dbd4c226624a69146"
+        },
+        "1939-12_p025": {
+          "1999ecb9b78ebf9aad07480af133da8adb395c9e1e9503bb58d2b6440d2155b0": "757d8b7b1c35c02432afc62d14dcf2b33b7000236182ef26cc140712b00c7552"
+        },
+        "1939-12_p055": {
+          "108720cf7c82b5c7820583c2b7cb4b63a942191f503b6b1349aade7126c9011c": "fc7f0dd43669bebd855a11f9992a1ca0e8ae817ba687f4a3101714aa65c86741"
+        },
+        "1939-12_p053": {
+          "84a52dc2d6e38aefa9cc293c221b593e16a554f246d20adfc5a331ec9fac19ea": "7c1d2e00ee1eb73c6a4649880da3138bb7bbd0b7740d8e9d6a1a2d3326a62a93"
+        },
+        "1982-06_p094": {
+          "322da7f63ef9b8767ab49c2a6fc8385e773bb89ade89bbde00047d8fbf1bbcb5": "8b548f0468e4b20a100a3f6f8da3b868c0390f3b1bd73fb9babee8da86c0f17b"
+        },
+        "1983-06_p092": {
+          "997e0f43dfa1addc544b8c024e4c0b2330a13fcbfc2b7b74ab786ffbdfb88c6c": "29cb3e3758fedd5d71df94e724c9749f29a9581518b6c800de5e96e5d367a459"
+        },
+        "1984-06_p058": {
+          "e39dc4fafd5333b93eb0ebeaddd990d7cdde07c4764d953cc425be60b0c5eae4": "9f11f51335e508a52073addf42ee936d7fa5fd5cd384285f5ee591701b55f40f"
+        }
+      }
+    },
+    "historical_open_baseten": {
+      "available_pages": [
+        "1982-06_p094"
+      ],
+      "unavailable_pages": [
+        "1939-04_p075",
+        "1939-08_p097",
+        "1939-12_p060",
+        "1939-09_p024",
+        "1939-10_p024",
+        "1939-12_p025",
+        "1939-02_p083",
+        "1939-08_p087",
+        "1939-12_p055",
+        "1939-06_p083",
+        "1939-10_p047",
+        "1939-12_p053",
+        "1983-06_p092",
+        "1984-06_p058"
+      ],
+      "scores": {
+        "value_correct": 0,
+        "figure_contained": 0,
+        "empty_answers": 1,
+        "explicit_empty_answers": 1,
+        "missing_answers": 0,
+        "unusable_answers": 0,
+        "n": 20,
+        "value_accuracy": 0.0,
+        "box_containment": 0.0,
+        "joint_accuracy": 0.0,
+        "invalid_pages": 0,
+        "per_page": [
+          {
+            "page": "1982-06_p094",
+            "family": "total_claims_by_country",
+            "layout": "a2f2732dc10b",
+            "n": 20,
+            "value_correct": 0,
+            "figure_contained": 0,
+            "joint_correct": 0,
+            "empty_answers": 1,
+            "explicit_empty_answers": 1,
+            "missing_answers": 0,
+            "unusable_answers": 0,
+            "error": null,
+            "cells": [
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:oil_exporting_africa:c1",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 3.3333333333333335,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:guatemala:c1",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 7.1875,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:yugoslavia:c3",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 6.631578947368421,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:thailand:c1",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 7.1875,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:finland:c5",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 6.388888888888889,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:philippines:c4",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 9.63125,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:belgium_luxembourg:c1",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 3.7621621621621624,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:india:c5",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 6.0375,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:liberia:c1",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 8.646616541353383,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:india:c1",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 7.2631578947368425,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:philippines:c1",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 4.359477124183006,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:france:c1",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 3.7055555555555557,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:hungary:c1",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 7.1875,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:taiwan:c3",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 3.827027027027027,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:thailand:c5",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 6.084656084656085,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:belgium_luxembourg:c3",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 4.466666666666667,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:german_democratic_republic:c8",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 10.421052631578947,
+                "empty": true,
+                "explicit_empty": true,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:taiwan:c1",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 3.7621621621621624,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:poland:c5",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 7.1875,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:egypt:c5",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 7.2631578947368425,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              }
+            ]
+          }
+        ],
+        "per_family": {
+          "total_claims_by_country": {
+            "pages": 1,
+            "n": 20,
+            "value_correct": 0,
+            "figure_contained": 0,
+            "empty_answers": 1,
+            "explicit_empty_answers": 1,
+            "missing_answers": 0,
+            "unusable_answers": 0,
+            "value_accuracy": 0.0,
+            "box_containment": 0.0
+          }
+        },
+        "per_layout": {
+          "a2f2732dc10b": {
+            "pages": 1,
+            "n": 20,
+            "value_correct": 0,
+            "figure_contained": 0,
+            "empty_answers": 1,
+            "explicit_empty_answers": 1,
+            "missing_answers": 0,
+            "unusable_answers": 0,
+            "value_accuracy": 0.0,
+            "box_containment": 0.0
+          }
+        }
+      },
+      "all_returned_figure_fields": [
+        {
+          "page": "1982-06_p094",
+          "family": "total_claims_by_country",
+          "layout": "a2f2732dc10b",
+          "returned_figure_fields": 744,
+          "empty_or_abstained": 142,
+          "omitted_rows": "unknown; not inferred from returned fields"
+        }
+      ],
+      "source_hashes": {
+        "1982-06_p094": {
+          "p33_read_sha256": "79751c79193e9241a38110594e357f08a532d70fc85bc4cf68afd04f57dc3496"
+        }
+      }
+    },
+    "fine_tuned_open": {
+      "available_pages": [],
+      "unavailable_pages": [
+        "1939-04_p075",
+        "1939-08_p097",
+        "1939-12_p060",
+        "1939-09_p024",
+        "1939-10_p024",
+        "1939-12_p025",
+        "1939-02_p083",
+        "1939-08_p087",
+        "1939-12_p055",
+        "1939-06_p083",
+        "1939-10_p047",
+        "1939-12_p053",
+        "1982-06_p094",
+        "1983-06_p092",
+        "1984-06_p058"
+      ],
+      "scores": null,
+      "reason": "No optimizer update or adapter"
+    },
+    "matched_local_base": {
+      "available_pages": [],
+      "unavailable_pages": [
+        "1939-04_p075",
+        "1939-08_p097",
+        "1939-12_p060",
+        "1939-09_p024",
+        "1939-10_p024",
+        "1939-12_p025",
+        "1939-02_p083",
+        "1939-08_p087",
+        "1939-12_p055",
+        "1939-06_p083",
+        "1939-10_p047",
+        "1939-12_p053",
+        "1982-06_p094",
+        "1983-06_p092",
+        "1984-06_p058"
+      ],
+      "scores": null,
+      "reason": "Model loading timed out before inference"
+    }
+  },
+  "historical_common_subset": {
+    "pages": [
+      "1982-06_p094"
+    ],
+    "scores": {
+      "hosted_meta_1_3": {
+        "value_correct": 20,
+        "figure_contained": 0,
+        "empty_answers": 0,
+        "explicit_empty_answers": 0,
+        "missing_answers": 0,
+        "unusable_answers": 0,
+        "n": 20,
+        "value_accuracy": 1.0,
+        "box_containment": 0.0,
+        "joint_accuracy": 0.0,
+        "invalid_pages": 0,
+        "per_page": [
+          {
+            "page": "1982-06_p094",
+            "family": "total_claims_by_country",
+            "layout": "a2f2732dc10b",
+            "n": 20,
+            "value_correct": 20,
+            "figure_contained": 0,
+            "joint_correct": 0,
+            "empty_answers": 0,
+            "explicit_empty_answers": 0,
+            "missing_answers": 0,
+            "unusable_answers": 0,
+            "error": null,
+            "cells": [
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:oil_exporting_africa:c1",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 2.5,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:guatemala:c1",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 5.625,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:yugoslavia:c3",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 5.2894736842105265,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:thailand:c1",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 5.625,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:finland:c5",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 5.533333333333333,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:philippines:c4",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 6.225,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:belgium_luxembourg:c1",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 2.4324324324324325,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:india:c5",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 6.225,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:liberia:c1",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 6.7669172932330826,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:india:c1",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 6.7669172932330826,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:philippines:c1",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 2.9411764705882355,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:france:c1",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 2.5,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:hungary:c1",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 5.625,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:taiwan:c3",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 2.172972972972973,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:thailand:c5",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 5.26984126984127,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:belgium_luxembourg:c3",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 2.2333333333333334,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:german_democratic_republic:c8",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 6.4144736842105265,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:taiwan:c1",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 2.4324324324324325,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:poland:c5",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 6.225,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:egypt:c5",
+                "value_correct": true,
+                "figure_contained": false,
+                "area_ratio": 7.488721804511278,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              }
+            ]
+          }
+        ],
+        "per_family": {
+          "total_claims_by_country": {
+            "pages": 1,
+            "n": 20,
+            "value_correct": 20,
+            "figure_contained": 0,
+            "empty_answers": 0,
+            "explicit_empty_answers": 0,
+            "missing_answers": 0,
+            "unusable_answers": 0,
+            "value_accuracy": 1.0,
+            "box_containment": 0.0
+          }
+        },
+        "per_layout": {
+          "a2f2732dc10b": {
+            "pages": 1,
+            "n": 20,
+            "value_correct": 20,
+            "figure_contained": 0,
+            "empty_answers": 0,
+            "explicit_empty_answers": 0,
+            "missing_answers": 0,
+            "unusable_answers": 0,
+            "value_accuracy": 1.0,
+            "box_containment": 0.0
+          }
+        }
+      },
+      "historical_open_baseten": {
+        "value_correct": 0,
+        "figure_contained": 0,
+        "empty_answers": 1,
+        "explicit_empty_answers": 1,
+        "missing_answers": 0,
+        "unusable_answers": 0,
+        "n": 20,
+        "value_accuracy": 0.0,
+        "box_containment": 0.0,
+        "joint_accuracy": 0.0,
+        "invalid_pages": 0,
+        "per_page": [
+          {
+            "page": "1982-06_p094",
+            "family": "total_claims_by_country",
+            "layout": "a2f2732dc10b",
+            "n": 20,
+            "value_correct": 0,
+            "figure_contained": 0,
+            "joint_correct": 0,
+            "empty_answers": 1,
+            "explicit_empty_answers": 1,
+            "missing_answers": 0,
+            "unusable_answers": 0,
+            "error": null,
+            "cells": [
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:oil_exporting_africa:c1",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 3.3333333333333335,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:guatemala:c1",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 7.1875,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:yugoslavia:c3",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 6.631578947368421,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:thailand:c1",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 7.1875,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:finland:c5",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 6.388888888888889,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:philippines:c4",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 9.63125,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:belgium_luxembourg:c1",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 3.7621621621621624,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:india:c5",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 6.0375,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:liberia:c1",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 8.646616541353383,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:india:c1",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 7.2631578947368425,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:philippines:c1",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 4.359477124183006,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:france:c1",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 3.7055555555555557,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:hungary:c1",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 7.1875,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:taiwan:c3",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 3.827027027027027,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:thailand:c5",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 6.084656084656085,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:belgium_luxembourg:c3",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 4.466666666666667,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:german_democratic_republic:c8",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 10.421052631578947,
+                "empty": true,
+                "explicit_empty": true,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:taiwan:c1",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 3.7621621621621624,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:poland:c5",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 7.1875,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              },
+              {
+                "field": "T.total_claims_by_country:1982-06_p094:egypt:c5",
+                "value_correct": false,
+                "figure_contained": false,
+                "area_ratio": 7.2631578947368425,
+                "empty": false,
+                "explicit_empty": false,
+                "missing": false
+              }
+            ]
+          }
+        ],
+        "per_family": {
+          "total_claims_by_country": {
+            "pages": 1,
+            "n": 20,
+            "value_correct": 0,
+            "figure_contained": 0,
+            "empty_answers": 1,
+            "explicit_empty_answers": 1,
+            "missing_answers": 0,
+            "unusable_answers": 0,
+            "value_accuracy": 0.0,
+            "box_containment": 0.0
+          }
+        },
+        "per_layout": {
+          "a2f2732dc10b": {
+            "pages": 1,
+            "n": 20,
+            "value_correct": 0,
+            "figure_contained": 0,
+            "empty_answers": 1,
+            "explicit_empty_answers": 1,
+            "missing_answers": 0,
+            "unusable_answers": 0,
+            "value_accuracy": 0.0,
+            "box_containment": 0.0
+          }
+        }
+      }
+    }
+  }
+}

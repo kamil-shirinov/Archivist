@@ -1,1 +1,47 @@
-[]
+{
+  "owned_apps": [
+    "ap-BASlIljT6TDebuTD8Cz63y",
+    "ap-DqMhHuVefUsH3SMAw80HDe",
+    "ap-ERT62w9D2VysscMcJPlmkf",
+    "ap-OutIOWYC0P4iVs1ta5XSmK",
+    "ap-QjKH72a38MXa9tAw2YfK0C",
+    "ap-Rgdj0XzT5iiuZVzgkYAijJ",
+    "ap-S921J4u7zEsHtr07L2PDgJ",
+    "ap-XiD5x9pRmjQuLnkcEoFiTF",
+    "ap-Z92sBqJG69CnKG3YJ2vik8",
+    "ap-ZACASeCehkolT9nZRGUL8q",
+    "ap-ZUTBhenZ9TQHxaddJB8inG",
+    "ap-cZ2vA5NeXIu0YudYrTcDma",
+    "ap-f1BfcpCaWq7rGZRmoPT8CJ",
+    "ap-i5Jlfzsm9azROYNAD2gnF4",
+    "ap-i9MXRDl5BCuu5glE0fJRFB",
+    "ap-qhlp0lncqGTBaRVVaTyAO9",
+    "ap-sOlnVEAPUmEClFySDEp6Iw",
+    "ap-twA1qWXmDYtQwtJw9fYwKx",
+    "ap-zGITyYWpPKIqs7EqdmgNqq"
+  ],
+  "confirmed_stopped": [
+    "ap-BASlIljT6TDebuTD8Cz63y",
+    "ap-DqMhHuVefUsH3SMAw80HDe",
+    "ap-ERT62w9D2VysscMcJPlmkf",
+    "ap-OutIOWYC0P4iVs1ta5XSmK",
+    "ap-QjKH72a38MXa9tAw2YfK0C",
+    "ap-Rgdj0XzT5iiuZVzgkYAijJ",
+    "ap-S921J4u7zEsHtr07L2PDgJ",
+    "ap-XiD5x9pRmjQuLnkcEoFiTF",
+    "ap-Z92sBqJG69CnKG3YJ2vik8",
+    "ap-ZACASeCehkolT9nZRGUL8q",
+    "ap-ZUTBhenZ9TQHxaddJB8inG",
+    "ap-cZ2vA5NeXIu0YudYrTcDma",
+    "ap-f1BfcpCaWq7rGZRmoPT8CJ",
+    "ap-i5Jlfzsm9azROYNAD2gnF4",
+    "ap-i9MXRDl5BCuu5glE0fJRFB",
+    "ap-qhlp0lncqGTBaRVVaTyAO9",
+    "ap-sOlnVEAPUmEClFySDEp6Iw",
+    "ap-twA1qWXmDYtQwtJw9fYwKx",
+    "ap-zGITyYWpPKIqs7EqdmgNqq"
+  ],
+  "unconfirmed": [],
+  "other_apps_stopped": 0,
+  "base_cache_removed": true
+}

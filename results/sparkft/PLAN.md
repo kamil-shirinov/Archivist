@@ -207,3 +207,54 @@ weight cache; remove the base cache after this task's bounded work finishes.
 Before the pre-training commit and final commit, run the exact unpiped Check:
 `uv run pytest -q && uv run python -m archivist.replay`, then clean pre-commit.
 Push with plain `git push origin sparkft`; never merge or rewrite history.
+
+## Owner additions recorded 2026-11-01, after the GPU experiment launched
+
+The detached GPU experiment had already launched before these additions were
+recorded. Its recorded call is fc-01M6A9Y805QG5J1VTP8M0K00DC, app
+ap-i5Jlfzsm9azROYNAD2gnF4; the local driver reports its 4,650-second timeout.
+Whether an optimizer update occurred must be established from saved artifacts.
+These additions are recorded before inspecting or scoring those artifacts here.
+
+After the attempt, compare on the same frozen fifteen development validation
+pages: fine-tuned Muse Spark Open, untrained Muse Spark Open, and hosted Muse Spark
+1.3 **only where its development reads already exist in the exact-key cache**.
+Make no new Meta call. Report, for each family and layout, values right, boxes
+containing the full printed/OCR figure, and empty answers, with explicit page and
+field denominators. Separate explicit null/blank values, missing or unusable
+answers, invalid outputs and unavailable pages. Preserve raw box scoring (no OCR
+box replacement for a model's prediction). Use identical frozen requested fields
+and OCR references for every available arm. Also report the common cached-page
+subset separately so missing hosted reads cannot masquerade as model errors.
+If an arm or page did not finish, mark it unavailable; never fabricate its scores.
+Some frozen references derive from the cached 1.3 read plus unique OCR agreement,
+so its value score on that subset is reference-conditioned and is not an
+independent accuracy estimate. Hosted 1.3 is contextual comparison only; it does
+not change the fixed base-versus-adapter adoption gate.
+
+Do not touch the glimmer branch, worktree files or any of its Modal apps. Only
+explicitly recorded sparkft-owned app IDs may be stopped. Nothing runs on held-out
+pages. A future real-scan/open-weights run requires **its own separate
+pre-registration afterwards**, and is outside this task. No deployment or real-scan
+run is authorized by a development validation result alone.
+
+The local paired base/adapter arms may be unavailable if loading never finished.
+As supplementary context only, score P33's already cached Baseten Open read where
+its pages overlap this frozen draw, choosing that host before opening these scores.
+Keep it explicitly separate from the matching local BF16 base: checkpoint and
+prompt/decoding equivalence are not established. Existing hosted reads use their
+historical full-table prompts, whereas the planned local experiment requested a
+fixed subset; this is a limitation, not a new matched-prompt experiment. Report
+both reference-subset empty/missing counts and, separately, empty/abstained counts
+among all returned figure fields (omitted rows are unknown). No hosted result
+substitutes for an unfinished paired arm or qualifies an adapter for adoption.
+
+## Post-attempt serving correction
+
+The GPU attempt timed out at 364/2,000 weight tensors loaded, before any archive
+inference or optimizer update. There is no adapter. This observed loading path
+invalidates the earlier $20 BF16 serving forecast: it must not be used to launch
+an endpoint or the open-weights run. The $20 remains reserved and unspent. Any
+future serving proposal needs a measured affordable load path and full batch cost,
+then the separately required real-scan pre-registration. No held-out run is
+started here, and no cached hosted result substitutes for a failed paired gate.

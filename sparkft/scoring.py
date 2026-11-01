@@ -42,29 +42,38 @@ def score(records, references):
     for record, ref in zip(records,references,strict=True):
         expected=ref['target']; w,h=ref['size']
         try:
-            data=parse(record['text'],expected,record['at_token_limit'])
+            data=(record['parsed_pixel_cells'] if 'parsed_pixel_cells' in record else
+                  parse(record['text'],expected,record['at_token_limit']))
             error=None
         except (ValueError,TypeError) as exc:
             data={};error=str(exc)
-        correct=boxed=joint=0;details=[]
+        correct=boxed=joint=empty=explicit_empty=missing=0;details=[]
         for i,(key,target) in enumerate(expected.items()):
             pred=data.get(key,{})
-            good=number(pred.get('value')) is not None and number(pred.get('value'))==number(target['value'])
+            absent=key not in data
+            blank=not absent and (pred.get('abstained',False) or pred.get('value') is None or
+                                   isinstance(pred.get('value'),str) and not pred['value'].strip())
+            empty+=bool(absent or blank);explicit_empty+=bool(blank);missing+=absent
+            good=not pred.get('abstained',False) and number(pred.get('value')) is not None and number(pred.get('value'))==number(target['value'])
             box=pred.get('box'); real=ref['ocr_boxes'][i]
             contains=False;area_ratio=None
             if box is not None:
                 x0,y0,x1,y1=box
-                pixel=[math.floor(x0*w/1000),math.floor(y0*h/1000),
-                       math.ceil(x1*w/1000),math.ceil(y1*h/1000)]
+                pixel=([x0,y0,x1,y1] if 'parsed_pixel_cells' in record else
+                       [math.floor(x0*w/1000),math.floor(y0*h/1000),
+                        math.ceil(x1*w/1000),math.ceil(y1*h/1000)])
                 contains=(pixel[0]<=real['x0'] and pixel[1]<=real['y0'] and
                           pixel[2]>=real['x1'] and pixel[3]>=real['y1'])
                 area_ratio=(pixel[2]-pixel[0])*(pixel[3]-pixel[1])/((real['x1']-real['x0'])*(real['y1']-real['y0']))
             correct+=good;boxed+=contains;joint+=good and contains
             details.append({'field':ref['fields'][i],'value_correct':good,
-                            'figure_contained':contains,'area_ratio':area_ratio})
+                            'figure_contained':contains,'area_ratio':area_ratio,'empty':bool(absent or blank),
+                            'explicit_empty':bool(blank),'missing':absent})
         per_page.append({'page':ref['page'],'family':ref.get('family'),'layout':ref.get('layout'),
                          'n':len(expected),'value_correct':correct,
-                         'figure_contained':boxed,'joint_correct':joint,'error':error,'cells':details})
+                         'figure_contained':boxed,'joint_correct':joint,'empty_answers':empty,
+                         'explicit_empty_answers':explicit_empty,'missing_answers':missing,
+                         'unusable_answers':len(expected) if error else 0,'error':error,'cells':details})
     n=sum(p['n'] for p in per_page)
     def rate(key):return sum(p[key] for p in per_page)/n if n else None
     def grouped(key):
@@ -72,14 +81,20 @@ def score(records, references):
         for page in per_page:
             label=page[key]
             if label is None:continue
-            group=groups.setdefault(label,{'pages':0,'n':0,'value_correct':0,'figure_contained':0})
+            group=groups.setdefault(label,{'pages':0,'n':0,'value_correct':0,'figure_contained':0,
+                                            'empty_answers':0,'explicit_empty_answers':0,
+                                            'missing_answers':0,'unusable_answers':0})
             group['pages']+=bool(page['n'])
-            for count in ('n','value_correct','figure_contained'):group[count]+=page[count]
+            for count in ('n','value_correct','figure_contained','empty_answers',
+                          'explicit_empty_answers','missing_answers','unusable_answers'):
+                group[count]+=page[count]
         for group in groups.values():
             group['value_accuracy']=group['value_correct']/group['n'] if group['n'] else None
             group['box_containment']=group['figure_contained']/group['n'] if group['n'] else None
         return groups
-    return {'n':n,'value_accuracy':rate('value_correct'),'box_containment':rate('figure_contained'),
+    totals={k:sum(p[k] for p in per_page) for k in ('value_correct','figure_contained',
+            'empty_answers','explicit_empty_answers','missing_answers','unusable_answers')}
+    return {**totals,'n':n,'value_accuracy':rate('value_correct'),'box_containment':rate('figure_contained'),
             'joint_accuracy':rate('joint_correct'),'invalid_pages':sum(p['error'] is not None for p in per_page),
             'per_page':per_page,'per_family':grouped('family'),'per_layout':grouped('layout')}
 

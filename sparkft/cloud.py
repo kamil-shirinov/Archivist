@@ -36,8 +36,14 @@ def stop_owned(app_id):
     import subprocess
     import sys
     require_owned(app_id)
-    subprocess.run([sys.executable,'-m','modal','app','stop','--yes',app_id],check=True)
-    append_event({'event':'stopped','app_id':app_id})
+    result=subprocess.run([sys.executable,'-m','modal','app','stop','--yes',app_id],
+                          capture_output=True,text=True)
+    message=result.stdout+result.stderr
+    already='App is already stopped.' in message
+    if result.returncode and not already:
+        raise subprocess.CalledProcessError(result.returncode,result.args,output=message)
+    append_event({'event':'confirmed_stopped' if already else 'stopped','app_id':app_id,
+                  'service_message':__import__('re').sub(r"by '[^']+'",'by task client',message.strip())})
 
 
 class WallBudgetTimeout(RuntimeError):
