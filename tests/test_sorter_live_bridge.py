@@ -1,4 +1,4 @@
-"""Apply the handoff patch to its recorded live-reading source; exercise step 1 offline."""
+"""Exercise integrated step 1 and the recorded handoff patch offline."""
 import importlib
 import json
 import subprocess
@@ -15,8 +15,12 @@ from archivist.templates.ocr import Word
 from archivist.schema import BBox
 
 
-@pytest.fixture
-def live(tmp_path,monkeypatch):
+@pytest.fixture(params=("integrated", "handoff"))
+def live(request,tmp_path,monkeypatch):
+    if request.param == "integrated":
+        from archivist.live import reader, events
+        yield reader, events
+        return
     record=json.loads(Path('results/glimmer/sorter/live-reading-patch-check.json').read_text())
     if subprocess.run(["git", "cat-file", "-e", record["commit"]], capture_output=True).returncode:
         pytest.skip("handoff source commit is not present in this clone")
@@ -60,6 +64,10 @@ def test_patched_live_recognition_uses_observed_sorter_and_stops_on_title_reject
     assert outcome.doc_type==family and outcome.title_confirmed is False
     assert outcome.extraction is None and not vision.calls and len(sorter.calls)==1
     assert rec.totals['calls']==1
+    recognition = [e for e in log.events() if e['type'] == 'step' and e['step'] == 'recognise']
+    assert recognition and all(e['model'] == 'glimmer' for e in recognition)
+    calls = [e for e in log.events() if e['type'] == 'call']
+    assert len(calls) == 1 and calls[0]['role'] == 'sorter'
 
 
 def test_patched_live_without_a_text_layer_uses_current_classifier(live,tmp_path):

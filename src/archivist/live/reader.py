@@ -217,20 +217,27 @@ def read_treasury(
     steps, llm = rec.steps, roles[extract.ROLE]
     image = page.path.read_bytes()
 
-    steps.route({"extractor": "recognise"})
+    # New archive configs provide a text sorter; image-only configs keep their flow.
+    sorter = roles.get("sorter")
+    layer = tuple(layer_of(page)) if sorter is not None else ()
+    text = " ".join(word.text for word in layer) if layer else None
+    recognise_role = "sorter" if sorter is not None and text is not None else "extractor"
+    steps.route({recognise_role: "recognise"})
     steps.start("recognise")
-    kind = extract.classify(image, llm, doc_types)
-    layer = layer_of(page) if kind != UNSUPPORTED else ()
+    kind = extract.classify(image, llm, doc_types, sorter=sorter, text=text,
+                            source_ref=page.ref)
+    if sorter is None and kind != UNSUPPORTED:
+        layer = layer_of(page)
     # The pre-registered title check: the page counts for the table only if its own OCR text
-    # matches one of the table's approved title patterns. The app reads the page either way.
+    # matches one of the table's approved title patterns. New sorter runs stop on rejection.
     confirmed = None
     if kind != UNSUPPORTED:
         text = " ".join(word.text for word in layer)
         confirmed = real_test.title_match(doc_types[kind], text) is not None
     steps.finish("recognise", doc_type=kind, title_confirmed=confirmed)
-    if kind == UNSUPPORTED:
+    if kind == UNSUPPORTED or (sorter is not None and confirmed is False):
         steps.close()
-        return Outcome(page, kind)
+        return Outcome(page, kind, title_confirmed=confirmed)
     doc_type = doc_types[kind]
 
     steps.route({"extractor": "read"})

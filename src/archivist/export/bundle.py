@@ -645,6 +645,8 @@ _VERSION = re.compile(r"muse-spark-(\d+(?:\.\d+)*)")
 
 def model_name(model_id: str) -> str:
     """A model as a person says it: muse-spark-1.3-contributor is Muse Spark 1.3."""
+    if "Muse-Glimmer-30B" in model_id:
+        return "Muse Glimmer (untrained)"
     low = model_id.lower()
     if low.startswith("sam-"):
         return f"SAM {low[4:]}"

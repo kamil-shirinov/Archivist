@@ -9,8 +9,9 @@ the cache is refused before it reaches a backend, exactly as archivist.replay do
 key. Either way the roles are the ones archivist.models builds, and only report (events.Observed).
 
 Which config reads a page: a synthetic page, the arm's (config/arms/a.toml, b.toml or c.toml: the
-hosted models, the open-weight ones, or one of each); a Treasury Bulletin page, the pre-registered
-real-pages test's (config/real_test.toml, the hosted models and the five approved tables).
+hosted models, the open-weight ones, or one of each); a Treasury Bulletin page, the new
+archive config (config/archive_glimmer.toml): untrained Glimmer sorts text pages, then the
+approved-title check, hosted reads and SAM use the real-pages test's settings.
 """
 
 from __future__ import annotations
@@ -53,7 +54,7 @@ ARM_TITLES = {
     "b": "Open-weight models",
     "c": "Hosted reader, open-weight checker",
 }
-TREASURY_CONFIG = Path("config/real_test.toml")
+TREASURY_CONFIG = Path("config/archive_glimmer.toml")
 MODES = ("live", "replay")
 KEY_ENV = {
     "meta": "META_API_KEY",

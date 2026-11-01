@@ -51,7 +51,7 @@ STEP_ROLE = {
 }
 # Seconds a replayed call is played for when its original was never timed: stand-ins for a
 # rehearsal, marked as such in the call's event ("pace": "nominal").
-NOMINAL_S = {"extractor": 4.0, "rereader": 1.2, "segmenter": 1.5}
+NOMINAL_S = {"extractor": 4.0, "rereader": 1.2, "segmenter": 1.5, "sorter": 2.0}
 KEY_VARIABLES = ("META_API_KEY", "BASETEN_API_KEY", "FIREWORKS_API_KEY")
 
 
@@ -162,6 +162,7 @@ class Steps:
         self._log = log
         self._names = dict(names)  # role -> the model's name
         self._route: dict[str, str] = {}
+        self._recognise_role = "extractor"
         self._open: list[str] = []
         self._finished: set[str] = set()
         self._lock = threading.Lock()
@@ -169,6 +170,9 @@ class Steps:
     def route(self, mapping: Mapping[str, str]) -> None:
         """From now on, a call by this role belongs to this step."""
         self._route = dict(mapping)
+        for role, step in mapping.items():
+            if step == "recognise":
+                self._recognise_role = role
 
     def on_call(self, role: str) -> str | None:
         step = self._route.get(role)
@@ -211,7 +215,7 @@ class Steps:
             self._emit(other, "done", {})
 
     def _emit(self, step: str, state: str, facts: Mapping[str, object]) -> None:
-        role = STEP_ROLE[step]
+        role = self._recognise_role if step == "recognise" else STEP_ROLE[step]
         self._log.emit(
             "step",
             step=step,
@@ -276,6 +280,9 @@ class Observed:
 
     def complete(self, request: object) -> object:
         return self._call(request, self.inner.complete, "llm")
+
+    def sort(self, request: object) -> object:
+        return self._call(request, self.inner.sort, "text_sorter")
 
     def segment(self, request: object) -> object:
         return self._call(request, self.inner.segment, "segmenter")
