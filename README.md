@@ -1,5 +1,7 @@
 # Archivist
 
+[![CI](https://github.com/kamil-shirinov/Archivist/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/kamil-shirinov/Archivist/actions/workflows/ci.yml)
+
 <!-- Logo goes here: assets/brand/ (added later). -->
 
 Archivist turns scanned financial archives into a verified database. Every value is cited to its spot on the page, cross-checked by arithmetic and a blind second read, and flagged for a person when unsure. Values are never changed automatically.
@@ -52,6 +54,14 @@ The [open-weights report](results/openw_measure/REPORT.md) used development page
 
 </details>
 
+## What we learned about Meta's models
+
+- Untrained Muse Glimmer found all 136 confirmed table pages from their text, as Muse Spark did, but needs the title check; fine-tuning it lost 19 ([report](results/glimmer/phase2/REPORT.md)).
+- SAM 3.1, prompted with "table", finds the panels of multi-panel tables, though not side-by-side ones ([D40](DECISIONS.md)).
+- Muse Spark drafts a whole table template (rows, columns, arithmetic rules) from two or three sample pages, for a person to approve ([D31](DECISIONS.md)).
+- Muse Spark 1.3's one-value re-reads ran out of allowance at "low" reasoning but never left a cell unread at "minimal" ([D33](DECISIONS.md)). Muse Spark Open accepts "minimal" but doesn't honour it ([report](results/openw_measure/REPORT.md)) and sometimes ends a long answer one bracket short ([D28](DECISIONS.md)).
+- Muse Spark Open can replace Muse Spark 1.3 for both reads at a similar rate of wrong accepted values (0.30% against 0.36%); mixing them across reads did worse (0.47%; intervals overlap) ([report](results/test_report.json)).
+
 ## Results
 
 The 157-page synthetic test targets and measured results:
@@ -72,7 +82,7 @@ The 157-page synthetic test targets and measured results:
 
 A [script](docs/make_charts.py) draws the charts from the test report and fails if they drift.
 
-**Sorting pages.** Measured against the pipeline's own decisions, not human truth: on 791 held-out pages (never seen while the system was built), untrained Muse Glimmer found all 136 confirmed table pages and called 495 of 500 sampled other pages "other". The fine-tuned alternative is listed below. Comparing Glimmer with the author's 50-page check comes with the real-scan scoring.
+**Sorting pages.** Measured against the pipeline's own decisions, not human truth: on 791 held-out pages (never seen while the system was built), untrained Muse Glimmer found all 136 confirmed table pages and called 495 of 500 sampled other pages "other". Comparing Glimmer with the author's 50-page check comes with the real-scan scoring.
 
 **Real-scan test** ([plan](PREREGISTRATION_REAL.md)). The sweep sorted all 4,569 held-out Treasury Bulletin pages into five approved table types, and the title check confirmed 136 of the 291 the model assigned. The deep check ran on 58 of them: 33,114 table cells and 29,018 blind re-reads. The answer key is 400 cells drawn in advance and labelled by the author from the printed page, never shown a model's figure; 40 are labelled again a day or more later. The scorer runs once the labels are committed, on the tagged code.
 
@@ -133,19 +143,30 @@ Needs Python 3.12 and [uv](https://docs.astral.sh/uv/).
 uv sync --frozen
 ```
 
+One command checks the published numbers, needing no key, saved model answers or scans:
+
+```bash
+uv run python -m archivist.verify
+```
+
+| It checks | How (each also runs alone) |
+|---|---|
+| The test report | Regenerates it from the committed runs and compares it byte for byte with `results/test_report.json` and [Synthetic results](results/TEST_RESULTS.md) (`uv run python -m archivist.eval.test_report` rewrites them unchanged in a clean checkout) |
+| Each committed export | Rebuilds it from its run: the bundle byte for byte (`uv run python -m archivist.export.bundle --run test-archivist-A --check`), the CSVs byte for byte and the SQLite file row for row |
+| The charts | Redraws them from the report (`uv run python docs/make_charts.py --check`) |
+| Not checked | The rebuild of the Treasury development bundle, which needs scans that are not committed; the command names and skips it |
+| Then | Prints a plain-English summary of what passed, what was not checked and why, and what failed; it exits non-zero on any failure |
+| In CI | [GitHub Actions](.github/workflows/ci.yml) runs the tests and this command on every push to main and on pull requests |
+
+The rest:
+
 ```bash
 uv run pytest -q && uv run python -m archivist.replay
 ```
 
-Without the Treasury scans (`data/real/pdf` and `data/real/pages`, gitignored; `uv run python -m archivist.ingest.fraser` fetches them), the tests that read them are skipped, each with its reason, and run when the files are there. Replay still needs the uncommitted response cache, `cache/`, and stops without it, so a clean clone passes `pytest` and cannot finish the replay.
+Tests that read the gitignored Treasury scans (`uv run python -m archivist.ingest.fraser` fetches them) skip, with their reason, until the files are there. Replay needs the uncommitted `cache/` and stops without it, so a clean clone passes `pytest` but cannot finish the replay.
 
-| With no key and no model call, run | What it shows |
-|---|---|
-| `uv run python -m archivist.eval.test_report` | Rewrites `results/test_report.json` and [Synthetic results](results/TEST_RESULTS.md) unchanged in a clean checkout (24 seconds, 2026-10-31) |
-| `uv run python -m archivist.export.bundle --run test-archivist-A --check` | A committed export matches its run |
-| `uv run python docs/make_charts.py --check` | The charts match the report |
-
-Not reproducible here: the model calls (they need a key and spend) and the held-out real-page run, which ran once on the tagged code; its scans come from FRASER and are not committed.
+Not reproducible here: the model calls (they need a key and spend) and the held-out run, which ran once on the tagged code.
 
 For the demo, a local app reads a page with real model calls, each visible as it happens, on your machine only.
 
@@ -153,7 +174,7 @@ For the demo, a local app reads a page with real model calls, each visible as it
 uv run --group glimmer python -m archivist.live
 ```
 
-Open the address it prints and choose **Read a page**. **Live calls** needs `META_API_KEY`, local Modal authentication for Treasury sorting, and `BASETEN_API_KEY` for open-weight choices. Keep `GLIMMER_CAP_USD` at or below $10. **Replay** spends nothing and needs each read's cached answers. Only development pages are offered. [Details](docs/live-reading.md).
+Open the address it prints and choose **Read a page**. **Live calls** need your own keys, listed in the [details](docs/live-reading.md), and spend; keep `GLIMMER_CAP_USD` at or below $10. **Replay** spends nothing and needs each read's cached answers. Only development pages are offered.
 
 ## What's next
 
@@ -175,6 +196,8 @@ A learning loop, not built yet: people correct values in the review queue and th
 
 <details>
 <summary>Credits</summary>
+
+Archivist's own code is all rights reserved; see [LICENSE](LICENSE).
 
 **Fonts.** Rendering synthetic documents: Libre Baskerville, Courier Prime and Nanum Pen Script (SIL Open Font License 1.1); Special Elite and Homemade Apple (Apache License 2.0). Licence files are in `assets/fonts/`. The review app uses Geist (SIL Open Font License 1.1, `ui/fonts/GEIST-OFL.txt`). Sources and dates: [`DATA_SOURCES.md`](DATA_SOURCES.md).
 

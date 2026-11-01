@@ -1,0 +1,75 @@
+# The tests, and the one command that confirms the published numbers (archivist.verify), on every
+# push to main and on pull requests. Neither needs a key, a model call or the response cache, so
+# this workflow has no secrets; archivist.replay is not run here because it needs that cache.
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: ${{ github.event_name == 'pull_request' }}
+
+jobs:
+  tests:
+    name: Tests
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # a clean clone, history included, as anyone cloning the repository gets
+
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+          enable-cache: true
+
+      - name: Install the locked dependencies
+        run: uv sync --frozen
+
+      # tests/test_ui.py and tests/test_live_ui.py drive Chrome over the DevTools protocol
+      # (tests/browser.py) and skip where none is found. Install one, name it, and fail here if
+      # it is not found, so the browser tests cannot be skipped without anyone noticing.
+      - name: Install a browser for the UI tests
+        id: chrome
+        uses: browser-actions/setup-chrome@v1
+        with:
+          chrome-version: stable
+
+      - name: Check that the UI tests will find it
+        working-directory: tests
+        env:
+          ARCHIVIST_BROWSER: ${{ steps.chrome.outputs.chrome-path }}
+        run: |
+          uv run python -c "from browser import find_browser; path = find_browser(); print(path); assert path, 'no browser found'"
+
+      - name: Run the tests
+        env:
+          ARCHIVIST_BROWSER: ${{ steps.chrome.outputs.chrome-path }}
+        run: uv run pytest -q
+
+  verify:
+    name: Verify the published numbers
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: astral-sh/setup-uv@v6
+        with:
+          python-version: "3.12"
+          enable-cache: true
+
+      - name: Install the locked dependencies
+        run: uv sync --frozen
+
+      - name: Run archivist.verify
+        run: uv run python -m archivist.verify
