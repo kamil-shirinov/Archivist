@@ -1,0 +1,28 @@
+{
+  "first_commit": {
+    "sha": "dd55660",
+    "date": "2026-10-26T16:06:31Z"
+  },
+  "registration": {
+    "sha": "fc85fce",
+    "date": "2026-10-27T07:45:14Z"
+  },
+  "tags": {
+    "prereg-real-treasury": {
+      "sha": "c69d24a",
+      "date": "2026-10-29T08:02:11Z"
+    },
+    "run-real-treasury": {
+      "sha": "b8ff15d",
+      "date": "2026-10-29T08:41:10Z"
+    },
+    "prereg-real-openw": {
+      "sha": "8418a22",
+      "date": "2026-11-02T09:25:12Z"
+    },
+    "run-real-openw": {
+      "sha": "1adee1f",
+      "date": "2026-11-02T09:25:22Z"
+    }
+  }
+}

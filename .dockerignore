@@ -15,6 +15,7 @@
 !templates
 !docs
 !ui
+!assets/brand
 
 # What archivist.verify rebuilds and compares: the committed runs, the report and the exports.
 !exports
@@ -22,6 +23,19 @@
 !results/test_report.json
 !results/TEST_RESULTS.md
 !results/real_test/development
+
+# What the landing page reads (docs/landing.py): the aggregate scores of the real-scan test, the
+# diagnosis and the sweep's start time, the corrected key's scores once they exist, and the model ids in
+# three configs. Aggregate files only: no label, record, cell or page of the held-out run goes in.
+!results/real_test/held_out/score/score.json
+!results/real_test/held_out/score_corrected/score.json
+!results/real_test/held_out/diagnosis.md
+!results/real_test/held_out/sweep.json
+!results/real_openw/held_out/score/score.json
+!results/real_openw/held_out/score_corrected/score.json
+!config/archive_glimmer.toml
+!config/models.toml
+!config/models_open.toml
 
 # The only parts of data/ in the image: the committed bundles, the scans they name and the frozen
 # test split. Nothing else under data/ (the development and validation splits, the real scans and
