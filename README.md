@@ -114,7 +114,6 @@ A [script](docs/make_charts.py) draws the charts from the test report and fails 
 
 - [real-scan results, version 1, hosted: pending]
 - [real-scan results, open weights: pending]
-- [version 2: pending]
 
 ## Why it's built this way
 
