@@ -20,7 +20,9 @@ It differs from Muse Spark on the Meta Model API (meta_api.py) in three ways tha
 
 Images go in as base64 data URLs (the reference allows "the URL of the image, or a base64-encoded
 data URL"). The key is env BASETEN_API_KEY, read, like the Meta key, when the first call is made;
-the timeout and the retries (429 and 5xx, with backoff and Retry-After) are meta_api's.
+the timeout and the retries (429 and 5xx, with backoff and Retry-After) are meta_api's. As there,
+a role may wait longer than TIMEOUT_S (settings timeout_s, P46: a whole table read at once), and
+how long a call may take is not part of the cache key.
 """
 
 from __future__ import annotations
@@ -135,6 +137,7 @@ class BasetenLLM:
         price: Price,
         *,
         reasoning_effort: str = "low",
+        timeout_s: float = TIMEOUT_S,  # not part of the cache key
         client: Any = None,
         sleep: Callable[[float], None] = time.sleep,
     ) -> None:
@@ -147,6 +150,7 @@ class BasetenLLM:
             "reasoning_effort": reasoning_effort,
             "structured_output": STRUCTURED_OUTPUT,
         }
+        self.timeout_s = timeout_s
         self._client = client
         self._sleep = sleep
 
@@ -154,7 +158,7 @@ class BasetenLLM:
     def client(self) -> Any:
         if self._client is None:
             self._client = openai.OpenAI(
-                api_key=api_key(), base_url=BASE_URL, timeout=TIMEOUT_S, max_retries=0
+                api_key=api_key(), base_url=BASE_URL, timeout=self.timeout_s, max_retries=0
             )
         return self._client
 
@@ -163,7 +167,8 @@ class BasetenLLM:
             self.model_id, request, reasoning_effort=self.settings["reasoning_effort"]
         )
         completion = _with_retries(
-            lambda: self.client.chat.completions.create(**payload, timeout=TIMEOUT_S), self._sleep
+            lambda: self.client.chat.completions.create(**payload, timeout=self.timeout_s),
+            self._sleep,
         )
         if completion.usage is None:
             raise RuntimeError(f"{self.model_id}: response carries no usage; cost unknown")

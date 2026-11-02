@@ -296,6 +296,16 @@ def test_effort_and_backend_are_part_of_the_cache_key():
     assert key(low) != cache_key("meta", MUSE_SPARK_OPEN, REQUEST, low.settings)
 
 
+def test_a_role_may_wait_longer_and_that_is_not_part_of_the_cache_key():
+    patient, client = baseten(completion(), timeout_s=1200.0)
+    default, _ = baseten()
+
+    patient.complete(REQUEST)
+
+    assert client.calls[0]["timeout"] == 1200.0
+    assert patient.settings == default.settings  # the same request, so the same cache entry
+
+
 # --- spend caps, per backend -------------------------------------------------------------------
 
 

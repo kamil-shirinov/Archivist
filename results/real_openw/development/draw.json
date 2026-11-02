@@ -1,0 +1,247 @@
+{
+  "seed": 4004,
+  "per_page": 20,
+  "sample": [
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1939-12_p025:13:admin",
+      "stratum": "1939_1942",
+      "family": "receipts_and_expenditures_under_railroad",
+      "page": "1939-12_p025"
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1939-12_p025:10:admin",
+      "stratum": "1939_1942",
+      "family": "receipts_and_expenditures_under_railroad",
+      "page": "1939-12_p025"
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1939-12_p025:13:to_unemployment",
+      "stratum": "1939_1942",
+      "family": "receipts_and_expenditures_under_railroad",
+      "page": "1939-12_p025"
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1939-12_p025:14:admin",
+      "stratum": "1939_1942",
+      "family": "receipts_and_expenditures_under_railroad",
+      "page": "1939-12_p025"
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1939-12_p025:02:taxes",
+      "stratum": "1939_1942",
+      "family": "receipts_and_expenditures_under_railroad",
+      "page": "1939-12_p025"
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1939-12_p025:11:taxes",
+      "stratum": "1939_1942",
+      "family": "receipts_and_expenditures_under_railroad",
+      "page": "1939-12_p025"
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1939-12_p025:01:to_unemployment",
+      "stratum": "1939_1942",
+      "family": "receipts_and_expenditures_under_railroad",
+      "page": "1939-12_p025"
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1939-12_p025:12:to_retirement",
+      "stratum": "1939_1942",
+      "family": "receipts_and_expenditures_under_railroad",
+      "page": "1939-12_p025"
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1939-12_p025:01:admin",
+      "stratum": "1939_1942",
+      "family": "receipts_and_expenditures_under_railroad",
+      "page": "1939-12_p025"
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1939-12_p025:10:to_unemployment",
+      "stratum": "1939_1942",
+      "family": "receipts_and_expenditures_under_railroad",
+      "page": "1939-12_p025"
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1939-12_p025:06:to_retirement",
+      "stratum": "1939_1942",
+      "family": "receipts_and_expenditures_under_railroad",
+      "page": "1939-12_p025"
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1939-12_p025:07:taxes",
+      "stratum": "1939_1942",
+      "family": "receipts_and_expenditures_under_railroad",
+      "page": "1939-12_p025"
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1939-12_p025:16:total_exp",
+      "stratum": "1939_1942",
+      "family": "receipts_and_expenditures_under_railroad",
+      "page": "1939-12_p025"
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1939-12_p025:15:total_exp",
+      "stratum": "1939_1942",
+      "family": "receipts_and_expenditures_under_railroad",
+      "page": "1939-12_p025"
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1939-12_p025:09:to_retirement",
+      "stratum": "1939_1942",
+      "family": "receipts_and_expenditures_under_railroad",
+      "page": "1939-12_p025"
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1939-12_p025:06:total_exp",
+      "stratum": "1939_1942",
+      "family": "receipts_and_expenditures_under_railroad",
+      "page": "1939-12_p025"
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1939-12_p025:01:to_retirement",
+      "stratum": "1939_1942",
+      "family": "receipts_and_expenditures_under_railroad",
+      "page": "1939-12_p025"
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1939-12_p025:02:total_exp",
+      "stratum": "1939_1942",
+      "family": "receipts_and_expenditures_under_railroad",
+      "page": "1939-12_p025"
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1939-12_p025:06:admin",
+      "stratum": "1939_1942",
+      "family": "receipts_and_expenditures_under_railroad",
+      "page": "1939-12_p025"
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1939-12_p025:04:admin",
+      "stratum": "1939_1942",
+      "family": "receipts_and_expenditures_under_railroad",
+      "page": "1939-12_p025"
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1939-12_p060:total_purchase_03:other_europe",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1939-12_p060"
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1939-12_p060:sale_foreign_02:united_kingdom",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1939-12_p060"
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1939-12_p060:total_purchase_04:netherlands",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1939-12_p060"
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1939-12_p060:total_sale_01:canada",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1939-12_p060"
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1939-12_p060:purchase_domestic_03:canada",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1939-12_p060"
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1939-12_p060:sale_foreign_04:other_europe",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1939-12_p060"
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1939-12_p060:purchase_domestic_02:canada",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1939-12_p060"
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1939-12_p060:total_purchase_02:netherlands",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1939-12_p060"
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1939-12_p060:purchase_domestic_01:all_other",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1939-12_p060"
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1939-12_p060:sale_foreign_03:total_europe",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1939-12_p060"
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1939-12_p060:total_sale_04:netherlands",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1939-12_p060"
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1939-12_p060:sale_domestic_01:latin_america",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1939-12_p060"
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1939-12_p060:sale_domestic_02:switzerland",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1939-12_p060"
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1939-12_p060:sale_foreign_04:united_kingdom",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1939-12_p060"
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1939-12_p060:sale_domestic_01:germany",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1939-12_p060"
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1939-12_p060:sale_foreign_02:far_east",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1939-12_p060"
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1939-12_p060:sale_domestic_02:canada",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1939-12_p060"
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1939-12_p060:purchase_domestic_01:other_europe",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1939-12_p060"
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1939-12_p060:purchase_domestic_03:united_kingdom",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1939-12_p060"
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1939-12_p060:total_sale_02:netherlands",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1939-12_p060"
+    }
+  ],
+  "drawn_at": "2026-11-02T09:03:37+00:00"
+}

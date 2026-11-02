@@ -1,0 +1,140 @@
+{
+  "config": {
+    "extractor": {
+      "backend": "baseten",
+      "model_id": "meta-models/muse-spark-open-1026"
+    },
+    "rereader": {
+      "backend": "baseten",
+      "model_id": "meta-models/muse-spark-open-1026"
+    },
+    "segmenter": {
+      "backend": "meta",
+      "model_id": "sam-3.1"
+    }
+  },
+  "doc_types": {
+    "short_term_foreign_liabilities_as": "156a9632a74690d8c7235a707f3ac5061b769940fc64f93f90b31f020ed97b21",
+    "security_transactions_as_reported_by": "7659ec40ef400a8c2dfca34ee32c2e3a71a74ef09fc14026fb95d1ed9e0597ee",
+    "outstanding_forward_exchange_contracts": "3bc2e5769f6d9a2973f9147d09a55f01dd48ca50a5f9f5e0b4cc693994e199c4",
+    "receipts_and_expenditures_under_railroad": "8b6d3cf7ed6f28921fa518017a5fb64be950ef60f3e51c8c3604d596d3193d86",
+    "total_claims_by_country": "aba101beccc5c9e12ae5eb0bcd9429160e94833148773fa446e8b681489e185e"
+  },
+  "caps": {
+    "meta": 10.096281,
+    "baseten": 29.006264,
+    "allowance": 3.0,
+    "recorded_at": "2026-11-02T09:03:36+00:00"
+  },
+  "started_at": "2026-11-02T09:03:37+00:00",
+  "side": "development",
+  "pages": {
+    "1939-12_p025": "receipts_and_expenditures_under_railroad",
+    "1939-12_p060": "outstanding_forward_exchange_contracts"
+  },
+  "pages_read": 2,
+  "failed": [],
+  "page_tries": {},
+  "cells": 40,
+  "cells_found": {
+    "label": 40
+  },
+  "cells_at_the_same_position": 40,
+  "order_guard": {
+    "pages": 0,
+    "cells_reread": 0,
+    "used": 0
+  },
+  "box_sources_all_cells": {
+    "table:ink": 20,
+    "table:ocr": 265,
+    "v1:grid": 63,
+    "v1:model": 138,
+    "v1:ocr": 36
+  },
+  "box_sources_drawn_cells": {
+    "table:ink": 1,
+    "table:ocr": 20,
+    "v1:grid": 9,
+    "v1:model": 6,
+    "v1:ocr": 4
+  },
+  "counts": {
+    "pages": 2,
+    "fields": 40,
+    "by_status": {
+      "accepted": 29,
+      "review": 11
+    },
+    "by_confidence": {
+      "0.3": 11,
+      "0.99": 29
+    },
+    "by_route": {
+      "arithmetic": 40
+    },
+    "by_reread_status": {
+      "agrees": 29,
+      "disagrees": 10,
+      "illegible": 1
+    },
+    "occluded": 0,
+    "proposed_corrections": 0,
+    "proposed_by": {},
+    "reread_chain_flags": 3,
+    "by_second_look": {
+      "not_reread": 40
+    },
+    "by_policy": {
+      "v2": {
+        "by_status": {
+          "accepted": 29,
+          "review": 11
+        },
+        "proposed_corrections": 0
+      },
+      "v3": {
+        "by_status": {
+          "accepted": 29,
+          "review": 11
+        },
+        "proposed_corrections": 0
+      }
+    }
+  },
+  "rereads_failed": [],
+  "verification_pass": 1,
+  "calls": {
+    "segmenter_pages": 2,
+    "regions": {},
+    "rereads": 40,
+    "rereads_from_cache": 0,
+    "rereads_failed": 0,
+    "second_looks": 0,
+    "second_looks_from_cache": 0,
+    "second_looks_failed": 0
+  },
+  "citations": "S0+table-v2",
+  "policy": {
+    "version": "v2",
+    "second_looks": false,
+    "rereads": "the drawn cells only",
+    "occlusion_prompts": [
+      "stamp",
+      "stain"
+    ],
+    "occlusion_cover": 0.1,
+    "reread_padding": {
+      "vertical": 0.5,
+      "horizontal": 0.2
+    }
+  },
+  "cost_usd": {
+    "meta": 0.0,
+    "baseten": 0.207354,
+    "fireworks": 0.0,
+    "modal_glimmer_sorter": 0.0
+  },
+  "cost_full_usd": 0.11397575,
+  "finished_at": "2026-11-02T09:04:25+00:00"
+}
