@@ -1,0 +1,2491 @@
+{
+  "provenance": {
+    "tag": "run-real-treasury",
+    "commit": "b8ff15d9d8d5913a2e6dbdf4b8887fee329db471",
+    "archivist_from_tag_checkout": true,
+    "frozen_check": "passed",
+    "scorer_sha256": "82e56a8613e7fe1fb51020c0ea47d593adab07d736ba046aa2534f083ab39334",
+    "records_commit": "6923157a847eef569fd0d33b5ca3ee37054f2131"
+  },
+  "label_files_sha256": {
+    "draw.json": "b575cc271445abc1621bfd942362c7b3db6e61b9e26ceca83648f0b580492168",
+    "layouts_checked.jsonl": "e275a7aedbe8fde7a396b3c5ad3a1caa3db8a23ef7946a243b5767d81d0f9bdd",
+    "labels.jsonl": "5f98f48235f3f4396594b11fe5ccd4d98b66c98629761efa330f80f3134de118",
+    "pages_checked.jsonl": "d511c97a98be9380d60acf027656190fcb80d84ad182f7e3bfbb987ee84455b2"
+  },
+  "weights": {
+    "population": "confirmed",
+    "families": {
+      "short_term_foreign_liabilities_as": {
+        "classified": 54,
+        "confirmed": 44,
+        "deep_pages": 12
+      },
+      "security_transactions_as_reported_by": {
+        "classified": 95,
+        "confirmed": 42,
+        "deep_pages": 12
+      },
+      "outstanding_forward_exchange_contracts": {
+        "classified": 27,
+        "confirmed": 19,
+        "deep_pages": 12
+      },
+      "receipts_and_expenditures_under_railroad": {
+        "classified": 63,
+        "confirmed": 21,
+        "deep_pages": 12
+      },
+      "total_claims_by_country": {
+        "classified": 52,
+        "confirmed": 10,
+        "deep_pages": 10
+      }
+    },
+    "family_weights": {
+      "short_term_foreign_liabilities_as": 3.6666666666666665,
+      "security_transactions_as_reported_by": 3.5,
+      "outstanding_forward_exchange_contracts": 1.5833333333333333,
+      "receipts_and_expenditures_under_railroad": 1.75,
+      "total_claims_by_country": 1.0
+    },
+    "strata": {
+      "1939_1942": {
+        "families": [
+          "short_term_foreign_liabilities_as",
+          "security_transactions_as_reported_by",
+          "outstanding_forward_exchange_contracts",
+          "receipts_and_expenditures_under_railroad"
+        ],
+        "cells": 20130,
+        "sampled": 300
+      },
+      "total_claims": {
+        "families": [
+          "total_claims_by_country"
+        ],
+        "cells": 6328,
+        "sampled": 100
+      }
+    }
+  },
+  "both_ways_pages": [
+    "1940-04_p055",
+    "1940-04_p059",
+    "1940-06_p063",
+    "1940-06_p069",
+    "1940-07_p031",
+    "1940-08_p024",
+    "1940-10_p023",
+    "1940-10_p059",
+    "1940-10_p062",
+    "1940-11_p051",
+    "1940-11_p060",
+    "1940-12_p024",
+    "1940-12_p059",
+    "1941-01_p022",
+    "1941-01_p058",
+    "1941-02_p024",
+    "1941-02_p058",
+    "1941-03_p056",
+    "1941-03_p069",
+    "1941-04_p019",
+    "1941-04_p058",
+    "1941-04_p059",
+    "1941-04_p063",
+    "1941-04_p068",
+    "1941-05_p021",
+    "1941-05_p062",
+    "1941-06_p023",
+    "1941-06_p065",
+    "1941-07_p071",
+    "1941-07_p074",
+    "1941-08_p065",
+    "1941-08_p069",
+    "1941-08_p074",
+    "1941-09_p065",
+    "1941-09_p075",
+    "1941-10_p086",
+    "1941-10_p087",
+    "1941-10_p092",
+    "1942-01_p025",
+    "1942-03_p090"
+  ],
+  "labels": {
+    "left_out/as_run": {
+      "cells": 162,
+      "pages": 17,
+      "by_choice": {
+        "blank": 15,
+        "cant_read": 5,
+        "not_on_page": 1,
+        "value": 141
+      },
+      "by_outcome": {
+        "right": 135,
+        "wrong": 22,
+        "cant_read": 5,
+        "abstained": 0
+      },
+      "overall": {
+        "single_read_error": {
+          "value": 0.16677670223614366,
+          "ci": [
+            0.08169113148481931,
+            0.25822634015406637
+          ]
+        },
+        "archivist_error": {
+          "value": 0.18747468629536523,
+          "ci": [
+            0.016407802694962583,
+            0.31829304581012396
+          ]
+        },
+        "catch_rate": {
+          "value": 0.4494939601697679,
+          "ci": [
+            0.27929178828836926,
+            0.9437473446716461
+          ]
+        }
+      },
+      "r1": {
+        "met": false,
+        "archivist_ci": [
+          0.016407802694962583,
+          0.31829304581012396
+        ],
+        "single_read_ci": [
+          0.08169113148481931,
+          0.25822634015406637
+        ]
+      },
+      "by_stratum": {
+        "1939_1942": {
+          "single_read_error": {
+            "value": 0.19651212250106329,
+            "ci": [
+              0.0735944176881812,
+              0.3396259920634919
+            ]
+          },
+          "archivist_error": {
+            "value": 0.24685138539042803,
+            "ci": [
+              0.0,
+              0.4219691895512391
+            ]
+          },
+          "catch_rate": {
+            "value": 0.36363636363636365,
+            "ci": [
+              0.2085427135678392,
+              1.0
+            ]
+          },
+          "counted": {
+            "cells": 62,
+            "pages": 7,
+            "by_choice": {
+              "blank": 11,
+              "cant_read": 2,
+              "value": 49
+            },
+            "by_outcome": {
+              "right": 48,
+              "wrong": 12,
+              "cant_read": 2,
+              "abstained": 0
+            }
+          }
+        },
+        "total_claims": {
+          "single_read_error": {
+            "value": 0.10309278350515466,
+            "ci": [
+              0.061839890595413435,
+              0.13793804317353517
+            ]
+          },
+          "archivist_error": {
+            "value": 0.04545454545454543,
+            "ci": [
+              0.0,
+              0.11904761904761905
+            ]
+          },
+          "catch_rate": {
+            "value": 0.8,
+            "ci": [
+              0.5000000000000001,
+              1.0
+            ]
+          },
+          "counted": {
+            "cells": 100,
+            "pages": 10,
+            "by_choice": {
+              "blank": 4,
+              "cant_read": 3,
+              "not_on_page": 1,
+              "value": 92
+            },
+            "by_outcome": {
+              "right": 87,
+              "wrong": 10,
+              "cant_read": 3,
+              "abstained": 0
+            }
+          }
+        }
+      }
+    },
+    "left_out/failed_to_review": {
+      "cells": 162,
+      "pages": 17,
+      "by_choice": {
+        "blank": 15,
+        "cant_read": 5,
+        "not_on_page": 1,
+        "value": 141
+      },
+      "by_outcome": {
+        "right": 135,
+        "wrong": 22,
+        "cant_read": 5,
+        "abstained": 0
+      },
+      "overall": {
+        "single_read_error": {
+          "value": 0.16677670223614366,
+          "ci": [
+            0.08169113148481931,
+            0.25822634015406637
+          ]
+        },
+        "archivist_error": {
+          "value": 0.18747468629536523,
+          "ci": [
+            0.016407802694962583,
+            0.31829304581012396
+          ]
+        },
+        "catch_rate": {
+          "value": 0.4494939601697679,
+          "ci": [
+            0.27929178828836926,
+            0.9437473446716461
+          ]
+        }
+      },
+      "r1": {
+        "met": false,
+        "archivist_ci": [
+          0.016407802694962583,
+          0.31829304581012396
+        ],
+        "single_read_ci": [
+          0.08169113148481931,
+          0.25822634015406637
+        ]
+      },
+      "by_stratum": {
+        "1939_1942": {
+          "single_read_error": {
+            "value": 0.19651212250106329,
+            "ci": [
+              0.0735944176881812,
+              0.3396259920634919
+            ]
+          },
+          "archivist_error": {
+            "value": 0.24685138539042803,
+            "ci": [
+              0.0,
+              0.4219691895512391
+            ]
+          },
+          "catch_rate": {
+            "value": 0.36363636363636365,
+            "ci": [
+              0.2085427135678392,
+              1.0
+            ]
+          },
+          "counted": {
+            "cells": 62,
+            "pages": 7,
+            "by_choice": {
+              "blank": 11,
+              "cant_read": 2,
+              "value": 49
+            },
+            "by_outcome": {
+              "right": 48,
+              "wrong": 12,
+              "cant_read": 2,
+              "abstained": 0
+            }
+          }
+        },
+        "total_claims": {
+          "single_read_error": {
+            "value": 0.10309278350515466,
+            "ci": [
+              0.061839890595413435,
+              0.13793804317353517
+            ]
+          },
+          "archivist_error": {
+            "value": 0.04545454545454543,
+            "ci": [
+              0.0,
+              0.11904761904761905
+            ]
+          },
+          "catch_rate": {
+            "value": 0.8,
+            "ci": [
+              0.5000000000000001,
+              1.0
+            ]
+          },
+          "counted": {
+            "cells": 100,
+            "pages": 10,
+            "by_choice": {
+              "blank": 4,
+              "cant_read": 3,
+              "not_on_page": 1,
+              "value": 92
+            },
+            "by_outcome": {
+              "right": 87,
+              "wrong": 10,
+              "cant_read": 3,
+              "abstained": 0
+            }
+          }
+        }
+      }
+    },
+    "kept/as_run": {
+      "cells": 400,
+      "pages": 56,
+      "by_choice": {
+        "blank": 50,
+        "cant_read": 19,
+        "column_not_on_page": 69,
+        "not_on_page": 1,
+        "value": 261
+      },
+      "by_outcome": {
+        "right": 246,
+        "wrong": 126,
+        "cant_read": 19,
+        "abstained": 9
+      },
+      "overall": {
+        "single_read_error": {
+          "value": 0.41149969746501597,
+          "ci": [
+            0.3055818004155236,
+            0.5242353952488565
+          ]
+        },
+        "archivist_error": {
+          "value": 0.36871734028085706,
+          "ci": [
+            0.2468520083608626,
+            0.5038489128536122
+          ]
+        },
+        "catch_rate": {
+          "value": 0.7419196628316014,
+          "ci": [
+            0.6025215190336424,
+            0.848656055419752
+          ]
+        }
+      },
+      "r1": {
+        "met": false,
+        "archivist_ci": [
+          0.2468520083608626,
+          0.5038489128536122
+        ],
+        "single_read_ci": [
+          0.3055818004155236,
+          0.5242353952488565
+        ]
+      },
+      "by_stratum": {
+        "1939_1942": {
+          "single_read_error": {
+            "value": 0.44442283380336495,
+            "ci": [
+              0.33082679745999133,
+              0.5715315215865631
+            ]
+          },
+          "archivist_error": {
+            "value": 0.42661870503597094,
+            "ci": [
+              0.289960444335137,
+              0.6101094770116755
+            ]
+          },
+          "catch_rate": {
+            "value": 0.7404814004376372,
+            "ci": [
+              0.5983240517518603,
+              0.8518552460673122
+            ]
+          },
+          "counted": {
+            "cells": 300,
+            "pages": 46,
+            "by_choice": {
+              "blank": 46,
+              "cant_read": 16,
+              "column_not_on_page": 69,
+              "value": 169
+            },
+            "by_outcome": {
+              "right": 159,
+              "wrong": 116,
+              "cant_read": 16,
+              "abstained": 9
+            }
+          }
+        },
+        "total_claims": {
+          "single_read_error": {
+            "value": 0.10309278350515466,
+            "ci": [
+              0.061839890595413435,
+              0.13793804317353517
+            ]
+          },
+          "archivist_error": {
+            "value": 0.04545454545454543,
+            "ci": [
+              0.0,
+              0.11904761904761905
+            ]
+          },
+          "catch_rate": {
+            "value": 0.8,
+            "ci": [
+              0.5000000000000001,
+              1.0
+            ]
+          },
+          "counted": {
+            "cells": 100,
+            "pages": 10,
+            "by_choice": {
+              "blank": 4,
+              "cant_read": 3,
+              "not_on_page": 1,
+              "value": 92
+            },
+            "by_outcome": {
+              "right": 87,
+              "wrong": 10,
+              "cant_read": 3,
+              "abstained": 0
+            }
+          }
+        }
+      }
+    },
+    "kept/failed_to_review": {
+      "cells": 400,
+      "pages": 56,
+      "by_choice": {
+        "blank": 50,
+        "cant_read": 19,
+        "column_not_on_page": 69,
+        "not_on_page": 1,
+        "value": 261
+      },
+      "by_outcome": {
+        "right": 246,
+        "wrong": 126,
+        "cant_read": 19,
+        "abstained": 9
+      },
+      "overall": {
+        "single_read_error": {
+          "value": 0.41149969746501597,
+          "ci": [
+            0.3055818004155236,
+            0.5242353952488565
+          ]
+        },
+        "archivist_error": {
+          "value": 0.36323878190104364,
+          "ci": [
+            0.2450476256446793,
+            0.501330063720211
+          ]
+        },
+        "catch_rate": {
+          "value": 0.755372093866929,
+          "ci": [
+            0.62262884345648,
+            0.8581855165986476
+          ]
+        }
+      },
+      "r1": {
+        "met": false,
+        "archivist_ci": [
+          0.2450476256446793,
+          0.501330063720211
+        ],
+        "single_read_ci": [
+          0.3055818004155236,
+          0.5242353952488565
+        ]
+      },
+      "by_stratum": {
+        "1939_1942": {
+          "single_read_error": {
+            "value": 0.44442283380336495,
+            "ci": [
+              0.33082679745999133,
+              0.5715315215865631
+            ]
+          },
+          "archivist_error": {
+            "value": 0.4228162650602408,
+            "ci": [
+              0.2825500243751962,
+              0.6147566886488574
+            ]
+          },
+          "catch_rate": {
+            "value": 0.7542669584245081,
+            "ci": [
+              0.6174088337227749,
+              0.8615669014500383
+            ]
+          },
+          "counted": {
+            "cells": 300,
+            "pages": 46,
+            "by_choice": {
+              "blank": 46,
+              "cant_read": 16,
+              "column_not_on_page": 69,
+              "value": 169
+            },
+            "by_outcome": {
+              "right": 159,
+              "wrong": 116,
+              "cant_read": 16,
+              "abstained": 9
+            }
+          }
+        },
+        "total_claims": {
+          "single_read_error": {
+            "value": 0.10309278350515466,
+            "ci": [
+              0.061839890595413435,
+              0.13793804317353517
+            ]
+          },
+          "archivist_error": {
+            "value": 0.04545454545454543,
+            "ci": [
+              0.0,
+              0.11904761904761905
+            ]
+          },
+          "catch_rate": {
+            "value": 0.8,
+            "ci": [
+              0.5000000000000001,
+              1.0
+            ]
+          },
+          "counted": {
+            "cells": 100,
+            "pages": 10,
+            "by_choice": {
+              "blank": 4,
+              "cant_read": 3,
+              "not_on_page": 1,
+              "value": 92
+            },
+            "by_outcome": {
+              "right": 87,
+              "wrong": 10,
+              "cant_read": 3,
+              "abstained": 0
+            }
+          }
+        }
+      }
+    }
+  },
+  "headline_with_classified_weights": {
+    "left_out/as_run": {
+      "single_read_error": {
+        "value": 0.157265900073281,
+        "ci": [
+          0.09145591082660284,
+          0.22374068347250903
+        ]
+      },
+      "archivist_error": {
+        "value": 0.15310059967431633,
+        "ci": [
+          0.021871587605463965,
+          0.26229091600501153
+        ]
+      },
+      "r1_met": false
+    },
+    "left_out/failed_to_review": {
+      "single_read_error": {
+        "value": 0.157265900073281,
+        "ci": [
+          0.09145591082660284,
+          0.22374068347250903
+        ]
+      },
+      "archivist_error": {
+        "value": 0.15310059967431633,
+        "ci": [
+          0.021871587605463965,
+          0.26229091600501153
+        ]
+      },
+      "r1_met": false
+    },
+    "kept/as_run": {
+      "single_read_error": {
+        "value": 0.353485458780056,
+        "ci": [
+          0.2761240766035918,
+          0.43466381921599995
+        ]
+      },
+      "archivist_error": {
+        "value": 0.2913466355857325,
+        "ci": [
+          0.19434254177721738,
+          0.3931948737972018
+        ]
+      },
+      "r1_met": false
+    },
+    "kept/failed_to_review": {
+      "single_read_error": {
+        "value": 0.353485458780056,
+        "ci": [
+          0.2761240766035918,
+          0.43466381921599995
+        ]
+      },
+      "archivist_error": {
+        "value": 0.2897467829993375,
+        "ci": [
+          0.19199585100691058,
+          0.39533795290076473
+        ]
+      },
+      "r1_met": false
+    }
+  },
+  "every_cell": {
+    "left_out/as_run": {
+      "cells": 12494,
+      "overall": {
+        "review_rate": {
+          "value": 0.5291444527060012,
+          "ci": [
+            0.36145091791115647,
+            0.7102935331609924
+          ]
+        },
+        "boxed_ocr": {
+          "value": 0.18078340795114567,
+          "ci": [
+            0.07156148629784374,
+            0.2969859571426409
+          ]
+        },
+        "boxed_grid": {
+          "value": 0.2461794624353291,
+          "ci": [
+            0.12295105574679856,
+            0.3645389791365406
+          ]
+        },
+        "boxed_model": {
+          "value": 0.5730371296134997,
+          "ci": [
+            0.369470794536547,
+            0.7968166155124775
+          ]
+        }
+      },
+      "by_family": {
+        "short_term_foreign_liabilities_as": {
+          "review_rate": {
+            "value": 0.8671428571428467,
+            "ci": [
+              0.7442857142857211,
+              0.9900000000000004
+            ]
+          },
+          "boxed_ocr": {
+            "value": 0.0,
+            "ci": [
+              0.0,
+              0.0
+            ]
+          },
+          "boxed_grid": {
+            "value": 0.0,
+            "ci": [
+              0.0,
+              0.0
+            ]
+          },
+          "boxed_model": {
+            "value": 1.0,
+            "ci": [
+              1.0,
+              1.0
+            ]
+          },
+          "cells": 1400
+        },
+        "security_transactions_as_reported_by": {
+          "review_rate": {
+            "value": 0.325,
+            "ci": [
+              0.305952380952381,
+              0.34404761904761905
+            ]
+          },
+          "boxed_ocr": {
+            "value": 0.36428571428571427,
+            "ci": [
+              0.24404761904761904,
+              0.4845238095238095
+            ]
+          },
+          "boxed_grid": {
+            "value": 0.37023809523809526,
+            "ci": [
+              0.3619047619047619,
+              0.37857142857142856
+            ]
+          },
+          "boxed_model": {
+            "value": 0.2654761904761905,
+            "ci": [
+              0.13690476190476192,
+              0.39404761904761904
+            ]
+          },
+          "cells": 1680
+        },
+        "outstanding_forward_exchange_contracts": {
+          "review_rate": {
+            "value": 0.2702380952380958,
+            "ci": [
+              0.2428571428571425,
+              0.29761904761904745
+            ]
+          },
+          "boxed_ocr": {
+            "value": 0.5809523809523859,
+            "ci": [
+              0.5761904761904738,
+              0.5857142857142832
+            ]
+          },
+          "boxed_grid": {
+            "value": 0.1761904761904772,
+            "ci": [
+              0.14285714285714252,
+              0.20952380952380903
+            ]
+          },
+          "boxed_model": {
+            "value": 0.2428571428571436,
+            "ci": [
+              0.2142857142857138,
+              0.2714285714285712
+            ]
+          },
+          "cells": 840
+        },
+        "receipts_and_expenditures_under_railroad": {
+          "review_rate": {
+            "value": 0.5588235294117647,
+            "ci": [
+              0.5196078431372549,
+              0.5980392156862745
+            ]
+          },
+          "boxed_ocr": {
+            "value": 0.28431372549019607,
+            "ci": [
+              0.24509803921568626,
+              0.3235294117647059
+            ]
+          },
+          "boxed_grid": {
+            "value": 0.4362745098039216,
+            "ci": [
+              0.4215686274509804,
+              0.45098039215686275
+            ]
+          },
+          "boxed_model": {
+            "value": 0.27941176470588236,
+            "ci": [
+              0.22549019607843138,
+              0.3333333333333333
+            ]
+          },
+          "cells": 204
+        },
+        "total_claims_by_country": {
+          "review_rate": {
+            "value": 0.5051373954599762,
+            "ci": [
+              0.29115292712066904,
+              0.7248506571087217
+            ]
+          },
+          "boxed_ocr": {
+            "value": 0.09474313022700119,
+            "ci": [
+              0.008960573476702509,
+              0.1985722819593787
+            ]
+          },
+          "boxed_grid": {
+            "value": 0.3130227001194743,
+            "ci": [
+              0.14990442054958186,
+              0.4831571087216249
+            ]
+          },
+          "boxed_model": {
+            "value": 0.5922341696535245,
+            "ci": [
+              0.4040621266427718,
+              0.7811230585424134
+            ]
+          },
+          "cells": 8370
+        }
+      }
+    },
+    "left_out/failed_to_review": {
+      "cells": 12494,
+      "overall": {
+        "review_rate": {
+          "value": 0.529808894021595,
+          "ci": [
+            0.36175215356425267,
+            0.7103765919605664
+          ]
+        },
+        "boxed_ocr": {
+          "value": 0.18078340795114567,
+          "ci": [
+            0.07156148629784374,
+            0.2969859571426409
+          ]
+        },
+        "boxed_grid": {
+          "value": 0.2461794624353291,
+          "ci": [
+            0.12295105574679856,
+            0.3645389791365406
+          ]
+        },
+        "boxed_model": {
+          "value": 0.5730371296134997,
+          "ci": [
+            0.369470794536547,
+            0.7968166155124775
+          ]
+        }
+      },
+      "by_family": {
+        "short_term_foreign_liabilities_as": {
+          "review_rate": {
+            "value": 0.8671428571428467,
+            "ci": [
+              0.7442857142857211,
+              0.9900000000000004
+            ]
+          },
+          "boxed_ocr": {
+            "value": 0.0,
+            "ci": [
+              0.0,
+              0.0
+            ]
+          },
+          "boxed_grid": {
+            "value": 0.0,
+            "ci": [
+              0.0,
+              0.0
+            ]
+          },
+          "boxed_model": {
+            "value": 1.0,
+            "ci": [
+              1.0,
+              1.0
+            ]
+          },
+          "cells": 1400
+        },
+        "security_transactions_as_reported_by": {
+          "review_rate": {
+            "value": 0.325,
+            "ci": [
+              0.305952380952381,
+              0.34404761904761905
+            ]
+          },
+          "boxed_ocr": {
+            "value": 0.36428571428571427,
+            "ci": [
+              0.24404761904761904,
+              0.4845238095238095
+            ]
+          },
+          "boxed_grid": {
+            "value": 0.37023809523809526,
+            "ci": [
+              0.3619047619047619,
+              0.37857142857142856
+            ]
+          },
+          "boxed_model": {
+            "value": 0.2654761904761905,
+            "ci": [
+              0.13690476190476192,
+              0.39404761904761904
+            ]
+          },
+          "cells": 1680
+        },
+        "outstanding_forward_exchange_contracts": {
+          "review_rate": {
+            "value": 0.2702380952380958,
+            "ci": [
+              0.2428571428571425,
+              0.29761904761904745
+            ]
+          },
+          "boxed_ocr": {
+            "value": 0.5809523809523859,
+            "ci": [
+              0.5761904761904738,
+              0.5857142857142832
+            ]
+          },
+          "boxed_grid": {
+            "value": 0.1761904761904772,
+            "ci": [
+              0.14285714285714252,
+              0.20952380952380903
+            ]
+          },
+          "boxed_model": {
+            "value": 0.2428571428571436,
+            "ci": [
+              0.2142857142857138,
+              0.2714285714285712
+            ]
+          },
+          "cells": 840
+        },
+        "receipts_and_expenditures_under_railroad": {
+          "review_rate": {
+            "value": 0.5588235294117647,
+            "ci": [
+              0.5196078431372549,
+              0.5980392156862745
+            ]
+          },
+          "boxed_ocr": {
+            "value": 0.28431372549019607,
+            "ci": [
+              0.24509803921568626,
+              0.3235294117647059
+            ]
+          },
+          "boxed_grid": {
+            "value": 0.4362745098039216,
+            "ci": [
+              0.4215686274509804,
+              0.45098039215686275
+            ]
+          },
+          "boxed_model": {
+            "value": 0.27941176470588236,
+            "ci": [
+              0.22549019607843138,
+              0.3333333333333333
+            ]
+          },
+          "cells": 204
+        },
+        "total_claims_by_country": {
+          "review_rate": {
+            "value": 0.5068100358422939,
+            "ci": [
+              0.29258661887694143,
+              0.7257019115890083
+            ]
+          },
+          "boxed_ocr": {
+            "value": 0.09474313022700119,
+            "ci": [
+              0.008960573476702509,
+              0.1985722819593787
+            ]
+          },
+          "boxed_grid": {
+            "value": 0.3130227001194743,
+            "ci": [
+              0.14990442054958186,
+              0.4831571087216249
+            ]
+          },
+          "boxed_model": {
+            "value": 0.5922341696535245,
+            "ci": [
+              0.4040621266427718,
+              0.7811230585424134
+            ]
+          },
+          "cells": 8370
+        }
+      }
+    },
+    "kept/as_run": {
+      "cells": 33114,
+      "overall": {
+        "review_rate": {
+          "value": 0.6626789402324368,
+          "ci": [
+            0.5788389814043272,
+            0.7449944978352622
+          ]
+        },
+        "boxed_ocr": {
+          "value": 0.16645185955952932,
+          "ci": [
+            0.12078689368518074,
+            0.21795437009896515
+          ]
+        },
+        "boxed_grid": {
+          "value": 0.1112966860584399,
+          "ci": [
+            0.06483674756849703,
+            0.16216437038939904
+          ]
+        },
+        "boxed_model": {
+          "value": 0.7222514543821306,
+          "ci": [
+            0.6415170068852226,
+            0.7942699085152732
+          ]
+        }
+      },
+      "by_family": {
+        "short_term_foreign_liabilities_as": {
+          "review_rate": {
+            "value": 0.8092857142856741,
+            "ci": [
+              0.7195119047619096,
+              0.8984523809523837
+            ]
+          },
+          "boxed_ocr": {
+            "value": 0.16154761904759987,
+            "ci": [
+              0.07201785714285708,
+              0.25654761904761864
+            ]
+          },
+          "boxed_grid": {
+            "value": 0.0035714285714281454,
+            "ci": [
+              0.0,
+              0.010714285714285739
+            ]
+          },
+          "boxed_model": {
+            "value": 0.8348809523809175,
+            "ci": [
+              0.7403541666666699,
+              0.9237053571428586
+            ]
+          },
+          "cells": 8400
+        },
+        "security_transactions_as_reported_by": {
+          "review_rate": {
+            "value": 0.5638888888888889,
+            "ci": [
+              0.41813492063492064,
+              0.7141989087301587
+            ]
+          },
+          "boxed_ocr": {
+            "value": 0.1527777777777778,
+            "ci": [
+              0.08163938492063492,
+              0.23910218253968246
+            ]
+          },
+          "boxed_grid": {
+            "value": 0.15773809523809523,
+            "ci": [
+              0.06705109126984127,
+              0.25317956349206344
+            ]
+          },
+          "boxed_model": {
+            "value": 0.689484126984127,
+            "ci": [
+              0.5369022817460317,
+              0.8289930555555555
+            ]
+          },
+          "cells": 10080
+        },
+        "outstanding_forward_exchange_contracts": {
+          "review_rate": {
+            "value": 0.7025793650794001,
+            "ci": [
+              0.5734126984126966,
+              0.8133184523809489
+            ]
+          },
+          "boxed_ocr": {
+            "value": 0.3047619047619269,
+            "ci": [
+              0.20414682539682516,
+              0.40238591269841184
+            ]
+          },
+          "boxed_grid": {
+            "value": 0.09662698412699171,
+            "ci": [
+              0.040873015873015804,
+              0.1525793650793648
+            ]
+          },
+          "boxed_model": {
+            "value": 0.5986111111111585,
+            "ci": [
+              0.48035218253968076,
+              0.7127132936507904
+            ]
+          },
+          "cells": 5040
+        },
+        "receipts_and_expenditures_under_railroad": {
+          "review_rate": {
+            "value": 0.6486928104575164,
+            "ci": [
+              0.5604575163398693,
+              0.7361111111111112
+            ]
+          },
+          "boxed_ocr": {
+            "value": 0.22712418300653595,
+            "ci": [
+              0.1642156862745098,
+              0.2777777777777778
+            ]
+          },
+          "boxed_grid": {
+            "value": 0.16176470588235295,
+            "ci": [
+              0.041666666666666664,
+              0.3014705882352941
+            ]
+          },
+          "boxed_model": {
+            "value": 0.6111111111111112,
+            "ci": [
+              0.4444240196078431,
+              0.7598039215686274
+            ]
+          },
+          "cells": 1224
+        },
+        "total_claims_by_country": {
+          "review_rate": {
+            "value": 0.5051373954599762,
+            "ci": [
+              0.29115292712066904,
+              0.7248506571087217
+            ]
+          },
+          "boxed_ocr": {
+            "value": 0.09474313022700119,
+            "ci": [
+              0.008960573476702509,
+              0.1985722819593787
+            ]
+          },
+          "boxed_grid": {
+            "value": 0.3130227001194743,
+            "ci": [
+              0.14990442054958186,
+              0.4831571087216249
+            ]
+          },
+          "boxed_model": {
+            "value": 0.5922341696535245,
+            "ci": [
+              0.4040621266427718,
+              0.7811230585424134
+            ]
+          },
+          "cells": 8370
+        }
+      }
+    },
+    "kept/failed_to_review": {
+      "cells": 33114,
+      "overall": {
+        "review_rate": {
+          "value": 0.6886528638320605,
+          "ci": [
+            0.6023679278798075,
+            0.7682339417488763
+          ]
+        },
+        "boxed_ocr": {
+          "value": 0.16645185955952932,
+          "ci": [
+            0.12078689368518074,
+            0.21795437009896515
+          ]
+        },
+        "boxed_grid": {
+          "value": 0.1112966860584399,
+          "ci": [
+            0.06483674756849703,
+            0.16216437038939904
+          ]
+        },
+        "boxed_model": {
+          "value": 0.7222514543821306,
+          "ci": [
+            0.6415170068852226,
+            0.7942699085152732
+          ]
+        }
+      },
+      "by_family": {
+        "short_term_foreign_liabilities_as": {
+          "review_rate": {
+            "value": 0.8227380952380579,
+            "ci": [
+              0.7304761904761949,
+              0.9156071428571451
+            ]
+          },
+          "boxed_ocr": {
+            "value": 0.16154761904759987,
+            "ci": [
+              0.07201785714285708,
+              0.25654761904761864
+            ]
+          },
+          "boxed_grid": {
+            "value": 0.0035714285714281454,
+            "ci": [
+              0.0,
+              0.010714285714285739
+            ]
+          },
+          "boxed_model": {
+            "value": 0.8348809523809175,
+            "ci": [
+              0.7403541666666699,
+              0.9237053571428586
+            ]
+          },
+          "cells": 8400
+        },
+        "security_transactions_as_reported_by": {
+          "review_rate": {
+            "value": 0.5969246031746032,
+            "ci": [
+              0.4495957341269841,
+              0.747234623015873
+            ]
+          },
+          "boxed_ocr": {
+            "value": 0.1527777777777778,
+            "ci": [
+              0.08163938492063492,
+              0.23910218253968246
+            ]
+          },
+          "boxed_grid": {
+            "value": 0.15773809523809523,
+            "ci": [
+              0.06705109126984127,
+              0.25317956349206344
+            ]
+          },
+          "boxed_model": {
+            "value": 0.689484126984127,
+            "ci": [
+              0.5369022817460317,
+              0.8289930555555555
+            ]
+          },
+          "cells": 10080
+        },
+        "outstanding_forward_exchange_contracts": {
+          "review_rate": {
+            "value": 0.7682539682539956,
+            "ci": [
+              0.6122817460317449,
+              0.9023859126984113
+            ]
+          },
+          "boxed_ocr": {
+            "value": 0.3047619047619269,
+            "ci": [
+              0.20414682539682516,
+              0.40238591269841184
+            ]
+          },
+          "boxed_grid": {
+            "value": 0.09662698412699171,
+            "ci": [
+              0.040873015873015804,
+              0.1525793650793648
+            ]
+          },
+          "boxed_model": {
+            "value": 0.5986111111111585,
+            "ci": [
+              0.48035218253968076,
+              0.7127132936507904
+            ]
+          },
+          "cells": 5040
+        },
+        "receipts_and_expenditures_under_railroad": {
+          "review_rate": {
+            "value": 0.6854575163398693,
+            "ci": [
+              0.5735089869281046,
+              0.8047385620915033
+            ]
+          },
+          "boxed_ocr": {
+            "value": 0.22712418300653595,
+            "ci": [
+              0.1642156862745098,
+              0.2777777777777778
+            ]
+          },
+          "boxed_grid": {
+            "value": 0.16176470588235295,
+            "ci": [
+              0.041666666666666664,
+              0.3014705882352941
+            ]
+          },
+          "boxed_model": {
+            "value": 0.6111111111111112,
+            "ci": [
+              0.4444240196078431,
+              0.7598039215686274
+            ]
+          },
+          "cells": 1224
+        },
+        "total_claims_by_country": {
+          "review_rate": {
+            "value": 0.5068100358422939,
+            "ci": [
+              0.29258661887694143,
+              0.7257019115890083
+            ]
+          },
+          "boxed_ocr": {
+            "value": 0.09474313022700119,
+            "ci": [
+              0.008960573476702509,
+              0.1985722819593787
+            ]
+          },
+          "boxed_grid": {
+            "value": 0.3130227001194743,
+            "ci": [
+              0.14990442054958186,
+              0.4831571087216249
+            ]
+          },
+          "boxed_model": {
+            "value": 0.5922341696535245,
+            "ci": [
+              0.4040621266427718,
+              0.7811230585424134
+            ]
+          },
+          "cells": 8370
+        }
+      }
+    }
+  },
+  "unanswered_rereads": {
+    "keys": {
+      "unanswered_rereads.jsonl": 3322,
+      "unanswered_rereads_2.jsonl": 32
+    },
+    "cells": 3416,
+    "accepted_as_run": 836,
+    "sampled_cells": 34,
+    "sampled_accepted_as_run": 5
+  },
+  "coverage_by_page": {
+    "1940-01_p026": {
+      "family": "receipts_and_expenditures_under_railroad",
+      "rows": 17,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 85,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1940-01_p051": {
+      "family": "short_term_foreign_liabilities_as",
+      "rows": 50,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 650,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1940-01_p053": {
+      "family": "security_transactions_as_reported_by",
+      "rows": 60,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 780,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1940-02_p028": {
+      "family": "receipts_and_expenditures_under_railroad",
+      "rows": 17,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 85,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1940-02_p055": {
+      "family": "short_term_foreign_liabilities_as",
+      "rows": 50,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 650,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1940-02_p057": {
+      "family": "security_transactions_as_reported_by",
+      "rows": 60,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 780,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1940-02_p062": {
+      "family": "outstanding_forward_exchange_contracts",
+      "rows": 30,
+      "rows_not_returned": 0,
+      "rows_left_empty": 6,
+      "figure_cells": 390,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 78
+    },
+    "1940-03_p060": {
+      "family": "outstanding_forward_exchange_contracts",
+      "rows": 30,
+      "rows_not_returned": 0,
+      "rows_left_empty": 6,
+      "figure_cells": 390,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 78
+    },
+    "1940-04_p055": {
+      "family": "short_term_foreign_liabilities_as",
+      "rows": 50,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 650,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1940-04_p059": {
+      "family": "security_transactions_as_reported_by",
+      "rows": 60,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 780,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1940-06_p063": {
+      "family": "security_transactions_as_reported_by",
+      "rows": 60,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 780,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1940-06_p069": {
+      "family": "outstanding_forward_exchange_contracts",
+      "rows": 30,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 390,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1940-07_p031": {
+      "family": "receipts_and_expenditures_under_railroad",
+      "rows": 17,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 85,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1940-08_p024": {
+      "family": "receipts_and_expenditures_under_railroad",
+      "rows": 17,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 85,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1940-10_p023": {
+      "family": "receipts_and_expenditures_under_railroad",
+      "rows": 17,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 85,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1940-10_p059": {
+      "family": "short_term_foreign_liabilities_as",
+      "rows": 50,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 650,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1940-10_p062": {
+      "family": "security_transactions_as_reported_by",
+      "rows": 60,
+      "rows_not_returned": 0,
+      "rows_left_empty": 39,
+      "figure_cells": 780,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 507
+    },
+    "1940-11_p051": {
+      "family": "short_term_foreign_liabilities_as",
+      "rows": 50,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 650,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1940-11_p060": {
+      "family": "outstanding_forward_exchange_contracts",
+      "rows": 30,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 390,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1940-12_p024": {
+      "family": "receipts_and_expenditures_under_railroad",
+      "rows": 17,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 85,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1940-12_p059": {
+      "family": "outstanding_forward_exchange_contracts",
+      "rows": 30,
+      "rows_not_returned": 0,
+      "rows_left_empty": 6,
+      "figure_cells": 390,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 78
+    },
+    "1941-01_p022": {
+      "family": "receipts_and_expenditures_under_railroad",
+      "rows": 17,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 85,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1941-01_p058": {
+      "family": "outstanding_forward_exchange_contracts",
+      "rows": 30,
+      "rows_not_returned": 0,
+      "rows_left_empty": 6,
+      "figure_cells": 390,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 78
+    },
+    "1941-02_p024": {
+      "family": "receipts_and_expenditures_under_railroad",
+      "rows": 17,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 85,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1941-02_p058": {
+      "family": "outstanding_forward_exchange_contracts",
+      "rows": 30,
+      "rows_not_returned": 0,
+      "rows_left_empty": 6,
+      "figure_cells": 390,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 78
+    },
+    "1941-03_p056": {
+      "family": "short_term_foreign_liabilities_as",
+      "rows": 50,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 650,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1941-03_p069": {
+      "family": "security_transactions_as_reported_by",
+      "rows": 60,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 780,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1941-04_p019": {
+      "family": "receipts_and_expenditures_under_railroad",
+      "rows": 17,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 85,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1941-04_p058": {
+      "family": "short_term_foreign_liabilities_as",
+      "rows": 50,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 650,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1941-04_p059": {
+      "family": "short_term_foreign_liabilities_as",
+      "rows": 50,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 650,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1941-04_p063": {
+      "family": "security_transactions_as_reported_by",
+      "rows": 60,
+      "rows_not_returned": 0,
+      "rows_left_empty": 39,
+      "figure_cells": 780,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 507
+    },
+    "1941-04_p068": {
+      "family": "outstanding_forward_exchange_contracts",
+      "rows": 30,
+      "rows_not_returned": 0,
+      "rows_left_empty": 6,
+      "figure_cells": 390,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 78
+    },
+    "1941-05_p021": {
+      "family": "receipts_and_expenditures_under_railroad",
+      "rows": 17,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 85,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1941-05_p062": {
+      "family": "security_transactions_as_reported_by",
+      "rows": 60,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 780,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1941-06_p023": {
+      "family": "receipts_and_expenditures_under_railroad",
+      "rows": 17,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 85,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1941-06_p065": {
+      "family": "short_term_foreign_liabilities_as",
+      "rows": 50,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 650,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1941-07_p071": {
+      "family": "short_term_foreign_liabilities_as",
+      "rows": 50,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 650,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1941-07_p074": {
+      "family": "security_transactions_as_reported_by",
+      "rows": 60,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 780,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1941-08_p065": {
+      "family": "short_term_foreign_liabilities_as",
+      "rows": 50,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 650,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1941-08_p069": {
+      "family": "security_transactions_as_reported_by",
+      "rows": 60,
+      "rows_not_returned": 0,
+      "rows_left_empty": 39,
+      "figure_cells": 780,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 507
+    },
+    "1941-08_p074": {
+      "family": "outstanding_forward_exchange_contracts",
+      "rows": 30,
+      "rows_not_returned": 0,
+      "rows_left_empty": 6,
+      "figure_cells": 390,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 78
+    },
+    "1941-09_p065": {
+      "family": "short_term_foreign_liabilities_as",
+      "rows": 50,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 650,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1941-09_p075": {
+      "family": "outstanding_forward_exchange_contracts",
+      "rows": 30,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 390,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1941-10_p086": {
+      "family": "security_transactions_as_reported_by",
+      "rows": 60,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 780,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1941-10_p087": {
+      "family": "security_transactions_as_reported_by",
+      "rows": 60,
+      "rows_not_returned": 0,
+      "rows_left_empty": 39,
+      "figure_cells": 780,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 507
+    },
+    "1941-10_p092": {
+      "family": "outstanding_forward_exchange_contracts",
+      "rows": 30,
+      "rows_not_returned": 0,
+      "rows_left_empty": 6,
+      "figure_cells": 390,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 78
+    },
+    "1942-01_p025": {
+      "family": "receipts_and_expenditures_under_railroad",
+      "rows": 17,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 85,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1942-03_p090": {
+      "family": "outstanding_forward_exchange_contracts",
+      "rows": 30,
+      "rows_not_returned": 0,
+      "rows_left_empty": 6,
+      "figure_cells": 390,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 78
+    },
+    "1985-06_p058": {
+      "family": "total_claims_by_country",
+      "rows": 93,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 744,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1986-06_p060": {
+      "family": "total_claims_by_country",
+      "rows": 93,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 744,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1987-06_p072": {
+      "family": "total_claims_by_country",
+      "rows": 93,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 744,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1988-06_p103": {
+      "family": "total_claims_by_country",
+      "rows": 93,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 744,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1989-06_p099": {
+      "family": "total_claims_by_country",
+      "rows": 93,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 744,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1990-06_p103": {
+      "family": "total_claims_by_country",
+      "rows": 93,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 744,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1991-06_p107": {
+      "family": "total_claims_by_country",
+      "rows": 93,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 744,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "1993-06_p097": {
+      "family": "total_claims_by_country",
+      "rows": 93,
+      "rows_not_returned": 45,
+      "rows_left_empty": 0,
+      "figure_cells": 744,
+      "figure_cells_not_returned": 360,
+      "figure_cells_left_empty": 0
+    },
+    "1993-06_p098": {
+      "family": "total_claims_by_country",
+      "rows": 93,
+      "rows_not_returned": 49,
+      "rows_left_empty": 0,
+      "figure_cells": 744,
+      "figure_cells_not_returned": 392,
+      "figure_cells_left_empty": 0
+    },
+    "1994-06_p099": {
+      "family": "total_claims_by_country",
+      "rows": 93,
+      "rows_not_returned": 45,
+      "rows_left_empty": 0,
+      "figure_cells": 744,
+      "figure_cells_not_returned": 360,
+      "figure_cells_left_empty": 0
+    }
+  },
+  "coverage_by_family": {
+    "outstanding_forward_exchange_contracts": {
+      "pages": 12,
+      "rows": 360,
+      "rows_not_returned": 0,
+      "rows_left_empty": 54,
+      "figure_cells": 4680,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 702
+    },
+    "receipts_and_expenditures_under_railroad": {
+      "pages": 12,
+      "rows": 204,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 1020,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "security_transactions_as_reported_by": {
+      "pages": 12,
+      "rows": 720,
+      "rows_not_returned": 0,
+      "rows_left_empty": 156,
+      "figure_cells": 9360,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 2028
+    },
+    "short_term_foreign_liabilities_as": {
+      "pages": 12,
+      "rows": 600,
+      "rows_not_returned": 0,
+      "rows_left_empty": 0,
+      "figure_cells": 7800,
+      "figure_cells_not_returned": 0,
+      "figure_cells_left_empty": 0
+    },
+    "total_claims_by_country": {
+      "pages": 10,
+      "rows": 930,
+      "rows_not_returned": 139,
+      "rows_left_empty": 0,
+      "figure_cells": 7440,
+      "figure_cells_not_returned": 1112,
+      "figure_cells_left_empty": 0
+    }
+  },
+  "identities": {
+    "outstanding_forward_exchange_contracts.grand_total": {
+      "changed_layout": {
+        "held": 244,
+        "failed": 14,
+        "unchecked": 0
+      },
+      "other": {
+        "held": 48,
+        "failed": 0,
+        "unchecked": 0
+      }
+    },
+    "outstanding_forward_exchange_contracts.total_europe": {
+      "changed_layout": {
+        "held": 0,
+        "failed": 258,
+        "unchecked": 0
+      },
+      "other": {
+        "held": 48,
+        "failed": 0,
+        "unchecked": 0
+      }
+    },
+    "outstanding_forward_exchange_contracts.total_purchase_breakdown": {
+      "changed_layout": {
+        "held": 548,
+        "failed": 11,
+        "unchecked": 0
+      },
+      "other": {
+        "held": 104,
+        "failed": 0,
+        "unchecked": 0
+      }
+    },
+    "outstanding_forward_exchange_contracts.total_sale_breakdown": {
+      "changed_layout": {
+        "held": 544,
+        "failed": 15,
+        "unchecked": 0
+      },
+      "other": {
+        "held": 104,
+        "failed": 0,
+        "unchecked": 0
+      }
+    },
+    "receipts_and_expenditures_under_railroad.total_expenditures": {
+      "changed_layout": {
+        "held": 166,
+        "failed": 3,
+        "unchecked": 1
+      },
+      "other": {
+        "held": 33,
+        "failed": 0,
+        "unchecked": 1
+      }
+    },
+    "security_transactions_as_reported_by.grand_total": {
+      "changed_layout": {
+        "held": 309,
+        "failed": 9,
+        "unchecked": 126
+      },
+      "other": {
+        "held": 108,
+        "failed": 0,
+        "unchecked": 12
+      }
+    },
+    "security_transactions_as_reported_by.total_europe": {
+      "changed_layout": {
+        "held": 165,
+        "failed": 213,
+        "unchecked": 66
+      },
+      "other": {
+        "held": 108,
+        "failed": 0,
+        "unchecked": 12
+      }
+    },
+    "short_term_foreign_liabilities_as.grand_total": {
+      "changed_layout": {
+        "held": 0,
+        "failed": 0,
+        "unchecked": 500
+      },
+      "other": {
+        "held": 89,
+        "failed": 1,
+        "unchecked": 10
+      }
+    },
+    "short_term_foreign_liabilities_as.total_europe": {
+      "changed_layout": {
+        "held": 21,
+        "failed": 191,
+        "unchecked": 288
+      },
+      "other": {
+        "held": 90,
+        "failed": 0,
+        "unchecked": 10
+      }
+    },
+    "total_claims_by_country.grand_total": {
+      "changed_layout": {
+        "held": 0,
+        "failed": 0,
+        "unchecked": 0
+      },
+      "other": {
+        "held": 63,
+        "failed": 1,
+        "unchecked": 16
+      }
+    },
+    "total_claims_by_country.total_africa": {
+      "changed_layout": {
+        "held": 0,
+        "failed": 0,
+        "unchecked": 0
+      },
+      "other": {
+        "held": 53,
+        "failed": 8,
+        "unchecked": 19
+      }
+    },
+    "total_claims_by_country.total_asia": {
+      "changed_layout": {
+        "held": 0,
+        "failed": 0,
+        "unchecked": 0
+      },
+      "other": {
+        "held": 45,
+        "failed": 18,
+        "unchecked": 17
+      }
+    },
+    "total_claims_by_country.total_europe": {
+      "changed_layout": {
+        "held": 0,
+        "failed": 0,
+        "unchecked": 0
+      },
+      "other": {
+        "held": 27,
+        "failed": 26,
+        "unchecked": 27
+      }
+    },
+    "total_claims_by_country.total_foreign": {
+      "changed_layout": {
+        "held": 0,
+        "failed": 0,
+        "unchecked": 0
+      },
+      "other": {
+        "held": 51,
+        "failed": 4,
+        "unchecked": 25
+      }
+    },
+    "total_claims_by_country.total_international": {
+      "changed_layout": {
+        "held": 0,
+        "failed": 0,
+        "unchecked": 0
+      },
+      "other": {
+        "held": 25,
+        "failed": 3,
+        "unchecked": 52
+      }
+    },
+    "total_claims_by_country.total_latin": {
+      "changed_layout": {
+        "held": 0,
+        "failed": 0,
+        "unchecked": 0
+      },
+      "other": {
+        "held": 50,
+        "failed": 16,
+        "unchecked": 14
+      }
+    },
+    "total_claims_by_country.total_other": {
+      "changed_layout": {
+        "held": 0,
+        "failed": 0,
+        "unchecked": 0
+      },
+      "other": {
+        "held": 64,
+        "failed": 0,
+        "unchecked": 16
+      }
+    }
+  },
+  "template_drift": {
+    "1989-06_p099": {
+      "prints_ireland_row": true,
+      "prints_gdr_row": true,
+      "total_europe": {
+        "held": 0,
+        "failed": 8,
+        "unchecked": 0
+      },
+      "cells_flagged_by_total_europe": 208,
+      "flagged_by_status": {
+        "review": 208
+      },
+      "labelled_cells": {
+        "right": 7,
+        "wrong": 1,
+        "cant_read": 0,
+        "abstained": 0
+      }
+    },
+    "1990-06_p103": {
+      "prints_ireland_row": true,
+      "prints_gdr_row": true,
+      "total_europe": {
+        "held": 2,
+        "failed": 6,
+        "unchecked": 0
+      },
+      "cells_flagged_by_total_europe": 156,
+      "flagged_by_status": {
+        "review": 156
+      },
+      "labelled_cells": {
+        "right": 13,
+        "wrong": 0,
+        "cant_read": 0,
+        "abstained": 0
+      }
+    },
+    "1991-06_p107": {
+      "prints_ireland_row": true,
+      "prints_gdr_row": true,
+      "total_europe": {
+        "held": 0,
+        "failed": 7,
+        "unchecked": 1
+      },
+      "cells_flagged_by_total_europe": 182,
+      "flagged_by_status": {
+        "review": 182
+      },
+      "labelled_cells": {
+        "right": 13,
+        "wrong": 2,
+        "cant_read": 1,
+        "abstained": 0
+      }
+    },
+    "1993-06_p097": {
+      "prints_ireland_row": true,
+      "prints_gdr_row": false,
+      "total_europe": {
+        "held": 0,
+        "failed": 0,
+        "unchecked": 8
+      },
+      "cells_flagged_by_total_europe": 0,
+      "flagged_by_status": {},
+      "labelled_cells": {
+        "right": 5,
+        "wrong": 0,
+        "cant_read": 0,
+        "abstained": 0
+      },
+      "gdr_figure_cells": 8,
+      "gdr_figure_cells_read": 0,
+      "gdr_read_by_status": {},
+      "gdr_read_flags": 0,
+      "gdr_labelled_cells": {
+        "right": 0,
+        "wrong": 0,
+        "cant_read": 0,
+        "abstained": 0
+      }
+    },
+    "1993-06_p098": {
+      "prints_ireland_row": false,
+      "prints_gdr_row": false,
+      "total_europe": {
+        "held": 0,
+        "failed": 0,
+        "unchecked": 8
+      },
+      "cells_flagged_by_total_europe": 0,
+      "flagged_by_status": {},
+      "labelled_cells": {
+        "right": 6,
+        "wrong": 1,
+        "cant_read": 1,
+        "abstained": 0
+      },
+      "gdr_figure_cells": 8,
+      "gdr_figure_cells_read": 0,
+      "gdr_read_by_status": {},
+      "gdr_read_flags": 0,
+      "gdr_labelled_cells": {
+        "right": 0,
+        "wrong": 0,
+        "cant_read": 0,
+        "abstained": 0
+      }
+    },
+    "1994-06_p099": {
+      "prints_ireland_row": true,
+      "prints_gdr_row": false,
+      "total_europe": {
+        "held": 0,
+        "failed": 0,
+        "unchecked": 8
+      },
+      "cells_flagged_by_total_europe": 0,
+      "flagged_by_status": {},
+      "labelled_cells": {
+        "right": 5,
+        "wrong": 0,
+        "cant_read": 0,
+        "abstained": 0
+      },
+      "gdr_figure_cells": 8,
+      "gdr_figure_cells_read": 0,
+      "gdr_read_by_status": {},
+      "gdr_read_flags": 0,
+      "gdr_labelled_cells": {
+        "right": 0,
+        "wrong": 0,
+        "cant_read": 0,
+        "abstained": 0
+      }
+    }
+  },
+  "revisions_page": {
+    "page": "1941-03_p069",
+    "family": "security_transactions_as_reported_by",
+    "what": "a different table (Revisions \u2013 Security Transactions \u2026), confirmed by both the classifier and the title check, which accepts any page whose title contains the family's approved title: a weakness of the title check",
+    "in_both_ways_set": true,
+    "cells": 840,
+    "by_status": {
+      "accepted": 19,
+      "review": 821
+    },
+    "labelled_cells": {
+      "right": 0,
+      "wrong": 5,
+      "cant_read": 2,
+      "abstained": 0
+    }
+  },
+  "sweep": {
+    "pages": 4569,
+    "classified": 4569,
+    "failed": 0,
+    "by_family": {
+      "short_term_foreign_liabilities_as": {
+        "classified": 54,
+        "confirmed": 44,
+        "type_unconfirmed": 10
+      },
+      "security_transactions_as_reported_by": {
+        "classified": 95,
+        "confirmed": 42,
+        "type_unconfirmed": 53
+      },
+      "outstanding_forward_exchange_contracts": {
+        "classified": 27,
+        "confirmed": 19,
+        "type_unconfirmed": 8
+      },
+      "receipts_and_expenditures_under_railroad": {
+        "classified": 63,
+        "confirmed": 21,
+        "type_unconfirmed": 42
+      },
+      "total_claims_by_country": {
+        "classified": 52,
+        "confirmed": 10,
+        "type_unconfirmed": 42
+      }
+    },
+    "set_aside_by_classifier": 4278,
+    "set_aside_by_title_check": 155,
+    "by_era": {
+      "1939-1942": {
+        "outstanding_forward_exchange_contracts": 27,
+        "receipts_and_expenditures_under_railroad": 63,
+        "security_transactions_as_reported_by": 87,
+        "short_term_foreign_liabilities_as": 54,
+        "unsupported": 3015
+      },
+      "1982-1994": {
+        "security_transactions_as_reported_by": 8,
+        "total_claims_by_country": 52,
+        "unsupported": 1263
+      }
+    }
+  },
+  "sam": {
+    "pages": 58,
+    "pages_with_a_detection": 0,
+    "by_prompt": {
+      "stain": {
+        "pages_with_a_detection": 0,
+        "detections": 0
+      },
+      "stamp": {
+        "pages_with_a_detection": 0,
+        "detections": 0
+      }
+    },
+    "cells_occluded": 0,
+    "cells_occluded_by_label": {}
+  },
+  "relabel": {
+    "status": "pending",
+    "relabelled": 0,
+    "of": 40
+  },
+  "classification_check": {
+    "status": "done",
+    "right": 50,
+    "of": 50,
+    "wilson": [
+      0.9286524008666414,
+      1.0
+    ],
+    "wrong_pages": []
+  }
+}
