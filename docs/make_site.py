@@ -1,7 +1,9 @@
-"""Assemble the published site: the review app, the recorded runs it shows and nothing else.
+"""Assemble the published site: a landing page at its root, the review app at /ui/, the recorded runs it
+shows and nothing else.
 
     python docs/make_site.py --out _site         # copy the site into a new, empty folder
     python docs/make_site.py --list              # print the files it would hold; copy nothing
+    python docs/make_site.py --write-proof       # rewrite docs/landing_proof.json from git (see below)
 
 The GitHub Pages workflow (.github/workflows/pages.yml) runs this on every push to main and
 publishes the folder. The files are found by following what the app itself loads, so nothing is
@@ -14,7 +16,11 @@ listed by hand and nothing the app does not load is shipped:
   * data/bundles/index.json, each bundle it lists, the truth file next to a bundle that has one,
     and every scan a bundle names;
   * the Geist licence, which the font's licence requires to travel with it;
-  * an index.html at the top that opens the app on Watch it work.
+  * the landing page: an index.html at the top, written by docs/landing.py with every number in it read from
+    a committed result file, and its stylesheet, script and logos (docs/landing/, assets/brand/). It reads
+    git for the pre-registration dates, so the Pages checkout has full history; where there is no git (the
+    Docker image) it reads docs/landing_proof.json, which tests/test_landing.py proves equal to git's answer.
+    The app stays at /ui/, unchanged.
 
 Nothing held-out is ever published: a path, a run or a stage that says so is refused, and so is any
 run whose stage is not one this script has been told is published (the synthetic test pages and the
@@ -31,11 +37,14 @@ import shutil
 import sys
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+import landing  # noqa: E402  (docs/landing.py: the page at the site's root)
+
 ROOT = Path(__file__).resolve().parents[1]
 
 APP = "ui/index.html"
 BUNDLES = "data/bundles"
-HOME = "replay"  # the view the site opens on: Watch it work
+HOME = landing.HOME  # the view Watch it work opens
 LICENCES = ("ui/fonts/GEIST-OFL.txt",)  # the OFL: the licence is shipped with the fonts it covers
 PUBLISHED_STAGES = frozenset({"test", "development"})
 HELD_OUT = re.compile(r"held[-_ ]?out", re.IGNORECASE)
@@ -45,24 +54,7 @@ IMPORT = re.compile(r"""\bfrom\s+["'](\.{1,2}/[^"']+)["']""")
 CSS_URL = re.compile(r"""url\(\s*["']?([^)"']+?)["']?\s*\)""")
 CSS_IMPORT = re.compile(r"""@import\s+["']([^"']+)["']""")
 
-REDIRECT = f"""<!doctype html>
-<html lang="en">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Archivist</title>
-<script>location.replace("ui/" + location.search + (location.hash || "#{HOME}"));</script>
-<noscript><meta http-equiv="refresh" content="0; url=ui/#{HOME}"></noscript>
-</head>
-<body>
-<p><a href="ui/#{HOME}">Open Archivist and watch it work</a></p>
-</body>
-</html>
-"""
-
-
-class Refused(Exception):
-    """Something that must not be published, or a file the app names that is not there."""
+Refused = landing.Refused  # something that must not be published, or a file the site names that is not there
 
 
 def _local(reference: str) -> bool:
@@ -146,27 +138,33 @@ def data_files(root: Path = ROOT) -> list[str]:
     return sorted(seen)
 
 
-def site_files(root: Path = ROOT) -> list[str]:
+def site_files(root: Path = ROOT, with_landing: bool = True) -> list[str]:
     """Every file the site holds, as repository paths (the top index.html is written, not copied)."""
     files = set(app_files(root)) | set(data_files(root))
-    for licence in LICENCES:
-        if not (root / licence).is_file():
-            raise Refused(f"{licence} is not a file")
-        files.add(licence)
+    for path in (*LICENCES, *(landing.ASSETS if with_landing else ())):
+        if not (root / path).is_file():
+            raise Refused(f"{path} is not a file")
+        files.add(path)
     return sorted(files)
 
 
-def build(out: Path, root: Path = ROOT) -> list[str]:
-    """Copy the site into `out` (new or empty), write its top index.html, return every path in it."""
-    files = site_files(root)
+def build(out: Path, root: Path = ROOT, with_landing: bool = True) -> list[str]:
+    """Copy the site into `out` (new or empty), write its landing page, return every path in it.
+
+    The page is written first, so that a number it cannot read stops the build before anything is copied;
+    `with_landing=False` builds the app and its data alone, which the tests of what is published use on small
+    repositories."""
+    page = landing.render(root) if with_landing else None
+    files = site_files(root, with_landing)
     if out.exists() and (not out.is_dir() or any(out.iterdir())):
         raise Refused(f"{out} exists and is not empty; the site is built into an empty folder")
     for path in files:
         target = out / path
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copyfile(root / path, target)
-    (out / "index.html").write_text(REDIRECT, encoding="utf-8")
-    return sorted([*files, "index.html"])
+    if page is not None:
+        (out / "index.html").write_text(page, encoding="utf-8")
+    return sorted([*files, "index.html"]) if page is not None else files
 
 
 def main(argv: list[str]) -> int:
@@ -174,8 +172,16 @@ def main(argv: list[str]) -> int:
     where = parser.add_mutually_exclusive_group(required=True)
     where.add_argument("--out", type=Path, help="a new or empty folder to build the site in")
     where.add_argument("--list", action="store_true", help="print the files, copy nothing")
+    where.add_argument("--write-proof", action="store_true", help=f"rewrite {landing.PROOF_FILE} from git")
     args = parser.parse_args(argv)
     try:
+        if args.write_proof:
+            facts = landing.git_facts()
+            if facts is None:
+                raise Refused("git has no full history here (a shallow clone, or no git) or lacks a tag the page cites")
+            (ROOT / landing.PROOF_FILE).write_text(json.dumps(facts, indent=2) + "\n", encoding="utf-8")
+            print(f"wrote {landing.PROOF_FILE}")
+            return 0
         if args.list:
             print("\n".join([*site_files(), "index.html (written)"]))
             return 0

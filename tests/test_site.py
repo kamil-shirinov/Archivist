@@ -1,9 +1,10 @@
 """The published site (docs/make_site.py) and the workflow that publishes it (.github/workflows/pages.yml).
 
-The site is exactly the files the review app loads, the bundles and scans it shows, and a top page
-that opens on Watch it work, and nothing held-out. The last test runs the assembled folder in a
-real browser, from the /Archivist/ path GitHub Pages serves it under, through every view and every
-run: nothing it asks for may be missing, and every app file the site ships must have been used.
+The site is exactly the files the review app loads, the bundles and scans it shows, and the landing page
+at its root (tests/test_landing.py tests the page itself) with its few files, and nothing held-out. The
+last test runs the assembled folder in a real browser, from the /Archivist/ path GitHub Pages serves it
+under, from the landing page through every view and every run: nothing it asks for may be missing, and
+every app file the site ships must have been used.
 """
 
 import importlib.util
@@ -25,7 +26,7 @@ site = importlib.util.module_from_spec(spec)
 sys.modules["make_site"] = site
 spec.loader.exec_module(site)
 
-ALLOWED = ("ui/", "data/bundles/", "data/pages/")
+ALLOWED = ("ui/", "data/bundles/", "data/pages/", "docs/landing/", "assets/brand/")
 NEVER = (
     "ui/js/live/",  # the local live-reading code: the published site has no live mode (D13)
     "ui/css/live.css",
@@ -67,11 +68,12 @@ def test_the_site_holds_only_the_app_the_bundles_and_the_scans_they_name(built):
         assert (top / "Archivist/ui" / ref).is_file(), ref
 
 
-def test_the_top_page_opens_the_app_on_watch_it_work(built):
+def test_the_top_page_is_the_landing_page_and_the_app_stays_at_ui(built):
     top, _ = built
     page = (top / "Archivist/index.html").read_text()
-    assert "ui/#replay" in page, "with scripting off, a plain redirect"
-    assert 'location.replace("ui/" + location.search + (location.hash || "#replay"))' in page
+    assert "The archive that shows its work." in page, "the landing page, not a redirect"
+    assert "location.replace" not in page
+    assert 'href="ui/#replay"' in page, "Watch it work opens the app on the replay"
     assert (top / "Archivist/ui/index.html").is_file()
 
 
@@ -112,12 +114,11 @@ def _run(run_id="r1", stage="development", **more):
 
 def test_a_small_repository_builds(tmp_path):
     root = _repo(tmp_path / "repo", [_run()])
-    files = site.build(tmp_path / "out", root)
+    files = site.build(tmp_path / "out", root, with_landing=False)
     assert files == [
         "data/bundles/index.json",
         "data/bundles/r1/bundle.json",
         "data/pages/x/p.jpg",
-        "index.html",
         "ui/fonts/GEIST-OFL.txt",
         "ui/index.html",
     ]
@@ -138,7 +139,7 @@ def test_a_small_repository_builds(tmp_path):
 def test_nothing_held_out_and_no_stage_nobody_allowed_is_published(tmp_path, run):
     root = _repo(tmp_path / "repo", [run])
     with pytest.raises(site.Refused):
-        site.build(tmp_path / "out", root)
+        site.build(tmp_path / "out", root, with_landing=False)
     assert not (tmp_path / "out").exists(), "a refusal leaves nothing behind"
 
 
@@ -147,16 +148,16 @@ def test_a_held_out_path_or_a_held_out_bundle_is_refused(tmp_path):
     (root / "data/pages/x/held_out").mkdir()
     (root / "data/pages/x/held_out/p.jpg").write_bytes(b"jpg")
     with pytest.raises(site.Refused, match="held-out"):
-        site.build(tmp_path / "out", root)
+        site.build(tmp_path / "out", root, with_landing=False)
     root = _repo(tmp_path / "b", [_run()], bundle_run={"run_id": "r1", "stage": "development", "images": "data/real_held_out"})
     with pytest.raises(site.Refused, match="held-out"):
-        site.build(tmp_path / "out2", root)
+        site.build(tmp_path / "out2", root, with_landing=False)
 
 
 def test_a_file_the_app_names_that_is_missing_stops_the_build(tmp_path):
     root = _repo(tmp_path / "a", [_run()], images=("../../pages/x/missing.jpg",))
     with pytest.raises(site.Refused, match="not a file"):
-        site.build(tmp_path / "out", root)
+        site.build(tmp_path / "out", root, with_landing=False)
 
 
 def test_the_site_is_built_only_into_an_empty_folder(tmp_path):
@@ -164,7 +165,7 @@ def test_the_site_is_built_only_into_an_empty_folder(tmp_path):
     (tmp_path / "out").mkdir()
     (tmp_path / "out/keep.txt").write_text("mine")
     with pytest.raises(site.Refused, match="not empty"):
-        site.build(tmp_path / "out", root)
+        site.build(tmp_path / "out", root, with_landing=False)
     assert (tmp_path / "out/keep.txt").read_text() == "mine"
 
 
@@ -180,6 +181,11 @@ def test_the_workflow_publishes_on_every_push_to_main_and_nothing_else_triggers_
     triggers = workflow.get("on", workflow.get(True))  # YAML 1.1 reads a bare `on` as true
     assert set(triggers) == {"push", "workflow_dispatch"}
     assert triggers["push"] == {"branches": ["main"]}
+
+
+def test_the_workflow_checks_out_the_whole_history_so_the_tag_dates_can_be_read(workflow):
+    checkout = next(s for s in workflow["jobs"]["build"]["steps"] if s.get("uses", "").startswith("actions/checkout@"))
+    assert checkout["with"] == {"fetch-depth": 0}, "the landing page's pre-registration dates come from git (tags included)"
 
 
 def test_the_workflow_builds_with_the_script_and_uploads_what_it_wrote(workflow):
@@ -227,9 +233,12 @@ def test_the_published_site_runs_from_its_own_files_alone(built):
     with serve(top) as base, Browser() as browser:
         tab = browser.tab()
         tab.open(f"{base}/Archivist/", dark=False)
-        tab.wait_for("document.documentElement.dataset.ready === '1'", 60)
-        # the top page has taken the visitor to the app, on Watch it work
-        assert tab.eval("location.pathname") == "/Archivist/ui/"
+        # the top page is the landing page; Watch it work takes the visitor to the app, on the replay
+        tab.wait_for("!!document.querySelector('h1') && document.querySelectorAll('.rp-log li').length === 7", 30)
+        assert tab.eval("location.pathname") == "/Archivist/"
+        assert tab.eval("document.querySelector('h1').textContent") == "The archive that shows its work."
+        tab.eval("document.querySelector('.hero .btn.primary').click()")
+        tab.wait_for("location.pathname === '/Archivist/ui/' && document.documentElement.dataset.ready === '1'", 60)
         assert tab.eval("location.hash") == "#replay"
         tab.wait_for("!!document.querySelector('#wstage img')?.complete && document.querySelectorAll('#w-steps li').length === 7", 30)
         assert tab.eval("[...document.querySelectorAll('main .view')].filter(v => !v.hidden).map(v => v.id)") == ["v-replay"]

@@ -21,7 +21,7 @@ New table types are learned from two or three sample pages with no new code: Mus
 
 No model grades its own work. Every value gets a blind second read and plain-code arithmetic, and a person decides anything in doubt.
 
-**Live demo:** [kamil-shirinov.github.io/Archivist](https://kamil-shirinov.github.io/Archivist/) (opens on Watch it work; recorded runs only, no model call) · **Video:** [link pending]
+**Live demo:** [kamil-shirinov.github.io/Archivist](https://kamil-shirinov.github.io/Archivist/) (a landing page, then the review app; recorded runs only, no model call) · [Watch it work](https://kamil-shirinov.github.io/Archivist/ui/#replay) · **Video:** [link pending]
 
 ## What you get
 
@@ -173,7 +173,7 @@ docker run --rm -p 8000:8000 archivist
 docker run --rm archivist python -m archivist.verify
 ```
 
-The first `run` serves the review app with the committed runs at <http://localhost:8000/> (stop it with Ctrl-C). The second runs the judge checks, `archivist.verify` (described below), and exits non-zero on any failure. Neither needs a key or makes a model call. The image holds only the committed files those two read, so it has no model cache, no scans or data that are not committed, and no `.env` (see [`.dockerignore`](.dockerignore)).
+The first `run` serves the landing page at <http://localhost:8000/> and the review app, with the committed runs, at <http://localhost:8000/ui/> (stop it with Ctrl-C). The second runs the judge checks, `archivist.verify` (described below), and exits non-zero on any failure. Neither needs a key or makes a model call. The image holds only the committed files those two read, so it has no model cache, no scans or data that are not committed, and no `.env` (see [`.dockerignore`](.dockerignore)).
 
 Without Docker, you need Python 3.12 and [uv](https://docs.astral.sh/uv/).
 
