@@ -1,0 +1,227 @@
+{
+  "config": {
+    "extractor": {
+      "backend": "baseten",
+      "model_id": "meta-models/muse-spark-open-1026"
+    },
+    "rereader": {
+      "backend": "baseten",
+      "model_id": "meta-models/muse-spark-open-1026"
+    },
+    "segmenter": {
+      "backend": "meta",
+      "model_id": "sam-3.1"
+    }
+  },
+  "doc_types": {
+    "short_term_foreign_liabilities_as": "156a9632a74690d8c7235a707f3ac5061b769940fc64f93f90b31f020ed97b21",
+    "security_transactions_as_reported_by": "7659ec40ef400a8c2dfca34ee32c2e3a71a74ef09fc14026fb95d1ed9e0597ee",
+    "outstanding_forward_exchange_contracts": "3bc2e5769f6d9a2973f9147d09a55f01dd48ca50a5f9f5e0b4cc693994e199c4",
+    "receipts_and_expenditures_under_railroad": "8b6d3cf7ed6f28921fa518017a5fb64be950ef60f3e51c8c3604d596d3193d86",
+    "total_claims_by_country": "aba101beccc5c9e12ae5eb0bcd9429160e94833148773fa446e8b681489e185e"
+  },
+  "caps": {
+    "meta": 10.096281,
+    "baseten": 46.213618,
+    "allowance": 20.0,
+    "recorded_at": "2026-11-02T09:34:15+00:00"
+  },
+  "started_at": "2026-11-02T09:34:16+00:00",
+  "side": "held_out",
+  "inputs_sha256": {
+    "results/real_test/held_out/sample.json": "59b30d6d51a59b1462f5fcff90216fe544c14d0bd522c487ce15a3b7d3eb07b6",
+    "results/real_test/held_out/labels/draw.json": "b575cc271445abc1621bfd942362c7b3db6e61b9e26ceca83648f0b580492168",
+    "results/real_test/held_out/predictions.jsonl": "939746ff4a4393629eb9bcf37504188c2efd97df3e9a14f1cc03dd0b3995ef38",
+    "results/real_test/held_out/titles.jsonl": "5f616e260596c6e802f330723813594cd3902fe55039e093fa6aa5038cc84f0e"
+  },
+  "pages": {
+    "1940-01_p026": "receipts_and_expenditures_under_railroad",
+    "1940-01_p051": "short_term_foreign_liabilities_as",
+    "1940-01_p053": "security_transactions_as_reported_by",
+    "1940-02_p028": "receipts_and_expenditures_under_railroad",
+    "1940-02_p055": "short_term_foreign_liabilities_as",
+    "1940-02_p057": "security_transactions_as_reported_by",
+    "1940-02_p062": "outstanding_forward_exchange_contracts",
+    "1940-03_p060": "outstanding_forward_exchange_contracts",
+    "1940-04_p055": "short_term_foreign_liabilities_as",
+    "1940-04_p059": "security_transactions_as_reported_by",
+    "1940-06_p063": "security_transactions_as_reported_by",
+    "1940-06_p069": "outstanding_forward_exchange_contracts",
+    "1940-07_p031": "receipts_and_expenditures_under_railroad",
+    "1940-08_p024": "receipts_and_expenditures_under_railroad",
+    "1940-10_p023": "receipts_and_expenditures_under_railroad",
+    "1940-10_p059": "short_term_foreign_liabilities_as",
+    "1940-10_p062": "security_transactions_as_reported_by",
+    "1940-11_p051": "short_term_foreign_liabilities_as",
+    "1940-11_p060": "outstanding_forward_exchange_contracts",
+    "1940-12_p024": "receipts_and_expenditures_under_railroad",
+    "1940-12_p059": "outstanding_forward_exchange_contracts",
+    "1941-01_p022": "receipts_and_expenditures_under_railroad",
+    "1941-01_p058": "outstanding_forward_exchange_contracts",
+    "1941-02_p024": "receipts_and_expenditures_under_railroad",
+    "1941-02_p058": "outstanding_forward_exchange_contracts",
+    "1941-03_p056": "short_term_foreign_liabilities_as",
+    "1941-03_p069": "security_transactions_as_reported_by",
+    "1941-04_p019": "receipts_and_expenditures_under_railroad",
+    "1941-04_p058": "short_term_foreign_liabilities_as",
+    "1941-04_p059": "short_term_foreign_liabilities_as",
+    "1941-04_p063": "security_transactions_as_reported_by",
+    "1941-04_p068": "outstanding_forward_exchange_contracts",
+    "1941-05_p021": "receipts_and_expenditures_under_railroad",
+    "1941-05_p062": "security_transactions_as_reported_by",
+    "1941-06_p023": "receipts_and_expenditures_under_railroad",
+    "1941-06_p065": "short_term_foreign_liabilities_as",
+    "1941-07_p071": "short_term_foreign_liabilities_as",
+    "1941-07_p074": "security_transactions_as_reported_by",
+    "1941-08_p065": "short_term_foreign_liabilities_as",
+    "1941-08_p069": "security_transactions_as_reported_by",
+    "1941-08_p074": "outstanding_forward_exchange_contracts",
+    "1941-09_p065": "short_term_foreign_liabilities_as",
+    "1941-09_p075": "outstanding_forward_exchange_contracts",
+    "1941-10_p086": "security_transactions_as_reported_by",
+    "1941-10_p087": "security_transactions_as_reported_by",
+    "1941-10_p092": "outstanding_forward_exchange_contracts",
+    "1942-01_p025": "receipts_and_expenditures_under_railroad",
+    "1942-03_p090": "outstanding_forward_exchange_contracts",
+    "1985-06_p058": "total_claims_by_country",
+    "1986-06_p060": "total_claims_by_country",
+    "1987-06_p072": "total_claims_by_country",
+    "1988-06_p103": "total_claims_by_country",
+    "1989-06_p099": "total_claims_by_country",
+    "1990-06_p103": "total_claims_by_country",
+    "1991-06_p107": "total_claims_by_country",
+    "1993-06_p097": "total_claims_by_country",
+    "1993-06_p098": "total_claims_by_country",
+    "1994-06_p099": "total_claims_by_country"
+  },
+  "pages_read": 58,
+  "failed": [],
+  "page_tries": {},
+  "cells": 400,
+  "cells_found": {
+    "fixed_row": 100,
+    "label": 238,
+    "row_not_found": 62
+  },
+  "cells_at_the_same_position": 258,
+  "order_guard": {
+    "pages": 2,
+    "cells_reread": 40,
+    "used": 1
+  },
+  "box_sources_all_cells": {
+    "table:ink": 472,
+    "table:ocr": 1897,
+    "v1:grid": 2397,
+    "v1:model": 25848,
+    "v1:ocr": 2500
+  },
+  "box_sources_drawn_cells": {
+    "table:ink": 6,
+    "table:ocr": 33,
+    "v1:grid": 46,
+    "v1:model": 218,
+    "v1:ocr": 35
+  },
+  "counts": {
+    "pages": 50,
+    "fields": 338,
+    "by_status": {
+      "abstained": 6,
+      "accepted": 70,
+      "review": 262
+    },
+    "by_confidence": {
+      "0.0": 6,
+      "0.3": 261,
+      "0.5": 1,
+      "0.99": 70
+    },
+    "by_route": {
+      "arithmetic": 338
+    },
+    "by_reread_status": {
+      "agrees": 102,
+      "disagrees": 169,
+      "failed": 12,
+      "illegible": 13,
+      "no_citation": 36,
+      "not_reread": 6
+    },
+    "occluded": 0,
+    "proposed_corrections": 1,
+    "proposed_by": {
+      "check": 1
+    },
+    "reread_chain_flags": 8,
+    "by_second_look": {
+      "not_reread": 338
+    },
+    "by_policy": {
+      "v2": {
+        "by_status": {
+          "abstained": 6,
+          "accepted": 70,
+          "review": 262
+        },
+        "proposed_corrections": 1
+      },
+      "v3": {
+        "by_status": {
+          "abstained": 6,
+          "accepted": 70,
+          "review": 262
+        },
+        "proposed_corrections": 1
+      }
+    }
+  },
+  "rereads_failed": [
+    "T.outstanding_forward_exchange_contracts:1940-11_p060:sale_foreign_05:united_kingdom",
+    "T.security_transactions_as_reported_by:1941-10_p087:06:other_europe",
+    "T.security_transactions_as_reported_by:1941-10_p087:12:grand_total",
+    "T.short_term_foreign_liabilities_as:1941-09_p065:17:total_europe",
+    "T.short_term_foreign_liabilities_as:1941-09_p065:47:latin_america",
+    "T.total_claims_by_country:1985-06_p058:germany:c6",
+    "T.total_claims_by_country:1985-06_p058:other_latin_america_caribbean:c1",
+    "T.total_claims_by_country:1986-06_p060:pakistan:c7",
+    "T.total_claims_by_country:1990-06_p103:netherlands:c8",
+    "T.total_claims_by_country:1990-06_p103:oil_exporting_asia:c6",
+    "T.total_claims_by_country:1991-06_p107:thailand:c4",
+    "T.total_claims_by_country:1994-06_p099:italy:c1"
+  ],
+  "verification_pass": 1,
+  "calls": {
+    "segmenter_pages": 50,
+    "regions": {},
+    "rereads": 296,
+    "rereads_from_cache": 14,
+    "rereads_failed": 12,
+    "second_looks": 0,
+    "second_looks_from_cache": 0,
+    "second_looks_failed": 0
+  },
+  "citations": "S0+table-v2",
+  "policy": {
+    "version": "v2",
+    "second_looks": false,
+    "rereads": "the drawn cells only",
+    "occlusion_prompts": [
+      "stamp",
+      "stain"
+    ],
+    "occlusion_cover": 0.1,
+    "reread_padding": {
+      "vertical": 0.5,
+      "horizontal": 0.2
+    }
+  },
+  "cost_usd": {
+    "meta": 0.0,
+    "baseten": 6.737917,
+    "fireworks": 0.0,
+    "modal_glimmer_sorter": 0.0
+  },
+  "cost_full_usd": 0.9740600000000006,
+  "finished_at": "2026-11-02T09:41:53+00:00"
+}

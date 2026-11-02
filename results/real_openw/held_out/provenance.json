@@ -1,0 +1,57 @@
+{
+  "written_after_the_run": true,
+  "written_at": "2026-11-02T09:51:52+00:00",
+  "why": "src/archivist/templates/real_openw.py does not record the commit it ran on. This file was written after the run, on the project owner's decision (PREREGISTRATION_OPENW.md, Deviations), from the checkout the run was made in, before anything was committed or scored. It records what that checkout showed. The six records beside it are unchanged; their sha256 are below.",
+  "tag": "run-real-openw",
+  "tag_commit": "1adee1f0826cb655f0852ac4a893e4782dd61c5e",
+  "checkout_head": "1adee1f0826cb655f0852ac4a893e4782dd61c5e",
+  "head_is_tag_commit": true,
+  "frozen_paths": [
+    "src",
+    "config",
+    "templates",
+    "labelling",
+    "pyproject.toml",
+    "uv.lock"
+  ],
+  "frozen_paths_tracked_difference_from_tag": false,
+  "frozen_paths_untracked": [],
+  "runner_gate": "the held-out side starts only after real_openw.frozen() passes (the tag exists, no tracked or untracked difference under the frozen paths); the run started",
+  "runner_files_modified_at": {
+    "config/real_openw.toml": "2026-11-02T09:34:13+00:00",
+    "src/archivist/templates/real_openw.py": "2026-11-02T09:34:14+00:00"
+  },
+  "run": {
+    "started_at": "2026-11-02T09:34:16+00:00",
+    "finished_at": "2026-11-02T09:41:53+00:00",
+    "pages_read": 58,
+    "failed": [],
+    "verification_pass": 1,
+    "cost_usd": {
+      "meta": 0.0,
+      "baseten": 6.737917,
+      "fireworks": 0.0,
+      "modal_glimmer_sorter": 0.0
+    }
+  },
+  "records_sha256": {
+    "results/real_openw/held_out/caps.json": "f0d8879914f2b9154a2bf516b3e048980bce59ffa9b7a4fcc41f55cd9392f234",
+    "results/real_openw/held_out/predictions.jsonl": "8a495e59b911e7cd06df6aacf5d72ddbcfd1af84cb3552d0154261fa37616f3d",
+    "results/real_openw/held_out/boxes.jsonl": "58013fd0e35eeecf989294a8391cf6ce82b9fc995a72368b53a351ee0a0db0a9",
+    "results/real_openw/held_out/cells.json": "b05718c24b5c356a186fe55926517a325d1fc4e4c55a6a793335f35e3f3fb1ff",
+    "results/real_openw/held_out/verdicts.jsonl": "b52a9b86c4726513d86293f51c7639f98eca271c64e401874c1d5bda6c61803a",
+    "results/real_openw/held_out/run.json": "fd68a9e9c11da8aaeae7e19eef8cbfbf5feead03c48f9ce1053df750387a715d"
+  },
+  "spend_ledger": {
+    "lines_at_head": 83184,
+    "lines_appended": 373,
+    "appended_only": true,
+    "by_backend": {
+      "baseten": 373
+    },
+    "first_timestamp": "2026-11-02T09:34:33.759+00:00",
+    "last_timestamp": "2026-11-02T09:41:40.658+00:00",
+    "baseten_usd": 6.737917,
+    "equals_run_json_baseten_cost": true
+  }
+}

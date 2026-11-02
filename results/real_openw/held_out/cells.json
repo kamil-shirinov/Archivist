@@ -1,0 +1,3542 @@
+{
+  "cells": [
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-03_p056:01:grand_total",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-03_p056",
+      "field": "T.short_term_foreign_liabilities_as:1941-03_p056:02:grand_total",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-10_p086:28:france",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-10_p086",
+      "field": "T.security_transactions_as_reported_by:1941-10_p086:24:france",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-04_p058:12:italy",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-04_p058",
+      "field": "T.short_term_foreign_liabilities_as:1941-04_p058:12:italy",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-04_p058:39:canada",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-04_p058",
+      "field": "T.short_term_foreign_liabilities_as:1941-04_p058:39:canada",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1941-01_p058:purchase_domestic_03:united_kingdom",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1941-01_p058",
+      "field": "T.outstanding_forward_exchange_contracts:1941-01_p058:purchase_domestic_03:united_kingdom",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-02_p055:10:canada",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-02_p055",
+      "field": "T.short_term_foreign_liabilities_as:1940-02_p055:10:canada",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1940-06_p069:total_purchase_03:other_europe",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1940-06_p069",
+      "field": "T.outstanding_forward_exchange_contracts:1940-06_p069:total_purchase_03:other_europe",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-10_p059:31:united_kingdom",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-10_p059",
+      "field": "T.short_term_foreign_liabilities_as:1940-10_p059:31:united_kingdom",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1940-02_p062:purchase_domestic_04:switzerland",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1940-02_p062",
+      "field": "T.outstanding_forward_exchange_contracts:1940-02_p062:purchase_domestic_04:switzerland",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-01_p051:06:italy",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-01_p051",
+      "field": "T.short_term_foreign_liabilities_as:1940-01_p051:08:italy",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-09_p065:17:total_europe",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-09_p065",
+      "field": "T.short_term_foreign_liabilities_as:1941-09_p065:17:total_europe",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-04_p059:45:other_europe",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-04_p059",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-10_p062:04:canada",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-10_p062",
+      "field": "T.security_transactions_as_reported_by:1940-10_p062:04:canada",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-02_p055:24:other_europe",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-02_p055",
+      "field": "T.short_term_foreign_liabilities_as:1940-02_p055:24:other_europe",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-04_p059:31:far_east",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-04_p059",
+      "field": "T.security_transactions_as_reported_by:1940-04_p059:47:far_east",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-09_p065:47:latin_america",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-09_p065",
+      "field": "T.short_term_foreign_liabilities_as:1941-09_p065:47:latin_america",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-08_p069:01:all_other",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-08_p069",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-06_p063:19:italy",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-06_p063",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1940-03_p060:total_sale_02:other_europe",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1940-03_p060",
+      "field": "T.outstanding_forward_exchange_contracts:1940-03_p060:total_sale_02:other_europe",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1941-04_p068:sale_domestic_03:other_europe",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1941-04_p068",
+      "field": "T.outstanding_forward_exchange_contracts:1941-04_p068:sale_domestic_03:other_europe",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-06_p065:38:netherlands",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-06_p065",
+      "field": "T.short_term_foreign_liabilities_as:1941-06_p065:38:netherlands",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-04_p059:03:united_kingdom",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-04_p059",
+      "field": "T.security_transactions_as_reported_by:1940-04_p059:06:united_kingdom",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-07_p071:32:canada",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-07_p071",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1942-03_p090:total_purchase_03:other_europe",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1942-03_p090",
+      "field": "T.outstanding_forward_exchange_contracts:1942-03_p090:total_purchase_03:other_europe",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-02_p057:30:far_east",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-02_p057",
+      "field": "T.security_transactions_as_reported_by:1940-02_p057:30:far_east",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-04_p059:30:canada",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-04_p059",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-07_p071:38:united_kingdom",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-07_p071",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-06_p063:01:latin_america",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-06_p063",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-04_p063:19:far_east",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-04_p063",
+      "field": "T.security_transactions_as_reported_by:1941-04_p063:23:far_east",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-03_p056:38:italy",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-03_p056",
+      "field": "T.short_term_foreign_liabilities_as:1941-03_p056:46:italy",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-07_p071:35:grand_total",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-07_p071",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-03_p069:57:grand_total",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-03_p069",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-01_p053:02:netherlands",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-01_p053",
+      "field": "T.security_transactions_as_reported_by:1940-01_p053:03:netherlands",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1941-04_p068:sale_foreign_01:switzerland",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1941-04_p068",
+      "field": "T.outstanding_forward_exchange_contracts:1941-04_p068:sale_foreign_01:switzerland",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-02_p057:53:france",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-02_p057",
+      "field": "T.security_transactions_as_reported_by:1940-02_p057:53:france",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1940-07_p031:11:total_exp",
+      "stratum": "1939_1942",
+      "family": "receipts_and_expenditures_under_railroad",
+      "page": "1940-07_p031",
+      "field": "T.receipts_and_expenditures_under_railroad:1940-07_p031:11:total_exp",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1940-12_p059:total_sale_03:latin_america",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1940-12_p059",
+      "field": "T.outstanding_forward_exchange_contracts:1940-12_p059:total_sale_03:latin_america",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-04_p059:40:netherlands",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-04_p059",
+      "field": "T.security_transactions_as_reported_by:1940-04_p059:58:netherlands",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-11_p051:28:germany",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-11_p051",
+      "field": "T.short_term_foreign_liabilities_as:1940-11_p051:28:germany",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-01_p053:18:total_europe",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-01_p053",
+      "field": "T.security_transactions_as_reported_by:1940-01_p053:22:total_europe",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-10_p087:20:grand_total",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-10_p087",
+      "field": "T.security_transactions_as_reported_by:1941-10_p087:20:grand_total",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-06_p065:13:united_kingdom",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-06_p065",
+      "field": "T.short_term_foreign_liabilities_as:1941-06_p065:13:united_kingdom",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-03_p069:32:grand_total",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-03_p069",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1940-06_p069:sale_foreign_05:canada",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1940-06_p069",
+      "field": "T.outstanding_forward_exchange_contracts:1940-06_p069:sale_foreign_05:canada",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1940-02_p062:purchase_domestic_02:france",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1940-02_p062",
+      "field": "T.outstanding_forward_exchange_contracts:1940-02_p062:purchase_domestic_02:france",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-10_p086:49:far_east",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-10_p086",
+      "field": "T.security_transactions_as_reported_by:1941-10_p086:52:far_east",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1941-02_p024:03:admin",
+      "stratum": "1939_1942",
+      "family": "receipts_and_expenditures_under_railroad",
+      "page": "1941-02_p024",
+      "field": "T.receipts_and_expenditures_under_railroad:1941-02_p024:03:admin",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-11_p051:29:all_other",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-11_p051",
+      "field": "T.short_term_foreign_liabilities_as:1940-11_p051:29:all_other",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-07_p071:15:other_europe",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-07_p071",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-04_p059:03:latin_america",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-04_p059",
+      "field": "T.security_transactions_as_reported_by:1940-04_p059:06:latin_america",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-01_p053:45:grand_total",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-01_p053",
+      "field": "T.security_transactions_as_reported_by:1940-01_p053:54:grand_total",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-06_p065:23:france",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-06_p065",
+      "field": "T.short_term_foreign_liabilities_as:1941-06_p065:23:france",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-06_p063:58:latin_america",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-06_p063",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-08_p069:17:latin_america",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-08_p069",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-06_p063:45:switzerland",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-06_p063",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-02_p057:18:netherlands",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-02_p057",
+      "field": "T.security_transactions_as_reported_by:1940-02_p057:18:netherlands",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-10_p086:19:total_europe",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-10_p086",
+      "field": "T.security_transactions_as_reported_by:1941-10_p086:20:total_europe",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-11_p051:23:switzerland",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-11_p051",
+      "field": "T.short_term_foreign_liabilities_as:1940-11_p051:23:switzerland",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-07_p071:14:switzerland",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-07_p071",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-10_p086:54:germany",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-10_p086",
+      "field": "T.security_transactions_as_reported_by:1941-10_p086:57:germany",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-03_p056:32:italy",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-03_p056",
+      "field": "T.short_term_foreign_liabilities_as:1941-03_p056:39:italy",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1940-11_p060:sale_domestic_05:far_east",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1940-11_p060",
+      "field": "T.outstanding_forward_exchange_contracts:1940-11_p060:sale_domestic_05:far_east",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-09_p065:03:united_kingdom",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-09_p065",
+      "field": "T.short_term_foreign_liabilities_as:1941-09_p065:03:united_kingdom",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-04_p059:34:switzerland",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-04_p059",
+      "field": "T.security_transactions_as_reported_by:1940-04_p059:50:switzerland",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-08_p065:07:france",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-08_p065",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1941-01_p058:total_sale_01:total_europe",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1941-01_p058",
+      "field": "T.outstanding_forward_exchange_contracts:1941-01_p058:total_sale_01:total_europe",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-02_p055:10:all_other",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-02_p055",
+      "field": "T.short_term_foreign_liabilities_as:1940-02_p055:10:all_other",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-11_p051:48:netherlands",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-11_p051",
+      "field": "T.short_term_foreign_liabilities_as:1940-11_p051:48:netherlands",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-07_p071:01:other_europe",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-07_p071",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-07_p074:02:united_kingdom",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-07_p074",
+      "field": "T.security_transactions_as_reported_by:1941-07_p074:05:united_kingdom",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-04_p058:30:all_other",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-04_p058",
+      "field": "T.short_term_foreign_liabilities_as:1941-04_p058:30:all_other",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-05_p062:58:netherlands",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-05_p062",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-07_p071:46:far_east",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-07_p071",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-05_p062:10:far_east",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-05_p062",
+      "field": "T.security_transactions_as_reported_by:1941-05_p062:12:far_east",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1941-02_p058:sale_domestic_02:netherlands",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1941-02_p058",
+      "field": "T.outstanding_forward_exchange_contracts:1941-02_p058:sale_domestic_02:netherlands",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-07_p074:35:united_kingdom",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-07_p074",
+      "field": "T.security_transactions_as_reported_by:1941-07_p074:44:united_kingdom",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-09_p065:21:other_europe",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-09_p065",
+      "field": "T.short_term_foreign_liabilities_as:1941-09_p065:21:other_europe",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1942-03_p090:total_purchase_01:total_europe",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1942-03_p090",
+      "field": "T.outstanding_forward_exchange_contracts:1942-03_p090:total_purchase_01:total_europe",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-01_p051:46:canada",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-01_p051",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-01_p051:03:canada",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-01_p051",
+      "field": "T.short_term_foreign_liabilities_as:1940-01_p051:04:canada",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-06_p063:44:united_kingdom",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-06_p063",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-07_p074:17:all_other",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-07_p074",
+      "field": "T.security_transactions_as_reported_by:1941-07_p074:22:all_other",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1940-07_p031:07:total_exp",
+      "stratum": "1939_1942",
+      "family": "receipts_and_expenditures_under_railroad",
+      "page": "1940-07_p031",
+      "field": "T.receipts_and_expenditures_under_railroad:1940-07_p031:07:total_exp",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-11_p051:12:germany",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-11_p051",
+      "field": "T.short_term_foreign_liabilities_as:1940-11_p051:12:germany",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1941-09_p075:sale_foreign_04:united_kingdom",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1941-09_p075",
+      "field": "T.outstanding_forward_exchange_contracts:1941-09_p075:sale_foreign_04:united_kingdom",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-10_p059:15:germany",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-10_p059",
+      "field": "T.short_term_foreign_liabilities_as:1940-10_p059:15:germany",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-01_p053:14:total_europe",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-01_p053",
+      "field": "T.security_transactions_as_reported_by:1940-01_p053:17:total_europe",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-04_p059:42:other_europe",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-04_p059",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-06_p063:38:france",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-06_p063",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-04_p059:53:switzerland",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-04_p059",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-01_p053:06:france",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-01_p053",
+      "field": "T.security_transactions_as_reported_by:1940-01_p053:08:france",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1940-12_p059:sale_domestic_01:france",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1940-12_p059",
+      "field": "T.outstanding_forward_exchange_contracts:1940-12_p059:sale_domestic_01:france",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-04_p058:08:grand_total",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-04_p058",
+      "field": "T.short_term_foreign_liabilities_as:1941-04_p058:08:grand_total",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-03_p056:17:united_kingdom",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-03_p056",
+      "field": "T.short_term_foreign_liabilities_as:1941-03_p056:21:united_kingdom",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1941-10_p092:total_purchase_03:united_kingdom",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1941-10_p092",
+      "field": "T.outstanding_forward_exchange_contracts:1941-10_p092:total_purchase_03:united_kingdom",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1940-02_p028:13:to_unemployment",
+      "stratum": "1939_1942",
+      "family": "receipts_and_expenditures_under_railroad",
+      "page": "1940-02_p028",
+      "field": "T.receipts_and_expenditures_under_railroad:1940-02_p028:13:to_unemployment",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1941-09_p075:total_sale_02:far_east",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1941-09_p075",
+      "field": "T.outstanding_forward_exchange_contracts:1941-09_p075:total_sale_02:far_east",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1940-06_p069:sale_foreign_01:switzerland",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1940-06_p069",
+      "field": "T.outstanding_forward_exchange_contracts:1940-06_p069:sale_foreign_01:switzerland",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-10_p086:50:italy",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-10_p086",
+      "field": "T.security_transactions_as_reported_by:1941-10_p086:53:italy",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-02_p057:54:far_east",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-02_p057",
+      "field": "T.security_transactions_as_reported_by:1940-02_p057:54:far_east",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-04_p055:05:grand_total",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-04_p055",
+      "field": "T.short_term_foreign_liabilities_as:1940-04_p055:05:grand_total",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1941-06_p023:14:to_unemployment",
+      "stratum": "1939_1942",
+      "family": "receipts_and_expenditures_under_railroad",
+      "page": "1941-06_p023",
+      "field": "T.receipts_and_expenditures_under_railroad:1941-06_p023:14:to_unemployment",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-06_p063:38:canada",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-06_p063",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-10_p086:07:italy",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-10_p086",
+      "field": "T.security_transactions_as_reported_by:1941-10_p086:08:italy",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-07_p071:11:france",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-07_p071",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-03_p069:14:all_other",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-03_p069",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-06_p065:12:far_east",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-06_p065",
+      "field": "T.short_term_foreign_liabilities_as:1941-06_p065:12:far_east",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-04_p058:03:italy",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-04_p058",
+      "field": "T.short_term_foreign_liabilities_as:1941-04_p058:03:italy",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-01_p051:31:france",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-01_p051",
+      "field": "T.short_term_foreign_liabilities_as:1940-01_p051:38:france",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-02_p055:29:netherlands",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-02_p055",
+      "field": "T.short_term_foreign_liabilities_as:1940-02_p055:29:netherlands",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-10_p087:04:total_europe",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-10_p087",
+      "field": "T.security_transactions_as_reported_by:1941-10_p087:04:total_europe",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-05_p062:46:germany",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-05_p062",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-08_p065:02:other_europe",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-08_p065",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1941-08_p074:total_sale_04:total_europe",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1941-08_p074",
+      "field": "T.outstanding_forward_exchange_contracts:1941-08_p074:total_sale_04:total_europe",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-06_p065:40:grand_total",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-06_p065",
+      "field": "T.short_term_foreign_liabilities_as:1941-06_p065:40:grand_total",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1940-03_p060:purchase_foreign_02:all_other",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1940-03_p060",
+      "field": "T.outstanding_forward_exchange_contracts:1940-03_p060:purchase_foreign_02:all_other",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-08_p069:17:other_europe",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-08_p069",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-05_p062:27:all_other",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-05_p062",
+      "field": "T.security_transactions_as_reported_by:1941-05_p062:34:all_other",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-05_p062:07:germany",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-05_p062",
+      "field": "T.security_transactions_as_reported_by:1941-05_p062:09:germany",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-04_p059:16:canada",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-04_p059",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1941-10_p092:sale_foreign_03:united_kingdom",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1941-10_p092",
+      "field": "T.outstanding_forward_exchange_contracts:1941-10_p092:sale_foreign_03:united_kingdom",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1940-06_p069:sale_domestic_03:all_other",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1940-06_p069",
+      "field": "T.outstanding_forward_exchange_contracts:1940-06_p069:sale_domestic_03:all_other",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1940-10_p023:12:admin",
+      "stratum": "1939_1942",
+      "family": "receipts_and_expenditures_under_railroad",
+      "page": "1940-10_p023",
+      "field": "T.receipts_and_expenditures_under_railroad:1940-10_p023:12:admin",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-04_p058:37:far_east",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-04_p058",
+      "field": "T.short_term_foreign_liabilities_as:1941-04_p058:37:far_east",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1940-03_p060:purchase_domestic_01:italy",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1940-03_p060",
+      "field": "T.outstanding_forward_exchange_contracts:1940-03_p060:purchase_domestic_01:italy",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-02_p057:52:grand_total",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-02_p057",
+      "field": "T.security_transactions_as_reported_by:1940-02_p057:52:grand_total",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1941-08_p074:sale_foreign_01:germany",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1941-08_p074",
+      "field": "T.outstanding_forward_exchange_contracts:1941-08_p074:sale_foreign_01:germany",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-02_p057:18:total_europe",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-02_p057",
+      "field": "T.security_transactions_as_reported_by:1940-02_p057:18:total_europe",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-01_p053:21:latin_america",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-01_p053",
+      "field": "T.security_transactions_as_reported_by:1940-01_p053:26:latin_america",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-01_p053:39:france",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-01_p053",
+      "field": "T.security_transactions_as_reported_by:1940-01_p053:47:france",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1942-01_p025:09:to_retirement",
+      "stratum": "1939_1942",
+      "family": "receipts_and_expenditures_under_railroad",
+      "page": "1942-01_p025",
+      "field": "T.receipts_and_expenditures_under_railroad:1942-01_p025:09:to_retirement",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-04_p058:12:total_europe",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-04_p058",
+      "field": "T.short_term_foreign_liabilities_as:1941-04_p058:12:total_europe",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1941-04_p068:purchase_foreign_02:germany",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1941-04_p068",
+      "field": "T.outstanding_forward_exchange_contracts:1941-04_p068:purchase_foreign_02:germany",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-01_p053:14:grand_total",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-01_p053",
+      "field": "T.security_transactions_as_reported_by:1940-01_p053:17:grand_total",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-04_p059:23:netherlands",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-04_p059",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-07_p074:33:far_east",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-07_p074",
+      "field": "T.security_transactions_as_reported_by:1941-07_p074:42:far_east",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-01_p053:26:switzerland",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-01_p053",
+      "field": "T.security_transactions_as_reported_by:1940-01_p053:32:switzerland",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-03_p056:26:netherlands",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-03_p056",
+      "field": "T.short_term_foreign_liabilities_as:1941-03_p056:32:netherlands",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-03_p056:09:canada",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-03_p056",
+      "field": "T.short_term_foreign_liabilities_as:1941-03_p056:11:canada",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-06_p065:12:other_europe",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-06_p065",
+      "field": "T.short_term_foreign_liabilities_as:1941-06_p065:12:other_europe",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-02_p055:37:italy",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-02_p055",
+      "field": "T.short_term_foreign_liabilities_as:1940-02_p055:37:italy",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1941-05_p021:01:admin",
+      "stratum": "1939_1942",
+      "family": "receipts_and_expenditures_under_railroad",
+      "page": "1941-05_p021",
+      "field": "T.receipts_and_expenditures_under_railroad:1941-05_p021:01:admin",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-04_p059:24:germany",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-04_p059",
+      "field": "T.security_transactions_as_reported_by:1940-04_p059:36:germany",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-05_p062:44:italy",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-05_p062",
+      "field": "T.security_transactions_as_reported_by:1941-05_p062:54:italy",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-01_p053:25:italy",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-01_p053",
+      "field": "T.security_transactions_as_reported_by:1940-01_p053:30:italy",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-06_p063:44:all_other",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-06_p063",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-06_p065:33:total_europe",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-06_p065",
+      "field": "T.short_term_foreign_liabilities_as:1941-06_p065:33:total_europe",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-06_p063:41:italy",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-06_p063",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1941-02_p058:total_sale_02:netherlands",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1941-02_p058",
+      "field": "T.outstanding_forward_exchange_contracts:1941-02_p058:total_sale_02:netherlands",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-06_p063:58:canada",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-06_p063",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-01_p053:55:italy",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-01_p053",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-10_p086:44:germany",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-10_p086",
+      "field": "T.security_transactions_as_reported_by:1941-10_p086:46:germany",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-04_p059:05:france",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-04_p059",
+      "field": "T.security_transactions_as_reported_by:1940-04_p059:08:france",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-04_p058:12:other_europe",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-04_p058",
+      "field": "T.short_term_foreign_liabilities_as:1941-04_p058:12:other_europe",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-02_p055:02:germany",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-02_p055",
+      "field": "T.short_term_foreign_liabilities_as:1940-02_p055:02:germany",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-02_p057:32:total_europe",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-02_p057",
+      "field": "T.security_transactions_as_reported_by:1940-02_p057:32:total_europe",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-10_p086:29:total_europe",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-10_p086",
+      "field": "T.security_transactions_as_reported_by:1941-10_p086:31:total_europe",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-07_p071:06:far_east",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-07_p071",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-01_p051:06:switzerland",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-01_p051",
+      "field": "T.short_term_foreign_liabilities_as:1940-01_p051:08:switzerland",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1941-02_p058:purchase_foreign_04:germany",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1941-02_p058",
+      "field": "T.outstanding_forward_exchange_contracts:1941-02_p058:purchase_foreign_04:germany",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-04_p058:05:far_east",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-04_p058",
+      "field": "T.short_term_foreign_liabilities_as:1941-04_p058:05:far_east",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-03_p056:17:italy",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-03_p056",
+      "field": "T.short_term_foreign_liabilities_as:1941-03_p056:21:italy",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-07_p074:31:all_other",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-07_p074",
+      "field": "T.security_transactions_as_reported_by:1941-07_p074:40:all_other",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-06_p065:29:total_europe",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-06_p065",
+      "field": "T.short_term_foreign_liabilities_as:1941-06_p065:29:total_europe",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-07_p074:10:grand_total",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-07_p074",
+      "field": "T.security_transactions_as_reported_by:1941-07_p074:14:grand_total",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-02_p057:37:far_east",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-02_p057",
+      "field": "T.security_transactions_as_reported_by:1940-02_p057:37:far_east",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-04_p058:07:latin_america",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-04_p058",
+      "field": "T.short_term_foreign_liabilities_as:1941-04_p058:07:latin_america",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-07_p074:28:canada",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-07_p074",
+      "field": "T.security_transactions_as_reported_by:1941-07_p074:37:canada",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1940-03_p060:total_sale_04:all_other",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1940-03_p060",
+      "field": "T.outstanding_forward_exchange_contracts:1940-03_p060:total_sale_04:all_other",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-10_p086:02:united_kingdom",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-10_p086",
+      "field": "T.security_transactions_as_reported_by:1941-10_p086:02:united_kingdom",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1941-01_p058:purchase_foreign_03:united_kingdom",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1941-01_p058",
+      "field": "T.outstanding_forward_exchange_contracts:1941-01_p058:purchase_foreign_03:united_kingdom",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-01_p053:03:all_other",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-01_p053",
+      "field": "T.security_transactions_as_reported_by:1940-01_p053:04:all_other",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1940-12_p059:purchase_foreign_01:switzerland",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1940-12_p059",
+      "field": "T.outstanding_forward_exchange_contracts:1940-12_p059:purchase_foreign_01:switzerland",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-05_p062:30:canada",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-05_p062",
+      "field": "T.security_transactions_as_reported_by:1941-05_p062:37:canada",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1942-03_p090:total_sale_02:grand_total",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1942-03_p090",
+      "field": "T.outstanding_forward_exchange_contracts:1942-03_p090:total_sale_02:grand_total",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1941-02_p024:09:admin",
+      "stratum": "1939_1942",
+      "family": "receipts_and_expenditures_under_railroad",
+      "page": "1941-02_p024",
+      "field": "T.receipts_and_expenditures_under_railroad:1941-02_p024:09:admin",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-01_p053:28:switzerland",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-01_p053",
+      "field": "T.security_transactions_as_reported_by:1940-01_p053:34:switzerland",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-03_p056:29:total_europe",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-03_p056",
+      "field": "T.short_term_foreign_liabilities_as:1941-03_p056:35:total_europe",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-06_p063:25:other_europe",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-06_p063",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-10_p086:60:germany",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-10_p086",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-02_p057:10:united_kingdom",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-02_p057",
+      "field": "T.security_transactions_as_reported_by:1940-02_p057:10:united_kingdom",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-01_p053:09:far_east",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-01_p053",
+      "field": "T.security_transactions_as_reported_by:1940-01_p053:11:far_east",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-09_p065:44:netherlands",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-09_p065",
+      "field": "T.short_term_foreign_liabilities_as:1941-09_p065:44:netherlands",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-01_p053:26:germany",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-01_p053",
+      "field": "T.security_transactions_as_reported_by:1940-01_p053:32:germany",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-03_p069:40:united_kingdom",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-03_p069",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1941-06_p023:10:total_exp",
+      "stratum": "1939_1942",
+      "family": "receipts_and_expenditures_under_railroad",
+      "page": "1941-06_p023",
+      "field": "T.receipts_and_expenditures_under_railroad:1941-06_p023:10:total_exp",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-08_p065:14:canada",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-08_p065",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-10_p087:03:total_europe",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-10_p087",
+      "field": "T.security_transactions_as_reported_by:1941-10_p087:03:total_europe",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-04_p059:30:grand_total",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-04_p059",
+      "field": "T.security_transactions_as_reported_by:1940-04_p059:45:grand_total",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-10_p059:33:all_other",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-10_p059",
+      "field": "T.short_term_foreign_liabilities_as:1940-10_p059:33:all_other",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-07_p074:04:other_europe",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-07_p074",
+      "field": "T.security_transactions_as_reported_by:1941-07_p074:07:other_europe",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1940-07_p031:02:taxes",
+      "stratum": "1939_1942",
+      "family": "receipts_and_expenditures_under_railroad",
+      "page": "1940-07_p031",
+      "field": "T.receipts_and_expenditures_under_railroad:1940-07_p031:02:taxes",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-10_p086:34:all_other",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-10_p086",
+      "field": "T.security_transactions_as_reported_by:1941-10_p086:36:all_other",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-02_p057:39:italy",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-02_p057",
+      "field": "T.security_transactions_as_reported_by:1940-02_p057:39:italy",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-02_p057:31:latin_america",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-02_p057",
+      "field": "T.security_transactions_as_reported_by:1940-02_p057:31:latin_america",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1941-01_p058:sale_foreign_01:netherlands",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1941-01_p058",
+      "field": "T.outstanding_forward_exchange_contracts:1941-01_p058:sale_foreign_01:netherlands",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-04_p059:08:switzerland",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-04_p059",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-04_p055:13:france",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-04_p055",
+      "field": "T.short_term_foreign_liabilities_as:1940-04_p055:13:france",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-10_p059:19:latin_america",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-10_p059",
+      "field": "T.short_term_foreign_liabilities_as:1940-10_p059:19:latin_america",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-10_p059:22:all_other",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-10_p059",
+      "field": "T.short_term_foreign_liabilities_as:1940-10_p059:22:all_other",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-02_p055:13:latin_america",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-02_p055",
+      "field": "T.short_term_foreign_liabilities_as:1940-02_p055:13:latin_america",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-11_p051:08:latin_america",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-11_p051",
+      "field": "T.short_term_foreign_liabilities_as:1940-11_p051:08:latin_america",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-03_p069:23:all_other",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-03_p069",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1941-10_p092:sale_domestic_03:united_kingdom",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1941-10_p092",
+      "field": "T.outstanding_forward_exchange_contracts:1941-10_p092:sale_domestic_03:united_kingdom",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-04_p059:31:canada",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-04_p059",
+      "field": "T.security_transactions_as_reported_by:1940-04_p059:47:canada",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-06_p065:26:germany",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-06_p065",
+      "field": "T.short_term_foreign_liabilities_as:1941-06_p065:26:germany",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1940-08_p024:09:to_unemployment",
+      "stratum": "1939_1942",
+      "family": "receipts_and_expenditures_under_railroad",
+      "page": "1940-08_p024",
+      "field": "T.receipts_and_expenditures_under_railroad:1940-08_p024:09:to_unemployment",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-11_p051:16:netherlands",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-11_p051",
+      "field": "T.short_term_foreign_liabilities_as:1940-11_p051:16:netherlands",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-10_p059:34:total_europe",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-10_p059",
+      "field": "T.short_term_foreign_liabilities_as:1940-10_p059:34:total_europe",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-07_p074:05:grand_total",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-07_p074",
+      "field": "T.security_transactions_as_reported_by:1941-07_p074:08:grand_total",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-05_p062:20:switzerland",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-05_p062",
+      "field": "T.security_transactions_as_reported_by:1941-05_p062:23:switzerland",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1941-09_p075:sale_domestic_03:france",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1941-09_p075",
+      "field": "T.outstanding_forward_exchange_contracts:1941-09_p075:sale_domestic_03:france",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-03_p056:03:grand_total",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-03_p056",
+      "field": "T.short_term_foreign_liabilities_as:1941-03_p056:04:grand_total",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-09_p065:47:other_europe",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-09_p065",
+      "field": "T.short_term_foreign_liabilities_as:1941-09_p065:47:other_europe",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-04_p055:14:netherlands",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-04_p055",
+      "field": "T.short_term_foreign_liabilities_as:1940-04_p055:14:netherlands",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-06_p063:38:united_kingdom",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-06_p063",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-08_p069:08:latin_america",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-08_p069",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1941-09_p075:purchase_domestic_03:far_east",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1941-09_p075",
+      "field": "T.outstanding_forward_exchange_contracts:1941-09_p075:purchase_domestic_03:far_east",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-10_p086:54:other_europe",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-10_p086",
+      "field": "T.security_transactions_as_reported_by:1941-10_p086:57:other_europe",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-04_p059:48:france",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-04_p059",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-04_p058:18:other_europe",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-04_p058",
+      "field": "T.short_term_foreign_liabilities_as:1941-04_p058:18:other_europe",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1940-06_p069:sale_domestic_04:grand_total",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1940-06_p069",
+      "field": "T.outstanding_forward_exchange_contracts:1940-06_p069:sale_domestic_04:grand_total",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1941-04_p068:purchase_domestic_03:united_kingdom",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1941-04_p068",
+      "field": "T.outstanding_forward_exchange_contracts:1941-04_p068:purchase_domestic_03:united_kingdom",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-05_p062:23:canada",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-05_p062",
+      "field": "T.security_transactions_as_reported_by:1941-05_p062:28:canada",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-11_p051:43:netherlands",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-11_p051",
+      "field": "T.short_term_foreign_liabilities_as:1940-11_p051:43:netherlands",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-03_p069:44:netherlands",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-03_p069",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-10_p087:02:grand_total",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-10_p087",
+      "field": "T.security_transactions_as_reported_by:1941-10_p087:02:grand_total",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-08_p069:18:all_other",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-08_p069",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-01_p053:40:united_kingdom",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-01_p053",
+      "field": "T.security_transactions_as_reported_by:1940-01_p053:48:united_kingdom",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-11_p051:04:netherlands",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-11_p051",
+      "field": "T.short_term_foreign_liabilities_as:1940-11_p051:04:netherlands",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1940-02_p062:total_purchase_03:netherlands",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1940-02_p062",
+      "field": "T.outstanding_forward_exchange_contracts:1940-02_p062:total_purchase_03:netherlands",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-01_p051:45:italy",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-01_p051",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-04_p059:31:france",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-04_p059",
+      "field": "T.security_transactions_as_reported_by:1940-04_p059:47:france",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-10_p059:36:canada",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-10_p059",
+      "field": "T.short_term_foreign_liabilities_as:1940-10_p059:36:canada",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-03_p056:29:all_other",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-03_p056",
+      "field": "T.short_term_foreign_liabilities_as:1941-03_p056:35:all_other",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-05_p062:13:latin_america",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-05_p062",
+      "field": "T.security_transactions_as_reported_by:1941-05_p062:15:latin_america",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1941-08_p074:sale_foreign_02:other_europe",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1941-08_p074",
+      "field": "T.outstanding_forward_exchange_contracts:1941-08_p074:sale_foreign_02:other_europe",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-08_p065:14:united_kingdom",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-08_p065",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1940-07_p031:16:taxes",
+      "stratum": "1939_1942",
+      "family": "receipts_and_expenditures_under_railroad",
+      "page": "1940-07_p031",
+      "field": "T.receipts_and_expenditures_under_railroad:1940-07_p031:16:taxes",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1940-06_p069:purchase_foreign_04:latin_america",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1940-06_p069",
+      "field": "T.outstanding_forward_exchange_contracts:1940-06_p069:purchase_foreign_04:latin_america",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-08_p065:17:italy",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-08_p065",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-01_p051:06:grand_total",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-01_p051",
+      "field": "T.short_term_foreign_liabilities_as:1940-01_p051:08:grand_total",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1941-10_p092:total_sale_01:canada",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1941-10_p092",
+      "field": "T.outstanding_forward_exchange_contracts:1941-10_p092:total_sale_01:canada",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1941-09_p075:sale_domestic_04:netherlands",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1941-09_p075",
+      "field": "T.outstanding_forward_exchange_contracts:1941-09_p075:sale_domestic_04:netherlands",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-06_p063:11:all_other",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-06_p063",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-10_p059:50:germany",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-10_p059",
+      "field": "T.short_term_foreign_liabilities_as:1940-10_p059:50:germany",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-10_p086:41:total_europe",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-10_p086",
+      "field": "T.security_transactions_as_reported_by:1941-10_p086:43:total_europe",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-11_p051:46:all_other",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-11_p051",
+      "field": "T.short_term_foreign_liabilities_as:1940-11_p051:46:all_other",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-03_p056:10:canada",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-03_p056",
+      "field": "T.short_term_foreign_liabilities_as:1941-03_p056:12:canada",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-06_p065:10:italy",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-06_p065",
+      "field": "T.short_term_foreign_liabilities_as:1941-06_p065:10:italy",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-02_p055:04:italy",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-02_p055",
+      "field": "T.short_term_foreign_liabilities_as:1940-02_p055:04:italy",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-11_p051:35:canada",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-11_p051",
+      "field": "T.short_term_foreign_liabilities_as:1940-11_p051:35:canada",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-04_p063:10:switzerland",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-04_p063",
+      "field": "T.security_transactions_as_reported_by:1941-04_p063:13:switzerland",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-07_p074:59:germany",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-07_p074",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-02_p057:56:italy",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-02_p057",
+      "field": "T.security_transactions_as_reported_by:1940-02_p057:56:italy",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-10_p087:06:other_europe",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-10_p087",
+      "field": "T.security_transactions_as_reported_by:1941-10_p087:06:other_europe",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1941-05_p021:11:to_unemployment",
+      "stratum": "1939_1942",
+      "family": "receipts_and_expenditures_under_railroad",
+      "page": "1941-05_p021",
+      "field": "T.receipts_and_expenditures_under_railroad:1941-05_p021:11:to_unemployment",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1941-10_p092:purchase_domestic_02:france",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1941-10_p092",
+      "field": "T.outstanding_forward_exchange_contracts:1941-10_p092:purchase_domestic_02:france",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-01_p051:05:other_europe",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-01_p051",
+      "field": "T.short_term_foreign_liabilities_as:1940-01_p051:06:other_europe",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1941-09_p075:purchase_foreign_03:total_europe",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1941-09_p075",
+      "field": "T.outstanding_forward_exchange_contracts:1941-09_p075:purchase_foreign_03:total_europe",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-07_p071:42:all_other",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-07_p071",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-04_p058:17:all_other",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-04_p058",
+      "field": "T.short_term_foreign_liabilities_as:1941-04_p058:17:all_other",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-01_p053:03:far_east",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-01_p053",
+      "field": "T.security_transactions_as_reported_by:1940-01_p053:04:far_east",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-03_p069:35:grand_total",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-03_p069",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1940-12_p059:purchase_foreign_04:france",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1940-12_p059",
+      "field": "T.outstanding_forward_exchange_contracts:1940-12_p059:purchase_foreign_04:france",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-06_p063:06:switzerland",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-06_p063",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-03_p056:15:far_east",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-03_p056",
+      "field": "T.short_term_foreign_liabilities_as:1941-03_p056:18:far_east",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-02_p057:52:france",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-02_p057",
+      "field": "T.security_transactions_as_reported_by:1940-02_p057:52:france",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-02_p057:25:all_other",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-02_p057",
+      "field": "T.security_transactions_as_reported_by:1940-02_p057:25:all_other",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-06_p065:19:united_kingdom",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-06_p065",
+      "field": "T.short_term_foreign_liabilities_as:1941-06_p065:19:united_kingdom",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-05_p062:36:france",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-05_p062",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-06_p065:41:netherlands",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-06_p065",
+      "field": "T.short_term_foreign_liabilities_as:1941-06_p065:41:netherlands",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-06_p063:01:france",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-06_p063",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-04_p058:34:netherlands",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-04_p058",
+      "field": "T.short_term_foreign_liabilities_as:1941-04_p058:34:netherlands",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-02_p057:55:canada",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-02_p057",
+      "field": "T.security_transactions_as_reported_by:1940-02_p057:55:canada",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-07_p074:39:france",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-07_p074",
+      "field": "T.security_transactions_as_reported_by:1941-07_p074:49:france",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-10_p062:16:latin_america",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-10_p062",
+      "field": "T.security_transactions_as_reported_by:1940-10_p062:16:latin_america",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1941-01_p058:purchase_foreign_04:france",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1941-01_p058",
+      "field": "T.outstanding_forward_exchange_contracts:1941-01_p058:purchase_foreign_04:france",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-10_p062:17:latin_america",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-10_p062",
+      "field": "T.security_transactions_as_reported_by:1940-10_p062:17:latin_america",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-10_p086:33:united_kingdom",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-10_p086",
+      "field": "T.security_transactions_as_reported_by:1941-10_p086:30:united_kingdom",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-04_p058:44:latin_america",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-04_p058",
+      "field": "T.short_term_foreign_liabilities_as:1941-04_p058:44:latin_america",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1940-02_p062:sale_domestic_04:far_east",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1940-02_p062",
+      "field": "T.outstanding_forward_exchange_contracts:1940-02_p062:sale_domestic_04:far_east",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-01_p051:41:total_europe",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-01_p051",
+      "field": "T.short_term_foreign_liabilities_as:1940-01_p051:50:total_europe",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-10_p086:56:switzerland",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-10_p086",
+      "field": "T.security_transactions_as_reported_by:1941-10_p086:59:switzerland",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1941-01_p022:07:to_retirement",
+      "stratum": "1939_1942",
+      "family": "receipts_and_expenditures_under_railroad",
+      "page": "1941-01_p022",
+      "field": "T.receipts_and_expenditures_under_railroad:1941-01_p022:07:to_retirement",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-06_p063:02:far_east",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-06_p063",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-02_p057:29:switzerland",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-02_p057",
+      "field": "T.security_transactions_as_reported_by:1940-02_p057:29:switzerland",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.receipts_and_expenditures_under_railroad:1941-04_p019:08:to_unemployment",
+      "stratum": "1939_1942",
+      "family": "receipts_and_expenditures_under_railroad",
+      "page": "1941-04_p019",
+      "field": "T.receipts_and_expenditures_under_railroad:1941-04_p019:08:to_unemployment",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-10_p087:12:grand_total",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-10_p087",
+      "field": "T.security_transactions_as_reported_by:1941-10_p087:12:grand_total",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-04_p055:26:germany",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-04_p055",
+      "field": "T.short_term_foreign_liabilities_as:1940-04_p055:26:germany",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1941-08_p069:06:germany",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1941-08_p069",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-01_p053:39:canada",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-01_p053",
+      "field": "T.security_transactions_as_reported_by:1940-01_p053:47:canada",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.outstanding_forward_exchange_contracts:1940-11_p060:sale_foreign_05:united_kingdom",
+      "stratum": "1939_1942",
+      "family": "outstanding_forward_exchange_contracts",
+      "page": "1940-11_p060",
+      "field": "T.outstanding_forward_exchange_contracts:1940-11_p060:sale_foreign_05:united_kingdom",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-04_p059:12:total_europe",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-04_p059",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-01_p051:08:netherlands",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-01_p051",
+      "field": "T.short_term_foreign_liabilities_as:1940-01_p051:10:netherlands",
+      "how": "label",
+      "same_position": false
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-10_p062:11:all_other",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-10_p062",
+      "field": "T.security_transactions_as_reported_by:1940-10_p062:11:all_other",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1941-03_p056:48:latin_america",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1941-03_p056",
+      "field": null,
+      "how": "row_not_found"
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-11_p051:08:grand_total",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-11_p051",
+      "field": "T.short_term_foreign_liabilities_as:1940-11_p051:08:grand_total",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.security_transactions_as_reported_by:1940-02_p057:27:all_other",
+      "stratum": "1939_1942",
+      "family": "security_transactions_as_reported_by",
+      "page": "1940-02_p057",
+      "field": "T.security_transactions_as_reported_by:1940-02_p057:27:all_other",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.short_term_foreign_liabilities_as:1940-10_p059:47:total_europe",
+      "stratum": "1939_1942",
+      "family": "short_term_foreign_liabilities_as",
+      "page": "1940-10_p059",
+      "field": "T.short_term_foreign_liabilities_as:1940-10_p059:47:total_europe",
+      "how": "label",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1990-06_p103:egypt:c1",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1990-06_p103",
+      "field": "T.total_claims_by_country:1990-06_p103:egypt:c1",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1993-06_p098:european_regional:c4",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1993-06_p098",
+      "field": "T.total_claims_by_country:1993-06_p098:european_regional:c4",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1988-06_p103:total_other_countries:c4",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1988-06_p103",
+      "field": "T.total_claims_by_country:1988-06_p103:total_other_countries:c4",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1990-06_p103:lebanon:c7",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1990-06_p103",
+      "field": "T.total_claims_by_country:1990-06_p103:lebanon:c7",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1990-06_p103:oil_exporting_asia:c6",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1990-06_p103",
+      "field": "T.total_claims_by_country:1990-06_p103:oil_exporting_asia:c6",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1985-06_p058:netherlands_antilles:c7",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1985-06_p058",
+      "field": "T.total_claims_by_country:1985-06_p058:netherlands_antilles:c7",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1989-06_p099:international:c3",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1989-06_p099",
+      "field": "T.total_claims_by_country:1989-06_p099:international:c3",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1985-06_p058:germany:c6",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1985-06_p058",
+      "field": "T.total_claims_by_country:1985-06_p058:germany:c6",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1989-06_p099:turkey:c7",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1989-06_p099",
+      "field": "T.total_claims_by_country:1989-06_p099:turkey:c7",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1985-06_p058:african_regional:c5",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1985-06_p058",
+      "field": "T.total_claims_by_country:1985-06_p058:african_regional:c5",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1989-06_p099:chile:c5",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1989-06_p099",
+      "field": "T.total_claims_by_country:1989-06_p099:chile:c5",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1993-06_p097:netherlands_antilles:c6",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1993-06_p097",
+      "field": "T.total_claims_by_country:1993-06_p097:netherlands_antilles:c6",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1991-06_p107:oil_exporting_asia:c5",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1991-06_p107",
+      "field": "T.total_claims_by_country:1991-06_p107:oil_exporting_asia:c5",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1994-06_p099:italy:c1",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1994-06_p099",
+      "field": "T.total_claims_by_country:1994-06_p099:italy:c1",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1987-06_p072:international:c1",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1987-06_p072",
+      "field": "T.total_claims_by_country:1987-06_p072:international:c1",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1987-06_p072:portugal:c8",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1987-06_p072",
+      "field": "T.total_claims_by_country:1987-06_p072:portugal:c8",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1989-06_p099:korea:c3",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1989-06_p099",
+      "field": "T.total_claims_by_country:1989-06_p099:korea:c3",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1993-06_p098:indonesia:c6",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1993-06_p098",
+      "field": "T.total_claims_by_country:1993-06_p098:indonesia:c6",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1987-06_p072:greece:c2",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1987-06_p072",
+      "field": "T.total_claims_by_country:1987-06_p072:greece:c2",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1991-06_p107:romania:c6",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1991-06_p107",
+      "field": "T.total_claims_by_country:1991-06_p107:romania:c6",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1988-06_p103:panama:c8",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1988-06_p103",
+      "field": "T.total_claims_by_country:1988-06_p103:panama:c8",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1987-06_p072:mexico:c7",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1987-06_p072",
+      "field": "T.total_claims_by_country:1987-06_p072:mexico:c7",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1985-06_p058:cuba:c5",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1985-06_p058",
+      "field": "T.total_claims_by_country:1985-06_p058:cuba:c5",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1994-06_p099:spain:c6",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1994-06_p099",
+      "field": "T.total_claims_by_country:1994-06_p099:spain:c6",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1985-06_p058:thailand:c4",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1985-06_p058",
+      "field": "T.total_claims_by_country:1985-06_p058:thailand:c4",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1994-06_p099:trinidad_tobago:c6",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1994-06_p099",
+      "field": "T.total_claims_by_country:1994-06_p099:trinidad_tobago:c6",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1993-06_p097:czechoslovakia:c7",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1993-06_p097",
+      "field": "T.total_claims_by_country:1993-06_p097:czechoslovakia:c7",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1993-06_p098:european_regional:c5",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1993-06_p098",
+      "field": "T.total_claims_by_country:1993-06_p098:european_regional:c5",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1991-06_p107:asian_regional:c1",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1991-06_p107",
+      "field": "T.total_claims_by_country:1991-06_p107:asian_regional:c1",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1987-06_p072:denmark:c2",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1987-06_p072",
+      "field": "T.total_claims_by_country:1987-06_p072:denmark:c2",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1991-06_p107:egypt:c7",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1991-06_p107",
+      "field": "T.total_claims_by_country:1991-06_p107:egypt:c7",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1986-06_p060:ghana:c2",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1986-06_p060",
+      "field": "T.total_claims_by_country:1986-06_p060:ghana:c2",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1987-06_p072:australia:c4",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1987-06_p072",
+      "field": "T.total_claims_by_country:1987-06_p072:australia:c4",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1990-06_p103:switzerland:c3",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1990-06_p103",
+      "field": "T.total_claims_by_country:1990-06_p103:switzerland:c3",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1991-06_p107:finland:c5",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1991-06_p107",
+      "field": "T.total_claims_by_country:1991-06_p107:finland:c5",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1987-06_p072:korea:c5",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1987-06_p072",
+      "field": "T.total_claims_by_country:1987-06_p072:korea:c5",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1988-06_p103:canada:c8",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1988-06_p103",
+      "field": "T.total_claims_by_country:1988-06_p103:canada:c8",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1990-06_p103:international:c1",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1990-06_p103",
+      "field": "T.total_claims_by_country:1990-06_p103:international:c1",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1991-06_p107:european_regional:c1",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1991-06_p107",
+      "field": "T.total_claims_by_country:1991-06_p107:european_regional:c1",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1988-06_p103:australia:c2",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1988-06_p103",
+      "field": "T.total_claims_by_country:1988-06_p103:australia:c2",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1986-06_p060:pakistan:c7",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1986-06_p060",
+      "field": "T.total_claims_by_country:1986-06_p060:pakistan:c7",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1985-06_p058:total_africa:c3",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1985-06_p058",
+      "field": "T.total_claims_by_country:1985-06_p058:total_africa:c3",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1987-06_p072:chile:c7",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1987-06_p072",
+      "field": "T.total_claims_by_country:1987-06_p072:chile:c7",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1986-06_p060:international_hdr:c3",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1986-06_p060",
+      "field": "T.total_claims_by_country:1986-06_p060:international_hdr:c3",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1991-06_p107:spain:c1",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1991-06_p107",
+      "field": "T.total_claims_by_country:1991-06_p107:spain:c1",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1985-06_p058:netherlands:c1",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1985-06_p058",
+      "field": "T.total_claims_by_country:1985-06_p058:netherlands:c1",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1987-06_p072:india:c1",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1987-06_p072",
+      "field": "T.total_claims_by_country:1987-06_p072:india:c1",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1990-06_p103:british_west_indies:c6",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1990-06_p103",
+      "field": "T.total_claims_by_country:1990-06_p103:british_west_indies:c6",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1993-06_p097:bulgaria:c4",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1993-06_p097",
+      "field": "T.total_claims_by_country:1993-06_p097:bulgaria:c4",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1993-06_p098:pakistan:c7",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1993-06_p098",
+      "field": "T.total_claims_by_country:1993-06_p098:pakistan:c7",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1986-06_p060:singapore:c4",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1986-06_p060",
+      "field": "T.total_claims_by_country:1986-06_p060:singapore:c4",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1989-06_p099:british_west_indies:c6",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1989-06_p099",
+      "field": "T.total_claims_by_country:1989-06_p099:british_west_indies:c6",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1990-06_p103:uruguay:c1",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1990-06_p103",
+      "field": "T.total_claims_by_country:1990-06_p103:uruguay:c1",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1987-06_p072:uruguay:c8",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1987-06_p072",
+      "field": "T.total_claims_by_country:1987-06_p072:uruguay:c8",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1993-06_p098:total_asia:c2",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1993-06_p098",
+      "field": "T.total_claims_by_country:1993-06_p098:total_asia:c2",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1991-06_p107:thailand:c4",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1991-06_p107",
+      "field": "T.total_claims_by_country:1991-06_p107:thailand:c4",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1985-06_p058:german_democratic_republic:c3",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1985-06_p058",
+      "field": "T.total_claims_by_country:1985-06_p058:german_democratic_republic:c3",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1985-06_p058:africa_hdr:c5",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1985-06_p058",
+      "field": "T.total_claims_by_country:1985-06_p058:africa_hdr:c5",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1993-06_p098:china_hdr:c1",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1993-06_p098",
+      "field": "T.total_claims_by_country:1993-06_p098:china_hdr:c1",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1988-06_p103:zaire:c8",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1988-06_p103",
+      "field": "T.total_claims_by_country:1988-06_p103:zaire:c8",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1986-06_p060:mexico:c2",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1986-06_p060",
+      "field": "T.total_claims_by_country:1986-06_p060:mexico:c2",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1990-06_p103:british_west_indies:c8",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1990-06_p103",
+      "field": "T.total_claims_by_country:1990-06_p103:british_west_indies:c8",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1991-06_p107:china_hdr:c1",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1991-06_p107",
+      "field": "T.total_claims_by_country:1991-06_p107:china_hdr:c1",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1987-06_p072:czechoslovakia:c8",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1987-06_p072",
+      "field": "T.total_claims_by_country:1987-06_p072:czechoslovakia:c8",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1986-06_p060:total_foreign_countries:c2",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1986-06_p060",
+      "field": "T.total_claims_by_country:1986-06_p060:total_foreign_countries:c2",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1990-06_p103:yugoslavia:c7",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1990-06_p103",
+      "field": "T.total_claims_by_country:1990-06_p103:yugoslavia:c7",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1987-06_p072:philippines:c6",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1987-06_p072",
+      "field": "T.total_claims_by_country:1987-06_p072:philippines:c6",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1988-06_p103:south_africa:c5",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1988-06_p103",
+      "field": "T.total_claims_by_country:1988-06_p103:south_africa:c5",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1987-06_p072:other_europe:c5",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1987-06_p072",
+      "field": "T.total_claims_by_country:1987-06_p072:other_europe:c5",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1987-06_p072:african_regional:c6",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1987-06_p072",
+      "field": "T.total_claims_by_country:1987-06_p072:african_regional:c6",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1988-06_p103:total_foreign_countries:c1",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1988-06_p103",
+      "field": "T.total_claims_by_country:1988-06_p103:total_foreign_countries:c1",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1990-06_p103:bermuda:c7",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1990-06_p103",
+      "field": "T.total_claims_by_country:1990-06_p103:bermuda:c7",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1993-06_p097:total_latin_america_caribbean:c8",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1993-06_p097",
+      "field": "T.total_claims_by_country:1993-06_p097:total_latin_america_caribbean:c8",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1991-06_p107:chile:c6",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1991-06_p107",
+      "field": "T.total_claims_by_country:1991-06_p107:chile:c6",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1989-06_p099:all_other:c1",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1989-06_p099",
+      "field": "T.total_claims_by_country:1989-06_p099:all_other:c1",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1990-06_p103:hungary:c6",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1990-06_p103",
+      "field": "T.total_claims_by_country:1990-06_p103:hungary:c6",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1993-06_p098:korea:c7",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1993-06_p098",
+      "field": "T.total_claims_by_country:1993-06_p098:korea:c7",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1985-06_p058:international:c4",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1985-06_p058",
+      "field": "T.total_claims_by_country:1985-06_p058:international:c4",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1993-06_p097:portugal:c8",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1993-06_p097",
+      "field": "T.total_claims_by_country:1993-06_p097:portugal:c8",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1993-06_p098:pakistan:c1",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1993-06_p098",
+      "field": "T.total_claims_by_country:1993-06_p098:pakistan:c1",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1991-06_p107:uruguay:c3",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1991-06_p107",
+      "field": "T.total_claims_by_country:1991-06_p107:uruguay:c3",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1994-06_p099:chile:c8",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1994-06_p099",
+      "field": "T.total_claims_by_country:1994-06_p099:chile:c8",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1991-06_p107:middle_eastern_regional:c8",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1991-06_p107",
+      "field": "T.total_claims_by_country:1991-06_p107:middle_eastern_regional:c8",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1987-06_p072:guatemala:c6",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1987-06_p072",
+      "field": "T.total_claims_by_country:1987-06_p072:guatemala:c6",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1991-06_p107:guatemala:c8",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1991-06_p107",
+      "field": "T.total_claims_by_country:1991-06_p107:guatemala:c8",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1985-06_p058:other_latin_america_caribbean:c1",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1985-06_p058",
+      "field": "T.total_claims_by_country:1985-06_p058:other_latin_america_caribbean:c1",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1990-06_p103:denmark:c8",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1990-06_p103",
+      "field": "T.total_claims_by_country:1990-06_p103:denmark:c8",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1991-06_p107:bermuda:c4",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1991-06_p107",
+      "field": "T.total_claims_by_country:1991-06_p107:bermuda:c4",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1988-06_p103:jamaica:c3",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1988-06_p103",
+      "field": "T.total_claims_by_country:1988-06_p103:jamaica:c3",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1990-06_p103:netherlands:c8",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1990-06_p103",
+      "field": "T.total_claims_by_country:1990-06_p103:netherlands:c8",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1988-06_p103:israel:c5",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1988-06_p103",
+      "field": "T.total_claims_by_country:1988-06_p103:israel:c5",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1991-06_p107:germany:c4",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1991-06_p107",
+      "field": "T.total_claims_by_country:1991-06_p107:germany:c4",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1988-06_p103:czechoslovakia:c7",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1988-06_p103",
+      "field": "T.total_claims_by_country:1988-06_p103:czechoslovakia:c7",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1985-06_p058:poland:c3",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1985-06_p058",
+      "field": "T.total_claims_by_country:1985-06_p058:poland:c3",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1988-06_p103:netherlands_antilles:c6",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1988-06_p103",
+      "field": "T.total_claims_by_country:1988-06_p103:netherlands_antilles:c6",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1991-06_p107:other_asia:c2",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1991-06_p107",
+      "field": "T.total_claims_by_country:1991-06_p107:other_asia:c2",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1986-06_p060:germany:c4",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1986-06_p060",
+      "field": "T.total_claims_by_country:1986-06_p060:germany:c4",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1989-06_p099:greece:c6",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1989-06_p099",
+      "field": "T.total_claims_by_country:1989-06_p099:greece:c6",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1994-06_p099:bahamas:c5",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1994-06_p099",
+      "field": "T.total_claims_by_country:1994-06_p099:bahamas:c5",
+      "how": "fixed_row",
+      "same_position": true
+    },
+    {
+      "cell": "T.total_claims_by_country:1989-06_p099:canada:c2",
+      "stratum": "total_claims",
+      "family": "total_claims_by_country",
+      "page": "1989-06_p099",
+      "field": "T.total_claims_by_country:1989-06_p099:canada:c2",
+      "how": "fixed_row",
+      "same_position": true
+    }
+  ]
+}
