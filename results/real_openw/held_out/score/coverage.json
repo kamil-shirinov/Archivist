@@ -1,0 +1,108 @@
+{
+  "note": "Drawn cells Open's read did not contain, beside every rate; reporting only, no rate changed.",
+  "score_sha256": "a95582629c9e96ab07b5533c07edf117a8e8c535df4238b73273a154e7e19687",
+  "by_variant": {
+    "left_out/as_run": {
+      "overall": {
+        "cells": 3,
+        "of": 162,
+        "by_why": {
+          "row_not_found": 3
+        }
+      },
+      "by_stratum": {
+        "1939_1942": {
+          "cells": 3,
+          "of": 62,
+          "by_why": {
+            "row_not_found": 3
+          }
+        },
+        "total_claims": {
+          "cells": 0,
+          "of": 100,
+          "by_why": {}
+        }
+      }
+    },
+    "left_out/failed_to_review": {
+      "overall": {
+        "cells": 3,
+        "of": 162,
+        "by_why": {
+          "row_not_found": 3
+        }
+      },
+      "by_stratum": {
+        "1939_1942": {
+          "cells": 3,
+          "of": 62,
+          "by_why": {
+            "row_not_found": 3
+          }
+        },
+        "total_claims": {
+          "cells": 0,
+          "of": 100,
+          "by_why": {}
+        }
+      }
+    },
+    "kept/as_run": {
+      "overall": {
+        "cells": 62,
+        "of": 400,
+        "by_why": {
+          "row_not_found": 62
+        }
+      },
+      "by_stratum": {
+        "1939_1942": {
+          "cells": 62,
+          "of": 300,
+          "by_why": {
+            "row_not_found": 62
+          }
+        },
+        "total_claims": {
+          "cells": 0,
+          "of": 100,
+          "by_why": {}
+        }
+      }
+    },
+    "kept/failed_to_review": {
+      "overall": {
+        "cells": 62,
+        "of": 400,
+        "by_why": {
+          "row_not_found": 62
+        }
+      },
+      "by_stratum": {
+        "1939_1942": {
+          "cells": 62,
+          "of": 300,
+          "by_why": {
+            "row_not_found": 62
+          }
+        },
+        "total_claims": {
+          "cells": 0,
+          "of": 100,
+          "by_why": {}
+        }
+      }
+    }
+  },
+  "o1": {
+    "variant": "kept/as_run",
+    "not_in_read": {
+      "cells": 62,
+      "of": 400,
+      "by_why": {
+        "row_not_found": 62
+      }
+    }
+  }
+}
