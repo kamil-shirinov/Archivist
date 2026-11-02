@@ -322,6 +322,20 @@ export const shown = (f) => (f && S.answers[f.field_id] ? S.answers[f.field_id].
 
 // --- words about the run ----------------------------------------------------------------------------
 
+// The seven steps, in the order the pipeline takes them: key, name, and which role of the run does it
+// (null: plain code). Watch it work plays them; the Where Archivist runs panel names them. The two
+// reads (read and blind) are the steps a different model can do.
+export const STEPS = [
+  ["recognise", "Recognise the page", "extractor"],
+  ["read", "Read and cite", "extractor"],
+  ["snap", "Snap to the ink", null],
+  ["sam", "Look for covered ink", "segmenter"],
+  ["blind", "Read again, blind", "rereader"],
+  ["rules", "Check the rules", null],
+  ["decide", "Decide", null],
+];
+export const READS = ["read", "blind"];
+
 export function runWords() {
   const r = S.bundle.run;
   const models = r.models.map((m) => m.name);

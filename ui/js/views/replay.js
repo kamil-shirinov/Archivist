@@ -2,22 +2,13 @@
 // read and cited, snapped to the ink, checked for covered ink, read again blind, checked against the
 // bookkeeping rules, decided. Nothing is called; every step is the run's own record (the bundle).
 
-import { S, stc, statusOf, fieldLabel, rulesOf, reasonSentence, docStats } from "../store.js";
+import { S, STEPS, stc, statusOf, fieldLabel, rulesOf, reasonSentence, docStats } from "../store.js";
 import { PageView } from "../pageview.js";
 import { noAnim } from "../wire.js";
 import { $, esc, int, reduced, frame } from "../util.js";
 import { runFacts } from "./overview.js";
 
 const WDUR = { read: 420, snap: 300, sam: 170, blind: 420, rules: 360, decide: 320 };
-const STEPS = [
-  ["recognise", "Recognise the page", "extractor"],
-  ["read", "Read and cite", "extractor"],
-  ["snap", "Snap to the ink", null],
-  ["sam", "Look for covered ink", "segmenter"],
-  ["blind", "Read again, blind", "rereader"],
-  ["rules", "Check the rules", null],
-  ["decide", "Decide", null],
-];
 const modelOf = (role) => (role ? S.bundle.run.models.find((m) => m.role === role)?.name || "A model" : "Plain code");
 const eOf = (role) => (role === "segmenter" ? "sam" : role ? "spark" : "code");
 

@@ -8,6 +8,7 @@ where no Chromium or Chrome can be found (set ARCHIVIST_BROWSER to name one).
 """
 
 import json
+import re
 from pathlib import Path
 
 import pytest
@@ -435,15 +436,26 @@ def test_nothing_is_drawn_on_a_page_that_the_bundle_does_not_hold(tab, site):
 
 
 def test_the_run_switch_changes_the_arm_and_keeps_the_page(tab, site):
+    """The Hosted / Open weights switch is now the chip "Where Archivist runs" and its panel: Meta’s API
+    (the default) or your own hardware (Muse Spark Open). Choosing one opens the same page on that run."""
     load(tab, site, f"#doc-{CARD}")
     settle(tab, VIEWS["document"][1])
-    assert tab.eval(
-        "[...document.querySelectorAll('#runbar .runswitch button')].map(b => b.textContent)"
-    ) == [
-        "Hosted",
-        "Open weights",
+    assert tab.eval("document.querySelector('#runbar .runswitch')") is None, "the old switch is gone"
+    chip = tab.eval("document.getElementById('where').textContent")
+    assert "Where Archivist runs" in chip and "Meta’s API" in chip, chip
+    assert tab.eval("document.getElementById('where').getAttribute('aria-expanded')") == "false"
+    tab.eval("document.getElementById('where').click()")
+    tab.wait_for("!document.getElementById('where-panel').hidden")
+    assert tab.eval("document.getElementById('where').getAttribute('aria-expanded')") == "true"
+    options = tab.eval(
+        "[...document.querySelectorAll('#where-panel .wp-opt')].map(b => "
+        "[b.dataset.where, b.querySelector('b').textContent, b.getAttribute('aria-pressed'), b.disabled])"
+    )
+    assert options == [
+        ["api", "Meta’s API", "true", False],
+        ["own", "Your own hardware", "false", False],
     ]
-    tab.eval("document.querySelector('#runbar [data-run=\"test-archivist-B\"]').click()")
+    tab.eval("document.querySelector('#where-panel [data-where=\"own\"]').click()")
     tab.wait_for(
         "location.search.includes('test-archivist-B') && document.documentElement.dataset.ready === '1'",
         60,
@@ -452,13 +464,309 @@ def test_the_run_switch_changes_the_arm_and_keeps_the_page(tab, site):
     assert tab.eval("location.hash") == f"#doc-{CARD}"
     bar = tab.eval("document.getElementById('runbar').textContent")
     assert "test-archivist-B" in bar and "Muse Spark Open" in bar and "open-weight" in bar
+    assert "Your own hardware" in tab.eval("document.getElementById('where').textContent")
+    tab.eval("document.getElementById('where').click()")
+    tab.wait_for("!document.getElementById('where-panel').hidden")
     assert (
-        tab.eval(
-            "document.querySelector('#runbar [data-run=\"test-archivist-B\"]').getAttribute('aria-pressed')"
-        )
+        tab.eval("document.querySelector('#where-panel [data-where=\"own\"]').getAttribute('aria-pressed')")
         == "true"
     )
+    tab.eval("document.querySelector('#where-panel [data-where=\"api\"]').click()")  # and back
+    tab.wait_for(
+        "!location.search.includes('test-archivist-B') || location.search.includes('test-archivist-A')", 60
+    )
+    tab.wait_for("document.documentElement.dataset.ready === '1'", 60)
+    assert "Meta’s API" in tab.eval("document.getElementById('where').textContent")
     assert tab.errors == []
+
+
+def test_the_panel_says_the_seven_steps_are_the_same_and_only_the_two_reads_change(tab, site):
+    load(tab, site, "#overview")
+    settle(tab, VIEWS["overview"][1])
+    tab.eval("document.getElementById('where').click()")
+    tab.wait_for("!document.getElementById('where-panel').hidden")
+    steps = tab.eval("[...document.querySelectorAll('#where-panel .wp-steps li')].map(l => l.textContent)")
+    assert steps == [
+        "1Recognise the page",
+        "2Read and cite",
+        "3Snap to the ink",
+        "4Look for covered ink",
+        "5Read again, blind",
+        "6Check the rules",
+        "7Decide",
+    ]
+    moves = tab.eval("[...document.querySelectorAll('#where-panel .wp-steps li')].map(l => l.classList.contains('moves'))")
+    assert moves == [False, True, False, False, True, False, False], "the two reads are the only steps that move"
+    text = tab.eval("document.getElementById('where-panel').textContent")
+    assert "The same seven steps either way" in text and "steps 2 and 5" in text
+    assert "Default" in text and "Muse Spark Open" in text
+    # what the recording used is read from the bundle, and the panel's own caution agrees with the
+    # open-weights run it points to: its reads went through Baseten, SAM 3.1 stayed on Meta’s API
+    assert "This recording, test-archivist-A: Muse Spark 1.3 and SAM 3.1 on Meta’s API." in text
+    b = json.loads((BUNDLES / "test-archivist-B" / "bundle.json").read_text("utf-8"))["run"]["models"]
+    assert {m["role"]: m["backend"] for m in b} == {"extractor": "baseten", "rereader": "baseten", "segmenter": "meta"}
+    assert "the recording ran Muse Spark Open on Baseten" in text
+    assert "no measured run has kept a page on a bank’s own machines" in text
+    assert "SAM 3.1 still runs on Meta’s API" in text
+    # on the open-weights run the same line is read from its own bundle
+    load(tab, site, "?run=test-archivist-B#overview")
+    settle(tab, VIEWS["overview"][1])
+    tab.eval("document.getElementById('where').click()")
+    tab.wait_for("!document.getElementById('where-panel').hidden")
+    assert (
+        "This recording, test-archivist-B: Muse Spark Open on Baseten; SAM 3.1 on Meta’s API."
+        in tab.eval("document.getElementById('where-panel').textContent")
+    )
+    assert tab.errors == []
+
+
+def test_a_collection_with_one_run_offers_only_that_way_of_running(tab, site):
+    load(tab, site, f"{DEV}#overview")
+    settle(tab, VIEWS["overview"][1])
+    tab.eval("document.getElementById('where').click()")
+    tab.wait_for("!document.getElementById('where-panel').hidden")
+    own = "document.querySelector('#where-panel [data-where=\"own\"]')"
+    assert tab.eval(f"{own}.disabled") is True
+    assert "No recording of these pages on Muse Spark Open." in tab.eval(f"{own}.textContent")
+    assert tab.eval("document.querySelector('#where-panel [data-where=\"api\"]').getAttribute('aria-pressed')") == "true"
+    tab.eval(f"{own}.click()")
+    tab.pump(0.3)
+    assert tab.eval("location.search") == DEV, "a way of running nobody recorded is not a link"
+    assert tab.errors == []
+
+
+@pytest.mark.parametrize("size", SIZES)
+def test_the_panel_stays_inside_the_window_and_closes_on_escape_a_click_elsewhere_or_another_menu(tab, site, size):
+    load(tab, site, "#overview", size)
+    settle(tab, VIEWS["overview"][1])
+    shown = "!document.getElementById('where-panel').hidden"
+    tab.eval("document.getElementById('where').click()")
+    tab.wait_for(shown)
+    box = tab.eval(
+        "(() => { const r = document.getElementById('where-panel').getBoundingClientRect(); "
+        "return [r.left, r.top, r.right, innerWidth]; })()"
+    )
+    assert box[0] >= 0 and box[2] <= box[3] and box[1] >= 0, box
+    assert tab.eval("document.activeElement.className").startswith("wp-opt"), "focus moves into the panel"
+    tab.eval("window.dispatchEvent(new KeyboardEvent('keydown', {key: 'Escape', bubbles: true}))")
+    assert tab.eval("document.getElementById('where-panel').hidden")
+    assert tab.eval("document.activeElement.id") == "where", "and goes back to the chip"
+    assert tab.eval("document.getElementById('where').getAttribute('aria-expanded')") == "false"
+    tab.eval("document.getElementById('where').click()")
+    tab.wait_for(shown)
+    tab.eval("document.querySelector('main h1').dispatchEvent(new MouseEvent('click', {bubbles: true}))")
+    assert tab.eval("document.getElementById('where-panel').hidden"), "a click elsewhere closes it"
+    # one at a time: the collection menu closes it, and it closes the collection menu
+    tab.eval("document.getElementById('where').click()")
+    tab.wait_for(shown)
+    tab.eval("document.getElementById('coll').click()")
+    tab.wait_for("!document.getElementById('coll-menu').hidden")
+    assert tab.eval("document.getElementById('where-panel').hidden")
+    tab.eval("document.getElementById('where').click()")
+    tab.wait_for(shown)
+    assert tab.eval("document.getElementById('coll-menu').hidden")
+    # and the palette closes it
+    tab.eval("window.dispatchEvent(new KeyboardEvent('keydown', {key: 'k', ctrlKey: true, bubbles: true}))")
+    tab.wait_for("!document.getElementById('pal').hidden")
+    assert tab.eval("document.getElementById('where-panel').hidden")
+    assert tab.errors == []
+
+
+# --- glass (ui/css/glass.css) ---------------------------------------------------------------------------
+# Glass is on the top bar and on what floats above the page, and never on content, so a change of view
+# has nothing to blur behind it. Animations touch only opacity and movement, never blur, and none run
+# when the visitor asks for reduced motion.
+
+FLOATING = ".top, .pal, .coll-menu, .where-panel, .toast"
+
+
+def alpha(color):
+    """The alpha of a computed colour: rgb(…), rgba(…) or color(srgb … / a)."""
+    found = re.search(r"/\s*([0-9.]+)\s*\)$", color) or re.search(r"rgba\([^)]*,\s*([0-9.]+)\)$", color)
+    return float(found.group(1)) if found else 1.0
+
+
+@pytest.mark.parametrize("theme", THEMES)
+def test_the_top_bar_and_what_floats_are_translucent_and_blurred(tab, site, theme):
+    load(tab, site, "#overview", theme=theme)
+    settle(tab, VIEWS["overview"][1])
+    found = tab.eval(
+        f"[...document.querySelectorAll('{FLOATING}')].map(e => [e.className, getComputedStyle(e).backdropFilter, "
+        "getComputedStyle(e).backgroundColor])"
+    )
+    assert {c.split()[0] for c, *_ in found} == {"top", "pal", "coll-menu", "where-panel", "toast"}, found
+    for name, blur, color in found:
+        assert "blur(" in blur, (name, blur)
+        assert 0.4 < alpha(color) < 1, (name, color)
+    # the scrim behind the palette is plain: a blurred scrim would leave the palette nothing sharp to blur
+    assert tab.eval("getComputedStyle(document.getElementById('pal')).backdropFilter") == "none"
+
+
+@pytest.mark.parametrize("view", [k for k in VIEWS if not k.startswith("development-")])
+def test_no_content_is_blurred_and_cards_are_solid_or_a_touch_translucent(tab, site, view):
+    hash_, ready = VIEWS[view]
+    load(tab, site, hash_)
+    settle(tab, ready)
+    blurred = tab.eval(
+        """[...document.querySelectorAll('main, main *, .side, .side *, .runbar, .runbar *')].filter(e => {
+          const s = getComputedStyle(e);
+          return s.backdropFilter !== 'none' || s.filter !== 'none';
+        }).map(e => e.id || e.className)"""
+    )
+    assert blurred == [], blurred
+    cards = tab.eval(
+        "[...document.querySelectorAll('main .panel, main .kpis')].map(e => getComputedStyle(e).backgroundColor)"
+    )
+    assert cards, "every view has cards"
+    # solid, or a touch translucent; the dashed placeholder for a new type is the v7 design's transparent one
+    assert all(alpha(c) == 0 or alpha(c) >= 0.9 for c in cards), cards
+
+
+def test_the_wash_behind_the_page_is_still_and_takes_no_clicks(tab, site):
+    load(tab, site, "#overview", still=False)
+    settle(tab, VIEWS["overview"][1])
+    wash = tab.eval(
+        "(() => { const s = getComputedStyle(document.body, '::after'); "
+        "return [s.position, s.pointerEvents, s.zIndex, s.animationName, s.backgroundImage.split('(')[0]]; })()"
+    )
+    assert wash == ["fixed", "none", "-1", "none", "radial-gradient"], wash
+    assert tab.eval("document.getAnimations().filter(a => a.effect && a.effect.target === document.body).length") == 0
+    assert tab.eval("getComputedStyle(document.body).backgroundColor") == "rgb(246, 246, 243)", "the page colour is unchanged"
+
+
+def open_everything_that_floats(tab):
+    """Open the palette, the collection menu, the panel and the toast, one after another."""
+    tab.eval("window.dispatchEvent(new KeyboardEvent('keydown', {key: 'k', ctrlKey: true, bubbles: true}))")
+    tab.wait_for("!document.getElementById('pal').hidden")
+    tab.eval("document.getElementById('pal').hidden = true")
+    tab.eval("document.getElementById('coll').click()")
+    tab.wait_for("!document.getElementById('coll-menu').hidden")
+    tab.eval("document.getElementById('where').click()")
+    tab.wait_for("!document.getElementById('where-panel').hidden")
+    tab.eval("document.getElementById('add-doc').click()")
+    tab.pump(0.05)
+
+
+def test_floating_things_animate_only_opacity_and_movement(tab, site):
+    load(tab, site, "#documents", still=False)
+    settle(tab, VIEWS["documents"][1])
+    tab.eval("window.dispatchEvent(new KeyboardEvent('keydown', {key: 'k', ctrlKey: true, bubbles: true}))")
+    tab.wait_for("!document.getElementById('pal').hidden")
+    started = tab.eval(
+        """document.getAnimations().filter(a => a.effect && a.effect.target && a.effect.target.closest('.pal-wrap'))
+             .map(a => [a.animationName, a.effect.pseudoElement, a.effect.getKeyframes().flatMap(k => Object.keys(k))])"""
+    )
+    assert started and {n for n, *_ in started} == {"scrim-in", "float-in"}, started
+    props = {p for *_, keys in started for p in keys} - {"offset", "easing", "composite", "computedOffset"}
+    assert props == {"opacity", "transform"}, props
+    tab.eval("document.getElementById('pal').hidden = true")
+    tab.eval("document.getElementById('coll').click()")
+    tab.eval("document.getElementById('where').click()")
+    tab.eval("document.getElementById('add-doc').click()")
+    tab.pump(0.05)
+    moving = tab.eval(
+        """document.getAnimations().filter(a => a.effect && a.effect.target &&
+             a.effect.target.closest('.pal-wrap, .coll-menu, .where-panel, #toast'))
+           .map(a => a.transitionProperty || a.animationName)"""
+    )
+    assert moving, "the menus and the toast came in with an animation or a transition"
+    assert set(moving) <= {"float-in", "scrim-in", "opacity", "transform"}, moving
+
+
+def test_nothing_above_a_blurred_surface_is_a_backdrop_root(tab, site):
+    """A parent with an opacity animation (or a filter, a mask, will-change...) is a backdrop root: the
+    blur inside it would see only that parent, not the page. This is how the palette once blurred nothing."""
+    load(tab, site, "#documents", still=False)
+    settle(tab, VIEWS["documents"][1])
+    tab.eval("window.dispatchEvent(new KeyboardEvent('keydown', {key: 'k', ctrlKey: true, bubbles: true}))")
+    tab.wait_for("!document.getElementById('pal').hidden")
+    tab.eval("document.getElementById('coll').click()")
+    tab.eval("document.getElementById('where').click()")
+    tab.wait_for("!document.getElementById('where-panel').hidden")
+    tab.pump(1.0)  # the entrances are over: what is left is what stays
+    roots = tab.eval(
+        """(() => {
+          const out = [];
+          for (const e of document.querySelectorAll('.top, .pal, .coll-menu, .where-panel, .toast')) {
+            for (let a = e.parentElement; a; a = a.parentElement) {
+              const s = getComputedStyle(a);
+              const why = [];
+              if (s.opacity !== '1') why.push('opacity ' + s.opacity);
+              if (s.filter !== 'none') why.push('filter');
+              if (s.backdropFilter !== 'none') why.push('backdrop-filter');
+              if (s.animationName !== 'none') why.push('animation ' + s.animationName);
+              if (/opacity|filter|transform/.test(s.willChange)) why.push('will-change ' + s.willChange);
+              if (s.mixBlendMode !== 'normal') why.push('mix-blend-mode');
+              if (s.clipPath !== 'none') why.push('clip-path');
+              if (s.maskImage !== 'none') why.push('mask');
+              if (why.length) out.push([e.className.split(' ')[0], a.tagName + '.' + a.className, why.join(', ')]);
+            }
+          }
+          return out;
+        })()"""
+    )
+    assert roots == [], roots
+
+
+def test_no_stylesheet_animates_or_transitions_a_blur(tab, site):
+    load(tab, site, "#overview")
+    settle(tab, VIEWS["overview"][1])
+    bad = tab.eval(
+        """(() => {
+          const out = [];
+          const walk = (rules, sheet) => { for (const r of rules) {
+            if (r instanceof CSSKeyframesRule) {
+              for (const k of r.cssRules) if (/filter|blur/i.test(k.style.cssText)) out.push(sheet + ' @keyframes ' + r.name);
+            } else if (r.style) {
+              const t = r.style.getPropertyValue('transition') + r.style.getPropertyValue('transition-property') + r.style.getPropertyValue('will-change');
+              if (/filter|blur/i.test(t)) out.push(sheet + ' ' + r.selectorText);
+            }
+            if (r.cssRules && !(r instanceof CSSKeyframesRule)) walk(r.cssRules, sheet);
+          } };
+          for (const s of document.styleSheets) walk(s.cssRules, s.href);
+          return out;
+        })()"""
+    )
+    assert bad == [], bad
+
+
+def test_with_reduced_motion_nothing_that_floats_animates(tab, site):
+    load(tab, site, "#documents", still=True)
+    settle(tab, VIEWS["documents"][1])
+    open_everything_that_floats(tab)
+    running = tab.eval(
+        """document.getAnimations().filter(a => a.effect && a.effect.target &&
+             a.effect.target.closest('.pal-wrap, .coll-menu, .where-panel, #toast'))
+           .map(a => a.transitionProperty || a.animationName)"""
+    )
+    assert running == [], running
+    # and what opened is there, fully drawn
+    for sel in (".coll-menu", ".where-panel"):
+        assert tab.eval(f"getComputedStyle(document.querySelector('{sel}')).opacity") == "1", sel
+    assert tab.eval("getComputedStyle(document.getElementById('toast')).opacity") == "1"
+    assert tab.errors == []
+
+
+def test_less_transparency_gives_solid_surfaces_where_the_browser_can_say_so(tab, site):
+    load(tab, site, "#overview")
+    settle(tab, VIEWS["overview"][1])
+    tab.call(
+        "Emulation.setEmulatedMedia",
+        features=[
+            {"name": "prefers-color-scheme", "value": "light"},
+            {"name": "prefers-reduced-motion", "value": "no-preference"},
+            {"name": "prefers-reduced-transparency", "value": "reduce"},
+        ],
+    )
+    if not tab.eval("matchMedia('(prefers-reduced-transparency: reduce)').matches"):
+        pytest.skip("this browser has no prefers-reduced-transparency")
+    found = tab.eval(
+        f"[...document.querySelectorAll('{FLOATING}')].map(e => [e.className, getComputedStyle(e).backdropFilter, "
+        "getComputedStyle(e).backgroundColor])"
+    )
+    for name, blur, color in found:
+        if not name.startswith("toast"):
+            assert blur == "none" and alpha(color) == 1, (name, blur, color)
 
 
 def test_the_collection_menu_lists_every_collection_and_run_and_switches(tab, site):

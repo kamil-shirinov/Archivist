@@ -108,8 +108,33 @@
 .coll-menu .cm-i[aria-current="true"]{background:var(--accent-bg)}
 .coll-menu .cm-i span{font-size:13.5px;font-weight:500}
 .coll-menu .cm-i small{font-size:12px;color:var(--ink-3);font-weight:400}
-.runbar .runswitch{margin-left:auto}
-.runbar .runswitch button{padding:2px 10px;font-size:12.5px}
+/* Where Archivist runs: the chip in the run bar and the panel it opens (js/chrome.js). The panel says
+   the seven steps are the same either way and that only the two reads change hands. */
+.runbar .where{margin-left:auto;display:inline-flex;align-items:center;gap:7px;padding:2px 10px 2px 9px;border-radius:999px;font-size:12.5px;font-weight:500;color:var(--ink-2);box-shadow:none}
+.where .wdot{width:7px;height:7px;border-radius:50%;background:var(--accent);flex:none}
+.where[data-where="own"] .wdot{background:var(--gold)}
+.where b{color:var(--ink);font-weight:600}
+.where svg{width:12px;height:12px;color:var(--ink-3);flex:none}
+.where[aria-expanded="true"]{border-color:var(--accent)}
+.where-panel{position:fixed;z-index:35;width:min(470px,calc(100vw - 16px));max-height:calc(100vh - 24px);overflow:auto;padding:16px 16px 14px;border:1px solid var(--line-2);border-radius:14px}
+.where-panel h2{font-size:15px}
+.where-panel .wp-sub{margin:4px 0 12px;font-size:13px;color:var(--ink-2)}
+.wp-steps{list-style:none;margin:0 0 12px;padding:0;display:flex;flex-wrap:wrap;gap:5px}
+.wp-steps li{display:inline-flex;align-items:center;gap:6px;border:1px solid var(--line-2);border-radius:999px;padding:2px 9px 2px 3px;font-size:12px;color:var(--ink-3)}
+.wp-steps li i{display:grid;place-items:center;width:18px;height:18px;border-radius:50%;background:var(--sunk);font:600 10.5px var(--mono);font-style:normal;color:var(--ink-2)}
+.wp-steps li.moves{border-color:var(--accent);background:var(--accent-bg);color:var(--ink);font-weight:500}
+.wp-steps li.moves i{background:var(--accent);color:var(--on-accent)}
+.wp-opts{display:grid;gap:8px}
+.wp-opt{display:grid;gap:4px;width:100%;text-align:left;padding:11px 13px;border-radius:10px;border:1px solid var(--line-2);background:color-mix(in srgb,var(--surface) 55%,transparent);box-shadow:none;font-weight:400}
+.wp-opt:hover:not(:disabled){border-color:var(--accent);background:color-mix(in srgb,var(--accent-bg) 70%,transparent)}
+.wp-opt[aria-pressed="true"]{border-color:var(--accent);background:color-mix(in srgb,var(--accent-bg) 75%,transparent)}
+.wp-opt:disabled{opacity:1;cursor:default;background:transparent;border-style:dashed}
+.wp-opt .wo-h{display:flex;align-items:center;gap:8px}
+.wp-opt .wo-h b{font-size:14px;font-weight:600}
+.wp-opt .wo-d{font-size:12.5px;color:var(--ink-2)}
+.wp-opt .wo-n{font-size:12px;color:var(--ink-3)}
+.wp-now{margin:12px 0 0;padding-top:10px;border-top:1px solid var(--line);font-size:12.5px;color:var(--ink-2)}
+.wp-now b{color:var(--ink);font-weight:600}
 @media (max-width:900px){
   .coll{display:flex;max-width:150px;padding:4px 8px}
   .coll span,.coll svg{display:none}

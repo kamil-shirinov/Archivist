@@ -1,0 +1,83 @@
+/* Glass touches (P49): a light layer over the v7 look (base.css) and what the real app adds (app.css),
+   loaded last. Nothing is redrawn; each rule only changes a surface.
+
+   Where glass goes: the top bar, and whatever floats above the page: the command palette, the menus
+   and panels that open from the bars, the toast, and the small labels over a scan. Those get a
+   translucent surface, and the first four a blurred one too. Content does not: cards stay solid or a
+   touch translucent with no blur, so changing view never has a layer to blur behind it. A still wash
+   of two colours sits behind everything so the glass has something to show.
+
+   Motion: only opacity and movement, and never blur (the blur is a fixed value, never animated).
+   base.css switches every animation and transition off under reduced motion. Reduced transparency,
+   or a browser that cannot blur, gets a plain solid surface in place of each glass one. The two-colour
+   tokens use light-dark() (Chrome 123, Firefox 120, Safari 17.5), so they follow the theme without a
+   second copy of each. */
+
+:root{
+  --glass:color-mix(in srgb,var(--surface) 70%,transparent);
+  --glass-hi:color-mix(in srgb,var(--surface) 84%,transparent); /* what has to be read: the palette, the menus */
+  --glass-edge:light-dark(rgba(255,255,255,.8),rgba(255,255,255,.07)); /* the lit top edge of a surface */
+  --glass-line:light-dark(rgba(22,24,29,.09),rgba(255,255,255,.09));
+  --glass-drop:light-dark(rgba(22,24,29,.5),rgba(0,0,0,.8));
+  --glass-blur:saturate(1.6) blur(16px);
+  --glass-blur-hi:saturate(1.6) blur(26px);
+  --card:color-mix(in srgb,var(--surface) 93%,transparent);
+  --wash-a:light-dark(rgba(74,85,212,.085),rgba(142,152,250,.10));
+  --wash-b:light-dark(rgba(244,178,58,.08),rgba(240,169,59,.055));
+}
+
+/* The wash: two soft colours at the corners, fixed, still, behind everything. The body is a stacking
+   context so the wash sits above the page colour and below the content. */
+body{position:relative;z-index:0}
+body::after{content:"";position:fixed;inset:0;z-index:-1;pointer-events:none;
+  background:
+    radial-gradient(56vmax 40vmax at 2% -4%,var(--wash-a),transparent 70%),
+    radial-gradient(48vmax 36vmax at 100% 2%,var(--wash-b),transparent 70%),
+    radial-gradient(64vmax 36vmax at 62% 108%,var(--wash-a),transparent 72%)}
+.side{background:transparent}
+.runbar{background:color-mix(in srgb,var(--surface-2) 72%,transparent)}
+
+/* The top bar */
+.top{background:var(--glass);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);border-bottom-color:var(--glass-line);box-shadow:0 10px 24px -20px var(--glass-drop)}
+.top .coll,.top .tog{background:color-mix(in srgb,var(--surface) 55%,transparent);border-color:var(--glass-line)}
+.top .coll:hover{background:color-mix(in srgb,var(--surface) 85%,transparent)}
+.top .cmdk{background:color-mix(in srgb,var(--surface-2) 55%,transparent);border-color:var(--glass-line)}
+.top .cmdk:hover{background:color-mix(in srgb,var(--surface) 85%,transparent)}
+
+/* Content: solid, or a touch translucent and never blurred */
+.panel,.kpis{background:var(--card);box-shadow:var(--shadow),inset 0 1px 0 var(--glass-edge)}
+.panel .tbl th{background:transparent}
+
+/* What floats above the page */
+.coll-menu,.where-panel{background:var(--glass-hi);backdrop-filter:var(--glass-blur-hi);-webkit-backdrop-filter:var(--glass-blur-hi);border-color:var(--glass-line);box-shadow:var(--shadow-lg),inset 0 1px 0 var(--glass-edge)}
+.coll-menu .cm-i:hover{background:color-mix(in srgb,var(--ink) 6%,transparent)}
+.coll-menu .cm-i[aria-current="true"]{background:color-mix(in srgb,var(--accent-bg) 80%,transparent)}
+/* The scrim is plain, and its tint is a child that fades: a parent with an opacity animation is a backdrop
+   root, which would leave the palette nothing of the page to blur. */
+.pal-wrap{background:transparent;backdrop-filter:none;-webkit-backdrop-filter:none}
+.pal-wrap::before{content:"";position:absolute;inset:0;background:light-dark(rgba(22,24,29,.2),rgba(0,0,0,.42))}
+.pal{position:relative;background:var(--glass-hi);backdrop-filter:var(--glass-blur-hi);-webkit-backdrop-filter:var(--glass-blur-hi);border-color:var(--glass-line);box-shadow:var(--shadow-lg),inset 0 1px 0 var(--glass-edge)}
+.pal-in,.pal-foot{border-color:var(--glass-line)}
+.pal-i[aria-selected="true"]{background:color-mix(in srgb,var(--ink) 7%,transparent)}
+.toast{background:color-mix(in srgb,var(--ink) 80%,transparent);backdrop-filter:var(--glass-blur);-webkit-backdrop-filter:var(--glass-blur);box-shadow:var(--shadow-lg),inset 0 1px 0 rgba(255,255,255,.14)}
+/* Labels over a scan: translucent but not blurred, since the scan moves under them */
+.ctx,.wbadge,.stage-tools button{background:color-mix(in srgb,var(--surface) 80%,transparent)}
+.stage-tools button:hover{background:var(--surface)}
+
+/* Floating things come in by opacity and a few pixels of movement, nothing else */
+@keyframes float-in{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:none}}
+@keyframes scrim-in{from{opacity:0}to{opacity:1}}
+.pal-wrap:not([hidden])::before{animation:scrim-in 140ms linear both}
+.pal-wrap:not([hidden]) .pal{animation:float-in 180ms var(--ease) both}
+.coll-menu:not([hidden]),.where-panel:not([hidden]){animation:float-in 160ms var(--ease) both}
+
+/* Solid in place of glass: where the visitor asks for less transparency, or the browser cannot blur */
+@media (prefers-reduced-transparency:reduce){
+  :root{--glass:var(--surface);--glass-hi:var(--surface);--glass-blur:none;--glass-blur-hi:none;--card:var(--surface);--wash-a:transparent;--wash-b:transparent}
+  .toast{background:var(--ink)}
+  .top .coll,.top .tog,.top .cmdk,.runbar,.ctx,.wbadge,.stage-tools button{background:var(--surface)}
+}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){
+  :root{--glass:var(--surface);--glass-hi:var(--surface)}
+  .toast{background:var(--ink)}
+}

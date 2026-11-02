@@ -2,6 +2,7 @@
 
 import { S, accountRows, fieldLabel } from "./store.js";
 import { $, esc } from "./util.js";
+import { closePanels } from "./chrome.js";
 
 const NAV = [
   ["Overview", "overview"],
@@ -60,6 +61,7 @@ function render() {
 }
 
 export function open() {
+  closePanels();
   $("pal").hidden = false;
   $("gq").value = "";
   sel = 0;

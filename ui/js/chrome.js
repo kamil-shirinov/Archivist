@@ -1,7 +1,7 @@
-// What every view shares: the top bar, the run bar that says what the visitor is looking at, the side
-// bar's count, light and dark, and the density.
+// What every view shares: the top bar, the run bar that says what the visitor is looking at (and where
+// Archivist runs), the side bar's count, light and dark, and the density.
 
-import { S, totals, runWords } from "./store.js";
+import { S, STEPS, READS, totals, runWords } from "./store.js";
 import { $, esc, int } from "./util.js";
 
 export function setDensity(d) {
@@ -53,7 +53,6 @@ export function refresh() {
 }
 
 const ARM = { hosted: "Hosted models", "open-weights": "Open-weight models", mixed: "Hosted reader, open-weight checker", unknown: "Models not recorded" };
-const ARM_SHORT = { hosted: "Hosted", "open-weights": "Open weights", mixed: "Mixed", unknown: "—" };
 
 // What kind of pages a run is on, in a few words.
 export function pagesWhat(r = S.bundle.run) {
@@ -67,14 +66,115 @@ function switchTo(runId) {
   location.href = u.toString();
 }
 
-// The runs of the collection being looked at, as a switch: the same pages, read by another arm.
-function runSwitch() {
+// The menus and panels that open from the bars: one is open at a time, and Escape or a click elsewhere
+// closes it. Opening the palette closes them too.
+const closers = new Set();
+export function closePanels(except) {
+  closers.forEach((close) => close !== except && close());
+}
+
+// --- where Archivist runs -----------------------------------------------------------------------------
+// A chip in the run bar and the panel it opens: the seven steps are the same whether the models are
+// reached through Meta’s API (the default) or run on your own hardware, and only the two reads change.
+// What the visitor is looking at is one recorded run; the panel says who ran what in it, from the bundle.
+
+const WHERE = { hosted: "Meta’s API", "open-weights": "Your own hardware", mixed: "Meta’s API and your own hardware", unknown: "Not recorded" };
+const HOST = { meta: "Meta’s API", baseten: "Baseten", fireworks: "Fireworks", modal: "Modal" };
+
+// "Muse Spark Open on Baseten; SAM 3.1 on Meta’s API": who ran what in this recording.
+function recorded(r = S.bundle.run) {
+  const byHost = new Map();
+  for (const m of r.models) {
+    const host = HOST[m.backend] || m.backend;
+    if (!byHost.has(host)) byHost.set(host, []);
+    if (!byHost.get(host).includes(m.name)) byHost.get(host).push(m.name);
+  }
+  return [...byHost].map(([host, names]) => `${names.join(" and ")} on ${host}`).join("; ");
+}
+
+// The run of this collection and stage for each way of running, where one was recorded.
+function whereRuns() {
   const r = S.bundle.run;
   const same = S.index.runs.filter((x) => x.collection === r.collection && x.stage === r.stage);
-  if (same.length < 2) return "";
-  return `<div class="seg runswitch" role="group" aria-label="Which run">${same
-    .map((x) => `<button data-run="${esc(x.run_id)}" aria-pressed="${x.run_id === r.run_id}" title="${esc(x.models.filter((m, i, a) => a.indexOf(m) === i).join(", "))}">${ARM_SHORT[x.arm]}</button>`)
-    .join("")}</div>`;
+  return { api: same.find((x) => x.arm === "hosted"), own: same.find((x) => x.arm === "open-weights") };
+}
+
+function whereChip() {
+  const r = S.bundle.run;
+  return `<button class="where" id="where" data-where="${r.arm === "open-weights" ? "own" : "api"}" aria-haspopup="dialog" aria-expanded="false" aria-controls="where-panel" title="${esc(recorded())}"><span class="wdot"></span>Where Archivist runs <b>${esc(WHERE[r.arm])}</b><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>`;
+}
+
+function wherePanel() {
+  const r = S.bundle.run, runs = whereRuns();
+  const steps = STEPS.map(([k, title], i) => `<li${READS.includes(k) ? ' class="moves"' : ""}><i>${i + 1}</i>${esc(title)}</li>`).join("");
+  const opt = (key, name, tag, what, caveat = "") => {
+    const run = runs[key];
+    const note = run ? `Recorded on ${int(run.pages)} pages. ${caveat}` : "No recording of these pages on Muse Spark Open.";
+    return `<button class="wp-opt" data-where="${key}"${run ? ` data-run="${esc(run.run_id)}"` : " disabled"} aria-pressed="${!!run && run.run_id === S.entry.run_id}"><span class="wo-h"><b>${name}</b><span class="tag">${tag}</span></span><span class="wo-d">${what}</span><span class="wo-n">${note.trim()}</span></button>`;
+  };
+  return (
+    `<h2>Where Archivist runs</h2>` +
+    `<p class="wp-sub">The same seven steps either way. Only the two reads, steps 2 and 5, are done by a different model.</p>` +
+    `<ol class="wp-steps" aria-label="The seven steps">${steps}</ol>` +
+    `<div class="wp-opts" role="group" aria-label="Where Archivist runs">` +
+    opt("api", "Meta’s API", "Default", "Muse Spark 1.3 does both reads, and SAM 3.1 looks for covered ink, all through Meta’s API.") +
+    opt(
+      "own",
+      "Your own hardware",
+      "Muse Spark Open",
+      "Muse Spark Open, whose trained weights are published, does both reads, so they can run on machines you control. SAM 3.1 still runs on Meta’s API.",
+      "Not yet proven on site: the recording ran Muse Spark Open on Baseten, and no measured run has kept a page on a bank’s own machines."
+    ) +
+    `</div>` +
+    `<p class="wp-now">This recording, <b>${esc(r.run_id)}</b>: ${esc(recorded(r))}.</p>`
+  );
+}
+
+function initWhere() {
+  const chip = $("where");
+  const panel = document.createElement("div");
+  panel.className = "where-panel";
+  panel.id = "where-panel";
+  panel.setAttribute("role", "dialog");
+  panel.setAttribute("aria-label", "Where Archivist runs");
+  panel.hidden = true;
+  panel.innerHTML = wherePanel();
+  document.body.appendChild(panel);
+  const place = () => {
+    const r = chip.getBoundingClientRect();
+    panel.style.left = `${Math.max(8, Math.min(r.right - panel.offsetWidth, innerWidth - panel.offsetWidth - 8))}px`;
+    panel.style.top = `${r.bottom + 6}px`;
+  };
+  const close = () => {
+    panel.hidden = true;
+    chip.setAttribute("aria-expanded", "false");
+  };
+  closers.add(close);
+  chip.addEventListener("click", () => {
+    if (!panel.hidden) return close();
+    closePanels(close);
+    panel.hidden = false;
+    chip.setAttribute("aria-expanded", "true");
+    place();
+    (panel.querySelector('[aria-pressed="true"]') || panel.querySelector("button:not(:disabled)"))?.focus({ preventScroll: true });
+  });
+  panel.addEventListener("click", (e) => {
+    const b = e.target.closest("[data-where]");
+    if (!b || b.disabled) return;
+    if (b.dataset.run !== S.entry.run_id) switchTo(b.dataset.run);
+    else close();
+  });
+  document.addEventListener("click", (e) => {
+    if (!panel.hidden && !panel.contains(e.target) && !chip.contains(e.target)) close();
+  });
+  addEventListener("keydown", (e) => {
+    if (e.key !== "Escape" || panel.hidden) return;
+    close();
+    chip.focus();
+  });
+  addEventListener("scroll", () => !panel.hidden && close(), { passive: true });
+  addEventListener("resize", close);
+  addEventListener("hashchange", close);
 }
 
 function collMenu() {
@@ -110,10 +210,14 @@ function initCollMenu() {
     menu.style.top = `${r.bottom + 6}px`;
   };
   const close = () => (menu.hidden = true);
+  closers.add(close);
   $("coll").addEventListener("click", (e) => {
     e.stopPropagation();
     menu.hidden = !menu.hidden;
-    if (!menu.hidden) place();
+    if (!menu.hidden) {
+      closePanels(close);
+      place();
+    }
   });
   menu.addEventListener("click", (e) => {
     const b = e.target.closest("[data-run]");
@@ -142,12 +246,12 @@ export function labelRun() {
     `<span>Run <b>${esc(r.run_id)}</b>, policy ${esc(r.policy)}</span><span class="sep">·</span>` +
     `<span>Read by <b>${esc(w.models)}</b> (${esc(w.arm)})</span>` +
     (pub ? `<span class="sep">·</span><span>${esc(pub.title)}, ${esc(pub.publisher)}. ${esc(pub.rights)}</span>` : "") +
-    runSwitch();
-  $("runbar").querySelectorAll("[data-run]").forEach((b) => b.addEventListener("click", () => b.dataset.run !== r.run_id && switchTo(b.dataset.run)));
+    whereChip();
   $("side-foot").textContent =
     r.source === "synthetic"
       ? `Synthetic documents, made so every right answer is known; no real bank data. Run ${r.run_id}: ${w.models}, ${w.arm}. Cost of the run $${cost.toFixed(2)}.`
       : `${pub ? pub.title + " pages" : "Real pages"} from a public archive, development pages only. Run ${r.run_id}: ${w.models}, ${w.arm}. Cost of the run $${cost.toFixed(2)}.`;
   document.title = `Archivist · ${r.collection} · ${r.run_id}`;
   initCollMenu();
+  initWhere();
 }

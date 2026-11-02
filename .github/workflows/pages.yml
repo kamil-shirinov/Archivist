@@ -1,0 +1,51 @@
+# Publishes the review app to GitHub Pages on every push to main, so the live demo is always the
+# committed app over the committed run bundles (https://kamil-shirinov.github.io/Archivist/).
+#
+# docs/make_site.py builds the site: exactly the files the app loads, the bundles and scans it shows,
+# and a top index.html that opens on Watch it work. It refuses anything held-out. The site is static
+# (D12, D13): no model call, no key and no secret anywhere in this workflow.
+#
+# One setting is made by hand, once: Settings > Pages > Build and deployment > Source = GitHub Actions.
+name: Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: false # a deployment that has started is allowed to finish
+
+jobs:
+  build:
+    name: Build the site
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v7
+
+      - name: Assemble the site
+        run: python3 docs/make_site.py --out _site
+
+      - uses: actions/upload-pages-artifact@v5
+        with:
+          path: _site
+
+  deploy:
+    name: Publish to GitHub Pages
+    needs: build
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      pages: write
+      id-token: write
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v5

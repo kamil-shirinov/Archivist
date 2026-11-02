@@ -21,7 +21,7 @@ New table types are learned from two or three sample pages with no new code: Mus
 
 No model grades its own work. Every value gets a blind second read and plain-code arithmetic, and a person decides anything in doubt.
 
-**Live demo:** [link pending] · **Video:** [link pending]
+**Live demo:** [kamil-shirinov.github.io/Archivist](https://kamil-shirinov.github.io/Archivist/) (opens on Watch it work; recorded runs only, no model call) · **Video:** [link pending]
 
 ## What you get
 
@@ -61,6 +61,8 @@ The version 1 real-scan test sorted pages with Muse Spark 1.3.
 Muse Spark Open, a model whose trained weights are published, can replace Muse Spark 1.3 for both reads (steps 2 and 5), so a bank that cannot send documents out can run the reading on its own machines.
 
 <img src="docs/img/two-modes.svg" alt="The seven steps in one row. Steps 2 and 5, the two reads, are highlighted. Under each, two labels: Meta's API with Muse Spark 1.3, or your own hardware with Muse Spark Open." width="100%">
+
+The review app shows the same swap: the **Where Archivist runs** chip in its run bar opens a panel with the seven steps and the two ways to run them, and opens the same page on the other recorded run.
 
 - **Costlier per page:** $0.0564 against $0.0089, partly because hosted calls ran at the hackathon's Contributor discount.
 - **Not yet proven on-site.** No measured run has kept a page on a bank's own machines: Muse Spark Open ran on Baseten and SAM 3.1 still used Meta's API.
@@ -190,7 +192,7 @@ To open the review app, which needs no key and makes no model call, serve the re
 python -m http.server
 ```
 
-Then open <http://localhost:8000/ui/>. It reads the three runs in `data/bundles/`: the synthetic test pages read by Muse Spark 1.3 and by Muse Spark Open (a switch in the header), and the Treasury Bulletin's development pages. Add `?run=<run_id>` to open one run directly.
+Then open <http://localhost:8000/ui/>. It reads the three runs in `data/bundles/`: the synthetic test pages read by Muse Spark 1.3 and by Muse Spark Open (the "Where Archivist runs" chip in the run bar), and the Treasury Bulletin's development pages. Add `?run=<run_id>` to open one run directly.
 
 To write a run's database and review bundle again from the committed run (the bundle and CSVs come out byte for byte the same, the SQLite file with the same rows; `archivist.verify` checks both):
 
