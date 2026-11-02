@@ -1,0 +1,292 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Dash check</title>
+<style>
+  :root {
+    --bg: #f4f2ee; --panel: #ffffff; --ink: #1f1d1a; --muted: #6b665e; --line: #ddd8cf;
+    --accent: #1d5fd1; --mark: rgba(214, 40, 40, 0.95); --band: rgba(29, 95, 209, 0.10);
+    --done: #2f7d4a; --warn: #a3520f;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; height: 100%; background: var(--bg); color: var(--ink);
+    font: 14px/1.45 -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif; }
+  body { display: grid; grid-template-columns: 1fr 360px; grid-template-rows: auto 1fr; height: 100vh; }
+  header { grid-column: 1 / -1; display: flex; align-items: center; gap: 16px; padding: 10px 16px;
+    border-bottom: 1px solid var(--line); background: var(--panel); }
+  header h1 { font-size: 15px; margin: 0; font-weight: 600; }
+  .progress { flex: 1; height: 6px; background: #ebe7e0; border-radius: 3px; overflow: hidden; }
+  .progress > div { height: 100%; background: var(--done); width: 0; transition: width .2s; }
+  .count { color: var(--muted); font-variant-numeric: tabular-nums; }
+  #view { overflow: auto; position: relative; background: #e9e6e0; }
+  #stage { position: relative; margin: 0; transform-origin: 0 0; }
+  #stage img { display: block; user-select: none; }
+  .band { position: absolute; background: var(--band); pointer-events: none; }
+  .box { position: absolute; border: 2px solid var(--mark); border-radius: 2px; pointer-events: none;
+    box-shadow: 0 0 0 3px rgba(255,255,255,.7); }
+  aside { border-left: 1px solid var(--line); background: var(--panel); padding: 16px; overflow: auto;
+    display: flex; flex-direction: column; gap: 14px; }
+  aside > * { flex-shrink: 0; }
+  .label { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); margin-bottom: 2px; }
+  .field { font-size: 15px; }
+  .field.big { font-size: 17px; font-weight: 600; }
+  .title { font-size: 13px; color: var(--muted); }
+  .note { font-size: 12px; color: var(--muted); border-left: 3px solid var(--line); padding-left: 8px; }
+  .notice { font-size: 13px; color: var(--warn); }
+  #lens { height: 120px; border: 1px solid var(--line); border-radius: 6px; background-color: #e9e6e0;
+    background-repeat: no-repeat; position: relative; overflow: hidden; }
+  #lens .box { position: absolute; }
+  .buttons { display: grid; grid-template-columns: 1fr; gap: 8px; }
+  button { font: inherit; padding: 8px 10px; border-radius: 6px; border: 1px solid var(--line); background: #faf9f7;
+    cursor: pointer; text-align: left; }
+  button:hover { border-color: #bdb6aa; }
+  .find { font-size: 16px; line-height: 1.4; display: grid; grid-template-columns: auto 1fr; gap: 2px 12px;
+    align-items: baseline; }
+  .find b { font-weight: 600; }
+  .find i { color: var(--muted); }
+  .find .part { font-size: 11px; text-transform: uppercase; letter-spacing: .06em; color: var(--muted); }
+  .hint { font-size: 12px; color: var(--muted); margin-top: 3px; }
+  kbd { font: 11px ui-monospace, Menlo, monospace; padding: 1px 5px; border: 1px solid var(--line); border-bottom-width: 2px;
+    border-radius: 4px; background: #fff; color: var(--muted); float: right; }
+  .own { font-size: 13px; padding: 8px 10px; border-radius: 6px; background: #eef6f0; color: var(--done); }
+  .own.none { background: #f3f1ed; color: var(--muted); }
+  .nav { display: flex; gap: 8px; }
+  .nav button { flex: 1; text-align: center; }
+  .keys { font-size: 12px; color: var(--muted); display: grid; grid-template-columns: auto 1fr; gap: 3px 10px; }
+  .keys kbd { float: none; }
+  .error { color: #b3261e; font-size: 13px; min-height: 1em; }
+  .blocked { grid-column: 1 / -1; padding: 40px; font-size: 16px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Dash check</h1>
+  <div class="progress"><div id="bar"></div></div>
+  <span class="count" id="count"></span>
+</header>
+<div id="view"><div id="stage"><img id="page" alt="The printed page"></div></div>
+<aside>
+  <div>
+    <div class="label">Cell</div>
+    <div class="field big" id="where"></div>
+    <div class="title" id="title"></div>
+  </div>
+  <div>
+    <div class="label">Find the cell</div>
+    <div class="field find" id="find"></div>
+    <div class="hint" id="hint"></div>
+  </div>
+  <div class="notice" id="nobox" hidden>No box for this cell: find it by its row and column.</div>
+  <div class="notice" id="marksoff" hidden>Red box and bands hidden: ⌥H shows them.</div>
+  <div id="lens" title="The box's surroundings, enlarged"></div>
+  <div class="note">Look at the named cell on the page and say what is printed in it. <b>Dash printed</b>: a dash stands in the cell. <b>Nothing printed</b>: the cell is empty. <b>Can't tell</b>: the scan doesn't let you say.<br><br>The cell is named as on the labelling page: by its row's printed label and the heading it sits under, as the first read returned them, and by its column heading. The row number is only a hint, and the red box only a locator: where either disagrees, the named row and column win.</div>
+  <div class="buttons">
+    <button id="dash">Dash printed <kbd>⌥D</kbd></button>
+    <button id="nothing">Nothing printed <kbd>⌥E</kbd></button>
+    <button id="cant">Can't tell <kbd>⌥X</kbd></button>
+  </div>
+  <div class="error" id="error"></div>
+  <div class="own none" id="own">Not marked yet</div>
+  <div class="nav">
+    <button id="prev">◀ Previous</button>
+    <button id="next">Next ▶</button>
+  </div>
+  <div class="keys">
+    <kbd>⌥D</kbd><span>dash printed</span>
+    <kbd>⌥E</kbd><span>nothing printed (empty)</span>
+    <kbd>⌥X</kbd><span>can't tell</span>
+    <kbd>⌥← ⌥→</kbd><span>previous, next</span>
+    <kbd>⌥N</kbd><span>next unmarked</span>
+    <kbd>⌥= ⌥−</kbd><span>zoom in, out</span>
+    <kbd>⌥L</kbd><span>row and column bands on or off</span>
+    <kbd>⌥H</kbd><span>hide or show the red box and the bands</span>
+  </div>
+</aside>
+<script>
+const $ = (id) => document.getElementById(id);
+const SAID = { dash: "dash printed", nothing: "nothing printed", cant_tell: "can't tell" };
+let cells = [], answers = {}, at = 0, zoom = 0, bands = true, marks = true;  // zoom 0: the page's width fits
+
+function show(text) { $("error").textContent = text || ""; }
+
+async function load() {
+  const response = await fetch("/api/dashes");
+  const data = await response.json();
+  if (data.error || data.blocked) {
+    document.body.innerHTML = `<div class="blocked">${data.error || data.blocked}</div>`;
+    return;
+  }
+  cells = data.cells; answers = data.answers;
+  if (!cells.length) { document.body.innerHTML = `<div class="blocked">No cell to check.</div>`; return; }
+  const first = cells.findIndex((c) => !(c.cell in answers));
+  go(first === -1 ? 0 : first);
+}
+
+function progress() {
+  const done = cells.filter((c) => c.cell in answers).length;
+  $("bar").style.width = `${(100 * done) / cells.length}%`;
+  $("count").textContent = `${done} of ${cells.length} marked`;
+}
+
+function ordinal(n) {
+  const teen = n % 100 >= 11 && n % 100 <= 13;
+  return `${n}${teen ? "th" : { 1: "st", 2: "nd", 3: "rd" }[n % 10] || "th"}`;
+}
+
+function named(cell) {
+  // As on the labelling page: section, row and column as the draw stores them, built as text nodes.
+  const bold = (text) => { const node = document.createElement("b"); node.textContent = text; return node; };
+  const none = (text) => Object.assign(document.createElement("i"), { textContent: text });
+  let section;
+  if (cell.row_heading) section = bold(cell.row_heading);
+  else if (cell.row_label.endsWith(":")) section = none("none: this row is itself a heading");
+  else section = none("none in the draw");
+  const row = cell.row_label ? bold(cell.row_label) : none("no row label read");
+  const parts = [["Section", section], ["Row", row]];
+  if (cell.occurrence) {
+    const count = document.createElement("span");
+    count.append("the ", bold(ordinal(cell.occurrence.n)), ` “${cell.row_label}” from the top, of ${cell.occurrence.of} on this page`);
+    parts.push(["Count", count]);
+  }
+  parts.push(["Column", bold(cell.column)]);
+  return parts;
+}
+
+function go(index) {
+  at = Math.max(0, Math.min(cells.length - 1, index));
+  const cell = cells[at];
+  $("where").textContent = `Cell ${cell.n} of ${cells.length} · page ${cell.page}`;
+  $("title").textContent = `${cell.title} (${cell.unit})`;
+  $("find").replaceChildren(...named(cell).flatMap(([name, value]) => {
+    const part = Object.assign(document.createElement("span"), { className: "part", textContent: name });
+    return [part, value];
+  }));
+  $("hint").textContent = `Hint: ${cell.row_hint}`;
+  $("nobox").hidden = !!cell.box;
+  const own = answers[cell.cell];
+  $("own").textContent = own ? `Your mark: ${SAID[own.mark]}` : "Not marked yet";
+  $("own").classList.toggle("none", !own);
+  show("");
+  progress();
+  const image = $("page");
+  if (image.dataset.page !== cell.page) {
+    image.dataset.page = cell.page;
+    image.onload = () => place(true);
+    image.src = `/image/${encodeURIComponent(cell.page)}`;
+  } else {
+    place(true);
+  }
+}
+
+function place(centre) {
+  const image = $("page"), stage = $("stage"), cell = cells[at];
+  if (!image.naturalWidth) return;
+  const s = scale(), pad = 3;
+  image.style.width = `${image.naturalWidth * s}px`;
+  stage.querySelectorAll(".band, .box").forEach((node) => node.remove());
+  const box = cell.box;
+  lens(box);
+  if (!box) { if (centre) $("view").scrollTo(0, 0); return; }
+  const add = (cls, left, top, width, height) => {
+    const node = document.createElement("div");
+    node.className = cls;
+    Object.assign(node.style, { left: `${left}px`, top: `${top}px`, width: `${width}px`, height: `${height}px` });
+    stage.appendChild(node);
+  };
+  if (marks) {
+    if (bands) {
+      add("band", 0, box.y0 * s, image.naturalWidth * s, (box.y1 - box.y0) * s);
+      add("band", box.x0 * s, 0, (box.x1 - box.x0) * s, image.naturalHeight * s);
+    }
+    add("box", box.x0 * s - pad, box.y0 * s - pad, (box.x1 - box.x0) * s + 2 * pad, (box.y1 - box.y0) * s + 2 * pad);
+  }
+  if (centre) {
+    const view = $("view");
+    view.scrollTo(((box.x0 + box.x1) / 2) * s - view.clientWidth / 2, ((box.y0 + box.y1) / 2) * s - view.clientHeight / 2);
+  }
+}
+
+async function save(mark) {
+  const cell = cells[at];
+  const response = await fetch("/api/dash", {
+    method: "POST", headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({ cell: cell.cell, mark }),
+  });
+  const data = await response.json();
+  if (data.error) { show(data.error); return; }
+  answers[cell.cell] = { mark: data.mark };
+  const next = cells.findIndex((c, i) => i > at && !(c.cell in answers));
+  if (next !== -1) go(next);
+  else if (at < cells.length - 1) go(at + 1);
+  else { go(at); show(cells.every((c) => c.cell in answers) ? "Every cell has a mark." : ""); }
+}
+
+function nextUnmarked() {
+  const after = cells.findIndex((c, i) => i > at && !(c.cell in answers));
+  const any = cells.findIndex((c) => !(c.cell in answers));
+  if (after !== -1) go(after); else if (any !== -1) go(any); else show("Every cell has a mark.");
+}
+
+function scale() {
+  const image = $("page");
+  return zoom || Math.min(1, ($("view").clientWidth - 2) / image.naturalWidth);
+}
+
+function lens(box) {
+  const node = $("lens"), image = $("page");
+  node.hidden = !box;
+  node.replaceChildren();
+  if (!box) return;
+  const width = node.clientWidth, height = node.clientHeight;
+  const spanX = (box.x1 - box.x0) * 4, spanY = (box.y1 - box.y0) * 4;
+  const s = Math.min(3, width / spanX, height / spanY);
+  const cx = ((box.x0 + box.x1) / 2) * s, cy = ((box.y0 + box.y1) / 2) * s;
+  const left = width / 2 - cx, top = height / 2 - cy;
+  node.style.backgroundImage = `url("${image.src}")`;
+  node.style.backgroundSize = `${image.naturalWidth * s}px ${image.naturalHeight * s}px`;
+  node.style.backgroundPosition = `${left}px ${top}px`;
+  if (!marks) return;
+  const mark = document.createElement("div");
+  mark.className = "box";
+  Object.assign(mark.style, {
+    left: `${box.x0 * s + left - 3}px`, top: `${box.y0 * s + top - 3}px`,
+    width: `${(box.x1 - box.x0) * s + 6}px`, height: `${(box.y1 - box.y0) * s + 6}px`,
+  });
+  node.appendChild(mark);
+}
+
+function toggleMarks() {
+  marks = !marks;
+  $("marksoff").hidden = marks;
+  place(false);
+}
+
+function setZoom(factor) {
+  zoom = Math.max(0.3, Math.min(4, scale() * factor));
+  place(true);
+}
+window.addEventListener("resize", () => place(false));
+
+$("dash").onclick = () => save("dash");
+$("nothing").onclick = () => save("nothing");
+$("cant").onclick = () => save("cant_tell");
+$("prev").onclick = () => go(at - 1);
+$("next").onclick = () => go(at + 1);
+document.addEventListener("keydown", (event) => {
+  if (!event.altKey) return;
+  const actions = {
+    KeyD: () => save("dash"), KeyE: () => save("nothing"), KeyX: () => save("cant_tell"),
+    ArrowLeft: () => go(at - 1), ArrowRight: () => go(at + 1), KeyN: nextUnmarked,
+    Equal: () => setZoom(1.25), Minus: () => setZoom(0.8),
+    KeyL: () => { bands = !bands; place(false); },
+    KeyH: toggleMarks,
+  };
+  const action = actions[event.code];
+  if (action) { event.preventDefault(); action(); }
+});
+load();
+</script>
+</body>
+</html>

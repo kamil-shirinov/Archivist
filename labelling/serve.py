@@ -8,14 +8,20 @@ layout record (results/real_test/<side>/layout_check.json).
   the sweep gave it.
 - http://127.0.0.1:8765/layout marks each deep-check page the OCR layer could not settle same
   layout, changed layout or different table, beside its template's expected columns, with a
-  note. It needs no draw; the other two wait for one.
+  note. It needs no draw; the others wait for one.
+- http://127.0.0.1:8765/dashcheck marks each cell whose standing first-pass answer is blank dash
+  printed, nothing printed or can't tell (PREREGISTRATION_REAL.md, Deviations, 2026-11-02). It
+  opens only once every relabel cell has an answer, and its first mark closes the relabel pass.
+  Every first-pass blank is shown, whatever the reads gave for it, named and boxed as on the
+  labelling page; the marks go to their own file.
 
 What reaches the browser is the page image, the cell's box as a locator, its row's label and
 heading as the first read returned them (Deviations) with its position as a hint, which occurrence
 of that label the row is on its page where the label repeats (counted in the draw's row order from
 the top), its column's heading, and the person's own answers in the same pass: never a figure the
-model read, a verdict or the box's source. The answer is the printed value, blank, can't read, row not on the page, or
-column not on this page. Each answer is appended to a file as it is given, so a session can
+model read, a verdict or the box's source. The answer is the printed value, typed as printed
+(so a printed dash is "-"), blank (nothing printed), can't read, row not on the page, or column
+not on this page. Each answer is appended to a file as it is given, so a session can
 stop and resume; the last answer for a cell stands.
 
 uv run python -m labelling.serve --side held_out  # then open http://127.0.0.1:8765/
@@ -46,6 +52,8 @@ VERDICTS = ("right", "wrong")
 LAYOUTS = ("same", "changed", "different_table")
 LAYOUT_RECORD = "layout_check.json"
 LAYOUT_ANSWERS = "layouts_checked.jsonl"
+DASH_ANSWERS = "dashes_checked.jsonl"
+DASH_MARKS = ("dash", "nothing", "cant_tell")
 WAIT = timedelta(hours=24)
 
 
@@ -121,15 +129,44 @@ class Labels:
         last = max(datetime.fromisoformat(a["labelled_at"]) for a in first.values())
         if _now() < last + WAIT:
             return f"the relabel pass opens at {(last + WAIT).isoformat(timespec='minutes')}"
+        if self.dash_path.exists() and self.dash_path.read_text(encoding="utf-8").strip():
+            return "the dash check has begun, so the relabel pass is closed"
         return None
+
+    @property
+    def dash_path(self) -> Path:
+        return self.labels / DASH_ANSWERS
+
+    def dash_blocked(self) -> str | None:
+        """Why the dash check cannot start yet, or None: it waits for the whole relabel."""
+        second = answers(self.path("relabel"), "cell")
+        missing = sum(cell not in second for cell in self.draw["relabel"])
+        if missing:
+            return f"{missing} of {len(self.draw['relabel'])} relabel cells have no answer yet: the dash check comes after them all"
+        return None
+
+    def blanks(self) -> list[str]:
+        """The cells whose standing first-pass answer is blank, in the draw's order."""
+        first = answers(self.path("first"), "cell")
+        return [s["cell"] for s in self.draw["sample"] if first.get(s["cell"], {}).get("choice") == "blank"]
 
     def cells(self, which: str) -> dict:
         reason = self.blocked(which)
         if reason:
             return {"pass": which, "blocked": reason, "cells": [], "answers": {}}
-        by_cell = {s["cell"]: s for s in self.draw["sample"]}
         order = self.draw["relabel"] if which == "relabel" else [s["cell"] for s in self.draw["sample"]]
-        shown = [
+        shown = self._shown(order)
+        own = {
+            cell: {"choice": a["choice"], "value": a["value"]}
+            for cell, a in answers(self.path(which), "cell").items()
+        }
+        return {"pass": which, "blocked": None, "cells": shown, "answers": own}
+
+    def _shown(self, order: list[str]) -> list[dict]:
+        """How each cell is named on a page: its page, title, row, column and box as a locator;
+        never a figure the model read, a verdict or the box's source."""
+        by_cell = {s["cell"]: s for s in self.draw["sample"]}
+        return [
             {
                 "n": n,
                 "cell": cell,
@@ -145,11 +182,28 @@ class Labels:
             }
             for n, cell in enumerate(order, 1)
         ]
-        own = {
-            cell: {"choice": a["choice"], "value": a["value"]}
-            for cell, a in answers(self.path(which), "cell").items()
-        }
-        return {"pass": which, "blocked": None, "cells": shown, "answers": own}
+
+    def dashes(self) -> dict:
+        """The dash check: every first-pass blank, named as on the labelling page, and the marks
+        given so far; nothing until the relabel is complete."""
+        reason = self.dash_blocked()
+        if reason:
+            return {"blocked": reason, "cells": [], "answers": {}}
+        own = {cell: {"mark": a["mark"]} for cell, a in answers(self.dash_path, "cell").items()}
+        return {"blocked": None, "cells": self._shown(self.blanks()), "answers": own}
+
+    def dash(self, body: dict) -> dict:
+        cell, mark = body.get("cell"), body.get("mark")
+        if self.dash_blocked():
+            raise ValueError("the dash check is not open yet")
+        if cell not in self.blanks():
+            raise ValueError(f"{cell!r} is not a first-pass blank")
+        if mark not in DASH_MARKS:
+            raise ValueError(f"mark must be one of {DASH_MARKS}")
+        line = {"cell": cell, "mark": mark, "checked_at": _now().isoformat(timespec="seconds")}
+        with self.lock:
+            append(self.dash_path, line)
+        return line
 
     def _occurrence(self, drawn: dict) -> dict[str, int] | None:
         """{"n": 8, "of": 10} where the cell's row label repeats on its page, else None."""
@@ -300,6 +354,8 @@ def handler(labels: Labels | None, layouts: Layouts | None = None) -> type[BaseH
                     self._send(HERE / "check.html")
                 elif url.path == "/layout":
                     self._send(HERE / "layout.html")
+                elif url.path == "/dashcheck":
+                    self._send(HERE / "dash.html")
                 elif url.path == "/api/cells":
                     which = query.get("pass", ["first"])[0]
                     if which not in ("first", "relabel"):
@@ -309,6 +365,8 @@ def handler(labels: Labels | None, layouts: Layouts | None = None) -> type[BaseH
                     self._json(need(labels, "draw").checks())
                 elif url.path == "/api/layouts":
                     self._json(need(layouts, "layout record").state())
+                elif url.path == "/api/dashes":
+                    self._json(need(labels, "draw").dashes())
                 elif url.path.startswith("/image/"):
                     self._bytes(image(url.path.removeprefix("/image/")), "image/jpeg")
                 else:
@@ -325,6 +383,8 @@ def handler(labels: Labels | None, layouts: Layouts | None = None) -> type[BaseH
                     self._json(need(labels, "draw").check(body))
                 elif self.path == "/api/layout":
                     self._json(need(layouts, "layout record").mark(body))
+                elif self.path == "/api/dash":
+                    self._json(need(labels, "draw").dash(body))
                 else:
                     self.send_error(HTTPStatus.NOT_FOUND)
             except ValueError as error:
@@ -364,7 +424,7 @@ def main(argv: list[str] | None = None) -> None:
     server = ThreadingHTTPServer(("127.0.0.1", args.port), handler(labels, layouts))
     base = f"http://127.0.0.1:{args.port}"
     print(f"labelling {args.side} (Ctrl-C to stop):")
-    print(f"  {base}/ and {base}/check" + ("" if labels else ": no draw yet"))
+    print(f"  {base}/, {base}/check and {base}/dashcheck" + ("" if labels else ": no draw yet"))
     print(f"  {base}/layout" + ("" if layouts else f": no {record}"))
     try:
         server.serve_forever()
