@@ -15,7 +15,7 @@ Turns scanned financial archives into a verified database: every value cited to 
 - Finish every task by committing ("Pn: …") and pushing, only after its Check passes and pre-commit is clean. Never use --no-verify, never force-push, never rewrite history.
 - Run the Check exactly as written, never piped into tail or head (or else under set -o pipefail), so that any failure stops the commit.
 - Nothing runs on data/test except the pre-registered runs. PREREGISTRATION.md may only change in its Deviations section.
-- Nothing runs on data/real's held-out issues except PREREGISTRATION_REAL.md's runs, by archivist.templates.real_test on the code tagged run-real-treasury. PREREGISTRATION_REAL.md may only change in its Deviations section.
+- Nothing runs on data/real's held-out issues except a pre-registered run, by its own pre-registered runner on its own pushed tag: PREREGISTRATION_REAL.md's, by archivist.templates.real_test on the code tagged run-real-treasury, and PREREGISTRATION_OPENW.md's (P46), by archivist.templates.real_openw on the code tagged run-real-openw. Each pre-registration may only change in its Deviations section.
 
 ## Layout
 src/archivist/__init__.py — P44: `main()`, the `archivist` console script (`uv run archivist`): prints the main commands (verify, live reading, replay and the two exports) in plain English. COMMANDS holds them, and tests/test_cli.py checks that each names a module that exists. The package imports nothing of its own, since every other module imports it
