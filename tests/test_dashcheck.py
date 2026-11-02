@@ -16,7 +16,7 @@ sys.path.insert(0, str(Path(__file__).resolve().parents[1]))  # labelling/ sits 
 
 from archivist.schema import BBox, Citation, ExtractedValue, PageExtraction  # noqa: E402
 from archivist.templates import real_test  # noqa: E402
-from labelling import draw, score, score_corrected, serve  # noqa: E402
+from labelling import draw, score, score_corrected, score_openw, serve  # noqa: E402
 
 TYPES = real_test._types(real_test.CONFIG)
 RAILROAD = "receipts_and_expenditures_under_railroad"
@@ -305,6 +305,30 @@ def _records(tmp_path: Path, monkeypatch) -> tuple[Path, list[dict]]:
     }
     (records / "score").mkdir()
     (records / "score" / "score.json").write_text(json.dumps(official, indent=2) + "\n")
+
+    # Open weights reads what version 1 read, found every drawn cell by label and accepted it.
+    from archivist.templates import real_openw
+
+    opened = tmp_path / real_openw.OUT_DIR / score.SIDE
+    opened.mkdir(parents=True)
+    (opened / "predictions.jsonl").write_text("".join(p.model_dump_json() + "\n" for p in pages))
+    (opened / "boxes.jsonl").write_text(
+        "".join(json.dumps({"page": p.page_id, "box_sources": {v.field_id: "table:ocr" for v in p.values}}) + "\n" for p in pages)
+    )
+    found = [{**s, "field": s["cell"], "how": "label", "same_position": True} for s in sample]
+    (opened / "cells.json").write_text(json.dumps({"cells": found}))
+    drawn = {s["cell"] for s in sample}
+    (opened / "verdicts.jsonl").write_text("".join(v.model_dump_json() + "\n" for v in verdicts if v.field_id in drawn))
+    (opened / "run.json").write_text(json.dumps({"pages_read": len(pages), "failed": []}))
+    open_official = score_openw.score_openw(tmp_path)
+    open_official["provenance"] = {
+        "scorer_sha256": hashlib.sha256(Path(score_openw.__file__).read_bytes()).hexdigest(),
+        "rules_sha256": hashlib.sha256(Path(score.__file__).read_bytes()).hexdigest(),
+    }
+    open_official["files_sha256"] = dict(official["label_files_sha256"])
+    (opened / "score").mkdir()
+    (opened / "score" / "score.json").write_text(json.dumps(open_official, indent=2) + "\n")
+
     write(
         "labels/relabels.jsonl",
         [
@@ -327,7 +351,7 @@ def test_the_corrected_key_is_scored_by_the_official_functions_beside_the_offici
     before = {p: p.read_bytes() for p in (records / "labels").iterdir()} | {
         records / "score" / "score.json": (records / "score" / "score.json").read_bytes()
     }
-    record = score_corrected.corrected_score(tmp_path)
+    record = score_corrected.version_1(tmp_path)
 
     official, corrected = record["official"]["labels"], record["corrected_key"]["labels"]
     assert official["kept/as_run"]["by_outcome"]["wrong"] == 3  # each "-" read against a blank
@@ -343,7 +367,7 @@ def test_the_corrected_key_is_scored_by_the_official_functions_beside_the_offici
 
     text = score_corrected.render(
         {
-            "provenance": {"tag": "run-real-treasury", "commit": "c" * 40, "rules_sha256": "r" * 64, "scorer_sha256": "s" * 64},
+            "provenance": {"tag": "run-real-treasury", "commit": "c" * 40, "scorers_sha256": {"labelling/score.py": "s" * 64}},
             "files_sha256": {"labels.jsonl": "f" * 64},
             **record,
         }
@@ -361,7 +385,7 @@ def test_the_corrected_score_refuses_a_key_or_scorer_other_than_the_official_sco
     official["label_files_sha256"]["labels.jsonl"] = "0" * 64
     (records / "score" / "score.json").write_text(json.dumps(official))
     with pytest.raises(score_corrected.NotReady, match="not the file the official score recorded"):
-        score_corrected.corrected_score(tmp_path)
+        score_corrected.version_1(tmp_path)
 
 
 def test_the_corrected_score_refuses_unless_the_official_results_are_reproduced(
@@ -372,7 +396,7 @@ def test_the_corrected_score_refuses_unless_the_official_results_are_reproduced(
     official["labels"]["kept/as_run"]["overall"]["single_read_error"]["value"] = 0.5
     (records / "score" / "score.json").write_text(json.dumps(official))
     with pytest.raises(ValueError, match="does not reproduce the official labels"):
-        score_corrected.corrected_score(tmp_path)
+        score_corrected.version_1(tmp_path)
 
 
 def test_the_corrected_score_needs_its_files_committed_and_pushed(tmp_path: Path) -> None:
@@ -396,3 +420,65 @@ def test_the_corrected_score_needs_its_files_committed_and_pushed(tmp_path: Path
     assert score_corrected.committed(tmp_path, [path], git=git()) == {
         "dashes_checked.jsonl": hashlib.sha256(b"{}\n").hexdigest()
     }
+
+
+def test_the_dash_marks_are_named_as_the_server_names_them() -> None:
+    assert score_corrected.DASH_ANSWERS == serve.DASH_ANSWERS
+    assert score_corrected.DASH_MARKS == serve.DASH_MARKS
+
+
+def test_open_weights_is_scored_on_the_same_key_by_its_own_scorer(tmp_path: Path, monkeypatch) -> None:
+    from archivist.templates import real_openw
+
+    records, _ = _records(tmp_path, monkeypatch)
+    opened = tmp_path / real_openw.OUT_DIR / score.SIDE
+    before = {path: path.read_bytes() for path in (*(records / "labels").iterdir(), opened / "score" / "score.json")}
+    record = score_corrected.open_weights(tmp_path)
+
+    official, corrected = record["official"], record["corrected_key"]
+    assert official["open_weights"]["kept/as_run"]["by_outcome"]["wrong"] == 3
+    assert corrected["open_weights"]["kept/as_run"]["by_outcome"]["wrong"] == 1
+    # version 1's side-by-side figures move with the key too, and equal version_1()'s
+    assert corrected["version_1"]["kept/as_run"]["by_outcome"]["wrong"] == 1
+    v1 = score_corrected.version_1(tmp_path)["corrected_key"]["labels"]
+    for name, variant in corrected["version_1"].items():
+        for measure in ("single_read_error", "archivist_error", "catch_rate"):
+            assert variant["overall"][measure] == v1[name]["overall"][measure]
+    assert corrected["cells_found"] == official["cells_found"]
+    assert record["changes"]["answers_changed"] == 2
+    assert all(path.read_bytes() == data for path, data in before.items())
+    assert not (opened / score_corrected.OUT).exists()
+
+    text = score_corrected.render_open(
+        {
+            "provenance": {"tag": "run-real-openw", "commit": "c" * 40, "scorers_sha256": {"labelling/score_openw.py": "s" * 64}},
+            "files_sha256": {"labels.jsonl": "f" * 64},
+            **record,
+        }
+    )
+    rows = [line for line in text.splitlines() if line.startswith("| kept/as_run | Wrong among accepted |")]
+    assert "**official**" in rows[0] and "corrected" in rows[1]  # the official score always first
+    assert text.index("**O1** (official") < text.index("**O1** (corrected key") and "O1 stands as scored" in text
+    assert "Coverage (the same under both keys)" in text
+
+
+def test_open_weights_refuses_unless_its_official_score_is_reproduced(tmp_path: Path, monkeypatch) -> None:
+    from archivist.templates import real_openw
+
+    _records(tmp_path, monkeypatch)
+    path = tmp_path / real_openw.OUT_DIR / score.SIDE / "score" / "score.json"
+    official = json.loads(path.read_text())
+    official["open_weights"]["kept/as_run"]["overall"]["archivist_error"]["value"] = 0.5
+    path.write_text(json.dumps(official))
+    with pytest.raises(ValueError, match="does not reproduce the official open_weights"):
+        score_corrected.open_weights(tmp_path)
+    official["provenance"]["rules_sha256"] = "0" * 64
+    path.write_text(json.dumps(official))
+    with pytest.raises(score_corrected.NotReady, match="not the rules the official score recorded"):
+        score_corrected.open_weights(tmp_path)
+
+
+def test_open_weights_runs_only_with_the_tags_own_labelling(tmp_path: Path, monkeypatch) -> None:
+    monkeypatch.chdir(tmp_path)  # not the checkout labelling/ was imported from
+    with pytest.raises(SystemExit):
+        score_corrected.main(["open_weights", "--data", str(tmp_path)])
