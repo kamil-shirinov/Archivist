@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 262" width="720" height="262" role="img" aria-labelledby="title desc">
-  <title id="title">Wrong values that reach the database, per 1,000 accepted</title>
-  <desc id="desc">Bar chart on the pre-registered synthetic test. Read once, no checks: 44.5 wrong per 1,000 accepted values, 95% interval 22.8 to 71.4; Archivist: 3.6 wrong per 1,000 accepted values, 95% interval 1.4 to 6.7.</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 532" width="720" height="532" role="img" aria-labelledby="title desc">
+  <title id="title">Wrong values accepted per 1,000: read once, and with Archivist&#x27;s checks</title>
+  <desc id="desc">Grouped bar chart on the pre-registered synthetic test, for three set-ups: Muse Spark 1.3 for both reads (arm A), Muse Spark Open for both reads (arm B) and the mixed set-up (arm C). Muse Spark 1.3 for both reads: read once 44.5 wrong per 1,000 accepted (95% interval 22.8 to 71.4), with checks 3.6 wrong per 1,000 accepted (95% interval 1.4 to 6.7); Muse Spark Open for both reads: read once 47.5 wrong per 1,000 accepted (95% interval 23.3 to 77.8), with checks 3.0 wrong per 1,000 accepted (95% interval 1.2 to 5.4); Mixed: Muse Spark 1.3 first, Muse Spark Open second: read once 44.5 wrong per 1,000 accepted (95% interval 22.8 to 71.4), with checks 4.7 wrong per 1,000 accepted (95% interval 2.2 to 8.1). Only arm A against the read-once baseline was a pre-registered target; the others are figures from the same report.</desc>
   <style>
   text { font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
   .card { fill: #ffffff; stroke: #d0d7de; }
@@ -50,32 +50,73 @@
       <circle cx="3" cy="3" r="1.7" class="teal"/>
     </pattern>
   </defs>
-  <rect x="0.5" y="0.5" width="719" height="261" rx="8" class="card"/>
-  <text x="24" y="34" class="t" font-size="16" font-weight="600" text-anchor="start">Wrong values that reach the database, per 1,000 accepted</text>
+  <rect x="0.5" y="0.5" width="719" height="531" rx="8" class="card"/>
+  <text x="24" y="34" class="t" font-size="16" font-weight="600" text-anchor="start">Wrong values accepted per 1,000: read once, and with Archivist&#x27;s checks</text>
   <text x="24" y="54" class="m" font-size="12" font-weight="400" text-anchor="start">157 synthetic test pages, 4,267 fields. Lines are 95% intervals (pages resampled 2,000 times).</text>
-  <line x1="200" y1="76" x2="200" y2="190" class="axis"/>
-  <text x="200" y="208" class="m" font-size="11" font-weight="400" text-anchor="middle">0</text>
-  <line x1="280" y1="76" x2="280" y2="190" class="grid"/>
-  <text x="280" y="208" class="m" font-size="11" font-weight="400" text-anchor="middle">20</text>
-  <line x1="360" y1="76" x2="360" y2="190" class="grid"/>
-  <text x="360" y="208" class="m" font-size="11" font-weight="400" text-anchor="middle">40</text>
-  <line x1="440" y1="76" x2="440" y2="190" class="grid"/>
-  <text x="440" y="208" class="m" font-size="11" font-weight="400" text-anchor="middle">60</text>
-  <line x1="520" y1="76" x2="520" y2="190" class="grid"/>
-  <text x="520" y="208" class="m" font-size="11" font-weight="400" text-anchor="middle">80</text>
-  <text x="186" y="104" class="t" font-size="13" font-weight="600" text-anchor="end">Read once, no checks</text>
-  <text x="186" y="120" class="m" font-size="11" font-weight="400" text-anchor="end">Muse Spark 1.3</text>
-  <path d="M200 96H373.8A4 4 0 0 1 377.8 100V112A4 4 0 0 1 373.8 116H200Z" class="purple"/>
-  <path d="M291 102V110M291 106H485.6M485.6 102V110" class="whisk"/>
-  <text x="548" y="104" class="t" font-size="15" font-weight="600" text-anchor="start">44.5</text>
-  <text x="548" y="120" class="m" font-size="11" font-weight="400" text-anchor="start">interval 22.8 to 71.4</text>
-  <text x="548" y="134" class="m" font-size="11" font-weight="400" text-anchor="start">189 of 4,251 accepted</text>
-  <text x="186" y="156" class="t" font-size="13" font-weight="600" text-anchor="end">Archivist</text>
-  <text x="186" y="172" class="m" font-size="11" font-weight="400" text-anchor="end">hosted, Muse Spark 1.3</text>
-  <path d="M200 148H210.4A4 4 0 0 1 214.4 152V164A4 4 0 0 1 210.4 168H200Z" class="teal"/>
-  <path d="M205.6 154V162M205.6 158H226.6M226.6 154V162" class="whisk"/>
-  <text x="548" y="156" class="t" font-size="15" font-weight="600" text-anchor="start">3.6</text>
-  <text x="548" y="172" class="m" font-size="11" font-weight="400" text-anchor="start">interval 1.4 to 6.7</text>
-  <text x="548" y="186" class="m" font-size="11" font-weight="400" text-anchor="start">12 of 3,330 accepted</text>
-  <text x="24" y="248" class="m" font-size="11" font-weight="400" text-anchor="start">Source: results/test_report.json (pre-registered in PREREGISTRATION.md). Rate of wrong values among accepted fields, times 1,000.</text>
+  <path d="M24 70H42A4 4 0 0 1 46 74V78A4 4 0 0 1 42 82H24Z" class="purple"/>
+  <text x="54" y="80" class="t" font-size="12" font-weight="400" text-anchor="start">Read once, no checks</text>
+  <path d="M220 70H238A4 4 0 0 1 242 74V78A4 4 0 0 1 238 82H220Z" class="teal"/>
+  <text x="250" y="80" class="t" font-size="12" font-weight="400" text-anchor="start">With Archivist&#x27;s checks</text>
+  <text x="24" y="114" class="t" font-size="12" font-weight="600" text-anchor="start">Muse Spark 1.3 for both reads (arm A)</text>
+  <line x1="130" y1="124" x2="130" y2="206" class="axis"/>
+  <line x1="222.5" y1="124" x2="222.5" y2="206" class="grid"/>
+  <line x1="315" y1="124" x2="315" y2="206" class="grid"/>
+  <line x1="407.5" y1="124" x2="407.5" y2="206" class="grid"/>
+  <line x1="500" y1="124" x2="500" y2="206" class="grid"/>
+  <text x="118" y="146" class="t" font-size="12" font-weight="400" text-anchor="end">Read once</text>
+  <path d="M130 132H331.6A4 4 0 0 1 335.6 136V148A4 4 0 0 1 331.6 152H130Z" class="purple"/>
+  <path d="M235.2 138V146M235.2 142H460.3M460.3 138V146" class="whisk"/>
+  <text x="528" y="140" class="t" font-size="15" font-weight="600" text-anchor="start">44.5</text>
+  <text x="528" y="154" class="m" font-size="11" font-weight="400" text-anchor="start">interval 22.8 to 71.4</text>
+  <text x="528" y="167" class="m" font-size="11" font-weight="400" text-anchor="start">189 of 4,251 accepted</text>
+  <text x="118" y="194" class="t" font-size="12" font-weight="400" text-anchor="end">With checks</text>
+  <path d="M130 180H142.7A4 4 0 0 1 146.7 184V196A4 4 0 0 1 142.7 200H130Z" class="teal"/>
+  <path d="M136.4 186V194M136.4 190H160.8M160.8 186V194" class="whisk"/>
+  <text x="528" y="188" class="t" font-size="15" font-weight="600" text-anchor="start">3.6</text>
+  <text x="528" y="202" class="m" font-size="11" font-weight="400" text-anchor="start">interval 1.4 to 6.7</text>
+  <text x="528" y="215" class="m" font-size="11" font-weight="400" text-anchor="start">12 of 3,330 accepted</text>
+  <text x="24" y="234" class="t" font-size="12" font-weight="600" text-anchor="start">Muse Spark Open for both reads (arm B)</text>
+  <line x1="130" y1="244" x2="130" y2="326" class="axis"/>
+  <line x1="222.5" y1="244" x2="222.5" y2="326" class="grid"/>
+  <line x1="315" y1="244" x2="315" y2="326" class="grid"/>
+  <line x1="407.5" y1="244" x2="407.5" y2="326" class="grid"/>
+  <line x1="500" y1="244" x2="500" y2="326" class="grid"/>
+  <text x="118" y="266" class="t" font-size="12" font-weight="400" text-anchor="end">Read once</text>
+  <path d="M130 252H345.7A4 4 0 0 1 349.7 256V268A4 4 0 0 1 345.7 272H130Z" fill="url(#hatch-purple)" class="pstroke"/>
+  <path d="M237.8 258V266M237.8 262H489.9M489.9 258V266" class="whisk"/>
+  <text x="528" y="260" class="t" font-size="15" font-weight="600" text-anchor="start">47.5</text>
+  <text x="528" y="274" class="m" font-size="11" font-weight="400" text-anchor="start">interval 23.3 to 77.8</text>
+  <text x="528" y="287" class="m" font-size="11" font-weight="400" text-anchor="start">202 of 4,253 accepted</text>
+  <text x="118" y="314" class="t" font-size="12" font-weight="400" text-anchor="end">With checks</text>
+  <path d="M130 300H140A4 4 0 0 1 144 304V316A4 4 0 0 1 140 320H130Z" fill="url(#hatch-teal)" class="tstroke"/>
+  <path d="M135.7 306V314M135.7 310H155M155 306V314" class="whisk"/>
+  <text x="528" y="308" class="t" font-size="15" font-weight="600" text-anchor="start">3.0</text>
+  <text x="528" y="322" class="m" font-size="11" font-weight="400" text-anchor="start">interval 1.2 to 5.4</text>
+  <text x="528" y="335" class="m" font-size="11" font-weight="400" text-anchor="start">10 of 3,296 accepted</text>
+  <text x="24" y="354" class="t" font-size="12" font-weight="600" text-anchor="start">Mixed: Muse Spark 1.3 first, Muse Spark Open second (arm C)</text>
+  <line x1="130" y1="364" x2="130" y2="446" class="axis"/>
+  <line x1="222.5" y1="364" x2="222.5" y2="446" class="grid"/>
+  <line x1="315" y1="364" x2="315" y2="446" class="grid"/>
+  <line x1="407.5" y1="364" x2="407.5" y2="446" class="grid"/>
+  <line x1="500" y1="364" x2="500" y2="446" class="grid"/>
+  <text x="118" y="386" class="t" font-size="12" font-weight="400" text-anchor="end">Read once</text>
+  <path d="M130 372H331.6A4 4 0 0 1 335.6 376V388A4 4 0 0 1 331.6 392H130Z" fill="url(#dots-purple)" class="pstroke"/>
+  <path d="M235.2 378V386M235.2 382H460.3M460.3 378V386" class="whisk"/>
+  <text x="528" y="380" class="t" font-size="15" font-weight="600" text-anchor="start">44.5</text>
+  <text x="528" y="394" class="m" font-size="11" font-weight="400" text-anchor="start">interval 22.8 to 71.4</text>
+  <text x="528" y="407" class="m" font-size="11" font-weight="400" text-anchor="start">189 of 4,251 accepted</text>
+  <text x="118" y="434" class="t" font-size="12" font-weight="400" text-anchor="end">With checks</text>
+  <path d="M130 420H147.5A4 4 0 0 1 151.5 424V436A4 4 0 0 1 147.5 440H130Z" fill="url(#dots-teal)" class="tstroke"/>
+  <path d="M140.2 426V434M140.2 430H167.5M167.5 426V434" class="whisk"/>
+  <text x="528" y="428" class="t" font-size="15" font-weight="600" text-anchor="start">4.7</text>
+  <text x="528" y="442" class="m" font-size="11" font-weight="400" text-anchor="start">interval 2.2 to 8.1</text>
+  <text x="528" y="455" class="m" font-size="11" font-weight="400" text-anchor="start">15 of 3,224 accepted</text>
+  <text x="130" y="464" class="m" font-size="11" font-weight="400" text-anchor="middle">0</text>
+  <text x="222.5" y="464" class="m" font-size="11" font-weight="400" text-anchor="middle">20</text>
+  <text x="315" y="464" class="m" font-size="11" font-weight="400" text-anchor="middle">40</text>
+  <text x="407.5" y="464" class="m" font-size="11" font-weight="400" text-anchor="middle">60</text>
+  <text x="500" y="464" class="m" font-size="11" font-weight="400" text-anchor="middle">80</text>
+  <text x="24" y="494" class="m" font-size="11" font-weight="400" text-anchor="start">Only arm A against the read-once baseline was a pre-registered target; the others are figures from the same report.</text>
+  <text x="24" y="508" class="m" font-size="11" font-weight="400" text-anchor="start">Arm C reads first with Muse Spark 1.3, so its read-once bar is arm A&#x27;s. Arm B reads first with Muse Spark Open.</text>
+  <text x="24" y="522" class="m" font-size="11" font-weight="400" text-anchor="start">Source: results/test_report.json (extraction_alone and stats). Wrong values among accepted fields, times 1,000.</text>
 </svg>

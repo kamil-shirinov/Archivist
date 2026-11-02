@@ -187,39 +187,62 @@ def pct(rate: float) -> float:
 
 
 def chart_mistakes(rep: dict) -> str:
-    base = rep["configurations"]["baseline"]["stats"]
-    arch = rep["configurations"]["A"]["stats"]
-    rows = [
-        ("Read once, no checks", "Muse Spark 1.3", base, "purple"),
-        ("Archivist", "hosted, Muse Spark 1.3", arch, "teal"),
+    """Read once against with Archivist's checks, for each of the three set-ups. 'Read once' is the
+    configuration's extraction_alone (what its own first read would have let in), 'with checks' its
+    stats. Only arm A against the baseline was pre-registered; arm C's first read is arm A's."""
+    cfg = rep["configurations"]
+    setups = [
+        ("Muse Spark 1.3 for both reads (arm A)", "solid", cfg["A"]),
+        ("Muse Spark Open for both reads (arm B)", "hatch", cfg["B"]),
+        ("Mixed: Muse Spark 1.3 first, Muse Spark Open second (arm C)", "dots", cfg["C"]),
     ]
-    vals = []
-    for _, _, s, _ in rows:
-        lo, hi = s["error_rate_accepted_ci95"]
-        vals.append((per_1000(s["error_rate_accepted"]), per_1000(lo), per_1000(hi), s))
-    top = 20 * (int(max(v[2] for v in vals) // 20) + 1)
-    h = 262
-    svg = Svg(h, "Wrong values that reach the database, per 1,000 accepted",
-              "Bar chart on the pre-registered synthetic test. " + "; ".join(
-                  f"{r[0]}: {v[0]:.1f} wrong per 1,000 accepted values, 95% interval {v[1]:.1f} to {v[2]:.1f}"
-                  for r, v in zip(rows, vals)) + ".")
-    svg.text(24, 34, "Wrong values that reach the database, per 1,000 accepted", "t", 16, weight="600")
+    kinds = [("Read once", "Read once, no checks", "purple", "extraction_alone"),
+             ("With checks", "With Archivist's checks", "teal", "stats")]
+    vals = [[(per_1000(c[key]["error_rate_accepted"]),
+              *(per_1000(x) for x in c[key]["error_rate_accepted_ci95"]), c[key])
+             for _, _, _, key in kinds] for _, _, c in setups]
+    top = 20 * (int(max(v[2] for group in vals for v in group) // 20) + 1)
+    caption = "Only arm A against the read-once baseline was a pre-registered target; the others are figures from the same report."
+    h = 532
+    desc = "; ".join(
+        f"{label.split(' (')[0]}: " + ", ".join(
+            f"{short.lower()} {v[0]:.1f} wrong per 1,000 accepted (95% interval {v[1]:.1f} to {v[2]:.1f})"
+            for (short, _, _, _), v in zip(kinds, group))
+        for (label, _, _), group in zip(setups, vals))
+    svg = Svg(h, "Wrong values accepted per 1,000: read once, and with Archivist's checks",
+              "Grouped bar chart on the pre-registered synthetic test, for three set-ups: Muse Spark 1.3 for both reads (arm A), "
+              "Muse Spark Open for both reads (arm B) and the mixed set-up (arm C). " + desc + ". " + caption)
+    svg.text(24, 34, "Wrong values accepted per 1,000: read once, and with Archivist's checks", "t", 16, weight="600")
     svg.text(24, 54, f"{rep['n_pages']} synthetic test pages, {rep['n_fields']:,} fields. "
              "Lines are 95% intervals (pages resampled 2,000 times).", "m", 12)
-    x0, x1, y_top, y_bot = 200, 520, 76, 190
-    k = axis(svg, x0, x1, y_top, y_bot, top, 20, lambda v: f"{v:g}", y_bot + 18)
-    for i, ((label, sub, s, hue), (v, lo, hi, _)) in enumerate(zip(rows, vals)):
-        yc = y_top + 30 + i * 52
-        svg.text(x0 - 14, yc - 2, label, "t", 13, "end", "600")
-        svg.text(x0 - 14, yc + 14, sub, "m", 11, "end")
-        svg.bar(x0, yc - 10, v * k, 20, hue, False)
-        svg.whisker(x0 + lo * k, x0 + hi * k, yc)
-        svg.text(548, yc - 2, f"{v:.1f}", "t", 15, weight="600")
-        svg.text(548, yc + 14, f"interval {lo:.1f} to {hi:.1f}", "m", 11)
-        svg.text(548, yc + 28, f"{s['errors_missed']} of "
-                 f"{s['n_accepted']:,} accepted", "m", 11)
-    svg.text(24, h - 14, "Source: results/test_report.json (pre-registered in PREREGISTRATION.md). "
-             "Rate of wrong values among accepted fields, times 1,000.", "m", 11)
+    x = 24
+    for _, label, hue, _ in kinds:
+        svg.bar(x, 70, 22, 12, hue)
+        svg.text(x + 30, 80, label, "t", 12)
+        x += 30 + 7.2 * len(label) + 22
+    x0, x1, y_top, pitch = 130, 500, 100, 120
+    k = (x1 - x0) / top
+    y_bot = y_top + 3 * pitch - 14
+    for g, ((label, style, _), group) in enumerate(zip(setups, vals)):
+        gy = y_top + g * pitch
+        svg.text(24, gy + 14, label, "t", 12, weight="600")
+        for v in range(0, top + 1, 20):  # the grid in short runs, so no line crosses a heading
+            svg.line(x0 + v * k, gy + 24, x0 + v * k, gy + pitch - 14, "axis" if v == 0 else "grid")
+        for i, ((short, _, hue, _), (v, lo, hi, s)) in enumerate(zip(kinds, group)):
+            yc = gy + 42 + i * 48
+            svg.text(x0 - 12, yc + 4, short, "t", 12, "end")
+            svg.bar(x0, yc - 10, v * k, 20, hue, style)
+            svg.whisker(x0 + lo * k, x0 + hi * k, yc)
+            svg.text(528, yc - 2, f"{v:.1f}", "t", 15, weight="600")
+            svg.text(528, yc + 12, f"interval {lo:.1f} to {hi:.1f}", "m", 11)
+            svg.text(528, yc + 25, f"{s['errors_missed']} of {s['n_accepted']:,} accepted", "m", 11)
+    for v in range(0, top + 1, 20):
+        svg.text(x0 + v * k, y_bot + 18, f"{v:g}", "m", 11, "middle")
+    svg.text(24, h - 38, caption, "m", 11)
+    svg.text(24, h - 24, "Arm C reads first with Muse Spark 1.3, so its read-once bar is arm A's. "
+             "Arm B reads first with Muse Spark Open.", "m", 11)
+    svg.text(24, h - 10, "Source: results/test_report.json (extraction_alone and stats). "
+             "Wrong values among accepted fields, times 1,000.", "m", 11)
     return svg.render()
 
 
@@ -233,24 +256,27 @@ def chart_hosted_vs_open(rep: dict) -> str:
         ("Mixed", "Mixed: Muse Spark 1.3 first, Muse Spark Open second (arm C)", "dots", rep["configurations"]["C"]["stats"]),
     ]
     panels = [
-        ("Wrong values among those accepted, per 1,000 (lower is better)",
-         "error_rate_accepted", "error_rate_accepted_ci95", per_1000, 10, 2, lambda v: f"{v:.1f}"),
         ("Share of the wrong values that were caught and sent to a person (higher is better)",
          "catch_rate", "catch_rate_ci95", pct, 100, 20, lambda v: f"{v:.1f}%"),
         ("Share of all values sent to a person (lower is better; target 20% or less)",
          "review_rate", "review_rate_ci95", pct, 40, 10, lambda v: f"{v:.1f}%"),
     ]
-    h = 676
+    a, b, c = (s for _, _, _, s in arms)
+    if not (c["review_rate"] > max(a["review_rate"], b["review_rate"])
+            and c["catch_rate"] < min(a["catch_rate"], b["catch_rate"])):
+        raise SystemExit("the note under chart-hosted-vs-open says the mixed set-up did worse on both panels; the report no longer agrees")
+    h = 500
     rows = []
     for title, key, cikey, conv, top, step, fmt in panels:
         for name, _, _, s in arms:
             lo, hi = s[cikey]
             rows.append(f"{title.split(' (')[0]}, {name}: {fmt(conv(s[key]))} "
                         f"(95% interval {fmt(conv(lo))} to {fmt(conv(hi))})")
-    svg = Svg(h, "The two models, and the two mixed, on the same synthetic test",
-              "Three small bar charts comparing Muse Spark 1.3 for both reads (arm A), Muse Spark Open for both reads (arm B) "
-              "and the mixed set-up (arm C). " + "; ".join(rows) + ".")
-    svg.text(24, 34, "Muse Spark 1.3, Muse Spark Open, and the two mixed", "t", 16, weight="600")
+    svg = Svg(h, "Muse Spark 1.3, Muse Spark Open and the mixed set-up on the same synthetic test",
+              "Two small bar charts comparing Muse Spark 1.3 for both reads (arm A), Muse Spark Open for both reads (arm B) "
+              "and the mixed set-up (arm C): the share of wrong values caught and the share of values sent to a person. "
+              + "; ".join(rows) + ". Wrong values accepted per 1,000 are in the first chart.")
+    svg.text(24, 34, "Muse Spark 1.3, Muse Spark Open and the mixed set-up", "t", 16, weight="600")
     svg.text(24, 54, "Same 157 synthetic test pages. Lines are 95% intervals (pages resampled 2,000 times).", "m", 12)
     legend(svg, 24, 80, "purple", [(label, style) for _, label, style, _ in arms], vertical=True)
     x0, x1 = 150, 500
@@ -269,7 +295,7 @@ def chart_hosted_vs_open(rep: dict) -> str:
             svg.text(522, yc - 1, fmt(v), "t", 13, weight="600")
             svg.text(522, yc + 12, f"interval {fmt(lo)} to {fmt(hi)}", "m", 11)
     svg.text(24, h - 38, "Source: results/test_report.json, arms A, B and C. Wrong values caught = sent to review.", "m", 11)
-    svg.text(24, h - 24, "Mixed did worse than either model alone, on wrong values accepted and on values sent to a person.", "m", 11)
+    svg.text(24, h - 24, "Mixed did worse than either model alone on both: it caught the fewest wrong values and sent the most to a person.", "m", 11)
     svg.text(24, h - 10, "Arm B also extracted with Muse Spark Open, so it compares whole set-ups, not the second read alone.", "m", 11)
     return svg.render()
 

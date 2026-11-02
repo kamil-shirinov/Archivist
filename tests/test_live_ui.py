@@ -9,6 +9,7 @@ key is used, and the tests skip, saying so, where no Chromium or Chrome can be f
 (set ARCHIVIST_BROWSER to name one).
 """
 
+import threading
 import time
 from pathlib import Path
 
@@ -41,12 +42,22 @@ def local(world):  # noqa: F811
     Scripted.delay = 0.04
     running = Running(world)
     yield world, f"http://127.0.0.1:{running.port}"
+    if Scripted.gate is not None:
+        Scripted.gate.set()  # a test that failed while holding a call must not leave it held
     Scripted.delay = 0.0
     running.close()
 
 
 def text(tab, selector: str) -> str:
     return tab.eval(f"document.querySelector({selector!r})?.textContent ?? ''")
+
+
+def press(tab, element: str) -> None:
+    """Click a button once it is enabled. After a page loads, the local app keeps its read button
+    disabled until the server has answered its status request, and a click on a disabled button does
+    nothing; on a slow machine a click made at once would leave the test waiting for a read that never began."""
+    tab.wait_for(f"!document.getElementById({element!r}).disabled")
+    tab.eval(f"document.getElementById({element!r}).click()")
 
 
 def test_a_page_is_read_live_then_replayed_and_opened_in_the_normal_views(local):
@@ -71,14 +82,17 @@ def test_a_page_is_read_live_then_replayed_and_opened_in_the_normal_views(local)
         tab.wait_for("!document.getElementById('v-live').hidden")
         assert tab.eval("[...document.querySelectorAll('#l-page option')].map(o => o.value)") == [PAGE]
 
-        # a live read
+        # a live read, held at its first call so that it is still in flight when the test looks,
+        # however slowly the test polls (a whole read takes less time than one slow poll)
         tab.eval("document.querySelector('#l-mode button[data-m=live]').click()")
         assert text(tab, "#mode-pill") == "Live calls"
         assert text(tab, "#l-go") == "Read live"
-        tab.eval("document.getElementById('l-go').click()")
+        Scripted.gate = threading.Event()
+        press(tab, "l-go")
         tab.wait_for("document.getElementById('l-go').disabled && document.querySelectorAll('#l-calls li').length > 0")
         assert text(tab, "#mode-pill") == "Live calls"
         assert tab.eval("document.getElementById('mode-pill').hasAttribute('data-busy')")
+        Scripted.gate.set()
         tab.wait_for("!!document.getElementById('l-open')", timeout=60)
         tab.screenshot(SHOTS / "live-done.png")
 
@@ -117,7 +131,7 @@ def test_a_page_is_read_live_then_replayed_and_opened_in_the_normal_views(local)
         tab.eval("document.querySelector('#l-mode button[data-m=replay]').click()")
         tab.eval("document.querySelector('#l-speed button[data-s=\"10\"]').click()")
         assert text(tab, "#mode-pill") == "Replay" and text(tab, "#l-go") == "Replay"
-        tab.eval("document.getElementById('l-go').click()")
+        press(tab, "l-go")  # this page was loaded afresh, so its status request may still be in flight
         tab.wait_for("!!document.getElementById('l-open')", timeout=60)
         tab.screenshot(SHOTS / "live-replay.png")
         sources = tab.eval("[...new Set([...document.querySelectorAll('#l-calls li .lc-src')].map(e => e.textContent))]")

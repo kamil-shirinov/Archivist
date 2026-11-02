@@ -1,6 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 676" width="720" height="676" role="img" aria-labelledby="title desc">
-  <title id="title">The two models, and the two mixed, on the same synthetic test</title>
-  <desc id="desc">Three small bar charts comparing Muse Spark 1.3 for both reads (arm A), Muse Spark Open for both reads (arm B) and the mixed set-up (arm C). Wrong values among those accepted, per 1,000, Muse Spark 1.3: 3.6 (95% interval 1.4 to 6.7); Wrong values among those accepted, per 1,000, Muse Spark Open: 3.0 (95% interval 1.2 to 5.4); Wrong values among those accepted, per 1,000, Mixed: 4.7 (95% interval 2.2 to 8.1); Share of the wrong values that were caught and sent to a person, Muse Spark 1.3: 93.7% (95% interval 88.3% to 97.3%); Share of the wrong values that were caught and sent to a person, Muse Spark Open: 95.0% (95% interval 88.9% to 98.0%); Share of the wrong values that were caught and sent to a person, Mixed: 92.1% (95% interval 86.2% to 95.7%); Share of all values sent to a person, Muse Spark 1.3: 21.6% (95% interval 15.4% to 27.9%); Share of all values sent to a person, Muse Spark Open: 22.4% (95% interval 17.0% to 28.3%); Share of all values sent to a person, Mixed: 24.1% (95% interval 18.4% to 29.9%).</desc>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 720 500" width="720" height="500" role="img" aria-labelledby="title desc">
+  <title id="title">Muse Spark 1.3, Muse Spark Open and the mixed set-up on the same synthetic test</title>
+  <desc id="desc">Two small bar charts comparing Muse Spark 1.3 for both reads (arm A), Muse Spark Open for both reads (arm B) and the mixed set-up (arm C): the share of wrong values caught and the share of values sent to a person. Share of the wrong values that were caught and sent to a person, Muse Spark 1.3: 93.7% (95% interval 88.3% to 97.3%); Share of the wrong values that were caught and sent to a person, Muse Spark Open: 95.0% (95% interval 88.9% to 98.0%); Share of the wrong values that were caught and sent to a person, Mixed: 92.1% (95% interval 86.2% to 95.7%); Share of all values sent to a person, Muse Spark 1.3: 21.6% (95% interval 15.4% to 27.9%); Share of all values sent to a person, Muse Spark Open: 22.4% (95% interval 17.0% to 28.3%); Share of all values sent to a person, Mixed: 24.1% (95% interval 18.4% to 29.9%). Wrong values accepted per 1,000 are in the first chart.</desc>
   <style>
   text { font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
   .card { fill: #ffffff; stroke: #d0d7de; }
@@ -50,8 +50,8 @@
       <circle cx="3" cy="3" r="1.7" class="teal"/>
     </pattern>
   </defs>
-  <rect x="0.5" y="0.5" width="719" height="675" rx="8" class="card"/>
-  <text x="24" y="34" class="t" font-size="16" font-weight="600" text-anchor="start">Muse Spark 1.3, Muse Spark Open, and the two mixed</text>
+  <rect x="0.5" y="0.5" width="719" height="499" rx="8" class="card"/>
+  <text x="24" y="34" class="t" font-size="16" font-weight="600" text-anchor="start">Muse Spark 1.3, Muse Spark Open and the mixed set-up</text>
   <text x="24" y="54" class="m" font-size="12" font-weight="400" text-anchor="start">Same 157 synthetic test pages. Lines are 95% intervals (pages resampled 2,000 times).</text>
   <path d="M24 70H42A4 4 0 0 1 46 74V78A4 4 0 0 1 42 82H24Z" class="purple"/>
   <text x="54" y="80" class="t" font-size="12" font-weight="400" text-anchor="start">Muse Spark 1.3 for both reads, on Meta&#x27;s API (arm A)</text>
@@ -59,89 +59,61 @@
   <text x="54" y="100" class="t" font-size="12" font-weight="400" text-anchor="start">Muse Spark Open for both reads, on Baseten (arm B)</text>
   <path d="M24 110H42A4 4 0 0 1 46 114V118A4 4 0 0 1 42 122H24Z" fill="url(#dots-purple)" class="pstroke"/>
   <text x="54" y="120" class="t" font-size="12" font-weight="400" text-anchor="start">Mixed: Muse Spark 1.3 first, Muse Spark Open second (arm C)</text>
-  <text x="24" y="160" class="t" font-size="12" font-weight="600" text-anchor="start">Wrong values among those accepted, per 1,000 (lower is better)</text>
+  <text x="24" y="160" class="t" font-size="12" font-weight="600" text-anchor="start">Share of the wrong values that were caught and sent to a person (higher is better)</text>
   <line x1="150" y1="172" x2="150" y2="268" class="axis"/>
   <text x="150" y="284" class="m" font-size="11" font-weight="400" text-anchor="middle">0</text>
   <line x1="220" y1="172" x2="220" y2="268" class="grid"/>
-  <text x="220" y="284" class="m" font-size="11" font-weight="400" text-anchor="middle">2</text>
+  <text x="220" y="284" class="m" font-size="11" font-weight="400" text-anchor="middle">20</text>
   <line x1="290" y1="172" x2="290" y2="268" class="grid"/>
-  <text x="290" y="284" class="m" font-size="11" font-weight="400" text-anchor="middle">4</text>
+  <text x="290" y="284" class="m" font-size="11" font-weight="400" text-anchor="middle">40</text>
   <line x1="360" y1="172" x2="360" y2="268" class="grid"/>
-  <text x="360" y="284" class="m" font-size="11" font-weight="400" text-anchor="middle">6</text>
+  <text x="360" y="284" class="m" font-size="11" font-weight="400" text-anchor="middle">60</text>
   <line x1="430" y1="172" x2="430" y2="268" class="grid"/>
-  <text x="430" y="284" class="m" font-size="11" font-weight="400" text-anchor="middle">8</text>
+  <text x="430" y="284" class="m" font-size="11" font-weight="400" text-anchor="middle">80</text>
   <line x1="500" y1="172" x2="500" y2="268" class="grid"/>
-  <text x="500" y="284" class="m" font-size="11" font-weight="400" text-anchor="middle">10</text>
+  <text x="500" y="284" class="m" font-size="11" font-weight="400" text-anchor="middle">100</text>
   <text x="138" y="196" class="t" font-size="12" font-weight="400" text-anchor="end">Muse Spark 1.3</text>
-  <path d="M150 183H272.1A4 4 0 0 1 276.1 187V197A4 4 0 0 1 272.1 201H150Z" class="purple"/>
-  <path d="M198.8 188V196M198.8 192H383M383 188V196" class="whisk"/>
-  <text x="522" y="191" class="t" font-size="13" font-weight="600" text-anchor="start">3.6</text>
-  <text x="522" y="204" class="m" font-size="11" font-weight="400" text-anchor="start">interval 1.4 to 6.7</text>
+  <path d="M150 183H473.8A4 4 0 0 1 477.8 187V197A4 4 0 0 1 473.8 201H150Z" class="purple"/>
+  <path d="M459.1 188V196M459.1 192H490.5M490.5 188V196" class="whisk"/>
+  <text x="522" y="191" class="t" font-size="13" font-weight="600" text-anchor="start">93.7%</text>
+  <text x="522" y="204" class="m" font-size="11" font-weight="400" text-anchor="start">interval 88.3% to 97.3%</text>
   <text x="138" y="226" class="t" font-size="12" font-weight="400" text-anchor="end">Muse Spark Open</text>
-  <path d="M150 213H252.2A4 4 0 0 1 256.2 217V227A4 4 0 0 1 252.2 231H150Z" fill="url(#hatch-purple)" class="pstroke"/>
-  <path d="M193.3 218V226M193.3 222H339.4M339.4 218V226" class="whisk"/>
-  <text x="522" y="221" class="t" font-size="13" font-weight="600" text-anchor="start">3.0</text>
-  <text x="522" y="234" class="m" font-size="11" font-weight="400" text-anchor="start">interval 1.2 to 5.4</text>
+  <path d="M150 213H478.7A4 4 0 0 1 482.7 217V227A4 4 0 0 1 478.7 231H150Z" fill="url(#hatch-purple)" class="pstroke"/>
+  <path d="M461.1 218V226M461.1 222H492.9M492.9 218V226" class="whisk"/>
+  <text x="522" y="221" class="t" font-size="13" font-weight="600" text-anchor="start">95.0%</text>
+  <text x="522" y="234" class="m" font-size="11" font-weight="400" text-anchor="start">interval 88.9% to 98.0%</text>
   <text x="138" y="256" class="t" font-size="12" font-weight="400" text-anchor="end">Mixed</text>
-  <path d="M150 243H308.8A4 4 0 0 1 312.8 247V257A4 4 0 0 1 308.8 261H150Z" fill="url(#dots-purple)" class="pstroke"/>
-  <path d="M227.4 248V256M227.4 252H433.9M433.9 248V256" class="whisk"/>
-  <text x="522" y="251" class="t" font-size="13" font-weight="600" text-anchor="start">4.7</text>
-  <text x="522" y="264" class="m" font-size="11" font-weight="400" text-anchor="start">interval 2.2 to 8.1</text>
-  <text x="24" y="310" class="t" font-size="12" font-weight="600" text-anchor="start">Share of the wrong values that were caught and sent to a person (higher is better)</text>
+  <path d="M150 243H468.2A4 4 0 0 1 472.2 247V257A4 4 0 0 1 468.2 261H150Z" fill="url(#dots-purple)" class="pstroke"/>
+  <path d="M451.7 248V256M451.7 252H484.8M484.8 248V256" class="whisk"/>
+  <text x="522" y="251" class="t" font-size="13" font-weight="600" text-anchor="start">92.1%</text>
+  <text x="522" y="264" class="m" font-size="11" font-weight="400" text-anchor="start">interval 86.2% to 95.7%</text>
+  <text x="24" y="310" class="t" font-size="12" font-weight="600" text-anchor="start">Share of all values sent to a person (lower is better; target 20% or less)</text>
   <line x1="150" y1="322" x2="150" y2="418" class="axis"/>
   <text x="150" y="434" class="m" font-size="11" font-weight="400" text-anchor="middle">0</text>
-  <line x1="220" y1="322" x2="220" y2="418" class="grid"/>
-  <text x="220" y="434" class="m" font-size="11" font-weight="400" text-anchor="middle">20</text>
-  <line x1="290" y1="322" x2="290" y2="418" class="grid"/>
-  <text x="290" y="434" class="m" font-size="11" font-weight="400" text-anchor="middle">40</text>
-  <line x1="360" y1="322" x2="360" y2="418" class="grid"/>
-  <text x="360" y="434" class="m" font-size="11" font-weight="400" text-anchor="middle">60</text>
-  <line x1="430" y1="322" x2="430" y2="418" class="grid"/>
-  <text x="430" y="434" class="m" font-size="11" font-weight="400" text-anchor="middle">80</text>
+  <line x1="237.5" y1="322" x2="237.5" y2="418" class="grid"/>
+  <text x="237.5" y="434" class="m" font-size="11" font-weight="400" text-anchor="middle">10</text>
+  <line x1="325" y1="322" x2="325" y2="418" class="grid"/>
+  <text x="325" y="434" class="m" font-size="11" font-weight="400" text-anchor="middle">20</text>
+  <line x1="412.5" y1="322" x2="412.5" y2="418" class="grid"/>
+  <text x="412.5" y="434" class="m" font-size="11" font-weight="400" text-anchor="middle">30</text>
   <line x1="500" y1="322" x2="500" y2="418" class="grid"/>
-  <text x="500" y="434" class="m" font-size="11" font-weight="400" text-anchor="middle">100</text>
+  <text x="500" y="434" class="m" font-size="11" font-weight="400" text-anchor="middle">40</text>
   <text x="138" y="346" class="t" font-size="12" font-weight="400" text-anchor="end">Muse Spark 1.3</text>
-  <path d="M150 333H473.8A4 4 0 0 1 477.8 337V347A4 4 0 0 1 473.8 351H150Z" class="purple"/>
-  <path d="M459.1 338V346M459.1 342H490.5M490.5 338V346" class="whisk"/>
-  <text x="522" y="341" class="t" font-size="13" font-weight="600" text-anchor="start">93.7%</text>
-  <text x="522" y="354" class="m" font-size="11" font-weight="400" text-anchor="start">interval 88.3% to 97.3%</text>
+  <path d="M150 333H334.9A4 4 0 0 1 338.9 337V347A4 4 0 0 1 334.9 351H150Z" class="purple"/>
+  <path d="M285.1 338V346M285.1 342H393.8M393.8 338V346" class="whisk"/>
+  <text x="522" y="341" class="t" font-size="13" font-weight="600" text-anchor="start">21.6%</text>
+  <text x="522" y="354" class="m" font-size="11" font-weight="400" text-anchor="start">interval 15.4% to 27.9%</text>
   <text x="138" y="376" class="t" font-size="12" font-weight="400" text-anchor="end">Muse Spark Open</text>
-  <path d="M150 363H478.7A4 4 0 0 1 482.7 367V377A4 4 0 0 1 478.7 381H150Z" fill="url(#hatch-purple)" class="pstroke"/>
-  <path d="M461.1 368V376M461.1 372H492.9M492.9 368V376" class="whisk"/>
-  <text x="522" y="371" class="t" font-size="13" font-weight="600" text-anchor="start">95.0%</text>
-  <text x="522" y="384" class="m" font-size="11" font-weight="400" text-anchor="start">interval 88.9% to 98.0%</text>
+  <path d="M150 363H342.2A4 4 0 0 1 346.2 367V377A4 4 0 0 1 342.2 381H150Z" fill="url(#hatch-purple)" class="pstroke"/>
+  <path d="M298.8 368V376M298.8 372H397.9M397.9 368V376" class="whisk"/>
+  <text x="522" y="371" class="t" font-size="13" font-weight="600" text-anchor="start">22.4%</text>
+  <text x="522" y="384" class="m" font-size="11" font-weight="400" text-anchor="start">interval 17.0% to 28.3%</text>
   <text x="138" y="406" class="t" font-size="12" font-weight="400" text-anchor="end">Mixed</text>
-  <path d="M150 393H468.2A4 4 0 0 1 472.2 397V407A4 4 0 0 1 468.2 411H150Z" fill="url(#dots-purple)" class="pstroke"/>
-  <path d="M451.7 398V406M451.7 402H484.8M484.8 398V406" class="whisk"/>
-  <text x="522" y="401" class="t" font-size="13" font-weight="600" text-anchor="start">92.1%</text>
-  <text x="522" y="414" class="m" font-size="11" font-weight="400" text-anchor="start">interval 86.2% to 95.7%</text>
-  <text x="24" y="460" class="t" font-size="12" font-weight="600" text-anchor="start">Share of all values sent to a person (lower is better; target 20% or less)</text>
-  <line x1="150" y1="472" x2="150" y2="568" class="axis"/>
-  <text x="150" y="584" class="m" font-size="11" font-weight="400" text-anchor="middle">0</text>
-  <line x1="237.5" y1="472" x2="237.5" y2="568" class="grid"/>
-  <text x="237.5" y="584" class="m" font-size="11" font-weight="400" text-anchor="middle">10</text>
-  <line x1="325" y1="472" x2="325" y2="568" class="grid"/>
-  <text x="325" y="584" class="m" font-size="11" font-weight="400" text-anchor="middle">20</text>
-  <line x1="412.5" y1="472" x2="412.5" y2="568" class="grid"/>
-  <text x="412.5" y="584" class="m" font-size="11" font-weight="400" text-anchor="middle">30</text>
-  <line x1="500" y1="472" x2="500" y2="568" class="grid"/>
-  <text x="500" y="584" class="m" font-size="11" font-weight="400" text-anchor="middle">40</text>
-  <text x="138" y="496" class="t" font-size="12" font-weight="400" text-anchor="end">Muse Spark 1.3</text>
-  <path d="M150 483H334.9A4 4 0 0 1 338.9 487V497A4 4 0 0 1 334.9 501H150Z" class="purple"/>
-  <path d="M285.1 488V496M285.1 492H393.8M393.8 488V496" class="whisk"/>
-  <text x="522" y="491" class="t" font-size="13" font-weight="600" text-anchor="start">21.6%</text>
-  <text x="522" y="504" class="m" font-size="11" font-weight="400" text-anchor="start">interval 15.4% to 27.9%</text>
-  <text x="138" y="526" class="t" font-size="12" font-weight="400" text-anchor="end">Muse Spark Open</text>
-  <path d="M150 513H342.2A4 4 0 0 1 346.2 517V527A4 4 0 0 1 342.2 531H150Z" fill="url(#hatch-purple)" class="pstroke"/>
-  <path d="M298.8 518V526M298.8 522H397.9M397.9 518V526" class="whisk"/>
-  <text x="522" y="521" class="t" font-size="13" font-weight="600" text-anchor="start">22.4%</text>
-  <text x="522" y="534" class="m" font-size="11" font-weight="400" text-anchor="start">interval 17.0% to 28.3%</text>
-  <text x="138" y="556" class="t" font-size="12" font-weight="400" text-anchor="end">Mixed</text>
-  <path d="M150 543H356.6A4 4 0 0 1 360.6 547V557A4 4 0 0 1 356.6 561H150Z" fill="url(#dots-purple)" class="pstroke"/>
-  <path d="M311.3 548V556M311.3 552H411.6M411.6 548V556" class="whisk"/>
-  <text x="522" y="551" class="t" font-size="13" font-weight="600" text-anchor="start">24.1%</text>
-  <text x="522" y="564" class="m" font-size="11" font-weight="400" text-anchor="start">interval 18.4% to 29.9%</text>
-  <text x="24" y="638" class="m" font-size="11" font-weight="400" text-anchor="start">Source: results/test_report.json, arms A, B and C. Wrong values caught = sent to review.</text>
-  <text x="24" y="652" class="m" font-size="11" font-weight="400" text-anchor="start">Mixed did worse than either model alone, on wrong values accepted and on values sent to a person.</text>
-  <text x="24" y="666" class="m" font-size="11" font-weight="400" text-anchor="start">Arm B also extracted with Muse Spark Open, so it compares whole set-ups, not the second read alone.</text>
+  <path d="M150 393H356.6A4 4 0 0 1 360.6 397V407A4 4 0 0 1 356.6 411H150Z" fill="url(#dots-purple)" class="pstroke"/>
+  <path d="M311.3 398V406M311.3 402H411.6M411.6 398V406" class="whisk"/>
+  <text x="522" y="401" class="t" font-size="13" font-weight="600" text-anchor="start">24.1%</text>
+  <text x="522" y="414" class="m" font-size="11" font-weight="400" text-anchor="start">interval 18.4% to 29.9%</text>
+  <text x="24" y="462" class="m" font-size="11" font-weight="400" text-anchor="start">Source: results/test_report.json, arms A, B and C. Wrong values caught = sent to review.</text>
+  <text x="24" y="476" class="m" font-size="11" font-weight="400" text-anchor="start">Mixed did worse than either model alone on both: it caught the fewest wrong values and sent the most to a person.</text>
+  <text x="24" y="490" class="m" font-size="11" font-weight="400" text-anchor="start">Arm B also extracted with Muse Spark Open, so it compares whole set-ups, not the second read alone.</text>
 </svg>

@@ -1,7 +1,7 @@
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="assets/brand/logo-dark.svg">
   <img src="assets/brand/logo-light.svg" alt="Archivist logo: a page of text lines with a gold tick" width="64" height="64">
-</picture> 
+</picture>
 
 # Archivist
 
@@ -13,7 +13,13 @@ Archivist turns scanned financial archives into a verified database. Every value
 
 **The problem.** *(Draft: for the author to rewrite.)* Banks hold decades of records as scans. Typing them in is slow, and a model reading them alone gets some values wrong without saying which.
 
-**Headline.** On the pre-registered synthetic test (targets set in git first), Archivist met three of five targets. The results and missed targets are below; real-scan scores are pending.
+**Headline.** On the pre-registered synthetic test, one read let in about 45 wrong values per 1,000; Archivist let in about 4 and sent about 1 in 5 values to a person. Three of five targets met ([details](#results)); real-scan scores pending.
+
+**Models.** Muse Glimmer sorts pages (open weights, Modal); Muse Spark 1.3 reads and re-reads and SAM 3.1 finds covered ink (Meta's API); Muse Spark Open can do both reads on a bank's own hardware (tested on Baseten).
+
+New table types are learned from two or three sample pages with no new code: Muse Spark drafts, arithmetic tests, and a person approves.
+
+No model grades its own work. Every value gets a blind second read and plain-code arithmetic, and a person decides anything in doubt.
 
 **Live demo:** [link pending] · **Video:** [link pending]
 
@@ -94,9 +100,9 @@ The 157-page synthetic test targets and measured results:
 | H4 | All-open-weights arm: under 1% wrong among accepted | 0.30% (0.12% to 0.54%): 10 of 3,296 | Met |
 | H5 | Flags at least 90% of the planted source errors | 88.46%: 23 of 26 (the report gives no interval) | **Missed** |
 
-<img src="docs/img/chart-mistakes.svg" alt="Bar chart: wrong values per 1,000 accepted. Read once, 44.5 with interval 22.8 to 71.4. Archivist, 3.6 with interval 1.4 to 6.7." width="100%">
+<img src="docs/img/chart-mistakes.svg" alt="Grouped bar chart: wrong values accepted per 1,000, read once and with Archivist's checks, for three set-ups. Muse Spark 1.3 for both reads (arm A): 44.5 read once, interval 22.8 to 71.4, and 3.6 with checks, interval 1.4 to 6.7. Muse Spark Open for both reads (arm B): 47.5, interval 23.3 to 77.8, and 3.0, interval 1.2 to 5.4. Mixed, Muse Spark 1.3 first and Muse Spark Open second (arm C): 44.5, interval 22.8 to 71.4, and 4.7, interval 2.2 to 8.1. Only arm A against the read-once baseline was a pre-registered target; the others are figures from the same report." width="100%">
 
-<img src="docs/img/chart-hosted-vs-open.svg" alt="Three bar charts comparing Muse Spark 1.3, Muse Spark Open and the mixed set-up on the same test: wrong values per 1,000 accepted, share of wrong values caught, and share of values sent to a person." width="100%">
+<img src="docs/img/chart-hosted-vs-open.svg" alt="Two bar charts comparing Muse Spark 1.3, Muse Spark Open and the mixed set-up on the same test: share of wrong values caught and share of values sent to a person. The mixed set-up caught the fewest wrong values and sent the most to a person. Wrong values accepted per 1,000 are in the chart above." width="100%">
 
 <img src="docs/img/chart-review-by-condition.svg" alt="Grouped bar chart: share of values sent to a person for each scan condition, clean, light wear, moderate wear and heavy wear, for three set-ups: Muse Spark 1.3 for both reads, Muse Spark Open for both reads, and the mixed set-up (Muse Spark 1.3 first, Muse Spark Open second)." width="100%">
 
@@ -124,6 +130,7 @@ A [script](docs/make_charts.py) draws the charts from the test report and fails 
 | Mixing the two models between reads (arm C) | Worse than either model alone on wrong values accepted (4.7 per 1,000 against 3.6 and 3.0) and on values sent to a person (24.1% against 21.6% and 22.4%) | [Test report](results/test_report.json), arms A, B and C |
 | A second look before raising an alarm (policy v3) | Cut review by about a third but missed more errors, and its proposed corrections were mostly wrong | [Decision D29](DECISIONS.md); [comparison](results/arms_compare.json) |
 | Fireworks as a second host for Muse Spark Open | Page reads 4 to 13 times slower than Baseten (one never returned in 30 minutes), re-reads about a fifth as fast, and "can't read" for half the crops | [Open-weights report](results/openw_measure/REPORT.md), sections 4, 5 and 10 |
+| Anchoring boxes to the table structure (version 2), for Muse Spark 1.3 | Lowered blind re-read agreement on development pages (67.7% to 62.0%), so by the rule written first, version 1 stays | [Version 2 report](results/v2/REPORT.md) |
 
 ## Proof and dates
 
