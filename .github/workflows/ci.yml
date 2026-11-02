@@ -1,6 +1,7 @@
-# The tests, and the one command that confirms the published numbers (archivist.verify), on every
-# push to main and on pull requests. Neither needs a key, a model call or the response cache, so
-# this workflow has no secrets; archivist.replay is not run here because it needs that cache.
+# The tests, the one command that confirms the published numbers (archivist.verify) and the Docker
+# image that runs it, on every push to main and on pull requests. None needs a key, a model call or
+# the response cache, so this workflow has no secrets; archivist.replay is not run here because it
+# needs that cache.
 name: CI
 
 on:
@@ -73,3 +74,33 @@ jobs:
 
       - name: Run archivist.verify
         run: uv run python -m archivist.verify
+
+  # The image from the Dockerfile, built as anyone building it gets it, then used the two ways the
+  # README gives: archivist.verify run inside it, and the review app served from it.
+  docker:
+    name: Docker image
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build the image
+        run: docker build --tag archivist .
+
+      - name: Run archivist.verify inside it
+        run: docker run --rm archivist python -m archivist.verify
+
+      - name: Serve the review app from it
+        run: |
+          docker run --detach --name archivist-app --publish 8000:8000 archivist
+          for attempt in $(seq 30); do
+            curl --fail --silent --output /dev/null http://localhost:8000/ && break
+            sleep 1
+          done
+          curl --fail --silent --output /dev/null http://localhost:8000/ui/
+          curl --fail --silent http://localhost:8000/data/bundles/index.json | grep --quiet test-archivist-A
+          docker stop archivist-app
+
+      - name: Show the server's log if serving failed
+        if: failure()
+        run: docker logs archivist-app || true

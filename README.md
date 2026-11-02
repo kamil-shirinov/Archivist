@@ -165,7 +165,17 @@ The first commit is `dd55660`, 2026-10-26 16:06 UTC; none comes before it. Every
 
 ## Run it yourself
 
-Needs Python 3.12 and [uv](https://docs.astral.sh/uv/).
+With [Docker](https://docs.docker.com/get-docker/) and nothing else. Build the image once, then use it two ways:
+
+```bash
+docker build -t archivist .
+docker run --rm -p 8000:8000 archivist
+docker run --rm archivist python -m archivist.verify
+```
+
+The first `run` serves the review app with the committed runs at <http://localhost:8000/> (stop it with Ctrl-C). The second runs the judge checks, `archivist.verify` (described below), and exits non-zero on any failure. Neither needs a key or makes a model call. The image holds only the committed files those two read, so it has no model cache, no scans or data that are not committed, and no `.env` (see [`.dockerignore`](.dockerignore)).
+
+Without Docker, you need Python 3.12 and [uv](https://docs.astral.sh/uv/).
 
 ```bash
 uv sync --frozen
@@ -184,7 +194,7 @@ uv run python -m archivist.verify
 | The charts | Redraws them from the report (`uv run python docs/make_charts.py --check`) |
 | Not checked | The rebuild of the Treasury development bundle, which needs scans that are not committed; the command names and skips it |
 | Then | Prints a plain-English summary of what passed, what was not checked and why, and what failed; it exits non-zero on any failure |
-| In CI | [GitHub Actions](.github/workflows/ci.yml) runs the tests and this command on every push to main and on pull requests |
+| In CI | [GitHub Actions](.github/workflows/ci.yml) runs the tests, this command, and the Docker image (built, then this command run inside it and the review app served from it) on every push to main and on pull requests |
 
 To open the review app, which needs no key and makes no model call, serve the repository with any file server:
 

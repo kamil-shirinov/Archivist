@@ -1,0 +1,48 @@
+# What the Docker build may see: only what the image's two commands read, the review app and
+# archivist.verify. Everything is left out first and the committed paths they need are let back in,
+# so nothing else (a key, the model cache, a scan, a held-out record) gets in by accident. Later
+# lines win over earlier ones. The CI job "Docker" builds the image and runs verify in it, so a path
+# verify starts to read and is missing here fails there.
+*
+
+# The package and what the build reads.
+!pyproject.toml
+!uv.lock
+!README.md
+!LICENSE
+!PREREGISTRATION.md
+!src
+!templates
+!docs
+!ui
+
+# What archivist.verify rebuilds and compares: the committed runs, the report and the exports.
+!exports
+!results/runs
+!results/test_report.json
+!results/TEST_RESULTS.md
+!results/real_test/development
+
+# The only parts of data/ in the image: the committed bundles, the scans they name and the frozen
+# test split. Nothing else under data/ (the development and validation splits, the real scans and
+# PDFs) is let in.
+!data/bundles
+!data/pages/test
+!data/pages/real
+!data/test
+
+# Never, whatever is allowed above: the response cache, the uncommitted parts of data/, keys,
+# virtual environments, git history and local leftovers.
+cache
+data/dev
+data/val
+data/real
+data/real_occ
+data/real_frb
+**/.env
+**/.env.*
+**/.venv
+**/.git
+**/__pycache__
+**/.DS_Store
+ui/screenshots
