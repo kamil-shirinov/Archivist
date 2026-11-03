@@ -10,6 +10,7 @@ the three community files, the empty .env.example, and that archivist.verify fai
 stops being what its result file says.
 """
 
+import json
 import re
 import subprocess
 import time
@@ -386,15 +387,25 @@ def sentences(text: str) -> set[str]:
     return {re.sub(r"\W+", " ", p).strip().lower() for p in parts if len(p.split()) >= 6}
 
 
-def test_the_how_well_bullet_carries_the_synthetic_headline_as_one_clause_and_verify_checks_it(at_root, monkeypatch, tmp_path):
-    bullet = next(line for line in README.split("\n## Start here\n", 1)[0].splitlines() if line.startswith("- **How well.**"))
-    clause = "0.36% of accepted values were wrong against 4.45% for a single read"
-    assert clause in bullet and "synthetic" in bullet and "not met" in bullet, "the headline, and the misses, are on the first screen"
-    edited = tmp_path / "README.md"
-    edited.write_text(README.replace(clause, "0.35% of accepted values were wrong against 4.45% for a single read"), encoding="utf-8")
-    monkeypatch.setattr(verify, "README", edited)
-    found = verify.check_readme()
-    assert found[0].status == verify.FAIL and any("How well" in p for p in found[0].problems)
+def test_the_headline_sits_under_the_banner_centred_bold_and_linked_and_verify_checks_it(at_root, monkeypatch, tmp_path):
+    """P58: one crisp result under the banner, before the bullets: the times fewer, bold and linked to Results, and one
+    plain line under it; the How well bullet does not repeat it, and archivist.verify checks both."""
+    top = README.split("\n## Start here\n", 1)[0]
+    head, line = verify._headline(json.loads((ROOT / "results/test_report.json").read_text(encoding="utf-8")))
+    bold = f"**[{head}](#results)**"
+    centred = top.split('<div align="center">', 1)[1].split("</div>", 1)[0]
+    assert bold in centred and line in centred, "the headline and its line are in the centred block"
+    assert centred.index("</picture>") < centred.index(bold) < centred.index(line) < centred.index("[Start here]"), "straight under the banner"
+    assert top.index(line) < top.index("- **What it does.**"), "before the bullets"
+    bullet = next(ln for ln in top.splitlines() if ln.startswith("- **How well.**"))
+    assert line not in bullet and "0.36%" not in bullet and "4.45%" not in bullet, "the bullet does not repeat the line"
+    assert "synthetic" in bullet and "not met" in bullet, "the misses are on the first screen"
+    for old, new in ((head, head.replace("12×", "13×")), (line, line.replace("1 in 5", "1 in 4"))):
+        edited = tmp_path / "README.md"
+        edited.write_text(README.replace(old, new), encoding="utf-8")
+        monkeypatch.setattr(verify, "README", edited)
+        found = verify.check_readme()
+        assert found[0].status == verify.FAIL and any("headline" in p for p in found[0].problems), old
 
 
 def test_no_sentence_is_said_twice_between_the_first_screen_bullets_and_the_judges_table():
@@ -467,3 +478,21 @@ def test_verify_notices_a_verdict_that_flips(at_root):
     assert all(ok for _, ok in verify._verdicts(v1, open_))
     open_["o1"]["met"] = True
     assert [what for what, ok in verify._verdicts(v1, open_) if not ok] == ["O1 is not met"]
+
+
+# --- archivist.verify's check of the app's real-scan numbers (P58) -------------------------------------------------
+
+
+def test_verify_passes_on_the_apps_real_scans_tab_as_it_is(at_root):
+    assert [r.status for r in verify.check_app()] == [verify.PASS], [r.problems for r in verify.check_app()]
+
+
+def test_verify_fails_when_a_figure_in_the_apps_real_scans_tab_changes(at_root, monkeypatch, tmp_path):
+    page = (ROOT / "ui/index.html").read_text(encoding="utf-8")
+    for old in ("16.3% (6.1%–33.3%)", "36.9% (24.7%–50.4%)", "not met in any variant"):
+        assert old in page
+        edited = tmp_path / "index.html"
+        edited.write_text(page.replace(old, "0.1%"), encoding="utf-8")
+        monkeypatch.setattr(verify, "APP", edited)
+        found = verify.check_app()
+        assert found[0].status == verify.FAIL and found[0].problems, old

@@ -20,11 +20,13 @@ repository; it rebuilds each result from what is committed and compares it with 
    skipped, never as passed.
 
 4. The numbers the README quotes for the headline, the synthetic results and the real-scan scores, against the
-   result files they come from (results/test_report.json, the two held-out score files, the sweep and, where
-   it is present, the run's own record). Each claim is the exact text the README must hold; a number that
-   differs, or a sentence that has gone, fails. A claim whose file is not here is reported as skipped. Only
-   the figures its claim lists name (_rate_claims and the others above check_readme) are checked: the README's other numbers, quoted from reports in
-   Markdown, are not.
+   result files they come from (results/test_report.json, the two held-out score files, the two corrected-key
+   score files, the sweep and, where it is present, the run's own record). Each claim is the exact text the
+   README must hold; a number that differs, or a sentence that has gone, fails. A claim whose file is not here
+   is reported as skipped. Only the figures its claim lists name (_rate_claims and the others above
+   check_readme) are checked: the README's other numbers, quoted from reports in Markdown, are not.
+5. The real-scan figures in the review app's accuracy view (ui/index.html), the same table as the README's,
+   against the same score files.
 
 It ends with a plain-English summary of what passed, what was skipped and why, and what failed.
 The exit status is 0 when nothing failed.
@@ -37,6 +39,7 @@ import contextlib
 import hashlib
 import io
 import json
+import math
 import sqlite3
 import subprocess
 import sys
@@ -275,16 +278,23 @@ def check_exports() -> list[Result]:
 # --- the README's numbers -------------------------------------------------------------------------------
 
 README = Path("README.md")
+APP = Path("ui/index.html")
 TEST_REPORT = Path("results/test_report.json")
 SCORE_V1 = Path("results/real_test/held_out/score/score.json")
 SCORE_OPEN = Path("results/real_openw/held_out/score/score.json")
+FIXED_V1 = Path("results/real_test/held_out/score_corrected/score.json")
+FIXED_OPEN = Path("results/real_openw/held_out/score_corrected/score.json")
 SWEEP = Path("results/real_test/held_out/sweep.json")
 RUN_V1 = Path("results/real_test/held_out/run.json")
+SCORES = (SCORE_V1, SCORE_OPEN, FIXED_V1, FIXED_OPEN)
+# the corrected key leads; the as-registered figure is always beside it, and says what changed
+REGISTERED = "as registered, before a labelling error was fixed by a rule written down first"
+WORDS = ("no", "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten")
 
 
 @dataclass(frozen=True)
 class Claim:
-    """Text the README must hold, with the file it comes from."""
+    """Text the README (or the app) must hold, with the file it comes from."""
 
     what: str
     text: str
@@ -299,6 +309,26 @@ def _json(path: Path) -> dict:
     return json.loads(path.read_text(encoding="utf-8"))
 
 
+def _ci(m: dict, places: int = 1) -> str:
+    """A real-scan rate with its interval, as the score files give it."""
+    return f"{_pc(m['value'], places)} ({_pc(m['ci'][0], places)}–{_pc(m['ci'][1], places)})"
+
+
+def _headline(report: dict) -> tuple[str, str]:
+    """The first screen's headline and the line under it: how many times fewer wrong values than the single read
+    (rounded down), then the two rates, the test, the review rate and open weights."""
+    h = {k: v["numbers"] for k, v in report["hypotheses"].items()}
+    a, base, h3, h4 = h["H1"]["headline"], h["H1"]["baseline"], h["H3"], h["H4"]
+    times = math.floor(base["rate"] / a["rate"])
+    head = f"{times}× fewer wrong values than Muse Spark reading alone"
+    line = (
+        f"{_pc(a['rate'])} against {_pc(base['rate'])} on a pre-registered test of {report['n_fields']:,} values from "
+        f"{report['n_pages']} synthetic bank pages. Archivist sends about 1 in {round(1 / h3['rate'])} values to a person "
+        f"to decide, and open weights do as well ({_pc(h4['rate'])})."
+    )
+    return head, line
+
+
 def _rate_claims(report: dict) -> list[Claim]:
     h = {k: v["numbers"] for k, v in report["hypotheses"].items()}
     a, base = h["H1"]["headline"], h["H1"]["baseline"]
@@ -307,38 +337,96 @@ def _rate_claims(report: dict) -> list[Claim]:
     def ci(n: dict) -> str:
         return f"{_pc(n['rate'])} ({_pc(n['ci95'][0])} to {_pc(n['ci95'][1])})"
 
+    head, line = _headline(report)
     claims = {
         "H1, Results table": f"{ci(a)} against {ci(base)}",
         "H2, Results table": f"{ci(h2)}: {h2['caught']} of {h2['wrong']}",
         "H3, Results table": f"{ci(h3)}: {h3['review']:,} of {h3['fields']:,}",
         "H4, Results table": f"{ci(h4)}: {h4['wrong']} of {h4['accepted']:,}",
         "H5, Results table": f"{_pc(h5['rate'])}: {h5['found']} of {h5['planted']}",
-        "first screen, wrong values accepted": f"{_pc(a['rate'])} of the values it accepted were wrong against {_pc(base['rate'])} for one read",
-        "first screen, How well": f"{_pc(a['rate'])} of accepted values were wrong against {_pc(base['rate'])} for a single read",
-        "first screen, sent to a person": f"it sent {_pc(h3['rate'])} of values to a person",
+        "first screen, the headline": f"**[{head}](#results)**",
+        "first screen, the line under the headline": line,
+        "Results, wrong values accepted": f"{_pc(a['rate'])} of the values it accepted were wrong against {_pc(base['rate'])} for one read",
+        "Results, sent to a person": f"it sent {_pc(h3['rate'])} of values to a person",
         "For judges, impact": f"it let in {_pc(a['rate'])} wrong values against {_pc(base['rate'])} for one read and caught {_pc(h2['rate'])} of the wrong ones",
         "open weights, H4": f"{ci(h4)} wrong values among those accepted, against {_pc(a['rate'])} for Muse Spark 1.3",
     }
     return [Claim(what, text, TEST_REPORT) for what, text in claims.items()]
 
 
-def _score_claims(v1: dict, open_: dict) -> list[Claim]:
-    def ci(m: dict) -> str:
-        return f"{_pc(m['value'], 1)} ({_pc(m['ci'][0], 1)}–{_pc(m['ci'][1], 1)})"
+def _met_words(met: dict[str, bool]) -> str:
+    """Where a target was met, from its verdict in each variant: every labelled cell kept, or the changed-layout
+    pages left out (as run)."""
+    kept, left = met["kept/as_run"], met["left_out/as_run"]
+    if kept and left:
+        return "met"
+    if not kept and not left:
+        return "not met in any variant" if not any(met.values()) else "not met"
+    return "met where the layout matches, not met with every cell" if left else "met with every cell, not where the layout matches"
 
+
+def real_rows(v1: dict, open_: dict, fixed_v1: dict, fixed_open: dict) -> list[tuple[str, str, str]]:
+    """The real-scan table the README and the app's accuracy view both show: each row's label, its figure under
+    the corrected key and as registered. Review does not depend on the key, so its figure is the same in both."""
+    reg, fix = v1["labels"], fixed_v1["corrected_key"]["labels"]
+    oreg, ofix = open_["open_weights"], fixed_open["corrected_key"]["open_weights"]
+
+    def pair(labels: dict, variant: str, places: int = 1) -> str:
+        o = labels[variant]["overall"]
+        return f"{_ci(o['archivist_error'], places)} against {_ci(o['single_read_error'], places)}"
+
+    def caught(labels: dict) -> str:
+        return _ci(labels["kept/as_run"]["overall"]["catch_rate"])
+
+    review = _ci(v1["every_cell"]["kept/as_run"]["overall"]["review_rate"])
+    sent = _ci(oreg["kept/as_run"]["overall"]["sent_to_person"])
+    if sent != _ci(ofix["kept/as_run"]["overall"]["sent_to_person"]):
+        raise ValueError("the open-weights review rate differs between the keys")
+    # under 1% is shown to two places, so that a rate under the target never reads as 1.0%
+    places = 2 if ofix["left_out/as_run"]["overall"]["archivist_error"]["value"] < 0.0105 else 1
+    return [
+        ("Hosted, every labelled cell: wrong among accepted, against the single read", pair(fix, "kept/as_run"), pair(reg, "kept/as_run")),
+        ("Hosted, pages whose layout matches their template", pair(fix, "left_out/as_run"), pair(reg, "left_out/as_run")),
+        ("Hosted, wrong values caught", caught(fix), caught(reg)),
+        ("Hosted, every deep-check cell sent to a person", review, review),
+        ("Hosted, R1 (lower than the single read, intervals apart)", _met_words({k: r["r1"]["met"] for k, r in fix.items()}), _met_words({k: r["r1"]["met"] for k, r in reg.items()})),
+        ("Open weights, every labelled cell: wrong among accepted, against the single read", pair(ofix, "kept/as_run"), pair(oreg, "kept/as_run")),
+        ("Open weights, pages whose layout matches their template", pair(ofix, "left_out/as_run", places), pair(oreg, "left_out/as_run", places)),
+        ("Open weights, wrong values caught", caught(ofix), caught(oreg)),
+        ("Open weights, drawn cells sent to a person", sent, sent),
+        ("Open weights, O1 (under 1% wrong among accepted)", _met_words(fixed_open["corrected_key"]["o1"]["in_every_variant"]), _met_words(open_["o1"]["in_every_variant"])),
+    ]
+
+
+def _score_claims(v1: dict, open_: dict, fixed_v1: dict, fixed_open: dict) -> list[Claim]:
+    ci = _ci
     kept, left = v1["labels"]["kept/as_run"], v1["labels"]["left_out/as_run"]
-    ok = open_["open_weights"]["kept/as_run"]["overall"]
+    fkept, fleft = (fixed_v1["corrected_key"]["labels"][v] for v in ("kept/as_run", "left_out/as_run"))
+    ok, fok = open_["open_weights"]["kept/as_run"]["overall"], fixed_open["corrected_key"]["open_weights"]["kept/as_run"]["overall"]
+    oleft = open_["open_weights"]["left_out/as_run"]["overall"]["archivist_error"]
+    foleft = fixed_open["corrected_key"]["open_weights"]["left_out/as_run"]["overall"]["archivist_error"]
     a, s = kept["overall"]["archivist_error"], kept["overall"]["single_read_error"]
     la, ls = left["overall"]["archivist_error"], left["overall"]["single_read_error"]
+    fa, fs = fkept["overall"]["archivist_error"], fkept["overall"]["single_read_error"]
+    fla, fls = fleft["overall"]["archivist_error"], fleft["overall"]["single_read_error"]
+    changes, agreement = fixed_v1["changes"], fixed_v1["relabel_agreement"]
+    first, fixed = agreement["first_pass_key"], agreement["corrected_key"]
+    cant = changes["marks"]["cant_tell"]
     claims = {
-        "first screen, real scans": f"{ci(a)} of the values it accepted were wrong against {ci(s)} for one read, on all {kept['cells']} labelled cells",
-        "real-scan results, version 1": f"Archivist let in {ci(a)} wrong values among those it accepted, against {ci(s)} for the single read",
-        "real-scan results, layout left out": f"it was {ci(la)} against {ci(ls)}",
-        "real-scan results, open weights": f"{ci(ok['archivist_error'])} wrong among those accepted, against {ci(ok['single_read_error'])} for its single read",
-        "open weights section, O1": f"{ci(ok['archivist_error'])} of accepted values were wrong",
+        "For judges, real scans": f"under the corrected key, {ci(fa)} of the values it accepted were wrong against {ci(fs)} for one read, on all {kept['cells']} labelled cells ({ci(a)} against {ci(s)} {REGISTERED})",
+        "For judges, layout matches": f"on pages whose layout matches their template, {_pc(fla['value'], 1)} against {_pc(fls['value'], 1)}",
+        "real-scan results, version 1": f"Under the corrected key, Archivist let in {ci(fa)} wrong values among those it accepted, against {ci(fs)} for the single read ({ci(a)} against {ci(s)} {REGISTERED})",
+        "real-scan results, layout left out": f"it was {ci(fla)} against {ci(fls)} (as registered, {ci(la)} against {ci(ls)})",
+        "real-scan results, open weights": f"Under the corrected key, {ci(fok['archivist_error'])} wrong among those accepted, against {ci(fok['single_read_error'])} for its single read ({ci(ok['archivist_error'])} against {ci(ok['single_read_error'])} {REGISTERED})",
+        "real-scan results, open weights where the layout matches": f"On pages whose layout matches their template it was {_pc(foleft['value'])} under the corrected key ({_pc(oleft['value'], 1)} as registered)",
+        "open weights section, O1": f"under the corrected key {ci(fok['archivist_error'])} of accepted values were wrong ({ci(ok['archivist_error'])} {REGISTERED})",
+        "real-scan results, the key": f"{changes['answers_changed']} of the {changes['labelled_cells']} answers changed",
+        "the relabel": f"{fixed['agree']} of {fixed['of']} under the corrected key ({first['agree']} of {first['of']} with the first-pass key, the plan's figure)",
+        "Honest limits, cells the dash check could not correct": f"The dash check marked {WORDS[cant] if cant < len(WORDS) else cant} cell{'' if cant == 1 else 's'} \"can't tell\"",
         "answer key": f"The answer key is {kept['cells']} cells drawn in advance",
     }
-    out = [Claim(what, text, SCORE_V1 if "open weights" not in what else SCORE_OPEN) for what, text in claims.items()]
+    out = [Claim(what, text, FIXED_OPEN if "open weights" in what or "O1" in what else FIXED_V1) for what, text in claims.items()]
+    out += [Claim(f"real-scan table, {label}", f"| {label} | {fix} | {reg} |", FIXED_V1) for label, fix, reg in real_rows(v1, open_, fixed_v1, fixed_open)]
     return out
 
 
@@ -356,12 +444,28 @@ def _run_claims(run: dict) -> list[Claim]:
     return [Claim("real-scan test, the deep check", text, RUN_V1)]
 
 
-def _verdicts(v1: dict, open_: dict) -> list[tuple[str, bool]]:
-    """What the README says about the targets, as verdicts: R1 not met in every variant, O1 not met."""
-    return [
-        ("R1 is not met in every variant", all(not v["r1"]["met"] for v in v1["labels"].values())),
+def _verdicts(v1: dict, open_: dict, fixed_v1: dict | None = None, fixed_open: dict | None = None, report: dict | None = None) -> list[tuple[str, bool]]:
+    """What the README says about the targets, as verdicts: R1 not met in any variant as registered, O1 not met;
+    under the corrected key, R1 not met with every cell kept but met where the layout matches, with no wrong value
+    accepted there, and O1 not met but open weights under 1% where the layout matches; on the synthetic test, open
+    weights at least as good as the hosted models."""
+    out = [
+        ("R1, as registered, is not met in any variant", all(not v["r1"]["met"] for v in v1["labels"].values())),
         ("O1 is not met", not open_["o1"]["met"]),
     ]
+    if fixed_v1 is not None and fixed_open is not None:
+        fix = fixed_v1["corrected_key"]["labels"]
+        out += [
+            ("R1, under the corrected key, is not met with every labelled cell", not fix["kept/as_run"]["r1"]["met"]),
+            ("R1, under the corrected key, is met where the layout matches", fix["left_out/as_run"]["r1"]["met"]),
+            ("under the corrected key Archivist accepted no wrong value where the layout matches", fix["left_out/as_run"]["overall"]["archivist_error"]["value"] == 0),
+            ("O1, under the corrected key, is not met", not fixed_open["corrected_key"]["o1"]["met"]),
+            ("open weights, under the corrected key, are under 1% where the layout matches", fixed_open["corrected_key"]["o1"]["in_every_variant"]["left_out/as_run"]),
+        ]
+    if report is not None:
+        h = {k: v["numbers"] for k, v in report["hypotheses"].items()}
+        out.append(("open weights do as well as the hosted models on the synthetic test", h["H4"]["rate"] <= h["H1"]["headline"]["rate"]))
+    return out
 
 
 def check_readme() -> list[Result]:
@@ -370,19 +474,20 @@ def check_readme() -> list[Result]:
     if not README.exists():
         return [Result(FAIL, name, f"{README} is missing.", [f"{README} is missing"])]
     text = README.read_text(encoding="utf-8")
-    needed = (TEST_REPORT, SCORE_V1, SCORE_OPEN, SWEEP)
+    needed = (TEST_REPORT, *SCORES, SWEEP)
     absent = [str(p) for p in needed if not p.exists()]
     if absent:
         return [Result(FAIL, name, "a result file the README quotes is missing.", [f"{p} is missing" for p in absent])]
-    v1, open_ = _json(SCORE_V1), _json(SCORE_OPEN)
-    claims = _rate_claims(_json(TEST_REPORT)) + _score_claims(v1, open_) + _sweep_claims(_json(SWEEP))
+    v1, open_, fixed_v1, fixed_open = (_json(p) for p in SCORES)
+    report = _json(TEST_REPORT)
+    claims = _rate_claims(report) + _score_claims(v1, open_, fixed_v1, fixed_open) + _sweep_claims(_json(SWEEP))
     skipped = []
     if RUN_V1.exists():
         claims += _run_claims(_json(RUN_V1))
     else:
         skipped.append(RUN_V1)
     problems = [f"{c.what}: the README does not say \"{c.text}\" ({c.source})" for c in claims if c.text not in text]
-    problems += [f"the files say {what} is false, and the README says it is true" for what, true in _verdicts(v1, open_) if not true]
+    problems += [f"the files say {what} is false, and the README says it is true" for what, true in _verdicts(v1, open_, fixed_v1, fixed_open, report) if not true]
     results = []
     if problems:
         results.append(Result(FAIL, name, "the README differs from the result files it quotes.", problems))
@@ -399,6 +504,29 @@ def check_readme() -> list[Result]:
     return results
 
 
+def app_claims(v1: dict, open_: dict, fixed_v1: dict, fixed_open: dict) -> list[Claim]:
+    """The real-scans tab of the review app's accuracy view: the same table as the README's, as HTML rows."""
+    rows = real_rows(v1, open_, fixed_v1, fixed_open)
+    claims = [Claim(f"app, {label}", f'<tr><th scope="row">{label}</th><td>{fix}</td><td>{reg}</td></tr>', FIXED_V1) for label, fix, reg in rows]
+    kept = v1["labels"]["kept/as_run"]
+    claims.append(Claim("app, the answer key", f"{kept['cells']} cells drawn in advance", SCORE_V1))
+    return claims
+
+
+def check_app() -> list[Result]:
+    """The real-scan figures the review app's accuracy view shows (ui/index.html), against the score files."""
+    name = "App real-scan numbers"
+    absent = [str(p) for p in (APP, *SCORES) if not p.exists()]
+    if absent:
+        return [Result(FAIL, name, "a file the app's real-scan figures come from is missing.", [f"{p} is missing" for p in absent])]
+    text = APP.read_text(encoding="utf-8")
+    claims = app_claims(*(_json(p) for p in SCORES))
+    problems = [f"{c.what}: the app does not say \"{c.text}\" ({c.source})" for c in claims if c.text not in text]
+    if problems:
+        return [Result(FAIL, name, "the app's real-scans tab differs from the score files.", problems)]
+    return [Result(PASS, name, f"{len(claims)} figures in the app's real-scans tab are what the score files give.")]
+
+
 # --- the command ------------------------------------------------------------------------------------
 
 Checks = Sequence[tuple[str, Callable[[], list[Result]]]]
@@ -407,6 +535,7 @@ CHECKS: Checks = (
     ("the charts", check_charts),
     ("the exports", check_exports),
     ("the README's numbers", check_readme),
+    ("the app's real-scan numbers", check_app),
 )
 
 

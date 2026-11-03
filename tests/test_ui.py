@@ -13,6 +13,8 @@ from pathlib import Path
 
 import pytest
 
+from archivist import verify
+
 from browser import Browser, find_browser, serve
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -303,7 +305,7 @@ def test_the_whole_box_fast_forwards(tab, site):
     assert tab.errors == []
 
 
-def test_the_accuracy_report_has_the_test_reports_numbers_and_real_scans_are_pending(tab, site):
+def test_the_accuracy_report_has_the_test_reports_numbers_and_the_real_scans_under_both_keys(tab, site):
     load(tab, site, "#accuracy")
     settle(tab, VIEWS["accuracy"][1])
     text = tab.eval("document.getElementById('acc-test').textContent")
@@ -317,10 +319,12 @@ def test_the_accuracy_report_has_the_test_reports_numbers_and_real_scans_are_pen
     tab.eval("document.querySelector('#acc-set [data-a=real]').click()")
     assert not tab.eval("document.getElementById('acc-real').hidden")
     assert tab.eval("document.getElementById('acc-test').hidden")
-    assert "pending" in tab.eval("document.getElementById('acc-set').textContent")
-    assert "Results come after the hand check" in tab.eval(
-        "document.getElementById('acc-real').textContent"
-    )
+    assert "pending" not in tab.eval("document.getElementById('acc-set').textContent")
+    real = tab.eval("document.getElementById('acc-real').textContent")
+    heads = tab.eval("[...document.querySelectorAll('#acc-real thead th')].map(th => th.textContent)")
+    assert heads[1] == "Corrected key" and heads[2].startswith("As registered"), "the corrected key leads, as registered beside it"
+    for label, fixed, registered in verify.real_rows(*(verify._json(ROOT / p) for p in verify.SCORES)):
+        assert label in real and fixed in real and registered in real, label
     assert tab.errors == []
 
 

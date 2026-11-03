@@ -15,12 +15,16 @@ Built with the Meta Model API (Muse Spark 1.3, SAM 3.1), Muse Spark Open on Base
   <img src="docs/img/banner-light.svg" alt="A banner that reads: Every value, and then, one after the other, cited, read twice, checked." width="100%">
 </picture>
 
+**[12× fewer wrong values than Muse Spark reading alone](#results)**
+
+0.36% against 4.45% on a pre-registered test of 4,267 values from 157 synthetic bank pages. Archivist sends about 1 in 5 values to a person to decide, and open weights do as well (0.30%).
+
 [Start here](#start-here) · [For judges](#for-judges) · [The problem](#the-problem) · [What you get](#what-you-get) · [How it works](#how-it-works) · [Open weights](#open-weights-the-same-pipeline-on-your-own-hardware) · [Results](#results) · [Why you can trust the numbers](#why-you-can-trust-the-numbers) · [Run it yourself](#run-it-yourself)
 
 </div>
 
 - **What it does.** Archivist turns scanned financial archives into a verified database. Every value is cited to its spot on the page, cross-checked by arithmetic and a blind second read, and flagged for a person when unsure. Values are never changed automatically.
-- **How well.** Every target was pre-registered, and the misses are reported: 0.36% of accepted values were wrong against 4.45% for a single read on the synthetic test, three of its five targets were met, and on real government scans the target was not met ([Results](#results), [Honest limits](#honest-limits)).
+- **How well.** Every target was pre-registered, and the misses are reported: three of the synthetic test's five targets were met. On real government scans the target was not met with every cell counted, and was met only on pages whose layout matches their template, under the corrected key ([Results](#results), [Honest limits](#honest-limits)).
 - **Where your data goes.** Hosted, pages go to Meta's Model API, and Muse Glimmer's page sorting runs on Modal GPUs. On your own hardware, Muse Spark Open reads in their place, so a bank that cannot send documents out can keep them: not yet proven on-site ([open weights](#open-weights-the-same-pipeline-on-your-own-hardware)). Only synthetic or public-domain pages were ever sent to a model, and the demo is static: no key, no server, no model call.
 
 **Built during the hackathon.** A solo entry by Kamil Shirinov (Indie Developer track, Build for Your World). The idea came from a bank internship. Everything in this repository was built from its first commit, `dd55660` on 26 Oct 2026, except the third-party components named under Credits at the end.
@@ -38,7 +42,7 @@ Built with the Meta Model API (Muse Spark 1.3, SAM 3.1), Muse Spark Open on Base
 
 | Criterion | Evidence |
 |---|---|
-| **Impact** (30%) | Banks hold decades of records as scans and paper; Archivist turns them into a database in which every value points to its spot on the page and a doubtful one goes to a person.<br>**Synthetic test:** it let in 0.36% wrong values against 4.45% for one read and caught 93.65% of the wrong ones ([Results](#results)).<br>**Real government scans:** its target was not met: 36.9% (24.7%–50.4%) of the values it accepted were wrong against 41.1% (30.6%–52.4%) for one read, on all 400 labelled cells; the [diagnosis](results/real_test/held_out/diagnosis.md) says why ([Honest limits](#honest-limits)).<br>One `docker run` shows it with no key, and the code is open source under Apache-2.0. |
+| **Impact** (30%) | Banks hold decades of records as scans and paper; Archivist turns them into a database in which every value points to its spot on the page and a doubtful one goes to a person.<br>**Synthetic test:** it let in 0.36% wrong values against 4.45% for one read and caught 93.65% of the wrong ones ([Results](#results)).<br>**Real government scans:** with every cell counted its target was not met: under the corrected key, 16.3% (6.1%–33.3%) of the values it accepted were wrong against 27.8% (16.0%–40.9%) for one read, on all 400 labelled cells (36.9% (24.7%–50.4%) against 41.1% (30.6%–52.4%) as registered, before a labelling error was fixed by a rule written down first). It was met on pages whose layout matches their template, 0.0% against 3.2%; the [diagnosis](results/real_test/held_out/diagnosis.md) says why the rest went wrong ([Honest limits](#honest-limits)).<br>One `docker run` shows it with no key, and the code is open source under Apache-2.0. |
 | **Use of Meta's models** (25%) | All four, each in a job that was measured: Muse Spark 1.3 reads and re-reads, SAM 3.1 finds covered ink, untrained Muse Glimmer sorts pages (it found all 136 confirmed table pages among 791 held-out ones), and Muse Spark Open does both reads on open weights ([Meta's four models](#metas-four-models), [open weights](#open-weights-the-same-pipeline-on-your-own-hardware)). What each one taught me, and what I dropped: [What I learned](#what-i-learned-about-metas-models), [What I tried and dropped](#what-i-tried-and-dropped). |
 | **Demo** (25%) | The [live demo](https://kamil-shirinov.github.io/Archivist/) and [Watch it work](https://kamil-shirinov.github.io/Archivist/ui/#replay) replay recorded runs; `docker run` serves the same site; the video: [link pending]. A local app reads a page with real model calls, each one listed as it happens ([live reading](docs/live-reading.md)). |
 | **Technical depth** (20%) | No model grades its own work: plain-code arithmetic checks every value, and a person decides anything in doubt. New table types are learned from two or three sample pages with no new code: Muse Spark drafts, arithmetic tests, and a person approves. Each plan was committed before the runs it governs ([Why you can trust the numbers](#why-you-can-trust-the-numbers)); one command rebuilds the published numbers and charts from the committed runs and compares them byte for byte ([Run it yourself](#run-it-yourself)); [how every number was measured](eval/README.md). |
@@ -88,7 +92,7 @@ Three views, as screenshots of a local build of the site. The ledger cards and t
 <sub>A page beside what was read from it: the scan on the left, the record on the right, and the values that need a person marked on both.</sub>
 </p>
 
-The review app also has Overview, Accounts, Transactions and Documents views, and an Accuracy report of the pre-registered synthetic test whose real-scans tab reads "pending". It is static: no key, no server code and no model call.
+The review app also has Overview, Accounts, Transactions and Documents views, and an Accuracy report of the pre-registered synthetic test, whose real-scans tab gives the real-scan scores under the corrected key and as registered. It is static: no key, no server code and no model call.
 
 ## How it works
 
@@ -110,7 +114,8 @@ The version 1 real-scan test sorted pages with Muse Spark 1.3.
 
 This is Archivist's entry for the open-weights bonus prize. Muse Spark Open, a model whose trained weights are published, can replace Muse Spark 1.3 for both reads (steps 2 and 5), so a bank that cannot send documents out can run the reading on its own machines. The evidence, and what it does not show:
 
-- **Muse Spark Open for both reads.** On the synthetic test, the all-open-weights arm let in 0.30% (0.12% to 0.54%) wrong values among those accepted, against 0.36% for Muse Spark 1.3 (H4, met; [Results](#results)). On the real scans it missed its target of under 1%: 27.1% (13.9%–49.9%) of accepted values were wrong ([score](results/real_openw/held_out/score/score.md), [plan](PREREGISTRATION_OPENW.md)).
+- **Muse Spark Open for both reads.** On the synthetic test, the all-open-weights arm let in 0.30% (0.12% to 0.54%) wrong values among those accepted, against 0.36% for Muse Spark 1.3 (H4, met; [Results](#results)).
+- **On the real scans it missed its target** of under 1%: under the corrected key 12.5% (0.8%–36.1%) of accepted values were wrong (27.1% (13.9%–49.9%) as registered, before a labelling error was fixed by a rule written down first) ([corrected-key score](results/real_openw/held_out/score_corrected/score.md), [plan](PREREGISTRATION_OPENW.md)).
 - **Muse Glimmer sorting pages.** The sorter is an open-weights model too: untrained, it found all 136 confirmed table pages among 791 held-out ones from their text ([report](results/glimmer/phase2/REPORT.md)).
 - **Two hosts compared.** Muse Spark Open ran on Baseten and on Fireworks; Baseten stayed ([comparison](results/hosts_compare.md), [open-weights report](results/openw_measure/REPORT.md), [Tried and dropped](#what-i-tried-and-dropped)).
 - **Not yet proven on-site.** No measured run has kept a page on a bank's own machines: Muse Spark Open ran on Baseten and SAM 3.1 still used Meta's API.
@@ -180,20 +185,42 @@ A [script](docs/make_charts.py) draws the charts from the test report and fails 
 **Sorting pages.** Measured against the pipeline's own decisions, not human truth.
 
 - On 791 held-out pages (never seen while the system was built), untrained Muse Glimmer found all 136 confirmed table pages and called 495 of 500 sampled other pages "other".
-- The author's 50-page check of the pages the real-scan sweep sorted found 50 of 50 right ([score](results/real_test/held_out/score/score.md)); Glimmer is not compared with it here.
+- My 50-page check of the pages the real-scan sweep sorted found 50 of 50 right ([score](results/real_test/held_out/score/score.md)); Glimmer is not compared with it here.
 
 **Real-scan test** ([plan](PREREGISTRATION_REAL.md)).
 
 - The sweep sorted all 4,569 held-out Treasury Bulletin pages into five approved table types, and the title check confirmed 136 of the 291 the model assigned.
 - The deep check ran on 58 of them: 33,114 table cells and 29,018 blind re-reads.
-- The answer key is 400 cells drawn in advance and labelled by the author from the printed page, never shown a model's figure; 40 are labelled again a day or more later.
-- The scorer ran once, on the tagged code, after the labels were committed.
+- The answer key is 400 cells drawn in advance and labelled by me from the printed page, never shown a model's figure; 40 were labelled again a day or more later, and the relabel agreed with the first pass on 29 of 40 under the corrected key (24 of 40 with the first-pass key, the plan's figure).
+- Each scorer ran once, on its tagged code, after the labels it reads were committed: the official scores first, then the corrected key, once the relabel and the dash check were committed and tagged `labels-real-complete`.
 
-**Real-scan results, as scored.** The official figures use every drawn cell, with re-reads as run; intervals are 95%, resampled by page.
+**Real-scan results.** Each figure leads with the corrected key, with the official one, as registered, beside it. The corrected key answers "-" where a check of every first-pass blank on its printed page found a dash: 45 of the 400 answers changed, by a rule written down first. Every drawn cell, re-reads as run; 95% intervals, resampled by page.
 
-- **Version 1, hosted (Muse Spark 1.3): R1 not met, in every variant.** Archivist let in 36.9% (24.7%–50.4%) wrong values among those it accepted, against 41.1% (30.6%–52.4%) for the single read; the intervals overlap. Leaving out the pages whose layout changed, it was 18.7% (1.6%–31.8%) against 16.7% (8.2%–25.8%). [Score](results/real_test/held_out/score/score.md).
-- **Open weights (Muse Spark Open): O1 not met.** 27.1% (13.9%–49.9%) wrong among those accepted, against 34.5% (22.1%–47.9%) for its single read; the target was under 1%. [Score](results/real_openw/held_out/score/score.md), [plan](PREREGISTRATION_OPENW.md).
-- **Why.** [The diagnosis](results/real_test/held_out/diagnosis.md) counts the causes, by stratum and family and without naming a cell: layout drift, where the templates describe a table's earlier columns, and a printed dash that the reads copy as "-" and the key labels blank, are the largest. It changes no score. A corrected-key score, declared in the plans' Deviations, has not been computed yet.
+- **Version 1, hosted (Muse Spark 1.3): R1 not met with every cell.** Under the corrected key, Archivist let in 16.3% (6.1%–33.3%) wrong values among those it accepted, against 27.8% (16.0%–40.9%) for the single read (36.9% (24.7%–50.4%) against 41.1% (30.6%–52.4%) as registered, before a labelling error was fixed by a rule written down first); the intervals overlap. [Corrected-key score](results/real_test/held_out/score_corrected/score.md).
+- **Version 1 where the layout matches: R1 met under the corrected key.** Leaving out the pages whose layout changed, it was 0.0% (0.0%–0.0%) against 3.2% (1.2%–6.5%) (as registered, 18.7% (1.6%–31.8%) against 16.7% (8.2%–25.8%)), and the intervals are apart. As registered, R1 was not met in any variant ([score as registered](results/real_test/held_out/score/score.md)).
+- **Open weights (Muse Spark Open): O1 not met.** Under the corrected key, 12.5% (0.8%–36.1%) wrong among those accepted, against 21.9% (9.5%–36.9%) for its single read (27.1% (13.9%–49.9%) against 34.5% (22.1%–47.9%) as registered, before a labelling error was fixed by a rule written down first); the target was under 1%. [Corrected-key score](results/real_openw/held_out/score_corrected/score.md), [plan](PREREGISTRATION_OPENW.md).
+- **Open weights where the layout matches.** On pages whose layout matches their template it was 0.99% under the corrected key (13.6% as registered): under 1%, though O1 counts every cell ([score as registered](results/real_openw/held_out/score/score.md)).
+- **Why.** [The diagnosis](results/real_test/held_out/diagnosis.md) counts the causes, by stratum and family and without naming a cell: layout drift, where the templates describe a table's earlier columns, and a printed dash that the reads copy as "-" and the first-pass key labels blank, are the largest. It changes no score. The corrected key settles the dash from the pages; layout drift remains.
+
+<details>
+<summary>Every real-scan figure, under the corrected key and as registered</summary>
+
+| Real scans | Corrected key | As registered |
+|---|---|---|
+| Hosted, every labelled cell: wrong among accepted, against the single read | 16.3% (6.1%–33.3%) against 27.8% (16.0%–40.9%) | 36.9% (24.7%–50.4%) against 41.1% (30.6%–52.4%) |
+| Hosted, pages whose layout matches their template | 0.0% (0.0%–0.0%) against 3.2% (1.2%–6.5%) | 18.7% (1.6%–31.8%) against 16.7% (8.2%–25.8%) |
+| Hosted, wrong values caught | 83.1% (71.1%–92.9%) | 74.2% (60.3%–84.9%) |
+| Hosted, every deep-check cell sent to a person | 66.3% (57.9%–74.5%) | 66.3% (57.9%–74.5%) |
+| Hosted, R1 (lower than the single read, intervals apart) | met where the layout matches, not met with every cell | not met in any variant |
+| Open weights, every labelled cell: wrong among accepted, against the single read | 12.5% (0.8%–36.1%) against 21.9% (9.5%–36.9%) | 27.1% (13.9%–49.9%) against 34.5% (22.1%–47.9%) |
+| Open weights, pages whose layout matches their template | 0.99% (0.00%–5.07%) against 3.75% (1.28%–8.58%) | 13.64% (4.82%–30.74%) against 16.44% (7.28%–27.75%) |
+| Open weights, wrong values caught | 88.3% (75.8%–98.9%) | 83.9% (73.1%–92.2%) |
+| Open weights, drawn cells sent to a person | 60.0% (47.4%–72.6%) | 60.0% (47.4%–72.6%) |
+| Open weights, O1 (under 1% wrong among accepted) | met where the layout matches, not met with every cell | not met in any variant |
+
+Sending to a person does not depend on the key, so its figure is the same in both columns.
+
+</details>
 
 ## Why it's built this way
 
@@ -234,6 +261,7 @@ Each plan was committed before the runs it governs. Dates are from `git log`, se
 | Scorer, tested on synthetic records only | `b934786` | 2026-10-30 07:26 | The scoring | Weights decision recorded `f1d3091`, 07:38, before any scoring |
 | Open-weights plan (`PREREGISTRATION_OPENW.md`), tag `prereg-real-openw` | `8418a22` | 2026-11-02 09:25 | The held-out run of Muse Spark Open | Runner, tag `run-real-openw`, `1adee1f`, 09:25 |
 | Real-scan score, version 1 | `67948f7` | 2026-11-02 17:24 | R1 | Open weights scored `ccf9272`, 17:32; the diagnosis `69c5af1`, 18:21 |
+| Relabel and dash check, tag `labels-real-complete` | `7b6f179` | 2026-11-03 20:51 | The corrected key | Corrected-key scores for both runs, tag `score-real-corrected`, `2439e1c`, 21:23 |
 
 The tags are lightweight, so git stores the tagged commit's date, not when the tag was made; the run's own timestamps (`sweep.json`) show it began after the tagged commit. The synthetic and real-pages plans had changed only below their Deviations heading (checked 2026-11-01, against every commit that touched them). The open-weights plan has not been checked that way.
 
@@ -247,7 +275,9 @@ The first commit is `dd55660`, 2026-10-26 16:06 UTC; none comes before it. Every
 - **Boxes can sit away from the printed value.** [Cached development measurements](results/sparkft/REPORT.md#cached-boxes-no-reusable-conversion-found) found no reusable conversion.
 - **The templates drifted on the wartime layout.** Drafted from 1939 pages, they met later issues: 39 of 58 deep-check pages print different columns (all from April 1940 on), 18 match (one only as far as its text layer reaches) and one is a different table.
 - **One page passed the title check wrongly:** a table of revisions to security transactions, whose title contains the approved one.
-- **One labeller, familiar tables:** the author alone labels the real-scan key, and the test covers later issues of tables the system was built from, not unseen archives.
+- **One labeller, familiar tables:** I alone label the real-scan key, and the test covers later issues of tables the system was built from, not unseen archives.
+- **Stale dates in Total Claims.** That table rolls its dated columns forward each issue, while its template keeps its drafting page's dates (such as "Sept. 1983"). I read each such column by its place in the template, so a value from a later issue can be right while the date its template column carries is stale.
+- **A cell the dash check could not correct.** The dash check marked one cell "can't tell": its first-pass blank had been entered on another row, and the page prints a number there. The check corrects dashes only, so that cell keeps a first-pass answer known not to be what the page prints ([`PREREGISTRATION_REAL.md`](PREREGISTRATION_REAL.md), Deviations, 3 Nov 2026).
 
 ## Run it yourself
 
@@ -283,7 +313,8 @@ uv run python -m archivist.verify
 | The test report | Regenerates it from the committed runs and compares it byte for byte with `results/test_report.json` and [Synthetic results](results/TEST_RESULTS.md) (`uv run python -m archivist.eval.test_report` rewrites them unchanged in a clean checkout) |
 | Each committed export | Rebuilds it from its run: the bundle byte for byte (`uv run python -m archivist.export.bundle --run test-archivist-A --check`), the CSVs byte for byte and the SQLite file row for row |
 | The charts | Redraws them from the report (`uv run python docs/make_charts.py --check`) |
-| The README's numbers | Compares the figures this file quotes for the headline, the synthetic results and the real-scan scores with `results/test_report.json`, the two held-out `score.json` files and the sweep, and the deep check's counts with its `run.json` where that file is present (it is not in the Docker image, and the check says so). Other figures, quoted from the Markdown reports, are not compared |
+| The README's numbers | Compares the figures this file quotes for the headline, the synthetic results and the real-scan scores with `results/test_report.json`, the two held-out `score.json` files, the two corrected-key `score_corrected/score.json` files and the sweep, and the deep check's counts with its `run.json` where that file is present (it is not in the Docker image, and the check says so). Other figures, quoted from the Markdown reports, are not compared |
+| The app's real-scan numbers | Compares the real-scans tab of the review app's accuracy view (`ui/index.html`) with the same score files |
 | Not checked | The rebuild of the Treasury development bundle, which needs scans that are not committed; the command names and skips it |
 | Then | Prints a plain-English summary of what passed, what was not checked and why, and what failed; it exits non-zero on any failure |
 | In CI | [GitHub Actions](.github/workflows/ci.yml) runs the tests, this command, and the Docker image (built, then this command run inside it and the review app served from it) on every push to main and on pull requests |
@@ -343,7 +374,7 @@ Where each part lives, for someone reading the code. Every model call goes throu
 | `src/archivist/live/` | The local live-reading server |
 | `src/archivist/verify.py`, `replay.py` | The two whole-repository checks: the published numbers, and every committed run replayed from the cache |
 | `src/archivist/glimmer/`, `openw/`, `sparkft/` | Code behind the Muse Glimmer, open-weights measurement and Spark Open fine-tuning reports in `results/` |
-| `labelling/` | The real-scan answer key: the draw, the labelling pages and the scorer |
+| `labelling/` | The real-scan answer key: the draw, the labelling pages and the scorers |
 | `ui/` | The static review app in plain HTML, CSS and JavaScript modules, with no build step; `ui/mockup/` is the approved design |
 | `config/` | Which model serves each role, the prices, and the three arms (`config/arms/`) |
 | `tests/` | About 1,500 tests; none touch the network, and the browser tests drive headless Chrome |
@@ -365,7 +396,8 @@ A learning loop, not built yet: people correct values in the review queue and th
 | Test results, charts, per-page costs | [`results/test_report.json`](results/test_report.json), [Synthetic results](results/TEST_RESULTS.md); plan [`PREREGISTRATION.md`](PREREGISTRATION.md) |
 | Real-scan test counts (4,569 pages in 46 issues: every month of 1940 to 1942 and each June of 1985 to 1994) | [Sweep](results/real_test/held_out/sweep.json), [deep run](results/real_test/held_out/run.json), [draw](results/real_test/held_out/labels/draw.json); plan `PREREGISTRATION_REAL.md`; tag `run-real-treasury` |
 | Layout drift, title-check page (the results will score the drifted cells both ways, and name the title-check page as a weakness) | `PREREGISTRATION_REAL.md` (Deviations); [Layout check](results/real_test/held_out/layout_check.md), which settled 42 pages from the text layer; the other 16 were checked by eye ([`layouts_checked.jsonl`](results/real_test/held_out/labels/layouts_checked.jsonl)) |
-| Real-scan scores (R1 and O1, as scored) and the causes of the wrong values | [`score.json`](results/real_test/held_out/score/score.json) and [`score.md`](results/real_test/held_out/score/score.md) (version 1), [`score.json`](results/real_openw/held_out/score/score.json) and [`score.md`](results/real_openw/held_out/score/score.md) (open weights), [the diagnosis](results/real_test/held_out/diagnosis.md); plans `PREREGISTRATION_REAL.md` and `PREREGISTRATION_OPENW.md` |
+| Real-scan scores under the corrected key, and the relabel's agreement | [`score.json`](results/real_test/held_out/score_corrected/score.json) and [`score.md`](results/real_test/held_out/score_corrected/score.md) (version 1), [`score.json`](results/real_openw/held_out/score_corrected/score.json) and [`score.md`](results/real_openw/held_out/score_corrected/score.md) (open weights); the labels at tag `labels-real-complete`; `PREREGISTRATION_REAL.md` (Deviations, 2 and 3 Nov 2026) |
+| Real-scan scores as registered (R1 and O1, as scored) and the causes of the wrong values | [`score.json`](results/real_test/held_out/score/score.json) and [`score.md`](results/real_test/held_out/score/score.md) (version 1), [`score.json`](results/real_openw/held_out/score/score.json) and [`score.md`](results/real_openw/held_out/score/score.md) (open weights), [the diagnosis](results/real_test/held_out/diagnosis.md); plans `PREREGISTRATION_REAL.md` and `PREREGISTRATION_OPENW.md` |
 | Prices ($0.10 in and $0.20 out per million tokens for Contributor mode; $1.25 and $4.25 at the standard price) | `config/models.toml` (decision D19) |
 | Why it is built this way | `DECISIONS.md`: D4, D7, D10, D14, D24, D25, D26, D30 |
 | Dates and commits | `git log` (see Why you can trust the numbers) |

@@ -114,6 +114,27 @@ def test_the_review_apps_on_screen_text_has_no_we_our_or_us(name):
     assert found_in(js_strings((ROOT / name).read_text(encoding="utf-8"))) == [], name
 
 
+# P58: the author is "I" or "me" in what a reader sees, never "the author"; the plans, DECISIONS.md and the records keep
+# their own words
+THE_AUTHOR = re.compile(r"\bthe author(?:['’]s)?\b", re.I)
+VOICE = ("README.md", "eval/README.md")
+
+
+@pytest.mark.parametrize("name", VOICE)
+def test_the_readmes_say_i_not_the_author(name):
+    text = prose((ROOT / name).read_text(encoding="utf-8"))
+    assert THE_AUTHOR.findall(text) == [], f"{name}: write it with I or me"
+
+
+def test_the_landing_page_and_the_app_say_i_not_the_author():
+    assert THE_AUTHOR.findall(html_words(landing_html())) == []
+    for name in APP_PAGES:
+        assert THE_AUTHOR.findall(html_words((ROOT / name).read_text(encoding="utf-8"))) == [], name
+    for name in APP_SCRIPTS + [LANDING_SCRIPT]:
+        assert THE_AUTHOR.findall(js_strings((ROOT / name).read_text(encoding="utf-8"))) == [], name
+    assert THE_AUTHOR.findall("labelled by the author") and THE_AUTHOR.findall("The author’s check"), "the check catches it"
+
+
 def test_the_check_itself_catches_each_form_and_lets_the_united_states_through():
     for bad in ("We tried it", "what we learned", "our results", "Ours", "tell us", "Us too", "We’re sure", "we're sure", "Let’s look", "we put it back ourselves"):
         assert found_in(bad), bad

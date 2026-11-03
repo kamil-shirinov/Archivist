@@ -37,6 +37,7 @@ from __future__ import annotations
 
 import html
 import json
+import math
 import random
 import re
 import subprocess
@@ -69,6 +70,8 @@ PLAN_SYNTHETIC = "PREREGISTRATION.md"
 PLAN_REAL = "PREREGISTRATION_REAL.md"
 PLAN_OPENW = "PREREGISTRATION_OPENW.md"
 STORE = "ui/js/store.js"  # the review app's names for the four condition levels (COND)
+# the corrected key leads; the official figure stands beside it, and says what changed
+REGISTERED = "as registered, before a labelling error was fixed by a rule written down first"
 CORRECTED = {
     "version_1": "results/real_test/held_out/score_corrected/score.json",
     "open_weights": "results/real_openw/held_out/score_corrected/score.json",
@@ -293,6 +296,7 @@ def real_scores(root: Path) -> dict:
         "ow_started": ow["run"]["started_at"],
         "level": level,
         "resamples": resamples,
+        "fixed": corrected(root),
     }
 
 
@@ -649,6 +653,7 @@ def ledger_rows(s: dict, r: dict) -> list[dict]:
     met = {k: s[k]["met"] for k in ("h1", "h2", "h3", "h4", "h5")}
     v1, o1 = r["v1"]["kept/as_run"], r["o1"]
     ow = r["ow"]["kept/as_run"]
+    fixed = r.get("fixed", {})
 
     def q(row: str, mode: str, who: str, value: float, ci, found=None, of=None, key=None, places=2) -> dict:
         return quantity(key or f"ledger.{row}.{mode}.{who}", value, ci, found, of, places)
@@ -722,6 +727,16 @@ def ledger_rows(s: dict, r: dict) -> list[dict]:
             },
         },
     ]
+    real = rows[-1]
+    for mode, name, path, key in (("hosted", "version_1", ("labels",), "fixed.kept"), ("open", "open_weights", ("open_weights",), "fixed.open")):
+        if name in fixed:
+            o = fixed[name]["corrected_key"][path[0]]["kept/as_run"]["overall"]
+            real[mode]["fixed"] = {
+                who: quantity(f"{key}.{label}", o[field]["value"], o[field]["ci"], places=1)
+                for who, label, field in (("arch", "archivist", "archivist_error"), ("single", "single", "single_read_error"))
+            }
+    if real["hosted"].get("fixed") or real["open"].get("fixed"):
+        real["note"] = "every labelled cell: the corrected key, and as registered"
     return rows
 
 
@@ -747,6 +762,19 @@ def value_cell(q: dict | None, level: str) -> str:
     if q["ci"] is not None:
         parts += f'<small class="ci">{fact(ci_key(q), span(q["ci"], q["places"]))}</small>'
     return parts
+
+
+def led_cell(m: dict, who: str, level: str) -> str:
+    """A cell of the ledger: on the real-scan row, once the corrected key is scored, its figure leads and the one as
+    registered stands beside it; elsewhere the figure alone."""
+    fixed = m.get("fixed", {}).get(who)
+    if fixed is None:
+        return value_cell(m[who], level)
+    reg = m[who]
+    return (
+        f"{value_cell(fixed, level)}<small class=\"reg\">as registered {fact(reg['key'], shown(reg))} "
+        f"({fact(ci_key(reg), span(reg['ci'], reg['places']))})</small>"
+    )
 
 
 def ci_key(q: dict) -> str:
@@ -909,7 +937,7 @@ def ledger_row(row: dict, s: dict, r: dict, names: dict[str, str], level: str, r
     rid = row["id"]
     h, o = row["hosted"], row["open"]
     note = f"<small>{esc(row['note'])}</small>" if row["note"] else ""
-    cell = lambda who: swap(value_cell(h[who], level), value_cell(o[who], level))  # noqa: E731
+    cell = lambda who: swap(led_cell(h, who, level), led_cell(o, who, level))  # noqa: E731
     target = swap(target_cell(h["target"], f"ledger.{rid}.hosted.target"), target_cell(o["target"], f"ledger.{rid}.open.target"))
     result = swap(result_cell(h), result_cell(o))
     extra = condition_chart(s, names) if rid == "h3" else ""
@@ -949,6 +977,10 @@ def ledger_section(s: dict, r: dict, names: dict[str, str]) -> str:
         f'one on the synthetic test, one on the real scans. Every other row is shown without one.</p>'
     )
     target = fact("hw.target", threshold(r["o1"]["threshold"]))
+    o1_said = fact("hw.o1", pct(r["o1"]["value"], 1))
+    if "open_weights" in r["fixed"]:
+        fixed_o1 = r["fixed"]["open_weights"]["corrected_key"]["o1"]["value"]
+        o1_said = f'{fact("fixed.o1", pct(fixed_o1, 1))} under the corrected key ({o1_said} {REGISTERED})'
     switch = (
         f'<div class="runon" role="group" aria-label="Run on"><span class="ro-l">Run on</span><div class="ro-opts" data-glass>'
         f'<button type="button" class="ro" data-mode="hosted" aria-pressed="true"><b>{MODE_NAME["hosted"]}</b><small>{spark}</small></button>'
@@ -970,7 +1002,7 @@ def ledger_section(s: dict, r: dict, names: dict[str, str]) -> str:
   <p class="sec-lede tight">{open_} is a model whose trained weights are published. It can replace {spark} for both reads, so a bank that cannot send documents out can run the reading on its own machines.</p>
   <ul class="pts">
     <li><b>Not yet proven on-site.</b> No measured run kept a page on a bank’s own machines: {open_} ran on Baseten, and {sam} still used Meta’s API.</li>
-    <li><b>On the real scans it missed its own target</b> of under {target} wrong among accepted: {fact("hw.o1", pct(r["o1"]["value"], 1))}.</li>
+    <li><b>On the real scans it missed its own target</b> of under {target} wrong among accepted: {o1_said}.</li>
     <li><b>The same seven steps.</b> Only the two reads change; the arithmetic, the blind second read and the person do not.</li>
   </ul>
 </div></section>"""
@@ -983,12 +1015,14 @@ def hero(names: dict[str, str], s: dict, memos: str) -> str:
     listed = [fact("model", n) for n in names.values()]
     models_text = ", ".join(listed[:-1]) + " and " + listed[-1]
     a, b = s["a"], s["b"]
-    heads = (
-        ("stat.a_wrong", pct(a["error_rate_accepted"]), "Wrong among accepted values", ""),
-        ("stat.caught", pct(a["catch_rate"]), "Wrong values caught", " good"),
-        ("stat.open_wrong", pct(b["error_rate_accepted"]), "Wrong on open weights", ""),
+    h1, h3 = s["h1"]["numbers"], s["h3"]["numbers"]
+    times = math.floor(h1["baseline"]["rate"] / h1["headline"]["rate"])  # rounded down, as the README's headline
+    headline = (
+        f'<p class="hl rise" style="--i:5"><a href="#measured">{fact("head.times", f"{times}×")} fewer wrong values than Muse Spark reading alone</a></p>'
+        f'<p class="hl-line rise" style="--i:5">{fact("stat.a_wrong", pct(a["error_rate_accepted"]))} against {fact("stat.base_wrong", pct(s["base"]["error_rate_accepted"]))} '
+        f'on a pre-registered test of {fact("test.fields", num(s["fields"]))} values from {fact("test.pages", num(s["pages"]))} synthetic bank pages. '
+        f'Archivist sends about {fact("head.one_in", f"1 in {round(1 / h3["rate"])}")} values to a person to decide, and open weights do as well ({fact("stat.open_wrong", pct(b["error_rate_accepted"]))}).</p>'
     )
-    line = "".join(f'<li><span class="hv{tone}">{fact(key, text)}</span> <span class="hk">{label}</span></li>' for key, text, label, tone in heads)
     return f"""<section class="hero wrap" id="top">
   <p class="eyebrow rise" style="--i:0">Open source<span class="sep">·</span>Pre-registered<span class="sep">·</span>Built on Meta’s {models_text}</p>
   <h1 class="rise" style="--i:1">The archive that <span class="acc">shows its work.</span></h1>
@@ -998,7 +1032,7 @@ def hero(names: dict[str, str], s: dict, memos: str) -> str:
     <a class="btn primary" href="ui/#{HOME}">Watch it work</a>
     <a class="btn sec" data-glass href="{REPO}#run-it-yourself" rel="noopener">Run it yourself</a>
   </div>
-  <ul class="heads rise" style="--i:5" aria-label="The three headline numbers">{line}</ul>
+  {headline}
 </section>"""
 
 
@@ -1208,10 +1242,17 @@ def corrected_card(fixed: dict) -> str:
         rows += _score_row("Open weights, every labelled cell", "fixed.open", res, _tag(o1["met"], "target met", "target not met"), "Target")
     else:
         rows += '<tr><td colspan="5"><span class="tag wait">Open weights: pending, after the dash check</span></td></tr>'
+    said = "Scored under unchanged rules, beside the official result."
+    if version and "changes" in version:
+        c = version["changes"]
+        said = (
+            f'A check of every one of the {fact("fixed.checked", num(c["cells_checked"]))} first-pass blanks on its printed page found a dash in '
+            f'{fact("fixed.changed", num(c["answers_changed"]))}, so those answers became “-”, by a rule written down before anyone looked. ' + said
+        )
     return f"""<div class="card">
       <h3>Corrected key</h3>
       <table class="res"><thead><tr><th>Cells</th><th>Single read wrong</th><th>Archivist wrong among accepted</th><th>Wrong values caught</th><th>Hypothesis</th></tr></thead><tbody>{rows}</tbody></table>
-      <p class="fine" style="margin-top:12px">Scored under unchanged rules, beside the official result.</p>
+      <p class="fine" style="margin-top:12px">{said}</p>
     </div>"""
 
 
@@ -1237,9 +1278,9 @@ def range_pair(label: str, tag: str, single: dict, arch: dict, keys: tuple[str, 
     return f'<div class="rg-row"><div class="rg-l"><span>{label}</span>{tag}</div><div class="rg-tracks">{band}{tracks}</div></div>'
 
 
-def range_set(key: str, groups: list[tuple[str, list[str]]]) -> str:
+def range_set(key: str, groups: list[tuple[str, list[str]]], shown: bool) -> str:
     """The rows of one answer key (the official one, or the corrected one), in its groups."""
-    out = f'<div class="rg-set" data-key="{key}"{"" if key == "official" else " hidden"}>'
+    out = f'<div class="rg-set" data-key="{key}"{"" if shown else " hidden"}>'
     for title, rows in groups:
         out += f'<div class="rg-g"><h4>{title}</h4>{"".join(rows)}</div>'
     return out + "</div>"
@@ -1288,16 +1329,19 @@ def range_chart(r: dict, fixed: dict, names: dict[str, str]) -> str:
         return [(f"Hosted, {spark}", hosted), (f"Open weights, {open_}", own)]
 
     ready = bool(version or open_fixed)
+    # the corrected key leads once it is scored; until then the official key is the only one
     switch = (
-        '<div class="keysw" role="group" aria-label="Answer key"><button type="button" class="ks" data-key="official" aria-pressed="true">Official</button>'
+        '<div class="keysw" role="group" aria-label="Answer key">'
         + (
-            '<button type="button" class="ks" data-key="corrected" aria-pressed="false">Corrected key</button>'
+            '<button type="button" class="ks" data-key="corrected" aria-pressed="true">Corrected key</button>'
+            '<button type="button" class="ks" data-key="official" aria-pressed="false">Official</button>'
             if ready
-            else '<button type="button" class="ks" data-key="corrected" aria-pressed="false" disabled aria-disabled="true">Corrected key <span class="pend">pending</span></button>'
+            else '<button type="button" class="ks" data-key="official" aria-pressed="true">Official</button>'
+            '<button type="button" class="ks" data-key="corrected" aria-pressed="false" disabled aria-disabled="true">Corrected key <span class="pend">pending</span></button>'
         )
         + "</div>"
     )
-    sets = range_set("official", official()) + (range_set("corrected", corrected()) if ready else "")
+    sets = (range_set("corrected", corrected(), True) + range_set("official", official(), False)) if ready else range_set("official", official(), True)
     note = "" if r["stalled"] else '<p class="fine">No re-read went unanswered in the open-weights run, so it has one variant of each kind, as run.</p>'
     return f"""<div class="card chart" id="range" data-chart="range">
       <div class="chart-h"><div><h3>Where the intervals fall</h3><p class="fine">Each pair is the single read (grey) against Archivist (indigo): the bar is the {fact("ci.level", level)} interval, the dot the estimate. Where the two bars overlap, the hypothesis is not met.</p></div>{switch}</div>
@@ -1394,8 +1438,26 @@ def real_scans(r: dict, diag: dict, fixed: dict, names: dict[str, str], titles: 
         second = f"""<div class="card pending">
       <h3>Corrected key</h3>
       <p class="big">Pending, after the dash check</p>
-      <p class="fine">The author looks at the {fact("real.blank", num(blanks))} cells first labelled blank, on the printed page, and marks where a dash is printed. Those answers become “-”, and the same scorer scores them beside the official result, under unchanged rules. The result file does not exist yet.</p>
+      <p class="fine">I look at the {fact("real.blank", num(blanks))} cells first labelled blank, on the printed page, and mark where a dash is printed. Those answers become “-”, and the same scorer scores them beside the official result, under unchanged rules. The result file does not exist yet.</p>
     </div>"""
+    official_card = f"""<div class="card">
+      <h3>{"Official result, " + REGISTERED if fixed else "Official result"}</h3>
+      <table class="res"><thead><tr><th>Cells</th><th>Single read wrong</th><th>Archivist wrong among accepted</th><th>Wrong values caught</th><th>Hypothesis</th></tr></thead><tbody>{rows}</tbody></table>
+    </div>"""
+    official_said = "It was not met, in any variant." if not any(v["r1"]["met"] for v in r["v1"].values()) else "It was met in some variants."
+    verdict = f"{official_said} This is the official result, as scored."
+    if "version_1" in fixed:
+        fix = fixed["version_1"]["corrected_key"]["labels"]
+        kept_met, left_met = fix["kept/as_run"]["r1"]["met"], fix["left_out/as_run"]["r1"]["met"]
+        if left_met and not kept_met:
+            lead = "Under the corrected key it was met on pages whose layout matches their template, and not with every cell counted"
+        elif kept_met and left_met:
+            lead = "Under the corrected key it was met"
+        elif not kept_met and not left_met:
+            lead = "Under the corrected key it was not met"
+        else:
+            lead = "Under the corrected key it was met with every cell counted, and not on pages whose layout matches"
+        verdict = f"{lead}. {official_said[:-1]}, {REGISTERED}; the official result, as scored, is beside the corrected key."
     v_left, v_left_acc = diag[("v1", "single", "left out")], diag[("v1", "accepted", "left out")]
     v_kept, v_kept_acc = diag[("v1", "single", "kept")], diag[("v1", "accepted", "kept")]
     left_n = f"{v_left['format']} of {v_left['wrong']}"
@@ -1408,14 +1470,11 @@ def real_scans(r: dict, diag: dict, fixed: dict, names: dict[str, str], titles: 
     return f"""<section id="scans" class="reveal"><div class="wrap">
   <p class="kicker">Measured on the real thing</p>
   <h2>Real government scans</h2>
-  <p class="sec-lede">The pre-registered test on held-out pages of the Treasury Bulletin, which no model had seen: {fact("real.cells", num(cells))} cells drawn in advance and labelled by the author from the printed page, never shown a model’s answer. Its one hypothesis, {ref("R1")}, said Archivist’s wrong values among those it accepts would be fewer than the single read’s, with the intervals apart. It was not met, in any variant. This is the official result, as scored.</p>
+  <p class="sec-lede">The pre-registered test on held-out pages of the Treasury Bulletin, which no model had seen: {fact("real.cells", num(cells))} cells drawn in advance and labelled by me from the printed page, never shown a model’s answer. Its one hypothesis, {ref("R1")}, said Archivist’s wrong values among those it accepts would be fewer than the single read’s, with the intervals apart. {verdict}</p>
   {range_chart(r, fixed, names)}
   <div class="scans">
-    <div class="card">
-      <h3>Official result</h3>
-      <table class="res"><thead><tr><th>Cells</th><th>Single read wrong</th><th>Archivist wrong among accepted</th><th>Wrong values caught</th><th>Hypothesis</th></tr></thead><tbody>{rows}</tbody></table>
-    </div>
-    {second}
+    {second if fixed else official_card}
+    {official_card if fixed else second}
   </div>
   {depth(r, titles, names)}
   <h3 class="sub">What the diagnosis found</h3>
@@ -1488,13 +1547,33 @@ def limits(s: dict, r: dict) -> str:
     changed = f"{r['changed']} of {r['pages_checked']}"
     o1_target = fact("limit.o1_target", threshold(r["o1"]["threshold"]))
     sparkft = f"{REPO}/blob/main/results/sparkft/REPORT.md#cached-boxes-no-reusable-conversion-found"
+    real_missed = f"On the real scans the hypothesis was not met in any variant, and open weights missed its target of under {o1_target}."
+    uncorrected = ""
+    if "version_1" in r["fixed"]:
+        fix = r["fixed"]["version_1"]
+        kept_met = fix["corrected_key"]["labels"]["kept/as_run"]["r1"]["met"]
+        o1_met = r["fixed"].get("open_weights", {}).get("corrected_key", {}).get("o1", {}).get("met")
+        real_missed = (
+            "On the real scans, as registered, the hypothesis was not met in any variant; under the corrected key it was "
+            + ("met with every cell counted" if kept_met else "not met with every cell counted")
+            + f", and open weights missed its target of under {o1_target}"
+            + (" under both keys." if o1_met is False else ".")
+        )
+        cant = fix["changes"]["marks"]["cant_tell"]
+        if cant:
+            cells = fact("limit.cant_tell", num(cant)) + (" cell" if cant == 1 else " cells")
+            uncorrected = (
+                f'\n    <div class="card limit"><h3>What the dash check could not correct</h3>'
+                f'<p>The dash check marked {cells} “can’t tell”: a first-pass blank entered on another row, where the page prints a number. '
+                "The check corrects dashes only, so such a cell keeps a first-pass answer known not to be what the page prints.</p></div>"
+            )
     return f"""<section id="limits" class="reveal"><div class="wrap">
   <p class="kicker">Said plainly</p>
   <h2>Honest limits</h2>
   <div class="limits">
     <div class="card limit"><h3>Targets missed</h3>
       <p>On the synthetic test, Archivist sent <b>{fact("limit.h3", pct(h3["rate"]))}</b> of values to a person against a target of {fact("limit.h3_target", threshold(h3["threshold"]))}, and flagged <b>{fact("limit.h5", pct(h5["rate"]))}</b> ({fact("limit.h5_n", found)}) of the planted source errors against a target of {fact("limit.h5_target", threshold(h5["threshold"]))}.</p>
-      <p>On the real scans the hypothesis was not met in any variant, and open weights missed its target of under {o1_target}.</p></div>
+      <p>{real_missed}</p></div>
     <div class="card limit"><h3>The box offset</h3>
       <p>Boxes can sit away from the printed value. On the real scans an estimated {fact("limit.model_box", pct(every["boxed_model"]["value"], 1))} of cells were boxed by the model alone; only {fact("limit.ocr_box", pct(every["boxed_ocr"]["value"], 1))} were anchored by the page’s text layer and {fact("limit.grid_box", pct(every["boxed_grid"]["value"], 1))} by the table’s grid. {link(sparkft, "Cached measurements")} found no reusable conversion.</p></div>
     <div class="card limit"><h3>Layout drift</h3>
@@ -1502,7 +1581,9 @@ def limits(s: dict, r: dict) -> str:
     <div class="card limit"><h3>The hackathon’s discount</h3>
       <p>Hosted reads ran in Contributor mode, the hackathon’s discounted price (decision {ref("D19")}), so <b>{fact("limit.cost_a", f"${s['cost']['a']:.4f}")}</b> a page flatters the hosted side; a real deployment would use Standard mode or open weights. Open weights cost <b>{fact("limit.cost_b", f"${s['cost']['b']:.4f}")}</b> a page at Baseten’s printed prices, which are not a contract.</p></div>
     <div class="card limit"><h3>One run, one labeller</h3>
-      <p>Each configuration ran once. The synthetic accounts share names and amounts, so the intervals may understate the uncertainty. The author alone labels the real-scan answer key. {link(blob("README.md#honest-limits"), "The README lists the rest")}.</p></div>
+      <p>Each configuration ran once. The synthetic accounts share names and amounts, so the intervals may understate the uncertainty. I alone label the real-scan answer key. {link(blob("README.md#honest-limits"), "The README lists the rest")}.</p></div>
+    <div class="card limit"><h3>Stale dates in Total Claims</h3>
+      <p>That table rolls its dated columns forward each issue, while its template keeps its drafting page’s dates. I read each such column by its place in the template, so a value from a later issue can be right while the date its template column carries is stale.</p></div>{uncorrected}
   </div>
 </div></section>"""
 
