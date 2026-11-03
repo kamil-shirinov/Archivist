@@ -50,6 +50,7 @@ ROOT = Path(__file__).resolve().parents[1]
 
 REPO = "https://github.com/kamil-shirinov/Archivist"
 HOME = "replay"  # the view of the app that Watch it work opens
+APP = "overview"  # the view of the app that Explore the app and Open the app open
 ASSETS = (
     "docs/landing/landing.css",
     "docs/landing/landing.js",
@@ -1029,8 +1030,8 @@ def hero(names: dict[str, str], s: dict, memos: str) -> str:
   <p class="lede rise" style="--i:2">At a bank internship I built a parser for about {fact("story.memos", memos)} legacy memos, and found there was no archive to run it on: the oldest records were only on paper, and loan applicants brought their earnings in notebooks that staff typed in by hand.</p>
   <p class="lede rise" style="--i:3"><strong>Archivist</strong> turns scanned financial archives into a verified database: every value is cited to its spot on the page, read twice with the second read blind, checked by arithmetic, and sent to a person when in doubt.</p>
   <div class="cta rise" style="--i:4">
-    <a class="btn primary" href="ui/#{HOME}">Watch it work</a>
-    <a class="btn sec" data-glass href="{REPO}#run-it-yourself" rel="noopener">Run it yourself</a>
+    <a class="btn primary" href="ui/#{APP}">Explore the app</a>
+    <a class="btn sec" data-glass href="ui/#{HOME}">Watch it work</a>
   </div>
   {headline}
 </section>"""
@@ -1595,7 +1596,7 @@ def try_it(commands: list[str]) -> str:
   <h2>Try it</h2>
   <div class="try">
     <div class="card"><h3>The live demo</h3><p>The review app over the recorded runs: Watch it work, the review queue, the accuracy report. Recorded runs only; nothing is called.</p><a class="btn primary" href="ui/#{HOME}">Watch it work</a></div>
-    <div class="card"><h3>Docker</h3><pre><code data-fact="docker">{code}</code></pre><p>The first <code>run</code> serves this page at <code>/</code> and the review app at <code>/ui/</code>; the second runs the judge checks.</p></div>
+    <div class="card"><h3>Docker</h3><pre><code data-fact="docker">{code}</code></pre><p>The first <code>run</code> serves this page at <code>/</code> and the review app at <code>/ui/</code>; the second runs the judge checks.</p>{link(REPO + "#run-it-yourself", "Run it yourself", ' class="btn sec" data-glass rel="noopener"')}</div>
     <div class="card"><h3>The repository</h3><p>The code, the plans, every result and the reasons for each decision.</p>{link(REPO, "kamil-shirinov/Archivist", ' class="btn sec" data-glass rel="noopener"')}</div>
   </div>
 </div></section>"""
@@ -1604,7 +1605,7 @@ def try_it(commands: list[str]) -> str:
 TOP = """<header class="pillbar"><div class="pill glass" data-glass>
   <a class="brand" href="#top"><img src="assets/brand/logo-light.svg" alt="" width="26" height="26"><span class="wordmark">Archivist</span></a>
   <nav class="nav" aria-label="On this page"><a href="#measured">Measured</a><a href="#how">How it works</a><a href="#scans">Real scans</a><a href="#planned">Planned first</a><a href="#limits">Limits</a><a href="#try">Try it</a></nav>
-  <div class="pill-r"><a class="btn small sec" data-glass href="ui/#replay">Watch it work</a>
+  <div class="pill-r"><a class="btn small sec" data-glass href="ui/#overview">Open the app</a>
     <button class="tog" type="button" data-theme-toggle aria-label="Dark mode" aria-pressed="false"><svg class="only-light" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5Z"/></svg><svg class="only-dark" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2M5.6 5.6 7 7M17 17l1.4 1.4M5.6 18.4 7 17M17 7l1.4-1.4"/></svg></button></div>
 </div></header>"""
 

@@ -154,6 +154,67 @@ def test_a_page_is_read_live_then_replayed_and_opened_in_the_normal_views(local)
         assert all(url.startswith(base) or url.startswith("data:") for url in tab.requests)
 
 
+def test_the_wording_of_a_step_names_the_model_that_runs_it():
+    """Recognising a page is Muse Glimmer's step where it sorts and Muse Spark's where the page is read from its image."""
+    with serve(ROOT) as base, Browser() as browser:
+        tab = browser.tab()
+        tab.open(f"{base}/ui/index.html", still=True)
+        said = tab.eval(
+            """(async () => {
+              const { whatItDoes } = await import('./js/live/words.js');
+              const names = { extractor: 'Muse Spark 1.3', sorter: 'Muse Glimmer', segmenter: 'SAM 3.1', rereader: 'Muse Spark 1.3' };
+              return {
+                glimmer: whatItDoes('recognise', 'Muse Glimmer', names),
+                spark: whatItDoes('recognise', 'Muse Spark 1.3', names),
+                unrouted: whatItDoes('recognise', null, names),
+                read: whatItDoes('read', 'Muse Spark 1.3', names),
+                sam: whatItDoes('sam', null, names),
+                code: whatItDoes('snap', null, names),
+              };
+            })()"""
+        )
+        assert said["glimmer"] == "Muse Glimmer is asked what kind of page this is."
+        assert said["spark"] == "Muse Spark 1.3 is asked what kind of page this is."
+        assert said["unrouted"] == "Muse Spark 1.3 is asked what kind of page this is.", "no model on the event: the extractor, as before"
+        assert said["read"].startswith("Muse Spark 1.3 reads every value") and said["sam"].startswith("SAM 3.1 looks for")
+        assert said["code"] == "Plain code moves each box onto the printed ink."
+        assert tab.errors == []
+
+
+@pytest.mark.parametrize("who", ["Muse Glimmer", "Muse Spark 1.3"])
+def test_the_now_panel_and_the_step_list_name_the_model_the_server_says_ran_the_recognise_step(local, who):
+    world, base = local
+    with Browser() as browser:
+        tab = browser.tab()
+        tab.open(f"{base}/ui/#live", width=1440, height=900, still=True)
+        tab.wait_for(READY + " && document.querySelectorAll('#l-page option').length > 0")
+        tab.eval("sessionStorage.setItem('archivist-live-auto', '0')")
+        # the session as the server tells it, with the recognise step carrying the model that ran it
+        tab.eval(
+            """(() => {
+              const real = window.fetch.bind(window), who = %r;
+              window.fetch = async (url, init) => {
+                const res = await real(url, init);
+                if (!String(url).includes('/session/')) return res;
+                const body = await res.json(), first = body.events[0];
+                const models = [{ role: 'extractor', name: 'Muse Spark 1.3' }, { role: 'rereader', name: 'Muse Spark 1.3' }, { role: 'segmenter', name: 'SAM 3.1' }, ...(who === 'Muse Glimmer' ? [{ role: 'sorter', name: who }] : [])];
+                const step = { type: 'step', seq: 1000, step: 'recognise', state: 'start', index: 0, model: who, facts: {} };
+                return new Response(JSON.stringify({ ...body, events: [{ ...first, models }, step] }), { status: 200, headers: { 'content-type': 'application/json' } });
+              };
+            })()"""
+            % who
+        )
+        tab.eval("document.querySelector('#l-mode button[data-m=live]').click()")
+        Scripted.gate = threading.Event()
+        press(tab, "l-go")
+        tab.wait_for("!!document.querySelector('#l-steps li[data-k=recognise].on')")
+        assert text(tab, "#l-now p") == f"{who} is asked what kind of page this is."
+        assert text(tab, "#l-steps li[data-k=recognise] span") == who
+        assert text(tab, "#l-now h3") == "Recognise the page"
+        Scripted.gate.set()
+        assert tab.errors == []
+
+
 def test_the_pill_and_the_view_work_at_a_phone_width(local):
     world, base = local
     with Browser() as browser:

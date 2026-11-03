@@ -357,7 +357,7 @@ tbody.lrow:hover>tr.main{background:color-mix(in srgb,var(--ink) 2.5%,transparen
 .rg-l small{display:block;color:var(--ink-3);font-size:11.5px}
 .rg-tracks{position:relative;display:grid;gap:6px}
 .chart>.ax,.chart .rg-set~.ax,.depth .chart>.ax{margin-left:calc(var(--lab) + 14px)}
-.scans{display:grid;grid-template-columns:minmax(0,1.25fr) minmax(0,.75fr);gap:16px;margin-top:20px}
+.scans{display:grid;grid-template-columns:minmax(0,1fr);gap:16px;margin-top:20px}
 .res{width:100%;border-collapse:collapse;font-size:14px}
 .res th{font-size:12.5px;font-weight:500;color:var(--ink-3);text-align:left;padding:0 10px 8px 0}
 .res td{padding:11px 10px 11px 0;border-top:1px solid var(--line);vertical-align:top}
@@ -522,7 +522,6 @@ html.calm .bg i{animation:none!important}
   .notes{display:grid;grid-template-columns:minmax(0,1fr);gap:8px;margin-top:14px}
   .notes li,.notes li[data-side],.notes li[data-step]{margin:0;grid-column:1;grid-row:auto}
   .leaders{display:none}
-  .scans{grid-template-columns:minmax(0,1fr)}
   .tl-wrap{grid-template-columns:minmax(0,1fr);gap:24px}.tl-intro{position:static}
   .try{grid-template-columns:minmax(0,1fr)}
   .nav{display:none}

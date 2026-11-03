@@ -872,6 +872,12 @@ def test_the_site_holds_the_page_its_files_and_no_result(tmp_path):
         assert (out / reference.split("#")[0].split("?")[0]).exists(), reference
     assert "Pending, after the dash check" in text or all((ROOT / p).is_file() for p in landing.CORRECTED.values())
     assert 'href="ui/#replay"' in text, "Watch it work opens the app on the replay"
+    assert re.search(r'class="btn primary" href="ui/#overview">Explore the app<', text), "the primary button opens the app at its Overview"
+    assert re.search(r'class="btn sec" data-glass href="ui/#replay">Watch it work<', text), "the second hero button opens the replay"
+    assert re.search(r'class="btn small sec" data-glass href="ui/#overview">Open the app<', text), "the navigation pill opens the Overview"
+    hero = text.split('<div class="cta', 1)[1].split("</div>", 1)[0]
+    assert "Run it yourself" not in hero, "Run it yourself belongs to Try it"
+    assert "Run it yourself" in text.split('id="try"', 1)[1], "Run it yourself stays in the Try it section"
     assert (out / "ui/index.html").is_file(), "the app stays at /ui/"
 
 
@@ -1910,11 +1916,48 @@ def test_the_page_fits_the_screen_in_light_and_dark(served, dark, phone):
 
 
 @needs_browser
+def test_explore_the_app_and_open_the_app_open_the_overview(served):
+    base, browser = served
+    for selector in (".hero .btn.primary", ".pill-r .btn"):
+        tab = new_tab(browser)
+        tab.open(base, still=True)
+        assert tab.eval(f"document.querySelector('{selector}').textContent") == ("Explore the app" if "hero" in selector else "Open the app")
+        tab.eval(f"document.querySelector('{selector}').click()")
+        tab.wait_for("location.pathname.endsWith('/ui/') && document.documentElement.dataset.ready === '1'", 60)
+        assert tab.eval("location.hash") == "#overview"
+        assert tab.eval("[...document.querySelectorAll('main .view')].filter(v => !v.hidden).map(v => v.id)") == ["v-overview"]
+
+
+@needs_browser
+@pytest.mark.parametrize("width,height,phone", [(1440, 900, False), (1920, 1080, False), (390, 844, True)])
+def test_the_two_real_scan_cards_are_stacked_at_full_width_with_the_corrected_key_first(served, width, height, phone):
+    base, browser = served
+    tab = new_tab(browser)
+    tab.open(base, width=width, height=height, mobile=phone, still=True)
+    tab.pump(0.5)
+    cards = tab.eval("[...document.querySelectorAll('#scans .scans > .card')].map(c => { const r = c.getBoundingClientRect(); return {h: c.querySelector('h3').textContent, left: r.left, width: r.width, top: r.top, bottom: r.bottom}; })")
+    assert len(cards) == 2
+    first, second = cards
+    assert first["h"] == "Corrected key" and second["h"].startswith("Official result"), "the corrected key first, the result as registered below"
+    assert first["left"] == second["left"] and first["width"] == second["width"], "both full width"
+    assert second["top"] >= first["bottom"], "stacked, not side by side"
+    grid = tab.eval("document.querySelector('#scans .scans').getBoundingClientRect().width")
+    assert first["width"] == grid
+    if not phone:
+        # neither table wraps: every header is one line, and a figure sits on one line with its interval below
+        assert tab.eval("[...document.querySelectorAll('#scans .scans .res thead th')].every(th => th.getBoundingClientRect().height < 40)")
+        assert tab.eval("[...document.querySelectorAll('#scans .scans .res .big')].every(b => b.getBoundingClientRect().height < 40)")
+        assert tab.eval("[...document.querySelectorAll('#scans .scans .res small')].filter(s => s.parentElement.tagName === 'TD' && s.previousElementSibling).every(s => s.getBoundingClientRect().height < 24)")
+    assert tab.errors == []
+
+
+@needs_browser
 def test_watch_it_work_opens_the_app_on_the_replay(served):
     base, browser = served
     tab = new_tab(browser)
     tab.open(base, still=True)
-    tab.eval("document.querySelector('.hero .btn.primary').click()")
+    assert tab.eval("document.querySelector('.hero .btn.sec').textContent") == "Watch it work"
+    tab.eval("document.querySelector('.hero .btn.sec').click()")
     tab.wait_for("location.pathname.endsWith('/ui/') && document.documentElement.dataset.ready === '1'", 60)
     assert tab.eval("location.hash") == "#replay"
     assert tab.eval("[...document.querySelectorAll('main .view')].filter(v => !v.hidden).map(v => v.id)") == ["v-replay"]

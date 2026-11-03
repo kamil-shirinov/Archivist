@@ -24,7 +24,7 @@ from browser import Browser, find_browser, serve
 
 ROOT = Path(__file__).resolve().parents[1]
 README = (ROOT / "README.md").read_text(encoding="utf-8")
-DOCS = ("README.md", "eval/README.md", "CONTRIBUTING.md", "SECURITY.md", "CODE_OF_CONDUCT.md")
+DOCS = ("README.md", "eval/README.md", "CONTRIBUTING.md", "SECURITY.md")
 
 PROBLEM = (
     "During a bank internship I used AI to build two things: a parser that turned about 2,000 legacy memos into a "
@@ -415,13 +415,11 @@ def test_no_sentence_is_said_twice_between_the_first_screen_bullets_and_the_judg
 
 
 def test_the_community_files_have_no_email_address_and_say_where_to_report():
-    for doc in ("CONTRIBUTING.md", "SECURITY.md", "CODE_OF_CONDUCT.md"):
+    for doc in ("CONTRIBUTING.md", "SECURITY.md"):
         text = (ROOT / doc).read_text(encoding="utf-8")
         assert not re.search(r"[\w.+-]+@[\w-]+\.[\w.-]+", text), f"{doc} holds an email address"
     security = (ROOT / "SECURITY.md").read_text(encoding="utf-8")
     assert "Report a vulnerability" in security and "main" in security and "static" in security
-    conduct = (ROOT / "CODE_OF_CONDUCT.md").read_text(encoding="utf-8")
-    assert "version 2.1" in conduct and "Report a vulnerability" in conduct
     contributing = (ROOT / "CONTRIBUTING.md").read_text(encoding="utf-8")
     for needle in ("uv sync --frozen", "uv run pytest -q && uv run python -m archivist.replay", "DECISIONS.md", "archivist.templates.approve", "No tuning on held-out pages"):
         assert needle in contributing

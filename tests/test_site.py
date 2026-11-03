@@ -237,7 +237,7 @@ def test_the_published_site_runs_from_its_own_files_alone(built):
         tab.wait_for("!!document.querySelector('h1') && document.querySelectorAll('.notes li').length === 7", 30)
         assert tab.eval("location.pathname") == "/Archivist/"
         assert tab.eval("document.querySelector('h1').textContent") == "The archive that shows its work."
-        tab.eval("document.querySelector('.hero .btn.primary').click()")
+        tab.eval("document.querySelector('.hero .btn.sec').click()")
         tab.wait_for("location.pathname === '/Archivist/ui/' && document.documentElement.dataset.ready === '1'", 60)
         assert tab.eval("location.hash") == "#replay"
         tab.wait_for("!!document.querySelector('#wstage img')?.complete && document.querySelectorAll('#w-steps li').length === 7", 30)

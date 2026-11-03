@@ -11,6 +11,7 @@ import { PageView } from "../pageview.js";
 import { noAnim } from "../wire.js";
 import { $, esc, int, reduced, frame, toast } from "../util.js";
 import { api, state, set, onChange } from "./core.js";
+import { whatItDoes } from "./words.js";
 
 const STEPS = [
   ["recognise", "Recognise the page", "extractor"],
@@ -263,20 +264,10 @@ const place = (r, b) => {
   r.setAttribute("height", b.y1 - b.y0);
 };
 
-const WHAT = {
-  recognise: (m) => `${m("extractor")} is asked what kind of page this is.`,
-  read: (m) => `${m("extractor")} reads every value on the page and says where each one is.`,
-  snap: () => "Plain code moves each box onto the printed ink.",
-  sam: (m) => `${m("segmenter")} looks for stamps and stains that cover a value.`,
-  blind: (m) => `${m("rereader")} reads each value again, one cell at a time, without seeing the first answer.`,
-  rules: () => "Plain code checks the values against the page’s own arithmetic.",
-  decide: () => "Every value is accepted, or sent to a person.",
-};
-const model = (role) => R.names[role] || "A model";
 
-function now(step, extra = "") {
+function now(step, extra = "", who = null) {
   const t = TITLE[step] || "Done";
-  $("l-now").innerHTML = `<h3>${esc(t)}</h3><p class="sub" style="margin:0">${esc(WHAT[step]?.(model) || "")}</p>${extra}`;
+  $("l-now").innerHTML = `<h3>${esc(t)}</h3><p class="sub" style="margin:0">${esc(whatItDoes(step, who, R.names))}</p>${extra}`;
 }
 
 function tally() {
@@ -347,7 +338,8 @@ function apply(e) {
         document.querySelectorAll("#l-steps li.on").forEach((x) => x.classList.remove("on"));
         li.classList.add("on");
         $("l-stage").textContent = TITLE[e.step];
-        now(e.step);
+        if (e.model) li.querySelector("span").textContent = e.model; // the model that runs this step, as the server routed it
+        now(e.step, "", e.model);
         if (e.step === "sam" && !R.quiet && !reduced && pv) {
           const sc = $("lscan");
           sc.style.setProperty("--wh", `${stage().clientHeight}px`);
@@ -447,7 +439,7 @@ function facts(e) {
   if (e.step === "decide") bits.push(["Decided", `${int(f.accepted || 0)} verified, ${int(f.review || 0)} to a person`]);
   if (!bits.length) return;
   const extra = `<dl class="wdl" style="margin-top:10px">${bits.map(([k, v]) => `<dt>${k}</dt><dd>${esc(v)}</dd>`).join("")}</dl>`;
-  now(e.step, extra);
+  now(e.step, extra, e.model);
 }
 
 function summary(e) {

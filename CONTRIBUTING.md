@@ -1,6 +1,6 @@
 # Contributing to Archivist
 
-Thank you for looking. Archivist is open source under the [Apache License 2.0](LICENSE), and a change is welcome if it keeps the integrity rules below. By taking part you agree to the [Code of Conduct](CODE_OF_CONDUCT.md). To report a vulnerability, follow [SECURITY.md](SECURITY.md), not a public issue.
+Thank you for looking. Archivist is open source under the [Apache License 2.0](LICENSE), and a change is welcome if it keeps the integrity rules below. To report a vulnerability, follow [SECURITY.md](SECURITY.md), not a public issue.
 
 ## Set up
 
