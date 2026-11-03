@@ -18,7 +18,7 @@
 </div>
 
 - **What it does.** Archivist turns scanned financial archives into a verified database. Every value is cited to its spot on the page, cross-checked by arithmetic and a blind second read, and flagged for a person when unsure. Values are never changed automatically.
-- **How well.** Every target was pre-registered, and the misses are reported: three of the five synthetic targets were met, and on real government scans the target was not met ([Results](#results), [Honest limits](#honest-limits)).
+- **How well.** Every target was pre-registered, and the misses are reported: 0.36% of accepted values were wrong against 4.45% for a single read on the synthetic test, three of its five targets were met, and on real government scans the target was not met ([Results](#results), [Honest limits](#honest-limits)).
 - **Where your data goes.** Hosted, pages go to Meta's Model API, and Muse Glimmer's page sorting runs on Modal GPUs. On your own hardware, Muse Spark Open reads in their place, so a bank that cannot send documents out can keep them: not yet proven on-site ([open weights](#open-weights-the-same-pipeline-on-your-own-hardware)). Only synthetic or public-domain pages were ever sent to a model, and the demo is static: no key, no server, no model call.
 
 **Built during the hackathon.** A solo entry by Kamil Shirinov (Indie Developer track, Build for Your World). The idea came from a bank internship. Everything in this repository was built from its first commit, `dd55660` on 26 Oct 2026, except the third-party components named under Credits at the end.
@@ -111,6 +111,8 @@ This is Archivist's entry for the open-weights bonus prize. Muse Spark Open, a m
 - **Two hosts compared.** Muse Spark Open ran on Baseten and on Fireworks; Baseten stayed ([comparison](results/hosts_compare.md), [open-weights report](results/openw_measure/REPORT.md), [Tried and dropped](#what-we-tried-and-dropped)).
 - **Not yet proven on-site.** No measured run has kept a page on a bank's own machines: Muse Spark Open ran on Baseten and SAM 3.1 still used Meta's API.
 
+<img src="docs/img/chart-hosted-vs-open.svg" alt="Two bar charts comparing Muse Spark 1.3, Muse Spark Open and the mixed set-up on the same test: share of wrong values caught and share of values sent to a person. The mixed set-up caught the fewest wrong values and sent the most to a person. Wrong values accepted per 1,000 are in the first chart under Results." width="100%">
+
 <img src="docs/img/two-modes.svg" alt="The seven steps in one row. Steps 2 and 5, the two reads, are highlighted. Under each, two labels: Meta's API with Muse Spark 1.3, or your own hardware with Muse Spark Open." width="100%">
 
 The review app shows the same swap: the **Run on** chip in its run bar opens a panel with the seven steps and the two ways to run them, and opens the same page on the other recorded run.
@@ -163,9 +165,7 @@ Three of five targets met (H1, H2 and H4); H3 and H5 missed.
 <img src="docs/img/chart-mistakes.svg" alt="Grouped bar chart: wrong values accepted per 1,000, read once and with Archivist's checks, for three set-ups. Muse Spark 1.3 for both reads (arm A): 44.5 read once, interval 22.8 to 71.4, and 3.6 with checks, interval 1.4 to 6.7. Muse Spark Open for both reads (arm B): 47.5, interval 23.3 to 77.8, and 3.0, interval 1.2 to 5.4. Mixed, Muse Spark 1.3 first and Muse Spark Open second (arm C): 44.5, interval 22.8 to 71.4, and 4.7, interval 2.2 to 8.1. Only arm A against the read-once baseline was a pre-registered target; the others are figures from the same report." width="100%">
 
 <details>
-<summary>Two more charts: hosted against open weights, and review by scan condition</summary>
-
-<img src="docs/img/chart-hosted-vs-open.svg" alt="Two bar charts comparing Muse Spark 1.3, Muse Spark Open and the mixed set-up on the same test: share of wrong values caught and share of values sent to a person. The mixed set-up caught the fewest wrong values and sent the most to a person. Wrong values accepted per 1,000 are in the chart above." width="100%">
+<summary>One more chart: review by scan condition, for the three set-ups</summary>
 
 <img src="docs/img/chart-review-by-condition.svg" alt="Grouped bar chart: share of values sent to a person for each scan condition, clean, light wear, moderate wear and heavy wear, for three set-ups: Muse Spark 1.3 for both reads, Muse Spark Open for both reads, and the mixed set-up (Muse Spark 1.3 first, Muse Spark Open second)." width="100%">
 

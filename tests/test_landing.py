@@ -19,6 +19,7 @@ import math
 import re
 import subprocess
 import sys
+import time
 from decimal import Decimal
 from html.parser import HTMLParser
 from pathlib import Path
@@ -1041,8 +1042,28 @@ def press(tab, key: str, vk: int, text: str | None = None) -> None:
         tab.call("Input.dispatchKeyEvent", **params)
 
 
+def settled(tab, js: str, timeout: float = 10.0):
+    """The value of `js` once it is not null and the same on two reads 150 ms apart: a page that is still loading a font,
+    fading something in or scrolling answers differently from one moment to the next, and a test that acts on the first
+    answer is acting on a place the thing has already left."""
+    end = time.time() + timeout
+    before = None
+    while time.time() < end:
+        now = tab.eval(js)
+        if now is not None and now == before:
+            return now
+        before = now
+        tab.pump(0.15)
+    raise TimeoutError(f"never settled within {timeout}s: {js}")
+
+
 def hover(tab, selector: str) -> None:
-    x, y = tab.eval(f"(()=>{{const r=document.querySelector({selector!r}).getBoundingClientRect();return [r.left+r.width/2,r.top+r.height/2]}})()")
+    """Move the pointer over the middle of `selector`, once it has stopped moving and is what the point lands on."""
+    x, y = settled(
+        tab,
+        f"(()=>{{const e=document.querySelector({selector!r});if(!e)return null;const r=e.getBoundingClientRect();const x=r.left+r.width/2,y=r.top+r.height/2;"
+        "const at=document.elementFromPoint(x,y);return at&&(e.contains(at)||at.contains(e))?[x,y]:null})()",
+    )
     tab.call("Input.dispatchMouseEvent", type="mouseMoved", x=x, y=y)
 
 
@@ -1421,6 +1442,15 @@ TIP_RECORDER = """() => { window.__tip = {samples: [], flips: []}; const t = doc
   const loop = () => { const cs = getComputedStyle(b); __tip.samples.push([performance.now(), +cs.opacity, new DOMMatrix(cs.transform).m42, t.textContent]); requestAnimationFrame(loop); }; loop(); }"""
 
 
+# The page waits a short while (setTimeout, about 70 ms) after the pointer leaves a mark before it lets the tooltip go, so
+# that a neighbour reached inside that while takes it over. With `hold` set, this keeps such short timers instead of
+# starting them, and counts the ones the page takes back (clearTimeout) before they run; the rest are the browser's own.
+GRACE_TIMER = """() => { const real = {set: window.setTimeout.bind(window), clear: window.clearTimeout.bind(window)}; let id = -1;
+  const g = window.__grace = {hold: false, held: new Map(), taken_back: 0};
+  window.setTimeout = (fn, ms, ...rest) => { if (g.hold && ms <= 150) { g.held.set(--id, {fn, ms}); return id; } return real.set(fn, ms, ...rest); };
+  window.clearTimeout = (t) => { if (g.held.delete(t)) g.taken_back++; else real.clear(t); }; }"""
+
+
 def move(tab, x: float, y: float) -> None:
     tab.call("Input.dispatchMouseEvent", type="mouseMoved", x=x, y=y)
 
@@ -1432,15 +1462,26 @@ def test_a_tooltip_fades_in_with_a_rise_and_out_and_does_not_flicker_between_nei
     tab.open(base, dark=False)
     jump(tab, "#range", 140)
     tab.eval(f"({TIP_RECORDER})()")
-    (ax, ay), (bx, by) = tab.eval("[...document.querySelectorAll('.rg-set:not([hidden]) .mk .pt')].slice(0, 2).map(p => { const r = p.getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; })")
+    tab.eval(f"({GRACE_TIMER})()")
+    (ax, ay), (bx, by) = settled(tab, "(() => { const m = [...document.querySelectorAll('.rg-set:not([hidden]) .mk .pt')].slice(0, 2).map(p => { const r = p.getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; }); return m.length === 2 ? m : null; })()")
     move(tab, ax, ay)
+    tab.wait_for("document.querySelector('.tooltip').classList.contains('on')", 10)
     tab.pump(0.5)
     assert tab.eval("getComputedStyle(document.querySelector('.tooltip-b')).transitionDuration").split(",")[0] == "0.18s", "in: about 180 ms"
+    # Crossing the gap between two marks: the tooltip must wait a short moment before it lets go, and the neighbour's
+    # pointer-over inside that moment must take the wait back. The moment is the page's own timer, so the test holds it
+    # (it is not left to the pace of this machine's round trips to the browser) and looks at what the page did with it.
+    tab.eval("__grace.hold = true")
     move(tab, (ax + bx) / 2, (ay + by) / 2)  # the gap between the two marks
-    tab.pump(0.02)
+    grace = tab.eval("({pending: [...__grace.held.values()].map(t => t.ms), on: document.querySelector('.tooltip').classList.contains('on')})")
+    assert grace["on"] and len(grace["pending"]) == 1 and 20 <= grace["pending"][0] <= 150, f"in the gap it waits a short moment before letting go: {grace}"
     move(tab, bx, by)  # and on to the neighbour
+    tab.eval("__grace.hold = false")
+    after = tab.eval("({pending: __grace.held.size, taken_back: __grace.taken_back, on: document.querySelector('.tooltip').classList.contains('on')})")
+    assert after == {"pending": 0, "taken_back": 1, "on": True}, f"the neighbour took the wait back, and it never let go: {after}"
     tab.pump(0.5)
     move(tab, 5, 5)
+    tab.wait_for("!document.querySelector('.tooltip').classList.contains('on')", 10)
     tab.pump(0.6)
     assert tab.eval("getComputedStyle(document.querySelector('.tooltip-b')).transitionDuration").split(",")[0] == "0.14s", "out: about 140 ms"
     rec = tab.eval("__tip")
@@ -1513,8 +1554,8 @@ def test_an_empty_cell_says_why_in_the_pages_own_tooltip(served):
     tab.open(base, dark=False)
     jump(tab, "#ledger", 120)
     tab.eval("document.querySelector('.ro[data-mode=open]').click()")  # the open-weights side has the empty cells
-    tab.pump(0.9)
-    spot = tab.eval("(() => { const d = [...document.querySelectorAll('#ledger .dash')].find(e => e.getBoundingClientRect().height && getComputedStyle(e.closest('.v')).opacity === '1'); const r = d.getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2, d.querySelector('.tip').textContent]; })()")
+    # the cell is there once its side has faded in (about 350 ms, longer on a slow machine) and the page has stopped moving
+    spot = settled(tab, "(() => { const d = [...document.querySelectorAll('#ledger .dash')].find(e => e.getBoundingClientRect().height && getComputedStyle(e.closest('.v')).opacity === '1'); if (!d) return null; const r = d.getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2, d.querySelector('.tip').textContent]; })()")
     move(tab, spot[0], spot[1])
     tab.wait_for("document.querySelector('.tooltip').classList.contains('on')", 5)
     assert tab.eval("document.querySelector('.tooltip').textContent") == spot[2] == "Not reported for this set-up"
@@ -1694,8 +1735,7 @@ def test_the_glass_is_sparing_frosted_and_catches_the_pointer(served):
     assert pieces == ["button", "frame", "ledger", "pill", "switch"], "the navigation, the specimen's frame, the ledger, the secondary buttons"
     assert tab.eval("[...document.querySelectorAll('.card, .notes li, .pane, .spanel, .limit, .cond')].every(e => (getComputedStyle(e).backdropFilter || 'none') === 'none')"), "content is never glass"
     hover(tab, ".pill")
-    tab.pump(0.4)
-    assert tab.eval("document.querySelector('.pill').style.getPropertyValue('--mx')") != ""
+    tab.wait_for("document.querySelector('.pill').style.getPropertyValue('--mx') !== ''", 10)  # set on the next frame, however slow
     assert tab.eval("getComputedStyle(document.querySelector('.pill > .shine i')).transform") != "none", "the highlight moves by transform"
     tab.wait_for("getComputedStyle(document.querySelector('.pill > .shine i')).opacity === '1'", 5)
 
