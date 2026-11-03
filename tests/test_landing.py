@@ -235,7 +235,6 @@ def expected() -> dict[str, str]:
         "stat.base_wrong": pc(h1["baseline"]["rate"]),
         "stat.a_wrong_n": f"{h1['headline']['wrong']} of {n(h1['headline']['accepted'])}",
         "stat.base_wrong_n": f"{h1['baseline']['wrong']} of {n(h1['baseline']['accepted'])}",
-        "stat.caught": pc(h2["rate"]),
         "stat.caught_n": f"{h2['caught']} of {h2['wrong']}",
         "stat.base_caught_n": f"{base['errors_caught']} of {base['n_wrong']}",
         "stat.open_wrong": pc(h4["rate"]),
@@ -253,6 +252,10 @@ def expected() -> dict[str, str]:
         "limit.h5_n": f"{h5['found']} of {h5['planted']}",
         "limit.h5_target": thr(h5["threshold"]),
         "hw.review.hosted": pc(h3["rate"]),
+        # the hero's headline: how many times fewer wrong values than the single read, rounded down, and the review
+        # rate as one in so many
+        "head.times": f"{math.floor(h1['baseline']['rate'] / h1['headline']['rate'])}×",
+        "head.one_in": f"1 in {round(1 / h3['rate'])}",
     }
     for key, who in (("hosted", "A"), ("open", "B")):
         e[f"hw.cost.{key}"] = f"${cfg[who]['cost']['per_page_usd']:.4f}"
@@ -325,7 +328,11 @@ def expected() -> dict[str, str]:
             for name, field in (("single", "single_read_error"), ("archivist", "archivist_error"), ("caught", "catch_rate")):
                 o = labels[variant]["overall"][field]
                 e[f"{key}.{name}"], e[f"{key}.{name}.ci"] = pc(o["value"], 1), ci(o["ci"])
+        changes = jload(landing.CORRECTED["version_1"])["changes"]
+        e["fixed.checked"], e["fixed.changed"] = n(changes["cells_checked"]), n(changes["answers_changed"])
+        e["limit.cant_tell"] = n(changes["marks"]["cant_tell"])
     if (ROOT / landing.CORRECTED["open_weights"]).is_file():
+        e["fixed.o1"] = pc(jload(landing.CORRECTED["open_weights"])["corrected_key"]["o1"]["value"], 1)
         o = jload(landing.CORRECTED["open_weights"])["corrected_key"]["open_weights"]["kept/as_run"]["overall"]
         for name, field in (("single", "single_read_error"), ("archivist", "archivist_error"), ("caught", "catch_rate")):
             e[f"fixed.open.{name}"], e[f"fixed.open.{name}.ci"] = pc(o[field]["value"], 1), ci(o[field]["ci"])
@@ -600,7 +607,7 @@ def test_nothing_of_p51_s_page_is_lost(html_text):
 # the corrected key's pending card on P51's page: on it until the corrected-key files exist, then gone by design
 PENDING_CARD = (
     "Pending, after the dash check",
-    "The author looks at the {real.blank} cells first labelled blank, on the printed page, and marks where a dash is printed. Those answers become “-”, and the same scorer scores them beside the official result, under unchanged rules. The result file does not exist yet.",
+    "I look at the {real.blank} cells first labelled blank, on the printed page, and mark where a dash is printed. Those answers become “-”, and the same scorer scores them beside the official result, under unchanged rules. The result file does not exist yet.",
 )
 
 
@@ -827,7 +834,8 @@ def test_the_range_chart_offers_the_corrected_key_once_its_file_exists():
     fixed, both = _fixed()
     r, names = landing.real_scores(ROOT), landing.models(ROOT)
     chart = landing.range_chart(r, both, names)
-    assert 'data-key="corrected" aria-pressed="false">Corrected key</button>' in chart and "disabled" not in chart.split('data-key="corrected"')[1].split("</button>")[0]
+    assert 'data-key="corrected" aria-pressed="true">Corrected key</button>' in chart and "disabled" not in chart.split('data-key="corrected"')[1].split("</button>")[0]
+    assert chart.index('data-key="corrected"') < chart.index('data-key="official"'), "the corrected key leads"
     assert chart.count('class="rg-set"') + chart.count('class="rg-set" hidden') == 2, "the official set and the corrected one"
     assert "1.2%" in chart
     part = landing.range_chart(r, fixed, names)
@@ -1487,6 +1495,12 @@ def test_the_range_chart_shows_where_each_pair_of_intervals_overlaps_and_the_cor
         assert tab.eval("document.querySelectorAll('.rg-set').length") == 1
         tab.eval("document.querySelector('.ks[data-key=corrected]').click()")
         assert tab.eval("document.querySelector('.ks[data-key=official]').getAttribute('aria-pressed')") == "true", "a disabled key does not switch"
+    else:
+        shown = "[...document.querySelectorAll('.rg-set')].map(s => [s.dataset.key, s.hidden])"
+        assert tab.eval(shown) == [["corrected", False], ["official", True]], "the corrected key leads once it is scored"
+        assert tab.eval("document.querySelector('.ks[data-key=corrected]').getAttribute('aria-pressed')") == "true"
+        tab.eval("document.querySelector('.ks[data-key=official]').click()")
+        assert tab.eval(shown) == [["corrected", True], ["official", False]], "the official key is one click away"
 
 
 @needs_browser

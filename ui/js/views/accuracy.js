@@ -1,6 +1,7 @@
 // Accuracy report, in plain words, from the pre-registered test report of the synthetic test pages
 // (results/test_report.json, carried in the bundle as written). The real government scans are measured
-// under their own pre-registration and show as pending until that is done.
+// under their own pre-registration; their tab is static (ui/index.html), and archivist.verify checks its
+// figures against the score files.
 
 import { S, COND } from "../store.js";
 import { $, esc, int, rng } from "../util.js";
@@ -146,7 +147,7 @@ export function enter() {
     $("ev-sub").textContent = dev ? "These are development pages, so there is nothing here to measure." : "There is no pre-registered test report for this run.";
     $("acc-test").innerHTML = `<div class="panel pending"><h2>${dev ? "Development pages: no measured result" : "No test report"}</h2><p>${
       dev
-        ? `The pages in this collection were used to draft the document types and test their rules, so what Archivist did on them says nothing about how often it is right: a measure needs pages that tuned nothing, with the right answers known. The measured results are the pre-registered test on the synthetic pages (the Box 14 collection) and, for real pages, the test whose results are pending.`
+        ? `The pages in this collection were used to draft the document types and test their rules, so what Archivist did on them says nothing about how often it is right: a measure needs pages that tuned nothing, with the right answers known. The measured results are the pre-registered test on the synthetic pages (the Box 14 collection) and, for real pages, the pre-registered test of the Treasury Bulletin’s held-out pages, in the real-scans tab.`
         : `The accuracy report comes from the pre-registered test on the synthetic test pages. This run (${esc(run.run_id)}) was made on the ${esc(run.split)} pages, which have none.`
     }</p>${
       dev
