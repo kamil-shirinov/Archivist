@@ -318,6 +318,17 @@ def expected() -> dict[str, str]:
         for who, field in (("single", "single_read_error"), ("archivist", "archivist_error")):
             r = v1["labels"][variant]["overall"][field]
             e[f"{key}.{who}"], e[f"{key}.{who}.ci"] = pc(r["value"], 1), ci(r["ci"])
+    # the corrected key, once its file exists: the same figures, from score_corrected/score.json
+    if (ROOT / landing.CORRECTED["version_1"]).is_file():
+        labels = jload(landing.CORRECTED["version_1"])["corrected_key"]["labels"]
+        for key, variant in (("fixed.kept", "kept/as_run"), ("fixed.left", "left_out/as_run")):
+            for name, field in (("single", "single_read_error"), ("archivist", "archivist_error"), ("caught", "catch_rate")):
+                o = labels[variant]["overall"][field]
+                e[f"{key}.{name}"], e[f"{key}.{name}.ci"] = pc(o["value"], 1), ci(o["ci"])
+    if (ROOT / landing.CORRECTED["open_weights"]).is_file():
+        o = jload(landing.CORRECTED["open_weights"])["corrected_key"]["open_weights"]["kept/as_run"]["overall"]
+        for name, field in (("single", "single_read_error"), ("archivist", "archivist_error"), ("caught", "catch_rate")):
+            e[f"fixed.open.{name}"], e[f"fixed.open.{name}.ci"] = pc(o[field]["value"], 1), ci(o[field]["ci"])
     for variant in ("kept/as_run", "left_out/as_run"):
         key = "open" if variant == "kept/as_run" else f"range.ow.{variant.replace('/', '.')}"
         for who, field in (("single", "single_read_error"), ("archivist", "archivist_error")):
@@ -577,8 +588,20 @@ def test_the_timeline_links_each_commit_and_says_its_message(html_text, page):
 
 
 def test_nothing_of_p51_s_page_is_lost(html_text):
-    """Every fact key and every sentence or number of the page P51 shipped is still on this page."""
-    assert landing_content.lost(html_text) == {"facts": [], "runs": []}
+    """Every fact key and every sentence or number of the page P51 shipped is still on this page, except the corrected
+    key's pending card, which the page drops by design once both corrected-key files exist."""
+    lost = landing_content.lost(html_text)
+    if all((ROOT / p).is_file() for p in landing.CORRECTED.values()):
+        lost["facts"] = [k for k in lost["facts"] if k != "real.blank"]
+        lost["runs"] = [r for r in lost["runs"] if r not in PENDING_CARD]
+    assert lost == {"facts": [], "runs": []}
+
+
+# the corrected key's pending card on P51's page: on it until the corrected-key files exist, then gone by design
+PENDING_CARD = (
+    "Pending, after the dash check",
+    "The author looks at the {real.blank} cells first labelled blank, on the printed page, and marks where a dash is printed. Those answers become “-”, and the same scorer scores them beside the official result, under unchanged rules. The result file does not exist yet.",
+)
 
 
 def test_the_guard_fails_when_a_sentence_or_a_number_goes(html_text):

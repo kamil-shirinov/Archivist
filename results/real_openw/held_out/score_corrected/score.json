@@ -1,0 +1,2620 @@
+{
+  "provenance": {
+    "tag": "run-real-openw",
+    "commit": "1adee1f0826cb655f0852ac4a893e4782dd61c5e",
+    "archivist_from_tag_checkout": true,
+    "frozen_check": "passed",
+    "records_commit": "7b6f179e0ab219e81b857cb570955bc301c92b39",
+    "scorers_sha256": {
+      "labelling/score_openw.py": "84076c2ea11b64ec0358ba9ccdb392c7fb8b1e7116bc55a240f62c9fc0eeef90",
+      "labelling/score.py": "82e56a8613e7fe1fb51020c0ea47d593adab07d736ba046aa2534f083ab39334",
+      "labelling/score_corrected.py": "ccf0f84ef199e387d5b4cec3d55c7ecff3a8158fe91ddae662968f3e3250ca96"
+    }
+  },
+  "files_sha256": {
+    "results/real_test/held_out/labels/draw.json": "b575cc271445abc1621bfd942362c7b3db6e61b9e26ceca83648f0b580492168",
+    "results/real_test/held_out/labels/labels.jsonl": "5f98f48235f3f4396594b11fe5ccd4d98b66c98629761efa330f80f3134de118",
+    "results/real_test/held_out/labels/relabels.jsonl": "5861a0f5e8c1f543fef15a9f2966382beefb75dbd62ec12462dcb9c4ba24f2c0",
+    "results/real_test/held_out/labels/dashes_checked.jsonl": "580fd0168f17f9596b84d110db4bcea826e70ed905e3c20212a1100d9a7d1f79",
+    "results/real_test/held_out/score/score.json": "0c4d83bbee7ef00aa673dbb1d339778540fdd8605cb104a73c93d04822c898a0",
+    "results/real_openw/held_out/score/score.json": "a95582629c9e96ab07b5533c07edf117a8e8c535df4238b73273a154e7e19687",
+    "results/real_openw/held_out/caps.json": "f0d8879914f2b9154a2bf516b3e048980bce59ffa9b7a4fcc41f55cd9392f234",
+    "results/real_openw/held_out/predictions.jsonl": "8a495e59b911e7cd06df6aacf5d72ddbcfd1af84cb3552d0154261fa37616f3d",
+    "results/real_openw/held_out/boxes.jsonl": "58013fd0e35eeecf989294a8391cf6ce82b9fc995a72368b53a351ee0a0db0a9",
+    "results/real_openw/held_out/cells.json": "b05718c24b5c356a186fe55926517a325d1fc4e4c55a6a793335f35e3f3fb1ff",
+    "results/real_openw/held_out/verdicts.jsonl": "b52a9b86c4726513d86293f51c7639f98eca271c64e401874c1d5bda6c61803a",
+    "results/real_openw/held_out/run.json": "fd68a9e9c11da8aaeae7e19eef8cbfbf5feead03c48f9ce1053df750387a715d"
+  },
+  "official": {
+    "o1": {
+      "claim": "Muse Spark Open's error rate among accepted cells is below 1%.",
+      "variant": "kept/as_run",
+      "threshold": 0.01,
+      "value": 0.2713729990087227,
+      "ci": [
+        0.13910314366242346,
+        0.49917730839258867
+      ],
+      "met": false,
+      "in_every_variant": {
+        "left_out/as_run": false,
+        "left_out/failed_to_review": false,
+        "kept/as_run": false,
+        "kept/failed_to_review": false
+      }
+    },
+    "open_weights": {
+      "left_out/as_run": {
+        "cells": 162,
+        "pages": 17,
+        "by_choice": {
+          "blank": 15,
+          "cant_read": 5,
+          "not_on_page": 1,
+          "value": 141
+        },
+        "by_outcome": {
+          "right": 129,
+          "wrong": 25,
+          "cant_read": 5,
+          "abstained": 3
+        },
+        "overall": {
+          "single_read_error": {
+            "value": 0.16444604629403198,
+            "ci": [
+              0.07277949831825901,
+              0.2774996337620264
+            ]
+          },
+          "archivist_error": {
+            "value": 0.13639975271119104,
+            "ci": [
+              0.04821370141649943,
+              0.3073610265267092
+            ]
+          },
+          "catch_rate": {
+            "value": 0.7135756417258322,
+            "ci": [
+              0.5993634504664239,
+              0.8994245729381207
+            ]
+          },
+          "sent_to_person": {
+            "value": 0.6272905615597265,
+            "ci": [
+              0.41261768356957107,
+              0.8251179325675826
+            ]
+          }
+        },
+        "by_stratum": {
+          "1939_1942": {
+            "single_read_error": {
+              "value": 0.16929311121116605,
+              "ci": [
+                0.030628157258950142,
+                0.33466590519703027
+              ]
+            },
+            "archivist_error": {
+              "value": 0.15574650912996774,
+              "ci": [
+                0.05675675675675677,
+                0.3944687045123727
+              ]
+            },
+            "catch_rate": {
+              "value": 0.6143617021276596,
+              "ci": [
+                0.33614405301709116,
+                0.7682926829268293
+              ]
+            },
+            "sent_to_person": {
+              "value": 0.5470225872689937,
+              "ci": [
+                0.26964351086383703,
+                0.8280045667243476
+              ]
+            },
+            "counted": {
+              "cells": 62,
+              "pages": 7,
+              "by_choice": {
+                "blank": 11,
+                "cant_read": 2,
+                "value": 49
+              },
+              "by_outcome": {
+                "right": 47,
+                "wrong": 10,
+                "cant_read": 2,
+                "abstained": 3
+              }
+            }
+          },
+          "total_claims": {
+            "single_read_error": {
+              "value": 0.154639175257732,
+              "ci": [
+                0.07608351678591084,
+                0.2584368803701256
+              ]
+            },
+            "archivist_error": {
+              "value": 0.05263157894736843,
+              "ci": [
+                0.0,
+                0.1875
+              ]
+            },
+            "catch_rate": {
+              "value": 0.9333333333333333,
+              "ci": [
+                0.7142857142857142,
+                1.0
+              ]
+            },
+            "sent_to_person": {
+              "value": 0.8000000000000007,
+              "ci": [
+                0.6376766304347826,
+                0.9210818713450291
+              ]
+            },
+            "counted": {
+              "cells": 100,
+              "pages": 10,
+              "by_choice": {
+                "blank": 4,
+                "cant_read": 3,
+                "not_on_page": 1,
+                "value": 92
+              },
+              "by_outcome": {
+                "right": 82,
+                "wrong": 15,
+                "cant_read": 3,
+                "abstained": 0
+              }
+            }
+          }
+        }
+      },
+      "left_out/failed_to_review": {
+        "cells": 162,
+        "pages": 17,
+        "by_choice": {
+          "blank": 15,
+          "cant_read": 5,
+          "not_on_page": 1,
+          "value": 141
+        },
+        "by_outcome": {
+          "right": 129,
+          "wrong": 25,
+          "cant_read": 5,
+          "abstained": 3
+        },
+        "overall": {
+          "single_read_error": {
+            "value": 0.16444604629403198,
+            "ci": [
+              0.07277949831825901,
+              0.2774996337620264
+            ]
+          },
+          "archivist_error": {
+            "value": 0.13639975271119104,
+            "ci": [
+              0.04821370141649943,
+              0.3073610265267092
+            ]
+          },
+          "catch_rate": {
+            "value": 0.7135756417258322,
+            "ci": [
+              0.5993634504664239,
+              0.8994245729381207
+            ]
+          },
+          "sent_to_person": {
+            "value": 0.6272905615597265,
+            "ci": [
+              0.41261768356957107,
+              0.8251179325675826
+            ]
+          }
+        },
+        "by_stratum": {
+          "1939_1942": {
+            "single_read_error": {
+              "value": 0.16929311121116605,
+              "ci": [
+                0.030628157258950142,
+                0.33466590519703027
+              ]
+            },
+            "archivist_error": {
+              "value": 0.15574650912996774,
+              "ci": [
+                0.05675675675675677,
+                0.3944687045123727
+              ]
+            },
+            "catch_rate": {
+              "value": 0.6143617021276596,
+              "ci": [
+                0.33614405301709116,
+                0.7682926829268293
+              ]
+            },
+            "sent_to_person": {
+              "value": 0.5470225872689937,
+              "ci": [
+                0.26964351086383703,
+                0.8280045667243476
+              ]
+            },
+            "counted": {
+              "cells": 62,
+              "pages": 7,
+              "by_choice": {
+                "blank": 11,
+                "cant_read": 2,
+                "value": 49
+              },
+              "by_outcome": {
+                "right": 47,
+                "wrong": 10,
+                "cant_read": 2,
+                "abstained": 3
+              }
+            }
+          },
+          "total_claims": {
+            "single_read_error": {
+              "value": 0.154639175257732,
+              "ci": [
+                0.07608351678591084,
+                0.2584368803701256
+              ]
+            },
+            "archivist_error": {
+              "value": 0.05263157894736843,
+              "ci": [
+                0.0,
+                0.1875
+              ]
+            },
+            "catch_rate": {
+              "value": 0.9333333333333333,
+              "ci": [
+                0.7142857142857142,
+                1.0
+              ]
+            },
+            "sent_to_person": {
+              "value": 0.8000000000000007,
+              "ci": [
+                0.6376766304347826,
+                0.9210818713450291
+              ]
+            },
+            "counted": {
+              "cells": 100,
+              "pages": 10,
+              "by_choice": {
+                "blank": 4,
+                "cant_read": 3,
+                "not_on_page": 1,
+                "value": 92
+              },
+              "by_outcome": {
+                "right": 82,
+                "wrong": 15,
+                "cant_read": 3,
+                "abstained": 0
+              }
+            }
+          }
+        }
+      },
+      "kept/as_run": {
+        "cells": 400,
+        "pages": 56,
+        "by_choice": {
+          "blank": 50,
+          "cant_read": 19,
+          "column_not_on_page": 69,
+          "not_on_page": 1,
+          "value": 261
+        },
+        "by_outcome": {
+          "right": 225,
+          "wrong": 93,
+          "cant_read": 19,
+          "abstained": 63
+        },
+        "overall": {
+          "single_read_error": {
+            "value": 0.3450043599796116,
+            "ci": [
+              0.22128580817525173,
+              0.4787151752918801
+            ]
+          },
+          "archivist_error": {
+            "value": 0.2713729990087227,
+            "ci": [
+              0.13910314366242346,
+              0.49917730839258867
+            ]
+          },
+          "catch_rate": {
+            "value": 0.8394514033342031,
+            "ci": [
+              0.7313541143695146,
+              0.9220575370287797
+            ]
+          },
+          "sent_to_person": {
+            "value": 0.6004113172139017,
+            "ci": [
+              0.47422437633108916,
+              0.7256602693425745
+            ]
+          }
+        },
+        "by_stratum": {
+          "1939_1942": {
+            "single_read_error": {
+              "value": 0.3712206749466824,
+              "ci": [
+                0.23325950590360495,
+                0.5222930999605266
+              ]
+            },
+            "archivist_error": {
+              "value": 0.3001222493887529,
+              "ci": [
+                0.1439622864496474,
+                0.5755067232191331
+              ]
+            },
+            "catch_rate": {
+              "value": 0.8340655626900979,
+              "ci": [
+                0.7116017578072097,
+                0.9232094515065914
+              ]
+            },
+            "sent_to_person": {
+              "value": 0.5805230254468607,
+              "ci": [
+                0.4364442683114605,
+                0.7136332513793203
+              ]
+            },
+            "counted": {
+              "cells": 300,
+              "pages": 46,
+              "by_choice": {
+                "blank": 46,
+                "cant_read": 16,
+                "column_not_on_page": 69,
+                "value": 169
+              },
+              "by_outcome": {
+                "right": 143,
+                "wrong": 78,
+                "cant_read": 16,
+                "abstained": 63
+              }
+            }
+          },
+          "total_claims": {
+            "single_read_error": {
+              "value": 0.154639175257732,
+              "ci": [
+                0.07608351678591084,
+                0.2584368803701256
+              ]
+            },
+            "archivist_error": {
+              "value": 0.05263157894736843,
+              "ci": [
+                0.0,
+                0.1875
+              ]
+            },
+            "catch_rate": {
+              "value": 0.9333333333333333,
+              "ci": [
+                0.7142857142857142,
+                1.0
+              ]
+            },
+            "sent_to_person": {
+              "value": 0.8000000000000007,
+              "ci": [
+                0.6376766304347826,
+                0.9210818713450291
+              ]
+            },
+            "counted": {
+              "cells": 100,
+              "pages": 10,
+              "by_choice": {
+                "blank": 4,
+                "cant_read": 3,
+                "not_on_page": 1,
+                "value": 92
+              },
+              "by_outcome": {
+                "right": 82,
+                "wrong": 15,
+                "cant_read": 3,
+                "abstained": 0
+              }
+            }
+          }
+        }
+      },
+      "kept/failed_to_review": {
+        "cells": 400,
+        "pages": 56,
+        "by_choice": {
+          "blank": 50,
+          "cant_read": 19,
+          "column_not_on_page": 69,
+          "not_on_page": 1,
+          "value": 261
+        },
+        "by_outcome": {
+          "right": 225,
+          "wrong": 93,
+          "cant_read": 19,
+          "abstained": 63
+        },
+        "overall": {
+          "single_read_error": {
+            "value": 0.3450043599796116,
+            "ci": [
+              0.22128580817525173,
+              0.4787151752918801
+            ]
+          },
+          "archivist_error": {
+            "value": 0.2713729990087227,
+            "ci": [
+              0.13910314366242346,
+              0.49917730839258867
+            ]
+          },
+          "catch_rate": {
+            "value": 0.8394514033342031,
+            "ci": [
+              0.7313541143695146,
+              0.9220575370287797
+            ]
+          },
+          "sent_to_person": {
+            "value": 0.6004113172139017,
+            "ci": [
+              0.47422437633108916,
+              0.7256602693425745
+            ]
+          }
+        },
+        "by_stratum": {
+          "1939_1942": {
+            "single_read_error": {
+              "value": 0.3712206749466824,
+              "ci": [
+                0.23325950590360495,
+                0.5222930999605266
+              ]
+            },
+            "archivist_error": {
+              "value": 0.3001222493887529,
+              "ci": [
+                0.1439622864496474,
+                0.5755067232191331
+              ]
+            },
+            "catch_rate": {
+              "value": 0.8340655626900979,
+              "ci": [
+                0.7116017578072097,
+                0.9232094515065914
+              ]
+            },
+            "sent_to_person": {
+              "value": 0.5805230254468607,
+              "ci": [
+                0.4364442683114605,
+                0.7136332513793203
+              ]
+            },
+            "counted": {
+              "cells": 300,
+              "pages": 46,
+              "by_choice": {
+                "blank": 46,
+                "cant_read": 16,
+                "column_not_on_page": 69,
+                "value": 169
+              },
+              "by_outcome": {
+                "right": 143,
+                "wrong": 78,
+                "cant_read": 16,
+                "abstained": 63
+              }
+            }
+          },
+          "total_claims": {
+            "single_read_error": {
+              "value": 0.154639175257732,
+              "ci": [
+                0.07608351678591084,
+                0.2584368803701256
+              ]
+            },
+            "archivist_error": {
+              "value": 0.05263157894736843,
+              "ci": [
+                0.0,
+                0.1875
+              ]
+            },
+            "catch_rate": {
+              "value": 0.9333333333333333,
+              "ci": [
+                0.7142857142857142,
+                1.0
+              ]
+            },
+            "sent_to_person": {
+              "value": 0.8000000000000007,
+              "ci": [
+                0.6376766304347826,
+                0.9210818713450291
+              ]
+            },
+            "counted": {
+              "cells": 100,
+              "pages": 10,
+              "by_choice": {
+                "blank": 4,
+                "cant_read": 3,
+                "not_on_page": 1,
+                "value": 92
+              },
+              "by_outcome": {
+                "right": 82,
+                "wrong": 15,
+                "cant_read": 3,
+                "abstained": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "version_1": {
+      "left_out/as_run": {
+        "cells": 162,
+        "pages": 17,
+        "by_choice": {
+          "blank": 15,
+          "cant_read": 5,
+          "not_on_page": 1,
+          "value": 141
+        },
+        "by_outcome": {
+          "right": 135,
+          "wrong": 22,
+          "cant_read": 5,
+          "abstained": 0
+        },
+        "overall": {
+          "single_read_error": {
+            "value": 0.16677670223614366,
+            "ci": [
+              0.08169113148481931,
+              0.25822634015406637
+            ]
+          },
+          "archivist_error": {
+            "value": 0.18747468629536523,
+            "ci": [
+              0.016407802694962583,
+              0.31829304581012396
+            ]
+          },
+          "catch_rate": {
+            "value": 0.4494939601697679,
+            "ci": [
+              0.27929178828836926,
+              0.9437473446716461
+            ]
+          },
+          "sent_to_person": {
+            "value": 0.4997432356486709,
+            "ci": [
+              0.3398972969232883,
+              0.7360667734714318
+            ]
+          }
+        },
+        "by_stratum": {
+          "1939_1942": {
+            "single_read_error": {
+              "value": 0.19651212250106329,
+              "ci": [
+                0.0735944176881812,
+                0.3396259920634919
+              ]
+            },
+            "archivist_error": {
+              "value": 0.24685138539042803,
+              "ci": [
+                0.0,
+                0.4219691895512391
+              ]
+            },
+            "catch_rate": {
+              "value": 0.36363636363636365,
+              "ci": [
+                0.2085427135678392,
+                1.0
+              ]
+            },
+            "sent_to_person": {
+              "value": 0.4763860369609854,
+              "ci": [
+                0.25647348951911225,
+                0.8636056718433492
+              ]
+            },
+            "counted": {
+              "cells": 62,
+              "pages": 7,
+              "by_choice": {
+                "blank": 11,
+                "cant_read": 2,
+                "value": 49
+              },
+              "by_outcome": {
+                "right": 48,
+                "wrong": 12,
+                "cant_read": 2,
+                "abstained": 0
+              }
+            }
+          },
+          "total_claims": {
+            "single_read_error": {
+              "value": 0.10309278350515466,
+              "ci": [
+                0.061839890595413435,
+                0.13793804317353517
+              ]
+            },
+            "archivist_error": {
+              "value": 0.04545454545454543,
+              "ci": [
+                0.0,
+                0.11904761904761905
+              ]
+            },
+            "catch_rate": {
+              "value": 0.8,
+              "ci": [
+                0.5000000000000001,
+                1.0
+              ]
+            },
+            "sent_to_person": {
+              "value": 0.5500000000000009,
+              "ci": [
+                0.3626970891449364,
+                0.7222619047619045
+              ]
+            },
+            "counted": {
+              "cells": 100,
+              "pages": 10,
+              "by_choice": {
+                "blank": 4,
+                "cant_read": 3,
+                "not_on_page": 1,
+                "value": 92
+              },
+              "by_outcome": {
+                "right": 87,
+                "wrong": 10,
+                "cant_read": 3,
+                "abstained": 0
+              }
+            }
+          }
+        }
+      },
+      "left_out/failed_to_review": {
+        "cells": 162,
+        "pages": 17,
+        "by_choice": {
+          "blank": 15,
+          "cant_read": 5,
+          "not_on_page": 1,
+          "value": 141
+        },
+        "by_outcome": {
+          "right": 135,
+          "wrong": 22,
+          "cant_read": 5,
+          "abstained": 0
+        },
+        "overall": {
+          "single_read_error": {
+            "value": 0.16677670223614366,
+            "ci": [
+              0.08169113148481931,
+              0.25822634015406637
+            ]
+          },
+          "archivist_error": {
+            "value": 0.18747468629536523,
+            "ci": [
+              0.016407802694962583,
+              0.31829304581012396
+            ]
+          },
+          "catch_rate": {
+            "value": 0.4494939601697679,
+            "ci": [
+              0.27929178828836926,
+              0.9437473446716461
+            ]
+          },
+          "sent_to_person": {
+            "value": 0.4997432356486709,
+            "ci": [
+              0.3398972969232883,
+              0.7360667734714318
+            ]
+          }
+        },
+        "by_stratum": {
+          "1939_1942": {
+            "single_read_error": {
+              "value": 0.19651212250106329,
+              "ci": [
+                0.0735944176881812,
+                0.3396259920634919
+              ]
+            },
+            "archivist_error": {
+              "value": 0.24685138539042803,
+              "ci": [
+                0.0,
+                0.4219691895512391
+              ]
+            },
+            "catch_rate": {
+              "value": 0.36363636363636365,
+              "ci": [
+                0.2085427135678392,
+                1.0
+              ]
+            },
+            "sent_to_person": {
+              "value": 0.4763860369609854,
+              "ci": [
+                0.25647348951911225,
+                0.8636056718433492
+              ]
+            },
+            "counted": {
+              "cells": 62,
+              "pages": 7,
+              "by_choice": {
+                "blank": 11,
+                "cant_read": 2,
+                "value": 49
+              },
+              "by_outcome": {
+                "right": 48,
+                "wrong": 12,
+                "cant_read": 2,
+                "abstained": 0
+              }
+            }
+          },
+          "total_claims": {
+            "single_read_error": {
+              "value": 0.10309278350515466,
+              "ci": [
+                0.061839890595413435,
+                0.13793804317353517
+              ]
+            },
+            "archivist_error": {
+              "value": 0.04545454545454543,
+              "ci": [
+                0.0,
+                0.11904761904761905
+              ]
+            },
+            "catch_rate": {
+              "value": 0.8,
+              "ci": [
+                0.5000000000000001,
+                1.0
+              ]
+            },
+            "sent_to_person": {
+              "value": 0.5500000000000009,
+              "ci": [
+                0.3626970891449364,
+                0.7222619047619045
+              ]
+            },
+            "counted": {
+              "cells": 100,
+              "pages": 10,
+              "by_choice": {
+                "blank": 4,
+                "cant_read": 3,
+                "not_on_page": 1,
+                "value": 92
+              },
+              "by_outcome": {
+                "right": 87,
+                "wrong": 10,
+                "cant_read": 3,
+                "abstained": 0
+              }
+            }
+          }
+        }
+      },
+      "kept/as_run": {
+        "cells": 400,
+        "pages": 56,
+        "by_choice": {
+          "blank": 50,
+          "cant_read": 19,
+          "column_not_on_page": 69,
+          "not_on_page": 1,
+          "value": 261
+        },
+        "by_outcome": {
+          "right": 246,
+          "wrong": 126,
+          "cant_read": 19,
+          "abstained": 9
+        },
+        "overall": {
+          "single_read_error": {
+            "value": 0.41149969746501597,
+            "ci": [
+              0.3055818004155236,
+              0.5242353952488565
+            ]
+          },
+          "archivist_error": {
+            "value": 0.36871734028085706,
+            "ci": [
+              0.2468520083608626,
+              0.5038489128536122
+            ]
+          },
+          "catch_rate": {
+            "value": 0.7419196628316014,
+            "ci": [
+              0.6025215190336424,
+              0.848656055419752
+            ]
+          },
+          "sent_to_person": {
+            "value": 0.6847339713913294,
+            "ci": [
+              0.5792721837167076,
+              0.7829217048746325
+            ]
+          }
+        },
+        "by_stratum": {
+          "1939_1942": {
+            "single_read_error": {
+              "value": 0.44442283380336495,
+              "ci": [
+                0.33082679745999133,
+                0.5715315215865631
+              ]
+            },
+            "archivist_error": {
+              "value": 0.42661870503597094,
+              "ci": [
+                0.289960444335137,
+                0.6101094770116755
+              ]
+            },
+            "catch_rate": {
+              "value": 0.7404814004376372,
+              "ci": [
+                0.5983240517518603,
+                0.8518552460673122
+              ]
+            },
+            "sent_to_person": {
+              "value": 0.6981597252795633,
+              "ci": [
+                0.5870641387314255,
+                0.8097018384504975
+              ]
+            },
+            "counted": {
+              "cells": 300,
+              "pages": 46,
+              "by_choice": {
+                "blank": 46,
+                "cant_read": 16,
+                "column_not_on_page": 69,
+                "value": 169
+              },
+              "by_outcome": {
+                "right": 159,
+                "wrong": 116,
+                "cant_read": 16,
+                "abstained": 9
+              }
+            }
+          },
+          "total_claims": {
+            "single_read_error": {
+              "value": 0.10309278350515466,
+              "ci": [
+                0.061839890595413435,
+                0.13793804317353517
+              ]
+            },
+            "archivist_error": {
+              "value": 0.04545454545454543,
+              "ci": [
+                0.0,
+                0.11904761904761905
+              ]
+            },
+            "catch_rate": {
+              "value": 0.8,
+              "ci": [
+                0.5000000000000001,
+                1.0
+              ]
+            },
+            "sent_to_person": {
+              "value": 0.5500000000000009,
+              "ci": [
+                0.3626970891449364,
+                0.7222619047619045
+              ]
+            },
+            "counted": {
+              "cells": 100,
+              "pages": 10,
+              "by_choice": {
+                "blank": 4,
+                "cant_read": 3,
+                "not_on_page": 1,
+                "value": 92
+              },
+              "by_outcome": {
+                "right": 87,
+                "wrong": 10,
+                "cant_read": 3,
+                "abstained": 0
+              }
+            }
+          }
+        }
+      },
+      "kept/failed_to_review": {
+        "cells": 400,
+        "pages": 56,
+        "by_choice": {
+          "blank": 50,
+          "cant_read": 19,
+          "column_not_on_page": 69,
+          "not_on_page": 1,
+          "value": 261
+        },
+        "by_outcome": {
+          "right": 246,
+          "wrong": 126,
+          "cant_read": 19,
+          "abstained": 9
+        },
+        "overall": {
+          "single_read_error": {
+            "value": 0.41149969746501597,
+            "ci": [
+              0.3055818004155236,
+              0.5242353952488565
+            ]
+          },
+          "archivist_error": {
+            "value": 0.36323878190104364,
+            "ci": [
+              0.2450476256446793,
+              0.501330063720211
+            ]
+          },
+          "catch_rate": {
+            "value": 0.755372093866929,
+            "ci": [
+              0.62262884345648,
+              0.8581855165986476
+            ]
+          },
+          "sent_to_person": {
+            "value": 0.6946629598633972,
+            "ci": [
+              0.589038321493905,
+              0.7951825324381048
+            ]
+          }
+        },
+        "by_stratum": {
+          "1939_1942": {
+            "single_read_error": {
+              "value": 0.44442283380336495,
+              "ci": [
+                0.33082679745999133,
+                0.5715315215865631
+              ]
+            },
+            "archivist_error": {
+              "value": 0.4228162650602408,
+              "ci": [
+                0.2825500243751962,
+                0.6147566886488574
+              ]
+            },
+            "catch_rate": {
+              "value": 0.7542669584245081,
+              "ci": [
+                0.6174088337227749,
+                0.8615669014500383
+              ]
+            },
+            "sent_to_person": {
+              "value": 0.7090781016113411,
+              "ci": [
+                0.5955942337375963,
+                0.8248219981341427
+              ]
+            },
+            "counted": {
+              "cells": 300,
+              "pages": 46,
+              "by_choice": {
+                "blank": 46,
+                "cant_read": 16,
+                "column_not_on_page": 69,
+                "value": 169
+              },
+              "by_outcome": {
+                "right": 159,
+                "wrong": 116,
+                "cant_read": 16,
+                "abstained": 9
+              }
+            }
+          },
+          "total_claims": {
+            "single_read_error": {
+              "value": 0.10309278350515466,
+              "ci": [
+                0.061839890595413435,
+                0.13793804317353517
+              ]
+            },
+            "archivist_error": {
+              "value": 0.04545454545454543,
+              "ci": [
+                0.0,
+                0.11904761904761905
+              ]
+            },
+            "catch_rate": {
+              "value": 0.8,
+              "ci": [
+                0.5000000000000001,
+                1.0
+              ]
+            },
+            "sent_to_person": {
+              "value": 0.5500000000000009,
+              "ci": [
+                0.3626970891449364,
+                0.7222619047619045
+              ]
+            },
+            "counted": {
+              "cells": 100,
+              "pages": 10,
+              "by_choice": {
+                "blank": 4,
+                "cant_read": 3,
+                "not_on_page": 1,
+                "value": 92
+              },
+              "by_outcome": {
+                "right": 87,
+                "wrong": 10,
+                "cant_read": 3,
+                "abstained": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "open_weights_with_classified_weights": {
+      "left_out/as_run": {
+        "single_read_error": {
+          "value": 0.1751770306076807,
+          "ci": [
+            0.09866547279589406,
+            0.26556917661344104
+          ]
+        },
+        "archivist_error": {
+          "value": 0.11916298081916278,
+          "ci": [
+            0.03585768343705497,
+            0.2574215154831414
+          ]
+        },
+        "catch_rate": {
+          "value": 0.785972950777654,
+          "ci": [
+            0.6626849745643029,
+            0.9467411899722834
+          ]
+        },
+        "sent_to_person": {
+          "value": 0.6683842871405864,
+          "ci": [
+            0.4876680012743345,
+            0.8450593797276075
+          ]
+        }
+      },
+      "left_out/failed_to_review": {
+        "single_read_error": {
+          "value": 0.1751770306076807,
+          "ci": [
+            0.09866547279589406,
+            0.26556917661344104
+          ]
+        },
+        "archivist_error": {
+          "value": 0.11916298081916278,
+          "ci": [
+            0.03585768343705497,
+            0.2574215154831414
+          ]
+        },
+        "catch_rate": {
+          "value": 0.785972950777654,
+          "ci": [
+            0.6626849745643029,
+            0.9467411899722834
+          ]
+        },
+        "sent_to_person": {
+          "value": 0.6683842871405864,
+          "ci": [
+            0.4876680012743345,
+            0.8450593797276075
+          ]
+        }
+      },
+      "kept/as_run": {
+        "single_read_error": {
+          "value": 0.30414062524697816,
+          "ci": [
+            0.2139381794768343,
+            0.40574029901701086
+          ]
+        },
+        "archivist_error": {
+          "value": 0.20880150829852956,
+          "ci": [
+            0.11341429760126638,
+            0.36505056482469483
+          ]
+        },
+        "catch_rate": {
+          "value": 0.8458131997049116,
+          "ci": [
+            0.7498709974802221,
+            0.9229331005086195
+          ]
+        },
+        "sent_to_person": {
+          "value": 0.6098096038859891,
+          "ci": [
+            0.49028124795165773,
+            0.7314567511776012
+          ]
+        }
+      },
+      "kept/failed_to_review": {
+        "single_read_error": {
+          "value": 0.30414062524697816,
+          "ci": [
+            0.2139381794768343,
+            0.40574029901701086
+          ]
+        },
+        "archivist_error": {
+          "value": 0.20880150829852956,
+          "ci": [
+            0.11341429760126638,
+            0.36505056482469483
+          ]
+        },
+        "catch_rate": {
+          "value": 0.8458131997049116,
+          "ci": [
+            0.7498709974802221,
+            0.9229331005086195
+          ]
+        },
+        "sent_to_person": {
+          "value": 0.6098096038859891,
+          "ci": [
+            0.49028124795165773,
+            0.7314567511776012
+          ]
+        }
+      }
+    },
+    "cells_found": {
+      "overall": {
+        "fixed_row": 100,
+        "label": 238,
+        "row_not_found": 62
+      },
+      "by_stratum": {
+        "1939_1942": {
+          "label": 238,
+          "row_not_found": 62
+        },
+        "total_claims": {
+          "fixed_row": 100
+        }
+      },
+      "at_the_same_position": 258,
+      "status": {
+        "abstained": 6,
+        "accepted": 70,
+        "no_value": 62,
+        "review": 262
+      }
+    }
+  },
+  "corrected_key": {
+    "o1": {
+      "claim": "Muse Spark Open's error rate among accepted cells is below 1%.",
+      "variant": "kept/as_run",
+      "threshold": 0.01,
+      "value": 0.12496723118135838,
+      "ci": [
+        0.007584252490536388,
+        0.3605836959901327
+      ],
+      "met": false,
+      "in_every_variant": {
+        "left_out/as_run": true,
+        "left_out/failed_to_review": true,
+        "kept/as_run": false,
+        "kept/failed_to_review": false
+      }
+    },
+    "open_weights": {
+      "left_out/as_run": {
+        "cells": 162,
+        "pages": 17,
+        "by_choice": {
+          "cant_read": 5,
+          "not_on_page": 1,
+          "value": 156
+        },
+        "by_outcome": {
+          "right": 143,
+          "wrong": 11,
+          "cant_read": 5,
+          "abstained": 3
+        },
+        "overall": {
+          "single_read_error": {
+            "value": 0.037509864742004254,
+            "ci": [
+              0.012833389037492286,
+              0.08575090806438641
+            ]
+          },
+          "archivist_error": {
+            "value": 0.009874906922084006,
+            "ci": [
+              0.0,
+              0.05074267423298106
+            ]
+          },
+          "catch_rate": {
+            "value": 0.9090909090909091,
+            "ci": [
+              0.5714285714285715,
+              1.0
+            ]
+          },
+          "sent_to_person": {
+            "value": 0.6272905615597265,
+            "ci": [
+              0.41261768356957107,
+              0.8251179325675826
+            ]
+          }
+        },
+        "by_stratum": {
+          "1939_1942": {
+            "single_read_error": {
+              "value": 0.0,
+              "ci": [
+                0.0,
+                0.0
+              ]
+            },
+            "archivist_error": {
+              "value": 0.0,
+              "ci": [
+                0.0,
+                0.0
+              ]
+            },
+            "catch_rate": {
+              "value": null,
+              "ci": null
+            },
+            "sent_to_person": {
+              "value": 0.5470225872689937,
+              "ci": [
+                0.26964351086383703,
+                0.8280045667243476
+              ]
+            },
+            "counted": {
+              "cells": 62,
+              "pages": 7,
+              "by_choice": {
+                "cant_read": 2,
+                "value": 60
+              },
+              "by_outcome": {
+                "right": 57,
+                "wrong": 0,
+                "cant_read": 2,
+                "abstained": 3
+              }
+            }
+          },
+          "total_claims": {
+            "single_read_error": {
+              "value": 0.11340206185567013,
+              "ci": [
+                0.03921568627450981,
+                0.22471910112359555
+              ]
+            },
+            "archivist_error": {
+              "value": 0.05263157894736843,
+              "ci": [
+                0.0,
+                0.1875
+              ]
+            },
+            "catch_rate": {
+              "value": 0.9090909090909091,
+              "ci": [
+                0.5714285714285715,
+                1.0
+              ]
+            },
+            "sent_to_person": {
+              "value": 0.8000000000000007,
+              "ci": [
+                0.6376766304347826,
+                0.9210818713450291
+              ]
+            },
+            "counted": {
+              "cells": 100,
+              "pages": 10,
+              "by_choice": {
+                "cant_read": 3,
+                "not_on_page": 1,
+                "value": 96
+              },
+              "by_outcome": {
+                "right": 86,
+                "wrong": 11,
+                "cant_read": 3,
+                "abstained": 0
+              }
+            }
+          }
+        }
+      },
+      "left_out/failed_to_review": {
+        "cells": 162,
+        "pages": 17,
+        "by_choice": {
+          "cant_read": 5,
+          "not_on_page": 1,
+          "value": 156
+        },
+        "by_outcome": {
+          "right": 143,
+          "wrong": 11,
+          "cant_read": 5,
+          "abstained": 3
+        },
+        "overall": {
+          "single_read_error": {
+            "value": 0.037509864742004254,
+            "ci": [
+              0.012833389037492286,
+              0.08575090806438641
+            ]
+          },
+          "archivist_error": {
+            "value": 0.009874906922084006,
+            "ci": [
+              0.0,
+              0.05074267423298106
+            ]
+          },
+          "catch_rate": {
+            "value": 0.9090909090909091,
+            "ci": [
+              0.5714285714285715,
+              1.0
+            ]
+          },
+          "sent_to_person": {
+            "value": 0.6272905615597265,
+            "ci": [
+              0.41261768356957107,
+              0.8251179325675826
+            ]
+          }
+        },
+        "by_stratum": {
+          "1939_1942": {
+            "single_read_error": {
+              "value": 0.0,
+              "ci": [
+                0.0,
+                0.0
+              ]
+            },
+            "archivist_error": {
+              "value": 0.0,
+              "ci": [
+                0.0,
+                0.0
+              ]
+            },
+            "catch_rate": {
+              "value": null,
+              "ci": null
+            },
+            "sent_to_person": {
+              "value": 0.5470225872689937,
+              "ci": [
+                0.26964351086383703,
+                0.8280045667243476
+              ]
+            },
+            "counted": {
+              "cells": 62,
+              "pages": 7,
+              "by_choice": {
+                "cant_read": 2,
+                "value": 60
+              },
+              "by_outcome": {
+                "right": 57,
+                "wrong": 0,
+                "cant_read": 2,
+                "abstained": 3
+              }
+            }
+          },
+          "total_claims": {
+            "single_read_error": {
+              "value": 0.11340206185567013,
+              "ci": [
+                0.03921568627450981,
+                0.22471910112359555
+              ]
+            },
+            "archivist_error": {
+              "value": 0.05263157894736843,
+              "ci": [
+                0.0,
+                0.1875
+              ]
+            },
+            "catch_rate": {
+              "value": 0.9090909090909091,
+              "ci": [
+                0.5714285714285715,
+                1.0
+              ]
+            },
+            "sent_to_person": {
+              "value": 0.8000000000000007,
+              "ci": [
+                0.6376766304347826,
+                0.9210818713450291
+              ]
+            },
+            "counted": {
+              "cells": 100,
+              "pages": 10,
+              "by_choice": {
+                "cant_read": 3,
+                "not_on_page": 1,
+                "value": 96
+              },
+              "by_outcome": {
+                "right": 86,
+                "wrong": 11,
+                "cant_read": 3,
+                "abstained": 0
+              }
+            }
+          }
+        }
+      },
+      "kept/as_run": {
+        "cells": 400,
+        "pages": 56,
+        "by_choice": {
+          "blank": 5,
+          "cant_read": 19,
+          "column_not_on_page": 69,
+          "not_on_page": 1,
+          "value": 306
+        },
+        "by_outcome": {
+          "right": 261,
+          "wrong": 57,
+          "cant_read": 19,
+          "abstained": 63
+        },
+        "overall": {
+          "single_read_error": {
+            "value": 0.21860662670229675,
+            "ci": [
+              0.09507336853990142,
+              0.3690446393675812
+            ]
+          },
+          "archivist_error": {
+            "value": 0.12496723118135838,
+            "ci": [
+              0.007584252490536388,
+              0.3605836959901327
+            ]
+          },
+          "catch_rate": {
+            "value": 0.8833197669366216,
+            "ci": [
+              0.7579755970605301,
+              0.9894003116176382
+            ]
+          },
+          "sent_to_person": {
+            "value": 0.6004113172139017,
+            "ci": [
+              0.47422437633108916,
+              0.7256602693425745
+            ]
+          }
+        },
+        "by_stratum": {
+          "1939_1942": {
+            "single_read_error": {
+              "value": 0.23309496926358078,
+              "ci": [
+                0.08933292760991532,
+                0.39703012912047664
+              ]
+            },
+            "archivist_error": {
+              "value": 0.1344743276283618,
+              "ci": [
+                0.0,
+                0.4090305444887118
+              ]
+            },
+            "catch_rate": {
+              "value": 0.8815931108719054,
+              "ci": [
+                0.7367896311066799,
+                1.0
+              ]
+            },
+            "sent_to_person": {
+              "value": 0.5805230254468607,
+              "ci": [
+                0.4364442683114605,
+                0.7136332513793203
+              ]
+            },
+            "counted": {
+              "cells": 300,
+              "pages": 46,
+              "by_choice": {
+                "blank": 5,
+                "cant_read": 16,
+                "column_not_on_page": 69,
+                "value": 210
+              },
+              "by_outcome": {
+                "right": 175,
+                "wrong": 46,
+                "cant_read": 16,
+                "abstained": 63
+              }
+            }
+          },
+          "total_claims": {
+            "single_read_error": {
+              "value": 0.11340206185567013,
+              "ci": [
+                0.03921568627450981,
+                0.22471910112359555
+              ]
+            },
+            "archivist_error": {
+              "value": 0.05263157894736843,
+              "ci": [
+                0.0,
+                0.1875
+              ]
+            },
+            "catch_rate": {
+              "value": 0.9090909090909091,
+              "ci": [
+                0.5714285714285715,
+                1.0
+              ]
+            },
+            "sent_to_person": {
+              "value": 0.8000000000000007,
+              "ci": [
+                0.6376766304347826,
+                0.9210818713450291
+              ]
+            },
+            "counted": {
+              "cells": 100,
+              "pages": 10,
+              "by_choice": {
+                "cant_read": 3,
+                "not_on_page": 1,
+                "value": 96
+              },
+              "by_outcome": {
+                "right": 86,
+                "wrong": 11,
+                "cant_read": 3,
+                "abstained": 0
+              }
+            }
+          }
+        }
+      },
+      "kept/failed_to_review": {
+        "cells": 400,
+        "pages": 56,
+        "by_choice": {
+          "blank": 5,
+          "cant_read": 19,
+          "column_not_on_page": 69,
+          "not_on_page": 1,
+          "value": 306
+        },
+        "by_outcome": {
+          "right": 261,
+          "wrong": 57,
+          "cant_read": 19,
+          "abstained": 63
+        },
+        "overall": {
+          "single_read_error": {
+            "value": 0.21860662670229675,
+            "ci": [
+              0.09507336853990142,
+              0.3690446393675812
+            ]
+          },
+          "archivist_error": {
+            "value": 0.12496723118135838,
+            "ci": [
+              0.007584252490536388,
+              0.3605836959901327
+            ]
+          },
+          "catch_rate": {
+            "value": 0.8833197669366216,
+            "ci": [
+              0.7579755970605301,
+              0.9894003116176382
+            ]
+          },
+          "sent_to_person": {
+            "value": 0.6004113172139017,
+            "ci": [
+              0.47422437633108916,
+              0.7256602693425745
+            ]
+          }
+        },
+        "by_stratum": {
+          "1939_1942": {
+            "single_read_error": {
+              "value": 0.23309496926358078,
+              "ci": [
+                0.08933292760991532,
+                0.39703012912047664
+              ]
+            },
+            "archivist_error": {
+              "value": 0.1344743276283618,
+              "ci": [
+                0.0,
+                0.4090305444887118
+              ]
+            },
+            "catch_rate": {
+              "value": 0.8815931108719054,
+              "ci": [
+                0.7367896311066799,
+                1.0
+              ]
+            },
+            "sent_to_person": {
+              "value": 0.5805230254468607,
+              "ci": [
+                0.4364442683114605,
+                0.7136332513793203
+              ]
+            },
+            "counted": {
+              "cells": 300,
+              "pages": 46,
+              "by_choice": {
+                "blank": 5,
+                "cant_read": 16,
+                "column_not_on_page": 69,
+                "value": 210
+              },
+              "by_outcome": {
+                "right": 175,
+                "wrong": 46,
+                "cant_read": 16,
+                "abstained": 63
+              }
+            }
+          },
+          "total_claims": {
+            "single_read_error": {
+              "value": 0.11340206185567013,
+              "ci": [
+                0.03921568627450981,
+                0.22471910112359555
+              ]
+            },
+            "archivist_error": {
+              "value": 0.05263157894736843,
+              "ci": [
+                0.0,
+                0.1875
+              ]
+            },
+            "catch_rate": {
+              "value": 0.9090909090909091,
+              "ci": [
+                0.5714285714285715,
+                1.0
+              ]
+            },
+            "sent_to_person": {
+              "value": 0.8000000000000007,
+              "ci": [
+                0.6376766304347826,
+                0.9210818713450291
+              ]
+            },
+            "counted": {
+              "cells": 100,
+              "pages": 10,
+              "by_choice": {
+                "cant_read": 3,
+                "not_on_page": 1,
+                "value": 96
+              },
+              "by_outcome": {
+                "right": 86,
+                "wrong": 11,
+                "cant_read": 3,
+                "abstained": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "version_1": {
+      "left_out/as_run": {
+        "cells": 162,
+        "pages": 17,
+        "by_choice": {
+          "cant_read": 5,
+          "not_on_page": 1,
+          "value": 156
+        },
+        "by_outcome": {
+          "right": 150,
+          "wrong": 7,
+          "cant_read": 5,
+          "abstained": 0
+        },
+        "overall": {
+          "single_read_error": {
+            "value": 0.032446996028953304,
+            "ci": [
+              0.012005590868089944,
+              0.06488437961030209
+            ]
+          },
+          "archivist_error": {
+            "value": 0.0,
+            "ci": [
+              0.0,
+              0.0
+            ]
+          },
+          "catch_rate": {
+            "value": 1.0,
+            "ci": [
+              1.0,
+              1.0
+            ]
+          },
+          "sent_to_person": {
+            "value": 0.4997432356486709,
+            "ci": [
+              0.3398972969232883,
+              0.7360667734714318
+            ]
+          }
+        },
+        "by_stratum": {
+          "1939_1942": {
+            "single_read_error": {
+              "value": 0.018715440238196504,
+              "ci": [
+                0.0,
+                0.06389895660561072
+              ]
+            },
+            "archivist_error": {
+              "value": 0.0,
+              "ci": [
+                0.0,
+                0.0
+              ]
+            },
+            "catch_rate": {
+              "value": 1.0,
+              "ci": [
+                1.0,
+                1.0
+              ]
+            },
+            "sent_to_person": {
+              "value": 0.4763860369609854,
+              "ci": [
+                0.25647348951911225,
+                0.8636056718433492
+              ]
+            },
+            "counted": {
+              "cells": 62,
+              "pages": 7,
+              "by_choice": {
+                "cant_read": 2,
+                "value": 60
+              },
+              "by_outcome": {
+                "right": 59,
+                "wrong": 1,
+                "cant_read": 2,
+                "abstained": 0
+              }
+            }
+          },
+          "total_claims": {
+            "single_read_error": {
+              "value": 0.06185567010309281,
+              "ci": [
+                0.03331521739130436,
+                0.08824460163812356
+              ]
+            },
+            "archivist_error": {
+              "value": 0.0,
+              "ci": [
+                0.0,
+                0.0
+              ]
+            },
+            "catch_rate": {
+              "value": 1.0,
+              "ci": [
+                1.0,
+                1.0
+              ]
+            },
+            "sent_to_person": {
+              "value": 0.5500000000000009,
+              "ci": [
+                0.3626970891449364,
+                0.7222619047619045
+              ]
+            },
+            "counted": {
+              "cells": 100,
+              "pages": 10,
+              "by_choice": {
+                "cant_read": 3,
+                "not_on_page": 1,
+                "value": 96
+              },
+              "by_outcome": {
+                "right": 91,
+                "wrong": 6,
+                "cant_read": 3,
+                "abstained": 0
+              }
+            }
+          }
+        }
+      },
+      "left_out/failed_to_review": {
+        "cells": 162,
+        "pages": 17,
+        "by_choice": {
+          "cant_read": 5,
+          "not_on_page": 1,
+          "value": 156
+        },
+        "by_outcome": {
+          "right": 150,
+          "wrong": 7,
+          "cant_read": 5,
+          "abstained": 0
+        },
+        "overall": {
+          "single_read_error": {
+            "value": 0.032446996028953304,
+            "ci": [
+              0.012005590868089944,
+              0.06488437961030209
+            ]
+          },
+          "archivist_error": {
+            "value": 0.0,
+            "ci": [
+              0.0,
+              0.0
+            ]
+          },
+          "catch_rate": {
+            "value": 1.0,
+            "ci": [
+              1.0,
+              1.0
+            ]
+          },
+          "sent_to_person": {
+            "value": 0.4997432356486709,
+            "ci": [
+              0.3398972969232883,
+              0.7360667734714318
+            ]
+          }
+        },
+        "by_stratum": {
+          "1939_1942": {
+            "single_read_error": {
+              "value": 0.018715440238196504,
+              "ci": [
+                0.0,
+                0.06389895660561072
+              ]
+            },
+            "archivist_error": {
+              "value": 0.0,
+              "ci": [
+                0.0,
+                0.0
+              ]
+            },
+            "catch_rate": {
+              "value": 1.0,
+              "ci": [
+                1.0,
+                1.0
+              ]
+            },
+            "sent_to_person": {
+              "value": 0.4763860369609854,
+              "ci": [
+                0.25647348951911225,
+                0.8636056718433492
+              ]
+            },
+            "counted": {
+              "cells": 62,
+              "pages": 7,
+              "by_choice": {
+                "cant_read": 2,
+                "value": 60
+              },
+              "by_outcome": {
+                "right": 59,
+                "wrong": 1,
+                "cant_read": 2,
+                "abstained": 0
+              }
+            }
+          },
+          "total_claims": {
+            "single_read_error": {
+              "value": 0.06185567010309281,
+              "ci": [
+                0.03331521739130436,
+                0.08824460163812356
+              ]
+            },
+            "archivist_error": {
+              "value": 0.0,
+              "ci": [
+                0.0,
+                0.0
+              ]
+            },
+            "catch_rate": {
+              "value": 1.0,
+              "ci": [
+                1.0,
+                1.0
+              ]
+            },
+            "sent_to_person": {
+              "value": 0.5500000000000009,
+              "ci": [
+                0.3626970891449364,
+                0.7222619047619045
+              ]
+            },
+            "counted": {
+              "cells": 100,
+              "pages": 10,
+              "by_choice": {
+                "cant_read": 3,
+                "not_on_page": 1,
+                "value": 96
+              },
+              "by_outcome": {
+                "right": 91,
+                "wrong": 6,
+                "cant_read": 3,
+                "abstained": 0
+              }
+            }
+          }
+        }
+      },
+      "kept/as_run": {
+        "cells": 400,
+        "pages": 56,
+        "by_choice": {
+          "blank": 5,
+          "cant_read": 19,
+          "column_not_on_page": 69,
+          "not_on_page": 1,
+          "value": 306
+        },
+        "by_outcome": {
+          "right": 291,
+          "wrong": 81,
+          "cant_read": 19,
+          "abstained": 9
+        },
+        "overall": {
+          "single_read_error": {
+            "value": 0.2775656801317242,
+            "ci": [
+              0.15969631006798568,
+              0.40930455783672703
+            ]
+          },
+          "archivist_error": {
+            "value": 0.16321221238442377,
+            "ci": [
+              0.06125899633326533,
+              0.33310707536801254
+            ]
+          },
+          "catch_rate": {
+            "value": 0.830637303074614,
+            "ci": [
+              0.71086061867237,
+              0.9286123503325128
+            ]
+          },
+          "sent_to_person": {
+            "value": 0.6847339713913294,
+            "ci": [
+              0.5792721837167076,
+              0.7829217048746325
+            ]
+          }
+        },
+        "by_stratum": {
+          "1939_1942": {
+            "single_read_error": {
+              "value": 0.3005932120976372,
+              "ci": [
+                0.17109629172463617,
+                0.45065562520636193
+              ]
+            },
+            "archivist_error": {
+              "value": 0.19244604316546746,
+              "ci": [
+                0.06815391179062515,
+                0.4328428581147736
+              ]
+            },
+            "catch_rate": {
+              "value": 0.8269168553866063,
+              "ci": [
+                0.7068271725160784,
+                0.9218044724809447
+              ]
+            },
+            "sent_to_person": {
+              "value": 0.6981597252795633,
+              "ci": [
+                0.5870641387314255,
+                0.8097018384504975
+              ]
+            },
+            "counted": {
+              "cells": 300,
+              "pages": 46,
+              "by_choice": {
+                "blank": 5,
+                "cant_read": 16,
+                "column_not_on_page": 69,
+                "value": 210
+              },
+              "by_outcome": {
+                "right": 200,
+                "wrong": 75,
+                "cant_read": 16,
+                "abstained": 9
+              }
+            }
+          },
+          "total_claims": {
+            "single_read_error": {
+              "value": 0.06185567010309281,
+              "ci": [
+                0.03331521739130436,
+                0.08824460163812356
+              ]
+            },
+            "archivist_error": {
+              "value": 0.0,
+              "ci": [
+                0.0,
+                0.0
+              ]
+            },
+            "catch_rate": {
+              "value": 1.0,
+              "ci": [
+                1.0,
+                1.0
+              ]
+            },
+            "sent_to_person": {
+              "value": 0.5500000000000009,
+              "ci": [
+                0.3626970891449364,
+                0.7222619047619045
+              ]
+            },
+            "counted": {
+              "cells": 100,
+              "pages": 10,
+              "by_choice": {
+                "cant_read": 3,
+                "not_on_page": 1,
+                "value": 96
+              },
+              "by_outcome": {
+                "right": 91,
+                "wrong": 6,
+                "cant_read": 3,
+                "abstained": 0
+              }
+            }
+          }
+        }
+      },
+      "kept/failed_to_review": {
+        "cells": 400,
+        "pages": 56,
+        "by_choice": {
+          "blank": 5,
+          "cant_read": 19,
+          "column_not_on_page": 69,
+          "not_on_page": 1,
+          "value": 306
+        },
+        "by_outcome": {
+          "right": 291,
+          "wrong": 81,
+          "cant_read": 19,
+          "abstained": 9
+        },
+        "overall": {
+          "single_read_error": {
+            "value": 0.2775656801317242,
+            "ci": [
+              0.15969631006798568,
+              0.40930455783672703
+            ]
+          },
+          "archivist_error": {
+            "value": 0.14965403679185652,
+            "ci": [
+              0.05300527659140304,
+              0.3179221603097742
+            ]
+          },
+          "catch_rate": {
+            "value": 0.8505809477592857,
+            "ci": [
+              0.7441541434123812,
+              0.9364996634440867
+            ]
+          },
+          "sent_to_person": {
+            "value": 0.6946629598633972,
+            "ci": [
+              0.589038321493905,
+              0.7951825324381048
+            ]
+          }
+        },
+        "by_stratum": {
+          "1939_1942": {
+            "single_read_error": {
+              "value": 0.3005932120976372,
+              "ci": [
+                0.17109629172463617,
+                0.45065562520636193
+              ]
+            },
+            "archivist_error": {
+              "value": 0.17771084337349383,
+              "ci": [
+                0.05962626361212324,
+                0.4120421953935611
+              ]
+            },
+            "catch_rate": {
+              "value": 0.8472986088644452,
+              "ci": [
+                0.7413183582275877,
+                0.934484161906244
+              ]
+            },
+            "sent_to_person": {
+              "value": 0.7090781016113411,
+              "ci": [
+                0.5955942337375963,
+                0.8248219981341427
+              ]
+            },
+            "counted": {
+              "cells": 300,
+              "pages": 46,
+              "by_choice": {
+                "blank": 5,
+                "cant_read": 16,
+                "column_not_on_page": 69,
+                "value": 210
+              },
+              "by_outcome": {
+                "right": 200,
+                "wrong": 75,
+                "cant_read": 16,
+                "abstained": 9
+              }
+            }
+          },
+          "total_claims": {
+            "single_read_error": {
+              "value": 0.06185567010309281,
+              "ci": [
+                0.03331521739130436,
+                0.08824460163812356
+              ]
+            },
+            "archivist_error": {
+              "value": 0.0,
+              "ci": [
+                0.0,
+                0.0
+              ]
+            },
+            "catch_rate": {
+              "value": 1.0,
+              "ci": [
+                1.0,
+                1.0
+              ]
+            },
+            "sent_to_person": {
+              "value": 0.5500000000000009,
+              "ci": [
+                0.3626970891449364,
+                0.7222619047619045
+              ]
+            },
+            "counted": {
+              "cells": 100,
+              "pages": 10,
+              "by_choice": {
+                "cant_read": 3,
+                "not_on_page": 1,
+                "value": 96
+              },
+              "by_outcome": {
+                "right": 91,
+                "wrong": 6,
+                "cant_read": 3,
+                "abstained": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "open_weights_with_classified_weights": {
+      "left_out/as_run": {
+        "single_read_error": {
+          "value": 0.06544426747773799,
+          "ci": [
+            0.023109825857042843,
+            0.13725797003931825
+          ]
+        },
+        "archivist_error": {
+          "value": 0.01890925679882798,
+          "ci": [
+            0.0,
+            0.08390996268151625
+          ]
+        },
+        "catch_rate": {
+          "value": 0.9090909090909091,
+          "ci": [
+            0.5714285714285714,
+            1.0
+          ]
+        },
+        "sent_to_person": {
+          "value": 0.6683842871405864,
+          "ci": [
+            0.4876680012743345,
+            0.8450593797276075
+          ]
+        }
+      },
+      "left_out/failed_to_review": {
+        "single_read_error": {
+          "value": 0.06544426747773799,
+          "ci": [
+            0.023109825857042843,
+            0.13725797003931825
+          ]
+        },
+        "archivist_error": {
+          "value": 0.01890925679882798,
+          "ci": [
+            0.0,
+            0.08390996268151625
+          ]
+        },
+        "catch_rate": {
+          "value": 0.9090909090909091,
+          "ci": [
+            0.5714285714285714,
+            1.0
+          ]
+        },
+        "sent_to_person": {
+          "value": 0.6683842871405864,
+          "ci": [
+            0.4876680012743345,
+            0.8450593797276075
+          ]
+        }
+      },
+      "kept/as_run": {
+        "single_read_error": {
+          "value": 0.1709105324001369,
+          "ci": [
+            0.08802152434649552,
+            0.2765055085250116
+          ]
+        },
+        "archivist_error": {
+          "value": 0.07416325424135688,
+          "ci": [
+            0.012025323769730534,
+            0.21424488562431254
+          ]
+        },
+        "catch_rate": {
+          "value": 0.9025441418530363,
+          "ci": [
+            0.8014403863186969,
+            0.9802885261550788
+          ]
+        },
+        "sent_to_person": {
+          "value": 0.6098096038859891,
+          "ci": [
+            0.49028124795165773,
+            0.7314567511776012
+          ]
+        }
+      },
+      "kept/failed_to_review": {
+        "single_read_error": {
+          "value": 0.1709105324001369,
+          "ci": [
+            0.08802152434649552,
+            0.2765055085250116
+          ]
+        },
+        "archivist_error": {
+          "value": 0.07416325424135688,
+          "ci": [
+            0.012025323769730534,
+            0.21424488562431254
+          ]
+        },
+        "catch_rate": {
+          "value": 0.9025441418530363,
+          "ci": [
+            0.8014403863186969,
+            0.9802885261550788
+          ]
+        },
+        "sent_to_person": {
+          "value": 0.6098096038859891,
+          "ci": [
+            0.49028124795165773,
+            0.7314567511776012
+          ]
+        }
+      }
+    },
+    "cells_found": {
+      "overall": {
+        "fixed_row": 100,
+        "label": 238,
+        "row_not_found": 62
+      },
+      "by_stratum": {
+        "1939_1942": {
+          "label": 238,
+          "row_not_found": 62
+        },
+        "total_claims": {
+          "fixed_row": 100
+        }
+      },
+      "at_the_same_position": 258,
+      "status": {
+        "abstained": 6,
+        "accepted": 70,
+        "no_value": 62,
+        "review": 262
+      }
+    }
+  },
+  "changes": {
+    "labelled_cells": 400,
+    "cells_checked": 50,
+    "marks": {
+      "dash": 45,
+      "nothing": 4,
+      "cant_tell": 1
+    },
+    "answers_changed": 45,
+    "answers_changed_by_stratum": {
+      "1939_1942": 41,
+      "total_claims": 4
+    },
+    "cells_checked_by_stratum": {
+      "1939_1942": 46,
+      "total_claims": 4
+    }
+  },
+  "relabel_agreement": {
+    "first_pass_key": {
+      "status": "done",
+      "agree": 24,
+      "of": 40,
+      "wilson": [
+        0.44595893660346186,
+        0.7365167431570808
+      ]
+    },
+    "corrected_key": {
+      "status": "done",
+      "agree": 29,
+      "of": 40,
+      "wilson": [
+        0.5716504419378943,
+        0.8389198375233267
+      ]
+    }
+  }
+}
