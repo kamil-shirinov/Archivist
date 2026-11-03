@@ -436,13 +436,13 @@ def test_nothing_is_drawn_on_a_page_that_the_bundle_does_not_hold(tab, site):
 
 
 def test_the_run_switch_changes_the_arm_and_keeps_the_page(tab, site):
-    """The Hosted / Open weights switch is now the chip "Where Archivist runs" and its panel: Meta’s API
+    """The Hosted / Open weights switch is now the chip "Run on" and its panel: Meta’s API
     (the default) or your own hardware (Muse Spark Open). Choosing one opens the same page on that run."""
     load(tab, site, f"#doc-{CARD}")
     settle(tab, VIEWS["document"][1])
     assert tab.eval("document.querySelector('#runbar .runswitch')") is None, "the old switch is gone"
     chip = tab.eval("document.getElementById('where').textContent")
-    assert "Where Archivist runs" in chip and "Meta’s API" in chip, chip
+    assert "Run on" in chip and "Meta’s API" in chip, chip
     assert tab.eval("document.getElementById('where').getAttribute('aria-expanded')") == "false"
     tab.eval("document.getElementById('where').click()")
     tab.wait_for("!document.getElementById('where-panel').hidden")

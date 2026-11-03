@@ -323,7 +323,7 @@ export const shown = (f) => (f && S.answers[f.field_id] ? S.answers[f.field_id].
 // --- words about the run ----------------------------------------------------------------------------
 
 // The seven steps, in the order the pipeline takes them: key, name, and which role of the run does it
-// (null: plain code). Watch it work plays them; the Where Archivist runs panel names them. The two
+// (null: plain code). Watch it work plays them; the Run on panel names them. The two
 // reads (read and blind) are the steps a different model can do.
 export const STEPS = [
   ["recognise", "Recognise the page", "extractor"],

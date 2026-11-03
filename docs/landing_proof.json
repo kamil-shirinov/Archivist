@@ -1,28 +1,34 @@
 {
   "first_commit": {
     "sha": "dd55660",
-    "date": "2026-10-26T16:06:31Z"
+    "date": "2026-10-26T16:06:31Z",
+    "message": "P1: scaffold, repo hygiene, docs"
   },
   "registration": {
     "sha": "fc85fce",
-    "date": "2026-10-27T07:45:14Z"
+    "date": "2026-10-27T07:45:14Z",
+    "message": "P15: frozen test set and pre-registration"
   },
   "tags": {
     "prereg-real-treasury": {
       "sha": "c69d24a",
-      "date": "2026-10-29T08:02:11Z"
+      "date": "2026-10-29T08:02:11Z",
+      "message": "P29: pre-register the real-pages test, Treasury Bulletin"
     },
     "run-real-treasury": {
       "sha": "b8ff15d",
-      "date": "2026-10-29T08:41:10Z"
+      "date": "2026-10-29T08:41:10Z",
+      "message": "P29: a title check confirms each page the classifier assigns"
     },
     "prereg-real-openw": {
       "sha": "8418a22",
-      "date": "2026-11-02T09:25:12Z"
+      "date": "2026-11-02T09:25:12Z",
+      "message": "P46: the open-weights run on the real scans, pre-registered before it runs"
     },
     "run-real-openw": {
       "sha": "1adee1f",
-      "date": "2026-11-02T09:25:22Z"
+      "date": "2026-11-02T09:25:22Z",
+      "message": "P46: the open-weights runner, its config and scorer, tried on two development pages"
     }
   }
 }

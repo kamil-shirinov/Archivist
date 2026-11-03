@@ -73,7 +73,7 @@ export function closePanels(except) {
   closers.forEach((close) => close !== except && close());
 }
 
-// --- where Archivist runs -----------------------------------------------------------------------------
+// --- run on -----------------------------------------------------------------------------
 // A chip in the run bar and the panel it opens: the seven steps are the same whether the models are
 // reached through Meta’s API (the default) or run on your own hardware, and only the two reads change.
 // What the visitor is looking at is one recorded run; the panel says who ran what in it, from the bundle.
@@ -101,7 +101,7 @@ function whereRuns() {
 
 function whereChip() {
   const r = S.bundle.run;
-  return `<button class="where" id="where" data-where="${r.arm === "open-weights" ? "own" : "api"}" aria-haspopup="dialog" aria-expanded="false" aria-controls="where-panel" title="${esc(recorded())}"><span class="wdot"></span>Where Archivist runs <b>${esc(WHERE[r.arm])}</b><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>`;
+  return `<button class="where" id="where" data-where="${r.arm === "open-weights" ? "own" : "api"}" aria-haspopup="dialog" aria-expanded="false" aria-controls="where-panel" title="${esc(recorded())}"><span class="wdot"></span>Run on <b>${esc(WHERE[r.arm])}</b><svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></button>`;
 }
 
 function wherePanel() {
@@ -113,10 +113,10 @@ function wherePanel() {
     return `<button class="wp-opt" data-where="${key}"${run ? ` data-run="${esc(run.run_id)}"` : " disabled"} aria-pressed="${!!run && run.run_id === S.entry.run_id}"><span class="wo-h"><b>${name}</b><span class="tag">${tag}</span></span><span class="wo-d">${what}</span><span class="wo-n">${note.trim()}</span></button>`;
   };
   return (
-    `<h2>Where Archivist runs</h2>` +
+    `<h2>Run on</h2>` +
     `<p class="wp-sub">The same seven steps either way. Only the two reads, steps 2 and 5, are done by a different model.</p>` +
     `<ol class="wp-steps" aria-label="The seven steps">${steps}</ol>` +
-    `<div class="wp-opts" role="group" aria-label="Where Archivist runs">` +
+    `<div class="wp-opts" role="group" aria-label="Run on">` +
     opt("api", "Meta’s API", "Default", "Muse Spark 1.3 does both reads, and SAM 3.1 looks for covered ink, all through Meta’s API.") +
     opt(
       "own",
@@ -136,7 +136,7 @@ function initWhere() {
   panel.className = "where-panel";
   panel.id = "where-panel";
   panel.setAttribute("role", "dialog");
-  panel.setAttribute("aria-label", "Where Archivist runs");
+  panel.setAttribute("aria-label", "Run on");
   panel.hidden = true;
   panel.innerHTML = wherePanel();
   document.body.appendChild(panel);
