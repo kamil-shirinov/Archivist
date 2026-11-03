@@ -27,7 +27,7 @@ the page differs, or if a digit sits anywhere on the page that is not a marked f
   * the replay: one recorded decision of the development run on the Treasury Bulletin (a public-domain page),
     its steps, models, rule, loop and counts from that run's bundle, and a fixed choice of value that the
     code checks still qualifies (accepted, the blind read agrees, a rule held, a clean pen loop);
-  * the Docker commands: README.md; the Meta models: the model ids in config/.
+  * the Docker commands, and how many legacy memos the author's parser read: README.md; the Meta models: the model ids in config/.
 
 A claim that has no file behind it is left out (CLAUDE.md, P51). Nothing moves except by opacity and transform
 (tests/test_landing.py reads the stylesheet to check), and nothing moves at all for a visitor who asked for less.
@@ -367,6 +367,16 @@ def docker_commands(root: Path) -> list[str]:
     if not lines:
         raise Refused("README.md has no Docker commands under Run it yourself")
     return lines
+
+
+def story_memos(root: Path) -> str:
+    """How many legacy memos the author's parser read, as the README's "The problem" says it. It is the author's own
+    account and no result file holds it, so the README is its source and the page does not type it by hand."""
+    section = _text(root, "README.md").split("## The problem", 1)
+    found = re.search(r"about ([\d,]+) legacy memos", section[1].split("\n## ", 1)[0]) if len(section) == 2 else None
+    if not found:
+        raise Refused("README.md's The problem does not say how many legacy memos")
+    return found.group(1)
 
 
 # --- the replay ----------------------------------------------------------------------------------------
@@ -969,7 +979,7 @@ def ledger_section(s: dict, r: dict, names: dict[str, str]) -> str:
 # --- the hero and the specimen -----------------------------------------------------------------------------
 
 
-def hero(names: dict[str, str], s: dict) -> str:
+def hero(names: dict[str, str], s: dict, memos: str) -> str:
     listed = [fact("model", n) for n in names.values()]
     models_text = ", ".join(listed[:-1]) + " and " + listed[-1]
     a, b = s["a"], s["b"]
@@ -982,7 +992,7 @@ def hero(names: dict[str, str], s: dict) -> str:
     return f"""<section class="hero wrap" id="top">
   <p class="eyebrow rise" style="--i:0">Open source<span class="sep">·</span>Pre-registered<span class="sep">·</span>Built on Meta’s {models_text}</p>
   <h1 class="rise" style="--i:1">The archive that <span class="acc">shows its work.</span></h1>
-  <p class="lede rise" style="--i:2">Banks hold decades of records as scans. Typing them in is slow, and a model reading them alone gets some values wrong without saying which. I saw this problem first-hand during a bank internship.</p>
+  <p class="lede rise" style="--i:2">At a bank internship I built a parser for about {fact("story.memos", memos)} legacy memos, and found there was no archive to run it on: the oldest records were only on paper, and loan applicants brought their earnings in notebooks that staff typed in by hand.</p>
   <p class="lede rise" style="--i:3"><strong>Archivist</strong> turns scanned financial archives into a verified database: every value is cited to its spot on the page, read twice with the second read blind, checked by arithmetic, and sent to a person when in doubt.</p>
   <div class="cta rise" style="--i:4">
     <a class="btn primary" href="ui/#{HOME}">Watch it work</a>
@@ -1560,7 +1570,7 @@ def render(root: Path = ROOT) -> str:
         DOT_DEFS,
         TOP,
         '<main id="main">',
-        hero(names, s),
+        hero(names, s, story_memos(root)),
         specimen(rp),
         ledger_section(s, r, names),
         how_it_works(names, s, r),

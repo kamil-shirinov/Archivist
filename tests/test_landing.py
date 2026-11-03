@@ -412,7 +412,7 @@ def commit_of(*ref: str) -> tuple[str, str, str]:
 def test_every_marked_fact_is_what_its_file_says(page):
     want = expected()
     from_git = ("test.commit", "foot.first")  # checked against git, with the plans' dates, in test_the_dates_are_gits
-    unknown = [k for k in page.facts if k not in want and not k.startswith("plan.") and k not in ("model", "docker", *from_git)]
+    unknown = [k for k in page.facts if k not in want and not k.startswith("plan.") and k not in ("model", "docker", "story.memos", *from_git)]
     assert unknown == [], f"facts the test does not recompute: {unknown}"
     for key, texts in page.facts.items():
         if key in want:
@@ -510,6 +510,14 @@ def test_the_docker_commands_are_the_readme_s(page):
     section = (ROOT / "README.md").read_text().split("## Run it yourself", 1)[1]
     block = re.search(r"```bash\n(.*?)```", section, re.S).group(1)
     assert page.facts["docker"] == ["\n".join(ln for ln in block.splitlines() if ln.startswith("docker "))]
+
+
+def test_the_memo_count_is_the_readme_s(page, html_text):
+    """The one number in the author's own story: it is read from the README's problem paragraph, never typed on the page."""
+    problem = (ROOT / "README.md").read_text().split("## The problem", 1)[1].split("\n## ", 1)[0]
+    memos = re.search(r"about ([\d,]+) legacy memos", problem).group(1)
+    assert page.facts["story.memos"] == [memos]
+    assert "At a bank internship I built a parser for about" in html_text and "Banks hold decades of records" not in html_text
 
 
 @pytest.mark.skipif(not full_history(), reason="no full git history here")
