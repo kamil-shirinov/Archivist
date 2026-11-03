@@ -3,6 +3,8 @@ name = "archivist"
 version = "0.1.0"
 description = "Turns scanned financial archives into a verified database; every value is cited, cross-checked and flagged if unsure."
 readme = "README.md"
+license = "Apache-2.0"
+license-files = ["LICENSE"]
 authors = [
     { name = "Kamil Shirinov", email = "261048310+kamil-shirinov@users.noreply.github.com" }
 ]

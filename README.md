@@ -272,7 +272,7 @@ A learning loop, not built yet: people correct values in the review queue and th
 <details>
 <summary>Credits</summary>
 
-Archivist's own code is all rights reserved; see [LICENSE](LICENSE).
+Archivist's own code is open source under the Apache License 2.0; see [LICENSE](LICENSE). The fonts and the FRASER pages keep the terms below.
 
 **Fonts.** Rendering synthetic documents: Libre Baskerville, Courier Prime and Nanum Pen Script (SIL Open Font License 1.1); Special Elite and Homemade Apple (Apache License 2.0). Licence files are in `assets/fonts/`. The review app uses Geist (SIL Open Font License 1.1, `ui/fonts/GEIST-OFL.txt`). Sources and dates: [`DATA_SOURCES.md`](DATA_SOURCES.md). **Logo.** The two files in `assets/brand/` redraw the review app's own mark (`ui/index.html`), in the app's light and dark colours.
 

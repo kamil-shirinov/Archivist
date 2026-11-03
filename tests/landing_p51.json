@@ -126,7 +126,7 @@
  "runs": [
   "Archivist",
   "Watch it work",
-  "Public code·Pre-registered·Built on Meta’s {model}, {model}, {model} and {model}",
+  "Open source·Pre-registered·Built on Meta’s {model}, {model}, {model} and {model}",
   "The archive that shows its work.",
   "Banks hold decades of records as scans. Typing them in is slow, and a model reading them alone gets some values wrong without saying which. I saw this problem first-hand during a bank internship.",
   "Archivist turns scanned financial archives into a verified database: every value is cited to its spot on the page, read twice with the second read blind, checked by arithmetic, and sent to a person when in doubt.",
@@ -332,8 +332,8 @@
   "The repository",
   "The code, the plans, every result and the reasons for each decision.",
   "kamil-shirinov/Archivist",
-  "Archivist, built for the Meta Global AI Developer Hackathon from {foot.first}. The code is published for review, all rights reserved (LICENSE",
-  "). Pages are from FRASER, the St. Louis Fed’s archive, or synthetic. The type is Geist, under the SIL Open Font License (licence",
+  "Archivist, built for the Meta Global AI Developer Hackathon from {foot.first}. The code is open source under the Apache License (LICENSE",
+  "). Pages are from FRASER, the St. Louis Fed’s archive, in the public domain, or synthetic. The type is Geist, under the SIL Open Font License (licence",
   ")."
  ]
 }
