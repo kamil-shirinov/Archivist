@@ -980,7 +980,7 @@ def hero(names: dict[str, str], s: dict) -> str:
     )
     line = "".join(f'<li><span class="hv{tone}">{fact(key, text)}</span> <span class="hk">{label}</span></li>' for key, text, label, tone in heads)
     return f"""<section class="hero wrap" id="top">
-  <p class="eyebrow rise" style="--i:0">Public code<span class="sep">·</span>Pre-registered<span class="sep">·</span>Built on Meta’s {models_text}</p>
+  <p class="eyebrow rise" style="--i:0">Open source<span class="sep">·</span>Pre-registered<span class="sep">·</span>Built on Meta’s {models_text}</p>
   <h1 class="rise" style="--i:1">The archive that <span class="acc">shows its work.</span></h1>
   <p class="lede rise" style="--i:2">Banks hold decades of records as scans. Typing them in is slow, and a model reading them alone gets some values wrong without saying which. I saw this problem first-hand during a bank internship.</p>
   <p class="lede rise" style="--i:3"><strong>Archivist</strong> turns scanned financial archives into a verified database: every value is cited to its spot on the page, read twice with the second read blind, checked by arithmetic, and sent to a person when in doubt.</p>
@@ -1552,7 +1552,7 @@ def render(root: Path = ROOT) -> str:
     rp = replay(root)
     footer = (
         f'<footer class="foot"><div class="wrap"><p>Archivist, built for the Meta Global AI Developer Hackathon from {fact("foot.first", day(git["first_commit"]["date"]))}. '
-        f'The code is published for review, all rights reserved ({link(blob("LICENSE"), "LICENSE")}). Pages are from FRASER, the St. Louis Fed’s archive, or synthetic. '
+        f'The code is open source under the Apache License ({link(blob("LICENSE"), "LICENSE")}). Pages are from FRASER, the St. Louis Fed’s archive, in the public domain, or synthetic. '
         f'The type is Geist, under the SIL Open Font License ({link("ui/fonts/GEIST-OFL.txt", "licence", "")}). '
         f'Headlines are set in Newsreader, also under the SIL Open Font License ({link("docs/landing/fonts/NEWSREADER-OFL.txt", "licence", "")}).</p></div></footer>'
     )
