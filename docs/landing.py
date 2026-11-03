@@ -539,6 +539,12 @@ def tip(inner: str) -> str:
     return f'<span class="tip">{inner}</span>'
 
 
+def dash(why: str) -> str:
+    """An empty cell: a dash that says why when it is hovered or tapped. The page's own tooltip does that (never the
+    browser's title tooltip), and the same words are on the page as text for a screen reader."""
+    return f'<span class="mut dash">—{tip(esc(why))}</span>'
+
+
 def nice_axis(highest: float) -> float:
     """The first round number above what a chart has to show."""
     return next((step for step in AXIS_STEPS if step >= highest * 1.04), 1.0)
@@ -726,7 +732,7 @@ def swap(hosted: str, open_: str) -> str:
 def value_cell(q: dict | None, level: str) -> str:
     """A rate and its interval, as one cell shows them; a dash where the file has none."""
     if q is None:
-        return '<span class="mut" title="Not reported for this set-up">—</span>'
+        return dash("Not reported for this set-up")
     parts = f'<span class="big">{fact(q["key"], shown(q))}</span>'
     if q["ci"] is not None:
         parts += f'<small class="ci">{fact(ci_key(q), span(q["ci"], q["places"]))}</small>'
@@ -781,7 +787,10 @@ def interval_figure(row: dict, mode: str, level: str) -> str:
 def dot_figures(row: dict, mode: str) -> str:
     """The rates as 1,000 dots each: how many of every thousand, for Archivist and for the single read."""
     m, out = row[mode], ""
-    for who, label, kind in (("arch", "Archivist", row["kind"]), ("single", "Single read", "once")):
+    # what a dot counts decides its colour, not whose it is: the wrong values are the same red in both grids; for the
+    # other rows the single read's own marked dots stay neutral
+    single_kind = row["kind"] if row["kind"] == "wrong" else "once"
+    for who, label, kind in (("arch", "Archivist", row["kind"]), ("single", "Single read", single_kind)):
         q = m[who]
         if q is None:
             continue
@@ -898,7 +907,7 @@ def ledger_row(row: dict, s: dict, r: dict, names: dict[str, str], level: str, r
         f'<tbody class="lrow" data-row="{rid}"><tr class="main">'
         f'<th scope="row"><button class="opener" type="button" aria-expanded="false" aria-controls="ev-{rid}"><span class="chev" aria-hidden="true"></span><span class="lt">{esc(row["label"])}</span></button>{note}</th>'
         f'<td data-label="Archivist">{cell("arch")}</td><td data-label="Single read">{cell("single")}</td><td data-label="Target">{target}</td><td data-label="Result">{result}</td></tr>'
-        f'<tr class="detail" id="ev-{rid}" hidden><td colspan="5">{pane(row, "hosted", s, r, names, level, resamples, False)}{pane(row, "open", s, r, names, level, resamples, True)}{extra}</td></tr></tbody>'
+        f'<tr class="detail" id="ev-{rid}" hidden><td colspan="5"><div class="xp"><div class="xp-in">{pane(row, "hosted", s, r, names, level, resamples, False)}{pane(row, "open", s, r, names, level, resamples, True)}{extra}</div></div></td></tr></tbody>'
     )
 
 
@@ -910,7 +919,7 @@ def ledger_section(s: dict, r: dict, names: dict[str, str]) -> str:
     cost_cell = swap(*(f'<span class="big">{fact(f"hw.cost.{key}", f"${s['cost'][k]:.4f}")}</span>' for key, k in (("hosted", "a"), ("open", "b"))))
     single = (
         f'<span class="big">{fact(f"hw.cost.single.{key}", f"${s['single_cost'][key]:.4f}")}</span>' if s["single_cost"][key] is not None
-        else '<span class="mut" title="The test report records no cost a page for this single read">—</span>'
+        else dash("The test report records no cost a page for this single read")
         for key in MODES
     )
     cost = (
@@ -1134,8 +1143,8 @@ def how_it_works(names: dict[str, str], s: dict, r: dict) -> str:
         )
         code = STEP_CODE[i - 1]
         panels += (
-            f'<div class="spanel" id="step-{i}" role="region" aria-label="{esc(title)}" hidden><h3>{step_no(i)}{esc(title)}</h3>'
-            f'<p><b>What it checks.</b> {checks}</p><p><b>When it fails.</b> {fails}</p><p class="src">Code {link(blob(code), "<code>" + esc(code) + "</code>")}</p></div>'
+            f'<div class="spanel xp" id="step-{i}" role="region" aria-label="{esc(title)}" hidden><div class="xp-in"><h3>{step_no(i)}{esc(title)}</h3>'
+            f'<p><b>What it checks.</b> {checks}</p><p><b>When it fails.</b> {fails}</p><p class="src">Code {link(blob(code), "<code>" + esc(code) + "</code>")}</p></div></div>'
         )
     return f"""<section id="how" class="reveal"><div class="wrap">
   <p class="kicker">Seven steps</p>
@@ -1347,12 +1356,12 @@ def depth(r: dict, titles: dict[str, str], names: dict[str, str]) -> str:
             f'<td data-label="Boxed by the model alone">{fact(k + ".model", pct(e["boxed_model"]["value"], 1))}</td><td data-label="By the text layer">{fact(k + ".ocr", pct(e["boxed_ocr"]["value"], 1))}</td><td data-label="By the grid">{fact(k + ".grid", pct(e["boxed_grid"]["value"], 1))}</td></tr>'
         )
     return f"""<details class="depth" id="depth"><summary><span class="chev" aria-hidden="true"></span>By stratum and by family</summary>
-  <div class="depth-in">
+  <div class="xp"><div class="xp-in depth-in">
     <p class="fine">The cells were drawn in strata, and each is weighted by the inverse of its chance of being labelled. Aggregates only, from {link(blob(REAL_SCORE), "<code>" + esc(REAL_SCORE) + "</code>")} and {link(blob(OPEN_SCORE), "<code>" + esc(OPEN_SCORE) + "</code>")}.</p>
     <div class="chart" data-chart="strata"><h4>Wrong among accepted, by stratum</h4>{blocks}{axis(top)}</div>
     <div class="chart"><h4>By table family, hosted</h4>
     <table class="fam"><caption class="sr">Pages, cells, review rate and how cells were boxed, for each table family</caption><thead><tr><th scope="col">Table</th><th scope="col">Named</th><th scope="col">Confirmed</th><th scope="col">Read in full</th><th scope="col">Cells</th><th scope="col">Sent to a person</th><th scope="col">Boxed by the model alone</th><th scope="col">By the text layer</th><th scope="col">By the grid</th></tr></thead><tbody>{fam_rows}</tbody></table></div>
-  </div></details>"""
+  </div></div></details>"""
 
 
 def real_scans(r: dict, diag: dict, fixed: dict, names: dict[str, str], titles: dict[str, str]) -> str:

@@ -112,52 +112,77 @@
     );
   }
 
-  // --- what a mark says: hovered, focused or tapped, shown beside it -------------------------------------------------
+  // --- what a mark says: hovered, focused or tapped, shown beside it by the page's own tooltip ----------------------
+  // One small glass panel for every mark: the charts' bars and dots, the diagnosis bars, an empty cell's dash and a
+  // commit (the browser's title tooltips are not used). It fades in with a slight rise and fades out; moving to a
+  // neighbouring mark swaps its words and place without letting it go, so it does not flicker. The words are on the page
+  // as text (.tip) for a screen reader, and a commit's message is plain text under it where nothing can hover.
   const tooltip = document.createElement("div");
   tooltip.className = "tooltip";
   tooltip.setAttribute("aria-hidden", "true");
+  const panel = document.createElement("div");
+  panel.className = "tooltip-b";
+  tooltip.append(panel);
   document.body.append(tooltip);
-  const MARKS = ".mk, .cb, .seg b";
+  const MARKS = ".mk, .cb, .seg b, .dash, .tl .ev";
+  const hovers = matchMedia("(hover: hover)");
   let owner = null;
   let pinned = false;
+  let leaving = 0;
+  let lastPointer = "mouse";
+  const markAt = (event) => {
+    const el = event.target.closest?.(MARKS);
+    return el && !(el.matches(".tl .ev") && !hovers.matches) ? el : null;
+  };
   const place = (el) => {
     const anchor = $(".pt", el) || el;
+    tooltip.style.left = "0px"; // measured where nothing squeezes it
+    tooltip.style.top = "0px";
     const at = anchor.getBoundingClientRect();
     const size = tooltip.getBoundingClientRect();
-    const x = Math.min(Math.max(at.left + at.width / 2 - size.width / 2, 8), innerWidth - size.width - 8);
     const above = at.top - size.height - 10;
-    tooltip.style.transform = `translate(${x}px, ${above < 8 ? at.bottom + 10 : above}px)`;
+    tooltip.style.left = `${Math.min(Math.max(at.left + at.width / 2 - size.width / 2, 8), innerWidth - size.width - 8)}px`;
+    tooltip.style.top = `${above < 8 ? at.bottom + 10 : above}px`;
   };
   const showTip = (el) => {
     const text = $(".tip", el)?.textContent;
     if (!text) return;
+    clearTimeout(leaving);
     owner = el;
-    tooltip.textContent = text.replace(/\s+/g, " ").trim();
+    panel.textContent = text.replace(/\s+/g, " ").trim();
     place(el);
     tooltip.classList.add("on");
   };
   const hideTip = () => {
+    clearTimeout(leaving);
     owner = null;
     pinned = false;
     tooltip.classList.remove("on");
   };
+  // a short grace: leaving one mark for its neighbour shows the neighbour's words at once and never starts the fade
+  const hideSoon = () => {
+    clearTimeout(leaving);
+    leaving = setTimeout(hideTip, 70);
+  };
+  document.addEventListener("pointerdown", (event) => (lastPointer = event.pointerType), true);
   document.addEventListener("pointerover", (event) => {
-    const el = event.target.closest?.(MARKS);
+    const el = markAt(event);
     if (el && event.pointerType === "mouse" && !pinned) showTip(el);
   });
   document.addEventListener("pointerout", (event) => {
-    if (event.pointerType === "mouse" && !pinned && event.target.closest?.(MARKS)) hideTip();
+    if (event.pointerType === "mouse" && !pinned && markAt(event)) hideSoon();
   });
   document.addEventListener("focusin", (event) => {
-    const el = event.target.closest?.(MARKS);
+    const el = markAt(event);
     if (el) showTip(el);
   });
   document.addEventListener("focusout", (event) => {
-    if (event.target.closest?.(MARKS)) hideTip();
+    if (markAt(event)) hideSoon();
   });
   document.addEventListener("click", (event) => {
-    const el = event.target.closest?.(MARKS);
-    if (el && (event.pointerType === "touch" || event.pointerType === "pen" || event.detail === 0 || el === owner)) {
+    const el = markAt(event);
+    const touched = (event.pointerType || lastPointer) !== "mouse";
+    if (el && !el.matches(".tl .ev") && (touched || event.detail === 0 || el === owner)) {
       // a tap (or a key press) keeps the tip until the next tap; a second tap on the same mark closes it
       if (pinned && owner === el) return hideTip();
       showTip(el);
@@ -321,6 +346,72 @@
     }
   }
 
+  // --- expandables: a panel's height eases open and closed, its content fading and rising just behind it -------------
+  // The ledger's rows, the pipeline's steps and "By stratum and by family" are each a box (.xp) round their content
+  // (.xp-in). Opening takes about 420 ms with a soft ease-out and closing about 320 ms; the content follows a moment
+  // behind going in and goes first coming out, and the chevron turns with it. A click while one is moving turns it
+  // round from where it is. The height is set only while the box moves and cleared after, so a panel at rest is as
+  // tall as its content. With reduced motion a panel opens and closes at once. (Height is the one thing the page
+  // animates that is not opacity or transform; landing.css allows it for .xp alone.)
+  if (!still.matches) root.classList.add("xp-ready");
+  const slide = (box, open, { host = box, shut = null, shown = true } = {}) => {
+    // where it starts: 0 for a panel not shown, otherwise its height now (where a move under way has got to). A closed
+    // details still reports the size of its hidden content, so its opening says it starts from nothing.
+    const from = shown ? box.getBoundingClientRect().height : 0;
+    box._off?.();
+    const done = () => {
+      box._off = null;
+      box.classList.remove("moving");
+      box.style.height = "";
+      if (!open) {
+        if (host) host.hidden = true;
+        shut?.();
+      }
+    };
+    if (still.matches) {
+      if (host) host.hidden = !open;
+      box.classList.toggle("open", open);
+      return done();
+    }
+    if (host) host.hidden = false;
+    box.classList.add("moving");
+    box.style.height = `${from}px`; // the start, pinned (from auto, or from wherever a click caught it)
+    void box.offsetHeight;
+    box.classList.toggle("open", open);
+    box.style.height = `${open ? $(".xp-in", box).offsetHeight : 0}px`;
+    const arrived = (event) => event.target === box && event.propertyName === "height" && settle();
+    const timer = setTimeout(() => settle(), (open ? 420 : 320) + 150); // in case no transition runs (nothing to move)
+    const settle = () => {
+      box._off();
+      done();
+    };
+    box._off = () => {
+      clearTimeout(timer);
+      box.removeEventListener("transitionend", arrived);
+    };
+    box.addEventListener("transitionend", arrived);
+  };
+  $$("details.depth").forEach((d) => {
+    const box = $(".xp", d);
+    d.classList.toggle("is-open", d.open);
+    box.classList.toggle("open", d.open);
+    $("summary", d).addEventListener("click", (event) => {
+      event.preventDefault(); // the open attribute is set and cleared here, so that closing can be seen
+      const open = !d.classList.contains("is-open");
+      const shown = d.open;
+      d.classList.toggle("is-open", open);
+      if (open) d.open = true;
+      slide(box, open, { host: null, shut: () => (d.open = false), shown });
+    });
+    d.addEventListener("toggle", () => {
+      // opened by the browser itself (find in page, a link to something inside): shown as it is
+      if (d.open && !d.classList.contains("is-open")) {
+        d.classList.add("is-open");
+        box.classList.add("open");
+      }
+    });
+  });
+
   // --- the ledger: where Archivist runs (the numbers re-count), and a row's evidence --------------------------------
   const ledger = $("#ledger");
   if (ledger) {
@@ -382,7 +473,8 @@
       if (!opener) return;
       const open = opener.getAttribute("aria-expanded") !== "true";
       opener.setAttribute("aria-expanded", String(open));
-      document.getElementById(opener.getAttribute("aria-controls")).hidden = !open;
+      const row = document.getElementById(opener.getAttribute("aria-controls"));
+      slide($(".xp", row), open, { host: row });
     });
   }
 
@@ -391,7 +483,7 @@
   const panels = $$(".spanel");
   const closeSteps = () => {
     steps.forEach((s) => s.setAttribute("aria-expanded", "false"));
-    panels.forEach((p) => (p.hidden = true));
+    panels.filter((p) => p.classList.contains("open")).forEach((p) => slide(p, false));
   };
   steps.forEach((step) =>
     step.addEventListener("click", () => {
@@ -399,12 +491,50 @@
       closeSteps();
       if (!open) return;
       step.setAttribute("aria-expanded", "true");
-      document.getElementById(step.getAttribute("aria-controls")).hidden = false;
+      slide(document.getElementById(step.getAttribute("aria-controls")), true);
     }),
   );
   document.addEventListener("keydown", (event) => {
     if (event.key === "Escape" && steps.some((s) => s.getAttribute("aria-expanded") === "true")) closeSteps();
   });
+
+  // --- the timeline: the line draws downward with the scroll, each dot and its entry arriving as the line reaches it ----
+  // The line is drawn by transform (scaleY, from --p): how far the reading line, a little below the middle of the screen,
+  // has gone down it. An entry comes in (fading and rising, its dot with it) when the line reaches its dot, and goes
+  // back out if the visitor scrolls up past it. With reduced motion, or without the script, the line is whole and every
+  // entry is there. (The heading beside it stays pinned in the stylesheet; on a phone nothing is, but the line still draws.)
+  const tl = $(".tl");
+  if (tl && !still.matches) {
+    const groups = $$(":scope > .tl-g", tl);
+    let dots = []; // where each entry's dot is, from the top of the timeline (not moved by the entry's own rise)
+    const measure = () => (dots = groups.map((g) => g.offsetTop + 13));
+    const update = () => {
+      const y = innerHeight * 0.6 - tl.getBoundingClientRect().top;
+      tl.style.setProperty("--p", Math.min(Math.max((y - 8) / (tl.offsetHeight - 16), 0), 1).toFixed(4));
+      groups.forEach((g, i) => g.classList.toggle("in", y >= dots[i]));
+    };
+    let queued = 0;
+    const soon = () => {
+      if (!queued)
+        queued = requestAnimationFrame(() => {
+          queued = 0;
+          update();
+        });
+    };
+    const again = () => {
+      measure();
+      soon();
+    };
+    addEventListener("scroll", soon, { passive: true });
+    addEventListener("resize", again);
+    if ("ResizeObserver" in window) new ResizeObserver(again).observe(tl);
+    document.fonts?.ready.then(again);
+    measure();
+    tl.classList.add("live", "snap"); // set where it stands without a transition, then let it move
+    update();
+    void tl.offsetHeight;
+    tl.classList.remove("snap");
+  }
 
   // --- the real scans: the official answer key or the corrected one -----------------------------------------------
   const keys = $$(".ks");
