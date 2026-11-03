@@ -167,7 +167,8 @@ h1 .acc{color:var(--gold)}
 .leaders{position:absolute;inset:0;pointer-events:none;z-index:1}
 .leader{position:absolute;left:0;top:0;height:1px;width:var(--len,0px);background:color-mix(in srgb,var(--pen) 78%,transparent);transform-origin:0 50%;transform:translate(var(--x,0px),var(--y,0px)) rotate(var(--a,0rad)) scaleX(0);opacity:0}
 .leader::after{content:"";position:absolute;right:-2px;top:-2px;width:5px;height:5px;border-radius:50%;background:var(--pen)}
-.leader.on{transform:translate(var(--x,0px),var(--y,0px)) rotate(var(--a,0rad)) scaleX(1);opacity:1}
+.leader.on{transform:translate(var(--x,0px),var(--y,0px)) rotate(var(--a,0rad)) scaleX(1);opacity:.3}
+.leader.on.now{opacity:1}
 .pen{fill:none;stroke:var(--pen);stroke-linecap:round;stroke-linejoin:round}
 .snapbox{fill:none;stroke:#2F6FDB;stroke-width:1}
 .cropbox{fill:rgba(107,111,122,.12);stroke:#6B6F7A;stroke-width:1;stroke-dasharray:4 3}

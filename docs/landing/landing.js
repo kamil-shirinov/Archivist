@@ -184,7 +184,7 @@
     const stage = $(".stage", frame);
     const leaderBox = $(".leaders", frame);
     const pen = $(".layer.pen", frame);
-    const GAP = [1000, 1300, 1000, 1000, 1200, 1300, 0]; // how long each step stays alone, in ms
+    const GAP = [1000, 1300, 1000, 1000, 1200, 1300, 1300]; // how long each step stays alone, in ms (the last too, so that its line is seen before the replay ends)
     const leaders = [];
     let shown = notes.length;
     let timer = 0;
@@ -204,8 +204,15 @@
         li.classList.toggle("now", i === k - 1);
       });
       railWrap.style.setProperty("--p", String(k <= 1 ? 0 : (k - 1) / (notes.length - 1)));
-      leaders.forEach((l, i) => l.classList.toggle("on", i < k));
+      ink(k);
     };
+    // The leaders are calm: each is drawn when its step comes, but only the step in view has its line at full strength.
+    // The others stay faint, and once the replay has ended (or before it has begun) all of them are.
+    const ink = (k) =>
+      leaders.forEach((l, i) => {
+        l.classList.toggle("on", i < k);
+        l.classList.toggle("now", running && i === k - 1);
+      });
 
     // The value the leaders point at: the centre of the pen loop, in the stage's own coordinates.
     const anchor = () => {
@@ -243,6 +250,7 @@
       if (shown >= notes.length) {
         running = false;
         pause.disabled = true;
+        ink(shown);
         return;
       }
       show(shown + 1);

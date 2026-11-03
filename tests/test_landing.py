@@ -254,6 +254,7 @@ def expected() -> dict[str, str]:
     for key, who in (("hosted", "A"), ("open", "B")):
         e[f"hw.cost.{key}"] = f"${cfg[who]['cost']['per_page_usd']:.4f}"
     e["limit.cost_a"], e["limit.cost_b"] = e["hw.cost.hosted"], e["hw.cost.open"]
+    e["hw.cost.single.hosted"] = f"${cfg['baseline']['cost']['per_page_usd']:.4f}"  # the single read's own, where the report records one
     assert a["n_review"] == h3["review"]
 
     runs = [json.loads((ROOT / f"results/runs/{name}/run.json").read_text()) for name in ("test-baseline", "test-archivist-A", "test-baseline-open", "test-archivist-B", "test-archivist-C")]
@@ -434,6 +435,23 @@ def test_the_ledger_states_every_row_on_both_sides(page):
     for key in ("ledger.h1.hosted.arch.dots", "ledger.h2.hosted.arch.dots", "ledger.h3.hosted.arch.dots", "ledger.r1.hosted.arch.dots"):
         assert key in page.facts and key in want
     assert "ledger.h2.hosted.single.dots" not in page.facts, "nothing is marked on a grid of zero"
+
+
+def test_the_cost_row_puts_each_cost_under_its_own_column(html_text):
+    """The cost of Archivist stands under Archivist, not across both columns; the single read's own cost stands under
+    Single read where the report records one (the hosted baseline reads and verifies nothing) and is a dash where it
+    does not (no open-weights single read of its own)."""
+    report = jload("results/test_report.json")["configurations"]
+    assert report["baseline"]["cost"]["verification_usd"] == 0, "the baseline's cost a page is the read's alone"
+    row = re.search(r'<tbody class="cost">(.*?)</tbody>', html_text, re.S).group(1)
+    cells = re.findall(r'<td data-label="([^"]+)"([^>]*)>(.*?)</td>', row, re.S)
+    assert [c[0] for c in cells] == ["Archivist", "Single read"], "a cell under each, none across both"
+    assert all("colspan" not in c[1] for c in cells)
+    arch, single = cells[0][2], cells[1][2]
+    assert re.findall(r'data-fact="([^"]+)"', arch) == ["hw.cost.hosted", "hw.cost.open"]
+    assert re.findall(r'data-fact="([^"]+)"', single) == ["hw.cost.single.hosted"], "the open side has no cost of its own to state"
+    assert "—" in single.split('<span class="v o"')[1], "a dash, not a number or a zero, where the report records none"
+    assert f"${report['baseline']['cost']['per_page_usd']:.4f}" in single.split('<span class="v o"')[0]
 
 
 def test_a_ledger_row_has_a_row_of_the_table_for_every_target(html_text):
@@ -813,6 +831,11 @@ def test_the_logo_is_the_brand_mark_in_both_themes_and_only_the_wordmark_follows
     assert {c.upper() for c in re.findall(r'(?:fill|stroke)="(#[0-9A-Fa-f]{3,6})"', inline)} == {"#4A55D4", "#FFF", "#F4B23A"}, "the app's mark is the same three colours"
     for sheet in (ROOT / "ui/css").glob("*.css"):
         assert not re.search(r"\.logo\s+(svg|rect|path)[^{]*\{[^}]*(fill|stroke)\s*:", sheet.read_text()), f"{sheet.name} recolours the app's mark"
+    # the README too: the same mark in a dark theme, not a recolour of it (its wordmark is the heading under it, which GitHub colours)
+    readme = (ROOT / "README.md").read_text()
+    assert "<picture>" not in readme.split("# Archivist")[0] and "logo-dark" not in readme, "no dark variant of the mark"
+    assert re.findall(r'<img[^>]*src="(assets/brand/[^"]+)"', readme.split("# Archivist")[0]) == ["assets/brand/logo-light.svg"]
+    assert not (ROOT / "assets/brand/logo-dark.svg").exists(), "the recolour is gone, so nothing can show it"
 
 
 def _css_blocks(css: str):
@@ -979,6 +1002,31 @@ def test_the_replay_starts_by_itself_pauses_and_plays_again(served):
 
 
 @needs_browser
+def test_only_the_step_in_view_has_its_leader_at_full_strength_and_a_finished_replay_leaves_them_all_faint(served):
+    base, browser = served
+    tab = new_tab(browser)
+    tab.open(base, width=1440, height=900, dark=False)
+    tab.wait_for("document.querySelectorAll('.notes li.on').length >= 3", 30)
+    tab.eval("document.querySelector('[data-act=pause]').click()")
+    tab.pump(0.7)  # the fade of the one that was arriving is over
+    k = shown(tab)
+    leaders = tab.eval("[...document.querySelectorAll('.leader')].map(l => [l.classList.contains('on'), l.classList.contains('now'), +getComputedStyle(l).opacity])")
+    assert [on for on, _, _ in leaders] == [i < k for i in range(7)], "a leader is drawn as its step comes"
+    assert [now for _, now, _ in leaders] == [i == k - 1 for i in range(7)], "and only the step in view is the current one"
+    assert leaders[k - 1][2] == 1, "at full strength"
+    assert all(0.1 < o < 0.5 for on, now, o in leaders if on and not now), "the ones before it, faint"
+    assert all(o == 0 for on, _, o in leaders if not on), "the ones to come, not there yet"
+    tab.eval("document.querySelector('[data-act=pause]').click()")
+    tab.wait_for("document.querySelector('[data-act=pause]').disabled", 40)  # the replay has ended
+    tab.pump(0.7)
+    leaders = tab.eval("[...document.querySelectorAll('.leader')].map(l => [l.classList.contains('now'), +getComputedStyle(l).opacity])")
+    assert len(leaders) == 7 and not any(now for now, _ in leaders), "none is current once it is over"
+    assert all(0.1 < o < 0.5 for _, o in leaders), f"all of them faint: {leaders}"
+    assert len({o for _, o in leaders}) == 1, "and equally so"
+    assert tab.errors == []
+
+
+@needs_browser
 def test_the_rail_shows_a_step_and_holds_the_replay_there(served):
     base, browser = served
     tab = new_tab(browser)
@@ -988,6 +1036,7 @@ def test_the_rail_shows_a_step_and_holds_the_replay_there(served):
     on = lambda sel: tab.eval(f"document.querySelector('{sel}').classList.contains('on')")  # noqa: E731
     assert on(".layer.snapbox") and on(".layer.pen") and not on(".layer.tick") and not on(".layer.cropbox"), "the marks of step three, and no later one"
     assert tab.eval("document.querySelector('.rail li.now button').dataset.goto") == "3"
+    assert tab.eval("[...document.querySelectorAll('.leader')].map(l => l.classList.contains('now'))") == [False, False, True, False, False, False, False], "the step looked at has its line at full strength"
     tab.pump(2.4)
     assert shown(tab) == 3, "held until resumed"
     tab.eval("document.querySelector('[data-act=pause]').click()")
@@ -1027,7 +1076,8 @@ def test_with_reduced_motion_the_page_is_its_settled_state(served):
     tab.open(base, still=True)
     tab.pump(1.0)
     assert tab.eval("document.documentElement.classList.contains('play')") is False
-    assert tab.eval("[...document.querySelectorAll('.notes li, .rp-count, .reveal, .rise, .leader')].every(e => getComputedStyle(e).opacity === '1')")
+    assert tab.eval("[...document.querySelectorAll('.notes li, .rp-count, .reveal, .rise')].every(e => getComputedStyle(e).opacity === '1')")
+    assert tab.eval("[...document.querySelectorAll('.leader')].every(e => e.classList.contains('on') && !e.classList.contains('now') && +getComputedStyle(e).opacity > 0.1 && +getComputedStyle(e).opacity < 0.5)"), "drawn, and faint"
     assert tab.eval("document.getAnimations().length") == 0, "nothing moves: not the glow, not a fade"
     assert tab.eval("getComputedStyle(document.querySelector('.layer.pen')).transform") == "none"
     assert tab.eval("document.querySelectorAll('.leader').length") == 7

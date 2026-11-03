@@ -242,6 +242,10 @@ def synthetic(root: Path) -> dict:
         "b": b,
         "b_alone": cfg["B"]["extraction_alone"],
         "cost": {"a": cfg["A"]["cost"]["per_page_usd"], "b": cfg["B"]["cost"]["per_page_usd"]},
+        # A single read's own cost a page, where the report records one: the baseline is the hosted single read (it
+        # verifies nothing, so its cost is the read's alone). The report records no open-weights single read on its
+        # own (arm B's reads are priced with the checks that follow them), so that side has none: a dash.
+        "single_cost": {"hosted": cfg["baseline"]["cost"]["per_page_usd"], "open": None},
         "h1": report["hypotheses"]["H1"],
         "h2": report["hypotheses"]["H2"],
         "h3": h3,
@@ -903,11 +907,15 @@ def ledger_section(s: dict, r: dict, names: dict[str, str]) -> str:
     rows = ledger_rows(s, r)
     body = "".join(ledger_row(row, s, r, names, level, resamples) for row in rows)
     spark, open_, sam = (fact("model", names[k]) for k in ("muse-spark-1.3", "muse-spark-open", "sam-3.1"))
-    per_page = {key: f"${s['cost'][k]:.4f}" for key, k in (("hosted", "a"), ("open", "b"))}
-    cost_cell = swap(*(f'<span class="big">{fact(f"hw.cost.{key}", per_page[key])}</span>' for key in MODES))
+    cost_cell = swap(*(f'<span class="big">{fact(f"hw.cost.{key}", f"${s['cost'][k]:.4f}")}</span>' for key, k in (("hosted", "a"), ("open", "b"))))
+    single = (
+        f'<span class="big">{fact(f"hw.cost.single.{key}", f"${s['single_cost'][key]:.4f}")}</span>' if s["single_cost"][key] is not None
+        else '<span class="mut" title="The test report records no cost a page for this single read">—</span>'
+        for key in MODES
+    )
     cost = (
         '<tbody class="cost"><tr class="main"><th scope="row"><span class="lt">Cost a page</span><small>hosted at the hackathon’s discount</small></th>'
-        f'<td data-label="Archivist" colspan="2">{cost_cell}</td><td colspan="2"></td></tr></tbody>'
+        f'<td data-label="Archivist">{cost_cell}</td><td data-label="Single read">{swap(*single)}</td><td colspan="2"></td></tr></tbody>'
     )
     h3 = s["h3"]["numbers"]
     verdict = "was met" if s["h3"]["met"] else '<span class="miss">was missed</span>'
