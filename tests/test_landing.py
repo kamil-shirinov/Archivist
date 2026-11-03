@@ -873,8 +873,9 @@ def test_the_logo_is_the_brand_mark_in_both_themes_and_only_the_wordmark_follows
         assert not re.search(r"\.logo\s+(svg|rect|path)[^{]*\{[^}]*(fill|stroke)\s*:", sheet.read_text()), f"{sheet.name} recolours the app's mark"
     # the README too: the same mark in a dark theme, not a recolour of it (its wordmark is the heading under it, which GitHub colours)
     readme = (ROOT / "README.md").read_text()
-    assert "<picture>" not in readme.split("# Archivist")[0] and "logo-dark" not in readme, "no dark variant of the mark"
-    assert re.findall(r'<img[^>]*src="(assets/brand/[^"]+)"', readme.split("# Archivist")[0]) == ["assets/brand/logo-light.svg"]
+    heading = re.search(r"<h1[^>]*>(.*?)</h1>", readme, re.S).group(1)  # P55: the mark sits inline in the heading
+    assert "<picture>" not in heading and "logo-dark" not in readme, "no dark variant of the mark"
+    assert re.findall(r'<img[^>]*src="(assets/brand/[^"]+)"', readme) == ["assets/brand/logo-light.svg"]
     assert not (ROOT / "assets/brand/logo-dark.svg").exists(), "the recolour is gone, so nothing can show it"
 
 
