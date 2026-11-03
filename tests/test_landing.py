@@ -1187,9 +1187,18 @@ def test_a_commit_shows_its_message_on_focus_and_links_to_github(served):
     tab.open(base, dark=False)
     jump(tab, "#planned")
     tip = "document.querySelectorAll('.tl .ev')[1].querySelector('.tip')"
-    assert tab.eval(f"getComputedStyle({tip}).opacity") == "0"
-    tab.eval("document.querySelectorAll('.tl .ev a')[1].focus()")
-    tab.wait_for(f"getComputedStyle({tip}).opacity === '1'", 5)
+    if tab.eval("matchMedia('(hover: none)').matches"):
+        # a screen with nothing to hover with (a touch screen, or a browser that reports none): the message is plain text
+        assert tab.eval(f"getComputedStyle({tip}).opacity") == "1" and tab.eval(f"getComputedStyle({tip}).position") == "static"
+    else:
+        assert tab.eval(f"getComputedStyle({tip}).opacity") == "0"
+        tab.eval("document.querySelectorAll('.tl .ev a')[1].focus()")
+        tab.wait_for(f"getComputedStyle({tip}).opacity === '1'", 5)
+    # the touch rule itself, applied whatever this browser reports: the message is shown as plain text under its commit
+    touch = re.search(r"@media \(hover:none\)\{(.*?\})\}", (ROOT / "docs/landing/landing.css").read_text(), re.S).group(1)
+    tab.eval(f"document.head.insertAdjacentHTML('beforeend', '<style>{touch}</style>')")
+    assert tab.eval(f"getComputedStyle({tip}).opacity") == "1" and tab.eval(f"getComputedStyle({tip}).position") == "static"
+    assert tab.eval(f"getComputedStyle({tip}).display") == "block"
     proof = jload(landing.PROOF_FILE)
     assert tab.eval(f"{tip}.textContent") == proof["registration"]["message"]
     assert tab.eval("document.querySelectorAll('.tl .ev a')[1].href") == f"{landing.REPO}/commit/{proof['registration']['sha']}"
