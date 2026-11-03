@@ -1,0 +1,1238 @@
+{
+  "provenance": {
+    "tag": "run-real-treasury",
+    "commit": "b8ff15d9d8d5913a2e6dbdf4b8887fee329db471",
+    "archivist_from_tag_checkout": true,
+    "frozen_check": "passed",
+    "records_commit": "7b6f179e0ab219e81b857cb570955bc301c92b39",
+    "scorers_sha256": {
+      "labelling/score.py": "82e56a8613e7fe1fb51020c0ea47d593adab07d736ba046aa2534f083ab39334",
+      "labelling/score_corrected.py": "ccf0f84ef199e387d5b4cec3d55c7ecff3a8158fe91ddae662968f3e3250ca96"
+    }
+  },
+  "files_sha256": {
+    "results/real_test/held_out/labels/draw.json": "b575cc271445abc1621bfd942362c7b3db6e61b9e26ceca83648f0b580492168",
+    "results/real_test/held_out/labels/labels.jsonl": "5f98f48235f3f4396594b11fe5ccd4d98b66c98629761efa330f80f3134de118",
+    "results/real_test/held_out/labels/relabels.jsonl": "5861a0f5e8c1f543fef15a9f2966382beefb75dbd62ec12462dcb9c4ba24f2c0",
+    "results/real_test/held_out/labels/dashes_checked.jsonl": "580fd0168f17f9596b84d110db4bcea826e70ed905e3c20212a1100d9a7d1f79",
+    "results/real_test/held_out/score/score.json": "0c4d83bbee7ef00aa673dbb1d339778540fdd8605cb104a73c93d04822c898a0"
+  },
+  "official": {
+    "labels": {
+      "left_out/as_run": {
+        "cells": 162,
+        "pages": 17,
+        "by_choice": {
+          "blank": 15,
+          "cant_read": 5,
+          "not_on_page": 1,
+          "value": 141
+        },
+        "by_outcome": {
+          "right": 135,
+          "wrong": 22,
+          "cant_read": 5,
+          "abstained": 0
+        },
+        "overall": {
+          "single_read_error": {
+            "value": 0.16677670223614366,
+            "ci": [
+              0.08169113148481931,
+              0.25822634015406637
+            ]
+          },
+          "archivist_error": {
+            "value": 0.18747468629536523,
+            "ci": [
+              0.016407802694962583,
+              0.31829304581012396
+            ]
+          },
+          "catch_rate": {
+            "value": 0.4494939601697679,
+            "ci": [
+              0.27929178828836926,
+              0.9437473446716461
+            ]
+          }
+        },
+        "r1": {
+          "met": false,
+          "archivist_ci": [
+            0.016407802694962583,
+            0.31829304581012396
+          ],
+          "single_read_ci": [
+            0.08169113148481931,
+            0.25822634015406637
+          ]
+        },
+        "by_stratum": {
+          "1939_1942": {
+            "single_read_error": {
+              "value": 0.19651212250106329,
+              "ci": [
+                0.0735944176881812,
+                0.3396259920634919
+              ]
+            },
+            "archivist_error": {
+              "value": 0.24685138539042803,
+              "ci": [
+                0.0,
+                0.4219691895512391
+              ]
+            },
+            "catch_rate": {
+              "value": 0.36363636363636365,
+              "ci": [
+                0.2085427135678392,
+                1.0
+              ]
+            },
+            "counted": {
+              "cells": 62,
+              "pages": 7,
+              "by_choice": {
+                "blank": 11,
+                "cant_read": 2,
+                "value": 49
+              },
+              "by_outcome": {
+                "right": 48,
+                "wrong": 12,
+                "cant_read": 2,
+                "abstained": 0
+              }
+            }
+          },
+          "total_claims": {
+            "single_read_error": {
+              "value": 0.10309278350515466,
+              "ci": [
+                0.061839890595413435,
+                0.13793804317353517
+              ]
+            },
+            "archivist_error": {
+              "value": 0.04545454545454543,
+              "ci": [
+                0.0,
+                0.11904761904761905
+              ]
+            },
+            "catch_rate": {
+              "value": 0.8,
+              "ci": [
+                0.5000000000000001,
+                1.0
+              ]
+            },
+            "counted": {
+              "cells": 100,
+              "pages": 10,
+              "by_choice": {
+                "blank": 4,
+                "cant_read": 3,
+                "not_on_page": 1,
+                "value": 92
+              },
+              "by_outcome": {
+                "right": 87,
+                "wrong": 10,
+                "cant_read": 3,
+                "abstained": 0
+              }
+            }
+          }
+        }
+      },
+      "left_out/failed_to_review": {
+        "cells": 162,
+        "pages": 17,
+        "by_choice": {
+          "blank": 15,
+          "cant_read": 5,
+          "not_on_page": 1,
+          "value": 141
+        },
+        "by_outcome": {
+          "right": 135,
+          "wrong": 22,
+          "cant_read": 5,
+          "abstained": 0
+        },
+        "overall": {
+          "single_read_error": {
+            "value": 0.16677670223614366,
+            "ci": [
+              0.08169113148481931,
+              0.25822634015406637
+            ]
+          },
+          "archivist_error": {
+            "value": 0.18747468629536523,
+            "ci": [
+              0.016407802694962583,
+              0.31829304581012396
+            ]
+          },
+          "catch_rate": {
+            "value": 0.4494939601697679,
+            "ci": [
+              0.27929178828836926,
+              0.9437473446716461
+            ]
+          }
+        },
+        "r1": {
+          "met": false,
+          "archivist_ci": [
+            0.016407802694962583,
+            0.31829304581012396
+          ],
+          "single_read_ci": [
+            0.08169113148481931,
+            0.25822634015406637
+          ]
+        },
+        "by_stratum": {
+          "1939_1942": {
+            "single_read_error": {
+              "value": 0.19651212250106329,
+              "ci": [
+                0.0735944176881812,
+                0.3396259920634919
+              ]
+            },
+            "archivist_error": {
+              "value": 0.24685138539042803,
+              "ci": [
+                0.0,
+                0.4219691895512391
+              ]
+            },
+            "catch_rate": {
+              "value": 0.36363636363636365,
+              "ci": [
+                0.2085427135678392,
+                1.0
+              ]
+            },
+            "counted": {
+              "cells": 62,
+              "pages": 7,
+              "by_choice": {
+                "blank": 11,
+                "cant_read": 2,
+                "value": 49
+              },
+              "by_outcome": {
+                "right": 48,
+                "wrong": 12,
+                "cant_read": 2,
+                "abstained": 0
+              }
+            }
+          },
+          "total_claims": {
+            "single_read_error": {
+              "value": 0.10309278350515466,
+              "ci": [
+                0.061839890595413435,
+                0.13793804317353517
+              ]
+            },
+            "archivist_error": {
+              "value": 0.04545454545454543,
+              "ci": [
+                0.0,
+                0.11904761904761905
+              ]
+            },
+            "catch_rate": {
+              "value": 0.8,
+              "ci": [
+                0.5000000000000001,
+                1.0
+              ]
+            },
+            "counted": {
+              "cells": 100,
+              "pages": 10,
+              "by_choice": {
+                "blank": 4,
+                "cant_read": 3,
+                "not_on_page": 1,
+                "value": 92
+              },
+              "by_outcome": {
+                "right": 87,
+                "wrong": 10,
+                "cant_read": 3,
+                "abstained": 0
+              }
+            }
+          }
+        }
+      },
+      "kept/as_run": {
+        "cells": 400,
+        "pages": 56,
+        "by_choice": {
+          "blank": 50,
+          "cant_read": 19,
+          "column_not_on_page": 69,
+          "not_on_page": 1,
+          "value": 261
+        },
+        "by_outcome": {
+          "right": 246,
+          "wrong": 126,
+          "cant_read": 19,
+          "abstained": 9
+        },
+        "overall": {
+          "single_read_error": {
+            "value": 0.41149969746501597,
+            "ci": [
+              0.3055818004155236,
+              0.5242353952488565
+            ]
+          },
+          "archivist_error": {
+            "value": 0.36871734028085706,
+            "ci": [
+              0.2468520083608626,
+              0.5038489128536122
+            ]
+          },
+          "catch_rate": {
+            "value": 0.7419196628316014,
+            "ci": [
+              0.6025215190336424,
+              0.848656055419752
+            ]
+          }
+        },
+        "r1": {
+          "met": false,
+          "archivist_ci": [
+            0.2468520083608626,
+            0.5038489128536122
+          ],
+          "single_read_ci": [
+            0.3055818004155236,
+            0.5242353952488565
+          ]
+        },
+        "by_stratum": {
+          "1939_1942": {
+            "single_read_error": {
+              "value": 0.44442283380336495,
+              "ci": [
+                0.33082679745999133,
+                0.5715315215865631
+              ]
+            },
+            "archivist_error": {
+              "value": 0.42661870503597094,
+              "ci": [
+                0.289960444335137,
+                0.6101094770116755
+              ]
+            },
+            "catch_rate": {
+              "value": 0.7404814004376372,
+              "ci": [
+                0.5983240517518603,
+                0.8518552460673122
+              ]
+            },
+            "counted": {
+              "cells": 300,
+              "pages": 46,
+              "by_choice": {
+                "blank": 46,
+                "cant_read": 16,
+                "column_not_on_page": 69,
+                "value": 169
+              },
+              "by_outcome": {
+                "right": 159,
+                "wrong": 116,
+                "cant_read": 16,
+                "abstained": 9
+              }
+            }
+          },
+          "total_claims": {
+            "single_read_error": {
+              "value": 0.10309278350515466,
+              "ci": [
+                0.061839890595413435,
+                0.13793804317353517
+              ]
+            },
+            "archivist_error": {
+              "value": 0.04545454545454543,
+              "ci": [
+                0.0,
+                0.11904761904761905
+              ]
+            },
+            "catch_rate": {
+              "value": 0.8,
+              "ci": [
+                0.5000000000000001,
+                1.0
+              ]
+            },
+            "counted": {
+              "cells": 100,
+              "pages": 10,
+              "by_choice": {
+                "blank": 4,
+                "cant_read": 3,
+                "not_on_page": 1,
+                "value": 92
+              },
+              "by_outcome": {
+                "right": 87,
+                "wrong": 10,
+                "cant_read": 3,
+                "abstained": 0
+              }
+            }
+          }
+        }
+      },
+      "kept/failed_to_review": {
+        "cells": 400,
+        "pages": 56,
+        "by_choice": {
+          "blank": 50,
+          "cant_read": 19,
+          "column_not_on_page": 69,
+          "not_on_page": 1,
+          "value": 261
+        },
+        "by_outcome": {
+          "right": 246,
+          "wrong": 126,
+          "cant_read": 19,
+          "abstained": 9
+        },
+        "overall": {
+          "single_read_error": {
+            "value": 0.41149969746501597,
+            "ci": [
+              0.3055818004155236,
+              0.5242353952488565
+            ]
+          },
+          "archivist_error": {
+            "value": 0.36323878190104364,
+            "ci": [
+              0.2450476256446793,
+              0.501330063720211
+            ]
+          },
+          "catch_rate": {
+            "value": 0.755372093866929,
+            "ci": [
+              0.62262884345648,
+              0.8581855165986476
+            ]
+          }
+        },
+        "r1": {
+          "met": false,
+          "archivist_ci": [
+            0.2450476256446793,
+            0.501330063720211
+          ],
+          "single_read_ci": [
+            0.3055818004155236,
+            0.5242353952488565
+          ]
+        },
+        "by_stratum": {
+          "1939_1942": {
+            "single_read_error": {
+              "value": 0.44442283380336495,
+              "ci": [
+                0.33082679745999133,
+                0.5715315215865631
+              ]
+            },
+            "archivist_error": {
+              "value": 0.4228162650602408,
+              "ci": [
+                0.2825500243751962,
+                0.6147566886488574
+              ]
+            },
+            "catch_rate": {
+              "value": 0.7542669584245081,
+              "ci": [
+                0.6174088337227749,
+                0.8615669014500383
+              ]
+            },
+            "counted": {
+              "cells": 300,
+              "pages": 46,
+              "by_choice": {
+                "blank": 46,
+                "cant_read": 16,
+                "column_not_on_page": 69,
+                "value": 169
+              },
+              "by_outcome": {
+                "right": 159,
+                "wrong": 116,
+                "cant_read": 16,
+                "abstained": 9
+              }
+            }
+          },
+          "total_claims": {
+            "single_read_error": {
+              "value": 0.10309278350515466,
+              "ci": [
+                0.061839890595413435,
+                0.13793804317353517
+              ]
+            },
+            "archivist_error": {
+              "value": 0.04545454545454543,
+              "ci": [
+                0.0,
+                0.11904761904761905
+              ]
+            },
+            "catch_rate": {
+              "value": 0.8,
+              "ci": [
+                0.5000000000000001,
+                1.0
+              ]
+            },
+            "counted": {
+              "cells": 100,
+              "pages": 10,
+              "by_choice": {
+                "blank": 4,
+                "cant_read": 3,
+                "not_on_page": 1,
+                "value": 92
+              },
+              "by_outcome": {
+                "right": 87,
+                "wrong": 10,
+                "cant_read": 3,
+                "abstained": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "headline_with_classified_weights": {
+      "left_out/as_run": {
+        "single_read_error": {
+          "value": 0.157265900073281,
+          "ci": [
+            0.09145591082660284,
+            0.22374068347250903
+          ]
+        },
+        "archivist_error": {
+          "value": 0.15310059967431633,
+          "ci": [
+            0.021871587605463965,
+            0.26229091600501153
+          ]
+        },
+        "r1_met": false
+      },
+      "left_out/failed_to_review": {
+        "single_read_error": {
+          "value": 0.157265900073281,
+          "ci": [
+            0.09145591082660284,
+            0.22374068347250903
+          ]
+        },
+        "archivist_error": {
+          "value": 0.15310059967431633,
+          "ci": [
+            0.021871587605463965,
+            0.26229091600501153
+          ]
+        },
+        "r1_met": false
+      },
+      "kept/as_run": {
+        "single_read_error": {
+          "value": 0.353485458780056,
+          "ci": [
+            0.2761240766035918,
+            0.43466381921599995
+          ]
+        },
+        "archivist_error": {
+          "value": 0.2913466355857325,
+          "ci": [
+            0.19434254177721738,
+            0.3931948737972018
+          ]
+        },
+        "r1_met": false
+      },
+      "kept/failed_to_review": {
+        "single_read_error": {
+          "value": 0.353485458780056,
+          "ci": [
+            0.2761240766035918,
+            0.43466381921599995
+          ]
+        },
+        "archivist_error": {
+          "value": 0.2897467829993375,
+          "ci": [
+            0.19199585100691058,
+            0.39533795290076473
+          ]
+        },
+        "r1_met": false
+      }
+    }
+  },
+  "corrected_key": {
+    "labels": {
+      "left_out/as_run": {
+        "cells": 162,
+        "pages": 17,
+        "by_choice": {
+          "cant_read": 5,
+          "not_on_page": 1,
+          "value": 156
+        },
+        "by_outcome": {
+          "right": 150,
+          "wrong": 7,
+          "cant_read": 5,
+          "abstained": 0
+        },
+        "overall": {
+          "single_read_error": {
+            "value": 0.032446996028953304,
+            "ci": [
+              0.012005590868089944,
+              0.06488437961030209
+            ]
+          },
+          "archivist_error": {
+            "value": 0.0,
+            "ci": [
+              0.0,
+              0.0
+            ]
+          },
+          "catch_rate": {
+            "value": 1.0,
+            "ci": [
+              1.0,
+              1.0
+            ]
+          }
+        },
+        "r1": {
+          "met": true,
+          "archivist_ci": [
+            0.0,
+            0.0
+          ],
+          "single_read_ci": [
+            0.012005590868089944,
+            0.06488437961030209
+          ]
+        },
+        "by_stratum": {
+          "1939_1942": {
+            "single_read_error": {
+              "value": 0.018715440238196504,
+              "ci": [
+                0.0,
+                0.06389895660561072
+              ]
+            },
+            "archivist_error": {
+              "value": 0.0,
+              "ci": [
+                0.0,
+                0.0
+              ]
+            },
+            "catch_rate": {
+              "value": 1.0,
+              "ci": [
+                1.0,
+                1.0
+              ]
+            },
+            "counted": {
+              "cells": 62,
+              "pages": 7,
+              "by_choice": {
+                "cant_read": 2,
+                "value": 60
+              },
+              "by_outcome": {
+                "right": 59,
+                "wrong": 1,
+                "cant_read": 2,
+                "abstained": 0
+              }
+            }
+          },
+          "total_claims": {
+            "single_read_error": {
+              "value": 0.06185567010309281,
+              "ci": [
+                0.03331521739130436,
+                0.08824460163812356
+              ]
+            },
+            "archivist_error": {
+              "value": 0.0,
+              "ci": [
+                0.0,
+                0.0
+              ]
+            },
+            "catch_rate": {
+              "value": 1.0,
+              "ci": [
+                1.0,
+                1.0
+              ]
+            },
+            "counted": {
+              "cells": 100,
+              "pages": 10,
+              "by_choice": {
+                "cant_read": 3,
+                "not_on_page": 1,
+                "value": 96
+              },
+              "by_outcome": {
+                "right": 91,
+                "wrong": 6,
+                "cant_read": 3,
+                "abstained": 0
+              }
+            }
+          }
+        }
+      },
+      "left_out/failed_to_review": {
+        "cells": 162,
+        "pages": 17,
+        "by_choice": {
+          "cant_read": 5,
+          "not_on_page": 1,
+          "value": 156
+        },
+        "by_outcome": {
+          "right": 150,
+          "wrong": 7,
+          "cant_read": 5,
+          "abstained": 0
+        },
+        "overall": {
+          "single_read_error": {
+            "value": 0.032446996028953304,
+            "ci": [
+              0.012005590868089944,
+              0.06488437961030209
+            ]
+          },
+          "archivist_error": {
+            "value": 0.0,
+            "ci": [
+              0.0,
+              0.0
+            ]
+          },
+          "catch_rate": {
+            "value": 1.0,
+            "ci": [
+              1.0,
+              1.0
+            ]
+          }
+        },
+        "r1": {
+          "met": true,
+          "archivist_ci": [
+            0.0,
+            0.0
+          ],
+          "single_read_ci": [
+            0.012005590868089944,
+            0.06488437961030209
+          ]
+        },
+        "by_stratum": {
+          "1939_1942": {
+            "single_read_error": {
+              "value": 0.018715440238196504,
+              "ci": [
+                0.0,
+                0.06389895660561072
+              ]
+            },
+            "archivist_error": {
+              "value": 0.0,
+              "ci": [
+                0.0,
+                0.0
+              ]
+            },
+            "catch_rate": {
+              "value": 1.0,
+              "ci": [
+                1.0,
+                1.0
+              ]
+            },
+            "counted": {
+              "cells": 62,
+              "pages": 7,
+              "by_choice": {
+                "cant_read": 2,
+                "value": 60
+              },
+              "by_outcome": {
+                "right": 59,
+                "wrong": 1,
+                "cant_read": 2,
+                "abstained": 0
+              }
+            }
+          },
+          "total_claims": {
+            "single_read_error": {
+              "value": 0.06185567010309281,
+              "ci": [
+                0.03331521739130436,
+                0.08824460163812356
+              ]
+            },
+            "archivist_error": {
+              "value": 0.0,
+              "ci": [
+                0.0,
+                0.0
+              ]
+            },
+            "catch_rate": {
+              "value": 1.0,
+              "ci": [
+                1.0,
+                1.0
+              ]
+            },
+            "counted": {
+              "cells": 100,
+              "pages": 10,
+              "by_choice": {
+                "cant_read": 3,
+                "not_on_page": 1,
+                "value": 96
+              },
+              "by_outcome": {
+                "right": 91,
+                "wrong": 6,
+                "cant_read": 3,
+                "abstained": 0
+              }
+            }
+          }
+        }
+      },
+      "kept/as_run": {
+        "cells": 400,
+        "pages": 56,
+        "by_choice": {
+          "blank": 5,
+          "cant_read": 19,
+          "column_not_on_page": 69,
+          "not_on_page": 1,
+          "value": 306
+        },
+        "by_outcome": {
+          "right": 291,
+          "wrong": 81,
+          "cant_read": 19,
+          "abstained": 9
+        },
+        "overall": {
+          "single_read_error": {
+            "value": 0.2775656801317242,
+            "ci": [
+              0.15969631006798568,
+              0.40930455783672703
+            ]
+          },
+          "archivist_error": {
+            "value": 0.16321221238442377,
+            "ci": [
+              0.06125899633326533,
+              0.33310707536801254
+            ]
+          },
+          "catch_rate": {
+            "value": 0.830637303074614,
+            "ci": [
+              0.71086061867237,
+              0.9286123503325128
+            ]
+          }
+        },
+        "r1": {
+          "met": false,
+          "archivist_ci": [
+            0.06125899633326533,
+            0.33310707536801254
+          ],
+          "single_read_ci": [
+            0.15969631006798568,
+            0.40930455783672703
+          ]
+        },
+        "by_stratum": {
+          "1939_1942": {
+            "single_read_error": {
+              "value": 0.3005932120976372,
+              "ci": [
+                0.17109629172463617,
+                0.45065562520636193
+              ]
+            },
+            "archivist_error": {
+              "value": 0.19244604316546746,
+              "ci": [
+                0.06815391179062515,
+                0.4328428581147736
+              ]
+            },
+            "catch_rate": {
+              "value": 0.8269168553866063,
+              "ci": [
+                0.7068271725160784,
+                0.9218044724809447
+              ]
+            },
+            "counted": {
+              "cells": 300,
+              "pages": 46,
+              "by_choice": {
+                "blank": 5,
+                "cant_read": 16,
+                "column_not_on_page": 69,
+                "value": 210
+              },
+              "by_outcome": {
+                "right": 200,
+                "wrong": 75,
+                "cant_read": 16,
+                "abstained": 9
+              }
+            }
+          },
+          "total_claims": {
+            "single_read_error": {
+              "value": 0.06185567010309281,
+              "ci": [
+                0.03331521739130436,
+                0.08824460163812356
+              ]
+            },
+            "archivist_error": {
+              "value": 0.0,
+              "ci": [
+                0.0,
+                0.0
+              ]
+            },
+            "catch_rate": {
+              "value": 1.0,
+              "ci": [
+                1.0,
+                1.0
+              ]
+            },
+            "counted": {
+              "cells": 100,
+              "pages": 10,
+              "by_choice": {
+                "cant_read": 3,
+                "not_on_page": 1,
+                "value": 96
+              },
+              "by_outcome": {
+                "right": 91,
+                "wrong": 6,
+                "cant_read": 3,
+                "abstained": 0
+              }
+            }
+          }
+        }
+      },
+      "kept/failed_to_review": {
+        "cells": 400,
+        "pages": 56,
+        "by_choice": {
+          "blank": 5,
+          "cant_read": 19,
+          "column_not_on_page": 69,
+          "not_on_page": 1,
+          "value": 306
+        },
+        "by_outcome": {
+          "right": 291,
+          "wrong": 81,
+          "cant_read": 19,
+          "abstained": 9
+        },
+        "overall": {
+          "single_read_error": {
+            "value": 0.2775656801317242,
+            "ci": [
+              0.15969631006798568,
+              0.40930455783672703
+            ]
+          },
+          "archivist_error": {
+            "value": 0.14965403679185652,
+            "ci": [
+              0.05300527659140304,
+              0.3179221603097742
+            ]
+          },
+          "catch_rate": {
+            "value": 0.8505809477592857,
+            "ci": [
+              0.7441541434123812,
+              0.9364996634440867
+            ]
+          }
+        },
+        "r1": {
+          "met": false,
+          "archivist_ci": [
+            0.05300527659140304,
+            0.3179221603097742
+          ],
+          "single_read_ci": [
+            0.15969631006798568,
+            0.40930455783672703
+          ]
+        },
+        "by_stratum": {
+          "1939_1942": {
+            "single_read_error": {
+              "value": 0.3005932120976372,
+              "ci": [
+                0.17109629172463617,
+                0.45065562520636193
+              ]
+            },
+            "archivist_error": {
+              "value": 0.17771084337349383,
+              "ci": [
+                0.05962626361212324,
+                0.4120421953935611
+              ]
+            },
+            "catch_rate": {
+              "value": 0.8472986088644452,
+              "ci": [
+                0.7413183582275877,
+                0.934484161906244
+              ]
+            },
+            "counted": {
+              "cells": 300,
+              "pages": 46,
+              "by_choice": {
+                "blank": 5,
+                "cant_read": 16,
+                "column_not_on_page": 69,
+                "value": 210
+              },
+              "by_outcome": {
+                "right": 200,
+                "wrong": 75,
+                "cant_read": 16,
+                "abstained": 9
+              }
+            }
+          },
+          "total_claims": {
+            "single_read_error": {
+              "value": 0.06185567010309281,
+              "ci": [
+                0.03331521739130436,
+                0.08824460163812356
+              ]
+            },
+            "archivist_error": {
+              "value": 0.0,
+              "ci": [
+                0.0,
+                0.0
+              ]
+            },
+            "catch_rate": {
+              "value": 1.0,
+              "ci": [
+                1.0,
+                1.0
+              ]
+            },
+            "counted": {
+              "cells": 100,
+              "pages": 10,
+              "by_choice": {
+                "cant_read": 3,
+                "not_on_page": 1,
+                "value": 96
+              },
+              "by_outcome": {
+                "right": 91,
+                "wrong": 6,
+                "cant_read": 3,
+                "abstained": 0
+              }
+            }
+          }
+        }
+      }
+    },
+    "headline_with_classified_weights": {
+      "left_out/as_run": {
+        "single_read_error": {
+          "value": 0.04032858922488178,
+          "ci": [
+            0.019395627302321087,
+            0.06743400804363153
+          ]
+        },
+        "archivist_error": {
+          "value": 0.0,
+          "ci": [
+            0.0,
+            0.0
+          ]
+        },
+        "r1_met": true
+      },
+      "left_out/failed_to_review": {
+        "single_read_error": {
+          "value": 0.04032858922488178,
+          "ci": [
+            0.019395627302321087,
+            0.06743400804363153
+          ]
+        },
+        "archivist_error": {
+          "value": 0.0,
+          "ci": [
+            0.0,
+            0.0
+          ]
+        },
+        "r1_met": true
+      },
+      "kept/as_run": {
+        "single_read_error": {
+          "value": 0.20808647190130541,
+          "ci": [
+            0.12473735498484666,
+            0.30495855529781796
+          ]
+        },
+        "archivist_error": {
+          "value": 0.09672383622018584,
+          "ci": [
+            0.037638161869190265,
+            0.19249864580629966
+          ]
+        },
+        "r1_met": false
+      },
+      "kept/failed_to_review": {
+        "single_read_error": {
+          "value": 0.20808647190130541,
+          "ci": [
+            0.12473735498484666,
+            0.30495855529781796
+          ]
+        },
+        "archivist_error": {
+          "value": 0.08944283719869892,
+          "ci": [
+            0.03407832098141518,
+            0.18213084008161248
+          ]
+        },
+        "r1_met": false
+      }
+    }
+  },
+  "changes": {
+    "labelled_cells": 400,
+    "cells_checked": 50,
+    "marks": {
+      "dash": 45,
+      "nothing": 4,
+      "cant_tell": 1
+    },
+    "answers_changed": 45,
+    "answers_changed_by_stratum": {
+      "1939_1942": 41,
+      "total_claims": 4
+    },
+    "cells_checked_by_stratum": {
+      "1939_1942": 46,
+      "total_claims": 4
+    }
+  },
+  "relabel_agreement": {
+    "first_pass_key": {
+      "status": "done",
+      "agree": 24,
+      "of": 40,
+      "wilson": [
+        0.44595893660346186,
+        0.7365167431570808
+      ]
+    },
+    "corrected_key": {
+      "status": "done",
+      "agree": 29,
+      "of": 40,
+      "wilson": [
+        0.5716504419378943,
+        0.8389198375233267
+      ]
+    }
+  }
+}
