@@ -5,7 +5,8 @@ Every number on it comes from a committed file, and these tests are what keeps i
 the page that is not inside a fact fails; and the page may call nothing. The redesign lost nothing: every fact
 key and every sentence of P51's page is still on the page (tests/landing_content.py, tests/landing_p51.json), and
 what a fair reader needs, the missed targets above all, is in the page's text and not behind a click or in a hidden
-panel. Held-out results appear as aggregates only. The stylesheet may animate nothing but opacity and transform.
+panel. Held-out results appear as aggregates only. The stylesheet may animate nothing but opacity and transform, with
+the height of an expandable panel's own box (.xp) as the one addition.
 Then the page is run in a browser: its replay plays by itself and can be paused, the ledger's switch re-counts
 every figure, a row, a step and a chart each do what they say, a theme change is revealed in a circle (or, where
 the browser has no View Transitions, a cross-fade, and instantly with reduced motion), a visitor who asked for
@@ -14,6 +15,7 @@ reduced motion gets the settled page, and it fits a phone, light and dark.
 
 import importlib.util
 import json
+import math
 import re
 import subprocess
 import sys
@@ -630,6 +632,36 @@ def test_each_dot_grid_is_a_thousand_dots_with_its_marked_ones_counted(html_text
 def test_the_dots_come_out_the_same_every_build():
     assert landing.dot_grid("x", 0.25, "wrong", "l") == landing.dot_grid("x", 0.25, "wrong", "l")
     assert landing.dot_grid("x", 0.25, "wrong", "l")[1] == 250
+
+
+def _grid_colour(svg: str) -> str:
+    """What a grid's marked dots are drawn as: its path's class, or, where most are marked, its base pattern's."""
+    path = re.search(r'<path class="(\w+)"', svg).group(1)
+    return path if path != "plain" else re.search(r'fill="url\(#dot-(\w+)\)"', svg).group(1)
+
+
+def test_the_wrong_values_are_the_same_colour_in_both_grids(html_text):
+    pairs = [re.findall(r'<svg class="dots".*?</svg>', pair, re.S) for pair in re.findall(r'<div class="dotpair">(.*?)</div>', html_text, re.S)]
+    colours = [[_grid_colour(svg) for svg in grids] for grids in pairs]
+    wrong = [c for c in colours if "wrong" in c]
+    assert len(wrong) == 4, "the two rows of wrong values, on each side of the switch"
+    assert all(c == ["wrong", "wrong"] for c in wrong), wrong
+    other = [c for c in colours if "wrong" not in c]
+    assert other and all(c[-1] == "once" for c in other if len(c) == 2), "the single read's other grids are as they were"
+
+
+def test_no_element_leaves_a_tooltip_to_the_browser(html_text):
+    assert not re.search(r'\stitle="', re.sub(r"<title>.*?</title>", "", html_text, flags=re.S)), "a title attribute is the browser's own tooltip"
+    reasons = re.findall(r'<span class="mut dash">—<span class="tip">([^<]+)</span></span>', html_text)
+    assert reasons and set(reasons) <= {"Not reported for this set-up", "The test report records no cost a page for this single read"}, "a dash says why, as text"
+    script = (ROOT / "docs/landing/landing.js").read_text()
+    assert 'const MARKS = ".mk, .cb, .seg b, .dash, .tl .ev"' in script, "the page's own tooltip serves the charts, the bars, the dashes and the commits"
+
+
+def test_every_expandable_is_a_box_round_its_content(html_text):
+    assert len(re.findall(r'<tr class="detail" id="ev-\w+" hidden><td colspan="5"><div class="xp"><div class="xp-in">', html_text)) == 5
+    assert len(re.findall(r'<div class="spanel xp" id="step-\d" role="region"[^>]*hidden><div class="xp-in">', html_text)) == 7
+    assert len(re.findall(r'</summary>\s*<div class="xp"><div class="xp-in depth-in">', html_text)) == 1
     assert landing.dot_grid("x", 0.0004, "wrong", "l")[1] == 0
 
 
@@ -681,7 +713,7 @@ def test_every_chart_has_a_text_equivalent(html_text):
 
 def test_the_pipeline_has_a_panel_for_each_step_with_what_it_checks_and_when_it_fails(html_text):
     assert len(re.findall(r'class="pstep" aria-expanded="false" aria-controls="step-\d"', html_text)) == 7
-    panels = re.findall(r'<div class="spanel" id="step-(\d)" role="region"[^>]*hidden>(.*?)</div>', html_text, re.S)
+    panels = re.findall(r'<div class="spanel xp" id="step-(\d)" role="region"[^>]*hidden><div class="xp-in">(.*?)</div>', html_text, re.S)
     assert [p for p, _ in panels] == [str(i) for i in range(1, 8)]
     for _, body in panels:
         assert "What it checks." in body and "When it fails." in body
@@ -860,31 +892,66 @@ def _css_blocks(css: str):
     return rules, keyframes
 
 
-def test_the_stylesheet_animates_nothing_but_opacity_and_transform():
-    """The two exceptions are the ones the brief names: the circular reveal (the browser's View Transition, whose clip
-    is set in the script) and, where that does not exist, the cross-fade of colours (.theme-fade)."""
-    rules, keyframes = _css_blocks((ROOT / "docs/landing/landing.css").read_text())
+EXPANDER_BOX = re.compile(r"\.xp(\.open|\.moving)*")  # the box of an expandable panel: the one thing whose height may ease
+
+
+def motion_problems(css: str) -> tuple[list[str], int, dict]:
+    """What in a stylesheet moves otherwise than as allowed: only opacity and transform, and only for a visitor who has
+    not asked for reduced motion (the no-preference block); the height of an expandable panel's own box (.xp) is the
+    one addition; the circular reveal and the cross-fade (.theme-fade) are the two named exceptions."""
+    rules, keyframes = _css_blocks(css)
     allowed = {"opacity", "transform"}
-    transitions = 0
+    problems, transitions = [], 0
     for selector, body, calm in rules:
         if "theme-fade" in selector or "view-transition" in selector:
             continue
+        here = allowed | ({"height"} if EXPANDER_BOX.fullmatch(selector) else set())
         for value in re.findall(r"(?<![\w-])transition\s*:\s*([^;]+)", body):
+            if value.strip() == "none":
+                continue  # switching a transition off is not a movement
             transitions += 1
             props = {item.strip().split()[0] for item in re.split(r",(?![^()]*\))", value)}
-            assert props <= allowed, f"{selector}: transitions {props - allowed}"
-            assert calm, f"{selector}: a transition that a visitor who asked for reduced motion would still see"
+            if not props <= here:
+                problems.append(f"{selector}: transitions {props - here}")
+            if not calm:
+                problems.append(f"{selector}: a transition that a visitor who asked for reduced motion would still see")
         for value in re.findall(r"(?<![\w-])animation\s*:\s*([^;]+)", body):
             if value.strip() == "none":
                 continue
-            assert [t for t in re.findall(r"[A-Za-z][\w-]*", value) if t in keyframes], f"{selector}: an animation with no keyframes of ours: {value}"
-            assert calm, f"{selector}: an animation that a visitor who asked for reduced motion would still see"
-        assert not re.search(r"transition-property\s*:", body)
-    assert transitions >= 10
+            if not [w for w in re.findall(r"[A-Za-z][\w-]*", value) if w in keyframes]:
+                problems.append(f"{selector}: an animation with no keyframes of ours: {value}")
+            if not calm:
+                problems.append(f"{selector}: an animation that a visitor who asked for reduced motion would still see")
+        if re.search(r"transition-property\s*:", body):
+            problems.append(f"{selector}: transition-property")
     for name, declarations in keyframes.items():
         props = {d.split(":")[0].strip() for d in declarations.split(";") if ":" in d}
-        assert props <= allowed, f"@keyframes {name} animates {props - allowed}"
+        if not props <= allowed:
+            problems.append(f"@keyframes {name} animates {props - allowed}")
+    return problems, transitions, keyframes
+
+
+def test_the_stylesheet_animates_nothing_but_opacity_and_transform_and_an_expandables_height():
+    """The exceptions are the ones the brief names: the circular reveal (the browser's View Transition, whose clip is set
+    in the script), where that does not exist the cross-fade of colours (.theme-fade), and the height of an
+    expandable panel, which may ease, scoped to its own box."""
+    css = (ROOT / "docs/landing/landing.css").read_text()
+    problems, transitions, keyframes = motion_problems(css)
+    assert problems == []
+    assert transitions >= 10
     assert {"rise", "fade", "show", "drift-a", "drift-b", "drift-c"} <= set(keyframes)
+    heights = re.findall(r"([^{}]+)\{[^{}]*transition\s*:[^;{}]*\bheight\b", re.sub(r"/\*.*?\*/", "", css, flags=re.S))
+    assert [h.strip() for h in heights] == [".xp"], "height eases on the panel's box and nowhere else"
+
+
+def test_the_motion_lint_can_fail():
+    quiet = "@media (prefers-reduced-motion:no-preference){%s}"
+    assert motion_problems(quiet % ".xp{transition:height 320ms ease}")[0] == [], "the box of an expandable may ease its height"
+    assert motion_problems(quiet % ".panel{transition:height 320ms ease}")[0], "no other height may"
+    assert motion_problems(quiet % ".xp.open>.xp-in{transition:height 1s}")[0], "nor may its content"
+    assert motion_problems(quiet % ".xp{transition:width 320ms ease}")[0], "and the box may ease nothing but height, opacity and transform"
+    assert motion_problems(".xp{transition:height 320ms ease}")[0], "even the box's height is for a visitor who has not asked for reduced motion only"
+    assert motion_problems(quiet % ".xp{transition-property:height}")[0]
 
 
 def test_the_script_moves_only_one_thing_by_the_browsers_own_animation_the_theme_reveal():
@@ -973,6 +1040,32 @@ def hover(tab, selector: str) -> None:
 def jump(tab, selector: str, offset: int = 100) -> None:
     tab.eval(f"(()=>{{const e=document.querySelector({selector!r});scrollTo({{top:e.getBoundingClientRect().top+scrollY-{offset},behavior:'instant'}})}})()")
     tab.pump(0.4)
+
+
+RECORD = """async ({click, box, chev, host, ms, reverse}) => {
+  const $ = (s) => document.querySelector(s);
+  const angle = (el) => { const m = new DOMMatrix(getComputedStyle(el).transform); return Math.atan2(m.b, m.a) * 180 / Math.PI; };
+  const out = [];
+  const t0 = performance.now();
+  const sample = (tag) => { const b = $(box); const inner = b.querySelector('.xp-in'); const cs = getComputedStyle(inner); const d = b.closest('details');
+    out.push({t: performance.now() - t0, h: (d && !d.open) ? 0 : b.getBoundingClientRect().height, moving: b.classList.contains('moving'),
+      chev: chev ? angle($(chev)) : null, op: +cs.opacity, ty: new DOMMatrix(cs.transform).m42, tag}); };
+  $(click).click();
+  let turned = false;
+  await new Promise((done) => { const loop = () => { sample(''); const now = performance.now() - t0;
+      if (reverse && !turned && now >= reverse) { turned = true; sample('before'); $(click).click(); sample('after'); }
+      if (now < ms) requestAnimationFrame(loop); else done(); }; loop(); });
+  return out;
+}"""
+
+
+def record(tab, click: str, box: str, chev: str | None = None, ms: int = 900, reverse: int = 0) -> list[dict]:
+    """Click `click` and sample the panel `box` on every frame for `ms`; with `reverse`, click again at that moment."""
+    return tab.eval(f"({RECORD})({json.dumps({'click': click, 'box': box, 'chev': chev, 'host': None, 'ms': ms, 'reverse': reverse})})")
+
+
+def is_monotone(values: list[float], up: bool, slack: float = 0.75) -> bool:
+    return all((b - a) >= -slack if up else (a - b) >= -slack for a, b in zip(values, values[1:]))
 
 
 @needs_browser
@@ -1149,6 +1242,90 @@ def test_a_row_opens_to_its_interval_its_counts_its_dots_and_its_sources(served)
     assert tab.eval("document.getElementById('ev-h1').hidden") is True
 
 
+EXPANDABLES = [
+    ("a ledger row", "#ledger", 150, "[data-row=h1] .opener", "#ev-h1 .xp", "[data-row=h1] .opener .chev", "document.getElementById('ev-h1').hidden"),
+    ("a pipeline step", "#how", 120, ".pstep[aria-controls=step-5]", "#step-5", None, "document.getElementById('step-5').hidden"),
+    ("by stratum and by family", "#depth", 300, "#depth summary", "#depth .xp", "#depth summary .chev", "!document.getElementById('depth').open"),
+]
+
+
+@needs_browser
+@pytest.mark.parametrize("where,offset,click,box,chev,closed", [e[1:] for e in EXPANDABLES], ids=[e[0] for e in EXPANDABLES])
+def test_an_expandable_eases_open_and_closed_its_content_behind_it_and_a_click_turns_it_round(served, where, offset, click, box, chev, closed):
+    base, browser = served
+    tab = new_tab(browser)
+    tab.open(base, dark=False)
+    jump(tab, where, offset)
+    # opening: the height eases up (about 420 ms), the content fades in and rises behind it, the chevron turns with it
+    run = record(tab, click, box, chev, ms=1000)
+    heights = [s["h"] for s in run]
+    full = heights[-1]
+    assert full > 40 and is_monotone(heights, True), heights
+    assert len([h for h in heights if 0.05 * full < h < 0.95 * full]) >= 2, "eased, not jumped"
+    moving = [s for s in run if s["moving"]]
+    assert 300 <= moving[-1]["t"] - run[0]["t"] <= 900, f"opened in {moving[-1]['t'] - run[0]['t']:.0f} ms"
+    settled = next(s for s in run if not s["moving"])
+    assert abs(settled["h"] - moving[-1]["h"]) < max(3.0, full * 0.03), f"no jump at the end: {moving[-1]['h']} to {settled['h']}"
+    assert tab.eval(f"document.querySelector({box!r}).style.height") == "", "at rest it is as tall as its content"
+    ops = [s["op"] for s in run]
+    assert ops[0] < 0.3 and ops[-1] == 1 and any(0.05 < o < 0.95 for o in ops), "the content fades in"
+    assert any(s["ty"] > 0.5 for s in run[:12]) and run[-1]["ty"] == 0, "and rises"
+    assert ops.index(next(o for o in ops if o > 0.5)) >= next(i for i, h in enumerate(heights) if h > 0.3 * full) - 1, "just behind the height, not ahead of it"
+    if chev:
+        angles = [s["chev"] for s in run]
+        assert any(-40 < a < 40 for a in angles) and abs(angles[-1] - 45) < 1 and is_monotone(angles, True, 1.0), f"the chevron turns in step: {angles[0]:.0f} to {angles[-1]:.0f}"
+    # closing: the same in reverse (about 320 ms)
+    run = record(tab, click, box, chev, ms=800)
+    heights = [s["h"] for s in run]
+    assert is_monotone(heights, False) and heights[-1] < 1 and len([h for h in heights if 0.05 * full < h < 0.95 * full]) >= 2, heights
+    assert 200 <= [s for s in run if s["moving"]][-1]["t"] - run[0]["t"] <= 800, "closed in about 320 ms"
+    assert tab.eval(closed) is True and tab.eval(f"document.querySelector({box!r}).style.height") == ""
+    if chev:
+        assert abs(run[-1]["chev"] + 45) < 1 and any(-40 < s["chev"] < 40 for s in run), "the chevron went back with it"
+    # a click part-way turns it round from where it is, with no jump
+    run = record(tab, click, box, chev, ms=1100, reverse=170)
+    i = next(k for k, s in enumerate(run) if s["tag"] == "before")
+    before, after = run[i], run[i + 1]
+    assert 0.08 * full < before["h"] < 0.97 * full, f"caught part-way: {before['h']:.0f} of {full:.0f}"
+    assert abs(after["h"] - before["h"]) < 1, "it starts from where it was"
+    assert run[i + 8]["h"] < before["h"], "and goes the other way"
+    assert run[-1]["h"] < 1 and tab.eval(closed) is True
+    assert tab.errors == []
+
+
+@needs_browser
+@pytest.mark.parametrize("where,offset,click,box,chev,closed", [e[1:] for e in EXPANDABLES], ids=[e[0] for e in EXPANDABLES])
+def test_with_reduced_motion_an_expandable_opens_and_closes_at_once(served, where, offset, click, box, chev, closed):
+    base, browser = served
+    tab = new_tab(browser)
+    tab.open(base, dark=False, still=True)
+    jump(tab, where, offset)
+    assert tab.eval(closed) is True
+    tab.eval(f"document.querySelector({click!r}).click()")
+    assert tab.eval(closed) is False, "open as soon as it is asked"
+    assert tab.eval(f"(() => {{ const b = document.querySelector({box!r}); return [b.classList.contains('moving'), b.style.height, getComputedStyle(b).transitionDuration, getComputedStyle(b.querySelector('.xp-in')).opacity, getComputedStyle(b.querySelector('.xp-in')).transform]; }})()") == [False, "", "0s", "1", "none"]
+    tab.eval(f"document.querySelector({click!r}).click()")
+    assert tab.eval(closed) is True, "and closed as soon as it is asked"
+
+
+@needs_browser
+def test_a_details_panel_stays_open_while_it_closes_and_follows_the_keyboard(served):
+    base, browser = served
+    tab = new_tab(browser)
+    tab.open(base, dark=False)
+    jump(tab, "#depth", 300)
+    tab.eval("document.querySelector('#depth summary').focus()")
+    press(tab, "Enter", 13, "\r")
+    assert tab.eval("document.getElementById('depth').open") is True and tab.eval("document.getElementById('depth').classList.contains('is-open')")
+    tab.pump(0.8)
+    press(tab, " ", 32, " ")
+    tab.pump(0.1)
+    assert tab.eval("document.getElementById('depth').open") is True, "still open: its closing is being seen"
+    assert tab.eval("document.getElementById('depth').classList.contains('is-open')") is False and tab.eval("getComputedStyle(document.querySelector('#depth summary .chev')).transform") != "none"
+    tab.pump(0.7)
+    assert tab.eval("document.getElementById('depth').open") is False
+
+
 @needs_browser
 def test_the_condition_chart_turns_an_arm_off_and_gives_its_figures(served):
     base, browser = served
@@ -1230,29 +1407,216 @@ def test_a_mark_says_what_it_is_when_focused_hovered_or_tapped_and_stops_when_as
     assert not tab.eval("document.querySelector('.tooltip').classList.contains('on')")
 
 
+TIP_RECORDER = """() => { window.__tip = {samples: [], flips: []}; const t = document.querySelector('.tooltip'), b = t.firstElementChild;
+  new MutationObserver(() => __tip.flips.push([performance.now(), t.classList.contains('on')])).observe(t, {attributes: true, attributeFilter: ['class']});
+  const loop = () => { const cs = getComputedStyle(b); __tip.samples.push([performance.now(), +cs.opacity, new DOMMatrix(cs.transform).m42, t.textContent]); requestAnimationFrame(loop); }; loop(); }"""
+
+
+def move(tab, x: float, y: float) -> None:
+    tab.call("Input.dispatchMouseEvent", type="mouseMoved", x=x, y=y)
+
+
 @needs_browser
-def test_a_commit_shows_its_message_on_focus_and_links_to_github(served):
+def test_a_tooltip_fades_in_with_a_rise_and_out_and_does_not_flicker_between_neighbours(served):
     base, browser = served
     tab = new_tab(browser)
     tab.open(base, dark=False)
-    jump(tab, "#planned")
+    jump(tab, "#range", 140)
+    tab.eval(f"({TIP_RECORDER})()")
+    (ax, ay), (bx, by) = tab.eval("[...document.querySelectorAll('.rg-set:not([hidden]) .mk .pt')].slice(0, 2).map(p => { const r = p.getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2]; })")
+    move(tab, ax, ay)
+    tab.pump(0.5)
+    assert tab.eval("getComputedStyle(document.querySelector('.tooltip-b')).transitionDuration").split(",")[0] == "0.18s", "in: about 180 ms"
+    move(tab, (ax + bx) / 2, (ay + by) / 2)  # the gap between the two marks
+    tab.pump(0.02)
+    move(tab, bx, by)  # and on to the neighbour
+    tab.pump(0.5)
+    move(tab, 5, 5)
+    tab.pump(0.6)
+    assert tab.eval("getComputedStyle(document.querySelector('.tooltip-b')).transitionDuration").split(",")[0] == "0.14s", "out: about 140 ms"
+    rec = tab.eval("__tip")
+    flips = [on for _, on in rec["flips"]]
+    assert flips[:1] == [True] and flips.count(False) == 1 and flips[-1] is False, f"it never let go between the neighbours: {flips}"
+    first_on = next(at for at, on in rec["flips"] if on)
+    samples = rec["samples"]
+    rising = [s for s in samples if first_on - 20 <= s[0] <= first_on + 500]
+    full = next(s[0] for s in rising if s[1] >= 0.99)
+    assert 100 <= full - first_on <= 450, f"faded in over {full - first_on:.0f} ms"
+    lift = [s[2] for s in rising if s[0] >= first_on]
+    assert any(y > 0.3 for y in lift[:8]) and abs(lift[-1]) < 0.01 and is_monotone([-y for y in lift], True, 0.2), f"a slight rise into place: {lift[:4]}"
+    assert len({s[3][:30] for s in samples if s[1] > 0.5}) >= 2, "its words became the neighbour's, with no gap between"
+    off_at = rec["flips"][-1][0]
+    gone = next(s[0] for s in samples if s[0] >= off_at and s[1] <= 0.01)
+    assert 60 <= gone - off_at <= 450, f"faded out over {gone - off_at:.0f} ms"
+    assert tab.errors == []
+
+
+@needs_browser
+@pytest.mark.parametrize("dark", [False, True])
+def test_the_tooltip_is_a_small_glass_panel_that_suits_each_theme_and_instant_with_reduced_motion(served, dark):
+    base, browser = served
+    tab = new_tab(browser)
+    tab.open(base, dark=dark)
+    jump(tab, "#range", 140)
+    hover(tab, ".rg-set:not([hidden]) .mk .pt")
+    tab.wait_for("document.querySelector('.tooltip').classList.contains('on')", 5)
+    tab.pump(0.4)
+    look = tab.eval(
+        "(() => { const cs = getComputedStyle(document.querySelector('.tooltip-b')); const p = document.createElement('i'); p.style.color = 'var(--ink)'; document.body.append(p);"
+        " const ink = getComputedStyle(p).color; p.remove(); return {filter: cs.backdropFilter || cs.webkitBackdropFilter || '', color: cs.color, ink, bg: cs.backgroundColor, radius: parseFloat(cs.borderTopLeftRadius), ring: getComputedStyle(document.querySelector('.tooltip-b'), '::before').content}; })()"
+    )
+    assert "blur" in look["filter"], "frosted"
+    assert look["color"] == look["ink"], "the theme's own text colour"
+    alpha = re.search(r"/\s*([\d.]+)\)|rgba\([^)]*,\s*([\d.]+)\)", look["bg"])
+    assert alpha and float(alpha.group(1) or alpha.group(2)) < 0.95, f"translucent: {look['bg']}"
+    assert look["radius"] >= 10 and look["ring"] == '""', "a small panel with the glass's light-catching edge"
+    box = tab.eval("(() => { const r = document.querySelector('.tooltip-b').getBoundingClientRect(); return [r.width, r.height]; })()")
+    assert box[0] < 360 and box[1] < 90, f"small: {box}"
+    tab.eval("window.__bg = getComputedStyle(document.querySelector('.tooltip-b')).backgroundColor")
+    assert tab.eval("window.__bg") == look["bg"]
+    # reduced motion: the same panel, with no fade or rise
+    tab.open(base, dark=dark, still=True)
+    jump(tab, "#range", 140)
+    hover(tab, ".rg-set:not([hidden]) .mk .pt")
+    tab.pump(0.1)
+    assert tab.eval("getComputedStyle(document.querySelector('.tooltip-b')).transitionDuration") in ("0s", "")
+    assert tab.eval("getComputedStyle(document.querySelector('.tooltip-b')).opacity") == "1" and tab.eval("getComputedStyle(document.querySelector('.tooltip-b')).transform") == "none"
+
+
+@needs_browser
+def test_the_two_themes_have_two_glasses(served):
+    base, browser = served
+    seen = []
+    for dark in (False, True):
+        tab = new_tab(browser)
+        tab.open(base, dark=dark)
+        jump(tab, "#range", 140)
+        hover(tab, ".rg-set:not([hidden]) .mk .pt")
+        tab.pump(0.5)
+        seen.append(tab.eval("(() => { const cs = getComputedStyle(document.querySelector('.tooltip-b')); return [cs.backgroundColor, cs.color]; })()"))
+    assert seen[0][0] != seen[1][0] and seen[0][1] != seen[1][1]
+
+
+@needs_browser
+def test_an_empty_cell_says_why_in_the_pages_own_tooltip(served):
+    base, browser = served
+    tab = new_tab(browser)
+    tab.open(base, dark=False)
+    jump(tab, "#ledger", 120)
+    tab.eval("document.querySelector('.ro[data-mode=open]').click()")  # the open-weights side has the empty cells
+    tab.pump(0.9)
+    spot = tab.eval("(() => { const d = [...document.querySelectorAll('#ledger .dash')].find(e => e.getBoundingClientRect().height && getComputedStyle(e.closest('.v')).opacity === '1'); const r = d.getBoundingClientRect(); return [r.left + r.width / 2, r.top + r.height / 2, d.querySelector('.tip').textContent]; })()")
+    move(tab, spot[0], spot[1])
+    tab.wait_for("document.querySelector('.tooltip').classList.contains('on')", 5)
+    assert tab.eval("document.querySelector('.tooltip').textContent") == spot[2] == "Not reported for this set-up"
+    assert tab.eval("document.querySelectorAll('[title]').length") == 0, "the browser has no tooltip of its own to show"
+    move(tab, 5, 5)
+    tab.pump(0.4)
+    assert not tab.eval("document.querySelector('.tooltip').classList.contains('on')")
+
+
+@needs_browser
+def test_a_commit_shows_its_message_in_the_pages_own_tooltip_and_links_to_github(served):
+    base, browser = served
+    tab = new_tab(browser)
+    tab.open(base, dark=False)
+    jump(tab, "#planned", 140)
+    proof = jload(landing.PROOF_FILE)
+    message = proof["registration"]["message"]
     tip = "document.querySelectorAll('.tl .ev')[1].querySelector('.tip')"
+    assert tab.eval(f"{tip}.textContent") == message, "the message is on the page as text, for a screen reader"
     if tab.eval("matchMedia('(hover: none)').matches"):
         # a screen with nothing to hover with (a touch screen, or a browser that reports none): the message is plain text
         assert tab.eval(f"getComputedStyle({tip}).opacity") == "1" and tab.eval(f"getComputedStyle({tip}).position") == "static"
-    else:
-        assert tab.eval(f"getComputedStyle({tip}).opacity") == "0"
         tab.eval("document.querySelectorAll('.tl .ev a')[1].focus()")
-        tab.wait_for(f"getComputedStyle({tip}).opacity === '1'", 5)
+        tab.pump(0.3)
+        assert not tab.eval("document.querySelector('.tooltip').classList.contains('on')"), "not shown twice"
+    else:
+        assert tab.eval(f"getComputedStyle({tip}).position") == "absolute" and tab.eval(f"getComputedStyle({tip}).width") == "1px", "off the page's sight, but there"
+        x, y = tab.eval("(() => { const r = document.querySelectorAll('.tl .ev')[1].getBoundingClientRect(); return [r.left + 10, r.top + r.height / 2]; })()")
+        move(tab, x, y)
+        tab.wait_for("document.querySelector('.tooltip').classList.contains('on')", 5)
+        assert tab.eval("document.querySelector('.tooltip').textContent") == message
+        move(tab, 5, 5)
+        tab.pump(0.4)
+        assert not tab.eval("document.querySelector('.tooltip').classList.contains('on')")
+        tab.eval("document.querySelectorAll('.tl .ev a')[1].focus()")
+        tab.wait_for("document.querySelector('.tooltip').classList.contains('on')", 5)
+        assert tab.eval("document.querySelector('.tooltip').textContent") == message
     # the touch rule itself, applied whatever this browser reports: the message is shown as plain text under its commit
     touch = re.search(r"@media \(hover:none\)\{(.*?\})\}", (ROOT / "docs/landing/landing.css").read_text(), re.S).group(1)
     tab.eval(f"document.head.insertAdjacentHTML('beforeend', '<style>{touch}</style>')")
     assert tab.eval(f"getComputedStyle({tip}).opacity") == "1" and tab.eval(f"getComputedStyle({tip}).position") == "static"
     assert tab.eval(f"getComputedStyle({tip}).display") == "block"
-    proof = jload(landing.PROOF_FILE)
-    assert tab.eval(f"{tip}.textContent") == proof["registration"]["message"]
     assert tab.eval("document.querySelectorAll('.tl .ev a')[1].href") == f"{landing.REPO}/commit/{proof['registration']['sha']}"
     assert tab.eval("document.querySelectorAll('.tl .ev a')[1].rel") == "noopener"
+
+
+TIMELINE = """() => { const tl = document.querySelector('.tl'); const g = [...tl.querySelectorAll(':scope > .tl-g')]; const m = new DOMMatrix(getComputedStyle(tl, '::after').transform);
+  return {intro: document.querySelector('.tl-intro').getBoundingClientRect().top, tl: tl.getBoundingClientRect().top, p: +(tl.style.getPropertyValue('--p') || 1), scale: m.d, live: tl.classList.contains('live'),
+          ins: g.map(e => e.classList.contains('in')), ops: g.map(e => +getComputedStyle(e).opacity), pos: getComputedStyle(document.querySelector('.tl-intro')).position}; }"""
+
+
+def scroll_to(tab, y: float, wait: float = 0.12) -> None:
+    tab.eval(f"scrollTo({{top: {y}, behavior: 'instant'}})")
+    tab.pump(wait)
+
+
+@needs_browser
+def test_the_timeline_pins_its_heading_draws_its_line_with_the_scroll_and_brings_its_entries_in_and_out(served):
+    base, browser = served
+    tab = new_tab(browser)
+    tab.open(base, width=1440, height=900, dark=False)
+    state = lambda: tab.eval(f"({TIMELINE})()")  # noqa: E731
+    reading_line = tab.eval("document.querySelector('.tl').getBoundingClientRect().top + scrollY - innerHeight * 0.6")
+    scroll_to(tab, reading_line - 500, 0.8)
+    above = state()
+    assert above["live"] and above["p"] == 0 and above["scale"] == 0 and not any(above["ins"]) and max(above["ops"]) < 0.01, "before the line is reached nothing of it is drawn"
+    steps = []
+    for dy in range(0, 1500, 50):
+        scroll_to(tab, reading_line + dy)
+        steps.append(state())
+    ps = [s["p"] for s in steps]
+    assert is_monotone(ps, True, 0.0001) and ps[0] < 0.05 and ps[-1] == 1 and len({round(p, 2) for p in ps}) >= 4, "the line draws downward with the scroll"
+    assert all(abs(s["scale"] - s["p"]) < 0.02 for s in steps), "by transform: the line is scaled, not lengthened"
+    counts = [sum(s["ins"]) for s in steps]
+    assert is_monotone(counts, True, 0) and counts[0] <= 1 and counts[-1] == len(steps[-1]["ins"]) and len(set(counts)) >= 4, f"the entries come one by one as the line reaches them: {counts}"
+    tab.pump(0.8)
+    assert min(state()["ops"]) > 0.99, "and are fully there"
+    pinned = [(s["intro"], s["tl"]) for s in steps if s["tl"] < 80 and s["p"] < 1]
+    assert len(pinned) >= 4 and max(i for i, _ in pinned) - min(i for i, _ in pinned) < 1.5 and abs(pinned[0][0] - 96) < 2, "the heading and its paragraph stay put while the timeline scrolls past"
+    assert pinned[0][1] - pinned[-1][1] >= 150 and steps[-1]["pos"] == "sticky"
+    scroll_to(tab, reading_line - 300, 1.0)  # back up past it: all of it goes back
+    back = state()
+    assert back["p"] == 0 and not any(back["ins"]) and max(back["ops"]) < 0.01
+    assert tab.errors == []
+
+
+@needs_browser
+def test_on_a_phone_nothing_is_pinned_but_the_line_still_draws(served):
+    base, browser = served
+    tab = new_tab(browser)
+    tab.open(base, width=390, height=844, mobile=True, dark=False)
+    state = lambda: tab.eval(f"({TIMELINE})()")  # noqa: E731
+    reading_line = tab.eval("document.querySelector('.tl').getBoundingClientRect().top + scrollY - innerHeight * 0.6")
+    scroll_to(tab, reading_line - 400, 0.6)
+    a = state()
+    scroll_to(tab, reading_line + 900, 0.9)
+    b = state()
+    assert a["pos"] == b["pos"] == "static", "nothing is pinned"
+    assert a["p"] < b["p"] and sum(a["ins"]) < sum(b["ins"]) and 0 < b["scale"], "but the line draws and the entries come in"
+
+
+@needs_browser
+def test_with_reduced_motion_the_timeline_is_whole(served):
+    base, browser = served
+    tab = new_tab(browser)
+    tab.open(base, width=1440, height=900, dark=False, still=True)
+    jump(tab, ".tl", 0)
+    tab.pump(0.3)
+    s = tab.eval(f"({TIMELINE})()")
+    assert not s["live"] and s["scale"] == 1 and min(s["ops"]) == 1 and all(not x for x in s["ins"]), "the line whole, every entry there, nothing waiting to arrive"
+    assert tab.eval("getComputedStyle(document.querySelector('.tl .tl-g')).transitionDuration") in ("0s", "")
 
 
 @needs_browser
@@ -1334,8 +1698,14 @@ def test_a_visitor_who_asked_for_less_transparency_or_a_slow_machine_gets_solid_
     tab.open(base, dark=False, still=True)
     tab.eval("document.documentElement.classList.add('calm')")
     assert tab.eval("[...document.querySelectorAll('.glass, .btn.sec')].every(e => (getComputedStyle(e).backdropFilter || 'none') === 'none')")
+    jump(tab, "#range", 140)
+    hover(tab, ".rg-set:not([hidden]) .mk .pt")
+    tab.pump(0.3)
+    assert tab.eval("(getComputedStyle(document.querySelector('.tooltip-b')).backdropFilter || 'none') === 'none'"), "the tooltip too"
+    assert not re.search(r"/\s*0\.[0-8]\d*\)", tab.eval("getComputedStyle(document.querySelector('.tooltip-b')).backgroundColor")), "and is solid"
     css = (ROOT / "docs/landing/landing.css").read_text()
     assert "prefers-reduced-transparency:reduce" in css and "html.calm .bg i{animation:none" in css
+    assert ".glass,.btn.sec,.tooltip-b{backdrop-filter:none" in css and "html.calm .tooltip-b" in css
 
 
 @needs_browser

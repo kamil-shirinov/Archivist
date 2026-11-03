@@ -9,9 +9,10 @@
    frosted blur, a light-catching edge and a soft highlight that follows the pointer (landing.js moves it).
    A slow indigo and gold glow drifts behind everything, with a faint grain.
 
-   Motion: only opacity and transform, on one curve, and never a bounce (tests/test_landing.py reads this file to check).
-   The two exceptions are said where they are: the circular reveal of a theme switch (the browser's View Transition,
-   about 600 ms) and, where that does not exist, a plain colour cross-fade. Everything that moves is switched on only
+   Motion: only opacity and transform, on soft ease-out curves, and never a bounce (tests/test_landing.py reads this
+   file to check). The exceptions are said where they are: the circular reveal of a theme switch (the browser's View
+   Transition, about 600 ms), where that does not exist a plain colour cross-fade, and the height of an expandable
+   panel (.xp: ledger rows, pipeline steps, "By stratum and by family"), which eases open and closed. Everything that moves is switched on only
    for a visitor who has not asked for reduced motion; without scripting or with reduced motion the page is its
    settled state. A visitor who asks for less transparency gets solid surfaces, and a machine that cannot keep up
    gets them too (landing.js adds .calm). */
@@ -48,7 +49,8 @@
   --wash-a:light-dark(rgba(74,85,212,.2),rgba(142,152,250,.2));--wash-b:light-dark(rgba(244,178,58,.22),rgba(240,169,59,.13));
   --serif:"Newsreader","Iowan Old Style","Palatino Linotype",Georgia,serif;
   --ui:"Geist",system-ui,-apple-system,"Segoe UI",sans-serif;--mono:"Geist Mono",ui-monospace,Menlo,monospace;
-  --ease:cubic-bezier(.2,.8,.2,1);--wrap:1160px;--wide:1320px;
+  --ease:cubic-bezier(.2,.8,.2,1);--soft:cubic-bezier(.22,1,.36,1);--wrap:1160px;--wide:1320px;
+  --tip-bg:color-mix(in srgb,var(--surface) 76%,transparent);
 }
 :root[data-theme="light"]{color-scheme:light}
 :root[data-theme="dark"]{color-scheme:dark}
@@ -86,7 +88,7 @@ a{color:inherit}
 .glass{position:relative;isolation:isolate;--r:22px;border-radius:var(--r);background:var(--glass);backdrop-filter:blur(var(--blur,16px)) saturate(1.5);-webkit-backdrop-filter:blur(var(--blur,16px)) saturate(1.5);box-shadow:var(--glass-shadow),var(--glass-top)}
 /* the two big panels sit over a smooth glow, where a heavy blur shows nothing and costs the most: a light one */
 .frame,.ledger{--blur:8px}
-.glass::before,.btn.sec::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;z-index:2;
+.glass::before,.btn.sec::before,.tooltip-b::before{content:"";position:absolute;inset:0;border-radius:inherit;padding:1px;pointer-events:none;z-index:2;
   background:linear-gradient(140deg,var(--edge-a),var(--edge-b) 30%,var(--edge-c) 68%,var(--edge-d));
   -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
   mask:linear-gradient(#000 0 0) content-box exclude,linear-gradient(#000 0 0)}
@@ -203,6 +205,9 @@ h4{margin:0 0 10px;font-size:12.5px;font-weight:600;letter-spacing:.04em;text-tr
 .miss{color:var(--bad);font-weight:500}
 .chev{display:inline-block;flex:none;width:8px;height:8px;border-right:2px solid var(--ink-3);border-bottom:2px solid var(--ink-3);transform:rotate(-45deg)}
 [aria-expanded="true"]>.chev,details[open]>summary>.chev{transform:rotate(45deg)}
+/* with the script, a details' chevron follows the panel's own state (the open attribute outlasts the closing) */
+.js details.depth>summary>.chev{transform:rotate(-45deg)}
+.js details.depth.is-open>summary>.chev{transform:rotate(45deg)}
 
 /* The ledger: ruled like a financial statement */
 .ledger{--r:24px;margin-top:30px;padding:6px 24px 10px}
@@ -322,7 +327,11 @@ tbody.lrow:hover>tr.main{background:color-mix(in srgb,var(--ink) 2.5%,transparen
 .out h3{font-size:15px;margin-top:1px;color:var(--t-ink)}
 .hint{margin-top:18px}
 .spanels{margin-top:10px}
-.spanel{padding:20px 24px 18px;border:1px solid var(--line);border-radius:18px;background:var(--card);box-shadow:var(--shadow)}
+.spanel .xp-in{padding:20px 24px 18px;border:1px solid var(--line);border-radius:18px;background:var(--card);box-shadow:var(--shadow)}
+/* An expandable panel: .xp is the box whose height eases (landing.js sets it while it moves and clears it after, so a
+   panel at rest is as tall as its content), .xp-in its content, which fades and rises just behind it. */
+.xp.moving{overflow:hidden}
+.xp-in{display:flow-root}
 .spanel h3{display:flex;align-items:center;gap:10px;font:500 1.4rem/1.2 var(--serif)}
 .spanel h3 .n{display:grid;place-items:center;width:24px;height:24px;border-radius:50%;background:var(--accent-bg);color:var(--accent);font:600 12px var(--mono)}
 .spanel p{margin:10px 0 0;max-width:52em;font-size:14.5px;color:var(--ink-2)}
@@ -384,14 +393,20 @@ tbody.lrow:hover>tr.main{background:color-mix(in srgb,var(--ink) 2.5%,transparen
 
 /* What a mark says when it is hovered, tapped or focused: on the page as text for everyone, shown by landing.js */
 .tip{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap}
-.tooltip{position:fixed;left:0;top:0;z-index:70;max-width:min(340px,calc(100vw - 16px));padding:9px 12px;border-radius:11px;background:var(--ink);color:var(--bg);font:500 12.5px/1.45 var(--ui);box-shadow:0 14px 30px -12px rgba(0,0,0,.5);pointer-events:none;opacity:0;font-variant-numeric:tabular-nums}
-.tooltip.on{opacity:1}
+/* The page's own tooltip, one for every mark: a small glass panel (the browser's title tooltips are not used). The box
+   that is placed is .tooltip; the panel inside it, .tooltip-b, is what fades and rises. */
+.tooltip{position:fixed;left:0;top:0;z-index:70;width:max-content;max-width:min(340px,calc(100vw - 16px));pointer-events:none}
+.tooltip-b{position:relative;isolation:isolate;padding:8px 12px;border-radius:12px;background:var(--tip-bg);backdrop-filter:blur(14px) saturate(1.7);-webkit-backdrop-filter:blur(14px) saturate(1.7);color:var(--ink);font:500 12.5px/1.45 var(--ui);font-variant-numeric:tabular-nums;box-shadow:var(--glass-shadow),var(--glass-top);opacity:0;transform:translateY(6px)}
+.tooltip.on .tooltip-b{opacity:1;transform:none}
 
 /* Planned before the data: the commits as a timeline */
 .tl-wrap{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:56px;align-items:start}
 .tl-intro{position:sticky;top:96px}
 .tl{list-style:none;margin:6px 0 0;padding:0;position:relative}
-.tl::before{content:"";position:absolute;left:10px;top:8px;bottom:8px;width:2px;background:var(--line-2)}
+.tl::before,.tl::after{content:"";position:absolute;left:10px;top:8px;bottom:8px;width:2px;border-radius:1px}
+.tl::before{background:var(--line-2)}
+/* the line as it is drawn: landing.js sets --p, how far the reading line has gone down it (drawn whole without it) */
+.tl::after{background:linear-gradient(var(--accent),var(--gold));transform-origin:50% 0;transform:scaleY(var(--p,1))}
 .tl-g{position:relative;padding:0 0 30px 40px}
 .tl-g::before{content:"";position:absolute;left:1px;top:3px;width:20px;height:20px;border-radius:50%;background:var(--bg);border:3px solid var(--accent)}
 .tl-g h3{font:500 1.35rem/1.2 var(--serif)}
@@ -407,9 +422,11 @@ tbody.lrow:hover>tr.main{background:color-mix(in srgb,var(--ink) 2.5%,transparen
 .tl .ev a:hover code{border-color:var(--accent)}
 .tl .when{display:block;color:var(--ink-2);font-size:13.5px}
 .tl .gap{display:block;color:var(--ink-3);font-size:12.5px}
-.tl .tip{left:0;bottom:calc(100% + 8px);width:max-content;max-width:min(330px,72vw);height:auto;overflow:visible;clip:auto;white-space:normal;padding:8px 11px;border-radius:10px;background:var(--ink);color:var(--bg);font:500 12.5px/1.4 var(--ui);opacity:0;transform:translateY(4px);pointer-events:none;z-index:5}
-.tl .ev:hover .tip,.tl .ev:focus-within .tip{opacity:1;transform:none}
-@media (hover:none){.tl .tip{position:static;display:block;width:auto;max-width:none;padding:2px 0 0;background:none;color:var(--ink-3);opacity:1;transform:none;font-weight:400}}
+/* A commit's message is on the page as text for everyone. With the script it is shown by the page's own tooltip; without
+   it, as a small box on hover or focus; on a screen with nothing to hover with, as plain text under the commit. */
+html:not(.js) .tl .tip{left:0;bottom:calc(100% + 8px);width:max-content;max-width:min(330px,72vw);height:auto;overflow:visible;clip:auto;white-space:normal;padding:8px 11px;border-radius:10px;background:var(--ink);color:var(--bg);font:500 12.5px/1.4 var(--ui);opacity:0;pointer-events:none;z-index:5}
+html:not(.js) .tl .ev:hover .tip,html:not(.js) .tl .ev:focus-within .tip{opacity:1}
+@media (hover:none){.tl .tip{position:static;display:block;width:auto;height:auto;max-width:none;overflow:visible;clip:auto;white-space:normal;padding:2px 0 0;background:none;color:var(--ink-3);opacity:1;transform:none;font-weight:400}}
 
 /* Honest limits, try it */
 .limits{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:30px}
@@ -439,10 +456,20 @@ code{font-size:.92em}
   .swap .v{transition:opacity .35s var(--ease)}
   .mk .bar,.cb i{transition:transform .8s var(--ease)}
   .pstep{transition:transform .25s var(--ease)}
-  .tooltip{transition:opacity .15s var(--ease)}
-  .tl .tip{transition:opacity .16s var(--ease),transform .2s var(--ease)}
-  .detail:not([hidden]) .pane,.depth-in{animation:rise .42s var(--ease) both}
-  .spanel{animation:rise .38s var(--ease) both}
+  .tooltip-b{transition:opacity 140ms linear,transform 140ms var(--soft)}
+  .tooltip.on .tooltip-b{transition:opacity 180ms var(--soft),transform 180ms var(--soft)}
+  /* the timeline: each entry (its dot with it) fades and rises in as the line reaches it, and goes back as it leaves */
+  .tl.live .tl-g{opacity:0;transform:translateY(14px);transition:opacity 460ms var(--soft),transform 520ms var(--soft)}
+  .tl.live .tl-g.in{opacity:1;transform:none}
+  .tl.live.snap .tl-g{transition:none}
+  /* expandables: the height eases open (420 ms) and closed (320 ms), the content fading and rising just behind it, the chevron
+     turning in step. Height is the one thing here that is not opacity or transform: only on .xp, only in this block. */
+  .xp{transition:height 320ms var(--soft)}
+  .xp.open{transition-duration:420ms}
+  .xp-ready .xp:not(.open)>.xp-in{opacity:0;transform:translateY(10px);transition:opacity 180ms linear,transform 320ms var(--soft)}
+  .xp-ready .xp.open>.xp-in{opacity:1;transform:none;transition:opacity 340ms var(--soft) 90ms,transform 420ms var(--soft) 70ms}
+  .chev{transition:transform 320ms var(--soft)}
+  [aria-expanded="true"]>.chev,.js details.depth.is-open>summary>.chev{transition-duration:420ms}
   .rg-set{animation:fade .35s var(--ease) both}
   .rise{animation:rise 520ms var(--ease) both;animation-delay:calc(var(--i,0) * 70ms)}
   .js .reveal{opacity:0;transform:translateY(10px);transition:opacity 560ms var(--ease),transform 560ms var(--ease);animation:show .01s linear 3s forwards}
@@ -471,9 +498,9 @@ html.theme-fade,html.theme-fade *,html.theme-fade *::before,html.theme-fade *::a
 
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}.shine{display:none}}
 /* Reduced transparency, or a machine that cannot keep up (.calm): solid surfaces, a still background */
-@media (prefers-reduced-transparency:reduce){:root{--glass:var(--glass-solid);--card:var(--surface);--wash-a:transparent;--wash-b:transparent}.glass,.btn.sec{backdrop-filter:none;-webkit-backdrop-filter:none}.bg::after{display:none}.tog{background:var(--surface)}}
-@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){:root{--glass:var(--glass-solid)}}
-html.calm .glass,html.calm .btn.sec{backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--glass-solid)}
+@media (prefers-reduced-transparency:reduce){:root{--glass:var(--glass-solid);--tip-bg:var(--glass-solid);--card:var(--surface);--wash-a:transparent;--wash-b:transparent}.glass,.btn.sec,.tooltip-b{backdrop-filter:none;-webkit-backdrop-filter:none}.bg::after{display:none}.tog{background:var(--surface)}}
+@supports not ((backdrop-filter:blur(1px)) or (-webkit-backdrop-filter:blur(1px))){:root{--glass:var(--glass-solid);--tip-bg:var(--glass-solid)}}
+html.calm .glass,html.calm .btn.sec,html.calm .tooltip-b{backdrop-filter:none;-webkit-backdrop-filter:none;background:var(--glass-solid)}
 html.calm .bg i{animation:none!important}
 
 /* Narrower screens */
