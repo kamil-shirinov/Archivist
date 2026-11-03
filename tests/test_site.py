@@ -71,7 +71,7 @@ def test_the_site_holds_only_the_app_the_bundles_and_the_scans_they_name(built):
 def test_the_top_page_is_the_landing_page_and_the_app_stays_at_ui(built):
     top, _ = built
     page = (top / "Archivist/index.html").read_text()
-    assert "The archive that shows its work." in page, "the landing page, not a redirect"
+    assert 'The archive that <span class="acc">shows its work.</span>' in page, "the landing page, not a redirect"
     assert "location.replace" not in page
     assert 'href="ui/#replay"' in page, "Watch it work opens the app on the replay"
     assert (top / "Archivist/ui/index.html").is_file()
@@ -234,7 +234,7 @@ def test_the_published_site_runs_from_its_own_files_alone(built):
         tab = browser.tab()
         tab.open(f"{base}/Archivist/", dark=False)
         # the top page is the landing page; Watch it work takes the visitor to the app, on the replay
-        tab.wait_for("!!document.querySelector('h1') && document.querySelectorAll('.rp-log li').length === 7", 30)
+        tab.wait_for("!!document.querySelector('h1') && document.querySelectorAll('.notes li').length === 7", 30)
         assert tab.eval("location.pathname") == "/Archivist/"
         assert tab.eval("document.querySelector('h1').textContent") == "The archive that shows its work."
         tab.eval("document.querySelector('.hero .btn.primary').click()")

@@ -24,9 +24,11 @@
 !results/TEST_RESULTS.md
 !results/real_test/development
 
-# What the landing page reads (docs/landing.py): the aggregate scores of the real-scan test, the
+# What the landing page reads (docs/landing.py): the real-scan plan (it states the level of the intervals), the
+# aggregate scores of the real-scan test, the
 # diagnosis and the sweep's start time, the corrected key's scores once they exist, and the model ids in
 # three configs. Aggregate files only: no label, record, cell or page of the held-out run goes in.
+!PREREGISTRATION_REAL.md
 !results/real_test/held_out/score/score.json
 !results/real_test/held_out/score_corrected/score.json
 !results/real_test/held_out/diagnosis.md
