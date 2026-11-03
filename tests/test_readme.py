@@ -186,6 +186,18 @@ def test_what_you_get_has_three_pictures_taken_at_2x_each_in_light_and_dark():
 # --- the banner ---------------------------------------------------------------------------------------------------
 
 THEMES = ("light", "dark")
+WORD = {"light": "#4A55D4", "dark": "#8A93F5"}  # the brand indigo on the light panel, a lighter tint of it on the dark one
+
+
+def luminance(hex_colour: str) -> float:
+    rgb = [int(hex_colour[i : i + 2], 16) / 255 for i in (1, 3, 5)]
+    r, g, b = [c / 12.92 if c <= 0.03928 else ((c + 0.055) / 1.055) ** 2.4 for c in rgb]
+    return 0.2126 * r + 0.7152 * g + 0.0722 * b
+
+
+def contrast(a: str, b: str) -> float:
+    hi, lo = sorted((luminance(a), luminance(b)), reverse=True)
+    return (hi + 0.05) / (lo + 0.05)
 
 
 def banner(name: str) -> str:
@@ -200,7 +212,7 @@ def test_the_banner_is_drawn_as_outlines_with_the_brand_indigo_and_nothing_fetch
     for forbidden in ("<text", "<tspan", "<script", "<image", "<foreignObject", "@font-face", "@import", "url(http", "href=", "<use", "onload"):
         assert forbidden not in svg, forbidden
     words = re.findall(r'<path class="w (w\d)" fill="([^"]+)" d="([^"]+)"', svg)
-    assert [(c, fill) for c, fill, _ in words] == [("w1", "#4A55D4"), ("w2", "#4A55D4"), ("w3", "#4A55D4")]
+    assert [(c, fill) for c, fill, _ in words] == [(w, WORD[theme]) for w in ("w1", "w2", "w3")]
     assert all(len(d) > 200 for _, _, d in words), "a word is not outlined"
     assert len(set(d for _, _, d in words)) == 3
     label = re.search(r'aria-label="([^"]+)"', svg).group(1)
@@ -211,6 +223,21 @@ def test_the_banners_light_and_dark_differ_in_ground_and_ink_but_not_in_the_word
     light, dark = banner("banner-light.svg"), banner("banner-dark.svg")
     assert light != dark and re.findall(r' d="[^"]+"', light) == re.findall(r' d="[^"]+"', dark), "the same outlines"
     assert 'fill="#16181D"' in light and 'fill="#E8E9ED"' in dark
+
+
+@pytest.mark.parametrize("theme", THEMES)
+def test_the_changing_word_reads_at_4_5_to_1_on_its_panel_in_both_themes(theme):
+    """The brand indigo is 3.2:1 on the dark panel and looked dim, so the dark banner uses a lighter tint of it; the light
+    one keeps #4A55D4. The panel is the base fill, and also the base fill under the strongest of its two glows."""
+    svg = banner(f"banner-{theme}.svg")
+    fill = re.search(r'<rect x="\.5" y="\.5" width="1199" height="219" rx="22" fill="(#[0-9A-F]{6})"', svg).group(1)
+    glow = re.search(r'<stop offset="0" stop-color="(#[0-9A-F]{6})" stop-opacity="([\d.]+)"/>', svg)
+    base = [int(fill[i : i + 2], 16) for i in (1, 3, 5)]
+    tint = [int(glow.group(1)[i : i + 2], 16) for i in (1, 3, 5)]
+    a = float(glow.group(2))
+    under_glow = "#" + "".join(f"{round(a * t + (1 - a) * b):02X}" for t, b in zip(tint, base))
+    assert contrast(WORD[theme], fill) >= 4.5 and contrast(WORD[theme], under_glow) >= 4.5, (theme, contrast(WORD[theme], fill), contrast(WORD[theme], under_glow))
+    assert WORD["light"] == "#4A55D4" and contrast("#4A55D4", "#0E1016") < 4.5, "the brand indigo itself is why the dark one is lighter"
 
 
 @pytest.mark.parametrize("theme", THEMES)
@@ -232,8 +259,8 @@ def test_the_still_banner_is_the_last_frame_alone(theme):
     still, moving = banner(f"banner-still-{theme}.svg"), banner(f"banner-{theme}.svg")
     for gone in ("<style", "animation", "@keyframes", 'class="w w1"', 'class="w w2"', 'class="w w3"'):
         assert gone not in still, gone
-    last = re.search(r'<path class="w w3" fill="#4A55D4" d="([^"]+)"', moving).group(1)
-    assert f'fill="#4A55D4" d="{last}"' in still
+    last = re.search(rf'<path class="w w3" fill="{WORD[theme]}" d="([^"]+)"', moving).group(1)
+    assert f'fill="{WORD[theme]}" d="{last}"' in still
     assert len(re.findall(r"<path ", still)) == 2, "the first words and the last, nothing else"
 
 
@@ -336,6 +363,17 @@ def sentences(text: str) -> set[str]:
     text = re.sub(r"[*`|]", "", text)
     parts = re.split(r"(?<=[.!?;:])\s+", text)
     return {re.sub(r"\W+", " ", p).strip().lower() for p in parts if len(p.split()) >= 6}
+
+
+def test_the_how_well_bullet_carries_the_synthetic_headline_as_one_clause_and_verify_checks_it(at_root, monkeypatch, tmp_path):
+    bullet = next(line for line in README.split("\n## Start here\n", 1)[0].splitlines() if line.startswith("- **How well.**"))
+    clause = "0.36% of accepted values were wrong against 4.45% for a single read"
+    assert clause in bullet and "synthetic" in bullet and "not met" in bullet, "the headline, and the misses, are on the first screen"
+    edited = tmp_path / "README.md"
+    edited.write_text(README.replace(clause, "0.35% of accepted values were wrong against 4.45% for a single read"), encoding="utf-8")
+    monkeypatch.setattr(verify, "README", edited)
+    found = verify.check_readme()
+    assert found[0].status == verify.FAIL and any("How well" in p for p in found[0].problems)
 
 
 def test_no_sentence_is_said_twice_between_the_first_screen_bullets_and_the_judges_table():

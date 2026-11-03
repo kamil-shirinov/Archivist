@@ -8,7 +8,9 @@ this project; they are fetched by uvx for this one run and the two SVGs are comm
 does the same for the fonts).
 
 The line is "Every value, <word>." with the last word changing: cited, then read twice, then checked (in the brand
-indigo, #4A55D4), each fading in as it rises a few pixels and fading out as it keeps rising, looping. Every glyph is
+indigo, #4A55D4 on the light panel and a lighter tint of it, #8A93F5, on the dark one, where the brand indigo itself is
+only 3.2:1 against the panel and looks dim; the tint is 6.9:1 on the panel and 6.1:1 where the indigo glow is strongest),
+each fading in as it rises a few pixels and fading out as it keeps rising, looping. Every glyph is
 a path taken from docs/landing/fonts/Newsreader-Latin.woff2 (SIL OFL 1.1, NEWSREADER-OFL.txt beside it), weight 500,
 placed by HarfBuzz so the kerning is the font's own. Nothing is fetched and nothing runs: the animation is CSS inside
 the file, in prefers-reduced-motion: no-preference, so wherever motion is not wanted (or CSS animation is not run at
@@ -32,11 +34,12 @@ BASELINE = 128
 WEIGHT = 500
 PREFIX = "Every value,"
 WORDS = ("cited.", "read twice.", "checked.")
-INDIGO = "#4A55D4"
+INDIGO = "#4A55D4"  # the brand indigo, for the light panel
+INDIGO_ON_DARK = "#8A93F5"  # a lighter tint of it for the dark panel: at least 4.5:1, WCAG AA for text
 
 THEMES = {
-    "light": dict(ink="#16181D", fill="#FBFBF9", line="#E3E2DC", glow_a="#4A55D4", glow_a_op=".085", glow_b="#F4B23A", glow_b_op=".13"),
-    "dark": dict(ink="#E8E9ED", fill="#0E1016", line="#23262F", glow_a="#4A55D4", glow_a_op=".16", glow_b="#F4B23A", glow_b_op=".06"),
+    "light": dict(word=INDIGO, ink="#16181D", fill="#FBFBF9", line="#E3E2DC", glow_a="#4A55D4", glow_a_op=".085", glow_b="#F4B23A", glow_b_op=".13"),
+    "dark": dict(word=INDIGO_ON_DARK, ink="#E8E9ED", fill="#0E1016", line="#23262F", glow_a="#4A55D4", glow_a_op=".16", glow_b="#F4B23A", glow_b_op=".06"),
 }
 
 # Keyframes as (second, opacity, translateY in px). A word fades in as it rises 12 px, holds, then fades out as it
@@ -116,7 +119,7 @@ def build(theme: str, font, data: bytes) -> str:
     prefix_d = outline(font, data, PREFIX, left)[0]
     words = []
     for cls, w in zip(("w1", "w2", "w3"), WORDS):
-        words.append(f'<path class="w {cls}" fill="{INDIGO}" d="{outline(font, data, w, word_x)[0]}"/>')
+        words.append(f'<path class="w {cls}" fill="{t["word"]}" d="{outline(font, data, w, word_x)[0]}"/>')
     # The still is the last frame; the motion is added only where it is not unwanted.
     css = (
         f".w{{opacity:0}}.w3{{opacity:1}}"

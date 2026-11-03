@@ -314,6 +314,7 @@ def _rate_claims(report: dict) -> list[Claim]:
         "H4, Results table": f"{ci(h4)}: {h4['wrong']} of {h4['accepted']:,}",
         "H5, Results table": f"{_pc(h5['rate'])}: {h5['found']} of {h5['planted']}",
         "first screen, wrong values accepted": f"{_pc(a['rate'])} of the values it accepted were wrong against {_pc(base['rate'])} for one read",
+        "first screen, How well": f"{_pc(a['rate'])} of accepted values were wrong against {_pc(base['rate'])} for a single read",
         "first screen, sent to a person": f"it sent {_pc(h3['rate'])} of values to a person",
         "For judges, impact": f"it let in {_pc(a['rate'])} wrong values against {_pc(base['rate'])} for one read and caught {_pc(h2['rate'])} of the wrong ones",
         "open weights, H4": f"{ci(h4)} wrong values among those accepted, against {_pc(a['rate'])} for Muse Spark 1.3",
