@@ -6,6 +6,8 @@
 
 [![Live demo](https://img.shields.io/badge/Live_demo-open-4A55D4)](https://kamil-shirinov.github.io/Archivist/) [![CI](https://github.com/kamil-shirinov/Archivist/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/kamil-shirinov/Archivist/actions/workflows/ci.yml) [![Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE) [![Docker](https://img.shields.io/badge/Docker-no_setup-2496ED?logo=docker&logoColor=white)](#run-it-yourself) [![Muse Spark 1.3](https://img.shields.io/badge/Meta-Muse_Spark_1.3-4A55D4)](#metas-four-models) [![Muse Spark Open](https://img.shields.io/badge/Meta-Muse_Spark_Open-4A55D4)](#open-weights-the-same-pipeline-on-your-own-hardware) [![Muse Glimmer](https://img.shields.io/badge/Meta-Muse_Glimmer-4A55D4)](#metas-four-models) [![SAM 3.1](https://img.shields.io/badge/Meta-SAM_3.1-4A55D4)](#metas-four-models)
 
+Built with the Meta Model API (Muse Spark 1.3, SAM 3.1), Muse Spark Open on Baseten, and Muse Glimmer on Modal.
+
 <picture>
   <source media="(prefers-reduced-motion: reduce) and (prefers-color-scheme: dark)" srcset="docs/img/banner-still-dark.svg">
   <source media="(prefers-reduced-motion: reduce)" srcset="docs/img/banner-still-light.svg">
@@ -37,13 +39,15 @@
 | Criterion | Evidence |
 |---|---|
 | **Impact** (30%) | Banks hold decades of records as scans and paper; Archivist turns them into a database in which every value points to its spot on the page and a doubtful one goes to a person.<br>**Synthetic test:** it let in 0.36% wrong values against 4.45% for one read and caught 93.65% of the wrong ones ([Results](#results)).<br>**Real government scans:** its target was not met: 36.9% (24.7%–50.4%) of the values it accepted were wrong against 41.1% (30.6%–52.4%) for one read, on all 400 labelled cells; the [diagnosis](results/real_test/held_out/diagnosis.md) says why ([Honest limits](#honest-limits)).<br>One `docker run` shows it with no key, and the code is open source under Apache-2.0. |
-| **Use of Meta's models** (25%) | All four, each in a job that was measured: Muse Spark 1.3 reads and re-reads, SAM 3.1 finds covered ink, untrained Muse Glimmer sorts pages (it found all 136 confirmed table pages among 791 held-out ones), and Muse Spark Open does both reads on open weights ([Meta's four models](#metas-four-models), [open weights](#open-weights-the-same-pipeline-on-your-own-hardware)). What each one taught us, and what we dropped: [What we learned](#what-we-learned-about-metas-models), [What we tried and dropped](#what-we-tried-and-dropped). |
+| **Use of Meta's models** (25%) | All four, each in a job that was measured: Muse Spark 1.3 reads and re-reads, SAM 3.1 finds covered ink, untrained Muse Glimmer sorts pages (it found all 136 confirmed table pages among 791 held-out ones), and Muse Spark Open does both reads on open weights ([Meta's four models](#metas-four-models), [open weights](#open-weights-the-same-pipeline-on-your-own-hardware)). What each one taught me, and what I dropped: [What I learned](#what-i-learned-about-metas-models), [What I tried and dropped](#what-i-tried-and-dropped). |
 | **Demo** (25%) | The [live demo](https://kamil-shirinov.github.io/Archivist/) and [Watch it work](https://kamil-shirinov.github.io/Archivist/ui/#replay) replay recorded runs; `docker run` serves the same site; the video: [link pending]. A local app reads a page with real model calls, each one listed as it happens ([live reading](docs/live-reading.md)). |
 | **Technical depth** (20%) | No model grades its own work: plain-code arithmetic checks every value, and a person decides anything in doubt. New table types are learned from two or three sample pages with no new code: Muse Spark drafts, arithmetic tests, and a person approves. Each plan was committed before the runs it governs ([Why you can trust the numbers](#why-you-can-trust-the-numbers)); one command rebuilds the published numbers and charts from the committed runs and compares them byte for byte ([Run it yourself](#run-it-yourself)); [how every number was measured](eval/README.md). |
 
 ## The problem
 
 During a bank internship I used AI to build two things: a parser that turned about 2,000 legacy memos into a clean spreadsheet database, and a working prototype of an automated loan-processing system. Both hit the same wall. Nobody held all the memos in one place, there was no archive, and the oldest records existed only on paper; businesses applying for loans brought their earnings in notebooks and loose sheets that staff typed in by hand. Archivist is the tool I wanted then: it turns scanned financial records into a verified database, with every value cited to its spot on the page, read twice, checked by arithmetic, and sent to a person when in doubt.
+
+From that bank to this repo. A bank's own records are private, and Archivist only ever sends a model synthetic or public-domain pages, so it was tested on the closest honest stand-ins: synthetic ledger cards and the payment memos that reference them, generated so that every right answer is known; and real scans of the US Treasury Bulletin from 1939 to 1994, decades of typewritten financial tables with the problems an old archive has: faded ink, marks over the print, and layouts that change from year to year. Each new kind of table is a template that Muse Spark drafts from two or three sample pages and a person approves, with no new code. Handwritten notebooks are next: the method stays the same, but it hasn't been measured on them yet.
 
 Solo entry by Kamil Shirinov for the Meta Global AI Developer Hackathon 2026: Indie Developer track, Build for Your World.
 
@@ -108,7 +112,7 @@ This is Archivist's entry for the open-weights bonus prize. Muse Spark Open, a m
 
 - **Muse Spark Open for both reads.** On the synthetic test, the all-open-weights arm let in 0.30% (0.12% to 0.54%) wrong values among those accepted, against 0.36% for Muse Spark 1.3 (H4, met; [Results](#results)). On the real scans it missed its target of under 1%: 27.1% (13.9%–49.9%) of accepted values were wrong ([score](results/real_openw/held_out/score/score.md), [plan](PREREGISTRATION_OPENW.md)).
 - **Muse Glimmer sorting pages.** The sorter is an open-weights model too: untrained, it found all 136 confirmed table pages among 791 held-out ones from their text ([report](results/glimmer/phase2/REPORT.md)).
-- **Two hosts compared.** Muse Spark Open ran on Baseten and on Fireworks; Baseten stayed ([comparison](results/hosts_compare.md), [open-weights report](results/openw_measure/REPORT.md), [Tried and dropped](#what-we-tried-and-dropped)).
+- **Two hosts compared.** Muse Spark Open ran on Baseten and on Fireworks; Baseten stayed ([comparison](results/hosts_compare.md), [open-weights report](results/openw_measure/REPORT.md), [Tried and dropped](#what-i-tried-and-dropped)).
 - **Not yet proven on-site.** No measured run has kept a page on a bank's own machines: Muse Spark Open ran on Baseten and SAM 3.1 still used Meta's API.
 
 <img src="docs/img/chart-hosted-vs-open.svg" alt="Two bar charts comparing Muse Spark 1.3, Muse Spark Open and the mixed set-up on the same test: share of wrong values caught and share of values sent to a person. The mixed set-up caught the fewest wrong values and sent the most to a person. Wrong values accepted per 1,000 are in the first chart under Results." width="100%">
@@ -138,7 +142,7 @@ The [open-weights report](results/openw_measure/REPORT.md) used development page
 
 </details>
 
-## What we learned about Meta's models
+## What I learned about Meta's models
 
 - Untrained Muse Glimmer found all 136 confirmed table pages from their text, as Muse Spark did, but needs the title check; fine-tuning it lost 19 ([report](results/glimmer/phase2/REPORT.md)).
 - SAM 3.1, prompted with "table", finds the panels of multi-panel tables, though not side-by-side ones ([D40](DECISIONS.md)).
@@ -196,7 +200,7 @@ A [script](docs/make_charts.py) draws the charts from the test report and fails 
 - **Every value is read twice, once blind,** because in development one misread debit was carried through every later balance, so arithmetic alone passed it.
 - **Only synthetic or public-domain pages reach a model,** because free-credit API traffic may be used by Meta for product improvement.
 
-## What we tried and dropped
+## What I tried and dropped
 
 Six experiments were stopped, each for a reason that is on record.
 
@@ -370,6 +374,8 @@ A learning loop, not built yet: people correct values in the review queue and th
 
 <details>
 <summary>Credits: fonts, libraries, data sources, models, and the terms each keeps</summary>
+
+Built by me, with AI coding agents (Claude Code and Codex) writing much of the code under my direction.
 
 Archivist's own code is open source under the Apache License 2.0; see [LICENSE](LICENSE). The fonts and the FRASER pages keep the terms below.
 

@@ -34,6 +34,15 @@ PROBLEM = (
     "with every value cited to its spot on the page, read twice, checked by arithmetic, and sent to a person when "
     "in doubt."
 )
+BRIDGE = (
+    "From that bank to this repo. A bank's own records are private, and Archivist only ever sends a model synthetic or "
+    "public-domain pages, so it was tested on the closest honest stand-ins: synthetic ledger cards and the payment memos "
+    "that reference them, generated so that every right answer is known; and real scans of the US Treasury Bulletin from "
+    "1939 to 1994, decades of typewritten financial tables with the problems an old archive has: faded ink, marks over "
+    "the print, and layouts that change from year to year. Each new kind of table is a template that Muse Spark drafts "
+    "from two or three sample pages and a person approves, with no new code. Handwritten notebooks are next: the method "
+    "stays the same, but it hasn't been measured on them yet."
+)
 SOLO = "Solo entry by Kamil Shirinov for the Meta Global AI Developer Hackathon 2026: Indie Developer track, Build for Your World."
 
 
@@ -95,9 +104,21 @@ def test_one_row_of_badges_with_the_four_meta_models():
     assert alts == ["Live demo", "CI", "Apache-2.0", "Docker", "Muse Spark 1.3", "Muse Spark Open", "Muse Glimmer", "SAM 3.1"]
 
 
-def test_the_problem_is_the_authors_paragraph_and_the_solo_line_follows():
+def test_the_problem_is_the_authors_paragraph_then_the_bridge_to_the_tests_and_the_solo_line():
     section = README.split("\n## The problem\n", 1)[1].split("\n## ", 1)[0]
-    assert section.strip().split("\n\n") == [PROBLEM, SOLO]
+    assert section.strip().split("\n\n") == [PROBLEM, BRIDGE, SOLO]
+
+
+def test_the_first_screen_names_what_it_is_built_with_in_one_plain_line_under_the_badges():
+    line = "Built with the Meta Model API (Muse Spark 1.3, SAM 3.1), Muse Spark Open on Baseten, and Muse Glimmer on Modal."
+    first = README.split("\n## Start here\n", 1)[0]
+    badges = next(l for l in first.splitlines() if l.startswith("[![Live demo]"))
+    assert first.split(badges, 1)[1].lstrip("\n").startswith(line + "\n\n<picture>"), "directly under the badge row, above the banner"
+
+
+def test_the_credits_say_who_built_it_and_with_what():
+    credits = README.split("<summary>Credits:", 1)[1].split("</details>", 1)[0]
+    assert "Built by me, with AI coding agents (Claude Code and Codex) writing much of the code under my direction." in credits
 
 
 def test_start_here_and_for_judges_have_their_rows():
@@ -339,7 +360,7 @@ def outside_details(text: str) -> str:
 
 
 def test_the_long_reference_sections_are_folded_away_with_a_summary_that_says_what_is_inside():
-    for name in ("What we tried and dropped", "Code tour"):
+    for name in ("What I tried and dropped", "Code tour"):
         block = section(name)
         assert "<details>" in block and "</details>" in block, name
         assert "|" not in outside_details(block), f"{name} has a table outside its details"
@@ -352,7 +373,7 @@ def test_the_long_reference_sections_are_folded_away_with_a_summary_that_says_wh
 def test_paragraphs_are_short_and_there_is_no_emoji():
     body = re.sub(r"```.*?```", "", outside_details(README), flags=re.S)
     prose = [p.strip() for p in re.split(r"\n\s*\n", body) if p.strip() and not p.lstrip().startswith(("|", "<", "#", "-", "1.", "[", "!"))]
-    too_long = [p[:50] for p in prose if len(p) > 350 and not p.startswith("During a bank internship")]
+    too_long = [p[:50] for p in prose if len(p) > 350 and not p.startswith(("During a bank internship", "From that bank to this repo"))]
     assert not too_long, too_long
     assert all(len(i) <= 470 for i in re.findall(r"^(?:- |\d+\. ).+$", body, re.M))
     assert not re.search("[\U0001F000-\U0001FAFF\u2600-\u27BF\u2B00-\u2BFF\uFE0F\u200D]", README), "an emoji"

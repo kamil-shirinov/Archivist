@@ -1067,31 +1067,74 @@ def hover(tab, selector: str) -> None:
     tab.call("Input.dispatchMouseEvent", type="mouseMoved", x=x, y=y)
 
 
+def frames(tab, count: int = 2) -> None:
+    """Return once the page has drawn `count` more frames. What a page does on a frame (a scroll handler's update, a
+    transition's next step) is then done, however slow the machine is; a fixed sleep is a guess at how long that takes."""
+    tab.eval(f"new Promise((done) => {{ let n = {count}; const next = () => (--n > 0 ? requestAnimationFrame(next) : done(true)); requestAnimationFrame(next); }})")
+
+
+def fonts_ready(tab) -> None:
+    """The page's fonts are loaded and it has laid itself out again: what it measured before that is not where things are."""
+    tab.eval("document.fonts.ready.then(() => true)")
+    frames(tab)
+
+
 def jump(tab, selector: str, offset: int = 100) -> None:
     tab.eval(f"(()=>{{const e=document.querySelector({selector!r});scrollTo({{top:e.getBoundingClientRect().top+scrollY-{offset},behavior:'instant'}})}})()")
     tab.pump(0.4)
+    frames(tab)
 
 
-RECORD = """async ({click, box, chev, host, ms, reverse}) => {
+# An expandable is measured on the page's own transitions, held and stepped by hand, not watched in real time. Watching
+# means sampling whichever frames this machine happens to draw in 420 ms: a loaded one draws too few to see "eased, not
+# jumped", or none between a click and its reversal. Here the click is followed, in the same task, by pausing every
+# animation of the panel (its height, its content, its chevron), so no real time has passed; then the clock of those
+# animations is set to 0, 16.7, 33.3 ... ms and the page is read at each. When the height arrives the animation is finished
+# and the page gets its frames to answer (transitionend, which clears `moving` and the inline height), as it does at the
+# end of a real move. A click that turns the panel round is made at a stepped moment, from where the paused height is.
+RECORD = """async ({click, box, chev, ms, reverse, step}) => {
   const $ = (s) => document.querySelector(s);
   const angle = (el) => { const m = new DOMMatrix(getComputedStyle(el).transform); return Math.atan2(m.b, m.a) * 180 / Math.PI; };
+  const frame = () => new Promise((done) => requestAnimationFrame(() => requestAnimationFrame(done)));
+  const b = $(box), inner = b.querySelector('.xp-in'), c = chev ? $(chev) : null, d = b.closest('details');
+  const mine = () => document.getAnimations().filter((a) => { const t = a.effect && a.effect.target; return t && (b.contains(t) || t === c); });
   const out = [];
-  const t0 = performance.now();
-  const sample = (tag) => { const b = $(box); const inner = b.querySelector('.xp-in'); const cs = getComputedStyle(inner); const d = b.closest('details');
-    out.push({t: performance.now() - t0, h: (d && !d.open) ? 0 : b.getBoundingClientRect().height, moving: b.classList.contains('moving'),
-      chev: chev ? angle($(chev)) : null, op: +cs.opacity, ty: new DOMMatrix(cs.transform).m42, tag}); };
+  const sample = (tag, t) => { const cs = getComputedStyle(inner);
+    out.push({t, h: (d && !d.open) ? 0 : b.getBoundingClientRect().height, moving: b.classList.contains('moving'),
+      chev: c ? angle(c) : null, op: +cs.opacity, ty: new DOMMatrix(cs.transform).m42, tag}); };
+  const begin = () => { const list = mine(); list.forEach((a) => a.pause());
+    const height = list.find((a) => a.transitionProperty === 'height' && a.effect.target === b);
+    if (!height) throw new Error('no height transition began on ' + box);
+    return {list, height, end: Math.max(...list.map((a) => a.effect.getComputedTiming().endTime)), heightEnd: height.effect.getComputedTiming().endTime}; };
+  await document.fonts.ready; await frame();
   $(click).click();
-  let turned = false;
-  await new Promise((done) => { const loop = () => { sample(''); const now = performance.now() - t0;
-      if (reverse && !turned && now >= reverse) { turned = true; sample('before'); $(click).click(); sample('after'); }
-      if (now < ms) requestAnimationFrame(loop); else done(); }; loop(); });
+  let run = begin(), base = 0, turned = false, arrived = false;
+  run.list.forEach((a) => { a.currentTime = 0; });
+  for (let t = 0; t <= ms; t += step) {
+    const at = t - base;
+    run.list.forEach((a) => { if (a.playState !== 'finished') a.currentTime = at; });
+    sample('', t);
+    if (reverse && !turned && t >= reverse) {
+      turned = true; arrived = false; sample('before', t);
+      $(click).click();
+      run = begin(); base = t; run.list.forEach((a) => { a.currentTime = 0; });
+      sample('after', t);
+      continue;
+    }
+    if (!arrived && at >= run.heightEnd) { arrived = true; run.height.finish(); await frame(); }
+    if (at >= run.end) break;
+  }
+  run.list.forEach((a) => { if (a.playState !== 'finished') a.finish(); });
+  await frame();
+  sample('', out[out.length - 1].t);
   return out;
 }"""
 
 
-def record(tab, click: str, box: str, chev: str | None = None, ms: int = 900, reverse: int = 0) -> list[dict]:
-    """Click `click` and sample the panel `box` on every frame for `ms`; with `reverse`, click again at that moment."""
-    return tab.eval(f"({RECORD})({json.dumps({'click': click, 'box': box, 'chev': chev, 'host': None, 'ms': ms, 'reverse': reverse})})")
+def record(tab, click: str, box: str, chev: str | None = None, ms: int = 1000, reverse: int = 0) -> list[dict]:
+    """Click `click` and read the panel `box` every 1/60 s of its own transitions' time, up to `ms` of it; with `reverse`,
+    click again at the first step at or after that moment."""
+    return tab.eval(f"({RECORD})({json.dumps({'click': click, 'box': box, 'chev': chev, 'ms': ms, 'reverse': reverse, 'step': 1000 / 60})})")
 
 
 def is_monotone(values: list[float], up: bool, slack: float = 0.75) -> bool:
@@ -1338,6 +1381,14 @@ def test_with_reduced_motion_an_expandable_opens_and_closes_at_once(served, wher
     assert tab.eval(closed) is True, "and closed as soon as it is asked"
 
 
+# Holds every animation inside `%s` at the moment of the next click on the page, in the same task as the click (a listener
+# on the document runs after the page's own on the summary), so that nothing about the move depends on the machine's pace.
+HOLD_NEXT_CLICK = """(() => { window.__held = [];
+  document.addEventListener('click', () => { const root = document.querySelector('%s');
+    window.__held = document.getAnimations().filter((a) => a.effect && a.effect.target && root.contains(a.effect.target));
+    window.__held.forEach((a) => a.pause()); }, {once: true}); })()"""
+
+
 @needs_browser
 def test_a_details_panel_stays_open_while_it_closes_and_follows_the_keyboard(served):
     base, browser = served
@@ -1347,13 +1398,17 @@ def test_a_details_panel_stays_open_while_it_closes_and_follows_the_keyboard(ser
     tab.eval("document.querySelector('#depth summary').focus()")
     press(tab, "Enter", 13, "\r")
     assert tab.eval("document.getElementById('depth').open") is True and tab.eval("document.getElementById('depth').classList.contains('is-open')")
-    tab.pump(0.8)
+    tab.wait_for("!document.querySelector('#depth .xp').classList.contains('moving')", 10)  # it has arrived, however slow the machine
+    # The closing is held where the key press started it (the page's click handler has run, so the transitions exist) and
+    # moved on by hand to 100 ms, where the page is looked at; then it is let go and the page is given its time to finish.
+    tab.eval(HOLD_NEXT_CLICK % "#depth")
     press(tab, " ", 32, " ")
-    tab.pump(0.1)
+    assert tab.eval("__held.length") >= 2, "the closing's transitions were running"
+    tab.eval("__held.forEach((a) => { a.currentTime = 100; })")
     assert tab.eval("document.getElementById('depth').open") is True, "still open: its closing is being seen"
     assert tab.eval("document.getElementById('depth').classList.contains('is-open')") is False and tab.eval("getComputedStyle(document.querySelector('#depth summary .chev')).transform") != "none"
-    tab.pump(0.7)
-    assert tab.eval("document.getElementById('depth').open") is False
+    tab.eval("__held.forEach((a) => a.finish())")
+    tab.wait_for("document.getElementById('depth').open === false", 10)
 
 
 @needs_browser
@@ -1607,9 +1662,13 @@ TIMELINE = """() => { const tl = document.querySelector('.tl'); const g = [...tl
           ins: g.map(e => e.classList.contains('in')), ops: g.map(e => +getComputedStyle(e).opacity), pos: getComputedStyle(document.querySelector('.tl-intro')).position}; }"""
 
 
-def scroll_to(tab, y: float, wait: float = 0.12) -> None:
+def scroll_to(tab, y: float) -> None:
+    """Scroll, then wait for the page to have drawn the frames in which it answers a scroll (its update runs in the next one)."""
     tab.eval(f"scrollTo({{top: {y}, behavior: 'instant'}})")
-    tab.pump(wait)
+    frames(tab)
+
+
+ENTRIES = "[...document.querySelectorAll('.tl > .tl-g')].map(e => +getComputedStyle(e).opacity)"
 
 
 @needs_browser
@@ -1618,8 +1677,9 @@ def test_the_timeline_pins_its_heading_draws_its_line_with_the_scroll_and_brings
     tab = new_tab(browser)
     tab.open(base, width=1440, height=900, dark=False)
     state = lambda: tab.eval(f"({TIMELINE})()")  # noqa: E731
+    fonts_ready(tab)  # the page measures where each dot is again when its fonts arrive
     reading_line = tab.eval("document.querySelector('.tl').getBoundingClientRect().top + scrollY - innerHeight * 0.6")
-    scroll_to(tab, reading_line - 500, 0.8)
+    scroll_to(tab, reading_line - 500)
     above = state()
     assert above["live"] and above["p"] == 0 and above["scale"] == 0 and not any(above["ins"]) and max(above["ops"]) < 0.01, "before the line is reached nothing of it is drawn"
     steps = []
@@ -1631,12 +1691,13 @@ def test_the_timeline_pins_its_heading_draws_its_line_with_the_scroll_and_brings
     assert all(abs(s["scale"] - s["p"]) < 0.02 for s in steps), "by transform: the line is scaled, not lengthened"
     counts = [sum(s["ins"]) for s in steps]
     assert is_monotone(counts, True, 0) and counts[0] <= 1 and counts[-1] == len(steps[-1]["ins"]) and len(set(counts)) >= 4, f"the entries come one by one as the line reaches them: {counts}"
-    tab.pump(0.8)
+    tab.wait_for(f"Math.min(...{ENTRIES}) > 0.99", 10)  # the last one's fade (about 460 ms) takes as long as the machine needs
     assert min(state()["ops"]) > 0.99, "and are fully there"
     pinned = [(s["intro"], s["tl"]) for s in steps if s["tl"] < 80 and s["p"] < 1]
     assert len(pinned) >= 4 and max(i for i, _ in pinned) - min(i for i, _ in pinned) < 1.5 and abs(pinned[0][0] - 96) < 2, "the heading and its paragraph stay put while the timeline scrolls past"
     assert pinned[0][1] - pinned[-1][1] >= 150 and steps[-1]["pos"] == "sticky"
-    scroll_to(tab, reading_line - 300, 1.0)  # back up past it: all of it goes back
+    scroll_to(tab, reading_line - 300)  # back up past it: all of it goes back
+    tab.wait_for(f"Math.max(...{ENTRIES}) < 0.01", 10)
     back = state()
     assert back["p"] == 0 and not any(back["ins"]) and max(back["ops"]) < 0.01
     assert tab.errors == []
@@ -1648,10 +1709,11 @@ def test_on_a_phone_nothing_is_pinned_but_the_line_still_draws(served):
     tab = new_tab(browser)
     tab.open(base, width=390, height=844, mobile=True, dark=False)
     state = lambda: tab.eval(f"({TIMELINE})()")  # noqa: E731
+    fonts_ready(tab)
     reading_line = tab.eval("document.querySelector('.tl').getBoundingClientRect().top + scrollY - innerHeight * 0.6")
-    scroll_to(tab, reading_line - 400, 0.6)
+    scroll_to(tab, reading_line - 400)
     a = state()
-    scroll_to(tab, reading_line + 900, 0.9)
+    scroll_to(tab, reading_line + 900)
     b = state()
     assert a["pos"] == b["pos"] == "static", "nothing is pinned"
     assert a["p"] < b["p"] and sum(a["ins"]) < sum(b["ins"]) and 0 < b["scale"], "but the line draws and the entries come in"
