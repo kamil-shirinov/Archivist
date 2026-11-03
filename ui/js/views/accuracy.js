@@ -114,7 +114,7 @@ function renderTest(r) {
       })
       .join("")}</ul></div></div>
     <div class="sec charts">
-      <div class="panel chartp chart"><h3>Checking more by hand means fewer mistakes</h3><p>Measured at ${rc.length} confidence cut-offs: at the one Archivist used, ${whole(share * 100)} in 100 values go to a person and about ${one(a1)} in 1,000 accepted values are wrong.</p><svg id="ch-curve" viewBox="0 0 520 200" role="img" aria-label="Wrong values per 1,000 accepted against the share sent to a person, at each measured cut-off">${curve(rc, singlePt, archPt)}</svg><p class="fine">Straight lines join the measured points; nothing was measured between them.</p></div>
+      <div class="panel chartp chart"><h3>Checking more by hand means fewer mistakes</h3><p>Measured at ${rc.length} confidence cut-offs: at the one Archivist used, ${whole(share * 100)} in 100 values go to a person and about ${one(a1)} in 1,000 accepted values are wrong. Straight lines join the measured points; nothing was measured between them.</p><svg id="ch-curve" viewBox="0 0 520 200" role="img" aria-label="Wrong values per 1,000 accepted against the share sent to a person, at each measured cut-off">${curve(rc, singlePt, archPt)}</svg></div>
       <div class="panel chartp"><h3>Worn pages get checked more</h3><p>Share of values sent to a person, by the condition of the page. Most of the checking goes to the most worn pages.</p><div class="cond">${Object.entries(sev)
         .map(([i, v]) => `<div class="crow"><span>${COND[+i]}</span><span class="cb"><i style="width:${((v.review_rate * 100) / Math.max(50, worst)) * 100}%"></i></span><span class="cv">${whole(v.review_rate * 100)} in 100</span></div>`)
         .join("")}</div></div>

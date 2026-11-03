@@ -365,22 +365,23 @@ def _met_words(met: dict[str, bool]) -> str:
     return "met where the layout matches, not met with every cell" if left else "met with every cell, not where the layout matches"
 
 
-def real_rows(v1: dict, open_: dict, fixed_v1: dict, fixed_open: dict) -> list[tuple[str, str, str]]:
-    """The real-scan table the README and the app's accuracy view both show: each row's label, its figure under
-    the corrected key and as registered. Review does not depend on the key, so its figure is the same in both."""
+def real_cells(v1: dict, open_: dict, fixed_v1: dict, fixed_open: dict) -> list[tuple[str, tuple, tuple]]:
+    """The real-scan table the README and the app's accuracy view both show, as figures: each row's label, its cell
+    under the corrected key and as registered. A cell is ("pair", Archivist, single read, places), ("one", figure) or
+    ("words", text). Review does not depend on the key, so its figure is the same in both."""
     reg, fix = v1["labels"], fixed_v1["corrected_key"]["labels"]
     oreg, ofix = open_["open_weights"], fixed_open["corrected_key"]["open_weights"]
 
-    def pair(labels: dict, variant: str, places: int = 1) -> str:
+    def pair(labels: dict, variant: str, places: int = 1) -> tuple:
         o = labels[variant]["overall"]
-        return f"{_ci(o['archivist_error'], places)} against {_ci(o['single_read_error'], places)}"
+        return ("pair", o["archivist_error"], o["single_read_error"], places)
 
-    def caught(labels: dict) -> str:
-        return _ci(labels["kept/as_run"]["overall"]["catch_rate"])
+    def caught(labels: dict) -> tuple:
+        return ("one", labels["kept/as_run"]["overall"]["catch_rate"])
 
-    review = _ci(v1["every_cell"]["kept/as_run"]["overall"]["review_rate"])
-    sent = _ci(oreg["kept/as_run"]["overall"]["sent_to_person"])
-    if sent != _ci(ofix["kept/as_run"]["overall"]["sent_to_person"]):
+    review = ("one", v1["every_cell"]["kept/as_run"]["overall"]["review_rate"])
+    sent = ("one", oreg["kept/as_run"]["overall"]["sent_to_person"])
+    if _ci(sent[1]) != _ci(ofix["kept/as_run"]["overall"]["sent_to_person"]):
         raise ValueError("the open-weights review rate differs between the keys")
     # under 1% is shown to two places, so that a rate under the target never reads as 1.0%
     places = 2 if ofix["left_out/as_run"]["overall"]["archivist_error"]["value"] < 0.0105 else 1
@@ -389,13 +390,26 @@ def real_rows(v1: dict, open_: dict, fixed_v1: dict, fixed_open: dict) -> list[t
         ("Hosted, pages whose layout matches their template", pair(fix, "left_out/as_run"), pair(reg, "left_out/as_run")),
         ("Hosted, wrong values caught", caught(fix), caught(reg)),
         ("Hosted, every deep-check cell sent to a person", review, review),
-        ("Hosted, R1 (lower than the single read, intervals apart)", _met_words({k: r["r1"]["met"] for k, r in fix.items()}), _met_words({k: r["r1"]["met"] for k, r in reg.items()})),
+        ("Hosted, R1 (lower than the single read, intervals apart)", ("words", _met_words({k: r["r1"]["met"] for k, r in fix.items()})), ("words", _met_words({k: r["r1"]["met"] for k, r in reg.items()}))),
         ("Open weights, every labelled cell: wrong among accepted, against the single read", pair(ofix, "kept/as_run"), pair(oreg, "kept/as_run")),
         ("Open weights, pages whose layout matches their template", pair(ofix, "left_out/as_run", places), pair(oreg, "left_out/as_run", places)),
         ("Open weights, wrong values caught", caught(ofix), caught(oreg)),
         ("Open weights, drawn cells sent to a person", sent, sent),
-        ("Open weights, O1 (under 1% wrong among accepted)", _met_words(fixed_open["corrected_key"]["o1"]["in_every_variant"]), _met_words(open_["o1"]["in_every_variant"])),
+        ("Open weights, O1 (under 1% wrong among accepted)", ("words", _met_words(fixed_open["corrected_key"]["o1"]["in_every_variant"])), ("words", _met_words(open_["o1"]["in_every_variant"]))),
     ]
+
+
+def _cell_text(cell: tuple) -> str:
+    """A cell as the README prints it: the figure with its interval, or Archivist's against the single read's."""
+    if cell[0] == "pair":
+        return f"{_ci(cell[1], cell[3])} against {_ci(cell[2], cell[3])}"
+    return _ci(cell[1]) if cell[0] == "one" else cell[1]
+
+
+def real_rows(v1: dict, open_: dict, fixed_v1: dict, fixed_open: dict) -> list[tuple[str, str, str]]:
+    """The real-scan table as the README prints it: each row's label, its figure under the corrected key and as
+    registered."""
+    return [(label, _cell_text(fix), _cell_text(reg)) for label, fix, reg in real_cells(v1, open_, fixed_v1, fixed_open)]
 
 
 def _score_claims(v1: dict, open_: dict, fixed_v1: dict, fixed_open: dict) -> list[Claim]:
@@ -504,13 +518,101 @@ def check_readme() -> list[Result]:
     return results
 
 
-def app_claims(v1: dict, open_: dict, fixed_v1: dict, fixed_open: dict) -> list[Claim]:
-    """The real-scans tab of the review app's accuracy view: the same table as the README's, as HTML rows."""
-    rows = real_rows(v1, open_, fixed_v1, fixed_open)
-    claims = [Claim(f"app, {label}", f'<tr><th scope="row">{label}</th><td>{fix}</td><td>{reg}</td></tr>', FIXED_V1) for label, fix, reg in rows]
+APP_LEAD = "Archivist’s wrong values among those it accepts, on real government scans: the corrected key first, with the figure as registered beside it."
+APP_VARIANTS = (("kept/as_run", "Every labelled cell"), ("left_out/as_run", "Pages whose layout matches their template"))
+
+
+def _span(m: dict, places: int = 1) -> str:
+    return f"{_pc(m['ci'][0], places)}–{_pc(m['ci'][1], places)}"
+
+
+def _chip(met: bool, target: str) -> str:
+    return f'<span class="st {"st-ok" if met else "st-miss"}">{target} {"met" if met else "not met"}</span>'
+
+
+def _nv(m: dict, who: str = "", places: int = 1) -> str:
+    """One figure on its own line, its interval smaller beneath it."""
+    return f'<div class="nv">{f"<span>{who}</span>" if who else ""}<b>{_pc(m["value"], places)}</b><small>{_span(m, places)}</small></div>'
+
+
+def _cell_html(cell: tuple) -> str:
+    if cell[0] == "pair":
+        return _nv(cell[1], "Archivist", cell[3]) + _nv(cell[2], "Single read", cell[3])
+    return _nv(cell[1]) if cell[0] == "one" else cell[1]
+
+
+def _bars(top: float, rows: list[tuple[str, str, dict, dict, int]]) -> str:
+    """The range chart of one configuration: for each row, the single read's interval above Archivist's, on a
+    scale from 0 to `top`, each with its estimate."""
+    at = lambda x: f"{x / top * 100:.2f}%"  # noqa: E731
+    out = ""
+    for label, key, single, arch, places in rows:
+        said = f"Single read {_pc(single['value'], places)} ({_span(single, places)}); Archivist {_pc(arch['value'], places)} ({_span(arch, places)})"
+        tracks = "".join(
+            f'<div class="iv-t"><i class="{who}" style="left:{at(m["ci"][0] * 100)};width:{at((m["ci"][1] - m["ci"][0]) * 100)}"></i><b class="{who}" style="left:{at(m["value"] * 100)}"></b></div>'
+            for who, m in (("single", single), ("arch", arch))
+        )
+        out += f'<div class="rs-row"><div class="rs-l"><span>{label}</span><small>{key}</small></div><div class="rs-tr">{tracks}<span class="sr">{said}</span></div></div>'
+    ticks = range(0, int(top) + 1, 10)
+    axis = "".join(f"<span>{t}%</span>" for t in ticks)
+    return f'<div class="rs-rows">{out}</div><div class="rs-ax" aria-hidden="true">{axis}</div>'
+
+
+def app_real_pieces(v1: dict, open_: dict, fixed_v1: dict, fixed_open: dict) -> list[tuple[str, str]]:
+    """The real-scans tab of the review app's accuracy view, in order, as the exact HTML ui/index.html must hold:
+    for hosted and for open weights, the big numbers (wrong among accepted, corrected key first with the figure as
+    registered beside it, and whether R1 or O1 was met under each), the range chart of the intervals, then the full
+    table, folded. Every figure is written from the score files, so the check that follows is on every one of them."""
+    reg, fix = v1["labels"], fixed_v1["corrected_key"]["labels"]
+    oreg, ofix = open_["open_weights"], fixed_open["corrected_key"]["open_weights"]
+    o1_fix, o1_reg = fixed_open["corrected_key"]["o1"]["in_every_variant"], open_["o1"]["in_every_variant"]
+    open_places = 2 if ofix["left_out/as_run"]["overall"]["archivist_error"]["value"] < 0.0105 else 1
+    sets = (
+        ("Hosted, Muse Spark 1.3 on Meta’s API", "hosted", "R1", fix, reg, {v: fix[v]["r1"]["met"] for v, _ in APP_VARIANTS}, {v: reg[v]["r1"]["met"] for v, _ in APP_VARIANTS}, {v: 1 for v, _ in APP_VARIANTS}),
+        ("Open weights, Muse Spark Open", "open", "O1", ofix, oreg, o1_fix, o1_reg, {"kept/as_run": 1, "left_out/as_run": open_places}),
+    )
+    pieces = [("app, lead", f'<p class="acc-lead">{APP_LEAD}</p>')]
+    for title, name, target, k_fix, k_reg, met_fix, met_reg, places in sets:
+        cards, rows = "", []
+        for variant, label in APP_VARIANTS:
+            f, r = k_fix[variant]["overall"]["archivist_error"], k_reg[variant]["overall"]["archivist_error"]
+            n = places[variant]
+            cards += (
+                f'<div class="panel rs-card"><h3>{label}</h3>'
+                f'<div class="rs-nums"><div class="rs-main"><b>{_pc(f["value"], n)}</b><small>wrong among accepted, corrected key</small></div>'
+                f'<div class="rs-beside"><b>{_pc(r["value"], n)}</b><small>as registered</small></div></div>'
+                f'<div class="rs-chips"><span>Corrected key {_chip(met_fix[variant], target)}</span><span>As registered {_chip(met_reg[variant], target)}</span></div></div>'
+            )
+            for which, kk in (("Corrected key", k_fix), ("As registered", k_reg)):
+                o = kk[variant]["overall"]
+                rows.append((label, which, o["single_read_error"], o["archivist_error"], n))
+        top = math.ceil(max(m["ci"][1] for _, _, a, b, _ in rows for m in (a, b)) * 10) * 10  # up to the next 10%
+        pieces.append((f"app, {name} cards", f'<section class="rs-set" aria-label="{title}"><h2>{title}</h2><div class="rs-big">{cards}</div>'))
+        key = '<span class="rs-key"><i class="single"></i>Single read<i class="arch"></i>Archivist</span>'
+        pieces.append(
+            (f"app, {name} range chart", f'<div class="panel rs-chart"><div class="rs-chart-h"><h3>Where the intervals fall</h3>{key}</div><p class="fine">Each bar is the 95% interval and the tick its estimate. Where the single read’s bar and Archivist’s overlap, the target is not met.</p>{_bars(top, rows)}</div></section>')
+        )
+    head = f"<th>Real scans</th><th>Corrected key</th><th>{REGISTERED[0].upper()}{REGISTERED[1:]}</th>"
+    pieces.append(("app, the full table", f'<details class="experts rs-full"><summary>The full table: every figure with its interval</summary><div class="panel"><div class="tw"><table class="tbl rs-tbl"><thead><tr>{head}</tr></thead><tbody>'))
+    for label, fixed, registered in real_cells(v1, open_, fixed_v1, fixed_open):
+        pieces.append((f"app, {label}", f'<tr><th scope="row">{label}</th><td>{_cell_html(fixed)}</td><td>{_cell_html(registered)}</td></tr>'))
+    pieces.append(("app, the table's end", "</tbody></table></div></div></details>"))
     kept = v1["labels"]["kept/as_run"]
-    claims.append(Claim("app, the answer key", f"{kept['cells']} cells drawn in advance", SCORE_V1))
-    return claims
+    pieces.append(
+        (
+            "app, the answer key",
+            f'<p class="fine" style="max-width:80ch">The test is on held-out pages of the US Treasury Bulletin, which no model had seen: {kept["cells"]} cells drawn in advance and labelled by hand from the printed page, never shown a model’s answer. '
+            "The corrected key differs from the first-pass key only where a check of every first-pass blank on its printed page found a dash, by a rule written down before anyone looked (PREREGISTRATION_REAL.md, Deviations). "
+            "Wrong among accepted is given against the single read; intervals are 95%, resampled by page. Sending to a person does not depend on the key. "
+            "The score files are in results/real_test/held_out/ and results/real_openw/held_out/ (score_corrected/ and score/).</p>",
+        )
+    )
+    return pieces
+
+
+def app_claims(v1: dict, open_: dict, fixed_v1: dict, fixed_open: dict) -> list[Claim]:
+    """The real-scans tab of the review app's accuracy view, as the HTML ui/index.html must hold."""
+    return [Claim(what, html, SCORE_V1 if "answer key" in what else FIXED_V1) for what, html in app_real_pieces(v1, open_, fixed_v1, fixed_open)]
 
 
 def check_app() -> list[Result]:

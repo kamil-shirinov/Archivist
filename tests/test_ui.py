@@ -323,8 +323,81 @@ def test_the_accuracy_report_has_the_test_reports_numbers_and_the_real_scans_und
     real = tab.eval("document.getElementById('acc-real').textContent")
     heads = tab.eval("[...document.querySelectorAll('#acc-real thead th')].map(th => th.textContent)")
     assert heads[1] == "Corrected key" and heads[2].startswith("As registered"), "the corrected key leads, as registered beside it"
-    for label, fixed, registered in verify.real_rows(*(verify._json(ROOT / p) for p in verify.SCORES)):
-        assert label in real and fixed in real and registered in real, label
+    # every figure of the score files is on the page, each with its interval, whichever form it is shown in
+    scores = [verify._json(ROOT / p) for p in verify.SCORES]
+    for label, *cells in verify.real_cells(*scores):
+        assert label in real, label
+        for cell in cells:
+            if cell[0] == "words":
+                assert cell[1] in real, cell
+                continue
+            for m in (cell[1], cell[2]) if cell[0] == "pair" else (cell[1],):
+                places = cell[3] if cell[0] == "pair" else 1
+                assert verify._pc(m["value"], places) in real and verify._span(m, places) in real, (label, m)
+    assert tab.errors == []
+
+
+def test_the_real_scans_tab_shows_big_numbers_chips_and_a_range_chart_with_the_table_folded(tab, site):
+    load(tab, site, "#accuracy")
+    settle(tab, VIEWS["accuracy"][1])
+    tab.eval("document.querySelector('#acc-set [data-a=real]').click()")
+    v1, open_, fixed_v1, fixed_open = (verify._json(ROOT / p) for p in verify.SCORES)
+    cards = tab.eval("[...document.querySelectorAll('#acc-real .rs-card')].map(c => ({h: c.querySelector('h3').textContent, main: c.querySelector('.rs-main b').textContent, beside: c.querySelector('.rs-beside b').textContent, chips: [...c.querySelectorAll('.st')].map(x => x.textContent)}))")
+    fix, reg = fixed_v1["corrected_key"]["labels"], v1["labels"]
+    ofix, oreg = fixed_open["corrected_key"]["open_weights"], open_["open_weights"]
+    met = lambda m, t: f"{t} {'met' if m else 'not met'}"  # noqa: E731
+    want = []
+    for variant, title in verify.APP_VARIANTS:
+        want.append((title, fix[variant]["overall"]["archivist_error"]["value"], reg[variant]["overall"]["archivist_error"]["value"], [met(fix[variant]["r1"]["met"], "R1"), met(reg[variant]["r1"]["met"], "R1")]))
+    o1_fix, o1_reg = fixed_open["corrected_key"]["o1"]["in_every_variant"], open_["o1"]["in_every_variant"]
+    for variant, title in verify.APP_VARIANTS:
+        want.append((title, ofix[variant]["overall"]["archivist_error"]["value"], oreg[variant]["overall"]["archivist_error"]["value"], [met(o1_fix[variant], "O1"), met(o1_reg[variant], "O1")]))
+    assert len(cards) == 4
+    for card, (title, fixed, registered, chips) in zip(cards, want, strict=True):
+        assert card["h"] == title and card["chips"] == chips, card
+        # the corrected key leads: the big figure is its, the as-registered one beside it
+        places = 2 if "matches" in title and want.index((title, fixed, registered, chips)) >= 2 and ofix["left_out/as_run"]["overall"]["archivist_error"]["value"] < 0.0105 else 1
+        assert card["main"] == verify._pc(fixed, places) and card["beside"] == verify._pc(registered, places)
+    assert tab.eval("document.querySelectorAll('#acc-real .rs-chart').length") == 2
+    assert tab.eval("document.querySelectorAll('#acc-real .rs-chart .rs-row').length") == 8
+    assert tab.eval("document.querySelectorAll('#acc-real .rs-chart .iv-t i.single, #acc-real .rs-chart .iv-t i.arch').length") == 16
+    assert tab.eval("document.querySelector('#acc-real .rs-full').open") is False, "the full table is folded"
+    assert tab.eval("document.querySelector('#acc-real .rs-full').getBoundingClientRect().top > document.querySelectorAll('#acc-real .rs-chart')[1].getBoundingClientRect().bottom"), "below the charts"
+    tab.eval("document.querySelector('#acc-real .rs-full summary').click()")
+    assert tab.eval("document.querySelectorAll('#acc-real .rs-tbl tbody tr').length") == len(verify.real_cells(v1, open_, fixed_v1, fixed_open))
+    # each number on its own line, its interval smaller beneath it
+    assert tab.eval(
+        "[...document.querySelectorAll('#acc-real .rs-tbl .nv')].every(n => { const b = n.querySelector('b').getBoundingClientRect(), s = n.querySelector('small').getBoundingClientRect(); "
+        "return s.top >= b.bottom - 1 && parseFloat(getComputedStyle(n.querySelector('small')).fontSize) < parseFloat(getComputedStyle(n.querySelector('b')).fontSize); })"
+    )
+    assert tab.errors == []
+
+
+@pytest.mark.parametrize("theme", THEMES)
+@pytest.mark.parametrize("width,height", [(1440, 900), (1920, 1080), (390, 844)])
+def test_both_accuracy_tabs_fit_at_every_width_in_both_themes_and_no_card_has_blank_space(tab, site, width, height, theme):
+    tab.errors.clear()
+    tab.open(f"{site}/ui/#accuracy", width=width, height=height, dark=THEMES[theme], still=True)
+    tab.wait_for("document.documentElement.dataset.ready === '1'", 60)
+    settle(tab, VIEWS["accuracy"][1])
+    fits = "document.documentElement.scrollWidth <= window.innerWidth + 1"
+    assert tab.eval(fits), "the Test pages tab scrolls sideways"
+    # the curve's labels are drawn with the chart, inside it, and nothing of the card comes after it
+    assert tab.eval("(() => { const s = document.getElementById('ch-curve'); return s.querySelectorAll('text').length > 10 && s.nextElementSibling === null; })()")
+    # the card of worn pages is as tall as its own content, not as tall as its neighbour
+    blank = tab.eval(
+        "(() => { const c = document.querySelector('.cond').closest('.panel'), r = c.getBoundingClientRect(), k = c.querySelector('.cond').getBoundingClientRect(); return r.bottom - k.bottom; })()"
+    )
+    assert blank <= 24, f"{blank}px below the bars"
+    SHOTS.mkdir(exist_ok=True)
+    tab.screenshot(SHOTS / f"accuracy-test-{width}-{theme}.png", full_page=True)
+    tab.eval("document.querySelector('#acc-set [data-a=real]').click()")
+    tab.eval("document.querySelector('#acc-real .rs-full summary').click()")
+    tab.pump(0.5)
+    assert tab.eval(fits), "the Real government scans tab scrolls sideways"
+    assert tab.eval("[...document.querySelectorAll('#acc-real .rs-card')].every(c => c.scrollWidth <= c.clientWidth + 1)")
+    assert tab.eval("[...document.querySelectorAll('#acc-real .rs-chart')].every(c => c.scrollWidth <= c.clientWidth + 1)")
+    tab.screenshot(SHOTS / f"accuracy-real-{width}-{theme}.png", full_page=True)
     assert tab.errors == []
 
 

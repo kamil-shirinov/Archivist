@@ -4,8 +4,8 @@ Archivist is a solo entry. What the author decided or found is written with "I" 
 "Archivist", so nothing a reader sees speaks for a group: the README (headings included), eval/README.md,
 CONTRIBUTING.md, SECURITY.md, the landing page and the review app's on-screen text. This test fails if one comes back.
 
-What it does not read: code, comments, file and test names, link targets, and CODE_OF_CONDUCT.md, which is the
-Contributor Covenant's own text. "US" in capitals (the United States) is not "us".
+What it does not read: code, comments, file and test names, and link targets. "US" in capitals (the United States)
+is not "us".
 """
 
 import importlib.util
