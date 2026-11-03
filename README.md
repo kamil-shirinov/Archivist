@@ -2,23 +2,46 @@
 
 # Archivist
 
-[![CI](https://github.com/kamil-shirinov/Archivist/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/kamil-shirinov/Archivist/actions/workflows/ci.yml)
+**The archive that shows its work.**
 
-Archivist turns scanned financial archives into a verified database. Every value is cited to its spot on the page, cross-checked by arithmetic and a blind second read, and flagged for a person when unsure. Values are never changed automatically.
+[![Live demo](https://img.shields.io/badge/Live_demo-open-4A55D4)](https://kamil-shirinov.github.io/Archivist/) [![CI](https://github.com/kamil-shirinov/Archivist/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/kamil-shirinov/Archivist/actions/workflows/ci.yml) [![Apache-2.0](https://img.shields.io/badge/license-Apache--2.0-blue)](LICENSE) [![Docker](https://img.shields.io/badge/Docker-no_setup-2496ED?logo=docker&logoColor=white)](#run-it-yourself) [![Muse Spark 1.3](https://img.shields.io/badge/Meta-Muse_Spark_1.3-4A55D4)](#metas-four-models) [![Muse Spark Open](https://img.shields.io/badge/Meta-Muse_Spark_Open-4A55D4)](#open-weights-the-same-pipeline-on-your-own-hardware) [![Muse Glimmer](https://img.shields.io/badge/Meta-Muse_Glimmer-4A55D4)](#metas-four-models) [![SAM 3.1](https://img.shields.io/badge/Meta-SAM_3.1-4A55D4)](#metas-four-models)
+
+<a href="https://kamil-shirinov.github.io/Archivist/ui/#replay"><img src="docs/img/watch-it-work.gif" alt="Watch it work, recorded from the live site on a synthetic ledger card. The sheet number is ringed because the blind second read, 3, disagrees with the first, 35. The arithmetic then checks a running balance and the cheque numbers, value by value." width="100%"></a>
+
+*Watch it work, recorded from the live site: a value ringed, the blind second read, the arithmetic. [Open the live version.](https://kamil-shirinov.github.io/Archivist/ui/#replay)*
+
+- **What it does.** Archivist turns scanned financial archives into a verified database. Every value is cited to its spot on the page, cross-checked by arithmetic and a blind second read, and flagged for a person when unsure. Values are never changed automatically.
+- **How well.** On the pre-registered synthetic test, 0.36% of the values it accepted were wrong against 4.45% for one read, but it sent 21.58% of values to a person against a target of at most 20%, so that target was missed ([Results](#results)). On real government scans, also pre-registered, its target was not met: 36.9% (24.7%–50.4%) of the values it accepted were wrong against 41.1% (30.6%–52.4%) for one read, on all 400 labelled cells ([what caused the errors](results/real_test/held_out/diagnosis.md)).
+- **Where your data goes.** Hosted, pages go to Meta's Model API, and Muse Glimmer's page sorting runs on Modal GPUs. On your own hardware, Muse Spark Open does both reads, so a bank that cannot send documents out can keep them: not yet proven on-site ([open weights](#open-weights-the-same-pipeline-on-your-own-hardware)). Only synthetic or public-domain pages were ever sent to a model, and the demo is static: no key, no server, no model call.
+- **Who built it.** Kamil Shirinov, a solo entry for the Meta Global AI Developer Hackathon 2026: Indie Developer track, Build for Your World.
+
+[Start here](#start-here) · [For judges](#for-judges) · [The problem](#the-problem) · [What you get](#what-you-get) · [How it works](#how-it-works) · [Open weights](#open-weights-the-same-pipeline-on-your-own-hardware) · [Results](#results) · [Why you can trust the numbers](#why-you-can-trust-the-numbers) · [Run it yourself](#run-it-yourself)
+
+**Built during the hackathon.** The idea came from a bank internship. Everything in this repository was built from its first commit, `dd55660` on 26 Oct 2026, except the third-party components named under Credits at the end.
+
+## Start here
+
+| | |
+|---|---|
+| **Watch** | The demo video: [link pending] |
+| **Try** | The [live demo](https://kamil-shirinov.github.io/Archivist/) (a landing page, then the review app; recorded runs only, no key, no model call) and [Watch it work](https://kamil-shirinov.github.io/Archivist/ui/#replay), the recorded read of one page, value by value |
+| **Run** | `docker build -t archivist .`, then `docker run --rm -p 8000:8000 archivist` for the site and `docker run --rm archivist python -m archivist.verify` for the judge checks ([Run it yourself](#run-it-yourself)) |
+| **Read** | [eval/README.md](eval/README.md), how every number was measured and how to reproduce it · the plans written before the runs: [synthetic](PREREGISTRATION.md), [real scans](PREREGISTRATION_REAL.md), [open weights](PREREGISTRATION_OPENW.md) · [the diagnosis of the real-scan errors](results/real_test/held_out/diagnosis.md) · [DECISIONS.md](DECISIONS.md) |
 
 ## For judges
 
-**The problem.** *(Draft: for the author to rewrite.)* Banks hold decades of records as scans. Typing them in is slow, and a model reading them alone gets some values wrong without saying which.
+| Criterion | Evidence |
+|---|---|
+| **Impact** (30%) | Banks hold decades of records as scans and paper; Archivist turns them into a database in which every value points to its spot on the page and a doubtful one goes to a person. On the synthetic test it let in 0.36% wrong values against 4.45% for one read and caught 93.65% of the wrong ones ([Results](#results)); on real government scans it did not meet its target, and the [diagnosis](results/real_test/held_out/diagnosis.md) says why ([Honest limits](#honest-limits)). One `docker run` shows it with no key, and the code is open source under Apache-2.0. |
+| **Use of Meta's models** (25%) | All four, each in a job that was measured: Muse Spark 1.3 reads and re-reads, SAM 3.1 finds covered ink, untrained Muse Glimmer sorts pages (it found all 136 confirmed table pages among 791 held-out ones), and Muse Spark Open does both reads on open weights ([Meta's four models](#metas-four-models), [open weights](#open-weights-the-same-pipeline-on-your-own-hardware)). What each one taught us, and what we dropped: [What we learned](#what-we-learned-about-metas-models), [What we tried and dropped](#what-we-tried-and-dropped). |
+| **Demo** (25%) | [Live demo](https://kamil-shirinov.github.io/Archivist/) and [Watch it work](https://kamil-shirinov.github.io/Archivist/ui/#replay), no key and no model call; the video: [link pending]; `docker run` for the same site; a local app that reads a page with real model calls, each one listed as it happens ([live reading](docs/live-reading.md)). |
+| **Technical depth** (20%) | Every value is read twice, once blind, and checked by plain-code arithmetic; no model grades its own work, and a person decides anything in doubt. New table types are learned from two or three sample pages with no new code: Muse Spark drafts, arithmetic tests, and a person approves. Each plan was committed before the runs it governs ([Why you can trust the numbers](#why-you-can-trust-the-numbers)); one command rebuilds the published numbers and charts from the committed runs and compares them byte for byte ([Run it yourself](#run-it-yourself)); [how every number was measured](eval/README.md). |
 
-**Headline.** On the pre-registered synthetic test, one read let in about 45 wrong values per 1,000; Archivist let in about 4 and sent about 1 in 5 values to a person. Three of five targets met ([details](#results)); real-scan scores pending.
+## The problem
 
-**Models.** Muse Glimmer sorts pages (open weights, Modal); Muse Spark 1.3 reads and re-reads and SAM 3.1 finds covered ink (Meta's API); Muse Spark Open can do both reads on a bank's own hardware (tested on Baseten).
+During a bank internship I used AI to build two things: a parser that turned about 2,000 legacy memos into a clean spreadsheet database, and a working prototype of an automated loan-processing system. Both hit the same wall. Nobody held all the memos in one place, there was no archive, and the oldest records existed only on paper; businesses applying for loans brought their earnings in notebooks and loose sheets that staff typed in by hand. Archivist is the tool I wanted then: it turns scanned financial records into a verified database, with every value cited to its spot on the page, read twice, checked by arithmetic, and sent to a person when in doubt.
 
-New table types are learned from two or three sample pages with no new code: Muse Spark drafts, arithmetic tests, and a person approves.
-
-No model grades its own work. Every value gets a blind second read and plain-code arithmetic, and a person decides anything in doubt.
-
-**Live demo:** [kamil-shirinov.github.io/Archivist](https://kamil-shirinov.github.io/Archivist/) (a landing page, then the review app; recorded runs only, no model call) · [Watch it work](https://kamil-shirinov.github.io/Archivist/ui/#replay) · **Video:** [link pending]
+Solo entry by Kamil Shirinov for the Meta Global AI Developer Hackathon 2026: Indie Developer track, Build for Your World.
 
 ## What you get
 
@@ -53,17 +76,25 @@ Seven steps; a value is accepted only when independent checks agree.
 
 The version 1 real-scan test sorted pages with Muse Spark 1.3.
 
-## One scheme, one swap
+## Open weights: the same pipeline on your own hardware
 
-Muse Spark Open, a model whose trained weights are published, can replace Muse Spark 1.3 for both reads (steps 2 and 5), so a bank that cannot send documents out can run the reading on its own machines.
+This is Archivist's entry for the open-weights bonus prize. Muse Spark Open, a model whose trained weights are published, can replace Muse Spark 1.3 for both reads (steps 2 and 5), so a bank that cannot send documents out can run the reading on its own machines. The evidence, and what it does not show:
+
+- **Muse Spark Open for both reads.** On the synthetic test, the all-open-weights arm let in 0.30% (0.12% to 0.54%) wrong values among those accepted, against 0.36% for Muse Spark 1.3 (H4, met; [Results](#results)). On the real scans it missed its target of under 1%: 27.1% (13.9%–49.9%) of accepted values were wrong ([score](results/real_openw/held_out/score/score.md), [plan](PREREGISTRATION_OPENW.md)).
+- **Muse Glimmer sorting pages.** The sorter is an open-weights model too: untrained, it found all 136 confirmed table pages among 791 held-out ones from their text ([report](results/glimmer/phase2/REPORT.md)).
+- **Two hosts compared.** Muse Spark Open ran on Baseten and on Fireworks; Baseten stayed ([comparison](results/hosts_compare.md), [open-weights report](results/openw_measure/REPORT.md), [Tried and dropped](#what-we-tried-and-dropped)).
+- **Not yet proven on-site.** No measured run has kept a page on a bank's own machines: Muse Spark Open ran on Baseten and SAM 3.1 still used Meta's API.
 
 <img src="docs/img/two-modes.svg" alt="The seven steps in one row. Steps 2 and 5, the two reads, are highlighted. Under each, two labels: Meta's API with Muse Spark 1.3, or your own hardware with Muse Spark Open." width="100%">
 
 The review app shows the same swap: the **Run on** chip in its run bar opens a panel with the seven steps and the two ways to run them, and opens the same page on the other recorded run.
 
 - **Costlier per page:** $0.0564 against $0.0089, partly because hosted calls ran at the hackathon's Contributor discount.
-- **Not yet proven on-site.** No measured run has kept a page on a bank's own machines: Muse Spark Open ran on Baseten and SAM 3.1 still used Meta's API.
-- **Real scans:** open weights have only development measurements of cost, speed and empty answers; the accuracy score is pending.
+- **Real scans:** besides the scored run above, open weights have development measurements of cost, speed and empty answers.
+
+## Meta's four models
+
+Muse Glimmer sorts pages (open weights, Modal); Muse Spark 1.3 reads and re-reads and SAM 3.1 finds covered ink (Meta's API); Muse Spark Open can do both reads on a bank's own hardware (tested on Baseten).
 
 <details>
 <summary>The four Meta models: exact ids, hosts, jobs, and what each report found</summary>
@@ -99,6 +130,8 @@ The 157-page synthetic test targets and measured results:
 | H4 | All-open-weights arm: under 1% wrong among accepted | 0.30% (0.12% to 0.54%): 10 of 3,296 | Met |
 | H5 | Flags at least 90% of the planted source errors | 88.46%: 23 of 26 (the report gives no interval) | **Missed** |
 
+Three of five targets met (H1, H2 and H4); H3 and H5 missed.
+
 <img src="docs/img/chart-mistakes.svg" alt="Grouped bar chart: wrong values accepted per 1,000, read once and with Archivist's checks, for three set-ups. Muse Spark 1.3 for both reads (arm A): 44.5 read once, interval 22.8 to 71.4, and 3.6 with checks, interval 1.4 to 6.7. Muse Spark Open for both reads (arm B): 47.5, interval 23.3 to 77.8, and 3.0, interval 1.2 to 5.4. Mixed, Muse Spark 1.3 first and Muse Spark Open second (arm C): 44.5, interval 22.8 to 71.4, and 4.7, interval 2.2 to 8.1. Only arm A against the read-once baseline was a pre-registered target; the others are figures from the same report." width="100%">
 
 <img src="docs/img/chart-hosted-vs-open.svg" alt="Two bar charts comparing Muse Spark 1.3, Muse Spark Open and the mixed set-up on the same test: share of wrong values caught and share of values sent to a person. The mixed set-up caught the fewest wrong values and sent the most to a person. Wrong values accepted per 1,000 are in the chart above." width="100%">
@@ -107,19 +140,22 @@ The 157-page synthetic test targets and measured results:
 
 A [script](docs/make_charts.py) draws the charts from the test report and fails if they drift.
 
-**Sorting pages.** Measured against the pipeline's own decisions, not human truth: on 791 held-out pages (never seen while the system was built), untrained Muse Glimmer found all 136 confirmed table pages and called 495 of 500 sampled other pages "other". Comparing Glimmer with the author's 50-page check comes with the real-scan scoring.
+**Sorting pages.** Measured against the pipeline's own decisions, not human truth: on 791 held-out pages (never seen while the system was built), untrained Muse Glimmer found all 136 confirmed table pages and called 495 of 500 sampled other pages "other". The author's 50-page check of the pages the real-scan sweep sorted found 50 of 50 right ([score](results/real_test/held_out/score/score.md)); Glimmer is not compared with it here.
 
-**Real-scan test** ([plan](PREREGISTRATION_REAL.md)). The sweep sorted all 4,569 held-out Treasury Bulletin pages into five approved table types, and the title check confirmed 136 of the 291 the model assigned. The deep check ran on 58 of them: 33,114 table cells and 29,018 blind re-reads. The answer key is 400 cells drawn in advance and labelled by the author from the printed page, never shown a model's figure; 40 are labelled again a day or more later. The scorer runs once the labels are committed, on the tagged code.
+**Real-scan test** ([plan](PREREGISTRATION_REAL.md)). The sweep sorted all 4,569 held-out Treasury Bulletin pages into five approved table types, and the title check confirmed 136 of the 291 the model assigned. The deep check ran on 58 of them: 33,114 table cells and 29,018 blind re-reads. The answer key is 400 cells drawn in advance and labelled by the author from the printed page, never shown a model's figure; 40 are labelled again a day or more later. The scorer ran once, on the tagged code, after the labels were committed.
 
-- [real-scan results, version 1, hosted: pending]
-- [real-scan results, open weights: pending]
+**Real-scan results, as scored.** The official figures use every drawn cell, with re-reads as run; intervals are 95%, resampled by page.
+
+- **Version 1, hosted (Muse Spark 1.3): R1 not met, in every variant.** Archivist let in 36.9% (24.7%–50.4%) wrong values among those it accepted, against 41.1% (30.6%–52.4%) for the single read; the intervals overlap. Leaving out the pages whose layout changed, it was 18.7% (1.6%–31.8%) against 16.7% (8.2%–25.8%). [Score](results/real_test/held_out/score/score.md).
+- **Open weights (Muse Spark Open): O1 not met.** 27.1% (13.9%–49.9%) wrong among those accepted, against 34.5% (22.1%–47.9%) for its single read; the target was under 1%. [Score](results/real_openw/held_out/score/score.md), [plan](PREREGISTRATION_OPENW.md).
+- **Why.** [The diagnosis](results/real_test/held_out/diagnosis.md) counts the causes, by stratum and family and without naming a cell: layout drift, where the templates describe a table's earlier columns, and a printed dash that the reads copy as "-" and the key labels blank, are the largest. It changes no score. A corrected-key score, declared in the plans' Deviations, has not been computed yet.
 
 ## Why it's built this way
 
 - **Every value is read twice, once blind,** because in development one misread debit was carried through every later balance, so arithmetic alone passed it.
 - **Only synthetic or public-domain pages reach a model,** because free-credit API traffic may be used by Meta for product improvement.
 
-## Tried and dropped
+## What we tried and dropped
 
 | Tried | Why it was dropped | Evidence |
 |---|---|---|
@@ -130,7 +166,7 @@ A [script](docs/make_charts.py) draws the charts from the test report and fails 
 | Fireworks as a second host for Muse Spark Open | Page reads 4 to 13 times slower than Baseten (one never returned in 30 minutes), re-reads about a fifth as fast, and "can't read" for half the crops | [Open-weights report](results/openw_measure/REPORT.md), sections 4, 5 and 10 |
 | Anchoring boxes to the table structure (version 2), for Muse Spark 1.3 | Lowered blind re-read agreement on development pages (67.7% to 62.0%), so by the rule written first, version 1 stays | [Version 2 report](results/v2/REPORT.md) |
 
-## Proof and dates
+## Why you can trust the numbers
 
 Each plan was committed before the runs it governs. Dates are from `git log`, set by the committer's clock, not a third-party timestamp.
 
@@ -144,9 +180,10 @@ Each plan was committed before the runs it governs. Dates are from `git log`, se
 | Runner code, tag `run-real-treasury` | `b8ff15d` | 2026-10-29 08:41 | The held-out run | Sweep began 08:49:35 and the deep check finished 23:55:06 (`results/real_test/held_out/`); records `00da8e1`, 23:59 |
 | Draw of the 400 values to label | `6d35bae` | 2026-10-30 00:00 | The answer key | `labels/draw.json` |
 | Scorer, tested on synthetic records only | `b934786` | 2026-10-30 07:26 | The scoring | Weights decision recorded `f1d3091`, 07:38, before any scoring |
-| Real-scan score | [pending] | [pending] | | |
+| Open-weights plan (`PREREGISTRATION_OPENW.md`), tag `prereg-real-openw` | `8418a22` | 2026-11-02 09:25 | The held-out run of Muse Spark Open | Runner, tag `run-real-openw`, `1adee1f`, 09:25 |
+| Real-scan score, version 1 | `67948f7` | 2026-11-02 17:24 | R1 | Open weights scored `ccf9272`, 17:32; the diagnosis `69c5af1`, 18:21 |
 
-The tags are lightweight, so git stores the tagged commit's date, not when the tag was made; the run's own timestamps (`sweep.json`) show it began after the tagged commit. Both plans have changed only below their Deviations heading (checked 2026-11-01, against every commit that touched them).
+The tags are lightweight, so git stores the tagged commit's date, not when the tag was made; the run's own timestamps (`sweep.json`) show it began after the tagged commit. The synthetic and real-pages plans had changed only below their Deviations heading (checked 2026-11-01, against every commit that touched them). The open-weights plan has not been checked that way.
 
 </details>
 
@@ -189,6 +226,7 @@ uv run python -m archivist.verify
 | The test report | Regenerates it from the committed runs and compares it byte for byte with `results/test_report.json` and [Synthetic results](results/TEST_RESULTS.md) (`uv run python -m archivist.eval.test_report` rewrites them unchanged in a clean checkout) |
 | Each committed export | Rebuilds it from its run: the bundle byte for byte (`uv run python -m archivist.export.bundle --run test-archivist-A --check`), the CSVs byte for byte and the SQLite file row for row |
 | The charts | Redraws them from the report (`uv run python docs/make_charts.py --check`) |
+| The README's numbers | Compares the figures this file quotes for the headline, the synthetic results and the real-scan scores with `results/test_report.json`, the two held-out `score.json` files and the sweep, and the deep check's counts with its `run.json` where that file is present (it is not in the Docker image, and the check says so). Other figures, quoted from the Markdown reports, are not compared |
 | Not checked | The rebuild of the Treasury development bundle, which needs scans that are not committed; the command names and skips it |
 | Then | Prints a plain-English summary of what passed, what was not checked and why, and what failed; it exits non-zero on any failure |
 | In CI | [GitHub Actions](.github/workflows/ci.yml) runs the tests, this command, and the Docker image (built, then this command run inside it and the review app served from it) on every push to main and on pull requests |
@@ -263,9 +301,10 @@ A learning loop, not built yet: people correct values in the review queue and th
 | Test results, charts, per-page costs | [`results/test_report.json`](results/test_report.json), [Synthetic results](results/TEST_RESULTS.md); plan [`PREREGISTRATION.md`](PREREGISTRATION.md) |
 | Real-scan test counts (4,569 pages in 46 issues: every month of 1940 to 1942 and each June of 1985 to 1994) | [Sweep](results/real_test/held_out/sweep.json), [deep run](results/real_test/held_out/run.json), [draw](results/real_test/held_out/labels/draw.json); plan `PREREGISTRATION_REAL.md`; tag `run-real-treasury` |
 | Layout drift, title-check page (the results will score the drifted cells both ways, and name the title-check page as a weakness) | `PREREGISTRATION_REAL.md` (Deviations); [Layout check](results/real_test/held_out/layout_check.md), which settled 42 pages from the text layer; the other 16 were checked by eye ([`layouts_checked.jsonl`](results/real_test/held_out/labels/layouts_checked.jsonl)) |
+| Real-scan scores (R1 and O1, as scored) and the causes of the wrong values | [`score.json`](results/real_test/held_out/score/score.json) and [`score.md`](results/real_test/held_out/score/score.md) (version 1), [`score.json`](results/real_openw/held_out/score/score.json) and [`score.md`](results/real_openw/held_out/score/score.md) (open weights), [the diagnosis](results/real_test/held_out/diagnosis.md); plans `PREREGISTRATION_REAL.md` and `PREREGISTRATION_OPENW.md` |
 | Prices ($0.10 in and $0.20 out per million tokens for Contributor mode; $1.25 and $4.25 at the standard price) | `config/models.toml` (decision D19) |
 | Why it is built this way | `DECISIONS.md`: D4, D7, D10, D14, D24, D25, D26, D30 |
-| Dates and commits | `git log` (see Proof and dates) |
+| Dates and commits | `git log` (see Why you can trust the numbers) |
 
 </details>
 
@@ -274,7 +313,7 @@ A learning loop, not built yet: people correct values in the review queue and th
 
 Archivist's own code is open source under the Apache License 2.0; see [LICENSE](LICENSE). The fonts and the FRASER pages keep the terms below.
 
-**Fonts.** Rendering synthetic documents: Libre Baskerville, Courier Prime and Nanum Pen Script (SIL Open Font License 1.1); Special Elite and Homemade Apple (Apache License 2.0). Licence files are in `assets/fonts/`. The review app uses Geist (SIL Open Font License 1.1, `ui/fonts/GEIST-OFL.txt`). Sources and dates: [`DATA_SOURCES.md`](DATA_SOURCES.md). **Logo.** The two files in `assets/brand/` redraw the review app's own mark (`ui/index.html`), in the app's light and dark colours.
+**Fonts.** Rendering synthetic documents: Libre Baskerville, Courier Prime and Nanum Pen Script (SIL Open Font License 1.1); Special Elite and Homemade Apple (Apache License 2.0). Licence files are in `assets/fonts/`. The review app uses Geist (SIL Open Font License 1.1, `ui/fonts/GEIST-OFL.txt`). Sources and dates: [`DATA_SOURCES.md`](DATA_SOURCES.md). **Logo.** The one file `assets/brand/logo-light.svg` redraws the review app's own mark (`ui/index.html`): an indigo square, white lines and a gold tick, the same in both themes.
 
 **Libraries** (`pyproject.toml`): faker, meta-sam-parser, numpy, openai (the SDK that calls the APIs), pillow, pydantic, pypdfium2, python-dotenv, pyyaml; for development jsonschema, pre-commit and pytest; modal in the optional `glimmer` group, for the Muse Glimmer sorter. Python 3.12, locked with uv.
 

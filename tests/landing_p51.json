@@ -128,7 +128,7 @@
   "Watch it work",
   "Open source·Pre-registered·Built on Meta’s {model}, {model}, {model} and {model}",
   "The archive that shows its work.",
-  "Banks hold decades of records as scans. Typing them in is slow, and a model reading them alone gets some values wrong without saying which. I saw this problem first-hand during a bank internship.",
+  "At a bank internship I built a parser for about {story.memos} legacy memos, and found there was no archive to run it on: the oldest records were only on paper, and loan applicants brought their earnings in notebooks that staff typed in by hand.",
   "Archivist turns scanned financial archives into a verified database: every value is cited to its spot on the page, read twice with the second read blind, checked by arithmetic, and sent to a person when in doubt.",
   "Run it yourself",
   "Recorded run · {model} + {model} · public-domain {replay.year} Treasury page",

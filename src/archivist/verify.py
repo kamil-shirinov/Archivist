@@ -19,6 +19,13 @@ repository; it rebuilds each result from what is committed and compares it with 
    (it validates, and its page images match their recorded hashes) and the rebuild is reported as
    skipped, never as passed.
 
+4. The numbers the README quotes for the headline, the synthetic results and the real-scan scores, against the
+   result files they come from (results/test_report.json, the two held-out score files, the sweep and, where
+   it is present, the run's own record). Each claim is the exact text the README must hold; a number that
+   differs, or a sentence that has gone, fails. A claim whose file is not here is reported as skipped. Only
+   the figures its claim lists name (_rate_claims and the others above check_readme) are checked: the README's other numbers, quoted from reports in
+   Markdown, are not.
+
 It ends with a plain-English summary of what passed, what was skipped and why, and what failed.
 The exit status is 0 when nothing failed.
 """
@@ -265,6 +272,132 @@ def check_exports() -> list[Result]:
     return results
 
 
+# --- the README's numbers -------------------------------------------------------------------------------
+
+README = Path("README.md")
+TEST_REPORT = Path("results/test_report.json")
+SCORE_V1 = Path("results/real_test/held_out/score/score.json")
+SCORE_OPEN = Path("results/real_openw/held_out/score/score.json")
+SWEEP = Path("results/real_test/held_out/sweep.json")
+RUN_V1 = Path("results/real_test/held_out/run.json")
+
+
+@dataclass(frozen=True)
+class Claim:
+    """Text the README must hold, with the file it comes from."""
+
+    what: str
+    text: str
+    source: Path
+
+
+def _pc(x: float, places: int = 2) -> str:
+    return f"{x * 100:.{places}f}%"
+
+
+def _json(path: Path) -> dict:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def _rate_claims(report: dict) -> list[Claim]:
+    h = {k: v["numbers"] for k, v in report["hypotheses"].items()}
+    a, base = h["H1"]["headline"], h["H1"]["baseline"]
+    h2, h3, h4, h5 = h["H2"], h["H3"], h["H4"], h["H5"]
+
+    def ci(n: dict) -> str:
+        return f"{_pc(n['rate'])} ({_pc(n['ci95'][0])} to {_pc(n['ci95'][1])})"
+
+    claims = {
+        "H1, Results table": f"{ci(a)} against {ci(base)}",
+        "H2, Results table": f"{ci(h2)}: {h2['caught']} of {h2['wrong']}",
+        "H3, Results table": f"{ci(h3)}: {h3['review']:,} of {h3['fields']:,}",
+        "H4, Results table": f"{ci(h4)}: {h4['wrong']} of {h4['accepted']:,}",
+        "H5, Results table": f"{_pc(h5['rate'])}: {h5['found']} of {h5['planted']}",
+        "first screen, wrong values accepted": f"{_pc(a['rate'])} of the values it accepted were wrong against {_pc(base['rate'])} for one read",
+        "first screen, sent to a person": f"it sent {_pc(h3['rate'])} of values to a person",
+        "For judges, impact": f"it let in {_pc(a['rate'])} wrong values against {_pc(base['rate'])} for one read and caught {_pc(h2['rate'])} of the wrong ones",
+        "open weights, H4": f"{ci(h4)} wrong values among those accepted, against {_pc(a['rate'])} for Muse Spark 1.3",
+    }
+    return [Claim(what, text, TEST_REPORT) for what, text in claims.items()]
+
+
+def _score_claims(v1: dict, open_: dict) -> list[Claim]:
+    def ci(m: dict) -> str:
+        return f"{_pc(m['value'], 1)} ({_pc(m['ci'][0], 1)}–{_pc(m['ci'][1], 1)})"
+
+    kept, left = v1["labels"]["kept/as_run"], v1["labels"]["left_out/as_run"]
+    ok = open_["open_weights"]["kept/as_run"]["overall"]
+    a, s = kept["overall"]["archivist_error"], kept["overall"]["single_read_error"]
+    la, ls = left["overall"]["archivist_error"], left["overall"]["single_read_error"]
+    claims = {
+        "first screen, real scans": f"{ci(a)} of the values it accepted were wrong against {ci(s)} for one read, on all {kept['cells']} labelled cells",
+        "real-scan results, version 1": f"Archivist let in {ci(a)} wrong values among those it accepted, against {ci(s)} for the single read",
+        "real-scan results, layout left out": f"it was {ci(la)} against {ci(ls)}",
+        "real-scan results, open weights": f"{ci(ok['archivist_error'])} wrong among those accepted, against {ci(ok['single_read_error'])} for its single read",
+        "open weights section, O1": f"{ci(ok['archivist_error'])} of accepted values were wrong",
+        "answer key": f"The answer key is {kept['cells']} cells drawn in advance",
+    }
+    out = [Claim(what, text, SCORE_V1 if "open weights" not in what else SCORE_OPEN) for what, text in claims.items()]
+    return out
+
+
+def _sweep_claims(sweep: dict) -> list[Claim]:
+    families = sweep["by_family"].values()
+    assigned, confirmed = sum(f["classified"] for f in families), sum(f["confirmed"] for f in families)
+    text = f"sorted all {sweep['pages']:,} held-out Treasury Bulletin pages into five approved table types, and the title check confirmed {confirmed} of the {assigned} the model assigned"
+    return [Claim("real-scan test, the sweep", text, SWEEP)]
+
+
+def _run_claims(run: dict) -> list[Claim]:
+    counts = run["counts"]
+    asked = sum(counts["by_reread_status"][k] for k in ("agrees", "disagrees", "failed", "illegible"))
+    text = f"The deep check ran on {counts['pages']} of them: {counts['fields']:,} table cells and {asked:,} blind re-reads"
+    return [Claim("real-scan test, the deep check", text, RUN_V1)]
+
+
+def _verdicts(v1: dict, open_: dict) -> list[tuple[str, bool]]:
+    """What the README says about the targets, as verdicts: R1 not met in every variant, O1 not met."""
+    return [
+        ("R1 is not met in every variant", all(not v["r1"]["met"] for v in v1["labels"].values())),
+        ("O1 is not met", not open_["o1"]["met"]),
+    ]
+
+
+def check_readme() -> list[Result]:
+    """The figures the README quotes, as the exact text its files give; one that differs or has gone fails."""
+    name = "README numbers"
+    if not README.exists():
+        return [Result(FAIL, name, f"{README} is missing.", [f"{README} is missing"])]
+    text = README.read_text(encoding="utf-8")
+    needed = (TEST_REPORT, SCORE_V1, SCORE_OPEN, SWEEP)
+    absent = [str(p) for p in needed if not p.exists()]
+    if absent:
+        return [Result(FAIL, name, "a result file the README quotes is missing.", [f"{p} is missing" for p in absent])]
+    v1, open_ = _json(SCORE_V1), _json(SCORE_OPEN)
+    claims = _rate_claims(_json(TEST_REPORT)) + _score_claims(v1, open_) + _sweep_claims(_json(SWEEP))
+    skipped = []
+    if RUN_V1.exists():
+        claims += _run_claims(_json(RUN_V1))
+    else:
+        skipped.append(RUN_V1)
+    problems = [f"{c.what}: the README does not say \"{c.text}\" ({c.source})" for c in claims if c.text not in text]
+    problems += [f"the files say {what} is false, and the README says it is true" for what, true in _verdicts(v1, open_) if not true]
+    results = []
+    if problems:
+        results.append(Result(FAIL, name, "the README differs from the result files it quotes.", problems))
+    else:
+        results.append(Result(PASS, name, f"{len(claims)} figures the README quotes are what their result files give, and its verdicts agree with them."))
+    if skipped:
+        results.append(
+            Result(
+                SKIP,
+                "README numbers from the run's own record",
+                f"{', '.join(map(str, skipped))} is not here (it is not in the Docker image), so the deep check's page, cell and re-read counts were not compared.",
+            )
+        )
+    return results
+
+
 # --- the command ------------------------------------------------------------------------------------
 
 Checks = Sequence[tuple[str, Callable[[], list[Result]]]]
@@ -272,6 +405,7 @@ CHECKS: Checks = (
     ("the test report", check_test_report),
     ("the charts", check_charts),
     ("the exports", check_exports),
+    ("the README's numbers", check_readme),
 )
 
 
