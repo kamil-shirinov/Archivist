@@ -357,8 +357,36 @@ def test_the_real_scans_tab_shows_big_numbers_chips_and_a_range_chart_with_the_t
         assert card["h"] == title and card["chips"] == chips, card
         # the corrected key leads: the big figure is its, the as-registered one beside it
         places = 2 if "matches" in title and want.index((title, fixed, registered, chips)) >= 2 and ofix["left_out/as_run"]["overall"]["archivist_error"]["value"] < 0.0105 else 1
-        assert card["main"] == verify._pc(fixed, places) and card["beside"] == verify._pc(registered, places)
+        # 0.99% keeps its two decimals, since it sits against a 1% target; the figure beside it has one, like its neighbours
+        assert card["main"] == verify._pc(fixed, places) and card["beside"] == verify._pc(registered, 1)
+    assert [c["beside"] for c in cards][-1] == "13.6%" and "13.64" not in " ".join(c["beside"] for c in cards)
+    assert cards[-1]["main"] == "0.99%"
     assert tab.eval("document.querySelectorAll('#acc-real .rs-chart').length") == 2
+    # the chart captions say each target's own rule: R1 (a lower rate, bars apart) for hosted, O1 (under 1%) for open weights
+    hosted_cap, open_cap = tab.eval("[...document.querySelectorAll('#acc-real .rs-chart > .fine')].map(p => p.textContent)")
+    assert "R1" in hosted_cap and "lower" in hosted_cap and "do not overlap" in hosted_cap and "O1" not in hosted_cap, hosted_cap
+    assert "O1" in open_cap and "under 1%" in open_cap and "R1" not in open_cap and "overlap" in open_cap and "do not decide" in open_cap, open_cap
+    assert "the target is not met" not in hosted_cap + open_cap
+    # one axis for both, and a thin line at 1% on the open-weights chart only, the tick of each row on the side O1's chip says
+    axes = tab.eval("[...document.querySelectorAll('#acc-real .rs-ax')].map(a => a.textContent)")
+    assert len(axes) == 2 and axes[0] == axes[1] == "0%10%20%30%40%50%60%", axes
+    assert tab.eval("document.querySelectorAll('#acc-real .rs-chart')[0].querySelectorAll('i.ref').length") == 0
+    refs = tab.eval("[...document.querySelectorAll('#acc-real .rs-chart')[1].querySelectorAll('.rs-tr')].map(t => ({ref: t.querySelector('i.ref') && parseFloat(t.querySelector('i.ref').style.left), arch: parseFloat(t.querySelector('b.arch').style.left)}))")
+    assert len(refs) == 4 and all(abs(r["ref"] - 100 / 60) < 0.01 for r in refs), refs
+    o1_met = [o1_fix["kept/as_run"], o1_reg["kept/as_run"], o1_fix["left_out/as_run"], o1_reg["left_out/as_run"]]
+    assert [r["arch"] < r["ref"] for r in refs] == o1_met, (refs, o1_met)
+    line = tab.eval("(() => { const c = document.querySelectorAll('#acc-real .rs-chart')[1], t = c.querySelector('.rs-tr'), r = t.querySelector('i.ref').getBoundingClientRect(), b = t.getBoundingClientRect(); return [r.left - b.left, b.width, r.width, r.height]; })()")
+    assert abs(line[0] - line[1] / 60) < 1.5 and line[2] <= 1.5 and line[3] > 20, line
+    # the intro under the heading describes this test, and the large sentence after it is gone
+    intro = tab.eval("(() => { const a = document.getElementById('ev-sub-real'), b = document.getElementById('ev-sub'); return [a.hidden, a.textContent, getComputedStyle(a).display, b.hidden]; })()")
+    assert intro[0] is False and intro[3] is True and intro[2] != "none"
+    assert "real US Treasury Bulletin pages no model had seen" in intro[1] and "400 cells labelled by hand" in intro[1] and "targets written down before the test" in intro[1]
+    assert "synthetic" not in intro[1]
+    assert tab.eval("document.querySelectorAll('#acc-real .acc-lead').length") == 0
+    tab.eval("document.querySelector('#acc-set [data-a=test]').click()")
+    assert "157 synthetic pages" in tab.eval("document.getElementById('ev-sub').textContent") and tab.eval("document.getElementById('ev-sub').hidden") is False
+    assert tab.eval("document.getElementById('ev-sub-real').hidden") is True
+    tab.eval("document.querySelector('#acc-set [data-a=real]').click()")
     assert tab.eval("document.querySelectorAll('#acc-real .rs-chart .rs-row').length") == 8
     assert tab.eval("document.querySelectorAll('#acc-real .rs-chart .iv-t i.single, #acc-real .rs-chart .iv-t i.arch').length") == 16
     assert tab.eval("document.querySelector('#acc-real .rs-full').open") is False, "the full table is folded"
@@ -375,20 +403,45 @@ def test_the_real_scans_tab_shows_big_numbers_chips_and_a_range_chart_with_the_t
 
 @pytest.mark.parametrize("theme", THEMES)
 @pytest.mark.parametrize("width,height", [(1440, 900), (1920, 1080), (390, 844)])
-def test_both_accuracy_tabs_fit_at_every_width_in_both_themes_and_no_card_has_blank_space(tab, site, width, height, theme):
+def test_both_accuracy_tabs_fit_at_every_width_in_both_themes_and_the_worn_pages_card_fills_its_row(tab, site, width, height, theme):
     tab.errors.clear()
     tab.open(f"{site}/ui/#accuracy", width=width, height=height, dark=THEMES[theme], still=True)
     tab.wait_for("document.documentElement.dataset.ready === '1'", 60)
     settle(tab, VIEWS["accuracy"][1])
+    # the page may still be showing the other tab (a hash-only navigation keeps the document): say which one is measured
+    tab.eval("document.querySelector('#acc-set [data-a=test]').click()")
+    assert not tab.eval("document.getElementById('acc-test').hidden") and tab.eval("document.getElementById('acc-real').hidden")
     fits = "document.documentElement.scrollWidth <= window.innerWidth + 1"
     assert tab.eval(fits), "the Test pages tab scrolls sideways"
-    # the curve's labels are drawn with the chart, inside it, and nothing of the card comes after it
+    # the curve's labels are drawn with the chart, inside it, and nothing of the card comes after it, as plain text in the
+    # chart's own font: no stroked halo (WebKit draws each glyph of one apart, with no gap between its words)
     assert tab.eval("(() => { const s = document.getElementById('ch-curve'); return s.querySelectorAll('text').length > 10 && s.nextElementSibling === null; })()")
-    # the card of worn pages is as tall as its own content, not as tall as its neighbour
-    blank = tab.eval(
-        "(() => { const c = document.querySelector('.cond').closest('.panel'), r = c.getBoundingClientRect(), k = c.querySelector('.cond').getBoundingClientRect(); return r.bottom - k.bottom; })()"
+    labels = tab.eval(
+        "[...document.querySelectorAll('#ch-curve text.lbl')].map(t => { const s = getComputedStyle(t), a = getComputedStyle(document.querySelector('#ch-curve text:not(.lbl)')); "
+        "return {text: t.textContent, stroke: s.stroke, width: s.strokeWidth, order: s.paintOrder, font: s.fontFamily === a.fontFamily, size: s.fontSize === a.fontSize, spacing: s.letterSpacing === a.letterSpacing, ws: s.wordSpacing}; })"
     )
-    assert blank <= 24, f"{blank}px below the bars"
+    assert [x["text"] for x in labels] == ["Single read", "Archivist"], labels
+    assert all(x["stroke"] == "none" and x["order"] == "normal" and x["font"] and x["spacing"] and x["ws"] == "0px" for x in labels), labels
+    # the same height as its neighbour where the two sit side by side, and its four rows spread evenly down it, with thick bars and
+    # larger labels; where they stack, the card keeps its own height
+    geo = tab.eval(
+        "(() => { const c = document.querySelector('.cond').closest('.panel'), n = document.getElementById('ch-curve').closest('.panel'), r = c.getBoundingClientRect(), q = n.getBoundingClientRect(), k = c.querySelector('.cond').getBoundingClientRect(); "
+        "const rows = [...c.querySelectorAll('.crow')].map(x => { const b = x.getBoundingClientRect(); return [b.top, b.bottom]; }), bar = c.querySelector('.cb').getBoundingClientRect(); "
+        "return {side: Math.abs(r.top - q.top) < 2, h: r.height, nh: q.height, below: r.bottom - rows[rows.length - 1][1], above: rows[0][0] - c.querySelector('p').getBoundingClientRect().bottom, "
+        "rows: rows, bar: bar.height, label: parseFloat(getComputedStyle(c.querySelector('.crow span')).fontSize), vlabel: parseFloat(getComputedStyle(c.querySelector('.cv')).fontSize)}; })()"
+    )
+    assert geo["bar"] >= 18 and geo["label"] >= 14 and geo["vlabel"] >= 14, geo
+    assert len(geo["rows"]) == 4
+    if width > 1280:
+        assert geo["side"], "the two charts sit side by side here"
+        assert abs(geo["h"] - geo["nh"]) <= 1, f"the card is {geo['h']}px and its neighbour {geo['nh']}px"
+        centres = [(t + b) / 2 for t, b in geo["rows"]]
+        steps = [round(centres[i + 1] - centres[i], 1) for i in range(3)]
+        assert max(steps) - min(steps) <= 1.5, f"the rows are not evenly spread: {steps}"
+        assert geo["below"] <= geo["above"] + 20 and geo["below"] >= 8, f"{geo['below']}px below the last row, {geo['above']}px above the first"
+    else:
+        assert not geo["side"], "the cards stack here"
+        assert geo["below"] <= 24, f"{geo['below']}px below the bars: the card is no taller than its content"
     SHOTS.mkdir(exist_ok=True)
     tab.screenshot(SHOTS / f"accuracy-test-{width}-{theme}.png", full_page=True)
     tab.eval("document.querySelector('#acc-set [data-a=real]').click()")

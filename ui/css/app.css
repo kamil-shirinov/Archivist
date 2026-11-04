@@ -164,8 +164,8 @@
 .types{max-width:1100px}
 details.type-d{margin-top:0}
 
-/* The named points on the accuracy chart: a halo of the panel's colour keeps them clear of the line */
-.chartp text.lbl{fill:var(--ink);font-weight:600;paint-order:stroke;stroke:var(--surface);stroke-width:5px;stroke-linejoin:round}
+/* The named points on the accuracy chart: plain text (a stroked halo makes WebKit draw each glyph apart), set clear of the line and the grid */
+.chartp text.lbl{fill:var(--ink);font-weight:600}
 .types{grid-template-columns:minmax(0,1fr)}
 .integrity dd,.mono{overflow-wrap:anywhere}
 .coll-menu .cm-g p{margin:2px 0 0;font-size:12px;line-height:1.45;color:var(--ink-2);font-weight:400}
@@ -199,10 +199,13 @@ html[data-vt] .view:not([hidden]){view-transition-name:main-view}
 ::view-transition-old(main-view){animation:view-out 100ms ease-out both;mix-blend-mode:normal}
 ::view-transition-new(main-view){animation:none;mix-blend-mode:normal}
 
-/* The two charts side by side are each as tall as their own content: neither stretches to its neighbour */
-.charts{align-items:start}
-.chartp .cond{gap:16px}
-.chartp .cb{height:12px}
+/* The two charts side by side are the same height, the curve's, and the four rows of the worn-pages card
+   are spread evenly down it; where the cards stack the grid has no row to stretch to, so it keeps its own height */
+.chartp.condp{display:flex;flex-direction:column}
+.chartp .cond{flex:1;grid-auto-rows:1fr;gap:12px;margin-top:10px}
+.chartp .crow{grid-template-columns:128px minmax(0,1fr) 84px;font-size:15px}
+.chartp .cb{height:20px}
+@media (max-width:900px){.chartp .crow{grid-template-columns:104px minmax(0,1fr) 74px;font-size:14px}}
 @media (max-width:640px){#ch-curve text{font-size:15px}}
 
 /* Real government scans (P60): big numbers, the intervals as a range chart, the full table folded */
@@ -224,6 +227,8 @@ html[data-vt] .view:not([hidden]){view-transition-name:main-view}
 .rs-chart h3{margin:0;font-size:13.5px;font-weight:600}
 .rs-key{display:inline-flex;align-items:center;gap:6px 8px;font-size:12.5px;color:var(--ink-2)}
 .rs-key i,.iv-t i,.iv-t b{display:block}
+.rs-key i.ref,.rs-tr i.ref{background:var(--ink-2);opacity:.7}
+.rs-key i.ref{width:1px;height:12px;border-radius:0}
 .rs-key i{width:14px;height:6px;border-radius:999px}
 .rs-key i+i,.rs-key i:nth-of-type(2){margin-left:10px}
 .rs-key .single,.iv-t i.single{background:color-mix(in srgb,var(--ink-3) 55%,transparent)}
@@ -233,6 +238,7 @@ html[data-vt] .view:not([hidden]){view-transition-name:main-view}
 .rs-l{display:flex;flex-direction:column}
 .rs-l small{color:var(--ink-3);font-size:12px}
 .rs-tr{position:relative;display:grid;gap:5px}
+.rs-tr i.ref{position:absolute;top:-9px;bottom:-9px;width:1px;z-index:1;pointer-events:none}
 .iv-t{position:relative;height:12px}
 .iv-t i{position:absolute;top:3px;height:6px;min-width:3px;border-radius:999px}
 .iv-t b{position:absolute;top:0;width:3px;height:12px;margin-left:-1.5px;border-radius:2px}
@@ -253,6 +259,7 @@ html[data-vt] .view:not([hidden]){view-transition-name:main-view}
 @media (max-width:640px){
   .rs-main b{font-size:38px}
   .rs-row{grid-template-columns:minmax(0,1fr)}
+  .rs-tr i.ref{top:-3px}
   .rs-ax{margin-left:0}
   .rs-tbl th[scope="row"]{min-width:150px}
 }
