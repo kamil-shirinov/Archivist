@@ -48,8 +48,8 @@ function curve(points, single, arch) {
   g += `<text x="44" y="6">Wrong in 1,000 accepted</text>`;
   g += `<polyline points="${points.map((p) => `${X(p.x).toFixed(1)},${Y(p.y).toFixed(1)}`).join(" ")}" fill="none" stroke="var(--accent)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" stroke-dasharray="5 4"/>`;
   for (const p of points) g += `<circle class="pt" cx="${X(p.x).toFixed(1)}" cy="${Y(p.y).toFixed(1)}" r="4"/>`;
-  g += `<circle class="pt base" cx="${X(single.x)}" cy="${Y(single.y)}" r="5"/><text class="lbl" x="${X(single.x) + 10}" y="${Y(single.y) - 9}">Single read</text>`;
-  g += `<circle class="pt arch" cx="${X(arch.x)}" cy="${Y(arch.y)}" r="5.5"/><text class="lbl" x="${X(arch.x) + 9}" y="${Y(arch.y) - 14}">Archivist</text>`;
+  g += `<circle class="pt base" cx="${X(single.x)}" cy="${Y(single.y)}" r="5"/><text class="lbl" x="${X(single.x) + 10}" y="${Y(single.y) - 4}">Single read</text>`;
+  g += `<circle class="pt arch" cx="${X(arch.x)}" cy="${Y(arch.y)}" r="5.5"/><text class="lbl" x="${X(arch.x) + 9}" y="${Y(arch.y) - 8}">Archivist</text>`;
   return g;
 }
 
@@ -115,7 +115,7 @@ function renderTest(r) {
       .join("")}</ul></div></div>
     <div class="sec charts">
       <div class="panel chartp chart"><h3>Checking more by hand means fewer mistakes</h3><p>Measured at ${rc.length} confidence cut-offs: at the one Archivist used, ${whole(share * 100)} in 100 values go to a person and about ${one(a1)} in 1,000 accepted values are wrong. Straight lines join the measured points; nothing was measured between them.</p><svg id="ch-curve" viewBox="0 0 520 200" role="img" aria-label="Wrong values per 1,000 accepted against the share sent to a person, at each measured cut-off">${curve(rc, singlePt, archPt)}</svg></div>
-      <div class="panel chartp"><h3>Worn pages get checked more</h3><p>Share of values sent to a person, by the condition of the page. Most of the checking goes to the most worn pages.</p><div class="cond">${Object.entries(sev)
+      <div class="panel chartp condp"><h3>Worn pages get checked more</h3><p>Share of values sent to a person, by the condition of the page. Most of the checking goes to the most worn pages.</p><div class="cond">${Object.entries(sev)
         .map(([i, v]) => `<div class="crow"><span>${COND[+i]}</span><span class="cb"><i style="width:${((v.review_rate * 100) / Math.max(50, worst)) * 100}%"></i></span><span class="cv">${whole(v.review_rate * 100)} in 100</span></div>`)
         .join("")}</div></div>
     </div>
@@ -126,18 +126,26 @@ function renderTest(r) {
       <p class="fine" style="max-width:80ch">${esc(r.notes[0])}</p>${r.notes.slice(1).map((n) => `<p class="fine" style="max-width:80ch">${esc(n)}</p>`).join("")}</details>`;
 }
 
+// Which test is shown: its panel, and the intro under the heading that describes it. The real scans' intro is
+// in ui/index.html (archivist.verify checks its figure); the test pages' is written by enter().
+function showTest(which) {
+  $("acc-set").querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", String(x.dataset.a === which)));
+  $("acc-test").hidden = which !== "test";
+  $("acc-real").hidden = which !== "real";
+  $("ev-sub").hidden = which === "real";
+  $("ev-sub-real").hidden = which !== "real";
+}
+
 export function init() {
   $("acc-set").addEventListener("click", (e) => {
     const b = e.target.closest("button[data-a]");
-    if (!b) return;
-    $("acc-set").querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
-    $("acc-test").hidden = b.dataset.a !== "test";
-    $("acc-real").hidden = b.dataset.a !== "real";
+    if (b) showTest(b.dataset.a);
   });
 }
 
 export function enter() {
   const run = S.bundle.run, acc = S.bundle.accuracy;
+  showTest($("acc-set").querySelector('button[aria-pressed="true"]').dataset.a);
   $("ev-crumb").innerHTML = `<a href="#overview">${esc(run.collection)}</a>/<span>Accuracy report</span>`;
   if (!acc) {
     const dev = run.stage === "development", f = S.bundle.fields;

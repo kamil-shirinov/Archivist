@@ -518,7 +518,17 @@ def check_readme() -> list[Result]:
     return results
 
 
-APP_LEAD = "Archivist’s wrong values among those it accepts, on real government scans: the corrected key first, with the figure as registered beside it."
+APP_INTRO = (
+    "How often Archivist puts a wrong value in the database. Measured once, on real US Treasury Bulletin pages no model had seen: "
+    "{cells} cells labelled by hand, against targets written down before the test."
+)
+# R1 (PREREGISTRATION_REAL.md): Archivist's rate among accepted cells is lower than the single read's, with non-overlapping 95% intervals.
+# O1 (PREREGISTRATION_OPENW.md): Muse Spark Open's rate among accepted cells is below 1%, judged on the rate itself, not its interval and
+# not against the single read.
+APP_CAPTIONS = {
+    "hosted": "Each bar is the 95% interval and the tick its estimate. R1 is met only where Archivist’s rate is lower than the single read’s and the two bars do not overlap.",
+    "open": "Each bar is the 95% interval and the tick its estimate. O1 is met where Archivist’s estimate is under 1%, the thin line. It is judged on that rate alone, not against the single read, so overlapping bars do not decide it.",
+}
 APP_VARIANTS = (("kept/as_run", "Every labelled cell"), ("left_out/as_run", "Pages whose layout matches their template"))
 
 
@@ -541,9 +551,10 @@ def _cell_html(cell: tuple) -> str:
     return _nv(cell[1]) if cell[0] == "one" else cell[1]
 
 
-def _bars(top: float, rows: list[tuple[str, str, dict, dict, int]]) -> str:
+def _bars(top: float, rows: list[tuple[str, str, dict, dict, int]], line: float | None = None) -> str:
     """The range chart of one configuration: for each row, the single read's interval above Archivist's, on a
-    scale from 0 to `top`, each with its estimate."""
+    scale from 0 to `top`, each with its estimate, and where `line` (a percentage) is given, a thin line down every
+    row at that threshold."""
     at = lambda x: f"{x / top * 100:.2f}%"  # noqa: E731
     out = ""
     for label, key, single, arch, places in rows:
@@ -552,7 +563,8 @@ def _bars(top: float, rows: list[tuple[str, str, dict, dict, int]]) -> str:
             f'<div class="iv-t"><i class="{who}" style="left:{at(m["ci"][0] * 100)};width:{at((m["ci"][1] - m["ci"][0]) * 100)}"></i><b class="{who}" style="left:{at(m["value"] * 100)}"></b></div>'
             for who, m in (("single", single), ("arch", arch))
         )
-        out += f'<div class="rs-row"><div class="rs-l"><span>{label}</span><small>{key}</small></div><div class="rs-tr">{tracks}<span class="sr">{said}</span></div></div>'
+        mark = f'<i class="ref" style="left:{at(line)}"></i>' if line is not None else ""
+        out += f'<div class="rs-row"><div class="rs-l"><span>{label}</span><small>{key}</small></div><div class="rs-tr">{mark}{tracks}<span class="sr">{said}</span></div></div>'
     ticks = range(0, int(top) + 1, 10)
     axis = "".join(f"<span>{t}%</span>" for t in ticks)
     return f'<div class="rs-rows">{out}</div><div class="rs-ax" aria-hidden="true">{axis}</div>'
@@ -571,7 +583,10 @@ def app_real_pieces(v1: dict, open_: dict, fixed_v1: dict, fixed_open: dict) -> 
         ("Hosted, Muse Spark 1.3 on Meta’s API", "hosted", "R1", fix, reg, {v: fix[v]["r1"]["met"] for v, _ in APP_VARIANTS}, {v: reg[v]["r1"]["met"] for v, _ in APP_VARIANTS}, {v: 1 for v, _ in APP_VARIANTS}),
         ("Open weights, Muse Spark Open", "open", "O1", ofix, oreg, o1_fix, o1_reg, {"kept/as_run": 1, "left_out/as_run": open_places}),
     )
-    pieces = [("app, lead", f'<p class="acc-lead">{APP_LEAD}</p>')]
+    kept = v1["labels"]["kept/as_run"]
+    pieces = [("app, intro", f'<p class="sub" id="ev-sub-real" hidden>{APP_INTRO.format(cells=kept["cells"])}</p>')]
+    ends = [k[variant]["overall"][who]["ci"][1] for _, _, _, k_fix, k_reg, *_ in sets for k in (k_fix, k_reg) for variant, _ in APP_VARIANTS for who in ("single_read_error", "archivist_error")]
+    top = math.ceil(max(ends) * 10) * 10  # one range for both charts, up to the next 10%
     for title, name, target, k_fix, k_reg, met_fix, met_reg, places in sets:
         cards, rows = "", []
         for variant, label in APP_VARIANTS:
@@ -580,24 +595,22 @@ def app_real_pieces(v1: dict, open_: dict, fixed_v1: dict, fixed_open: dict) -> 
             cards += (
                 f'<div class="panel rs-card"><h3>{label}</h3>'
                 f'<div class="rs-nums"><div class="rs-main"><b>{_pc(f["value"], n)}</b><small>wrong among accepted, corrected key</small></div>'
-                f'<div class="rs-beside"><b>{_pc(r["value"], n)}</b><small>as registered</small></div></div>'
+                f'<div class="rs-beside"><b>{_pc(r["value"], 1)}</b><small>as registered</small></div></div>'
                 f'<div class="rs-chips"><span>Corrected key {_chip(met_fix[variant], target)}</span><span>As registered {_chip(met_reg[variant], target)}</span></div></div>'
             )
             for which, kk in (("Corrected key", k_fix), ("As registered", k_reg)):
                 o = kk[variant]["overall"]
                 rows.append((label, which, o["single_read_error"], o["archivist_error"], n))
-        top = math.ceil(max(m["ci"][1] for _, _, a, b, _ in rows for m in (a, b)) * 10) * 10  # up to the next 10%
         pieces.append((f"app, {name} cards", f'<section class="rs-set" aria-label="{title}"><h2>{title}</h2><div class="rs-big">{cards}</div>'))
-        key = '<span class="rs-key"><i class="single"></i>Single read<i class="arch"></i>Archivist</span>'
+        key = '<span class="rs-key"><i class="single"></i>Single read<i class="arch"></i>Archivist' + ('<i class="ref"></i>1% line' if name == "open" else "") + "</span>"
         pieces.append(
-            (f"app, {name} range chart", f'<div class="panel rs-chart"><div class="rs-chart-h"><h3>Where the intervals fall</h3>{key}</div><p class="fine">Each bar is the 95% interval and the tick its estimate. Where the single read’s bar and Archivist’s overlap, the target is not met.</p>{_bars(top, rows)}</div></section>')
+            (f"app, {name} range chart", f'<div class="panel rs-chart"><div class="rs-chart-h"><h3>Where the intervals fall</h3>{key}</div><p class="fine">{APP_CAPTIONS[name]}</p>{_bars(top, rows, 1.0 if name == "open" else None)}</div></section>')
         )
     head = f"<th>Real scans</th><th>Corrected key</th><th>{REGISTERED[0].upper()}{REGISTERED[1:]}</th>"
     pieces.append(("app, the full table", f'<details class="experts rs-full"><summary>The full table: every figure with its interval</summary><div class="panel"><div class="tw"><table class="tbl rs-tbl"><thead><tr>{head}</tr></thead><tbody>'))
     for label, fixed, registered in real_cells(v1, open_, fixed_v1, fixed_open):
         pieces.append((f"app, {label}", f'<tr><th scope="row">{label}</th><td>{_cell_html(fixed)}</td><td>{_cell_html(registered)}</td></tr>'))
     pieces.append(("app, the table's end", "</tbody></table></div></div></details>"))
-    kept = v1["labels"]["kept/as_run"]
     pieces.append(
         (
             "app, the answer key",
