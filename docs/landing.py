@@ -49,6 +49,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 
 REPO = "https://github.com/kamil-shirinov/Archivist"
+VIDEO = "https://youtu.be/iRVeZBQxxP4"  # the demo video; the README's Watch and Demo rows link to the same address
 HOME = "replay"  # the view of the app that Watch it work opens
 APP = "overview"  # the view of the app that Explore the app and Open the app open
 ASSETS = (
@@ -1033,6 +1034,7 @@ def hero(names: dict[str, str], s: dict, memos: str) -> str:
     <a class="btn primary" href="ui/#{APP}">Explore the app</a>
     <a class="btn sec" data-glass href="ui/#{HOME}">Watch it work</a>
   </div>
+  <p class="vid rise" style="--i:4">{link(VIDEO, "Watch the video", ' target="_blank" rel="noopener"')}</p>
   {headline}
 </section>"""
 
@@ -1596,6 +1598,7 @@ def try_it(commands: list[str]) -> str:
   <h2>Try it</h2>
   <div class="try">
     <div class="card"><h3>The live demo</h3><p>The review app over the recorded runs: Watch it work, the review queue, the accuracy report. Recorded runs only; nothing is called.</p><a class="btn primary" href="ui/#{HOME}">Watch it work</a></div>
+    <div class="card"><h3>The video</h3><p>About three minutes: a live read of an old Treasury page, the review queue and the pre-registered results.</p>{link(VIDEO, "Watch the video", ' class="btn sec" data-glass target="_blank" rel="noopener"')}</div>
     <div class="card"><h3>Docker</h3><pre><code data-fact="docker">{code}</code></pre><p>The first <code>run</code> serves this page at <code>/</code> and the review app at <code>/ui/</code>; the second runs the judge checks.</p>{link(REPO + "#run-it-yourself", "Run it yourself", ' class="btn sec" data-glass rel="noopener"')}</div>
     <div class="card"><h3>The repository</h3><p>The code, the plans, every result and the reasons for each decision.</p>{link(REPO, "kamil-shirinov/Archivist", ' class="btn sec" data-glass rel="noopener"')}</div>
   </div>

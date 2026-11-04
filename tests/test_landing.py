@@ -842,14 +842,26 @@ def test_the_range_chart_offers_the_corrected_key_once_its_file_exists():
     assert "Open weights: pending, after the dash check" in part, "a configuration without its file says so"
 
 
+def test_the_video_is_a_small_text_link_under_the_hero_s_two_buttons_and_a_card_beside_the_live_demo(html_text):
+    hero = html_text.split('<section class="hero', 1)[1].split("</section>", 1)[0]
+    assert hero.count('class="btn') == 2, "no third hero button"
+    link = f'<a href="{landing.VIDEO}" target="_blank" rel="noopener">Watch the video</a>'
+    assert hero.count(link) == 1 and hero.index("</div>") < hero.index(link), "after the buttons"
+    assert landing.VIDEO == "https://youtu.be/iRVeZBQxxP4"
+    cards = html_text.split('<section id="try"', 1)[1].split("</section>", 1)[0].split('<div class="card">')[1:]
+    assert [c.split("</h3>", 1)[0].removeprefix("<h3>") for c in cards] == ["The live demo", "The video", "Docker", "The repository"]
+    assert f'href="{landing.VIDEO}" class="btn sec"' in cards[1] or f'<a href="{landing.VIDEO}" class="btn sec" data-glass target="_blank" rel="noopener">Watch the video</a>' in cards[1]
+
+
 # --- a page that calls nothing ----------------------------------------------------------------------------
 
 
 def test_the_page_makes_no_request_of_its_own_to_another_site(html_text, page):
     outside = [u for u in page.urls if re.match(r"[a-z][a-z0-9+.-]*:", u, re.I)]
     assert outside, "the links to the repository"
-    assert all(u.startswith(landing.REPO) for u in outside), outside
-    requests = [u for u in page.urls if not u.startswith(landing.REPO)]
+    assert all(u.startswith(landing.REPO) or u == landing.VIDEO for u in outside), outside
+    assert html_text.count(f'href="{landing.VIDEO}"') == len([u for u in page.urls if u == landing.VIDEO]) == 2, "the video is only ever linked, twice"
+    requests = [u for u in page.urls if not u.startswith(landing.REPO) and u != landing.VIDEO]
     assert all(not u.startswith(("//", "http")) for u in requests)
     assert "preconnect" not in html_text and "dns-prefetch" not in html_text
     script = (ROOT / "docs/landing/landing.js").read_text()
@@ -1963,3 +1975,44 @@ def test_watch_it_work_opens_the_app_on_the_replay(served):
     assert tab.eval("[...document.querySelectorAll('main .view')].filter(v => !v.hidden).map(v => v.id)") == ["v-replay"]
     chip = tab.eval("document.getElementById('where').textContent")
     assert "Run on" in chip and "Meta’s API" in chip, "the app says it the way the page's switch does"
+
+
+@needs_browser
+@pytest.mark.parametrize("dark", [False, True])
+@pytest.mark.parametrize("width,height,phone", [(1440, 900, False), (1920, 1080, False), (390, 844, True)])
+def test_the_video_link_and_card_sit_where_they_belong_at_every_width_in_both_themes(served, width, height, phone, dark):
+    base, browser = served
+    tab = new_tab(browser)
+    tab.open(base, width=width, height=height, dark=dark, mobile=phone, still=True)
+    tab.pump(0.6)
+    box = "(e => { const r = e.getBoundingClientRect(); return {left: r.left, right: r.right, top: r.top, bottom: r.bottom}; })"
+    link = tab.eval(f"{box}(document.querySelector('.hero .vid a'))")
+    buttons = tab.eval(f"[...document.querySelectorAll('.hero .cta .btn')].map({box})")
+    assert len(buttons) == 2
+    assert link["top"] >= max(b["bottom"] for b in buttons), "under the two buttons"
+    assert abs((link["left"] + link["right"]) / 2 - width / 2) < 2, "centred"
+    assert tab.eval("document.querySelector('.hero .vid a').textContent") == "Watch the video"
+    assert tab.eval("[document.querySelector('.hero .vid a').target, document.querySelector('.hero .vid a').rel]") == ["_blank", "noopener"]
+    assert tab.eval("getComputedStyle(document.querySelector('.hero .vid a')).fontSize") == "14px"
+    if not phone:
+        assert link["bottom"] < height, "in the first screen"
+    tab.eval("document.querySelector('#try').scrollIntoView({behavior: 'instant'})")
+    tab.pump(0.6)
+    cards = tab.eval(f"[...document.querySelectorAll('#try .try > .card')].map(c => ({{h: c.querySelector('h3').textContent, ...{box}(c)}}))")
+    assert [c["h"] for c in cards] == ["The live demo", "The video", "Docker", "The repository"]
+    demo, video = cards[0], cards[1]
+    if phone:
+        assert video["top"] >= demo["bottom"] and video["left"] == demo["left"], "stacked"
+    else:
+        assert video["top"] == demo["top"] and video["left"] >= demo["right"], "beside the live demo"
+        assert video["bottom"] == demo["bottom"], "the same height"
+    assert all(c["right"] <= width for c in cards)
+    assert tab.eval("document.documentElement.scrollWidth") <= width
+    anchor = tab.eval("(a => [a.href, a.target, a.rel, a.textContent])(document.querySelector('#try .try .card:nth-child(2) a'))")
+    assert anchor == ["https://youtu.be/iRVeZBQxxP4", "_blank", "noopener", "Watch the video"]
+    SCREENSHOTS.mkdir(parents=True, exist_ok=True)
+    tab.screenshot(SCREENSHOTS / f"landing-video-{width}-{'dark' if dark else 'light'}.png")
+    tab.eval("scrollTo({top: 0, behavior: 'instant'})")
+    tab.pump(0.3)
+    tab.screenshot(SCREENSHOTS / f"landing-video-hero-{width}-{'dark' if dark else 'light'}.png")
+    assert tab.errors == []

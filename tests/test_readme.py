@@ -126,7 +126,7 @@ def test_start_here_and_for_judges_have_their_rows():
     start = README.split("\n## Start here\n", 1)[1].split("\n## ", 1)[0]
     rows = re.findall(r"^\| \*\*(\w+)\*\* \|", start, re.M)
     assert rows == ["Watch", "Try", "Run", "Read"]
-    assert "[link pending]" in start.split("**Try**")[0]
+    assert f"[demo video]({VIDEO})" in start.split("**Try**")[0]
     for needle in ("eval/README.md", "PREREGISTRATION_REAL.md", "PREREGISTRATION_OPENW.md", "diagnosis.md", "docker run --rm -p 8000:8000 archivist"):
         assert needle in start
     judges = README.split("\n## For judges\n", 1)[1].split("\n## ", 1)[0]
@@ -494,3 +494,23 @@ def test_verify_fails_when_a_figure_in_the_apps_real_scans_tab_changes(at_root, 
         monkeypatch.setattr(verify, "APP", edited)
         found = verify.check_app()
         assert found[0].status == verify.FAIL and found[0].problems, old
+
+
+VIDEO = "https://youtu.be/iRVeZBQxxP4"
+
+
+def test_the_video_is_linked_from_the_watch_row_and_the_demo_row_and_nothing_is_pending():
+    assert "link pending" not in README
+    assert README.count(VIDEO) == 2
+    judges = README.split("\n## For judges\n", 1)[1].split("\n## ", 1)[0]
+    demo = next(l for l in judges.splitlines() if l.startswith("| **Demo**"))
+    assert f"the [video]({VIDEO})" in demo
+
+
+def test_o1_is_not_met_whatever_the_matching_layout_pages_did():
+    """O1 is judged on every labelled cell, so its row says "not met" first (README and the app's folded table alike)."""
+    row = next(l for l in README.splitlines() if l.startswith("| Open weights, O1 "))
+    assert row.endswith("| not met (judged on every labelled cell); under 1% where the layout matches | not met; over 1% where the layout matches |")
+    assert "met where the layout matches, not met with every cell" not in row
+    r1 = next(l for l in README.splitlines() if l.startswith("| Hosted, R1 "))
+    assert r1.endswith("| met where the layout matches, not met with every cell | not met in any variant |"), "R1's row is as it was"

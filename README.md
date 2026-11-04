@@ -33,7 +33,7 @@ Built with the Meta Model API (Muse Spark 1.3, SAM 3.1), Muse Spark Open on Base
 
 | | |
 |---|---|
-| **Watch** | The demo video: [link pending] |
+| **Watch** | The [demo video](https://youtu.be/iRVeZBQxxP4) |
 | **Try** | The [live demo](https://kamil-shirinov.github.io/Archivist/) (a landing page, then the review app) and [Watch it work](https://kamil-shirinov.github.io/Archivist/ui/#replay), the recorded read of one page, value by value |
 | **Run** | `docker build -t archivist .`, then `docker run --rm -p 8000:8000 archivist` for the site and `docker run --rm archivist python -m archivist.verify` for the judge checks ([Run it yourself](#run-it-yourself)) |
 | **Read** | [eval/README.md](eval/README.md), how every number was measured and how to reproduce it · the plans written before the runs: [synthetic](PREREGISTRATION.md), [real scans](PREREGISTRATION_REAL.md), [open weights](PREREGISTRATION_OPENW.md) · [the diagnosis of the real-scan errors](results/real_test/held_out/diagnosis.md) · [DECISIONS.md](DECISIONS.md) |
@@ -44,7 +44,7 @@ Built with the Meta Model API (Muse Spark 1.3, SAM 3.1), Muse Spark Open on Base
 |---|---|
 | **Impact** (30%) | Banks hold decades of records as scans and paper; Archivist turns them into a database in which every value points to its spot on the page and a doubtful one goes to a person.<br>**Synthetic test:** it let in 0.36% wrong values against 4.45% for one read and caught 93.65% of the wrong ones ([Results](#results)).<br>**Real government scans:** with every cell counted its target was not met: under the corrected key, 16.3% (6.1%–33.3%) of the values it accepted were wrong against 27.8% (16.0%–40.9%) for one read, on all 400 labelled cells (36.9% (24.7%–50.4%) against 41.1% (30.6%–52.4%) as registered, before a labelling error was fixed by a rule written down first). It was met on pages whose layout matches their template, 0.0% against 3.2%; the [diagnosis](results/real_test/held_out/diagnosis.md) says why the rest went wrong ([Honest limits](#honest-limits)).<br>One `docker run` shows it with no key, and the code is open source under Apache-2.0. |
 | **Use of Meta's models** (25%) | All four, each in a job that was measured: Muse Spark 1.3 reads and re-reads, SAM 3.1 finds covered ink, untrained Muse Glimmer sorts pages (it found all 136 confirmed table pages among 791 held-out ones), and Muse Spark Open does both reads on open weights ([Meta's four models](#metas-four-models), [open weights](#open-weights-the-same-pipeline-on-your-own-hardware)). What each one taught me, and what I dropped: [What I learned](#what-i-learned-about-metas-models), [What I tried and dropped](#what-i-tried-and-dropped). |
-| **Demo** (25%) | The [live demo](https://kamil-shirinov.github.io/Archivist/) and [Watch it work](https://kamil-shirinov.github.io/Archivist/ui/#replay) replay recorded runs; `docker run` serves the same site; the video: [link pending]. A local app reads a page with real model calls, each one listed as it happens ([live reading](docs/live-reading.md)). |
+| **Demo** (25%) | The [live demo](https://kamil-shirinov.github.io/Archivist/) and [Watch it work](https://kamil-shirinov.github.io/Archivist/ui/#replay) replay recorded runs; `docker run` serves the same site; the [video](https://youtu.be/iRVeZBQxxP4). A local app reads a page with real model calls, each one listed as it happens ([live reading](docs/live-reading.md)). |
 | **Technical depth** (20%) | No model grades its own work: plain-code arithmetic checks every value, and a person decides anything in doubt. New table types are learned from two or three sample pages with no new code: Muse Spark drafts, arithmetic tests, and a person approves. Each plan was committed before the runs it governs ([Why you can trust the numbers](#why-you-can-trust-the-numbers)); one command rebuilds the published numbers and charts from the committed runs and compares them byte for byte ([Run it yourself](#run-it-yourself)); [how every number was measured](eval/README.md). |
 
 ## The problem
@@ -216,7 +216,7 @@ A [script](docs/make_charts.py) draws the charts from the test report and fails 
 | Open weights, pages whose layout matches their template | 0.99% (0.00%–5.07%) against 3.75% (1.28%–8.58%) | 13.64% (4.82%–30.74%) against 16.44% (7.28%–27.75%) |
 | Open weights, wrong values caught | 88.3% (75.8%–98.9%) | 83.9% (73.1%–92.2%) |
 | Open weights, drawn cells sent to a person | 60.0% (47.4%–72.6%) | 60.0% (47.4%–72.6%) |
-| Open weights, O1 (under 1% wrong among accepted) | met where the layout matches, not met with every cell | not met in any variant |
+| Open weights, O1 (under 1% wrong among accepted) | not met (judged on every labelled cell); under 1% where the layout matches | not met; over 1% where the layout matches |
 
 Sending to a person does not depend on the key, so its figure is the same in both columns.
 

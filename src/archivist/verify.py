@@ -365,6 +365,17 @@ def _met_words(met: dict[str, bool]) -> str:
     return "met where the layout matches, not met with every cell" if left else "met with every cell, not where the layout matches"
 
 
+def _o1_words(met: dict[str, bool], corrected: bool) -> str:
+    """O1 is judged on every labelled cell (PREREGISTRATION_OPENW.md), so a pass on the pages whose layout matches
+    never makes it met: when every cell fails it, the row says "not met" and then what the matching-layout pages did.
+    Under the corrected key the row also says what O1 is judged on."""
+    kept, left = met["kept/as_run"], met["left_out/as_run"]
+    if kept:
+        return _met_words(met)
+    where = "under 1%" if left else "over 1%"
+    return f"not met (judged on every labelled cell); {where} where the layout matches" if corrected else f"not met; {where} where the layout matches"
+
+
 def real_cells(v1: dict, open_: dict, fixed_v1: dict, fixed_open: dict) -> list[tuple[str, tuple, tuple]]:
     """The real-scan table the README and the app's accuracy view both show, as figures: each row's label, its cell
     under the corrected key and as registered. A cell is ("pair", Archivist, single read, places), ("one", figure) or
@@ -395,7 +406,7 @@ def real_cells(v1: dict, open_: dict, fixed_v1: dict, fixed_open: dict) -> list[
         ("Open weights, pages whose layout matches their template", pair(ofix, "left_out/as_run", places), pair(oreg, "left_out/as_run", places)),
         ("Open weights, wrong values caught", caught(ofix), caught(oreg)),
         ("Open weights, drawn cells sent to a person", sent, sent),
-        ("Open weights, O1 (under 1% wrong among accepted)", ("words", _met_words(fixed_open["corrected_key"]["o1"]["in_every_variant"])), ("words", _met_words(open_["o1"]["in_every_variant"]))),
+        ("Open weights, O1 (under 1% wrong among accepted)", ("words", _o1_words(fixed_open["corrected_key"]["o1"]["in_every_variant"], True)), ("words", _o1_words(open_["o1"]["in_every_variant"], False))),
     ]
 
 
