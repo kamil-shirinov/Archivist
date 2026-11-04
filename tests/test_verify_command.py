@@ -302,3 +302,19 @@ def test_main_asks_to_be_run_from_the_repository_root(tmp_path, monkeypatch, cap
     monkeypatch.chdir(tmp_path)
     assert verify.main([]) == 2
     assert "repository root" in capsys.readouterr().out
+
+
+def test_o1_is_never_met_by_the_pages_whose_layout_matches_alone():
+    both = {"kept/as_run": False, "left_out/as_run": True}
+    assert verify._o1_words(both, True) == "not met (judged on every labelled cell); under 1% where the layout matches"
+    assert verify._o1_words({"kept/as_run": False, "left_out/as_run": False}, False) == "not met; over 1% where the layout matches"
+    assert verify._o1_words({"kept/as_run": False, "left_out/as_run": False}, True) == "not met (judged on every labelled cell); over 1% where the layout matches"
+    assert verify._o1_words({"kept/as_run": True, "left_out/as_run": True}, True) == "met"
+
+
+def test_the_committed_o1_row_is_what_the_score_files_give_in_the_readme_and_the_app():
+    scores = [verify._json(Path(p)) for p in verify.SCORES]
+    row = next(r for r in verify.real_rows(*scores) if r[0].startswith("Open weights, O1"))
+    assert row[1:] == ("not met (judged on every labelled cell); under 1% where the layout matches", "not met; over 1% where the layout matches")
+    assert f"| {row[0]} | {row[1]} | {row[2]} |" in Path("README.md").read_text(encoding="utf-8")
+    assert f"<td>{row[1]}</td><td>{row[2]}</td>" in Path("ui/index.html").read_text(encoding="utf-8")

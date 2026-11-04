@@ -133,7 +133,10 @@ h1 .acc{color:var(--gold)}
 .lede+.lede{margin-top:8px}
 .lede strong{color:var(--ink);font-weight:500}
 .cta{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin-top:22px}
-.hl{margin:30px auto 0;font:500 clamp(1.5rem,2.6vw,2rem)/1.2 var(--serif);letter-spacing:-.015em;text-wrap:balance}
+.vid{margin:10px 0 0;font-size:14px;line-height:18px}
+.vid a{color:var(--accent-2);text-underline-offset:3px}
+.vid a:hover{text-decoration-thickness:2px}
+.hl{margin:24px auto 0;font:500 clamp(1.5rem,2.6vw,2rem)/1.2 var(--serif);letter-spacing:-.015em;text-wrap:balance}
 .hl a{color:var(--ink);text-decoration:none;font-weight:600}
 .hl a:hover{text-decoration:underline;text-underline-offset:4px}
 .hl-line{margin:8px auto 0;max-width:46em;font-size:14px;line-height:1.55;color:var(--ink-2);text-wrap:pretty}
@@ -441,7 +444,7 @@ html:not(.js) .tl .ev:hover .tip,html:not(.js) .tl .ev:focus-within .tip{opacity
 .limit b{color:var(--ink);font-weight:600}
 .limit a{color:var(--accent-2);text-underline-offset:3px}
 .limit:last-child:nth-child(odd){grid-column:1/-1}
-.try{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:30px}
+.try{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:30px}
 .try .card{display:flex;flex-direction:column;gap:12px}
 .try p{margin:0;font-size:14.5px;color:var(--ink-2)}
 .try .btn{align-self:flex-start;margin-top:auto}
