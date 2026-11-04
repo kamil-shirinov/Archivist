@@ -237,7 +237,9 @@ def test_a_stopped_or_failed_read_says_so_and_the_mode_stays_honest(local):
         tab = browser.tab()
         tab.open(f"{base}/ui/#live", width=1440, height=900)
         tab.wait_for(READY + " && document.querySelectorAll('#l-page option').length > 0")
-        # nothing is cached: a replay says so and does not start
+        # nothing is cached: a replay says so and does not start. The page list fills before the view has asked
+        # for the page's info and set its controls, so the button and the note are read once the note is there
+        tab.wait_for("document.getElementById('l-note').textContent.toLowerCase().includes('nothing is cached')")
         assert tab.eval("document.getElementById('l-go').disabled")
         assert "nothing is cached" in text(tab, "#l-note").lower()
         tab.eval("document.querySelector('#l-mode button[data-m=live]').click()")
