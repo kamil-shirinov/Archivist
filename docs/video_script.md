@@ -1,12 +1,12 @@
 # The demo video: script
 
-The three-minute demo video, as voiced and captioned: 2:54 in all, eight scenes. At least 80% of it is screen recordings of the working product; the rest is the logo at the start and the close. The voice is English text-to-speech made offline with Kokoro (af_heart; a second cut uses bm_george on the same timings), and the captions follow it word for word.
+The three-minute demo video, as voiced and captioned: 2:54 in all, eight scenes. At least 80% of it is screen recordings of the working product; the rest is the logo at the start and the close. The voice is English text-to-speech made offline with Kokoro (the af_heart voice), and the captions follow it word for word.
 
 ## 1. 0:00–0:16
 
 **Screen.** The logo reveal, then the landing page's hero and the story behind it. From the first second, a line at the top says: Before the hackathon: one idea, from my bank internship · Built during the hackathon, 26 Oct – 4 Nov 2026.
 
-**Voice.** Before this hackathon I had one idea, from my bank internship. Everything you'll see, I built during it. At the bank I wrote a parser for two thousand old memos, then found there was nothing to run it on: no archive, and the oldest records only on paper.
+**Voice.** Archivist started as an idea from my bank internship. Everything you'll see, I built during this hackathon. At the bank I wrote a parser for two thousand old memos, then found there was nothing to run it on: no archive, and the oldest records only on paper.
 
 ## 2. 0:16–0:31
 
