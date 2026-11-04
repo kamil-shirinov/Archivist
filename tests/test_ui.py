@@ -351,7 +351,10 @@ def test_the_real_scans_tab_shows_big_numbers_chips_and_a_range_chart_with_the_t
         want.append((title, fix[variant]["overall"]["archivist_error"]["value"], reg[variant]["overall"]["archivist_error"]["value"], [met(fix[variant]["r1"]["met"], "R1"), met(reg[variant]["r1"]["met"], "R1")]))
     o1_fix, o1_reg = fixed_open["corrected_key"]["o1"]["in_every_variant"], open_["o1"]["in_every_variant"]
     for variant, title in verify.APP_VARIANTS:
-        want.append((title, ofix[variant]["overall"]["archivist_error"]["value"], oreg[variant]["overall"]["archivist_error"]["value"], [met(o1_fix[variant], "O1"), met(o1_reg[variant], "O1")]))
+        o_fix, o_reg = ofix[variant]["overall"]["archivist_error"]["value"], oreg[variant]["overall"]["archivist_error"]["value"]
+        # O1 is judged on every labelled cell: only that card says met or not met; the other gives the plain result against 1%
+        chips = [met(o1_fix[variant], "O1"), met(o1_reg[variant], "O1")] if variant == "kept/as_run" else [("Under" if o_fix < 0.01 else "Over") + " 1%", ("Under" if o_reg < 0.01 else "Over") + " 1%"]
+        want.append((title, o_fix, o_reg, chips))
     assert len(cards) == 4
     for card, (title, fixed, registered, chips) in zip(cards, want, strict=True):
         assert card["h"] == title and card["chips"] == chips, card
@@ -361,6 +364,12 @@ def test_the_real_scans_tab_shows_big_numbers_chips_and_a_range_chart_with_the_t
         assert card["main"] == verify._pc(fixed, places) and card["beside"] == verify._pc(registered, 1)
     assert [c["beside"] for c in cards][-1] == "13.6%" and "13.64" not in " ".join(c["beside"] for c in cards)
     assert cards[-1]["main"] == "0.99%"
+    assert cards[-1]["chips"] == ["Under 1%", "Over 1%"] and cards[2]["chips"] == ["O1 not met", "O1 not met"]
+    # R1 is reported both ways by its plan (the fourth decision of PREREGISTRATION_REAL.md's Deviations), so the hosted cards keep theirs
+    assert all(c["chips"][0].startswith("R1") for c in cards[:2]) and not any("O1" in x for x in cards[3]["chips"])
+    notes = tab.eval("[...document.querySelectorAll('#acc-real .rs-card')].map(c => c.querySelector('.fine') && c.querySelector('.fine').textContent)")
+    assert notes == [None, None, None, "O1 is judged on every labelled cell, where it isn’t met; this card shows the same rate for the pages whose layout matches."], notes
+    assert not tab.eval("[...document.querySelectorAll('#acc-real .rs-card .st-plain')].some(x => x.classList.contains('st-ok') || x.classList.contains('st-miss'))")
     assert tab.eval("document.querySelectorAll('#acc-real .rs-chart').length") == 2
     # the chart captions say each target's own rule: R1 (a lower rate, bars apart) for hosted, O1 (under 1%) for open weights
     hosted_cap, open_cap = tab.eval("[...document.querySelectorAll('#acc-real .rs-chart > .fine')].map(p => p.textContent)")

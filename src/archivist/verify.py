@@ -529,6 +529,8 @@ APP_CAPTIONS = {
     "hosted": "Each bar is the 95% interval and the tick its estimate. R1 is met only where Archivist’s rate is lower than the single read’s and the two bars do not overlap.",
     "open": "Each bar is the 95% interval and the tick its estimate. O1 is met where Archivist’s estimate is under 1%, the thin line. It is judged on that rate alone, not against the single read, so overlapping bars do not decide it.",
 }
+O1_LIMIT = 0.01  # PREREGISTRATION_OPENW.md: Muse Spark Open's error rate among accepted cells is below 1%, judged on every labelled cell
+APP_O1_NOTE = "O1 is judged on every labelled cell, where it isn’t met; this card shows the same rate for the pages whose layout matches."
 APP_VARIANTS = (("kept/as_run", "Every labelled cell"), ("left_out/as_run", "Pages whose layout matches their template"))
 
 
@@ -538,6 +540,11 @@ def _span(m: dict, places: int = 1) -> str:
 
 def _chip(met: bool, target: str) -> str:
     return f'<span class="st {"st-ok" if met else "st-miss"}">{target} {"met" if met else "not met"}</span>'
+
+
+def _threshold(value: float, limit: float) -> str:
+    """A plain result against a threshold, with no verdict on a target: neutral in colour."""
+    return f'<span class="st st-plain">{"Under" if value < limit else "Over"} {limit * 100:g}%</span>'
 
 
 def _nv(m: dict, who: str = "", places: int = 1) -> str:
@@ -592,11 +599,18 @@ def app_real_pieces(v1: dict, open_: dict, fixed_v1: dict, fixed_open: dict) -> 
         for variant, label in APP_VARIANTS:
             f, r = k_fix[variant]["overall"]["archivist_error"], k_reg[variant]["overall"]["archivist_error"]
             n = places[variant]
+            chips = f"<span>Corrected key {_chip(met_fix[variant], target)}</span><span>As registered {_chip(met_reg[variant], target)}</span>"
+            note = ""
+            if name == "open" and variant != "kept/as_run":
+                # O1 is judged on every labelled cell (PREREGISTRATION_OPENW.md), so a card of another variant gives the
+                # threshold's plain result, not the target's verdict, and says so
+                chips = f"<span>Corrected key {_threshold(f['value'], O1_LIMIT)}</span><span>As registered {_threshold(r['value'], O1_LIMIT)}</span>"
+                note = f'<p class="fine">{APP_O1_NOTE}</p>'
             cards += (
                 f'<div class="panel rs-card"><h3>{label}</h3>'
                 f'<div class="rs-nums"><div class="rs-main"><b>{_pc(f["value"], n)}</b><small>wrong among accepted, corrected key</small></div>'
                 f'<div class="rs-beside"><b>{_pc(r["value"], 1)}</b><small>as registered</small></div></div>'
-                f'<div class="rs-chips"><span>Corrected key {_chip(met_fix[variant], target)}</span><span>As registered {_chip(met_reg[variant], target)}</span></div></div>'
+                f'<div class="rs-chips">{chips}</div>{note}</div>'
             )
             for which, kk in (("Corrected key", k_fix), ("As registered", k_reg)):
                 o = kk[variant]["overall"]
